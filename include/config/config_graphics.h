@@ -5,13 +5,13 @@
  *********************/
 
 // Size of how large the master display list (gDisplayListHead) can be. 6400 is vanilla
-#define GFX_POOL_SIZE 10000
+#define GFX_POOL_SIZE 16000
 
 // Show a watermark in the title screen that reads "Made with HackerSM64", instead of the copyright message
-#define INTRO_CREDIT
+//#define INTRO_CREDIT
 
 // Spawn floombas in the title screen
-#define INTRO_FLOOMBAS
+//#define INTRO_FLOOMBAS
 
 // Enable widescreen (16:9) support
 #define WIDE
@@ -19,7 +19,7 @@
 // Skybox size modifier, changing this will add support for larger skybox images. NOTE: Vanilla skyboxes may break if you change this option. Be sure to rescale them accordingly.
 // Whenever you change this, make sure to run "make -C tools clean" to rebuild the skybox tool (alternatively go into skyconv.c and change the file in any way (like adding/deleting a space) to specifically rebuild that tool).
 // When increasing this, you should probably also increase the GFX pool size. (the GFX_POOL_SIZE define above)
-#define SKYBOX_SIZE 1
+#define SKYBOX_SIZE 2
 
 // When this option is enabled, LODs will ONLY work on console.
 // When this option is disabled, LODs will work regardless of whether console or emulator is used.
@@ -28,7 +28,7 @@
 
 // Include Puppyprint, a display library for text and large images.
 // Automatically included when PUPPYPRINT_DEBUG is enabled
-// #define PUPPYPRINT
+#define PUPPYPRINT
 
 // Disable AA (Improves console performance but causes visible seams between unconnected geometry).
 // #define DISABLE_AA

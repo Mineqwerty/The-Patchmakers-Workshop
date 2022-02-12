@@ -9,7 +9,7 @@
 // The distance from Mario which coin formations spawn coins at.
 // Vanilla is 2000.0f. 
 // Set this to o->oDrawingDistance for a more reasonable range at the cost of performance.
-#define COIN_FORMATION_DISTANCE 2000.0f
+#define COIN_FORMATION_DISTANCE 4000.0f
 
 // Moving Coins flicker and disappear when they hit lava instead of being instantly deleted.
 #define COIN_LAVA_FLICKER
@@ -24,7 +24,7 @@
 
 // Floombas! These fellas sport custom behaviors (bhvFloomba, bhvFloombaTripletSpawner) and of course the iconic Floomba texture.
 // Also support macros (macro_floomba, macro_huge_floomba, macro_tiny_floomba, macro_floomba_triplet_spawner, macro_floomba_quintuplet_spawner).
-#define FLOOMBAS
+//#define FLOOMBAS
 
 // -- HOOT --
 
