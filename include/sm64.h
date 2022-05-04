@@ -193,7 +193,7 @@ enum MarioFlags {
     MARIO_METAL_SHOCK         = /* 0x00000040 */ (1 <<  6),
     MARIO_TELEPORTING         = /* 0x00000080 */ (1 <<  7),
     MARIO_JUMPING             = /* 0x00000100 */ (1 <<  8),
-    MARIO_UNUSED_9            = /* 0x00000200 */ (1 <<  9),
+    MARIO_USED_STONE_PATCH            = /* 0x00000200 */ (1 <<  9),
     MARIO_UNUSED_10           = /* 0x00000400 */ (1 << 10),
     MARIO_UNUSED_11           = /* 0x00000800 */ (1 << 11),
     MARIO_UNUSED_12           = /* 0x00001000 */ (1 << 12),
@@ -367,11 +367,9 @@ enum MarioActionFlags {
 #define ACT_TRIPLE_JUMP_LAND           0x04000478 // (0x078 | ACT_FLAG_MOVING | ACT_FLAG_ALLOW_FIRST_PERSON)
 #define ACT_LONG_JUMP_LAND             0x00000479 // (0x079 | ACT_FLAG_MOVING)
 #define ACT_BACKFLIP_LAND              0x0400047A // (0x07A | ACT_FLAG_MOVING | ACT_FLAG_ALLOW_FIRST_PERSON)
-#define ACT_UNUSED_07B                 0x0000007B // (0x07B)
-#define ACT_UNUSED_07C                 0x0000007C // (0x07C)
-#define ACT_UNUSED_07D                 0x0000007D // (0x07D)
-#define ACT_UNUSED_07E                 0x0000007E // (0x07E)
-#define ACT_UNUSED_07F                 0x0000007F // (0x07F)
+
+#define ACT_STONE_PATCH_GROUNDED           0x0002047B // (0x07A | ACT_FLAG_MOVING | ACT_FLAG_INVULNERABLE)
+#define ACT_STONE_PATCH_AIR_LAND           0x0002047C // (0x07A | ACT_FLAG_MOVING | ACT_FLAG_INVULNERABLE)
 
 // group 0x080: airborne actions
 #define ACT_JUMP                       0x03000880 // (0x080 | ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION | ACT_FLAG_CONTROL_JUMP_HEIGHT)
@@ -435,7 +433,8 @@ enum MarioActionFlags {
 #define ACT_UNUSED_0BC                 0x000000BC // (0x0BC)
 #define ACT_THROWN_FORWARD             0x010208BD // (0x0BD | ACT_FLAG_AIR | ACT_FLAG_INVULNERABLE | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 #define ACT_THROWN_BACKWARD            0x010208BE // (0x0BE | ACT_FLAG_AIR | ACT_FLAG_INVULNERABLE | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
-#define ACT_UNUSED_0BF                 0x000000BF // (0x0BF)
+
+#define ACT_STONE_PATCH_AIRBORNE            0x010208BF
 
 // group 0x0C0: submerged actions
 #define ACT_WATER_IDLE                 0x380022C0 // (0x0C0 | ACT_FLAG_STATIONARY | ACT_FLAG_SWIMMING | ACT_FLAG_PAUSE_EXIT | ACT_FLAG_SWIMMING_OR_FLYING | ACT_FLAG_WATER_OR_TEXT)

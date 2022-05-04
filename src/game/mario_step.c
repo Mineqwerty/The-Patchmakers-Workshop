@@ -252,7 +252,7 @@ void stop_and_set_height_to_floor(struct MarioState *m) {
 s32 stationary_ground_step(struct MarioState *m) {
     struct Object *marioObj = m->marioObj;
     u32 stepResult = GROUND_STEP_NONE;
-
+    m->usedStonePatch = 0;
     mario_set_forward_vel(m, 0.0f);
 
     u32 takeStep = (mario_update_moving_sand(m) | mario_update_windy_ground(m));
@@ -350,6 +350,8 @@ s32 perform_ground_step(struct MarioState *m) {
 
     set_mario_wall(m, NULL);
 
+    m->usedStonePatch = 0;
+
     for (i = 0; i < 4; i++) {
         intendedPos[0] = m->pos[0] + m->floor->normal.y * (m->vel[0] / numSteps);
         intendedPos[2] = m->pos[2] + m->floor->normal.y * (m->vel[2] / numSteps);
@@ -428,7 +430,7 @@ s32 bonk_or_hit_lava_wall(struct MarioState *m, struct WallCollisionData *wallDa
 
     for (i = 0; i < wallData->numWalls; i++) {
         if (wallData->walls[i] != NULL) {
-            if (wallData->walls[i]->type == SURFACE_BURNING) {
+            if (wallData->walls[i]->type == SURFACE_BURNING || wallData->walls[i]->type == SURFACE_THORN_WALL) {
                 set_mario_wall(m, wallData->walls[i]);
                 return AIR_STEP_HIT_LAVA_WALL;
             }

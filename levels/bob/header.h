@@ -31,4 +31,17 @@ extern const Trajectory bob_seg7_trajectory_koopa[];
 // script
 extern const LevelScript level_bob_entry[];
 
+
+#include "levels/bob/header.inc.h"
+
+#include "levels/bob/bounce_bulb/geo_header.h"
+
+#include "levels/bob/bounce_bulb_open/geo_header.h"
+
+#include "levels/bob/spike_ball/geo_header.h"
+
+#include "levels/bob/ptooie/geo_header.h"
+
+#include "levels/bob/ptooie/anim_header.h"
+
 #endif

@@ -65,3 +65,31 @@ void cur_obj_spawn_strong_wind_particles(s32 windSpread, f32 scale, f32 relPosX,
     // It isn't to ensure collision, as even 1 particle every 2 frames is enough to ensure this reliably.
     spawn_object_relative_with_scale(windSpread, relPosX, relPosY, relPosZ, scale, o, MODEL_NONE, bhvStrongWindParticle);
 }
+
+void bhv_weak_wind_particle_loop(void) {
+
+    if (o->oTimer == 0) {
+        obj_translate_xyz_random(o, 10.0f);
+
+        o->oForwardVel = sins(o->oMoveAnglePitch) * -30.0f;
+        o->oVelY = coss(o->oMoveAnglePitch) * 30.0f;
+
+        o->oMoveAngleYaw += random_f32_around_zero(o->oBehParams2ndByte * 500); // Wind spread
+        o->oOpacity = 100;
+    }
+
+    cur_obj_move_using_fvel_and_gravity();
+    if (o->oTimer > 7) // Deactivate after 15 frames
+        obj_mark_for_deletion(o);
+
+    
+}
+
+void cur_obj_spawn_weak_wind_particles(s32 windSpread, f32 scale, f32 relPosX, f32 relPosY, f32 relPosZ) {
+    // Alternate between tiny particles and regular particles each frame.
+    if ((gGlobalTimer % 3) == 0) {
+        // Because the tiny particles are unimportant objects, invisible wind particles are spawned to provide collision.
+        // There was absolutely no reason to make the smaller particles unimportant, though...
+        spawn_object_relative_with_scale(windSpread, relPosX, relPosY, relPosZ, scale, o, MODEL_MIST, bhvWeakWindParticle);
+    } 
+}

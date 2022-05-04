@@ -331,4 +331,19 @@ extern const Gfx white_particle_small_dl_end[];
 extern const Gfx white_particle_small_dl[];
 extern const Gfx white_particle_small_unused_dl[];
 
+#include "patch_mario_stone/geo_header.h"
+
+#include "mario/geo_header.h"
+
+#include "patches/geo_header.h"
+
+
+#include "menu_layer_1/header.h"
+
+#include "menu_layer_3/header.h"
+
+#include "menu_layer_2/header.h"
+
+#include "menu_options/header.h"
+
 #endif

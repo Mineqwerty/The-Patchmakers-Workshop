@@ -69,6 +69,12 @@ static s32 find_wall_collisions_from_list(struct SurfaceNode *surfaceNode, struc
             // Ignore camera only surfaces.
             if (type == SURFACE_CAMERA_BOUNDARY) continue;
 
+            if (type == SURFACE_THORN_WALL) {
+                if (gMarioState->curPatch == 1) {
+                    continue;
+                }
+            }
+
             // If an object can pass through a vanish cap wall, pass through.
             if (type == SURFACE_VANISH_CAP_WALLS && o != NULL) {
                 // If an object can pass through a vanish cap wall, pass through.
@@ -436,6 +442,10 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
             }
         } else if (type == SURFACE_CAMERA_BOUNDARY) {
             continue; // If we are not checking for the camera, ignore camera only floors.
+        }
+
+        if (surf != NULL && surf->type == SURFACE_THORNS_PASS && gMarioState->curPatch == 1) {
+            continue;
         }
 
         // Exclude all floors above the point.

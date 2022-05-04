@@ -1691,11 +1691,93 @@ void queue_rumble_particles(struct MarioState *m) {
 }
 #endif
 
+struct SpawnParticlesInfo StoneBreak = {
+    0, 30, MODEL_PEBBLE, 0, 40, 0, 20, 40, 252, 30, 5.0f, 0.0f
+};
+struct SpawnParticlesInfo StoneForm = {
+    2, 25, MODEL_MIST, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
+};
+struct SpawnParticlesInfo ThornPass = {
+    1, 10, MODEL_LEAVES, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
+};
+
+void perform_patch_action(struct MarioState *m) {
+    switch (m->equippedPatch) {
+            case 1:
+            if (m->usedStonePatch == 0) {
+        if (m->curPatch != 1) {
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
+        m->curPatch = 1;
+        cur_obj_spawn_particles(&StoneForm);
+        //play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
+        if (m->action == ACT_IDLE || m->action == ACT_PANTING || m->action == ACT_WALKING) {
+        set_mario_action(m, ACT_STONE_PATCH_GROUNDED, 0);
+        }
+        else {
+            set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);
+            
+        }
+        }
+        else {
+            common_patch_cancel(m);
+            m->usedStonePatch = 1;
+            set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
+            m->vel[1] += 5.0f;
+        }
+            }
+        break;
+        }
+}
+
+void common_patch_cancel(struct MarioState *m) {
+    switch (m->curPatch) {
+        case 1:
+            m->curPatch = 0;
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            cur_obj_spawn_particles(&StoneBreak);
+            //play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+        break;
+    }
+}
+
 /**
  * Main function for executing Mario's behavior. Returns particleFlags.
  */
 s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
+
+    if (gPlayer1Controller->buttonPressed & L_TRIG && gMarioState->action != ACT_STAR_DANCE_EXIT && gMarioState->action != ACT_STAR_DANCE_WATER && gMarioState->action != ACT_STAR_DANCE_NO_EXIT && gMarioState->action != ACT_FIRST_PERSON && !(gMarioState->flags & MARIO_TELEPORTING)) {
+        perform_patch_action(gMarioState);
+    }
+
+/*
+    if (gPlayer1Controller->buttonPressed & L_JPAD) {
+        if (gCustomDebugMode == 0) {
+        gCustomDebugMode = 1;
+        }
+        else {
+            gCustomDebugMode = 0;
+        }
+    }
+*/
+    if (gPlayer1Controller->buttonPressed & R_JPAD) {
+        if (gMarioState->equippedPatch == 0) {
+        gMarioState->equippedPatch = 1;
+        }
+        else {
+            gMarioState->equippedPatch = 0;
+        }
+    }
+
+
+
+    //dma patches
+    extern const u8 patch_textures_dma[];
+    extern u8 mario_mario_cap_rgba16[];
+    u8 *patchTexture = segmented_to_virtual(&mario_mario_cap_rgba16);
+
+    dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
+
 
     // Updates once per frame:
     vec3f_get_dist_and_lateral_dist_and_angle(gMarioState->prevPos, gMarioState->pos, &gMarioState->moveSpeed, &gMarioState->lateralSpeed, &gMarioState->movePitch, &gMarioState->moveYaw);
@@ -1792,6 +1874,9 @@ void init_mario(void) {
     gMarioState->actionTimer = 0;
     gMarioState->framesSinceA = 0xFF;
     gMarioState->framesSinceB = 0xFF;
+
+    //CHANGE THIS
+    gMarioState->equippedPatch = 1;
 
     gMarioState->invincTimer = 0;
 

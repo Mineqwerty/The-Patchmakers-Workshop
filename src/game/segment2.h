@@ -75,4 +75,11 @@ extern Gfx dl_billboard_num_E[];
 extern Gfx dl_billboard_num_F[];
 #endif
 
+
+extern Gfx menu_layer_1_Plane_mesh[];
+extern Gfx menu_layer_2_Plane_001_mesh[];
+extern Gfx menu_layer_3_Plane_002_mesh[];
+extern Gfx menu_options_Plane_003_mesh[];
+
+
 #endif // SEGMENT2_H

@@ -313,6 +313,9 @@ s16 s8DirModeBaseYaw;
  */
 s16 s8DirModeYawOffset;
 
+s8 sPrevCameraVolume;
+s8 sCameraDisturbed;
+
 /**
  * The distance that the camera will look ahead of Mario in the direction Mario is facing.
  */
@@ -1126,26 +1129,32 @@ void mode_8_directions_camera(struct Camera *c) {
 
     if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
         s8DirModeYawOffset += DEGREES(45);
+        sCameraDisturbed = 1;
         play_sound_cbutton_side();
     }
     if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
         s8DirModeYawOffset -= DEGREES(45);
+        sCameraDisturbed = 1;
         play_sound_cbutton_side();
     }
 #ifdef PARALLEL_LAKITU_CAM
     // extra functionality
     else if (gPlayer1Controller->buttonPressed & U_JPAD) {
         s8DirModeYawOffset = 0;
+        sCameraDisturbed = 1;
         s8DirModeYawOffset = gMarioState->faceAngle[1] - 0x8000;
     }
     else if (gPlayer1Controller->buttonDown & L_JPAD) {
         s8DirModeYawOffset -= DEGREES(2);
+        sCameraDisturbed = 1;
     }
     else if (gPlayer1Controller->buttonDown & R_JPAD) {
         s8DirModeYawOffset += DEGREES(2);
+        sCameraDisturbed = 1;
     }
     else if (gPlayer1Controller->buttonPressed & D_JPAD) {
         s8DirModeYawOffset = snap_to_45_degrees(s8DirModeYawOffset);
+        sCameraDisturbed = 1;
     }
 #endif
 
@@ -2772,6 +2781,103 @@ void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {
     }
 #endif
 }
+#define NUM_TTC_VOLUMES 6
+
+Vec3f ttcVolumes[NUM_TTC_VOLUMES * 4] = {
+    //bottom of cliffs
+{4550, 924, -2950}, {-900, 924, 2283}, {3014, 4000, 2283}, {5828, 4000, -227},
+//three rock cliff platforming section
+{-900, 924, 2280}, {-900, 924, 3250}, {3435, 4000, 3250}, {3435, 4000, 2280},
+//top o the cliff
+{6026, 2800, -533}, {6883, 2800, -533}, {7017, 3750, 3555}, {6287, 3750, 2546},
+//area under branch bridge
+{-4468, 150, -7300}, {-5980, 150, -9440}, {-8027, 1100, -7093}, {-6822, 1100, -5803},
+//coming up the path from the cave
+{-8105, 1300, -5551}, {-7490, 1300, -4253}, {-5555, 1980, -4400}, {-6109, 1980, -6280},
+//entering cave
+{-3886, 100, -9060}, {-4125, 100, -7380}, {1863, 200, -9670}, {720, 200, -10800}
+};
+
+s8 point_inside_xz_tri(Vec3f marioPos, Vec3f a, Vec3f b, Vec3f c) {
+    int a_mario_x = marioPos[0]-a[0];
+    int a_mario_z = marioPos[2]-a[2];
+
+    s8 mario_a_b = (b[0]-a[0])*a_mario_z-(b[2]-a[2])*a_mario_x > 0;
+
+    if((c[0]-a[0])*a_mario_z-(c[2]-a[2])*a_mario_x > 0 == mario_a_b) return FALSE;
+
+    if((c[0]-b[0])*(marioPos[2]-b[2])-(c[2]-b[2])*(marioPos[0]-b[0]) > 0 != mario_a_b) return FALSE;
+
+    return TRUE;
+}
+
+s16 check_mario_is_in_course_volume(void) {
+    s16 volumeID = 0;
+
+    switch (gCurrLevelNum) {
+        case LEVEL_BOB:
+        for (int i = 0; i < NUM_TTC_VOLUMES; i++) {
+            //check XZ coords of tris 012 and 023
+            if (point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4], ttcVolumes[i * 4 + 1], ttcVolumes[i * 4 + 2]) == TRUE || point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4], ttcVolumes[i * 4 + 2], ttcVolumes[i * 4 + 3]) == TRUE) {
+                //always check the Y of the first and last coords
+                if (gMarioState->pos[1] > ttcVolumes[i * 4][1] && gMarioState->pos[1] < ttcVolumes[i * 4 + 3][1]) {
+                    
+                    //print_text_fmt_int(100, 100, "YAHOO%d", i);
+                    volumeID = i + 1;
+
+                    //since we're in a volume already, we can stop iterating
+                    i = NUM_TTC_VOLUMES;
+                }
+            }
+        }
+        break;
+    }
+
+    return volumeID;
+}
+
+
+void handle_course_volumes(struct Camera *c) {
+    
+    s16 volumeID = check_mario_is_in_course_volume();
+
+    if (sPrevCameraVolume != volumeID) {
+        sPrevCameraVolume = volumeID;
+        sCameraDisturbed = 0;
+    }
+
+    if (volumeID > 0 && sCameraDisturbed == 0) {
+        switch (gCurrLevelNum) {
+            case LEVEL_BOB:
+                switch (volumeID) {
+                    case 1: 
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -0x53E8, 0x20);
+                    break;
+                    case 2:
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -0x4FE0, 0x20);
+                    break;
+                    case 3:
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -0x7E23, 0x20);
+                    break;
+                    case 4:
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, 0x5BF1, 0x20);
+                    break;
+                    case 5:
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, 0xCF25, 0x20);
+                    break;
+                    case 6:
+                    s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, 0xDF65, 0x20);
+                    break;
+                }
+            
+        }
+    }
+}
+
+
+
+
+
 
 /**
  * Updates Lakitu's position/focus and applies camera shakes.
@@ -2782,6 +2888,8 @@ void update_lakitu(struct Camera *c) {
     Vec3f newFoc;
     f32 distToFloor;
     s16 newYaw;
+
+    handle_course_volumes(c);
 
     if (!(gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN)) {
         newYaw = next_lakitu_state(newPos, newFoc, c->pos, c->focus, sOldPosition, sOldFocus,
@@ -3425,7 +3533,7 @@ void update_graph_node_camera(struct GraphNodeCamera *gc) {
     gc->rollScreen = gLakituState.roll;
     vec3f_copy(gc->pos, gLakituState.pos);
     vec3f_copy(gc->focus, gLakituState.focus);
-    zoom_out_if_paused_and_outside(gc);
+    //zoom_out_if_paused_and_outside(gc);
 }
 
 Gfx *geo_camera_main(s32 callContext, struct GraphNode *g, void *context) {
@@ -5915,9 +6023,7 @@ struct CameraTrigger sCamRR[] = {
  * to free_roam when Mario is not walking up the tower.
  */
 struct CameraTrigger sCamBOB[] = {
-    {  1, cam_bob_tower, 2468, 2720, -4608, 3263, 1696, 3072, 0 },
-    { -1, cam_bob_default_free_roam, 0, 0, 0, 0, 0, 0, 0 },
-    NULL_TRIGGER
+	NULL_TRIGGER
 };
 
 /**
@@ -10401,26 +10507,26 @@ u8 sDanceCutsceneIndexTable[][4] = {
  * and if the result is non-zero, the camera will zoom out.
  */
 u8 sZoomOutAreaMasks[] = {
-    ZOOMOUT_AREA_MASK(0,0,0,0, 0,0,0,0), // Unused         | Unused
-    ZOOMOUT_AREA_MASK(0,0,0,0, 0,0,0,0), // Unused         | Unused
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // BBH            | CCM
-    ZOOMOUT_AREA_MASK(0,0,0,0, 0,0,0,0), // CASTLE_INSIDE  | HMC
-    ZOOMOUT_AREA_MASK(1,0,0,0, 1,0,0,0), // SSL            | BOB
-    ZOOMOUT_AREA_MASK(1,0,0,0, 1,0,0,0), // SL             | WDW
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,1,0,0), // JRB            | THI
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // TTC            | RR
-    ZOOMOUT_AREA_MASK(1,0,0,0, 1,0,0,0), // CASTLE_GROUNDS | BITDW
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // VCUTM          | BITFS
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // SA             | BITS
-    ZOOMOUT_AREA_MASK(1,0,0,0, 0,0,0,0), // LLL            | DDD
-    ZOOMOUT_AREA_MASK(1,0,0,0, 0,0,0,0), // WF             | ENDING
-    ZOOMOUT_AREA_MASK(0,0,0,0, 0,0,0,0), // COURTYARD      | PSS
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // COTMC          | TOTWC
-    ZOOMOUT_AREA_MASK(1,0,0,0, 1,0,0,0), // BOWSER_1       | WMOTR
-    ZOOMOUT_AREA_MASK(0,0,0,0, 1,0,0,0), // Unused         | BOWSER_2
-    ZOOMOUT_AREA_MASK(1,0,0,0, 0,0,0,0), // BOWSER_3       | Unused
-    ZOOMOUT_AREA_MASK(1,0,0,0, 0,0,0,0), // TTM            | Unused
-    ZOOMOUT_AREA_MASK(0,0,0,0, 0,0,0,0), // Unused         | Unused
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // BBH            | CCM
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // CASTLE_INSIDE  | HMC
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // JRB            | THI
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // TTC            | RR
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_GROUNDS | BITDW
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // VCUTM          | BITFS
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // SA             | BITS
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // LLL            | DDD
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // WF             | ENDING
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // COURTYARD      | PSS
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COTMC          | TOTWC
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // BOWSER_1       | WMOTR
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // Unused         | BOWSER_2
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // BOWSER_3       | Unused
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // TTM            | Unused
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sZoomOutAreaMasks) - 1 == LEVEL_MAX / 2, "Make sure you edit sZoomOutAreaMasks when adding / removing courses.");

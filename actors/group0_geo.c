@@ -16,3 +16,6 @@
 #include "water_splash/geo.inc.c"
 #include "sparkle_animation/geo.inc.c"
 #include "mario/geo.inc.c"
+
+#include "patch_mario_stone/geo.inc.c"
+#include "patches/geo.inc.c"

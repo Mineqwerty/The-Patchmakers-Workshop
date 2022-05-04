@@ -15,6 +15,7 @@ void tox_box_move(f32 forwardVel, f32 a1, s16 deltaPitch, s16 deltaRoll);
 void play_penguin_walking_sound(s32 walk);
 s32 update_angle_from_move_flags(s32 *angle);
 void cur_obj_spawn_strong_wind_particles(s32 windSpread, f32 scale, f32 relPosX, f32 relPosY, f32 relPosZ);
+void cur_obj_spawn_weak_wind_particles(s32 windSpread, f32 scale, f32 relPosX, f32 relPosY, f32 relPosZ);
 
 //! Lots of these are duplicates
 void bhv_cap_switch_loop(void);
@@ -251,6 +252,7 @@ void bhv_idle_water_wave_loop(void);
 void bhv_shallow_water_splash_init(void);
 void bhv_wave_trail_shrink(void);
 void bhv_strong_wind_particle_loop(void);
+void bhv_weak_wind_particle_loop(void);
 void bhv_sl_snowman_wind_loop(void);
 void bhv_sl_walking_penguin_loop(void);
 void bhv_menu_button_init(void);
@@ -549,6 +551,15 @@ void bhv_intro_scene_loop(void);
 void bhv_dust_smoke_loop(void);
 void bhv_yoshi_loop(void);
 void bhv_volcano_trap_loop(void);
+
+
+void bhv_bounce_bulb_loop(void);
+void bhv_bounce_bulb_init(void);
+
+void bhv_ptooie_init(void);
+void bhv_ptooie_loop(void);
+void bhv_spike_ball_init(void);
+void bhv_spike_ball_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

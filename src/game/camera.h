@@ -797,6 +797,7 @@ void play_cutscene(struct Camera *c);
 void cutscene_event(CameraEvent event, struct Camera * c, s16 start, s16 end);
 void cutscene_spawn_obj(u32 obj, s16 frame);
 void set_fov_shake(s16 amplitude, s16 decay, s16 shakeSpeed);
+void handle_course_volumes(struct Camera *c);
 
 void set_fov_function(u8 func);
 void cutscene_set_fov_shake_preset(u8 preset);

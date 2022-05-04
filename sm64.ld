@@ -523,6 +523,13 @@ SECTIONS
       KEEP(BUILD_DIR/sound/sound_data.o(.data*));
    }
    END_SEG(assets)
+
+   BEGIN_SEG(patches, __romPos)
+   {
+      KEEP(BUILD_DIR/bin/patches/patch_data.o(.data*));
+   }
+   END_SEG(patches)
+
 #ifdef HVQM
    BEGIN_SEG(capcom, __romPos) SUBALIGN(2)
    {

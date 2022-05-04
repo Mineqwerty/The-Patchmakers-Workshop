@@ -381,6 +381,13 @@ Gfx *geo_switch_mario_eyes(s32 callContext, struct GraphNode *node, UNUSED Mat4 
     return NULL;
 }
 
+Gfx *geo_switch_mario_visual_patch(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+    if (callContext == GEO_CONTEXT_RENDER) {
+    switchCase->selectedCase = gMarioState->equippedPatch + 1;
+    }
+}
+
 /**
  * Makes Mario's upper body tilt depending on the rotation stored in his bodyState
  */

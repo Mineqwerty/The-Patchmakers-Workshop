@@ -40,7 +40,8 @@ enum MenuMode {
     MENU_MODE_UNUSED_0,
     MENU_MODE_RENDER_PAUSE_SCREEN,
     MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN,
-    MENU_MODE_UNUSED_3
+    MENU_MODE_UNUSED_3,
+    MENU_MODE_FELT_GOING_UP
 };
 
 enum HUDFlashModes {
@@ -177,5 +178,6 @@ void do_cutscene_handler(void);
 void render_hud_cannon_reticle(void);
 void reset_red_coins_collected(void);
 s32 render_menus_and_dialogs(void);
+void render_pause_screen_felt();
 
 #endif // INGAME_MENU_H

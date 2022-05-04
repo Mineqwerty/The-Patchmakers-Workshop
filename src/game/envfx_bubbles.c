@@ -20,6 +20,22 @@
  * effects in this file even though flowers aren't bubbles. For the
  * sake of concise naming, flowers fall under bubbles.
  */
+struct PetalVertex {
+    s16 x;
+    s16 y;
+    s16 z;
+};
+
+struct PetalVertex gPetalVertex1 = { -5, 5, 0 };
+struct PetalVertex gPetalVertex2 = { -5, -5, 0 };
+struct PetalVertex gPetalVertex3 = { 5, 5, 0 };
+//struct EnvFxParticle *gEnvFxBuffer;
+Vec3i gPetalCylinderLastPos;
+s16 gPetalParticleCount;
+s16 gPetalParticleMaxCount;
+Vtx gPetalTempVtx[3] = { { { { -5, 5, 0 }, 0, { 0, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
+                        { { { -5, -5, 0 }, 0, { 0, 960 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
+                        { { { 5, 5, 0 }, 0, { 960, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } } };
 
 s16 gEnvFxBubbleConfig[10];
 static Gfx *sGfxCursor; // points to end of display list for bubble particles
@@ -91,6 +107,44 @@ void envfx_update_flower(Vec3s centerPos) {
         }
     }
 }
+
+void envfx_update_petalground(Vec3s centerPos) {
+    s32 i;
+    s32 globalTimer = gGlobalTimer;
+
+    s16 centerX = centerPos[0];
+    s16 centerZ = centerPos[2];
+
+    for (i = 0; i < sBubbleParticleMaxCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerX, centerZ, 3000);
+        if (!(gEnvFxBuffer + i)->isAlive) {
+            (gEnvFxBuffer + i)->xPos = random_flower_offset() + centerX;
+            (gEnvFxBuffer + i)->zPos = random_flower_offset() + centerZ;
+            (gEnvFxBuffer + i)->yPos = 300.0f + find_floor_height((gEnvFxBuffer + i)->xPos, 10000.0f, (gEnvFxBuffer + i)->zPos);
+            (gEnvFxBuffer + i)->isAlive = TRUE;
+            (gEnvFxBuffer + i)->animFrame = random_float() * 15.0f;
+            (gEnvFxBuffer + i)->randParticleSpeed = random_float();
+        } else if ((globalTimer % 2 == 0)) {
+            if ((gEnvFxBuffer + i)->animFrame <= 14) {
+            (gEnvFxBuffer + i)->animFrame++;
+            }
+            if ((gEnvFxBuffer + i)->animFrame > 14) {
+                (gEnvFxBuffer + i)->animFrame = 0;
+            }
+        }
+
+        if ((gEnvFxBuffer + i)->isAlive) {
+            (gEnvFxBuffer + i)->xPos += 10.0f * (gEnvFxBuffer + i)->randParticleSpeed;
+            (gEnvFxBuffer + i)->zPos -= 2.0f * (gEnvFxBuffer + i)->randParticleSpeed;
+            (gEnvFxBuffer + i)->yPos -= 0.5f * (gEnvFxBuffer + i)->randParticleSpeed;
+
+            if ((gEnvFxBuffer + i)->growTimer < 10) {
+                (gEnvFxBuffer + i)->growTimer += 1;
+            }
+        }
+    }
+}
+
 
 /**
  * Update the position of a lava bubble to be somewhere around centerPos
@@ -304,6 +358,11 @@ s32 envfx_init_bubble(s32 mode) {
         case ENVFX_MODE_NONE:
             return FALSE;
 
+        case ENVFX_PETALS:
+            sBubbleParticleCount = 3;
+            sBubbleParticleMaxCount = 10;
+            break;
+
         case ENVFX_FLOWERS:
             sBubbleParticleCount = 30;
             sBubbleParticleMaxCount = 30;
@@ -324,17 +383,17 @@ s32 envfx_init_bubble(s32 mode) {
     }
 
     gEnvFxBuffer = mem_pool_alloc(gEffectsMemoryPool,
-                                  sBubbleParticleCount * sizeof(struct EnvFxParticle));
+                                  sBubbleParticleMaxCount * sizeof(struct EnvFxParticle));
     if (gEnvFxBuffer == NULL) {
         return FALSE;
     }
 
-    bzero(gEnvFxBuffer, sBubbleParticleCount * sizeof(struct EnvFxParticle));
+    bzero(gEnvFxBuffer, sBubbleParticleMaxCount * sizeof(struct EnvFxParticle));
     bzero(gEnvFxBubbleConfig, sizeof(gEnvFxBubbleConfig));
 
     switch (mode) {
         case ENVFX_LAVA_BUBBLES:
-            for (i = 0; i < sBubbleParticleCount; i++) {
+            for (i = 0; i < sBubbleParticleMaxCount; i++) {
                 (gEnvFxBuffer + i)->animFrame = random_float() * 7.0f;
             }
             break;
@@ -350,7 +409,15 @@ s32 envfx_init_bubble(s32 mode) {
  * though they are not being rotated yet.
  */
 void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3) {
+
     switch (mode) {
+        case ENVFX_PETALS:
+            envfx_update_petalground(camTo);
+            vertex1[0] = 50;  vertex1[1] = 0;  vertex1[2] = 0;
+            vertex2[0] = 0;   vertex2[1] = 75; vertex2[2] = 0;
+            vertex3[0] = -50; vertex3[1] = 0;  vertex3[2] = 0;
+            break;
+
         case ENVFX_FLOWERS:
             envfx_update_flower(camTo);
             vertex1[0] = 50;  vertex1[1] = 0;  vertex1[2] = 0;
@@ -379,6 +446,13 @@ void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s ver
             vertex3[0] = -40; vertex3[1] = 0;  vertex3[2] = 0;
             break;
     }
+}
+
+void envfx_update_petal_scale(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3, s32 i) {
+
+            vertex1[0] = 5 * (gEnvFxBuffer + i)->growTimer;  vertex1[1] = 0;  vertex1[2] = 0;
+            vertex2[0] = 0;   vertex2[1] = 8 * (gEnvFxBuffer + i)->growTimer; vertex2[2] = 0;
+            vertex3[0] = -5 * (gEnvFxBuffer + i)->growTimer; vertex3[1] = 0;  vertex3[2] = 0;
 }
 
 /**
@@ -425,6 +499,11 @@ void envfx_set_bubble_texture(s32 mode, s16 index) {
     s16 frame = (gEnvFxBuffer + index)->animFrame;
 
     switch (mode) {
+        case ENVFX_PETALS:
+            imageArr = segmented_to_virtual(&effect_petal_textures);
+            frame = (gEnvFxBuffer + index)->animFrame;
+            break;
+
         case ENVFX_FLOWERS:
             imageArr = segmented_to_virtual(&flower_bubbles_textures_ptr_0B002008);
             frame = (gEnvFxBuffer + index)->animFrame;
@@ -525,6 +604,10 @@ Gfx *envfx_update_bubbles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) 
     }
 
     switch (mode) {
+        case ENVFX_PETALS:
+            gfx = envfx_update_bubble_particles(ENVFX_PETALS, marioPos, camFrom, camTo);
+            break;
+
         case ENVFX_FLOWERS:
             gfx = envfx_update_bubble_particles(ENVFX_FLOWERS, marioPos, camFrom, camTo);
             break;

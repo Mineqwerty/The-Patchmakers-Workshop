@@ -5112,7 +5112,7 @@ const BehaviorScript bhvGoomba[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     DROP_TO_FLOOR(),
-    LOAD_ANIMATIONS(oAnimations, goomba_seg8_anims_0801DA4C),
+    LOAD_ANIMATIONS(oAnimations, yarn_goomba_anims),
     SET_HOME(),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 40, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_goomba_init),
@@ -6086,4 +6086,45 @@ const BehaviorScript bhvIntroScene[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvBounceBulb[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    DROP_TO_FLOOR(),
+    SET_INT(oInteractionSubtype, INT_SUBTYPE_BULB),
+    CALL_NATIVE(bhv_bounce_bulb_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bounce_bulb_loop),
+    END_LOOP(),
+};
 
+const BehaviorScript bhvPtooie[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, ptooie_anims),
+    ANIMATE(0),
+    DROP_TO_FLOOR(),
+    SET_INT(oInteractionSubtype, INT_SUBTYPE_PTOOIE),
+    CALL_NATIVE(bhv_ptooie_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ptooie_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSpikeBall[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    SET_FLOAT(oGraphYOffset, 30),
+    CALL_NATIVE(bhv_spike_ball_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_spike_ball_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWeakWindParticle[] = {
+    BEGIN(OBJ_LIST_POLELIKE), //?
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_weak_wind_particle_loop),
+    END_LOOP(),
+};

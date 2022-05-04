@@ -134,6 +134,26 @@ u8 gMenuHoldKeyIndex = 0;
 u8 gMenuHoldKeyTimer = 0;
 s32 gDialogResponse = DIALOG_RESPONSE_NONE;
 
+s16 gFeltPosX = 0;
+s16 gFeltPosY = 0;
+s16 gFeltRot = 0;
+s16 gFeltGoalX = 0;
+s16 gFeltGoalY = 0;
+s16 gFeltGoalRot = 0;
+
+s16 gLayer1PosX = 0;
+s16 gLayer1GoalX = 0;
+s16 gLayer1PosY = 0;
+s16 gLayer1Rot = 2;
+s16 gLayer2PosX = 0;
+s16 gLayer2GoalX = 0;
+s16 gLayer2PosY = 0;
+s16 gLayer2Rot = -3;
+
+s8 gHorizIndex = 0;
+s8 gSubMenuIndex = 1;
+s8 gMenuDelayTimer = 0;
+
 
 void create_dl_identity_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
@@ -601,6 +621,53 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
         if (*currentIndex != minIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)--;
+        }
+    }
+
+    if (gMenuHoldKeyTimer == 10) {
+        gMenuHoldKeyTimer = 8;
+        gMenuHoldKeyIndex = 0;
+    } else {
+        gMenuHoldKeyTimer++;
+        gMenuHoldKeyIndex = index;
+    }
+
+    if ((index & 3) == 0) {
+        gMenuHoldKeyTimer = 0;
+    }
+}
+
+void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
+    u8 index = 0;
+
+        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+            index += 2;
+        }
+        else if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+            index++;
+        }
+        else {
+            gMenuDelayTimer = 0;
+        }
+
+
+    if (gMenuDelayTimer > 0) {
+        gMenuDelayTimer--;
+    }
+
+    if (((index ^ gMenuHoldKeyIndex) & index) == 2) {
+        if (*currentIndex != maxIndex && gMenuDelayTimer == 0) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)++;
+            gMenuDelayTimer = 10;
+        }
+    }
+
+    if (((index ^ gMenuHoldKeyIndex) & index) == 1) {
+        if (*currentIndex != minIndex && gMenuDelayTimer == 0) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)--;
+            gMenuDelayTimer = 10;
         }
     }
 
@@ -1250,7 +1317,7 @@ void render_dialog_entries(void) {
 
 // Calls a gMenuMode value defined by render_menus_and_dialogs cases
 void set_menu_mode(s16 mode) {
-    if (gMenuMode == MENU_MODE_NONE) {
+    if (gMenuMode == MENU_MODE_NONE || gMenuMode == MENU_MODE_FELT_GOING_UP) {
         gMenuMode = mode;
     }
 }
@@ -1599,22 +1666,22 @@ void render_pause_my_score_coins(void) {
     u8 *courseName = segmented_to_virtual(courseNameTbl[courseIndex]);
 
     if (courseIndex <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)) {
-        print_generic_string(TXT_COURSE_X, 157, LANGUAGE_ARRAY(textCourse));
-        int_to_str(gCurrCourseNum, strCourseNum);
-        print_generic_string(CRS_NUM_X1, 157, strCourseNum);
+        //print_generic_string(TXT_COURSE_X - 150, 80, LANGUAGE_ARRAY(textCourse));
+        //int_to_str(gCurrCourseNum, strCourseNum);
+        //print_generic_string(CRS_NUM_X1 - 150, 80, strCourseNum);
 
         u8 *actName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gCurrCourseNum) * 6 + gDialogCourseActNum - 1]);
 
         if (starFlags & (1 << (gDialogCourseActNum - 1))) {
-            print_generic_string(TXT_STAR_X, 140, textStar);
+            print_generic_string(TXT_STAR_X - 200, 40, textStar);
         } else {
-            print_generic_string(TXT_STAR_X, 140, textUnfilledStar);
+            print_generic_string(TXT_STAR_X - 200, 40, textUnfilledStar);
         }
 
-        print_generic_string(ACT_NAME_X, 140, actName);
-        print_generic_string(LVL_NAME_X, 157, &courseName[3]);
+        print_generic_string(ACT_NAME_X - 200, 40, actName);
+        print_generic_string(LVL_NAME_X - 200, 57, &courseName[3]);
     } else {
-        print_generic_string(SECRET_LVL_NAME_X, 157, &courseName[3]);
+        print_generic_string(SECRET_LVL_NAME_X, 57, &courseName[3]);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -1656,6 +1723,22 @@ void render_pause_camera_options(s16 x, s16 y, s8 *index, s16 xIndex) {
     }
 }
 
+void render_submenu_toggle(s16 x, s16 y, s8 *index, s16 xIndex) {
+
+
+    handle_pause_menu_submenu_scrolling(MENU_SCROLL_HORIZONTAL, index, 1, 3);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, ((*index - 1) * xIndex) + x, y + Y_VAL7, 0);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (*index != 0) {
+        gHorizIndex = *index;
+    }
+
+}
+
 #define X_VAL8 4
 #define Y_VAL8 2
 
@@ -1664,7 +1747,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     u8 textExitCourse[] = { TEXT_EXIT_COURSE };
     u8 textCameraAngleR[] = { TEXT_CAMERA_ANGLE_R };
 
-    handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, 3);
+    handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 0, 3);
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
@@ -1672,7 +1755,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     print_generic_string(x + 10, y - 2, LANGUAGE_ARRAY(textContinue));
     print_generic_string(x + 10, y - 17, LANGUAGE_ARRAY(textExitCourse));
 
-    if (*index != MENU_OPT_CAMERA_ANGLE_R) {
+    if (*index != MENU_OPT_CAMERA_ANGLE_R && *index != 0) {
         print_generic_string(x + 10, y - 33, LANGUAGE_ARRAY(textCameraAngleR));
         gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 
@@ -1686,6 +1769,12 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     if (*index == MENU_OPT_CAMERA_ANGLE_R) {
         render_pause_camera_options(x - 42, y - 42, &gDialogCameraAngleIndex, 110);
     }
+
+    if (*index == 0) {
+        render_submenu_toggle(x - 12, y + 82, &gSubMenuIndex, 66);
+    }
+
+    
 }
 
 void render_pause_castle_menu_box(s16 x, s16 y) {
@@ -1839,6 +1928,84 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 }
 
+void render_pause_screen_felt() {
+    s8 approachX = (gFeltGoalX - gFeltPosX) / 3;
+    s8 approachY = (gFeltGoalY - gFeltPosY) / 3;
+    s8 approachRot = (gFeltGoalRot - gFeltRot) / 3;
+
+    if (gHorizIndex > 1) {
+        gLayer1GoalX = -320;
+    }
+    else {
+       gLayer1GoalX = 0;
+    }
+
+    if (gHorizIndex > 2) {
+        gLayer2GoalX = -320;
+    }
+    else {
+        gLayer2GoalX = 0;
+    }
+
+    if (gFeltGoalX != gFeltPosX) {
+        gFeltPosX += approachX;
+    }
+    if (gFeltGoalY - gFeltPosY > 2 || gFeltGoalY - gFeltPosY < -2) {
+        gFeltPosY += approachY;
+    }
+    else if(gMenuMode == MENU_MODE_FELT_GOING_UP) {
+        gLayer1PosX = 0;
+        gLayer2PosX = 0;
+        gMenuMode = MENU_MODE_NONE;
+    }
+    if (gFeltGoalRot != gFeltRot) {
+        gFeltRot += approachRot;
+    }
+
+    if (gLayer1GoalX != gLayer1PosX) {
+        gLayer1PosX += (gLayer1GoalX - gLayer1PosX) / 5;
+    }
+
+    if (gLayer2GoalX != gLayer2PosX) {
+        gLayer2PosX += (gLayer2GoalX - gLayer2PosX) / 5;
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, gFeltPosX, gFeltPosY, 0);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 0.9f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+
+    gSPDisplayList(gDisplayListHead++, menu_layer_3_Plane_002_mesh);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, gLayer2PosX, gLayer2PosY, 6);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer2Rot, 0, 0, 1.0f); 
+    gSPDisplayList(gDisplayListHead++, menu_layer_2_Plane_001_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, gLayer1PosX, gLayer1PosY, 3);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer1Rot, 0, 0, 1.0f); 
+    gSPDisplayList(gDisplayListHead++, menu_layer_1_Plane_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    
+
+    
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+    create_dl_translation_matrix(MENU_MTX_PUSH, 0, 90, 9);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, 0, 0, 0, 1.0f); 
+    gSPDisplayList(gDisplayListHead++, menu_options_Plane_003_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
+    render_pause_my_score_coins();
+    render_pause_course_options(-90, 0, &gDialogLineNum, 15);
+    }
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 s8 gCourseCompleteCoinsEqual = FALSE;
 s32 gCourseDoneMenuTimer = 0;
 s32 gCourseCompleteCoins = 0;
@@ -1858,6 +2025,20 @@ s32 render_pause_courses_and_castle(void) {
             level_set_transition(-1, NULL);
             play_sound(SOUND_MENU_PAUSE_OPEN, gGlobalSoundSource);
 
+            
+
+            gFeltPosX = SCREEN_CENTER_X + 30 * random_sign();
+            gFeltPosY = 400;
+            gFeltGoalX = SCREEN_CENTER_X + (gGlobalTimer % 20 - 10);
+            gFeltGoalY = SCREEN_CENTER_Y + (gGlobalTimer % 16 - 8);
+            gFeltGoalRot = (gGlobalTimer % 16 - 8);
+            gFeltRot = gFeltGoalRot * -0.5;
+            gHorizIndex = 0;
+            gLayer1PosX = 0;
+            gLayer2PosX = 0;
+
+            
+
             if (gCurrCourseNum >= COURSE_MIN
              && gCurrCourseNum <= COURSE_MAX) {
                 change_dialog_camera_angle();
@@ -1870,7 +2051,8 @@ s32 render_pause_courses_and_castle(void) {
 
         case DIALOG_STATE_VERTICAL:
             shade_screen();
-            render_pause_my_score_coins();
+            render_pause_screen_felt();
+            
             render_pause_red_coins();
 #ifndef DISABLE_EXIT_COURSE
 #ifdef EXIT_COURSE_WHILE_MOVING
@@ -1879,15 +2061,19 @@ s32 render_pause_courses_and_castle(void) {
 #else
             if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT) {
 #endif
-                render_pause_course_options(99, 93, &gDialogLineNum, 15);
+               //render pause options 
             }
 #endif
 
             if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
+                gMenuMode = MENU_MODE_FELT_GOING_UP;
+                gFeltGoalX = SCREEN_CENTER_X + (gGlobalTimer % 20 - 10);
+                gFeltGoalY = -200;
+                gFeltGoalRot = (gGlobalTimer % 16 - 8);
                 gDialogBoxState = DIALOG_STATE_OPENING;
-                gMenuMode = MENU_MODE_NONE;
+                
 
                 if (gDialogLineNum == MENU_OPT_EXIT_COURSE) {
                     index = gDialogLineNum;
@@ -2189,6 +2375,9 @@ s32 render_menus_and_dialogs(void) {
                 break;
             case MENU_MODE_UNUSED_3:
                 mode = render_course_complete_screen();
+                break;
+            case MENU_MODE_FELT_GOING_UP:
+                render_pause_screen_felt();
                 break;
         }
 

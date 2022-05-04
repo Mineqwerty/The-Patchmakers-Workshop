@@ -771,6 +771,7 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
     u32 grandStar = (obj->oInteractionSubtype & INT_SUBTYPE_GRAND_STAR) != 0;
 
     if (m->health >= 0x100) {
+        common_patch_cancel(m);
         mario_stop_riding_and_holding(m);
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
@@ -1367,8 +1368,12 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
                 bounce_off_object(m, obj, 30.0f);
             }
         }
-    } else if (take_damage_and_knock_back(m, obj)) {
+    }  
+    else if (!(obj->oInteractionSubtype & INT_SUBTYPE_BULB ) && take_damage_and_knock_back(m, obj)) {
         return TRUE;
+    }
+    else if (obj->oInteractionSubtype & INT_SUBTYPE_BULB) {
+        push_mario_out_of_object(m, obj, -5.0f);
     }
 
     if (!(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
@@ -1384,7 +1389,13 @@ u32 interact_spiny_walking(struct MarioState *m, UNUSED u32 interactType, struct
     if (interaction & INT_PUNCH) {
         obj->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED | ATTACK_PUNCH;
         bounce_back_from_attack(m, interaction);
-    } else if (take_damage_and_knock_back(m, obj)) {
+    } else if (obj->oInteractionSubtype & INT_SUBTYPE_PTOOIE && interaction & INT_ANY_ATTACK) {
+        if (!(interaction & INT_HIT_FROM_ABOVE)) {
+        obj->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED | ATTACK_PUNCH;
+        bounce_back_from_attack(m, interaction);
+        }
+    }
+        else if (take_damage_and_knock_back(m, obj)) {
         return TRUE;
     }
 
@@ -1818,6 +1829,9 @@ void mario_process_interactions(struct MarioState *m) {
                 m->collidedObjInteractTypes &= ~interactType;
 
                 if (!(object->oInteractStatus & INT_STATUS_INTERACTED)) {
+                    if (sInvulnerable) {
+                        push_mario_out_of_object(m, object, -5.0f);
+                    }
                     if (sInteractionHandlers[i].handler(m, interactType, object)) {
                         break;
                     }
@@ -1913,6 +1927,18 @@ void mario_handle_special_floors(struct MarioState *m) {
             if (floorType == SURFACE_BURNING) {
                 check_lava_boost(m);
             }
+
+            if (floorType ==  SURFACE_THORNS) {
+                if (gMarioState->curPatch != 1) {
+                check_lava_boost(m);
+                }
+        }
+
+            if (floorType ==  SURFACE_THORNS_PASS) {
+                if (gMarioState->curPatch != 1) {
+                check_lava_boost(m);
+                }
         }
     }
+}
 }

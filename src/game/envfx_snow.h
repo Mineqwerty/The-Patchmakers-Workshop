@@ -14,6 +14,8 @@ struct EnvFxParticle {
     s32 unusedBubbleVar; // set to zero for bubbles when respawning, never used elsewhere
     s32 bubbleY; // for Bubbles, yPos is always set to this
     u8 filler[24];
+    f32 randParticleSpeed;
+    s16 growTimer;
 };
 
 extern s8 gEnvFxMode;

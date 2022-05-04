@@ -17,3 +17,10 @@
 #include "levels/bob/seesaw_platform/geo.inc.c"
 #include "levels/bob/grate_door/geo.inc.c"
 #include "levels/bob/areas/1/geo.inc.c"
+
+#include "levels/bob/geo.inc.c"
+
+#include "levels/bob/bounce_bulb/geo.inc.c"
+#include "levels/bob/bounce_bulb_open/geo.inc.c"
+#include "levels/bob/spike_ball/geo.inc.c"
+#include "levels/bob/ptooie/geo.inc.c"

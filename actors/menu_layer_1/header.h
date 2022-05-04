@@ -1,0 +1,13 @@
+extern u8 menu_layer_1_newedge_ci8[];
+extern u8 menu_layer_1_newedge_ci8_pal_rgba16[];
+extern u8 menu_layer_1_gooooooooodfelt_ci4[];
+extern u8 menu_layer_1_gooooooooodfelt_ci4_pal_rgba16[];
+extern Vtx menu_layer_1_Plane_mesh_vtx_0[28];
+extern Gfx menu_layer_1_Plane_mesh_tri_0[];
+extern Vtx menu_layer_1_Plane_mesh_vtx_1[9];
+extern Gfx menu_layer_1_Plane_mesh_tri_1[];
+extern Gfx mat_menu_layer_1_f3d_material_003[];
+extern Gfx mat_revert_menu_layer_1_f3d_material_003[];
+extern Gfx mat_menu_layer_1_f3d_material_002[];
+extern Gfx mat_revert_menu_layer_1_f3d_material_002[];
+extern Gfx menu_layer_1_Plane_mesh[];

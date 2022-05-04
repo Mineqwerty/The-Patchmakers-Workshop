@@ -30,3 +30,10 @@
 #include "src/s2d_engine/config.h"
 #include FONT_C_FILE
 #endif
+
+#include "patch_mario_stone/model.inc.c"
+#include "patches/model.inc.c"
+#include "menu_layer_1/model.inc.c"
+#include "menu_layer_3/model.inc.c"
+#include "menu_layer_2/model.inc.c"
+#include "menu_options/model.inc.c"

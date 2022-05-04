@@ -191,9 +191,17 @@ void update_sliding_angle(struct MarioState *m, f32 accel, f32 lossFactor) {
 
     //! Speed is capped a frame late (butt slide HSG)
     m->forwardVel = sqrtf(sqr(m->slideVelX) + sqr(m->slideVelZ));
+    if (m->curPatch == 1) {
+        if (m->forwardVel > 300.0f) {
+        m->slideVelX = m->slideVelX * 300.0f / m->forwardVel;
+        m->slideVelZ = m->slideVelZ * 300.0f / m->forwardVel;
+    }
+    }
+    else {
     if (m->forwardVel > 100.0f) {
         m->slideVelX = m->slideVelX * 100.0f / m->forwardVel;
         m->slideVelZ = m->slideVelZ * 100.0f / m->forwardVel;
+    }
     }
 
     if (newFacingDYaw < -0x4000 || newFacingDYaw > 0x4000) {
@@ -220,7 +228,12 @@ s32 update_sliding(struct MarioState *m, f32 stopSpeed) {
 
     switch (mario_get_floor_class(m)) {
         case SURFACE_CLASS_VERY_SLIPPERY:
+        if (m->curPatch == 1) {
+            accel = 20.0f;
+        }
+        else {
             accel = 10.0f;
+        }
             lossFactor = m->intendedMag / 32.0f * forward * 0.02f + 0.98f;
             break;
 
@@ -270,6 +283,11 @@ void apply_slope_accel(struct MarioState *m) {
 
     struct Surface *floor = m->floor;
     f32 steepness = sqrtf(sqr(floor->normal.x) + sqr(floor->normal.z));
+
+    //treat slopes as less steep while the stone patch is equipped
+    if (m->curPatch == 1) {
+        steepness *= 0.8f;
+    }
 
     s16 floorDYaw = abs_angle_diff(m->floorYaw, m->faceAngle[1]);
 
@@ -419,7 +437,7 @@ void update_walking_speed(struct MarioState *m) {
     f32 maxTargetSpeed;
     f32 targetSpeed;
 
-    if (m->floor != NULL && m->floor->type == SURFACE_SLOW) {
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW || m->floor != NULL && m->curPatch == 1) {
         maxTargetSpeed = 24.0f;
     } else {
         maxTargetSpeed = 32.0f;
@@ -678,6 +696,10 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
         mario_set_forward_vel(m, 6.0f);
     }
 
+    if (m->wall != NULL && m->wall->type == SURFACE_THORN_WALL) {
+        return set_mario_action(m, ACT_LAVA_BOOST, 0);
+    }
+
     if (m->forwardVel > 0.0f) {
         if (m->wall != NULL) {
             wallAngle = m->wallYaw;
@@ -751,15 +773,36 @@ void tilt_body_ground_shell(struct MarioState *m, s16 startYaw) {
     marioObj->header.gfx.pos[1] += 45.0f;
 }
 
+void handle_stone_patch_walking(struct MarioState *m) {
+    if (m->curPatch == 1) {
+        if (m->forwardVel < 0.3f && m->intendedMag == 0) {
+            m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+            
+        }
+    }
+
+}
+
 s32 act_walking(struct MarioState *m) {
     Vec3f startPos;
     s16 startYaw = m->faceAngle[1];
 
     mario_drop_held_object(m);
 
+    
+
+
     if (should_begin_sliding(m)) {
+        if (m->curPatch == 1) {
+            return set_mario_action(m, ACT_STONE_PATCH_AIR_LAND, 0);
+        }
+        else {
         return set_mario_action(m, ACT_BEGIN_SLIDING, 0);
+        }
     }
+
+    //no other actions can be taken while using the stone patch
+if (m->curPatch != 1) {
 
     if (m->input & INPUT_FIRST_PERSON) {
         return begin_braking_action(m);
@@ -788,16 +831,23 @@ s32 act_walking(struct MarioState *m) {
     if (m->input & INPUT_Z_PRESSED) {
         return set_mario_action(m, ACT_CROUCH_SLIDE, 0);
     }
-
+    }
     m->actionState = ACT_STATE_WALKING_NO_WALL;
 
     vec3f_copy(startPos, m->pos);
     update_walking_speed(m);
 
+    handle_stone_patch_walking(m);
+
     switch (perform_ground_step(m)) {
         case GROUND_STEP_LEFT_GROUND:
+        if (m->curPatch == 1) {
+          set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);  
+        }
+        else {
             set_mario_action(m, ACT_FREEFALL, 0);
             set_mario_animation(m, MARIO_ANIM_GENERAL_FALL);
+        }
             break;
 
         case GROUND_STEP_NONE:
@@ -808,8 +858,10 @@ s32 act_walking(struct MarioState *m) {
             break;
 
         case GROUND_STEP_HIT_WALL:
+        if (m->curPatch != 1) {
             push_or_sidle_wall(m, startPos);
             m->actionTimer = 0;
+        }
             break;
     }
 
@@ -842,7 +894,12 @@ s32 act_move_punching(struct MarioState *m) {
 
     switch (perform_ground_step(m)) {
         case GROUND_STEP_LEFT_GROUND:
+        if (m->curPatch == 1) {
+          set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);  
+        }
+        else {
             set_mario_action(m, ACT_FREEFALL, 0);
+        }
             break;
 
         case GROUND_STEP_NONE:
@@ -1696,6 +1753,8 @@ s32 act_death_exit_land(struct MarioState *m) {
 u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAction) {
     u32 stepResult;
 
+    m->usedStonePatch = 0;
+
     if (m->input & INPUT_NONZERO_ANALOG) {
         apply_landing_accel(m, 0.98f);
     } else if (m->forwardVel >= 16.0f) {
@@ -1925,6 +1984,29 @@ s32 act_hold_quicksand_jump_land(struct MarioState *m) {
                                          ACT_HOLD_FREEFALL);
 }
 
+s32 act_stone_patch_grounded(struct MarioState *m) {
+    act_walking(m);
+    
+    if(m->forwardVel > 0) {
+        //m->forwardVel -= 4;
+    }
+    return FALSE;
+}
+
+s32 act_stone_patch_air_land(struct MarioState *m) {
+
+    //apply_slope_decel(m, 0.4f);
+    //perform_ground_step(m);
+
+    if (m->forwardVel != 0) {
+        common_slide_action(m, ACT_STONE_PATCH_AIR_LAND, ACT_STONE_PATCH_AIRBORNE, m->animList);
+        update_sliding(m, 7.0f);
+    //cur_obj_play_sound_2(SOUND_ENV_SLIDING);
+    }
+
+    return FALSE;
+}
+
 s32 check_common_moving_cancels(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
         return set_water_plunge_action(m);
@@ -1998,6 +2080,9 @@ s32 mario_execute_moving_action(struct MarioState *m) {
         case ACT_QUICKSAND_JUMP_LAND:      cancel = act_quicksand_jump_land(m);      break;
         case ACT_HOLD_QUICKSAND_JUMP_LAND: cancel = act_hold_quicksand_jump_land(m); break;
         case ACT_LONG_JUMP_LAND:           cancel = act_long_jump_land(m);           break;
+
+        case ACT_STONE_PATCH_AIR_LAND:           cancel = act_stone_patch_air_land(m);           break;
+        case ACT_STONE_PATCH_GROUNDED:           cancel = act_stone_patch_grounded(m);           break;
     }
     /* clang-format on */
 

@@ -69,6 +69,8 @@ DECLARE_LEVEL_SEGMENT(ending)
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
 
+DECLARE_SEGMENT(patches_yay0)
+
 DECLARE_SEGMENT(segment2_yay0)
 
 DECLARE_SEGMENT(water_skybox_yay0)

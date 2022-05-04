@@ -1,0 +1,18 @@
+extern const GeoLayout patches_geo[];
+extern Lights1 patches_f3d_material_lights;
+extern Lights1 patches_stone_patch_lights;
+extern Lights1 patches_cap_lights;
+extern u8 patches_stone_patch_rgba16[];
+extern u8 patches_mario_cap_rgba16[];
+extern Vtx patches_Plane_mesh_layer_1_vtx_0[54];
+extern Gfx patches_Plane_mesh_layer_1_tri_0[];
+extern Vtx patches_Plane_mesh_vtx_0[4];
+extern Gfx patches_Plane_mesh_tri_0[];
+extern Vtx patches_Plane_mesh_vtx_1[4];
+extern Gfx patches_Plane_mesh_tri_1[];
+extern Gfx mat_patches_f3d_material[];
+extern Gfx mat_patches_stone_patch[];
+extern Gfx mat_patches_cap[];
+extern Gfx patches_Plane_mesh_layer_1[];
+extern Gfx patches_Plane_mesh[];
+extern Gfx patches_material_revert_render_settings[];
