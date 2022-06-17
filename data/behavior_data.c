@@ -6097,11 +6097,23 @@ const BehaviorScript bhvBounceBulb[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvBounceRosedrift[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    DROP_TO_FLOOR(),
+    SET_INT(oInteractionSubtype, INT_SUBTYPE_BULB),
+    CALL_NATIVE(bhv_bounce_rosedrift_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bounce_rosedrift_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvPtooie[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_ANIMATIONS(oAnimations, ptooie_anims),
     ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 4000),
     DROP_TO_FLOOR(),
     SET_INT(oInteractionSubtype, INT_SUBTYPE_PTOOIE),
     CALL_NATIVE(bhv_ptooie_init),
@@ -6111,9 +6123,10 @@ const BehaviorScript bhvPtooie[] = {
 };
 
 const BehaviorScript bhvSpikeBall[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_FLOAT(oGraphYOffset, 30),
+    SET_FLOAT(oDrawingDistance, 4000),
     CALL_NATIVE(bhv_spike_ball_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_spike_ball_loop),
@@ -6126,5 +6139,100 @@ const BehaviorScript bhvWeakWindParticle[] = {
     BILLBOARD(),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_weak_wind_particle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGenericNPC[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_INTERACT_TYPE(INTERACT_TEXT),
+    //DROP_TO_FLOOR(),
+    SET_HITBOX(/*Radius*/ 100, /*Height*/ 60),
+    SET_FLOAT(oDrawingDistance, 32000),
+    SET_INT(oBobombBuddyRole, 0),
+    CALL_NATIVE(bhv_generic_npc_init),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_bobomb_buddy_loop),
+        CALL_NATIVE(bhv_generic_npc_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvParticleCrashingWaterSpawner[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    DISABLE_RENDERING(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_particle_crashing_water_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushpinPokey[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE )),
+    LOAD_ANIMATIONS(oAnimations, pushpin_pokey_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 60, /*Gravity*/ -400, /*Bounciness*/ 0, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    CALL_NATIVE(bhv_pushpin_pokey_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushpin_pokey_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushpinPokeyCameraFocus[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_pushpin_pokey_camera_focus_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushpin_pokey_camera_focus_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushpin[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_pushpin_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushpin_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushpinPokeySegment[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_pushpin_pokey_segment_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushpin_pokey_segment_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushpinPokeyDisjointedHitbox[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    //CALL_NATIVE(bhv_pushpin_pokey_segment_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushpin_pokey_disjointed_hitbox_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPokeyBossWalls[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    LOAD_COLLISION_DATA(pokey_boss_walls_collision),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oCollisionDistance, 20000),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCoordinateController[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_coordinate_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_coordinate_controller_loop),
     END_LOOP(),
 };

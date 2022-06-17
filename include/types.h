@@ -480,6 +480,7 @@ struct MarioState {
 
     s16 curPatch;
     s16 equippedPatch;
+    s8 updatePatch;
     s8 usedStonePatch;
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER

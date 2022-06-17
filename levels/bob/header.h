@@ -44,4 +44,28 @@ extern const LevelScript level_bob_entry[];
 
 #include "levels/bob/ptooie/anim_header.h"
 
+#include "levels/bob/rosedrift/geo_header.h"
+
+#include "levels/bob/rosedrift/anim_header.h"
+
+#include "levels/bob/pushpin_pokey/geo_header.h"
+
+#include "levels/bob/pushpin_pokey/anim_header.h"
+
+#include "levels/bob/pushpin/geo_header.h"
+
+#include "levels/bob/segment_head/geo_header.h"
+
+#include "levels/bob/segment_body/geo_header.h"
+
+#include "levels/bob/falling_wind/geo_header.h"
+
+#include "levels/bob/impact_hit/geo_header.h"
+
+#include "levels/bob/pushpin_pokey_2/geo_header.h"
+
+#include "levels/bob/pushpin_pokey_3/geo_header.h"
+
+#include "levels/bob/pokey_boss_walls/collision_header.h"
+
 #endif

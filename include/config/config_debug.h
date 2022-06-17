@@ -34,14 +34,14 @@
 
 // Visual debug enables some collision visuals. Tapping Right on the dpad will cycle between visual hitboxes, visual surfaces, both, and neither.
 // If puppyprint is enabled, then this can be cycled only while the screen is active.
-// #define VISUAL_DEBUG
+ #define VISUAL_DEBUG
 
 // Open all courses and doors. Used for debugging purposes to unlock all content.
 #define UNLOCK_ALL
 
 // Same as above, but also reads all save file flags as complete.
 // This will not overwrite existing save file data unless you save over it.
-// #define COMPLETE_SAVE_FILE
+ #define COMPLETE_SAVE_FILE
 
 // Removes the limit on FPS
 // #define UNLOCK_FPS

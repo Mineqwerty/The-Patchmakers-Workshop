@@ -545,5 +545,15 @@ extern const BehaviorScript bhvBounceBulb[];
 extern const BehaviorScript bhvPtooie[];
 extern const BehaviorScript bhvSpikeBall[];
 extern const BehaviorScript bhvWeakWindParticle[];
+extern const BehaviorScript bhvGenericNPC[];
+extern const BehaviorScript bhvParticleCrashingWaterSpawner[];
+extern const BehaviorScript bhvPushpinPokey[];
+extern const BehaviorScript bhvBounceRosedrift[];
+extern const BehaviorScript bhvPushpinPokeyCameraFocus[];
+extern const BehaviorScript bhvPushpin[];
+extern const BehaviorScript bhvPushpinPokeySegment[];
+extern const BehaviorScript bhvPushpinPokeyDisjointedHitbox[];
+extern const BehaviorScript bhvPokeyBossWalls[];
+extern const BehaviorScript bhvCoordinateController[];
 
 #endif // BEHAVIOR_DATA_H

@@ -1710,13 +1710,14 @@ void perform_patch_action(struct MarioState *m) {
         m->curPatch = 1;
         cur_obj_spawn_particles(&StoneForm);
         //play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
-        if (m->action == ACT_IDLE || m->action == ACT_PANTING || m->action == ACT_WALKING) {
-        set_mario_action(m, ACT_STONE_PATCH_GROUNDED, 0);
-        }
-        else {
+
+        //if (m->action == ACT_IDLE || m->action == ACT_PANTING || m->action == ACT_WALKING) {
+        //set_mario_action(m, ACT_STONE_PATCH_GROUNDED, 0);
+        //}
+        //else {
             set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);
             
-        }
+        //}
         }
         else {
             common_patch_cancel(m);
@@ -1746,7 +1747,14 @@ void common_patch_cancel(struct MarioState *m) {
 s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && gMarioState->action != ACT_STAR_DANCE_EXIT && gMarioState->action != ACT_STAR_DANCE_WATER && gMarioState->action != ACT_STAR_DANCE_NO_EXIT && gMarioState->action != ACT_FIRST_PERSON && !(gMarioState->flags & MARIO_TELEPORTING)) {
+    if (gPlayer1Controller->buttonPressed & L_TRIG 
+    && gMarioState->action != ACT_STAR_DANCE_EXIT 
+    && gMarioState->action != ACT_STAR_DANCE_WATER 
+    && gMarioState->action != ACT_STAR_DANCE_NO_EXIT 
+    && gMarioState->action != ACT_FIRST_PERSON 
+    && !(gMarioState->flags & MARIO_TELEPORTING)
+    && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT
+    ) {
         perform_patch_action(gMarioState);
     }
 
@@ -1760,6 +1768,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         }
     }
 */
+
+    
     if (gPlayer1Controller->buttonPressed & R_JPAD) {
         if (gMarioState->equippedPatch == 0) {
         gMarioState->equippedPatch = 1;
@@ -1767,17 +1777,19 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         else {
             gMarioState->equippedPatch = 0;
         }
+        gMarioState->updatePatch = 1;
     }
 
 
-
+    if (gMarioState->updatePatch == 1) {
     //dma patches
     extern const u8 patch_textures_dma[];
     extern u8 mario_mario_cap_rgba16[];
     u8 *patchTexture = segmented_to_virtual(&mario_mario_cap_rgba16);
 
     dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
-
+    gMarioState->updatePatch = 0;
+    }
 
     // Updates once per frame:
     vec3f_get_dist_and_lateral_dist_and_angle(gMarioState->prevPos, gMarioState->pos, &gMarioState->moveSpeed, &gMarioState->lateralSpeed, &gMarioState->movePitch, &gMarioState->moveYaw);

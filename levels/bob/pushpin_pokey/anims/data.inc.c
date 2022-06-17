@@ -1,0 +1,5 @@
+#include "anim_Idle.inc.c"
+#include "anim_IIdle.inc.c"
+#include "anim_StartBurrow.inc.c"
+#include "anim_Spinning.inc.c"
+#include "anim_Action.inc.c"

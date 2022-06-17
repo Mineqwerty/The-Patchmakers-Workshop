@@ -1,0 +1,13 @@
+extern const GeoLayout pushpin_geo[];
+extern Lights1 pushpin_f3d_material_010_lights;
+extern u8 pushpin_pushpinenv_ci8[];
+extern u8 pushpin_pushpinenv_ci8_pal_rgba16[];
+extern Vtx pushpin_Circle_mesh_layer_1_vtx_0[58];
+extern Gfx pushpin_Circle_mesh_layer_1_tri_0[];
+extern Vtx pushpin_Circle_mesh_layer_1_vtx_1[9];
+extern Gfx pushpin_Circle_mesh_layer_1_tri_1[];
+extern Gfx mat_pushpin_f3d_material_010[];
+extern Gfx mat_pushpin_f3d_material_011[];
+extern Gfx mat_revert_pushpin_f3d_material_011[];
+extern Gfx pushpin_Circle_mesh_layer_1[];
+extern Gfx pushpin_material_revert_render_settings[];

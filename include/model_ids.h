@@ -549,9 +549,21 @@
 #define MODEL_BOUNCE_BULB_OPEN                   0x101
 #define MODEL_PTOOIE                   0x102
 #define MODEL_SPIKE_BALL                   0x103
-#define MODEL_YARN_GOOMBA                   0x104
+#define MODEL_ROSEDRIFT                   0x104
+#define MODEL_PUSHPIN_POKEY_1           0x105
+#define MODEL_PUSHPIN_POKEY_2           0x106
+#define MODEL_PUSHPIN_POKEY_3           0x107
+#define MODEL_PUSHPIN           0x108
+#define MODEL_PUSHPIN_POKEY_SEGMENT_HEAD           0x109
+#define MODEL_PUSHPIN_POKEY_SEGMENT_BODY           0x10A
+#define MODEL_FALLING_WIND           0x10B
+#define MODEL_IMPACT_HIT           0x10C
+
+#define MODEL_YARN_GOOMBA                   0x180
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
+
+#define MODEL_TTC_DIORAMA                      0x1A0
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

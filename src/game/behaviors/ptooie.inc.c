@@ -25,6 +25,11 @@ void bhv_ptooie_init(void) {
 }
 
 void bhv_ptooie_loop(void) {
+
+    if ((o->activeFlags & ACTIVE_FLAG_FAR_AWAY)) {
+        return;
+    }
+
     o->oPtooieMarioRangeDist = sqr(o->oPosX - gMarioState->pos[0]) + sqr(o->oPosZ - gMarioState->pos[2]);
 
     switch (o->oAction) {
@@ -34,7 +39,7 @@ void bhv_ptooie_loop(void) {
                 cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
             }
 
-            if (o->oTimer >= 60 && o->header.gfx.animInfo.animFrame == 28 && !o->oSpikeBall) {
+            if (o->oTimer >= 60 && o->header.gfx.animInfo.animFrame == 28 && !o->oSpikeBall && !(o->activeFlags & ACTIVE_FLAG_FAR_AWAY)) {
                 o->oSpikeBall = spawn_object_relative_with_scale(1, 0, 210, 0, 0, o, MODEL_SPIKE_BALL, bhvSpikeBall);
                 o->oTimer = 0;
             }
@@ -99,6 +104,11 @@ void bhv_spike_ball_init(void) {
 }
 
 void bhv_spike_ball_loop(void) {
+
+    if (o->activeFlags & (ACTIVE_FLAG_FAR_AWAY)) {
+        o->oPosY = o->parentObj->oPosY + 210;
+        return o->oTimer = 0;
+    }
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         o->oInteractStatus = INT_STATUS_NONE;

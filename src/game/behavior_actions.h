@@ -555,11 +555,31 @@ void bhv_volcano_trap_loop(void);
 
 void bhv_bounce_bulb_loop(void);
 void bhv_bounce_bulb_init(void);
+void bhv_bounce_rosedrift_init(void);
+void bhv_bounce_rosedrift_loop(void);
 
 void bhv_ptooie_init(void);
 void bhv_ptooie_loop(void);
 void bhv_spike_ball_init(void);
 void bhv_spike_ball_loop(void);
+
+void bhv_pushpin_pokey_init(void);
+void bhv_pushpin_pokey_loop(void);
+void bhv_pushpin_pokey_camera_focus_init(void);
+void bhv_pushpin_pokey_camera_focus_loop(void);
+void bhv_pushpin_init(void);
+void bhv_pushpin_loop(void);
+void bhv_pushpin_pokey_segment_init(void);
+void bhv_pushpin_pokey_segment_loop(void);
+void bhv_pushpin_pokey_disjointed_hitbox_loop(void);
+
+void bhv_generic_npc_init(void);
+void bhv_generic_npc_loop(void);
+
+void bhv_particle_crashing_water_spawner_loop(void);
+
+void bhv_coordinate_controller_init(void);
+void bhv_coordinate_controller_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

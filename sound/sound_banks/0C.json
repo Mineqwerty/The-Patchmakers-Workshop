@@ -252,6 +252,11 @@
             "release_rate": 10,
             "envelope": "envelope13",
             "sound": "42_vibraphone"
+        },
+        "inst13": {
+            "release_rate": 10,
+            "envelope": "envelope13",
+            "sound": "4C_glockenspiel"
         }
     },
     "instrument_list": [
@@ -269,7 +274,7 @@
         "inst9",
         "inst10",
         "inst11",
-        null,
-        "inst12"
+        "inst12",
+        "inst13"
     ]
 }

@@ -235,5 +235,9 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/sl_snowman_wind.inc.c"
 #include "behaviors/sl_walking_penguin.inc.c"
 
-#include "behaviors/bounce_bulb.inc.c"
+//bounce bulb in obj_behaviors_2.c
+#include "behaviors/particle_spawners.inc.c"
 //ptooie in obj_behaviors_2.c
+#include "behaviors/npc.inc.c"
+#include "behaviors/pushpin_pokey.inc.c"
+#include "behaviors/utility_objects.inc.c"

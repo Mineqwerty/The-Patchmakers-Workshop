@@ -111,6 +111,14 @@ void render_100_coin_star(u8 stars) {
     }
 }
 
+void spawn_stage_diorama(void) {
+    switch (gCurrLevelNum) {
+        case LEVEL_BOB:
+            spawn_object_abs_with_rot(o, 0, MODEL_TTC_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+        break;
+    }
+}
+
 /**
  * Act Selector Init Action
  * Checks how many stars has been obtained in a course, to render
@@ -121,6 +129,7 @@ void bhv_act_selector_init(void) {
     s16 i = 0;
     s32 selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum));
+
 
     sVisibleStars = 0;
     while (i != sObtainedStars) {
@@ -159,32 +168,46 @@ void bhv_act_selector_init(void) {
     }
 
     // Render star selector objects
-#ifdef WIDE
-    if (gConfig.widescreen) {
-        for (i = 0; i < sVisibleStars; i++) {
-            sStarSelectorModels[i] =
-                spawn_object_abs_with_rot(o, 0, selectorModelIDs[i], bhvActSelectorStarType,
-                                        ((75 + (sVisibleStars * -75) + (i * 152)) * 4.0f) / 3, 248, -300, 0, 0, 0);
-            sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
-        }
-    } else {
-        for (i = 0; i < sVisibleStars; i++) {
-            sStarSelectorModels[i] =
-                spawn_object_abs_with_rot(o, 0, selectorModelIDs[i], bhvActSelectorStarType,
-                                        (75 + (sVisibleStars * -75) + (i * 152)), 248, -300, 0, 0, 0);
-            sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
-        }
-    }
-#else
     for (i = 0; i < sVisibleStars; i++) {
+        Vec3f starPinCoords;
+        get_level_star_pin(gCurrLevelNum, i, starPinCoords);
         sStarSelectorModels[i] =
             spawn_object_abs_with_rot(o, 0, selectorModelIDs[i], bhvActSelectorStarType,
-                                    (75 + (sVisibleStars * -75) + (i * 152)), 248, -300, 0, 0, 0);
+                                    starPinCoords[0], 50, starPinCoords[2], 0, 0, 0);
         sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
     }
-#endif
-
+    spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController,
+                                    -2000.0f, 50, -7500.0f, 0, 0, 0);
+    spawn_stage_diorama();
     render_100_coin_star(stars);
+}
+
+void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
+    switch (levelID) {
+        case LEVEL_BOB:
+            switch (starIndex) {
+                case 0: coords[0] = 3338.0f; coords[1] = 1030.0f; coords[2] = -9000.0f;
+                break;
+                case 1: coords[0] = 377.0f; coords[1] = 1470.0f; coords[2] = -9855.0f;
+                break;
+                case 2: coords[0] = -3989.0f; coords[1] = 210.0f; coords[2] = -5616.0f;
+                break;
+                case 3: coords[0] = -4116.0f; coords[1] = 1270.0f; coords[2] = -9045.0f;
+                break;
+                case 4: coords[0] = 1345.0f; coords[1] = -530.0f; coords[2] = -8283.0f;
+                break;
+                case 5: coords[0] = 413.0f; coords[1] = -550.0f; coords[2] = -6357.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        default: vec3f_set(coords, -2000.0f, 0, -7500.0f);
+        break;
+    }
 }
 
 /**
@@ -445,5 +468,6 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 
     area_update_objects(); scroll_textures();
     sActSelectorMenuTimer++;
+    star_select_update(0, 0);
     return sLoadedActNum;
 }

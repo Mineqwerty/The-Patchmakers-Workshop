@@ -1692,7 +1692,17 @@ void cur_obj_spawn_particles(struct SpawnParticlesInfo *info) {
         particle = spawn_object(o, info->model, bhvWhitePuffExplosion);
 
         particle->oBehParams2ndByte = info->behParam;
-        particle->oMoveAngleYaw = random_u16();
+
+        //different particle direction based on bparam
+        switch (info->behParam) {
+            case 5:
+                particle->oMoveAngleYaw = 0x4000;
+                particle->oPosZ += (random_float() * 120.0f) - 60.0f;
+                break;
+            default:
+                particle->oMoveAngleYaw = random_u16();
+                break;
+        }
         particle->oGravity = info->gravity;
         particle->oDragStrength = info->dragStrength;
 

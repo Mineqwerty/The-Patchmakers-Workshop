@@ -1,0 +1,11 @@
+extern const GeoLayout impact_hit_geo[];
+extern Lights1 impact_hit_f3d_material_003_lights;
+extern Lights1 impact_hit_f3d_material_002_lights;
+extern Vtx impact_hit_umesh_mesh_layer_5_vtx_0[8];
+extern Gfx impact_hit_umesh_mesh_layer_5_tri_0[];
+extern Vtx impact_hit_umesh_mesh_layer_5_vtx_1[29];
+extern Gfx impact_hit_umesh_mesh_layer_5_tri_1[];
+extern Gfx mat_impact_hit_f3d_material_003[];
+extern Gfx mat_impact_hit_f3d_material_002[];
+extern Gfx impact_hit_umesh_mesh_layer_5[];
+extern Gfx impact_hit_material_revert_render_settings[];

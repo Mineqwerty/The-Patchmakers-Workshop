@@ -1126,7 +1126,6 @@ UNUSED static s32 play_mode_unused(void) {
 
 s32 update_level(void) {
     s32 changeLevel = FALSE;
-
     switch (sCurrPlayMode) {
         case PLAY_MODE_NORMAL:
             changeLevel = play_mode_normal(); scroll_textures();
@@ -1251,6 +1250,11 @@ s32 init_level(void) {
  */
 s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 unused) {
     return (initOrUpdate ? update_level() : init_level());
+}
+
+s32 star_select_update(s16 initOrUpdate, UNUSED s32 unused) {
+    update_star_select_camera(gCurrentArea->camera);
+    return 1;
 }
 
 #if MULTILANG

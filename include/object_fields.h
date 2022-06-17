@@ -160,8 +160,9 @@
 #define /*0x198*/ oNumLootCoins                                 OBJECT_FIELD_S32(0x44)
 #define /*0x19C*/ oDrawingDistance                              OBJECT_FIELD_F32(0x45)
 #define /*0x1A0*/ oRoom                                         OBJECT_FIELD_S32(0x46)
-// 0x1A4 is unused, possibly related to 0x1A8 in removed macro purposes.
-#define /*0x1A8*/ oUnusedCoinParams                             OBJECT_FIELD_U32(0x48)
+
+#define /*0x1A8*/ oDistanceProcessing                            OBJECT_FIELD_S32(0x48)
+
 // 0x1AC-0x1B2 (0x48-0x4A) are object specific and defined below the common fields.
 #define /*0x1B4*/ oWallAngle                  OBJECT_FIELD_S32(0x4B)
 #define /*0x1B8*/ oFloorType                  OBJECT_FIELD_S16(0x4C, 0)
@@ -1262,6 +1263,14 @@
 //Ptooie
 #define oSpikeBall           OBJECT_FIELD_OBJ(0x1B)
 #define oPtooieMarioRangeDist          OBJECT_FIELD_F32(0x1C)
+
+//Pushpin pokey
+#define oCamFocus           OBJECT_FIELD_OBJ(0x1B)
+#define oCurrentNumSegments OBJECT_FIELD_S32(0x1C)
+#define oNumHitSegments OBJECT_FIELD_S32(0x1D)
+#define oFallingWind1           OBJECT_FIELD_OBJ(0x1E)
+#define oNextPokeyAttack OBJECT_FIELD_S32(0x1F)
+#define oNumUndergroundAttacks OBJECT_FIELD_S32(0x20)
 
 
 /*Custom general defines:

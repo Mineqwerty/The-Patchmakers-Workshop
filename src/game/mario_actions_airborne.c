@@ -50,7 +50,7 @@ s32 lava_boost_on_wall(struct MarioState *m) {
         m->forwardVel = 24.0f;
     }
 
-    if (!(m->flags & MARIO_METAL_CAP)) {
+    if (m->curPatch != 1) {
         m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
     }
 
@@ -1500,7 +1500,7 @@ s32 act_lava_boost(struct MarioState *m) {
         case AIR_STEP_LANDED:
             if (m->floor->type == SURFACE_BURNING) {
                 m->actionState = ACT_STATE_LAVA_BOOST_HIT_LAVA;
-                if (!(m->flags & MARIO_METAL_CAP)) {
+                if (m->curPatch != 1) {
                     m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
                 }
                 m->vel[1] = 84.0f;
@@ -2020,6 +2020,46 @@ s32 act_stone_patch_airborne(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_bounced_on_rosedrift(struct MarioState *m) {
+    s32 stepResult;
+
+    if (gPlayer1Controller->buttonPressed & L_TRIG && m->vel[1] < 0.0f && m->curPatch != 1 && m->equippedPatch == 1) {
+            m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
+            m->forwardVel = 0;
+            m->vel[0] = 0;
+            m->vel[2] = 0;
+        m->curPatch = 1;
+        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+        
+        }
+
+        set_mario_animation(m, MARIO_ANIM_TRIPLE_JUMP);
+    
+    update_air_without_turn(m);
+
+    if (m->curPatch == 1) {
+    m->vel[1] -= 1.0f;
+    m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+    m->forwardVel = 0;
+            m->vel[0] = 0;
+            m->vel[2] = 0;
+        }
+
+    stepResult = perform_air_step(m, 0);
+
+    if (stepResult == AIR_STEP_LANDED) {
+        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+        set_mario_action(m, ACT_STONE_PATCH_AIR_LAND, 0);
+        play_mario_heavy_landing_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING);
+                    m->particleFlags |= PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR;
+        if (m->forwardVel > 0) {
+        m->forwardVel -= 4.0f;
+        }
+    }
+    //apply_landing_accel(m, 6.0f);
+    return FALSE;
+}
+
 s32 check_common_airborne_cancels(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
         return set_water_plunge_action(m);
@@ -2096,6 +2136,7 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
         case ACT_TOP_OF_POLE_JUMP:     cancel = act_top_of_pole_jump(m);     break;
         case ACT_VERTICAL_WIND:        cancel = act_vertical_wind(m);        break;
         case ACT_STONE_PATCH_AIRBORNE:        cancel = act_stone_patch_airborne(m);        break;
+        case ACT_BOUNCED_ON_ROSEDRIFT:        cancel = act_bounced_on_rosedrift(m);        break;
     }
     /* clang-format on */
 

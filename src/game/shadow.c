@@ -44,6 +44,23 @@ f32 scale_shadow_with_distance(f32 initial, f32 distFromFloor) {
     }
 }
 
+f32 scale_pokey_shadow_with_distance(f32 initial, f32 distFromFloor) {
+    if (distFromFloor <= 0.0f) {
+        return initial;
+    } else if (distFromFloor >= 2400.0f) {
+        return initial * 0.05f;
+    } else {
+        f32 final = initial * (1.0f - ((distFromFloor * 0.5f) / 5200.0f));
+        if (final > 1.0f) {
+            final = 1.0f;
+            }
+        if (final < 0.0f) {
+            final = 0.0f;
+        }
+        return final;
+    }
+}
+
 /**
  * Dim a shadow when its parent object is further from the ground.
  */
@@ -67,7 +84,7 @@ s32 dim_shadow_with_distance(u8 solidity, f32 distFromFloor) {
  * @param overwriteSolidity Flag for whether the existing shadow solidity should
  *                          be dimmed based on its distance to the floor
  */
-s32 init_shadow(f32 distToShadow, s16 shadowScale, s8 shadowType, u8 overwriteSolidity) {
+s32 init_shadow(f32 distToShadow, s16 shadowScale, s8 shadowType, u8 overwriteSolidity, s8 isPokeySegment) {
     f32 baseScale;
 
     if (shadowType != SHADOW_SQUARE_PERMANENT) {
@@ -76,8 +93,12 @@ s32 init_shadow(f32 distToShadow, s16 shadowScale, s8 shadowType, u8 overwriteSo
         if (overwriteSolidity) {
             s->solidity = dim_shadow_with_distance(overwriteSolidity, distToShadow);
         }
-
+        if (isPokeySegment) {
+           baseScale = scale_shadow_with_distance(shadowScale, distToShadow);
+        }
+        else {
         baseScale = scale_shadow_with_distance(shadowScale, distToShadow);
+        }
     } else {
         s->solidity = overwriteSolidity;
         baseScale = shadowScale;
@@ -200,6 +221,7 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
     f32 y = pos[1];
     f32 z = pos[2];
     s8 isPlayer   = (obj == gMarioObject);
+    s8 isPokeySegment   = (obj->behavior == segmented_to_virtual(bhvPushpinPokeySegment));
     s8 notHeldObj = (gCurGraphNodeHeldObject == NULL);
 
     // Attempt to use existing floors before finding a new one.
@@ -311,7 +333,7 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
     }
 
     // No shadow if the non-Mario object is too high.
-    if (!isPlayer && distToShadow > 1024.0f) {
+    if (!isPlayer && !isPokeySegment && distToShadow > 1024.0f) {
         return NULL;
     }
 
@@ -324,12 +346,12 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
             case SHADOW_SOLIDITY_NO_SHADOW:
                 return NULL;
             case SHADOW_SOILDITY_ALREADY_SET:
-                if (init_shadow(distToShadow, shadowScale, shadowType, /* overwriteSolidity */ 0)) {
+                if (init_shadow(distToShadow, shadowScale, shadowType, /* overwriteSolidity */ 0, isPokeySegment)) {
                     return NULL;
                 }
                 break;
             case SHADOW_SOLIDITY_NOT_YET_SET:
-                if (init_shadow(distToShadow, shadowScale, shadowType, shadowSolidity)) {
+                if (init_shadow(distToShadow, shadowScale, shadowType, shadowSolidity, isPokeySegment)) {
                     return NULL;
                 }
                 break;
@@ -337,7 +359,8 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
                 return NULL;
         }
     } else {
-        if (init_shadow(distToShadow, shadowScale, shadowType, shadowSolidity)) {
+        
+        if (init_shadow(distToShadow, shadowScale, shadowType, shadowSolidity, isPokeySegment)) {
             return NULL;
         }
 
@@ -347,8 +370,11 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
             s->scale[0] *= sShadowRectangles[idx].scaleX;
             s->scale[2] *= sShadowRectangles[idx].scaleZ;
             if (sShadowRectangles[idx].scaleWithDistance) {
+                if (!isPokeySegment) {
                 scale_shadow_with_distance(s->scale[0], distToShadow);
                 scale_shadow_with_distance(s->scale[2], distToShadow);
+                }
+                
             }
         }
     }

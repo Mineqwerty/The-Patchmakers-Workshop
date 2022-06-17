@@ -782,6 +782,7 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/flying_bookend_switch.inc.c"
 
 #include "behaviors/ptooie.inc.c"
+#include "behaviors/bounce_bulb.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.

@@ -34,7 +34,7 @@ const GeoLayout bob_area_2[] = {
 				GEO_OPEN_NODE(),
 					GEO_BRANCH(1, bob_area_2_geo),
 					GEO_RENDER_OBJ(),
-					GEO_ASM(ENVFX_FLOWERS, geo_envfx_main),
+					GEO_ASM(ENVFX_MODE_NONE, geo_envfx_main),
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),

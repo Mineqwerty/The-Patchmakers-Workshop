@@ -1854,3 +1854,5 @@ const Collision main_menu_seg7_collision[] = {
 #undef COURSE_TABLE
 
 #endif
+
+#include "levels/menu/ttc_diorama/model.inc.c"

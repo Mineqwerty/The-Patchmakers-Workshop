@@ -120,7 +120,10 @@ enum CameraModes {
     /*14*/ CAMERA_MODE_8_DIRECTIONS, // AKA Parallel Camera, Bowser Courses & Rainbow Ride
     /*15*/ CAMERA_MODE_0F,
     /*16*/ CAMERA_MODE_FREE_ROAM,
-    /*17*/ CAMERA_MODE_SPIRAL_STAIRS
+    /*17*/ CAMERA_MODE_SPIRAL_STAIRS,
+
+    CAMERA_MODE_LEVEL_WITH_MARIO,
+    CAMERA_MODE_ABOVE_MARIO,
 };
 
 enum CameraMovementFlags {
@@ -606,6 +609,8 @@ struct Camera {
     /// The y coordinate of the "center" of the area. Unlike areaCenX and areaCenZ, this is only used
     /// when paused. See zoom_out_if_paused_and_outside
     /*0x68*/ f32 areaCenY;
+        u16 camTimer;
+        u8 prevMode;
 };
 
 /**
@@ -723,6 +728,7 @@ void move_mario_head_c_up(UNUSED struct Camera *c);
 void transition_next_state(UNUSED struct Camera *c, s16 frames);
 void set_camera_mode(struct Camera *c, s16 mode, s16 frames);
 void update_camera(struct Camera *c);
+void update_star_select_camera(struct Camera *c);
 void reset_camera(struct Camera *c);
 void init_camera(struct Camera *c);
 void select_mario_cam_mode(void);

@@ -11,6 +11,7 @@ void bhv_white_puff_exploding_loop(void) {
                 o->oWhitePuffSlowFade = 0;
                 break;
             case 3:
+            case 5:
                 o->oOpacity = 254;
                 o->oWhitePuffOpacityDiff = -13;
                 o->oWhitePuffSlowFade = 1;

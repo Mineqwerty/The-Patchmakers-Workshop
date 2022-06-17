@@ -183,7 +183,7 @@ const GeoLayout geo_menu_act_selector_strings[] = {
       GEO_OPEN_NODE(),
          GEO_CAMERA_FRUSTUM(45, 100, 25000),
          GEO_OPEN_NODE(),
-            GEO_CAMERA(CAMERA_MODE_NONE, 0, 0, 1000, 0, 0, 0, 0x00000000),
+            GEO_CAMERA(CAMERA_MODE_8_DIRECTIONS, 0, 0, 0, 0, -100, 0, geo_camera_main),
             GEO_OPEN_NODE(),
                GEO_RENDER_OBJ(),
             GEO_CLOSE_NODE(),
@@ -196,3 +196,5 @@ const GeoLayout geo_menu_act_selector_strings[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
+
+#include "levels/menu/ttc_diorama/geo.inc.c"

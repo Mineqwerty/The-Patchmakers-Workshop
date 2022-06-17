@@ -699,10 +699,27 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
     u32 damage;
 
     if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP)
-        && !(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
+        && !(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY) && !(m->curPatch == 1 && m->action == ACT_BOUNCED_ON_ROSEDRIFT)) {
         obj->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
         m->interactObj = obj;
 
+        damage = take_damage_from_interact_object(m);
+
+        if (obj->oInteractionSubtype & INT_SUBTYPE_BIG_KNOCKBACK) {
+            m->forwardVel = 40.0f;
+        }
+
+        if (obj->oDamageOrCoinValue > 0) {
+            play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
+        }
+
+        update_mario_sound_and_camera(m);
+        return drop_and_set_mario_action(m, determine_knockback_action(m, obj->oDamageOrCoinValue), damage);
+    }
+
+    if (m->curPatch == 1 && obj->oInteractionSubtype & INT_SUBTYPE_BREAK_STONE_PATCH) {
+        m->interactObj = obj;
+        common_patch_cancel(gMarioState);
         damage = take_damage_from_interact_object(m);
 
         if (obj->oInteractionSubtype & INT_SUBTYPE_BIG_KNOCKBACK) {
@@ -1830,8 +1847,24 @@ void mario_process_interactions(struct MarioState *m) {
 
                 if (!(object->oInteractStatus & INT_STATUS_INTERACTED)) {
                     if (sInvulnerable) {
+                        if (gMarioState->curPatch == 1) {
                         push_mario_out_of_object(m, object, -5.0f);
+                        vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+                        }
+
+                        if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == 1) {
+                            if (gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT) {
+                                object->oAction = 1;
+                            }
+                        }
                     }
+                    if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == 1) {
+                            if (gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT) {
+                                object->oAction = 1;
+                                gSlowdownCount = 2;
+                                gMarioState->pos[1] += 10.0f;
+                            }
+                        }
                     if (sInteractionHandlers[i].handler(m, interactType, object)) {
                         break;
                     }
@@ -1867,7 +1900,7 @@ void check_death_barrier(struct MarioState *m) {
 
 void check_lava_boost(struct MarioState *m) {
     if (!(m->action & ACT_FLAG_RIDING_SHELL) && m->pos[1] < m->floorHeight + 10.0f) {
-        if (!(m->flags & MARIO_METAL_CAP)) {
+        if (m->curPatch != 1) {
             m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
         }
 
