@@ -74,6 +74,9 @@ void bhv_act_selector_star_type_loop(void) {
             if (gCurrentObject->oStarSelectorSize > 1.3f) {
                 gCurrentObject->oStarSelectorSize = 1.3f;
             }
+            gSelectedStarCoords[0] = o->oPosX;
+            gSelectedStarCoords[1] = o->oPosY;
+            gSelectedStarCoords[2] = o->oPosZ;
             gCurrentObject->oFaceAngleYaw += 0x800;
             break;
         // If the 100 coin star is selected, rotate
@@ -129,15 +132,16 @@ void bhv_act_selector_init(void) {
     s16 i = 0;
     s32 selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum));
+    gStarSelectDisturbed = 0;
 
 
     sVisibleStars = 0;
     while (i != sObtainedStars) {
         if (stars & (1 << sVisibleStars)) { // Star has been collected
-            selectorModelIDs[sVisibleStars] = MODEL_STAR;
+            selectorModelIDs[sVisibleStars] = MODEL_STAR_MARKER;
             i++;
         } else { // Star has not been collected
-            selectorModelIDs[sVisibleStars] = MODEL_TRANSPARENT_STAR;
+            selectorModelIDs[sVisibleStars] = MODEL_BLUE_STAR_MARKER;
             // If this is the first star that has not been collected, set
             // the default selection to this star.
             if (sInitSelectedActNum == 0) {
@@ -150,7 +154,7 @@ void bhv_act_selector_init(void) {
 
     // If the stars have been collected in order so far, show the next star.
     if (sVisibleStars == sObtainedStars && sVisibleStars != 6) {
-        selectorModelIDs[sVisibleStars] = MODEL_TRANSPARENT_STAR;
+        selectorModelIDs[sVisibleStars] = MODEL_BLUE_STAR_MARKER;
         sInitSelectedActNum = sVisibleStars + 1;
         sSelectableStarIndex = sVisibleStars;
         sVisibleStars++;
@@ -173,11 +177,10 @@ void bhv_act_selector_init(void) {
         get_level_star_pin(gCurrLevelNum, i, starPinCoords);
         sStarSelectorModels[i] =
             spawn_object_abs_with_rot(o, 0, selectorModelIDs[i], bhvActSelectorStarType,
-                                    starPinCoords[0], 50, starPinCoords[2], 0, 0, 0);
+                                    starPinCoords[0], starPinCoords[1], starPinCoords[2], 0, 0, 0);
         sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
     }
-    spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController,
-                                    -2000.0f, 50, -7500.0f, 0, 0, 0);
+    //spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
     spawn_stage_diorama();
     render_100_coin_star(stars);
 }
@@ -205,7 +208,7 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
             }
         break;
 
-        default: vec3f_set(coords, -2000.0f, 0, -7500.0f);
+        default: coords[0] = 377.0f; coords[1] = 1470.0f; coords[2] = -9855.0f;
         break;
     }
 }
@@ -356,7 +359,7 @@ void print_act_selector_strings(void) {
     // Print the coin highscore.
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-    print_hud_my_score_coins(1, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum), 155, 106);
+    //print_hud_my_score_coins(1, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum), 155, 106);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
@@ -366,7 +369,7 @@ void print_act_selector_strings(void) {
 #if MULTILANG
         print_generic_string(95, 118, myScore[language]);
 #else
-        print_generic_string(102, 118, myScore);
+        //print_generic_string(102, 118, myScore);
 #endif
     }
 
@@ -382,7 +385,7 @@ void print_act_selector_strings(void) {
 #if MULTILANG
     print_course_number(language);
 #else
-    print_course_number();
+    //print_course_number();
 #endif
 
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
@@ -395,7 +398,7 @@ void print_act_selector_strings(void) {
         print_menu_generic_string(get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f), 81, selectedActName);
 #else
         actNameX = get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f);
-        print_menu_generic_string(actNameX, 81, selectedActName);
+        print_menu_generic_string(actNameX, 220, selectedActName);
 #endif
     }
 
@@ -405,7 +408,7 @@ void print_act_selector_strings(void) {
 #if MULTILANG
         print_menu_generic_string(143 - sVisibleStars * 15 + i * 30, 38, starNumbers);
 #else
-        print_menu_generic_string(139 - sVisibleStars * 17 + i * 34, 38, starNumbers);
+        //print_menu_generic_string(139 - sVisibleStars * 17 + i * 34, 38, starNumbers);
 #endif
     }
 
@@ -468,6 +471,7 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 
     area_update_objects(); scroll_textures();
     sActSelectorMenuTimer++;
-    star_select_update(0, 0);
+    Vec3f rotateCoords;
+    star_select_update(rotateCoords, 0);
     return sLoadedActNum;
 }

@@ -1856,3 +1856,5 @@ const Collision main_menu_seg7_collision[] = {
 #endif
 
 #include "levels/menu/ttc_diorama/model.inc.c"
+#include "levels/menu/star_marker/model.inc.c"
+#include "levels/menu/blue_star_marker/model.inc.c"

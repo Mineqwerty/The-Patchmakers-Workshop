@@ -605,9 +605,16 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
         if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
         if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
-        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) index += 2;
-        if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) index++;
+        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+            index += 2;
+             gStarSelectDisturbed = 1;
+        }
+        if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+            index++;
+            gStarSelectDisturbed = 1;
+        }
     }
 
     if (((index ^ gMenuHoldKeyIndex) & index) == 2) {

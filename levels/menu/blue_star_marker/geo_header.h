@@ -1,0 +1,18 @@
+extern const GeoLayout blue_star_marker_geo[];
+extern Lights1 blue_star_marker_f3d_material_026_lights;
+extern Lights1 blue_star_marker_f3d_material_025_lights;
+extern u8 blue_star_marker_pushpinenv_ci8[];
+extern u8 blue_star_marker_pushpinenv_ci8_pal_rgba16[];
+extern u8 blue_star_marker_yellowfringe_ia8[];
+extern Vtx blue_star_marker_Cube_001_mesh_layer_1_vtx_0[5];
+extern Gfx blue_star_marker_Cube_001_mesh_layer_1_tri_0[];
+extern Vtx blue_star_marker_Cube_001_mesh_layer_1_vtx_1[58];
+extern Gfx blue_star_marker_Cube_001_mesh_layer_1_tri_1[];
+extern Vtx blue_star_marker_Cube_001_mesh_layer_1_vtx_2[29];
+extern Gfx blue_star_marker_Cube_001_mesh_layer_1_tri_2[];
+extern Gfx mat_blue_star_marker_f3d_material_014[];
+extern Gfx mat_revert_blue_star_marker_f3d_material_014[];
+extern Gfx mat_blue_star_marker_f3d_material_026[];
+extern Gfx mat_blue_star_marker_f3d_material_025[];
+extern Gfx blue_star_marker_Cube_001_mesh_layer_1[];
+extern Gfx blue_star_marker_material_revert_render_settings[];

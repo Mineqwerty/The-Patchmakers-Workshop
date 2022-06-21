@@ -72,7 +72,6 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_BOUNCE_BULB, 1652, 684, -4276, 0, 0, 0, 0x00000000, bhvBounceBulb, ACT_4 | ACT_5),
 		OBJECT(MODEL_NONE, 1336, 995, -1326, 0, 157, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4476, 1979, -8011, 0, 151, 0, 0x00000000, bhvCoinFormation),
-		OBJECT(MODEL_NONE, -3199, 2170, -6236, 0, -173, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 830, 2138, 1364, 0, 104, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 1804, 3087, 2041, 0, 90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2616, 312, -3183, 0, 139, 0, 0x00000000, bhvCoinFormation),

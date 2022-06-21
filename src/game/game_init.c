@@ -44,6 +44,8 @@ OSContStatus gControllerStatuses[4];
 OSContPad gControllerPads[4];
 u8 gControllerBits;
 u8 gIsConsole = TRUE; // Needs to be initialized before audio_reset_session is called
+Vec3f gSelectedStarCoords;
+u8 gStarSelectDisturbed;
 u8 gBorderHeight;
 u8 gSlowdownCount;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG

@@ -563,7 +563,9 @@
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 
-#define MODEL_TTC_DIORAMA                      0x1A0
+#define MODEL_STAR_MARKER                      0x54
+#define MODEL_BLUE_STAR_MARKER                      0x55
+#define MODEL_TTC_DIORAMA                      0x56
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

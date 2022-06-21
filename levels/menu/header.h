@@ -51,4 +51,8 @@ extern const LevelScript level_main_menu_entry_act_select[];
 
 #include "levels/menu/ttc_diorama/geo_header.h"
 
+#include "levels/menu/star_marker/geo_header.h"
+
+#include "levels/menu/blue_star_marker/geo_header.h"
+
 #endif

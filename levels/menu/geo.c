@@ -198,3 +198,5 @@ const GeoLayout geo_menu_act_selector_strings[] = {
 };
 
 #include "levels/menu/ttc_diorama/geo.inc.c"
+#include "levels/menu/star_marker/geo.inc.c"
+#include "levels/menu/blue_star_marker/geo.inc.c"

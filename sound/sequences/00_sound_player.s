@@ -2793,6 +2793,8 @@ sound_ref .sound_general_grand_star
 sound_ref .sound_general_grand_star_jump
 sound_ref .sound_general_boat_rock
 sound_ref .sound_general_vanish_sfx
+sound_ref .sound_stone_patch_break
+sound_ref .sound_stone_patch_deform
 sound_ref .sound_menu_enter_hole
 sound_ref .sound_general_red_coin
 sound_ref .sound_general_birds_fly_away
@@ -2802,6 +2804,8 @@ sound_ref .sound_general_boing1
 sound_ref .sound_general_boing2
 sound_ref .sound_general_yoshi_walk
 sound_ref .sound_general_enemy_alert1
+
+
 
 .sound_general_activate_cap_switch:
 chan_setbank 5
@@ -4804,6 +4808,22 @@ chan_setdecayrelease 20
 chan_setlayer 1, .layer_1DE4
 chan_setlayer 2, .layer_1DE2
 chan_end
+
+.sound_stone_patch_break:
+chan_setbank 0
+chan_setinstr 6
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_stone_patch_deform:
+chan_setbank 0
+chan_setinstr 7
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.layer_AAAA:
+  layer_note1 39, 0x100, 127
+  layer_end
 
 .layer_1DD4:
 layer_transpose -12

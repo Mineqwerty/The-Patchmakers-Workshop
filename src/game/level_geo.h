@@ -14,7 +14,8 @@ enum EnvFxMode {
     /*12*/ ENVFX_LAVA_BUBBLES,      // LLL, BitFS, Bowser 2
     /*13*/ ENVFX_WHIRLPOOL_BUBBLES, // DDD
     /*14*/ ENVFX_JETSTREAM_BUBBLES,  // JRB, DDD (submarine area)
-    ENVFX_PETALS
+    ENVFX_PETALS,
+    ENVFX_RAIN
 };
 
 Gfx *geo_envfx_main(s32 callContext, struct GraphNode *node, Mat4 mtxf);

@@ -118,6 +118,66 @@ const Texture *const effect_petal_textures[] = {
     effect_petal_15,
 };
 
+// Rain
+ALIGNED8 static const Texture effect_rain_0[] = {
+#include "textures/effect/rain0.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_1[] = {
+#include "textures/effect/rain1.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_2[] = {
+#include "textures/effect/rain2.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_3[] = {
+#include "textures/effect/rain3.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_4[] = {
+#include "textures/effect/rain4.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_5[] = {
+#include "textures/effect/rain5.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_6[] = {
+#include "textures/effect/rain6.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_7[] = {
+#include "textures/effect/rain7.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_8[] = {
+#include "textures/effect/rain8.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_9[] = {
+#include "textures/effect/rain9.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_rain_10[] = {
+#include "textures/effect/rain10.rgba16.inc.c"
+};
+
+const Texture *const effect_rain_textures[] = {
+    effect_rain_0,
+    effect_rain_1,
+    effect_rain_2,
+    effect_rain_3,
+    effect_rain_4,
+    effect_rain_5,
+    effect_rain_6,
+    effect_rain_7,
+    effect_rain_8,
+    effect_rain_9,
+    effect_rain_10,
+};
+
+
 // Lava Bubble
 // 0x0B002020
 ALIGNED8 static const Texture effect_0B002020[] = {
@@ -253,5 +313,17 @@ const Gfx tiny_bubble_dl_0B006D68[] = {
     gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
+    gsSPEndDisplayList(),
+};
+
+const Gfx rain_env_dl[] = {
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
+    gsDPLoadSync(),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
+    gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
+    gsDPSetRenderMode(G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2),
+    gsDPSetEnvColor(255, 255, 255, 100),
+    gsDPSetCombineLERP(0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
     gsSPEndDisplayList(),
 };

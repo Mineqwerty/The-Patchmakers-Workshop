@@ -3411,8 +3411,7 @@ void update_camera(struct Camera *c) {
 #endif
 }
 
-void update_star_select_camera(struct Camera *c) {
-    print_text(20, 20, "h");
+void update_star_select_camera(struct Camera *c, Vec3f rotateCoords) {
     gCamera = c;
     //set_cam_angle(CAM_ANGLE_LAKITU);
                 
@@ -3432,16 +3431,30 @@ void update_star_select_camera(struct Camera *c) {
         c->nextYaw = gLakituState.nextYaw;
         c->camTimer += 1;
 
-        gLakituState.pos[0] = 8000 * sins(0x20 * gGlobalTimer) - 4000;
+       
+
+    if (gSelectedStarCoords[0] != 0 && gStarSelectDisturbed == 1) {
+         gLakituState.pos[0] = 3000 * sins(0x20 * gGlobalTimer) + gSelectedStarCoords[0];
+        gLakituState.pos[1] = 4000 + gSelectedStarCoords[1];
+        gLakituState.pos[2] = 3000 * coss(0x20 * gGlobalTimer) + gSelectedStarCoords[2];
+
+        gLakituState.focus[0] = gSelectedStarCoords[0];
+        gLakituState.focus[1] = gSelectedStarCoords[1];
+        gLakituState.focus[2] = gSelectedStarCoords[2];
+    }
+    else {
+         gLakituState.pos[0] = 8000 * sins(0x20 * gGlobalTimer) - 4000;
         gLakituState.pos[1] = 4000;
         gLakituState.pos[2] = 8000 * coss(0x20 * gGlobalTimer) - 4500;
+
         gLakituState.focus[0] = 0;
         gLakituState.focus[1] = -500;
         gLakituState.focus[2] = -7500;
+    }
 
         
         //update_lakitu(c);
-        print_text_fmt_int(20, 40, "%d", (int)gLakituState.focus[0]);
+        //print_text_fmt_int(20, 40, "%d", (int)gLakituState.focus[0]);
     //gLakituState.lastFrameAction = sMarioCamState->action;
 }
 
@@ -6420,6 +6433,9 @@ struct CameraTrigger sCamBBH[] = {
  *
  * Each table is terminated with NULL_TRIGGER
  */
+struct CameraTrigger sCamWF[] = {
+	NULL_TRIGGER
+};
 struct CameraTrigger *sCameraTriggers[LEVEL_COUNT + 1] = {
     NULL,
 #include "levels/level_defines.h"

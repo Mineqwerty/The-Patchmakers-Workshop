@@ -1709,7 +1709,7 @@ void perform_patch_action(struct MarioState *m) {
             o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
         m->curPatch = 1;
         cur_obj_spawn_particles(&StoneForm);
-        //play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
 
         //if (m->action == ACT_IDLE || m->action == ACT_PANTING || m->action == ACT_WALKING) {
         //set_mario_action(m, ACT_STONE_PATCH_GROUNDED, 0);
@@ -1736,7 +1736,7 @@ void common_patch_cancel(struct MarioState *m) {
             m->curPatch = 0;
             o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
             cur_obj_spawn_particles(&StoneBreak);
-            //play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
         break;
     }
 }
@@ -1778,6 +1778,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             gMarioState->equippedPatch = 0;
         }
         gMarioState->updatePatch = 1;
+    }
+
+    if (gPlayer1Controller->buttonPressed & L_JPAD) {
+        play_secondary_music(38, 255, 255, 10);
     }
 
 
