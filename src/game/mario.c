@@ -666,11 +666,21 @@ Bool32 set_mario_ceil(struct MarioState *m, struct Surface *ceil, f32 ceilHeight
 }
 
 Bool32 set_mario_floor(struct MarioState *m, struct Surface *floor, f32 floorHeight) {
+
+    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == 2) {
+        m->floor = &gWaterSurfacePseudoFloor;
+        if (m->floor != NULL) m->floorYaw = SURFACE_YAW(floor);
+        m->floorHeight = m->waterLevel;
+        m->floor->originOffset = -m->waterLevel;
+    }
+    else {
+
     if (m->floor != floor) {
         m->floor = floor;
         if (m->floor != NULL) m->floorYaw = SURFACE_YAW(floor);
     }
     m->floorHeight = floorHeight;
+    }
     return (m->floor != NULL);
 }
 
@@ -1261,11 +1271,18 @@ void update_mario_joystick_inputs(struct MarioState *m) {
 void update_mario_geometry_inputs(struct MarioState *m) {
     f32 gasLevel;
     f32 ceilToFloorDist;
+    struct Surface *waterFloor;
 
     f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
     f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
 
     m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
+    m->waterLevel = find_water_level_and_floor(m->pos[0], m->pos[1], m->pos[2], &waterFloor);
+
+    if ((m->equippedPatch == 2) && m->floorHeight < m->waterLevel && waterFloor) {
+        m->floorHeight = m->waterLevel;
+        m->floor = waterFloor;
+    }
 
     // If Mario is OOB, move his position to his graphical position (which was not updated)
     // and check for the floor there.
@@ -1373,8 +1390,22 @@ void update_mario_inputs(struct MarioState *m) {
 void set_submerged_cam_preset_and_spawn_bubbles(struct MarioState *m) {
     f32 heightBelowWater;
     s16 camPreset;
+#ifdef REONUCAM
+    // skip if not submerged
+    if ((m->action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED) return;
 
+    // R Trigger toggles camera mode override
+    if ((gPlayer1Controller->buttonPressed & R_TRIG) && (m->action & ACT_FLAG_SWIMMING)) {
+        gReonucamState.waterCamOverride ^= 1;
+    }
+
+    // If override, set mode to 8 dir. Otherwise, use normal water processing
+    if (gReonucamState.waterCamOverride) {
+        if (m->area->camera->mode != CAMERA_MODE_8_DIRECTIONS) set_camera_mode(m->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+    } else {
+#else
     if ((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) {
+#endif
         heightBelowWater = (f32)(m->waterLevel - 80) - m->pos[1];
         camPreset = m->area->camera->mode;
 
@@ -1771,11 +1802,9 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     
     if (gPlayer1Controller->buttonPressed & R_JPAD) {
-        if (gMarioState->equippedPatch == 0) {
-        gMarioState->equippedPatch = 1;
-        }
-        else {
-            gMarioState->equippedPatch = 0;
+        gMarioState->equippedPatch += 1;
+        if (gMarioState->equippedPatch > 2) {
+        gMarioState->equippedPatch = 0;
         }
         gMarioState->updatePatch = 1;
     }
@@ -1832,6 +1861,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         if (gMarioState->floor == NULL) {
             return ACTIVE_PARTICLE_NONE;
         }
+
+        if ((gMarioState->equippedPatch == 2) && gMarioState->floorHeight < gMarioState->waterLevel) {
+        gMarioState->floorHeight = gMarioState->waterLevel;
+        gMarioState->floor = &gWaterSurfacePseudoFloor;
+        gMarioState->floor->originOffset = -gMarioState->waterLevel;
+    }
 
         // The function can loop through many action shifts in one frame,
         // which can lead to unexpected sub-frame behavior. Could potentially hang

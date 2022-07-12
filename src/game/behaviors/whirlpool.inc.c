@@ -31,7 +31,7 @@ void whirpool_orient_graph(void) {
     f32 normalX = sinRoll * cosPitch;
     f32 normalY = cosPitch * cosRoll;
     f32 normalZ = sinPitch;
-    obj_orient_graph(o, normalX, normalY, normalZ);
+    obj_orient_graph(o, normalX, normalY, normalZ, 0);
 }
 
 void bhv_whirlpool_loop(void) {

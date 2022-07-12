@@ -562,6 +562,9 @@
 #define MODEL_YARN_GOOMBA                   0x180
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
+#define MODEL_ICE_SPIKES                  0x191
+#define MODEL_SNOWFLAKE                  0x192
+#define MODEL_ICE_FLOOR                  0x193
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

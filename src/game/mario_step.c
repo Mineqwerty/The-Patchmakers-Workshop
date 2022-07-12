@@ -10,6 +10,8 @@
 #include "interaction.h"
 #include "mario_step.h"
 
+#include "include/behavior_data.h"
+
 #include "config.h"
 
 static s16 sMovingSandSpeeds[] = { 12, 8, 4, 0 };
@@ -291,7 +293,7 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
     }
 
-    if ((m->action & ACT_FLAG_RIDING_SHELL) && floorHeight < waterLevel) {
+    if ((m->equippedPatch == 2) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
         floor->originOffset = -floorHeight;
@@ -351,6 +353,14 @@ s32 perform_ground_step(struct MarioState *m) {
     set_mario_wall(m, NULL);
 
     m->usedStonePatch = 0;
+    if (m->equippedPatch == 2) {
+        if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
+            m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+        }
+        if (m->iceFloorObj && sqr(m->pos[0] - m->iceFloorObj->oPosX) + sqr(m->pos[2] - m->iceFloorObj->oPosZ) > 10000.0f ) {
+            m->iceFloorObj = NULL;
+        }
+    }
 
     for (i = 0; i < 4; i++) {
         intendedPos[0] = m->pos[0] + m->floor->normal.y * (m->vel[0] / numSteps);
@@ -484,7 +494,7 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
         return AIR_STEP_HIT_WALL;
     }
 
-    if ((m->action & ACT_FLAG_RIDING_SHELL) && floorHeight < waterLevel) {
+    if ((m->equippedPatch == 2) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
         floor->originOffset = -floorHeight;

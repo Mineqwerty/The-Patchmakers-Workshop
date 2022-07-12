@@ -37,3 +37,6 @@
 #include "menu_layer_3/model.inc.c"
 #include "menu_layer_2/model.inc.c"
 #include "menu_options/model.inc.c"
+#include "ice_floor/model.inc.c"
+#include "ice_spikes/model.inc.c"
+#include "snowflake/model.inc.c"

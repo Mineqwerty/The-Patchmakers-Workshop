@@ -1755,6 +1755,15 @@ u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAction) {
 
     m->usedStonePatch = 0;
 
+    if (m->equippedPatch == 2) {
+        if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
+            m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+        }
+        if (m->iceFloorObj && sqr(m->pos[0] - m->iceFloorObj->oPosX) + sqr(m->pos[2] - m->iceFloorObj->oPosZ) > 10000.0f ) {
+            m->iceFloorObj = NULL;
+        }
+    }
+
     if (m->input & INPUT_NONZERO_ANALOG) {
         apply_landing_accel(m, 0.98f);
     } else if (m->forwardVel >= 16.0f) {
@@ -1792,6 +1801,14 @@ s32 common_landing_cancels(struct MarioState *m, struct LandingAction *landingAc
                            s32 (*setAPressAction)(struct MarioState *m, u32 action, u32 actionArg)) {
     //! Everything here, including floor steepness, is checked before checking
     // if Mario is actually on the floor. This leads to e.g. remote sliding.
+    if (m->equippedPatch == 2) {
+        if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
+            m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+        }
+        if (m->iceFloorObj && sqr(m->pos[0] - m->iceFloorObj->oPosX) + sqr(m->pos[2] - m->iceFloorObj->oPosZ) > 10000.0f ) {
+            m->iceFloorObj = NULL;
+        }
+    }
 
     if (m->floor->normal.y < COS73) {
         return mario_push_off_steep_floor(m, landingAction->verySteepAction, 0);

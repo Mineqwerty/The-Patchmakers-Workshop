@@ -346,4 +346,10 @@ extern const Gfx white_particle_small_unused_dl[];
 
 #include "menu_options/header.h"
 
+#include "ice_floor/geo_header.h"
+
+#include "ice_spikes/geo_header.h"
+
+#include "snowflake/geo_header.h"
+
 #endif

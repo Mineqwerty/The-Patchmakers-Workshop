@@ -63,6 +63,14 @@ void *languageTable[][3] = {
 #endif
 };
 
+#ifdef REONUCAM
+u8 textCamInfoSlowest[] = { TEXT_CAM_INFO_SLOWEST };
+u8 textCamInfoSlow[] = { TEXT_CAM_INFO_SLOW };
+u8 textCamInfoMedium[] = { TEXT_CAM_INFO_MEDIUM };
+u8 textCamInfoFast[] = { TEXT_CAM_INFO_FAST};
+u8 textCamInfoFastest[] = { TEXT_CAM_INFO_FASTEST };
+#endif
+
 extern u8 gLastCompletedCourseNum;
 extern u8 gLastCompletedStarNum;
 
@@ -131,7 +139,9 @@ s16 gDialogTextPos = 0;
 s8 gDialogLineNum = 1;
 s8 gLastDialogResponse = 0;
 u8 gMenuHoldKeyIndex = 0;
+u8 gTopMenuHoldKeyIndex = 0;
 u8 gMenuHoldKeyTimer = 0;
+u8 gTopMenuHoldKeyTimer = 0;
 s32 gDialogResponse = DIALOG_RESPONSE_NONE;
 
 s16 gFeltPosX = 0;
@@ -662,7 +672,7 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
         gMenuDelayTimer--;
     }
 
-    if (((index ^ gMenuHoldKeyIndex) & index) == 2) {
+    if (((index ^ gTopMenuHoldKeyIndex) & index) == 2) {
         if (*currentIndex != maxIndex && gMenuDelayTimer == 0) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)++;
@@ -670,7 +680,7 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
         }
     }
 
-    if (((index ^ gMenuHoldKeyIndex) & index) == 1) {
+    if (((index ^ gTopMenuHoldKeyIndex) & index) == 1) {
         if (*currentIndex != minIndex && gMenuDelayTimer == 0) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)--;
@@ -678,16 +688,16 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
         }
     }
 
-    if (gMenuHoldKeyTimer == 10) {
-        gMenuHoldKeyTimer = 8;
-        gMenuHoldKeyIndex = 0;
+    if (gTopMenuHoldKeyTimer == 10) {
+        gTopMenuHoldKeyTimer = 8;
+        gTopMenuHoldKeyIndex = 0;
     } else {
-        gMenuHoldKeyTimer++;
-        gMenuHoldKeyIndex = index;
+        gTopMenuHoldKeyTimer++;
+        gTopMenuHoldKeyIndex = index;
     }
 
     if ((index & 3) == 0) {
-        gMenuHoldKeyTimer = 0;
+        gTopMenuHoldKeyTimer = 0;
     }
 }
 
@@ -1529,6 +1539,48 @@ void reset_red_coins_collected(void) {
     gRedCoinsCollected = 0;
 }
 
+#ifdef REONUCAM
+void render_reonucam_speed_setting(void) {
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    switch (gReonucamState.speed) {
+        case 0:
+            print_generic_string(-60, 30, textCamInfoSlowest);
+            break;
+        case 1:
+            print_generic_string(-60, 30, textCamInfoSlow);
+            break;
+        case 2:
+            print_generic_string(-60, 30, textCamInfoMedium);
+            break;
+        case 3:
+            print_generic_string(-60, 30, textCamInfoFast);
+            break;
+        case 4:
+            print_generic_string(-60, 30, textCamInfoFastest);
+            break;
+    }
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+
+    if (gPlayer1Controller->buttonPressed & R_JPAD) {
+        if (gReonucamState.speed < 4) {
+            gReonucamState.speed += 1;
+        } else {
+            gReonucamState.speed = 0;
+        }
+        save_file_set_camera_speed(gReonucamState.speed);
+    } else if (gPlayer1Controller->buttonPressed & L_JPAD) {
+        if (gReonucamState.speed > 0) {
+            gReonucamState.speed -= 1;
+        } else {
+            gReonucamState.speed = 4;
+        }
+        save_file_set_camera_speed(gReonucamState.speed);
+    }
+}
+#endif
+
+
 void change_dialog_camera_angle(void) {
     if (cam_select_alt_mode(0) == CAM_SELECTION_MARIO) {
         gDialogCameraAngleIndex = CAM_SELECTION_MARIO;
@@ -1600,11 +1652,11 @@ void render_widescreen_setting(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     if (!gConfig.widescreen) {
-        print_generic_string(10, 20, textCurrRatio43);
-        print_generic_string(10,  7, textPressL);
+        print_generic_string(-60, 10, textCurrRatio43);
+        //print_generic_string(10,  7, textPressL);
     } else {
-        print_generic_string(10, 20, textCurrRatio169);
-        print_generic_string(10,  7, textPressL);
+        print_generic_string(-60, 10, textCurrRatio169);
+        //print_generic_string(10,  7, textPressL);
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
     if (gPlayer1Controller->buttonPressed & L_TRIG){
@@ -1655,20 +1707,24 @@ void render_pause_my_score_coins(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
+    /*
     if (courseIndex <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)) {
         print_hud_my_score_coins(1, gCurrSaveFileNum - 1, courseIndex, 178, 103);
         print_hud_my_score_stars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
     }
+    */
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
+    /*
     if (courseIndex <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)
         && (save_file_get_course_star_count(gCurrSaveFileNum - 1, courseIndex) != 0)) {
         print_generic_string(MYSCORE_X, 121, LANGUAGE_ARRAY(textMyScore));
     }
+    */
 
     u8 *courseName = segmented_to_virtual(courseNameTbl[courseIndex]);
 
@@ -1680,15 +1736,15 @@ void render_pause_my_score_coins(void) {
         u8 *actName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gCurrCourseNum) * 6 + gDialogCourseActNum - 1]);
 
         if (starFlags & (1 << (gDialogCourseActNum - 1))) {
-            print_generic_string(TXT_STAR_X - 200, 40, textStar);
+            print_generic_string(TXT_STAR_X - 180, 20, textStar);
         } else {
-            print_generic_string(TXT_STAR_X - 200, 40, textUnfilledStar);
+            print_generic_string(TXT_STAR_X - 180, 20, textUnfilledStar);
         }
 
-        print_generic_string(ACT_NAME_X - 200, 40, actName);
-        print_generic_string(LVL_NAME_X - 200, 57, &courseName[3]);
+        print_generic_string(ACT_NAME_X - 180, 20, actName);
+        print_generic_string(LVL_NAME_X - 180, 37, &courseName[3]);
     } else {
-        print_generic_string(SECRET_LVL_NAME_X, 57, &courseName[3]);
+        print_generic_string(SECRET_LVL_NAME_X, 37, &courseName[3]);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -1754,7 +1810,9 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     u8 textExitCourse[] = { TEXT_EXIT_COURSE };
     u8 textCameraAngleR[] = { TEXT_CAMERA_ANGLE_R };
 
-    handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 0, 3);
+    if (gSubMenuIndex == 1) {
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, 3);
+    }
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
@@ -1778,7 +1836,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     }
 
     if (*index == 0) {
-        render_submenu_toggle(x - 12, y + 82, &gSubMenuIndex, 66);
+        //render_submenu_toggle(x - 12, y + 82, &gSubMenuIndex, 66);
     }
 
     
@@ -1986,6 +2044,13 @@ void render_pause_screen_felt() {
 
     gSPDisplayList(gDisplayListHead++, menu_layer_3_Plane_002_mesh);
 
+    #if defined(WIDE) && !defined(PUPPYCAM)
+        render_widescreen_setting();
+#endif
+#ifdef REONUCAM
+        render_reonucam_speed_setting();
+#endif
+
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer2PosX, gLayer2PosY, 6);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer2Rot, 0, 0, 1.0f); 
     gSPDisplayList(gDisplayListHead++, menu_layer_2_Plane_001_mesh);
@@ -1994,6 +2059,12 @@ void render_pause_screen_felt() {
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer1PosX, gLayer1PosY, 3);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer1Rot, 0, 0, 1.0f); 
     gSPDisplayList(gDisplayListHead++, menu_layer_1_Plane_mesh);
+
+    if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
+    render_pause_my_score_coins();
+    render_pause_course_options(-90, 0, &gDialogLineNum, 15);
+    }
+
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     
@@ -2006,10 +2077,7 @@ void render_pause_screen_felt() {
     gSPDisplayList(gDisplayListHead++, menu_options_Plane_003_mesh);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
-    render_pause_my_score_coins();
-    render_pause_course_options(-90, 0, &gDialogLineNum, 15);
-    }
+    render_submenu_toggle(-102, 82, &gSubMenuIndex, 66);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
@@ -2094,7 +2162,7 @@ s32 render_pause_courses_and_castle(void) {
 
         case DIALOG_STATE_HORIZONTAL:
             shade_screen();
-            print_hud_pause_colorful_str();
+            //print_hud_pause_colorful_str();
             render_pause_castle_menu_box(160, 143);
             render_pause_castle_main_strings(104, 60);
 
@@ -2108,9 +2176,6 @@ s32 render_pause_courses_and_castle(void) {
             }
             break;
     }
-#if defined(WIDE) && !defined(PUPPYCAM)
-        render_widescreen_setting();
-#endif
     if (gDialogTextAlpha < 250) {
         gDialogTextAlpha += 25;
     }

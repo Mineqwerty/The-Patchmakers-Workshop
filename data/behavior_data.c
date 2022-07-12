@@ -6236,3 +6236,21 @@ const BehaviorScript bhvCoordinateController[] = {
         CALL_NATIVE(bhv_coordinate_controller_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvIceSpikes[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_ice_spikes_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ice_spikes_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvIceFloor[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_ice_floor_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ice_floor_loop),
+    END_LOOP(),
+};

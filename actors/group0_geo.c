@@ -19,3 +19,6 @@
 
 #include "patch_mario_stone/geo.inc.c"
 #include "patches/geo.inc.c"
+#include "ice_floor/geo.inc.c"
+#include "ice_spikes/geo.inc.c"
+#include "snowflake/geo.inc.c"

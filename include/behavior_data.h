@@ -555,5 +555,7 @@ extern const BehaviorScript bhvPushpinPokeySegment[];
 extern const BehaviorScript bhvPushpinPokeyDisjointedHitbox[];
 extern const BehaviorScript bhvPokeyBossWalls[];
 extern const BehaviorScript bhvCoordinateController[];
+extern const BehaviorScript bhvIceSpikes[];
+extern const BehaviorScript bhvIceFloor[];
 
 #endif // BEHAVIOR_DATA_H

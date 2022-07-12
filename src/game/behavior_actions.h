@@ -581,6 +581,11 @@ void bhv_particle_crashing_water_spawner_loop(void);
 void bhv_coordinate_controller_init(void);
 void bhv_coordinate_controller_loop(void);
 
+void bhv_ice_spikes_init(void);
+void bhv_ice_spikes_loop(void);
+void bhv_ice_floor_init(void);
+void bhv_ice_floor_loop(void);
+
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Bowser

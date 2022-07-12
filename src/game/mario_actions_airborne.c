@@ -15,6 +15,8 @@
 #include "save_file.h"
 #include "rumble_init.h"
 
+#include "include/behavior_data.h"
+
 #include "config.h"
 
 void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3) {
@@ -921,6 +923,13 @@ s32 act_steep_jump(struct MarioState *m) {
     return FALSE;
 }
 
+struct SpawnParticlesInfo MistIce = {
+    2, 15, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
+};
+struct SpawnParticlesInfo SnowflakeFly = {
+    2, 25, MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0, 0, 30, 13.0f, 6.0f
+};
+
 s32 act_ground_pound(struct MarioState *m) {
     u32 stepResult;
     f32 yOffset;
@@ -966,7 +975,17 @@ s32 act_ground_pound(struct MarioState *m) {
             } else {
                 play_mario_heavy_landing_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING);
                 if (!check_fall_damage(m, ACT_HARD_BACKWARD_GROUND_KB)) {
-                    m->particleFlags |= PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR;
+                    
+
+                    if (m->equippedPatch == 2) {
+                        spawn_object_relative(0, 0, 0, 0, m->marioObj, MODEL_ICE_SPIKES, bhvIceSpikes);
+                        cur_obj_spawn_particles(&SnowflakeFly);
+                        cur_obj_spawn_particles(&MistIce);
+                    }
+                    else {
+                        m->particleFlags |= PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR;
+                    }
+
                     set_mario_action(m, ACT_GROUND_POUND_LAND, 0);
                 }
             }
@@ -1696,6 +1715,12 @@ s32 act_shot_from_cannon(struct MarioState *m) {
 s32 act_flying(struct MarioState *m) {
     s16 startPitch = m->faceAngle[0];
 
+#ifdef REONUCAM
+    if (gPlayer1Controller->buttonPressed & R_TRIG) {
+        gReonucamState.flyingCamOverride ^= 1;
+    }
+#endif
+
     if (m->input & INPUT_Z_PRESSED) {
         if (m->area->camera->mode == FLYING_CAMERA_MODE) {
             set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
@@ -1710,9 +1735,17 @@ s32 act_flying(struct MarioState *m) {
         return set_mario_action(m, ACT_FREEFALL, 0);
     }
 
+#ifdef REONUCAM
+    if (!gReonucamState.flyingCamOverride && m->area->camera->mode != FLYING_CAMERA_MODE) {
+        set_camera_mode(m->area->camera, FLYING_CAMERA_MODE, 1);
+    } else if (gReonucamState.flyingCamOverride && m->area->camera->mode != CAMERA_MODE_8_DIRECTIONS) {
+        set_camera_mode(m->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+    }
+#else
     if (m->area->camera->mode != FLYING_CAMERA_MODE) {
         set_camera_mode(m->area->camera, FLYING_CAMERA_MODE, 1);
     }
+#endif
 
     if (m->actionState == ACT_STATE_FLYING_SPIN) {
         if (m->actionArg == ACT_ARG_FLYING_FROM_CANNON) {
