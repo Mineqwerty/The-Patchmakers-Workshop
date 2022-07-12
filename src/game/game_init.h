@@ -50,6 +50,7 @@ extern u8 gControllerBits;
 extern u8 gIsConsole;
 extern Vec3f gSelectedStarCoords;
 extern u8 gStarSelectDisturbed;
+extern u8 gCacheEmulated;
 extern u8 gBorderHeight;
 extern u8 gSlowdownCount;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
