@@ -332,7 +332,7 @@ s32 update_objects_during_time_stop(struct ObjectNode *objList, struct ObjectNod
                 unfrozen = TRUE;
             }
 
-            if ((gCurrentObject->oInteractType & (INTERACT_DOOR | INTERACT_WARP_DOOR))
+            if ((gCurrentObject->oInteractType == INTERACT_DOOR) || (gCurrentObject->oInteractType == INTERACT_WARP_DOOR)
                 && !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS)) {
                 unfrozen = TRUE;
             }
