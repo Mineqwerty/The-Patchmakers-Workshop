@@ -557,5 +557,10 @@ extern const BehaviorScript bhvPokeyBossWalls[];
 extern const BehaviorScript bhvCoordinateController[];
 extern const BehaviorScript bhvIceSpikes[];
 extern const BehaviorScript bhvIceFloor[];
+extern const BehaviorScript bhvIceCube[];
+extern const BehaviorScript bhvSwampSkeeter[];
+extern const BehaviorScript bhvTaeber[];
+extern const BehaviorScript bhvTaeberLeaves[];
+extern const BehaviorScript bhvBlubol[];
 
 #endif // BEHAVIOR_DATA_H

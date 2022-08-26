@@ -17,8 +17,11 @@
 #include "sparkle_animation/geo.inc.c"
 #include "mario/geo.inc.c"
 
+#include "unused_ice_shard/geo.inc.c"
+
 #include "patch_mario_stone/geo.inc.c"
 #include "patches/geo.inc.c"
 #include "ice_floor/geo.inc.c"
 #include "ice_spikes/geo.inc.c"
 #include "snowflake/geo.inc.c"
+#include "ice_cube/geo.inc.c"

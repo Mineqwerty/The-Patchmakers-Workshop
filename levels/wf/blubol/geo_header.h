@@ -1,0 +1,14 @@
+extern const GeoLayout blubol_geo[];
+extern Lights1 blubol_f3d_material_009_lights;
+extern u8 blubol_stalkleaffixed_ci8[];
+extern u8 blubol_stalkleaffixed_ci8_pal_rgba16[];
+extern Vtx blubol_Sphere_mesh_layer_1_vtx_0[46];
+extern Gfx blubol_Sphere_mesh_layer_1_tri_0[];
+extern Vtx blubol_Sphere_mesh_layer_4_vtx_0[7];
+extern Gfx blubol_Sphere_mesh_layer_4_tri_0[];
+extern Gfx mat_blubol_f3d_material_009[];
+extern Gfx mat_blubol_stalkleaf_layer4[];
+extern Gfx mat_revert_blubol_stalkleaf_layer4[];
+extern Gfx blubol_Sphere_mesh_layer_1[];
+extern Gfx blubol_Sphere_mesh_layer_4[];
+extern Gfx blubol_material_revert_render_settings[];

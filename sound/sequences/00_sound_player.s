@@ -2795,6 +2795,7 @@ sound_ref .sound_general_boat_rock
 sound_ref .sound_general_vanish_sfx
 sound_ref .sound_stone_patch_break
 sound_ref .sound_stone_patch_deform
+sound_ref .sound_chillstep_patch_freeze
 sound_ref .sound_menu_enter_hole
 sound_ref .sound_general_red_coin
 sound_ref .sound_general_birds_fly_away
@@ -4818,6 +4819,12 @@ chan_end
 .sound_stone_patch_deform:
 chan_setbank 0
 chan_setinstr 7
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_chillstep_patch_freeze:
+chan_setbank 0
+chan_setinstr 8
 chan_setlayer 0, .layer_AAAA
 chan_end
 

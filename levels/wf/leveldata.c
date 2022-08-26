@@ -69,3 +69,13 @@
 #include "levels/wf/areas/1/movtext.inc.c"
 
 #include "levels/wf/leveldata.inc.c"
+
+
+
+#include "levels/wf/swamp_skeeter/model.inc.c"
+#include "levels/wf/talotak/model.inc.c"
+#include "levels/wf/talotak/anims/data.inc.c"
+#include "levels/wf/talotak/anims/table.inc.c"
+#include "levels/wf/taeber/model.inc.c"
+#include "levels/wf/taeber_leaves/model.inc.c"
+#include "levels/wf/blubol/model.inc.c"

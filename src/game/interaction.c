@@ -635,6 +635,32 @@ void push_mario_out_of_object(struct MarioState *m, struct Object *obj, f32 padd
     }
 }
 
+struct SpawnParticlesInfo MistIce2 = {
+    2, 15, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
+};
+struct SpawnParticlesInfo SnowflakeFly2 = {
+    2, 25, MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0, 0, 30, 13.0f, 6.0f
+};
+
+void freeze_enemy(struct MarioState *m, struct Object *obj, u32 interaction) {
+    //m->pos[1] += 160.0f;
+    obj->oFreezeObject = 2;
+    play_sound(SOUND_CHILLSTEP_PATCH_FREEZE, m->marioObj->header.gfx.cameraToObject);
+    cur_obj_spawn_particles(&SnowflakeFly2);
+    cur_obj_spawn_particles(&MistIce2);
+    //obj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+    struct Object *ice = spawn_object_abs_with_rot(obj, 0, MODEL_ICE_CUBE, bhvIceCube, obj->oPosX, obj->oPosY, obj->oPosZ, 0, 0, 0);
+    
+    if (obj_has_behavior(obj, bhvSkeeter) || obj_has_behavior(obj, bhvSwampSkeeter)) {
+            ice->oBehParams2ndByte = 1;
+    }
+
+    if (obj_has_behavior(obj, bhvTaeber)) {
+            ice->oBehParams2ndByte = 2;
+    }
+            
+}
+
 void bounce_back_from_attack(struct MarioState *m, u32 interaction) {
     if (interaction & (INT_PUNCH | INT_KICK | INT_TRIP)) {
         if (m->action == ACT_PUNCHING) {
@@ -1376,10 +1402,18 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+
+    
+
         attack_object(obj, interaction);
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_ABOVE) {
+            if (m->equippedPatch == 2) {
+            freeze_enemy(m, obj, interaction);
+            return TRUE;
+        }
+
             if (obj->oInteractionSubtype & INT_SUBTYPE_TWIRL_BOUNCE) {
                 bounce_off_object(m, obj, 80.0f);
                 reset_mario_pitch(m);

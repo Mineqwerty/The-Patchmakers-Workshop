@@ -801,7 +801,7 @@ s32 act_shockwave_bounce(struct MarioState *m) {
 }
 
 s32 landing_step(struct MarioState *m, s32 animID, u32 action) {
-
+/*
     if (m->equippedPatch == 2) {
         if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
             m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
@@ -810,7 +810,7 @@ s32 landing_step(struct MarioState *m, s32 animID, u32 action) {
             m->iceFloorObj = NULL;
         }
     }
-
+*/
 
     stationary_ground_step(m);
     set_mario_animation(m, animID);

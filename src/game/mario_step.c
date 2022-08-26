@@ -167,6 +167,11 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed) {
                 return drop_and_set_mario_action(m, ACT_QUICKSAND_DEATH, 0);
                 break;
 
+            case SURFACE_SINK_MUD:
+                update_mario_sound_and_camera(m);
+                return drop_and_set_mario_action(m, ACT_SINK_MUD, 0);
+                break;
+
             default:
                 m->quicksandDepth = 0.0f;
                 break;
@@ -353,6 +358,7 @@ s32 perform_ground_step(struct MarioState *m) {
     set_mario_wall(m, NULL);
 
     m->usedStonePatch = 0;
+    /*
     if (m->equippedPatch == 2) {
         if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
             m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
@@ -361,7 +367,7 @@ s32 perform_ground_step(struct MarioState *m) {
             m->iceFloorObj = NULL;
         }
     }
-
+*/
     for (i = 0; i < 4; i++) {
         intendedPos[0] = m->pos[0] + m->floor->normal.y * (m->vel[0] / numSteps);
         intendedPos[2] = m->pos[2] + m->floor->normal.y * (m->vel[2] / numSteps);

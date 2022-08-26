@@ -2228,6 +2228,22 @@ void cur_obj_align_gfx_with_floor(void) {
     }
 }
 
+void cur_obj_align_gfx_with_floor_ice(void) {
+    struct Surface *floor;
+    Vec3f position;
+
+    vec3f_copy(position, &o->oPosVec);
+
+    floor = o->oIceSurface;
+    if (floor != NULL) {
+        Vec3f floorNormal;
+        surface_normal_to_vec3f(floorNormal, floor);
+
+        mtxf_align_terrain_normal(o->transform, floorNormal, position, o->oFaceAngleYaw);
+        o->header.gfx.throwMatrix = &o->transform;
+    }
+}
+
 UNUSED s32 mario_is_within_rectangle(s16 minX, s16 maxX, s16 minZ, s16 maxZ) {
     if (gMarioObject->oPosX < minX || maxX < gMarioObject->oPosX) {
         return FALSE;

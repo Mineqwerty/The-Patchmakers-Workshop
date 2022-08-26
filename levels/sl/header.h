@@ -6,7 +6,7 @@
 
 // geo
 extern const GeoLayout sl_geo_000360[];
-extern const GeoLayout sl_geo_000378[];
+
 extern const GeoLayout sl_geo_000390[];
 extern const GeoLayout sl_geo_0003A8[];
 extern const GeoLayout sl_geo_000484[];
@@ -21,7 +21,7 @@ extern const Gfx sl_seg7_dl_07008D58[];
 extern const Gfx sl_seg7_dl_0700A5A0[];
 extern const Gfx sl_seg7_dl_0700A780[];
 extern const Gfx sl_seg7_dl_0700A890[];
-extern const Gfx sl_seg7_dl_0700A980[];
+
 extern const Gfx sl_seg7_dl_0700BAE8[];
 extern const Gfx sl_seg7_dl_0700BCF8[];
 extern const Gfx sl_seg7_dl_0700C9E8[];

@@ -585,6 +585,17 @@ void bhv_ice_spikes_init(void);
 void bhv_ice_spikes_loop(void);
 void bhv_ice_floor_init(void);
 void bhv_ice_floor_loop(void);
+void bhv_ice_cube_init(void);
+void bhv_ice_cube_loop(void);
+
+void bhv_swamp_skeeter_init(void);
+void bhv_swamp_skeeter_loop(void);
+
+void bhv_taeber_init(void);
+void bhv_taeber_loop(void);
+void bhv_taeber_leaves_loop(void);
+
+void bhv_blubol_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

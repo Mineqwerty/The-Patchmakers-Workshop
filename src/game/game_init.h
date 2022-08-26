@@ -53,6 +53,7 @@ extern u8 gStarSelectDisturbed;
 extern u8 gCacheEmulated;
 extern u8 gBorderHeight;
 extern u8 gSlowdownCount;
+extern u8 gMarioWaterwalk;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif

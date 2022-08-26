@@ -116,10 +116,13 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_SILVER_COIN_NO_SHADOW,   silver_coin_no_shadow_geo),
 #endif
 
+    LOAD_MODEL_FROM_GEO(MODEL_SL_CRACKED_ICE_CHUNK,            sl_geo_000378),
+
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_MARIO_STONE,            patch_mario_stone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_SPIKES,            ice_spikes_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SNOWFLAKE,            snowflake_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_FLOOR,            ice_floor_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ICE_CUBE,            ice_cube_geo),
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),

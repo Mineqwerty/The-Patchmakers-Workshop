@@ -92,7 +92,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3807, 1817, -12997, 0, 0, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3164, 1704, -12378, 0, 0, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3663, 1780, -12553, 0, -40, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
-		MARIO_POS(0x01, 0, -3651, 181, 1728),
+		MARIO_POS(0x01, 0, 0, 404, 0),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 730, 1689, 996, 0, 12, 0, 0x00000000, bhvPtooie, ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 3319, 2859, 1534, 0, 42, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 4983, 2859, 105, 0, 42, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
@@ -164,7 +164,7 @@ const LevelScript level_bob_entry[] = {
 	END_AREA(),
 
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, -3651, 181, 1728),
+	MARIO_POS(0x01, 0, 0, 404, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),

@@ -43,3 +43,12 @@
 #include "levels/wf/areas/1/geo.inc.c"
 
 #include "levels/wf/geo.inc.c"
+
+
+
+
+#include "levels/wf/swamp_skeeter/geo.inc.c"
+#include "levels/wf/talotak/geo.inc.c"
+#include "levels/wf/taeber/geo.inc.c"
+#include "levels/wf/taeber_leaves/geo.inc.c"
+#include "levels/wf/blubol/geo.inc.c"

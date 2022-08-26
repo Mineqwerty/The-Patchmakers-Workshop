@@ -228,7 +228,8 @@ enum SurfaceTypes {
     SURFACE_THORNS,
     SURFACE_THORNS_PASS,                       
     SURFACE_THORN_BUSH,                     
-    SURFACE_THORN_WALL,                     
+    SURFACE_THORN_WALL,
+    SURFACE_SINK_MUD,                     
 };
 
 #define SURFACE_IS_NEW_WATER(cmd)               (((cmd) == SURFACE_NEW_WATER) || ((cmd) == SURFACE_NEW_WATER_BOTTOM))

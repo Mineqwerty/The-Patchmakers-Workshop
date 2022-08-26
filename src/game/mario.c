@@ -1282,7 +1282,13 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     if ((m->equippedPatch == 2) && m->floorHeight < m->waterLevel && waterFloor) {
         m->floorHeight = m->waterLevel;
         m->floor = waterFloor;
+        gMarioWaterwalk = TRUE;
     }
+    else {
+        gMarioWaterwalk = FALSE;
+    }
+
+
 
     // If Mario is OOB, move his position to his graphical position (which was not updated)
     // and check for the floor there.
@@ -1291,11 +1297,17 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     if (m->floor == NULL) {
         vec3f_copy(m->pos, m->marioObj->header.gfx.pos);
         m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
+/*
+        if ((m->equippedPatch == 2) && m->floorHeight < m->waterLevel && waterFloor) {
+        m->floorHeight = m->waterLevel;
+        m->floor = waterFloor;
+    }
+    */
     }
 
     m->ceilHeight = find_mario_ceil(m->pos, m->floorHeight, &m->ceil);
     gasLevel = find_poison_gas_level(m->pos[0], m->pos[2]);
-    m->waterLevel = find_water_level(m->pos[0], m->pos[2]);
+    //m->waterLevel = find_water_level(m->pos[0], m->pos[2]);
 
     if (m->floor != NULL) {
         m->floorYaw = atan2s(m->floor->normal.z, m->floor->normal.x);
@@ -1772,6 +1784,19 @@ void common_patch_cancel(struct MarioState *m) {
     }
 }
 
+void patch_update(struct MarioState *m ) {
+    switch (m->curPatch) {
+        case 1: 
+            if (gMarioState->action & ACT_FLAG_INTANGIBLE) {
+                m->curPatch = 0;
+                o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+                cur_obj_spawn_particles(&StoneBreak);
+                play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+            }
+        break;
+    }
+}
+
 /**
  * Main function for executing Mario's behavior. Returns particleFlags.
  */
@@ -1779,9 +1804,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
 
     if (gPlayer1Controller->buttonPressed & L_TRIG 
-    && gMarioState->action != ACT_STAR_DANCE_EXIT 
-    && gMarioState->action != ACT_STAR_DANCE_WATER 
-    && gMarioState->action != ACT_STAR_DANCE_NO_EXIT 
+    && !(gMarioState->action & ACT_FLAG_INTANGIBLE)
     && gMarioState->action != ACT_FIRST_PERSON 
     && !(gMarioState->flags & MARIO_TELEPORTING)
     && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT
@@ -1789,18 +1812,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         perform_patch_action(gMarioState);
     }
 
-/*
-    if (gPlayer1Controller->buttonPressed & L_JPAD) {
-        if (gCustomDebugMode == 0) {
-        gCustomDebugMode = 1;
-        }
-        else {
-            gCustomDebugMode = 0;
-        }
-    }
-*/
+    patch_update(gMarioState);
 
-    
     if (gPlayer1Controller->buttonPressed & R_JPAD) {
         gMarioState->equippedPatch += 1;
         if (gMarioState->equippedPatch > 2) {
@@ -1861,11 +1874,25 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         if (gMarioState->floor == NULL) {
             return ACTIVE_PARTICLE_NONE;
         }
-
+        
         if ((gMarioState->equippedPatch == 2) && gMarioState->floorHeight < gMarioState->waterLevel) {
-        gMarioState->floorHeight = gMarioState->waterLevel;
-        gMarioState->floor = &gWaterSurfacePseudoFloor;
-        gMarioState->floor->originOffset = -gMarioState->waterLevel;
+        //gMarioState->floorHeight = gMarioState->waterLevel;
+        //gMarioState->floor = &gWaterSurfacePseudoFloor;
+        //gMarioState->floor->originOffset = -gMarioState->waterLevel;
+        
+    }
+
+    if (gMarioWaterwalk && !(gMarioState->action & ACT_FLAG_AIR)) {
+        float dist;
+        if (!gMarioState->iceFloorObj) {
+            gMarioState->iceFloorObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+            gMarioState->iceFloorObj->oIceSurface = gMarioState->floor;
+        }
+        vec3f_get_dist(&gMarioState->iceFloorObj->oPosX, gMarioState->pos, &dist);
+            if (dist > 130.0f) {
+                 gMarioState->iceFloorObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+                gMarioState->iceFloorObj->oIceSurface = gMarioState->floor;
+            }
     }
 
         // The function can loop through many action shifts in one frame,

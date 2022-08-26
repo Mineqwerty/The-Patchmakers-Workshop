@@ -559,12 +559,19 @@
 #define MODEL_FALLING_WIND           0x10B
 #define MODEL_IMPACT_HIT           0x10C
 
+#define MODEL_SWAMP_SKEETER                   0x100
+#define MODEL_TALOTAK                   0x101
+#define MODEL_TAEBER                   0x102
+#define MODEL_TAEBER_LEAVES                   0x103
+#define MODEL_BLUBOL                    0x104
+
 #define MODEL_YARN_GOOMBA                   0x180
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
 #define MODEL_SNOWFLAKE                  0x192
 #define MODEL_ICE_FLOOR                  0x193
+#define MODEL_ICE_CUBE                  0x194
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

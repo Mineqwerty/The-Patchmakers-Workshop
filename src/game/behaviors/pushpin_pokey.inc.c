@@ -348,7 +348,7 @@ void pushpin_pokey_burrow_dash(void) {
             cur_obj_move_using_fvel_and_gravity();
 
             if (o->oTimer == 1) {
-                o->oFallingWind1 = spawn_object(o, MODEL_GOOMBA, bhvPushpinPokeyDisjointedHitbox);
+                o->oFallingWind1 = spawn_object(o, MODEL_NONE, bhvPushpinPokeyDisjointedHitbox);
                 obj_set_hitbox(o->oFallingWind1, &sPushpinPokeyDisjointedHitbox);
                 
             }
@@ -368,7 +368,7 @@ void pushpin_pokey_burrow_dash(void) {
             if (o->oCamFocus && o->oTimer == 60) {
                 obj_mark_for_deletion(o->oCamFocus);
             }
-
+            o->oSubAction = 5;
             if (o->oTimer == 90) {
                 if (o->oSubAction == 5) {
                     set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
@@ -376,7 +376,7 @@ void pushpin_pokey_burrow_dash(void) {
             }
 
             if (o->oTimer > 120) {
-                o->oSubAction++;
+                o->oSubAction = 6;
                 o->oTimer = 0;
                 if (o->oSubAction == 6) {
                     o->oFaceAnglePitch = 0;
@@ -405,26 +405,44 @@ void pushpin_pokey_burst_from_ground(void) {
     o->oGravity = 3.5f;
     switch (o->oSubAction) {
         case 0:
-            o->oSubAction++;
-            o->oTimer = 0;
+        if (o->oTimer % 31 == 0) {
             o->oPosX = gMarioState->pos[0];
             o->oPosZ = gMarioState->pos[2];
             o->oPosY = gMarioState->pos[1] - 4000;
+            o->oCamFocus = spawn_object_relative(12, (random_u16() / 32 - 1028), 3500, (random_u16() / 32 - 1028), o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeyCameraFocus);
+        }
+
+        if (o->oTimer == 130) {
+            o->oSubAction++;
+            if (find_floor_height(o->oCamFocus->oPosX, o->oCamFocus->oPosY + 20000.0f, o->oCamFocus->oPosZ) > gMarioState->pos[1] + 600.0f || find_floor_height(o->oCamFocus->oPosX, o->oCamFocus->oPosY + 20000.0f, o->oCamFocus->oPosZ) < gMarioState->pos[1] - 600.0f) {
+            o->oPosX = gMarioState->pos[0];
+            o->oPosZ = gMarioState->pos[2];
+            }
+            else {
+            o->oPosX = o->oCamFocus->oPosX;
+            o->oPosZ = o->oCamFocus->oPosZ;
+            }
+        }
+
+        break;
+        case 1:
+            o->oSubAction++;
             o->oCamFocus = spawn_object_relative(8, 0, 900, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);
             o->oTimer = 0;
             o->oFaceAnglePitch = 0;
         break;
-        case 1:
+        case 2:
 
         if (o->oTimer % 3 == 0) {
             cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
         }
-            if (o->oTimer < 50) {
+            if (o->oTimer < 150) {
                 cur_obj_init_animation(1);
             }
             else {
                 o->oSubAction++;
                 cur_obj_play_sound_2(SOUND_OBJ_POUNDING_CANNON);
+                obj_become_tangible(o);
                 o->oTimer = 0;
                 if (o->oCamFocus) obj_mark_for_deletion(o->oCamFocus);
                 if (gMarioState->curPatch == 1 && calc_hor_dist(gMarioState->pos, &o->oPosVec) < 300.0f) {
@@ -433,7 +451,7 @@ void pushpin_pokey_burst_from_ground(void) {
                 }
             }
         break;
-        case 2:
+        case 3:
         o->oPosY += 130.0f - o->oTimer;
         if (o->oTimer % 5 == 4) {
             cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB_JUMP);
@@ -454,7 +472,7 @@ void pushpin_pokey_scatter(void) {
         o->oNumHitSegments = 0;
         return o->oAction = POKEY_ACT_STUNNED;
     }
-
+/*
     if (o->oNumHitSegments == 0) {
         o->oCamFocus = spawn_object_relative(1, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeySegment);
         o->oCamFocus->oPosX = gMarioState->pos[0];
@@ -469,7 +487,34 @@ void pushpin_pokey_scatter(void) {
         }
         o->oNumHitSegments++;
     }
+    */
 
+    if (o->oTimer == 0) {
+        for (int i = 0; i < o->oCurrentNumSegments; i++) {
+            if (i == 0) {
+                o->oCamFocus = spawn_object_relative(1, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeySegment);
+                o->oCamFocus->oPosX = gMarioState->pos[0];
+                o->oCamFocus->oPosY = gMarioState->pos[1] - 100.0f;
+                o->oCamFocus->oPosZ = gMarioState->pos[2];
+                gMarioState->vel[1] = 70.0f;
+        gMarioState->pos[1] += 10.0f;
+                pushpin_pokey_set_mario_style();
+        cur_obj_play_sound_2(SOUND_ACTION_BONK);
+        gMarioState->action = ACT_STONE_PATCH_AIRBORNE;
+            }
+            else {
+                o->oCamFocus = spawn_object_relative(1, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_BODY, bhvPushpinPokeySegment);
+                o->oCamFocus->oPosX = gMarioState->pos[0];
+                o->oCamFocus->oPosY = gMarioState->pos[1] - i * 600.0f;
+                o->oCamFocus->oPosZ = gMarioState->pos[2];
+            }
+        }
+    }
+
+    if (gMarioState->curPatch != 1) {
+        o->oAction = POKEY_ACT_STUNNED;
+    }
+    /*
     if (o->oTimer >= 30) {
         o->oTimer = 0;
         if (gMarioState->curPatch == 1) {
@@ -488,6 +533,7 @@ void pushpin_pokey_scatter(void) {
         }
         o->oNumHitSegments++;
     }
+    */
 
 }
 
@@ -705,11 +751,14 @@ void pushpin_pokey_set_model() {
 }
 
 void pushpin_pokey_next_attack() {
-    cur_obj_become_tangible();
+    
     o->oNumUndergroundAttacks += 1;
     if (o->oNumUndergroundAttacks >= 3) {
         o->oNumUndergroundAttacks = 0;
         return o->oAction = POKEY_ACT_BURST_FROM_GROUND;
+    }
+    else {
+        cur_obj_become_tangible();
     }
     o->oNextPokeyAttack += ((random_u16() % 2) + 1);
     if (o->oNextPokeyAttack >= 3) {
@@ -828,6 +877,34 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
         }
 
     break;
+
+    case 12:
+        //head poking up from ground
+        if (o->oTimer % 7 == 0) {
+            cur_obj_spawn_particles(&sBurrowStones);
+            cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+        }
+        if ((o->oTimer + 2) % 12 == 0) {
+            cur_obj_spawn_particles(&sBurrowMist);
+            set_camera_shake_from_point(SHAKE_POS_SMALL, o->oPosX, o->oPosY, o->oPosZ);
+        }
+        if (o->oTimer == 5) {
+            cur_obj_play_sound_1(SOUND_OBJ_KING_BOBOMB_JUMP);
+        }
+
+    if (o->oTimer < 10) {
+        o->oPosY += 50 - o->oTimer * 2;
+    }
+
+    if (o->oTimer > 20) {
+        o->oPosY -= 60 - o->oTimer * 2;
+    }
+
+
+        if (o->oTimer == 30) {
+            obj_mark_for_deletion(o);
+        }
+    break;
     }
 }
 
@@ -921,18 +998,30 @@ void bhv_pushpin_pokey_segment_loop(void) {
     break;
 
     case 1:
-        if (o->oTimer < 20 && o->oAction == 0) {
-            o->oPosY += 26.0f - o->oTimer;
+        if (o->oTimer < 60 && o->oAction == 0) {
+            o->oPosY += 66.0f; //- o->oTimer;
+
+            if (cur_obj_has_model(MODEL_PUSHPIN_POKEY_SEGMENT_HEAD)) {
+                gMarioState->pos[0] = o->oPosX;
+                gMarioState->pos[1] = o->oPosY + 400.0f;
+                gMarioState->pos[2] = o->oPosZ;
+
+                gMarioState->vel[1] = 50.0f;
+            }
         }
-        else if (o->oTimer == 20 && o->oAction == 0) {
+        //else if (o->oTimer == 60 && o->oAction == 0) {
+        else if (o->oSubAction == 0 && o->oAction == 0) {
+            if (gMarioState->pos[1] - o->oPosY < 300.0f) {
             cur_obj_play_sound_2(SOUND_ACTION_BONK);
             o->oMoveAngleYaw = random_u16();
             o->oAngleVelYaw = random_u16() / 4.0f;
             o->oAngleVelRoll = random_u16() / 4.0f;
             o->oAngleVelPitch = random_u16() / 4.0f;
             o->oForwardVel = 90.0f * (1 + random_float());
-            o->oVelY = 9.0f;
+            o->oVelY = -9.0f;
+            o->oSubAction++;
             obj_update_pos_vel_xz();
+            }
         }
         else {
             o->oFaceAngleYaw += o->oAngleVelYaw;
@@ -964,7 +1053,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
             }
         }
 
-        if (o->oTimer == 30) {
+        if (o->oTimer > 110) {
             obj_set_hitbox(o, &sPushpinPokeySegmentHitbox);
         }
         if (o->oAction == 1) {

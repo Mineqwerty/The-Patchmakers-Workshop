@@ -242,3 +242,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/pushpin_pokey.inc.c"
 #include "behaviors/utility_objects.inc.c"
 #include "behaviors/patch_objects.inc.c"
+//freezable enemies in obj_behaviors_2.c

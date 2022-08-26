@@ -292,9 +292,14 @@ s32 update_objects_starting_at(struct ObjectNode *objList, struct ObjectNode *fi
 
     while (objList != firstObj) {
         gCurrentObject = (struct Object *) firstObj;
-
         gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_HAS_ANIMATION;
-        cur_obj_update();
+        if (gCurrentObject->oFreezeObject == 0) {
+            cur_obj_update();
+        }
+        else {
+            gCurrentObject->header.gfx.animInfo.animAccel = 0;
+            gCurrentObject->header.gfx.animInfo.animFrame--;
+        }
 
         firstObj = firstObj->next;
         count++;

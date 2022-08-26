@@ -54,6 +54,7 @@ u8 gStarSelectDisturbed;
 u8 gCacheEmulated = TRUE;
 u8 gBorderHeight;
 u8 gSlowdownCount;
+u8 gMarioWaterwalk;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;
 #endif

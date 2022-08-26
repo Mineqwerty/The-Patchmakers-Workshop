@@ -160,8 +160,9 @@
 #define /*0x198*/ oNumLootCoins                                 OBJECT_FIELD_S32(0x44)
 #define /*0x19C*/ oDrawingDistance                              OBJECT_FIELD_F32(0x45)
 #define /*0x1A0*/ oRoom                                         OBJECT_FIELD_S32(0x46)
-
+#define /*0x1A8*/ oFreezeObject                            OBJECT_FIELD_S32(0x47)
 #define /*0x1A8*/ oDistanceProcessing                            OBJECT_FIELD_S32(0x48)
+
 
 // 0x1AC-0x1B2 (0x48-0x4A) are object specific and defined below the common fields.
 #define /*0x1B4*/ oWallAngle                  OBJECT_FIELD_S32(0x4B)
@@ -1267,6 +1268,11 @@
 #define oNextPokeyAttack OBJECT_FIELD_S32(0x1F)
 #define oNumUndergroundAttacks OBJECT_FIELD_S32(0x20)
 
+//stupid fucking ice platforms
+#define oIceSurface        OBJECT_FIELD_SURFACE(0x1B)
+
+//Taeber
+#define oTaeberLeaves          OBJECT_FIELD_OBJ(0x1B)
 
 /*Custom general defines:
 

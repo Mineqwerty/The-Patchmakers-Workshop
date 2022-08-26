@@ -331,6 +331,9 @@ extern const Gfx white_particle_small_dl_end[];
 extern const Gfx white_particle_small_dl[];
 extern const Gfx white_particle_small_unused_dl[];
 
+extern const GeoLayout sl_geo_000378[];
+extern const Gfx sl_seg7_dl_0700A980[];
+
 #include "patch_mario_stone/geo_header.h"
 
 #include "mario/geo_header.h"
@@ -351,5 +354,9 @@ extern const Gfx white_particle_small_unused_dl[];
 #include "ice_spikes/geo_header.h"
 
 #include "snowflake/geo_header.h"
+
+#include "ice_cube/geo_header.h"
+
+#include "ice_cube/collision_header.h"
 
 #endif

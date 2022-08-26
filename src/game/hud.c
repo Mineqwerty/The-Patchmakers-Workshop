@@ -610,5 +610,16 @@ void render_hud(void) {
 #ifdef PUPPYPRINT
         print_set_envcolour(255, 255, 255, 255);
 #endif
+
+
     }
+    /*
+    if (gMarioState->floor != NULL) {
+        if (gMarioState->floor->type == SURFACE_NEW_WATER) {
+            gMarioWaterwalk = TRUE;
+        } else {
+            gMarioWaterwalk = FALSE;
+        }
+    }
+    */
 }

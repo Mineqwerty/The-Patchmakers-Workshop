@@ -31,6 +31,8 @@
 #include FONT_C_FILE
 #endif
 
+#include "unused_ice_shard/model.inc.c"
+
 #include "patch_mario_stone/model.inc.c"
 #include "patches/model.inc.c"
 #include "menu_layer_1/model.inc.c"
@@ -40,3 +42,5 @@
 #include "ice_floor/model.inc.c"
 #include "ice_spikes/model.inc.c"
 #include "snowflake/model.inc.c"
+#include "ice_cube/model.inc.c"
+#include "ice_cube/collision.inc.c"
