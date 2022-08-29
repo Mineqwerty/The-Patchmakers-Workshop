@@ -1878,10 +1878,10 @@ void mario_process_interactions(struct MarioState *m) {
         s32 i;
         for (i = 0; i < ARRAY_COUNT(sInteractionHandlers); i++) {
             u32 interactType = sInteractionHandlers[i].interactType;
-            if (m->collidedObjInteractTypes == interactType) {
+            if (m->collidedObjInteractTypes & interactType) {
                 struct Object *object = mario_get_collided_object(m, interactType);
 
-                m->collidedObjInteractTypes = interactType;
+                m->collidedObjInteractTypes &= ~interactType;
 
                 if (!(object->oInteractStatus & INT_STATUS_INTERACTED)) {
                     if (sInvulnerable) {
@@ -1920,10 +1920,10 @@ void mario_process_interactions(struct MarioState *m) {
     check_kick_or_punch_wall(m);
     m->flags &= ~MARIO_PUNCHING & ~MARIO_KICKING & ~MARIO_TRIPPING;
 
-    if (!(m->marioObj->collidedObjInteractTypes == INTERACT_WARP_DOOR ||  m->marioObj->collidedObjInteractTypes == INTERACT_DOOR)) {
+    if (!(m->marioObj->collidedObjInteractTypes & (INTERACT_WARP_DOOR | INTERACT_DOOR))) {
         sDisplayingDoorText = FALSE;
     }
-    if (!(m->marioObj->collidedObjInteractTypes == INTERACT_WARP)) {
+    if (!(m->marioObj->collidedObjInteractTypes & INTERACT_WARP)) {
         sJustTeleported = FALSE;
     }
 }

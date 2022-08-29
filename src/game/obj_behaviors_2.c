@@ -418,7 +418,7 @@ static s32 obj_resolve_object_collisions(s32 *targetYaw) {
         for (i = 0; i < o->numCollidedObjs; i++) {
             otherObject = o->collidedObjs[i];
             if (otherObject == gMarioObject) continue;
-            if (otherObject->oInteractType >= INTERACT_COIN && otherObject->oInteractType <= INTERACT_FLAME) continue;
+            if (otherObject->oInteractType & INTERACT_MASK_NO_OBJ_COLLISIONS) continue;
 
             dx = o->oPosX - otherObject->oPosX;
             dz = o->oPosZ - otherObject->oPosZ;
