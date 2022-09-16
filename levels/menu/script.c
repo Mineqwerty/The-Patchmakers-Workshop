@@ -68,6 +68,7 @@ const LevelScript level_main_menu_entry_act_select[] = {
     LOAD_MODEL_FROM_GEO(MODEL_STAR_MARKER,      star_marker_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BLUE_STAR_MARKER,      blue_star_marker_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TTC_DIORAMA,      ttc_diorama_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_RDR_DIORAMA,      rdr_diorama_geo),
 
     /*14*/ AREA(/*index*/ 2, geo_menu_act_selector_strings),
         /*16*/ OBJECT(/*model*/ MODEL_NONE, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behParam*/ BP(0x04, 0x00, 0x00, 0x00), /*beh*/ bhvActSelector),
@@ -84,7 +85,7 @@ const LevelScript level_main_menu_entry_act_select[] = {
 #endif
     /*27*/ TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0xFF, 0xFF, 0xFF),
     /*29*/ SLEEP(/*frames*/ 16),
-    /*30*/ SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_PIRANHA_PLANT),
+    /*30*/ SET_MENU_MUSIC(/*seq*/ SEQUENCE_NONE),
 #ifndef NO_SEGMENTED_MEMORY
     /*31*/ CALL(     /*arg*/ 0, /*func*/ lvl_init_act_selector_values_and_stars),
 #endif

@@ -1884,7 +1884,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     if (gMarioWaterwalk && !(gMarioState->action & ACT_FLAG_AIR)) {
         float dist;
-        if (!gMarioState->iceFloorObj) {
+        if (!gMarioState->iceFloorObj && !(gMarioState->actionTimer == 0 && gMarioState->action == ACT_GROUND_POUND_LAND)) {
             gMarioState->iceFloorObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
             gMarioState->iceFloorObj->oIceSurface = gMarioState->floor;
         }

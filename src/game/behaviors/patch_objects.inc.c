@@ -5,11 +5,37 @@ struct SpawnParticlesInfo sSnowflakeFly = {
     2, 8, MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0, 0, 30, 13.0f, 6.0f
 };
 
+static struct ObjectHitbox sIceSpikesHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE_ENEMY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 90,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 20,
+    /* hurtboxHeight:     */ 20,
+};
+
 void bhv_ice_spikes_init(void) {
     obj_scale_xyz(o, 0, 0, 0);
+    o->oFaceAngleYaw = 0x2000;
+    
 }
 
 void bhv_ice_spikes_loop(void) {
+    obj_set_hitbox(o, &sIceSpikesHitbox);
+    for (int i = 0; i < o->numCollidedObjs; i++) {
+        struct Object *other = o->collidedObjs[i];
+
+        if (other != gMarioObject) {
+            //other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+            attack_object(other, 8);
+        }
+    }
+
+    o->oInteractStatus = 0;
+
     if (o->oTimer < 5) {
         if ((gMarioState->action != ACT_GROUND_POUND_LAND)) {
             obj_mark_for_deletion(o);
@@ -94,11 +120,19 @@ void bhv_ice_cube_init(void) {
     gMarioState->pos[0] = o->oPosX;
     gMarioState->pos[2] = o->oPosZ;
     gMarioState->action = ACT_JUMP_LAND;
+
+    check_ice_cube_corners_and_push();
 }
 
 extern s16 gCutsceneTimer;
 
 void bhv_ice_cube_loop(void) {
+
+    if (o->oIsPushingIceCube == 1 && o->oTimer < 10) {
+        check_ice_cube_corners_and_push();
+    }
+
+
     if (o->oTimer <= 3) {
 
         switch (o->oBehParams2ndByte) {
@@ -130,7 +164,7 @@ void bhv_ice_cube_loop(void) {
 
 
 
-    if (gMarioObject->platform == o && gMarioState->action == ACT_GROUND_POUND_LAND) {
+    if (cur_obj_was_attacked_or_ground_pounded() && o->oBehParams2ndByte != 2) {
         for (int i = 0; i < o->parentObj->oNumLootCoins; i++) {
             struct Object *coin;
             coin = spawn_object_relative(0, 0, 50, 0, o, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
@@ -146,4 +180,49 @@ void bhv_ice_cube_loop(void) {
         spawn_triangle_break_particles(20, MODEL_SL_CRACKED_ICE_CHUNK, 3.0f, 0);
         obj_mark_for_deletion(o);
     }
+}
+
+void check_ice_cube_corners_and_push(void) {
+    struct Surface *floor;
+    Vec3f pushVec;
+    pushVec[0] = 0;
+    pushVec[2] = 0;
+    o->oIsPushingIceCube = 0;
+    if (find_floor(o->oPosX + 82, o->oPosY + 150, o->oPosZ + 82, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += -10;
+        o->oIsPushingIceCube = 1;
+    }
+    if (find_floor(o->oPosX + 82, o->oPosY + 150, o->oPosZ - 82, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += 10;
+        o->oIsPushingIceCube = 1;
+    }
+    if (find_floor(o->oPosX - 82, o->oPosY + 150, o->oPosZ + 82, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += -10;
+        o->oIsPushingIceCube = 1;
+    }
+    if (find_floor(o->oPosX - 82, o->oPosY + 150, o->oPosZ - 82, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += 10;
+        o->oIsPushingIceCube = 1;
+    }
+
+    if (o->oIsPushingIceCube == 1) {
+        o->parentObj->oFreezeObject = 0;
+        o->parentObj->oIntangibleTimer = -1;
+    }
+    else {
+        o->parentObj->oFreezeObject = 1;
+    }
+
+    o->oPosX += pushVec[0];
+    o->oPosZ += pushVec[2];
+    o->parentObj->oPosX = o->oPosX;
+    o->parentObj->oPosY = o->oPosY;
+    o->parentObj->oPosZ = o->oPosZ;
+    gMarioState->pos[0] = o->oPosX;
+    gMarioState->pos[2] = o->oPosZ;
+    
 }

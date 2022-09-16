@@ -562,5 +562,8 @@ extern const BehaviorScript bhvSwampSkeeter[];
 extern const BehaviorScript bhvTaeber[];
 extern const BehaviorScript bhvTaeberLeaves[];
 extern const BehaviorScript bhvBlubol[];
+extern const BehaviorScript bhvTalotak[];
+extern const BehaviorScript bhvStoneTowerDoor[];
+extern const BehaviorScript bhvStoneGear[];
 
 #endif // BEHAVIOR_DATA_H

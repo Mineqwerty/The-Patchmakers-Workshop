@@ -6159,6 +6159,19 @@ const BehaviorScript bhvGenericNPC[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvTalotak[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_INTERACT_TYPE(INTERACT_TEXT),
+    SET_HITBOX(/*Radius*/ 100, /*Height*/ 60),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_talotak_init),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_talotak_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvParticleCrashingWaterSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     DISABLE_RENDERING(),
@@ -6239,7 +6252,7 @@ const BehaviorScript bhvCoordinateController[] = {
 };
 
 const BehaviorScript bhvIceSpikes[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_DESTRUCTIVE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_ice_spikes_init),
     BEGIN_LOOP(),
@@ -6258,7 +6271,7 @@ const BehaviorScript bhvIceFloor[] = {
 
 const BehaviorScript bhvIceCube[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(ice_cube_collision),
     SET_FLOAT(oCollisionDistance, 20000),
     CALL_NATIVE(bhv_ice_cube_init),
@@ -6301,5 +6314,27 @@ const BehaviorScript bhvBlubol[] = {
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 180, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 1200, /*Unused*/ 0, 0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_blubol_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStoneTowerDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    LOAD_COLLISION_DATA(stone_tower_door_collision),
+    CALL_NATIVE(bhv_stone_tower_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_stone_tower_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStoneGear[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    LOAD_COLLISION_DATA(stone_gear_collision),
+    //CALL_NATIVE(bhv_stone_tower_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_stone_gear_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };

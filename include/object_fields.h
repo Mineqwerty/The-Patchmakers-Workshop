@@ -1271,6 +1271,9 @@
 //stupid fucking ice platforms
 #define oIceSurface        OBJECT_FIELD_SURFACE(0x1B)
 
+//ice cube
+#define oIsPushingIceCube        OBJECT_FIELD_S32(0x1B)
+
 //Taeber
 #define oTaeberLeaves          OBJECT_FIELD_OBJ(0x1B)
 

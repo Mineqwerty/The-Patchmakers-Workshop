@@ -21,6 +21,7 @@
 #include "star_select.h"
 #include "text_strings.h"
 #include "game/main.h"
+#include "include/seq_ids.h"
 
 /**
  * @file star_select.c
@@ -118,6 +119,11 @@ void spawn_stage_diorama(void) {
     switch (gCurrLevelNum) {
         case LEVEL_BOB:
             spawn_object_abs_with_rot(o, 0, MODEL_TTC_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_PIRANHA_PLANT), 0);
+        break;
+        case LEVEL_WF:
+            spawn_object_abs_with_rot(o, 0, MODEL_RDR_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_RAINY_DAY_ROADSIDE_SELECT), 0);
         break;
     }
 }
@@ -180,6 +186,7 @@ void bhv_act_selector_init(void) {
                                     starPinCoords[0], starPinCoords[1], starPinCoords[2], 0, 0, 0);
         sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
     }
+    //note: disable menu scrolling when using this
     //spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
     spawn_stage_diorama();
     render_100_coin_star(stars);
@@ -200,6 +207,27 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
                 case 4: coords[0] = 1345.0f; coords[1] = -530.0f; coords[2] = -8283.0f;
                 break;
                 case 5: coords[0] = 413.0f; coords[1] = -550.0f; coords[2] = -6357.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_WF:
+            switch (starIndex) {
+                case 0: coords[0] = 794.0f; coords[1] = 130.0f; coords[2] = -10929.0f;
+                break;
+                case 1: coords[0] = 1683.0f; coords[1] = 190.0f; coords[2] = -6103.0f;
+                break;
+                case 2: coords[0] = -502.0f; coords[1] = 50.0f; coords[2] = -9682.0f;
+                break;
+                case 3: coords[0] = -4866.0f; coords[1] = -270.0f; coords[2] = -8825.0f;
+                break;
+                case 4: coords[0] = 3119.0f; coords[1] = 190.0f; coords[2] = -3756.0f;
+                break;
+                case 5: coords[0] = -5009.0f; coords[1] = 230.0f; coords[2] = -4264.0f;
                 break;
 
 

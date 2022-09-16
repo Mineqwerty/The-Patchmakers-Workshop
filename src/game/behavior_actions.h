@@ -597,6 +597,15 @@ void bhv_taeber_leaves_loop(void);
 
 void bhv_blubol_loop(void);
 
+void bhv_talotak_init(void);
+void bhv_talotak_loop(void);
+
+void bhv_stone_tower_door_init(void);
+void bhv_stone_tower_door_loop(void);
+
+void bhv_stone_gear_loop(void);
+
+
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Bowser

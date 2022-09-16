@@ -13,13 +13,13 @@ struct ObjectHitbox sSwampSkeeterHitbox = {
 struct ObjectHitbox sTaeberHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 20,
-    /* damageOrCoinValue: */ 2,
+    /* damageOrCoinValue: */ 0,
     /* health:            */ 0,
     /* numLootCoins:      */ 3,
     /* radius:            */ 400,
     /* height:            */ 300,
-    /* hurtboxRadius:     */ 10,
-    /* hurtboxHeight:     */ 10,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 200,
 };
 
 void bhv_swamp_skeeter_init(void) {
@@ -39,6 +39,7 @@ void bhv_taeber_init(void) {
 
 void bhv_taeber_loop(void) {
     obj_scale_xyz(o, 1.0f + (0.05f * sins(o->oTimer * 0x800)), 1.0f + (0.05f * coss(o->oTimer * 0x800)), 1.0f + (0.05f * sins(o->oTimer * 0x800)));
+    o->oInteractStatus = 0;
 }
 
 void bhv_taeber_leaves_loop(void) {

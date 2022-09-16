@@ -49,6 +49,7 @@ u32 interact_hit_from_below(struct MarioState *m, u32 interactType, struct Objec
 u32 interact_bounce_top    (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_spiny_walking (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_damage        (struct MarioState *m, u32 interactType, struct Object *obj);
+u32 interact_damage_enemy        (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_breakable     (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_koopa_shell   (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_pole          (struct MarioState *m, u32 interactType, struct Object *obj);
@@ -85,6 +86,7 @@ static struct InteractionHandler sInteractionHandlers[] = {
     { INTERACT_HIT_FROM_BELOW, interact_hit_from_below },
     { INTERACT_BOUNCE_TOP,     interact_bounce_top },
     { INTERACT_DAMAGE,         interact_damage },
+    { INTERACT_DAMAGE_ENEMY,         interact_damage_enemy },
     { INTERACT_POLE,           interact_pole },
     { INTERACT_HOOT,           interact_hoot },
     { INTERACT_BREAKABLE,      interact_breakable },
@@ -1473,6 +1475,18 @@ u32 interact_damage(struct MarioState *m, UNUSED u32 interactType, struct Object
     return FALSE;
 }
 
+u32 interact_damage_enemy(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
+    //if (take_damage_and_knock_back(m, obj)) {
+        //return TRUE;
+    //}
+
+    if (!(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
+        //sDelayInvincTimer = TRUE;
+    }
+
+    return TRUE;
+}
+
 u32 interact_breakable(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 interaction = determine_interaction(m, obj);
 
@@ -1829,6 +1843,39 @@ u32 check_npc_talk(struct MarioState *m, struct Object *obj) {
     return FALSE;
 }
 
+u32 check_talotak_talk(struct MarioState *m, struct Object *obj) {
+#ifdef EASIER_DIALOG_TRIGGER
+    if (
+        mario_can_talk(m, TRUE)
+        && abs_angle_diff(mario_obj_angle_to_object(m, obj), m->faceAngle[1]) <= SIGN_RANGE
+    ) {
+#ifdef DIALOG_INDICATOR
+        if (obj->behavior == segmented_to_virtual(bhvYoshi)) {
+            spawn_object_relative(ORANGE_NUMBER_A, 0, 256, 64, obj, MODEL_NUMBER, bhvOrangeNumber);
+        } else {
+            spawn_object_relative(ORANGE_NUMBER_A, 0, 160,  0, obj, MODEL_NUMBER, bhvOrangeNumber);
+        }
+#endif
+        if (m->input & READ_MASK) {
+#else
+    if ((m->input & READ_MASK) && mario_can_talk(m, 1)) {
+        s16 facingDYaw = mario_obj_angle_to_object(m, obj) - m->faceAngle[1];
+        if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE) {
+#endif
+            obj->oInteractStatus = INT_STATUS_INTERACTED;
+
+            m->interactObj = obj;
+            m->usedObj     = obj;
+
+            push_mario_out_of_object(m, obj, -10.0f);
+            return;
+        }
+    }
+
+    push_mario_out_of_object(m, obj, -10.0f);
+    return FALSE;
+}
+
 u32 interact_text(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 interact = FALSE;
 
@@ -1836,6 +1883,10 @@ u32 interact_text(struct MarioState *m, UNUSED u32 interactType, struct Object *
         interact = check_read_sign(m, obj);
     } else if (obj->oInteractionSubtype & INT_SUBTYPE_NPC) {
         interact = check_npc_talk(m, obj);
+    }
+      else if (obj->oInteractionSubtype & INT_SUBTYPE_NOT_GRABBABLE) {
+        interact = check_talotak_talk(m, obj);
+        
     } else {
         push_mario_out_of_object(m, obj, 2.0f);
     }

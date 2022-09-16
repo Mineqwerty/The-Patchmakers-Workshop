@@ -211,6 +211,18 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope35": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope36": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -514,6 +526,16 @@
             "envelope": "envelope34",
             "sound": "4D_agogo"
         },
+        "Handpan": {
+            "release_rate": 208,
+            "envelope": "envelope35",
+            "sound": "4F_handpan"
+        },
+        "Violin": {
+            "release_rate": 208,
+            "envelope": "envelope36",
+            "sound": "4E_violin"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -643,6 +665,8 @@
         "Church Organ",
         
         "Bells",
-        "Agogo"
+        "Agogo",
+        "Handpan",
+        "Violin"
     ]
 }

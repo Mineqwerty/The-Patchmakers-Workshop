@@ -1,0 +1,10 @@
+extern const GeoLayout stone_tower_door_geo[];
+extern Lights1 stone_tower_door_f3d_material_005_lights;
+extern u8 stone_tower_door_RMGP01_42c04f35_14_mip2_ci4[];
+extern u8 stone_tower_door_RMGP01_42c04f35_14_mip2_ci4_pal_rgba16[];
+extern Vtx stone_tower_door_Plane_001_mesh_layer_1_vtx_0[24];
+extern Gfx stone_tower_door_Plane_001_mesh_layer_1_tri_0[];
+extern Gfx mat_stone_tower_door_f3d_material_005[];
+extern Gfx mat_revert_stone_tower_door_f3d_material_005[];
+extern Gfx stone_tower_door_Plane_001_mesh_layer_1[];
+extern Gfx stone_tower_door_material_revert_render_settings[];

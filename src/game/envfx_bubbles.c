@@ -171,7 +171,7 @@ void envfx_update_rain(Vec3s centerPos) {
                 (gEnvFxBuffer + i)->isAlive = 0;
             }
 
-            if ((gEnvFxBuffer + i)->animFrame == 0 && (gEnvFxBuffer + i)->yPos <= 20.0f + (gEnvFxBuffer + i)->floorHeight) {
+            if ((gEnvFxBuffer + i)->animFrame == 0 && (gEnvFxBuffer + i)->yPos <= (20.0f + (gEnvFxBuffer + i)->floorHeight)) {
                 (gEnvFxBuffer + i)->yPos = (gEnvFxBuffer + i)->floorHeight;
                 (gEnvFxBuffer + i)->animFrame = 1;
             }

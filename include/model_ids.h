@@ -565,6 +565,9 @@
 #define MODEL_TAEBER_LEAVES                   0x103
 #define MODEL_BLUBOL                    0x104
 
+#define MODEL_STONE_TOWER_DOOR                   0x100
+#define MODEL_GEAR                   0x101
+
 #define MODEL_YARN_GOOMBA                   0x180
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
@@ -576,6 +579,7 @@
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
 #define MODEL_TTC_DIORAMA                      0x56
+#define MODEL_RDR_DIORAMA                      0x57
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

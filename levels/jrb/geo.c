@@ -21,3 +21,8 @@
 #include "levels/jrb/wooden_ship/geo.inc.c"
 #include "levels/jrb/areas/1/geo.inc.c"
 #include "levels/jrb/areas/2/geo.inc.c"
+
+#include "levels/jrb/geo.inc.c"
+
+#include "levels/jrb/stone_tower_door/geo.inc.c"
+#include "levels/jrb/stone_gear/geo.inc.c"

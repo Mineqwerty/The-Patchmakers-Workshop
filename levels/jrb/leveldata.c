@@ -39,3 +39,10 @@
 #include "levels/jrb/areas/2/collision.inc.c"
 #include "levels/jrb/areas/2/macro.inc.c"
 #include "levels/jrb/areas/2/movtext.inc.c"
+
+#include "levels/jrb/leveldata.inc.c"
+
+#include "levels/jrb/stone_tower_door/collision.inc.c"
+#include "levels/jrb/stone_tower_door/model.inc.c"
+#include "levels/jrb/stone_gear/collision.inc.c"
+#include "levels/jrb/stone_gear/model.inc.c"
