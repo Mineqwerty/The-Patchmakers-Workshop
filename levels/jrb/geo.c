@@ -26,3 +26,8 @@
 
 #include "levels/jrb/stone_tower_door/geo.inc.c"
 #include "levels/jrb/stone_gear/geo.inc.c"
+#include "levels/jrb/skybox_test/geo.inc.c"
+#include "levels/jrb/grapple_stone/geo.inc.c"
+#include "levels/jrb/enemy_obelisk/geo.inc.c"
+#include "levels/jrb/forcefield/geo.inc.c"
+#include "levels/jrb/rotating_stone_cylinder/geo.inc.c"

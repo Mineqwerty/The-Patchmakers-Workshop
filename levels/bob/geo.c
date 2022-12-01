@@ -33,3 +33,4 @@
 #include "levels/bob/impact_hit/geo.inc.c"
 #include "levels/bob/pushpin_pokey_2/geo.inc.c"
 #include "levels/bob/pushpin_pokey_3/geo.inc.c"
+#include "levels/bob/ttc_skybox/geo.inc.c"

@@ -567,6 +567,13 @@
 
 #define MODEL_STONE_TOWER_DOOR                   0x100
 #define MODEL_GEAR                   0x101
+#define MODEL_GRAPPLE_STONE                   0x102
+#define MODEL_ENEMY_OBELISK                   0x103
+#define MODEL_FORCEFIELD                   0x104
+#define MODEL_ROTATING_STONE_CYLINDER                   0x105
+
+#define MODEL_GOLD_CLOUD                   0x100
+#define MODEL_GODDESS                   0x101
 
 #define MODEL_YARN_GOOMBA                   0x180
 
@@ -575,6 +582,9 @@
 #define MODEL_SNOWFLAKE                  0x192
 #define MODEL_ICE_FLOOR                  0x193
 #define MODEL_ICE_CUBE                  0x194
+#define MODEL_GRAPPLE_HOOK                  0x195
+#define MODEL_GRAPPLE_LINE                 0x196
+#define MODEL_SKYBOX_TEST                0x197
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

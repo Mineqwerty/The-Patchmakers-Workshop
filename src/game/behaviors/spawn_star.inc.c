@@ -149,6 +149,12 @@ void spawn_bp3_star(f32 x, f32 y, f32 z) {
     starObj->oBehParams2ndByte = 0x03030000;
 }
 
+void spawn_arena_star_stc(f32 x, f32 y, f32 z) {
+    struct Object *starObj = NULL;
+    starObj = spawn_star(starObj, -9646, 1045, 8968);
+    starObj->oBehParams2ndByte = 0x03030000;
+}
+
 void spawn_red_coin_cutscene_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, x, y, z);
@@ -165,9 +171,8 @@ void spawn_no_exit_star(f32 x, f32 y, f32 z) {
 void bhv_hidden_red_coin_star_init(void) {
     struct Object *starObj = NULL;
 
-    if (gCurrCourseNum != COURSE_JRB) {
-        spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
-    }
+   
+    spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
 
     s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
     if (numRedCoinsRemaining == 0) {

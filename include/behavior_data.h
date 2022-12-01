@@ -565,5 +565,14 @@ extern const BehaviorScript bhvBlubol[];
 extern const BehaviorScript bhvTalotak[];
 extern const BehaviorScript bhvStoneTowerDoor[];
 extern const BehaviorScript bhvStoneGear[];
+extern const BehaviorScript bhvGrappleHook[];
+extern const BehaviorScript bhvGrappleLine[];
+extern const BehaviorScript bhvBackgroundObject[];
+extern const BehaviorScript bhvGrappleStone[];
+extern const BehaviorScript bhvEnemyObelisk[];
+extern const BehaviorScript bhvEnemyForcefield[];
+extern const BehaviorScript bhvRotatingStoneCylinder[];
+extern const BehaviorScript bhvGoldCloud[];
+extern const BehaviorScript bhvGoddessBoss[];
 
 #endif // BEHAVIOR_DATA_H

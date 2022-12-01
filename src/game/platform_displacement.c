@@ -74,7 +74,7 @@ void set_mario_pos(f32 x, f32 y, f32 z) {
 }
 
 #ifdef PLATFORM_DISPLACEMENT_2
-static struct PlatformDisplacementInfo sMarioDisplacementInfo;
+struct PlatformDisplacementInfo sMarioDisplacementInfo;
 static Vec3f sMarioAmountDisplaced;
 
 extern s32 gGlobalTimer;

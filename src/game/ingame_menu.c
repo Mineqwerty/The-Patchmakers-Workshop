@@ -161,6 +161,11 @@ s16 gLayer2Rot = -3;
 s8 gHorizIndex = 0;
 s8 gSubMenuIndex = 1;
 s8 gMenuDelayTimer = 0;
+s8 gOptionsIndex = 0;
+s8 gPatchIndex = 0;
+s8 gPatchIndexX = 0;
+s8 gPatchIndexY = 0;
+u8 gPatchMenuTimer = 0;
 
 
 void create_dl_identity_matrix(void) {
@@ -655,10 +660,10 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
 void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
     u8 index = 0;
 
-        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+        if (gPlayer3Controller->buttonDown & R_TRIG) {
             index += 2;
         }
-        else if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+        else if (gPlayer3Controller->buttonDown & L_TRIG || gPlayer3Controller->buttonDown & Z_TRIG) {
             index++;
         }
         else {
@@ -696,6 +701,30 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
 
     if ((index & 3) == 0) {
         gTopMenuHoldKeyTimer = 0;
+    }
+}
+
+void handle_patch_menu_scrolling(s8 *currentIndex) {
+    s8 index = 0;
+    if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS))) index -=4;
+    if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS))) index += 4;
+    if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS))) index +=1;
+    if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS))) index -=1;
+    
+    if (gPlayer3Controller->rawStickX < 60 && gPlayer3Controller->rawStickX > -60 &&
+        gPlayer3Controller->rawStickY < 60 && gPlayer3Controller->rawStickY > -60 && gPatchMenuTimer == 1) {
+            gPatchMenuTimer = 0;
+    }
+
+
+    if (gPatchIndex + index < 16 && gPatchIndex + index >= 0 && gPatchMenuTimer == 0 && index != 0) {
+        gPatchIndex += index;
+        gPatchMenuTimer = 1;
+        play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+    }
+
+    if (gPatchMenuTimer > 1) {
+        gPatchMenuTimer--;
     }
 }
 
@@ -1566,21 +1595,6 @@ void render_reonucam_speed_setting(void) {
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 
-    if (gPlayer1Controller->buttonPressed & R_JPAD) {
-        if (gReonucamState.speed < 4) {
-            gReonucamState.speed += 1;
-        } else {
-            gReonucamState.speed = 0;
-        }
-        save_file_set_camera_speed(gReonucamState.speed);
-    } else if (gPlayer1Controller->buttonPressed & L_JPAD) {
-        if (gReonucamState.speed > 0) {
-            gReonucamState.speed -= 1;
-        } else {
-            gReonucamState.speed = 4;
-        }
-        save_file_set_camera_speed(gReonucamState.speed);
-    }
 }
 #endif
 
@@ -1663,10 +1677,12 @@ void render_widescreen_setting(void) {
         //print_generic_string(10,  7, textPressL);
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    /*
     if (gPlayer1Controller->buttonPressed & L_TRIG){
         gConfig.widescreen ^= 1;
         save_file_set_widescreen_mode(gConfig.widescreen);
     }
+    */
 }
 #endif
 
@@ -1815,7 +1831,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     u8 textCameraAngleR[] = { TEXT_CAMERA_ANGLE_R };
 
     if (gSubMenuIndex == 1) {
-        handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, 3);
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, 2);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
@@ -1836,7 +1852,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     }
 
     if (*index == MENU_OPT_CAMERA_ANGLE_R) {
-        render_pause_camera_options(x - 42, y - 42, &gDialogCameraAngleIndex, 110);
+        //render_pause_camera_options(x - 42, y - 42, &gDialogCameraAngleIndex, 110);
     }
 
     if (*index == 0) {
@@ -1997,6 +2013,88 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 }
 
+Vtx *createSelectorEdge() {
+    Vtx *verts = alloc_display_list(4 * sizeof(*verts));
+    make_vertex(verts, 0, 0, 0, -1, 0, 0, 224, 196, 25, 255);
+    make_vertex(verts, 1, 15, 8, -1, 0, 0, 204, 191, 114, 255);
+    make_vertex(verts, 2, -5, 5, -1, 0, 0, 110, 77, 37, 255);
+    make_vertex(verts, 3, -8, -15, -1, 0, 0, 204, 191, 114, 255);
+        
+        return verts;
+}
+
+void render_patch_selection() {
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+
+    u16 patchFlags = save_file_get_patch_flags(gCurrSaveFileNum - 1);
+    gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_mesh);
+
+    if (patchFlags & (1 << 0)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_stone_patch_stone_mesh);
+    }
+    if (patchFlags & (1 << 1)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_chillstep_patch_chillstep_mesh);
+    }
+    if (patchFlags & (1 << 2)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_grapple_patch_grapple_mesh);
+    }
+
+    //selector
+    if (gSubMenuIndex == 2) {
+    handle_patch_menu_scrolling(gPatchIndex);
+    gPatchIndexX = gPatchIndex % 4;
+    gPatchIndexY = gPatchIndex / 4;
+    }
+
+    //main translation mtx
+    create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * gPatchIndexX), 42 - (40 * gPatchIndexY), 6);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, (f32) 0.6, (f32) 0.6, (f32) 0);
+
+    //gDPSetCombineMode(gDisplayListHead++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+    gDPSetEnvColor(gDisplayListHead++, 204, 191, 114, gDialogTextAlpha);
+    gSPClearGeometryMode(gDisplayListHead++, G_LIGHTING);
+    
+    //upper left corner
+    create_dl_translation_matrix(MENU_MTX_PUSH, -20 - 3*(1 + sins(0x600 * gGlobalTimer)), 20 + 3*(1 + sins(0x600 * gGlobalTimer)), 6);
+    Vtx *verts1 = createSelectorEdge();
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    //upper right corner
+    
+    create_dl_translation_matrix(MENU_MTX_PUSH, 20 + 3*(1 + sins(0x600 * gGlobalTimer)), 20 + 3*(1 + sins(0x600 * gGlobalTimer)), 6);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, 270.0f, 0, 0, 1.0f);
+    Vtx *verts2 = createSelectorEdge();
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts2), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    //lower left corner
+    
+    create_dl_translation_matrix(MENU_MTX_PUSH, -20 - 3*(1 + sins(0x600 * gGlobalTimer)), -20 - 3*(1 + sins(0x600 * gGlobalTimer)), 6);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, 90.0f, 0, 0, 1.0f);
+    Vtx *verts3 = createSelectorEdge();
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts3), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    //lower right corner
+    
+    create_dl_translation_matrix(MENU_MTX_PUSH, 20 + 3*(1 + sins(0x600 * gGlobalTimer)), -20 - 3*(1 + sins(0x600 * gGlobalTimer)), 6);
+    create_dl_rotation_matrix(MENU_MTX_NOPUSH, 180.0f, 0, 0, 1.0f);
+    Vtx *verts4 = createSelectorEdge();
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts4), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+
+    //selector POOP matrix! LOl!
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 void render_pause_screen_felt() {
     s8 approachX = (gFeltGoalX - gFeltPosX) / 3;
     s8 approachY = (gFeltGoalY - gFeltPosY) / 3;
@@ -2055,10 +2153,26 @@ void render_pause_screen_felt() {
         render_reonucam_speed_setting();
 #endif
 
+    if (gSubMenuIndex == 3) {
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gOptionsIndex, 0, 2);
+        create_dl_translation_matrix(MENU_MTX_PUSH, -70, 10 - (((gOptionsIndex - 1) * 20)), 0);
+
+        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer2PosX, gLayer2PosY, 6);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer2Rot, 0, 0, 1.0f); 
     gSPDisplayList(gDisplayListHead++, menu_layer_2_Plane_001_mesh);
+
+    
+    render_patch_selection();
+    
+
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    
 
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer1PosX, gLayer1PosY, 3);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer1Rot, 0, 0, 1.0f); 
@@ -2144,7 +2258,53 @@ s32 render_pause_courses_and_castle(void) {
             }
 #endif
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
+            if (gSubMenuIndex == 2) {
+                u8 dpadMap[4]; 
+                save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                if (gPlayer3Controller->buttonPressed & (U_JPAD)) {
+                    dpadMap[0] = gPatchIndex;
+                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                }
+                if (gPlayer3Controller->buttonPressed & (R_JPAD)) {
+                    dpadMap[1] = gPatchIndex;
+                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                }
+                if (gPlayer3Controller->buttonPressed & (D_JPAD)) {
+                    dpadMap[2] = gPatchIndex;
+                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                }
+                if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
+                    dpadMap[3] = gPatchIndex;
+                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                }
+                update_dl_dpad_patches();
+            }
+
+            if (gPlayer3Controller->buttonPressed & (START_BUTTON)) {
+                level_set_transition(0, NULL);
+                play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
+                gMenuMode = MENU_MODE_FELT_GOING_UP;
+                gFeltGoalX = SCREEN_CENTER_X + (gGlobalTimer % 20 - 10);
+                gFeltGoalY = -200;
+                gFeltGoalRot = (gGlobalTimer % 16 - 8);
+                gDialogBoxState = DIALOG_STATE_OPENING;
+                
+
+                if (gDialogLineNum == MENU_OPT_EXIT_COURSE && gSubMenuIndex == 1) {
+                    index = gDialogLineNum;
+                } else { // MENU_OPT_CONTINUE or MENU_OPT_CAMERA_ANGLE_R
+                    index = MENU_OPT_DEFAULT;
+                }
+
+                return index;
+            }
+
+            if (gPlayer3Controller->buttonPressed & (A_BUTTON)) {
+                if (gSubMenuIndex == 1) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
@@ -2161,6 +2321,34 @@ s32 render_pause_courses_and_castle(void) {
                 }
 
                 return index;
+                }
+
+            else if (gSubMenuIndex == 2) {
+
+                gMarioState->equippedPatch = gPatchIndex;
+                gMarioState->updatePatch = 1;
+                play_sound(SOUND_MENU_READ_A_SIGN, gGlobalSoundSource);
+
+
+                }
+
+            else if (gSubMenuIndex == 3) {
+                    switch (gOptionsIndex) {
+                        
+                        case 0:
+                                if (gReonucamState.speed < 4) {
+                                    gReonucamState.speed += 1;
+                                } else {
+                                    gReonucamState.speed = 0;
+                                }
+                                save_file_set_camera_speed(gReonucamState.speed);
+                            break;
+                        case 1:
+                            gConfig.widescreen ^= 1;
+                            save_file_set_widescreen_mode(gConfig.widescreen);
+                            break;
+                    }
+                }
             }
             break;
 

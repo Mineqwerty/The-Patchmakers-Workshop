@@ -68,4 +68,6 @@ extern const LevelScript level_bob_entry[];
 
 #include "levels/bob/pokey_boss_walls/collision_header.h"
 
+#include "levels/bob/ttc_skybox/geo_header.h"
+
 #endif

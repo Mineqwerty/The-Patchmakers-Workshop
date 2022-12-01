@@ -482,7 +482,9 @@ struct MarioState {
     s16 equippedPatch;
     s8 updatePatch;
     s8 usedStonePatch;
+    u8 grappleCooldownTimer;
     struct Object *iceFloorObj;
+    struct Object *wallObj;
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER
              s16 breath;

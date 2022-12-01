@@ -16,6 +16,7 @@
 #include "rumble_init.h"
 
 #include "include/behavior_data.h"
+#include "src/game/platform_displacement.h"
 
 #include "config.h"
 
@@ -381,7 +382,20 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                 m->faceAngle[1] += 0x8000;
 
                 if (m->wall != NULL) {
-                    set_mario_action(m, ACT_AIR_HIT_WALL, 0);
+                    if (m->equippedPatch == 3 && gPlayer1Controller->buttonDown & L_TRIG) {
+
+                        m->faceAngle[1] += 0x8000;
+
+                        if (m->wall->object && m->wallObj == NULL) {
+                            m->wallObj = m->wall->object;
+                        }
+                        
+                        set_mario_animation(m, MARIO_ANIM_START_WALLKICK);
+                        set_mario_action(m, ACT_GRAPPLE_WALL, 0);
+                    }
+                    else {
+                        set_mario_action(m, ACT_AIR_HIT_WALL, 0);
+                    }
                 } else {
                     if (m->vel[1] > 0.0f) {
                         m->vel[1] = 0.0f;
@@ -1326,6 +1340,80 @@ s32 act_air_hit_wall(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_grapple_wall(struct MarioState *m) {
+
+    struct Surface *surf;
+    Vec3f hitpos;
+    Vec3f raydir;
+
+    raydir[0] = sins(m->faceAngle[1]+0x8000) * 150.0f;
+    raydir[2] = coss(m->faceAngle[1]+0x8000) * 150.0f;
+
+    if (m->input & INPUT_A_PRESSED) {
+        return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
+    }
+
+    find_surface_on_ray(m->pos, raydir, &surf, &hitpos, 2U, 1);
+    if (surf == NULL) {
+        Vec3f highPos;
+        vec3f_set(&highPos, m->pos[0], m->pos[1] + 100, m->pos[2]);
+        find_surface_on_ray(highPos, raydir, &surf, &hitpos, 2U, 1);
+    }
+    if (surf == NULL) {
+        return set_mario_action(m, ACT_FREEFALL, 0);
+    } else {
+        gMarioState->faceAngle[1] = atan2s(surf->normal.z, surf->normal.x);
+        if (surf->object != NULL) {
+            apply_platform_displacement(&sMarioDisplacementInfo, m->pos, &m->faceAngle[1], surf->object);
+            }
+    }
+
+    m->vel[0] = 0.0f;
+    m->vel[1] = 0.0f;
+    m->vel[2] = 0.0f;
+    m->forwardVel = 0.0f;
+    perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB);
+
+    m->marioObj->header.gfx.angle[1] = m->faceAngle[1];
+
+    set_mario_animation(m, MARIO_ANIM_START_WALLKICK);
+
+    return FALSE;
+}
+
+s32 act_shoot_grapple_hook(struct MarioState *m) {
+
+    if (++m->actionTimer > 15) {
+        return set_mario_action(m, ACT_FREEFALL, 0);
+    }
+
+    update_air_without_turn(m);
+    
+    switch (perform_air_step(m, 0)) {
+        case AIR_STEP_NONE:
+                set_mario_animation(m, MARIO_ANIM_GENERAL_FALL);
+            
+            break;
+
+        case AIR_STEP_LANDED:
+            set_mario_action(m, ACT_FREEFALL_LAND_STOP, 0);
+            play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING);
+            break;
+
+        case AIR_STEP_HIT_WALL:
+            mario_set_forward_vel(m, 0.0f);
+            break;
+
+        case AIR_STEP_HIT_LAVA_WALL:
+            lava_boost_on_wall(m);
+            break;
+    }
+
+
+    set_mario_animation(m, MARIO_ANIM_FIRST_PUNCH);
+    return FALSE;
+}
+
 s32 act_forward_rollout(struct MarioState *m) {
     if (m->actionState == 0) {
         m->vel[1] = 30.0f;
@@ -2134,6 +2222,8 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
         case ACT_HARD_BACKWARD_AIR_KB: cancel = act_hard_backward_air_kb(m); break;
         case ACT_SOFT_BONK:            cancel = act_soft_bonk(m);            break;
         case ACT_AIR_HIT_WALL:         cancel = act_air_hit_wall(m);         break;
+        case ACT_GRAPPLE_WALL:         cancel = act_grapple_wall(m);         break;
+        case ACT_SHOOT_GRAPPLE_HOOK:         cancel = act_shoot_grapple_hook(m);         break;
         case ACT_FORWARD_ROLLOUT:      cancel = act_forward_rollout(m);      break;
         case ACT_SHOT_FROM_CANNON:     cancel = act_shot_from_cannon(m);     break;
         case ACT_BUTT_SLIDE_AIR:       cancel = act_butt_slide_air(m);       break;

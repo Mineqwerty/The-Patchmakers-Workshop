@@ -23,3 +23,9 @@
 #include "levels/ccm/areas/1/10/geo.inc.c"
 #include "levels/ccm/areas/1/geo.inc.c"
 #include "levels/ccm/areas/2/geo.inc.c"
+
+#include "levels/ccm/geo.inc.c"
+
+#include "levels/ccm/gss_skybox/geo.inc.c"
+#include "levels/ccm/gold_cloud/geo.inc.c"
+#include "levels/ccm/goddess/geo.inc.c"

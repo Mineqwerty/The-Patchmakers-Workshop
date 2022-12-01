@@ -359,4 +359,28 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "ice_cube/collision_header.h"
 
+#include "grapple_hook/geo_header.h"
+
+#include "grapple_line/geo_header.h"
+
+#include "menu_dpad_icon/header.h"
+
+#include "menu_patch_icon/header.h"
+
+#include "menu_patch_left_icon/header.h"
+
+#include "menu_patch_right_icon/header.h"
+
+#include "menu_patch_down_icon/header.h"
+
+#include "menu_patch_up_icon/header.h"
+
+#include "menu_patch_mario/header.h"
+
+#include "menu_patch_chillstep/header.h"
+
+#include "menu_patch_grapple/header.h"
+
+#include "menu_patch_stone/header.h"
+
 #endif

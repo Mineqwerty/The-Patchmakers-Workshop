@@ -25,3 +25,11 @@ void bhv_coordinate_controller_loop(void) {
         o->oPosZ = o->oHomeZ;
     }
 }
+
+void bhv_background_object_loop(void) {
+    o->oPosX = gLakituState.goalPos[0];
+    o->oPosY = gLakituState.goalPos[1];
+    o->oPosZ = gLakituState.goalPos[2];
+
+    cur_obj_scale(100.0f);
+}

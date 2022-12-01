@@ -52,14 +52,15 @@ const LevelScript level_bob_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_PUSHPIN_POKEY_SEGMENT_BODY, segment_body_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_WIND, falling_wind_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_IMPACT_HIT, impact_hit_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, ttc_skybox_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, bob_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x20, LEVEL_BOB, 0x02, 0x0A, WARP_CHECKPOINT),
 		WARP_NODE(0x21, LEVEL_BOB, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT_WITH_ACTS(MODEL_NONE, -3607, 39, 297, 0, 0, 0, 0x00000000, bhvPokeyBossWalls, ACT_6),
@@ -117,6 +118,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_ROSEDRIFT, -4835, 1862, -11743, 0, -179, 0, (2 << 16), bhvGenericNPC),
 		OBJECT_WITH_ACTS(MODEL_ROSEDRIFT, -2361, 140, 1084, 0, -74, 0, (0 << 24) | (0 << 16), bhvGenericNPC, ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_ROSEDRIFT, 5166, 1033, -3303, 0, -74, 0, (1 << 16), bhvGenericNPC, ACT_4 | ACT_5),
+		OBJECT(MODEL_SKYBOX_TEST, -3643, 100, 1649, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 4740, 4155, 1842, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -2633, 4205, -11776, 0, 0, 0, (3 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1648, 1076, -4289, 0, 157, 0, (1 << 16), bhvCoinFormation),
@@ -135,6 +137,8 @@ const LevelScript level_bob_entry[] = {
 
 	AREA(2, bob_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, -14507, -286, -425, 0, 0, 0, 0x00010000, bhvStar),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(bob_area_2_collision),
@@ -147,6 +151,8 @@ const LevelScript level_bob_entry[] = {
 
 	AREA(3, bob_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -2781, 4, -17, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -2781, 4, -200, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -2781, 4, 185, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),

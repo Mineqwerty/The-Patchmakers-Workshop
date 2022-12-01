@@ -1,0 +1,8 @@
+extern const GeoLayout rotating_stone_cylinder_geo[];
+extern Lights1 rotating_stone_cylinder_f3dlite_material_002_lights;
+extern u8 rotating_stone_cylinder__1090940010_rgba16[];
+extern Vtx rotating_stone_cylinder_Circle_003_mesh_layer_1_vtx_0[36];
+extern Gfx rotating_stone_cylinder_Circle_003_mesh_layer_1_tri_0[];
+extern Gfx mat_rotating_stone_cylinder_f3dlite_material_002[];
+extern Gfx rotating_stone_cylinder_Circle_003_mesh_layer_1[];
+extern Gfx rotating_stone_cylinder_material_revert_render_settings[];

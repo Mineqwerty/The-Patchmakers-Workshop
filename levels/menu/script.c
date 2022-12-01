@@ -53,14 +53,14 @@ const LevelScript level_main_menu_entry_file_select[] = {
     SLEEP(/*frames*/ 16),
     CLEAR_LEVEL(),
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
-    SET_REG(/*value*/ START_LEVEL),
+    SET_REG(LEVEL_CASTLE),
     EXIT_AND_EXECUTE(/*seg*/ SEGMENT_GLOBAL_LEVEL_SCRIPT, _scriptsSegmentRomStart, _scriptsSegmentRomEnd, level_main_scripts_entry),
 };
 
 const LevelScript level_main_menu_entry_act_select[] = {
     
     /* 0*/ CALL(/*arg*/ 0, /*func*/ lvl_set_current_level),
-    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 42)), // goto L1 (exit)
+    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 50)), // goto L1 (exit)
     /* 5*/ INIT_LEVEL(),
     /* 6*/ LOAD_GODDARD(),
     /*10*/ LOAD_LEVEL_DATA(menu),

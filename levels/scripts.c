@@ -123,6 +123,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_SNOWFLAKE,            snowflake_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_FLOOR,            ice_floor_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_CUBE,            ice_cube_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_HOOK,            grapple_hook_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_LINE,            grapple_line_geo),
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),

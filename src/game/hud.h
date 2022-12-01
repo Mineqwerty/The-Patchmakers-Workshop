@@ -44,5 +44,9 @@ enum CameraHUDLUT {
 
 void set_hud_camera_status(s16 status);
 void render_hud(void);
+void update_dl_dpad_patches(void);
+
+extern const Texture *const patch_textures_lut[];
+extern const u8 patch_textures_dma[];
 
 #endif // HUD_H

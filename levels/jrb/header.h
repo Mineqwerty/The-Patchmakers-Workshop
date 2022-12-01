@@ -74,4 +74,22 @@ extern const LevelScript level_jrb_entry[];
 
 #include "levels/jrb/stone_gear/geo_header.h"
 
+#include "levels/jrb/skybox_test/geo_header.h"
+
+#include "levels/jrb/grapple_stone/geo_header.h"
+
+#include "levels/jrb/grapple_stone/collision_header.h"
+
+#include "levels/jrb/enemy_obelisk/collision_header.h"
+
+#include "levels/jrb/enemy_obelisk/geo_header.h"
+
+#include "levels/jrb/forcefield/collision_header.h"
+
+#include "levels/jrb/forcefield/geo_header.h"
+
+#include "levels/jrb/rotating_stone_cylinder/collision_header.h"
+
+#include "levels/jrb/rotating_stone_cylinder/geo_header.h"
+
 #endif

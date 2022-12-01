@@ -9,4 +9,35 @@ ALIGNED8 const u8 patch_textures_dma[] = {
     #include "actors/amp/stone_patch.rgba16.inc.c"
     ,
     #include "actors/amp/chillstep_patch.rgba16.inc.c"
+    ,
+    #include "actors/amp/grapple_patch.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture texture_menu_stone_patch[] = {
+#include "actors/amp/mario_cap.rgba16.inc.c" 
+};
+ALIGNED8 static const Texture texture_menu_chillstep_patch[] = {
+#include "actors/amp/chillstep_patch.rgba16.inc.c"
+};
+ALIGNED8 static const Texture texture_menu_grapple_patch[] = {
+#include "actors/amp/grapple_patch.rgba16.inc.c"
+};
+
+// 0x030293E0
+const Texture *const patch_textures_lut[] = {
+    texture_menu_stone_patch,
+    texture_menu_chillstep_patch,
+    texture_menu_grapple_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch,
+    texture_menu_stone_patch
 };

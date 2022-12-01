@@ -2796,6 +2796,8 @@ sound_ref .sound_general_vanish_sfx
 sound_ref .sound_stone_patch_break
 sound_ref .sound_stone_patch_deform
 sound_ref .sound_chillstep_patch_freeze
+sound_ref .sound_grapple_hook_1
+sound_ref .sound_grapple_hook_2
 sound_ref .sound_menu_enter_hole
 sound_ref .sound_general_red_coin
 sound_ref .sound_general_birds_fly_away
@@ -4825,6 +4827,18 @@ chan_end
 .sound_chillstep_patch_freeze:
 chan_setbank 0
 chan_setinstr 8
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_grapple_hook_1:
+chan_setbank 0
+chan_setinstr 9
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_grapple_hook_2:
+chan_setbank 0
+chan_setinstr 10
 chan_setlayer 0, .layer_AAAA
 chan_end
 

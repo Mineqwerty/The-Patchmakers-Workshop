@@ -601,6 +601,36 @@ u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
 }
 #endif
 
+u16 save_file_get_patch_flags(s32 fileIndex) {
+    u16 patchFlags;
+    patchFlags = gSaveBuffer.files[fileIndex][0].patchFlags & 0x7F;
+    
+
+    return patchFlags;
+}
+
+void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags) {
+
+    gSaveBuffer.files[fileIndex][0].patchFlags |= patchFlags;
+    gSaveFileModified = TRUE;
+}
+
+void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
+
+    dpadMap[0] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[0];
+    dpadMap[1] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[1];
+    dpadMap[2] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[2];
+    dpadMap[3] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[3];
+}
+
+void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
+
+    gSaveBuffer.files[fileIndex][0].dpadPatchMap[0] = dpadMap[0];
+    gSaveBuffer.files[fileIndex][0].dpadPatchMap[1] = dpadMap[1];
+    gSaveBuffer.files[fileIndex][0].dpadPatchMap[2] = dpadMap[2];
+    gSaveBuffer.files[fileIndex][0].dpadPatchMap[3] = dpadMap[3];
+}
+
 /**
  * Add to the bitset of obtained stars in the specified course.
  * If course is COURSE_NONE, add to the bitset of obtained castle secret stars.
@@ -652,7 +682,7 @@ void save_file_set_cap_pos(s16 x, s16 y, s16 z) {
     saveFile->capLevel = gCurrLevelNum;
     saveFile->capArea = gCurrAreaIndex;
 #ifndef SAVE_NUM_LIVES
-    vec3s_set(saveFile->capPos, x, y, z);
+    (void) x; (void) y; (void) z;
 #else
     (void) x; (void) y; (void) z; // Address compiler warnings for unused variables
 #endif
@@ -668,7 +698,7 @@ s32 save_file_get_cap_pos(Vec3s capPos) {
 #ifdef SAVE_NUM_LIVES
         vec3_zero(capPos);
 #else
-        vec3s_copy(capPos, saveFile->capPos);
+        vec3_zero(capPos);
 #endif
         return TRUE;
     }

@@ -1,3 +1,5 @@
+#include "actors/grapple_line/geo_header.h"
+
 struct SpawnParticlesInfo sMistIce = {
     2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
 };
@@ -225,4 +227,139 @@ void check_ice_cube_corners_and_push(void) {
     gMarioState->pos[0] = o->oPosX;
     gMarioState->pos[2] = o->oPosZ;
     
+}
+
+void bhv_grapple_hook_init(void) {
+    o->oGrappleLine = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvGrappleLine);
+    o->oForwardVel = 80.0f + gMarioState->forwardVel;
+}
+
+void bhv_grapple_hook_loop(void) {
+Vec3f adjustedPos;
+
+    switch (o->oAction) {
+        case 0:
+
+            o->oGravity = 0.0f;
+            o->oForwardVel -= 2.0f;
+
+            struct Surface *surf;
+        Vec3f originPos;
+        Vec3f hitpos;
+        Vec3f raydir;
+
+        raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
+        raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
+
+        vec3f_set(originPos, o->oPosX - (sins(o->oMoveAngleYaw) * 50.0f), o->oPosY, o->oPosZ - (coss(o->oMoveAngleYaw) * 50.0f));
+
+        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
+        if (surf != NULL) {
+            o->oPosX = hitpos[0];
+            o->oPosY = hitpos[1];
+            o->oPosZ = hitpos[2];
+            play_sound(SOUND_GRAPPLE_HOOK_2, gMarioState->marioObj->header.gfx.cameraToObject);
+            return o->oAction = 1;
+        }
+        else if (o->oTimer > 1){
+            //perform raycasts down and then up to see if it collides with a floor or ceiling
+            raydir[0] = 0.0f;
+            raydir[2] = 0.0f;
+
+            raydir[1] = -30.0f;
+            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 1U, 1);
+            if (surf != NULL) {
+                o->oAngleVelPitch = -0x800;
+                o->oVelY = 5.0f;
+                return o->oAction = 2;
+            }
+            raydir[1] = 90.0f;
+            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 4U, 1);
+            if (surf != NULL) {
+                o->oAngleVelPitch = 0x1000;
+                o->oVelY = -30.0f;
+                return o->oAction = 2;
+            }
+            
+
+        }
+
+            obj_move_xyz_using_fvel_and_yaw(o);
+
+            if (o->oTimer == 15) {
+                o->oAction = 2;
+                o->oAngleVelYaw = 0x400;
+                o->oAngleVelPitch = 0x400;
+            }
+            break;
+        case 1:
+            
+            vec3f_set(&adjustedPos, o->oPosX, o->oPosY + 50, o->oPosZ);
+            approach_vec3f_asymptotic(&gMarioState->pos, &adjustedPos, 0.5f, 0.5f, 0.5f);
+            if (o->oTimer == 4) {
+                gMarioState->faceAngle[1] += 0x8000;
+                set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
+                gMarioState->iceFloorObj = NULL;
+                gMarioState->curPatch = 0;
+                obj_mark_for_deletion(o->oGrappleLine);
+                obj_mark_for_deletion(o);
+                
+            }
+            break;
+        case 2:
+        o->oGravity = 2.0f;
+        o->oForwardVel = 10.0f;
+
+        cur_obj_rotate_face_angle_using_vel();
+        object_step_without_floor_orient();
+            if (o->oTimer == 15) {
+                gMarioState->iceFloorObj = NULL;
+                gMarioState->curPatch = 0;
+                obj_mark_for_deletion(o->oGrappleLine);
+                obj_mark_for_deletion(o);
+            }
+            break;
+    }
+    
+}
+
+void bhv_grapple_line_loop(void) {
+
+    if (o->oTimer == 1) {
+        o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_GRAPPLE_LINE];
+    }
+
+    
+
+    o->oPosX = o->parentObj->oPosX;
+    o->oPosY = o->parentObj->oPosY;
+    o->oPosZ = o->parentObj->oPosZ;
+
+    if (o->parentObj->oAction != 2) {
+
+    f32 dx = gMarioObject->header.gfx.pos[0] - o->oPosX;
+    f32 dy = gMarioObject->header.gfx.pos[1] - o->oPosY + 90.0f;
+    f32 dz = gMarioObject->header.gfx.pos[2] - o->oPosZ;
+    s16 targetPitch = atan2s(sqrtf(sqr(dx) + sqr(dz)), dy);
+
+    s16 targetAngle = atan2s(dz, dx);
+
+    o->oMoveAngleYaw = targetAngle;
+
+    o->oMoveAnglePitch = -targetPitch;
+    o->oFaceAnglePitch = -targetPitch;
+
+    extern Vtx grapple_line_Plane_002_mesh_layer_1_vtx_0[12];
+
+    Vtx *new = segmented_to_virtual(grapple_line_Plane_002_mesh_layer_1_vtx_0);
+    
+    new[0].v.ob[2] = o->oDistanceToMario;
+    new[1].v.ob[2] = o->oDistanceToMario;
+    new[2].v.ob[2] = o->oDistanceToMario;
+    new[5].v.ob[2] = o->oDistanceToMario;
+    new[6].v.ob[2] = o->oDistanceToMario;
+    new[7].v.ob[2] = o->oDistanceToMario;
+
+    }
+
 }

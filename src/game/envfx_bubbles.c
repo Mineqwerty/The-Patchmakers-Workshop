@@ -158,11 +158,16 @@ void envfx_update_rain(Vec3s centerPos) {
         if (!(gEnvFxBuffer + i)->isAlive) {
             (gEnvFxBuffer + i)->xPos = (random_u16() / 24 - 1635) + centerX;
             (gEnvFxBuffer + i)->zPos = (random_u16() / 24 - 1635) + centerZ;
-            (gEnvFxBuffer + i)->yPos = centerY + (random_u16() / 120) + 400.0f;
+            (gEnvFxBuffer + i)->yPos = centerY + ( (s16) (random_u16() / 120)) + 400.0f;
             (gEnvFxBuffer + i)->isAlive = TRUE;
-            (gEnvFxBuffer + i)->floorHeight = find_floor_height((gEnvFxBuffer + i)->xPos, 10000.0f, (gEnvFxBuffer + i)->zPos);
+
+            struct Surface *floor = NULL;
+            s32 waterLevel = find_water_level_and_floor((gEnvFxBuffer + i)->xPos, 10000, (gEnvFxBuffer + i)->zPos, &floor);
+            s32 floorLevel = find_floor_height((gEnvFxBuffer + i)->xPos, 10000.0f, (gEnvFxBuffer + i)->zPos);
+            (gEnvFxBuffer + i)->floorHeight = (floorLevel > waterLevel ? floorLevel : waterLevel);
             (gEnvFxBuffer + i)->animFrame = 0;
             (gEnvFxBuffer + i)->randParticleSpeed = 1;
+            
         } else {
             if ((gEnvFxBuffer + i)->animFrame > 0 && (gEnvFxBuffer + i)->animFrame <= 10) {
             (gEnvFxBuffer + i)->animFrame++;

@@ -25,3 +25,5 @@
 #include "ice_spikes/geo.inc.c"
 #include "snowflake/geo.inc.c"
 #include "ice_cube/geo.inc.c"
+#include "grapple_hook/geo.inc.c"
+#include "grapple_line/geo.inc.c"

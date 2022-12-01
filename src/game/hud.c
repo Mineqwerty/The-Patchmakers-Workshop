@@ -292,6 +292,94 @@ void render_hud_power_meter(void) {
     sPowerMeterVisibleTimer++;
 }
 
+void render_dl_dpad_patches(s16 numHealthWedges) {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+
+    guTranslate(mtx, (f32) 30, (f32) 30, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+              G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.4f, 0.4f, 1.0f);
+    gSPDisplayList(gDisplayListHead++, &menu_dpad_icon_Plane_004_mesh);
+        s8 animateBounce[4] = {0, 0, 0, 0};
+
+        if (gPlayer3Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
+        if (gPlayer3Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
+        if (gPlayer3Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
+        if (gPlayer3Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
+
+        for (int i = 0; i < 4; i++) {
+            if (animateBounce[i] % 2 == 1) {
+                if (animateBounce[i] > 20) {
+                    animateBounce[i]+=4;
+                }
+                else {
+                    animateBounce[i]+=2;
+                }
+
+                if (animateBounce[i] >= 50) {
+                    animateBounce[i] = 50;
+                }
+            }
+            else if (animateBounce[i] != 0) {
+                if (animateBounce[i] > 20) {
+                    animateBounce[i]-=2;
+                }
+                else {
+                    animateBounce[i]-=4;
+                }
+
+                if (animateBounce[i] < 0) {
+                    animateBounce[i] = 0;
+                }
+            }
+        }
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[3], 0);
+        gSPDisplayList(gDisplayListHead++, &menu_patch_left_icon_Plane_007_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[1], 0);
+        gSPDisplayList(gDisplayListHead++, &menu_patch_right_icon_Plane_008_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[2], 0);
+        gSPDisplayList(gDisplayListHead++, &menu_patch_down_icon_Plane_006_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[0], 0);
+        gSPDisplayList(gDisplayListHead++, &menu_patch_up_icon_Plane_005_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    
+
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+void update_dl_dpad_patches(void) {
+
+    u8 dpadMap[4]; 
+    save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+
+    extern u8 menu_patch_left_icon_nothing_rgba16[];
+        extern u8 menu_patch_right_icon_nothing_rgba16[];
+        extern u8 menu_patch_down_icon_nothing_rgba16[];
+        extern u8 menu_patch_up_icon_nothing_rgba16[];
+
+        u8 *leftTexture = segmented_to_virtual(&menu_patch_left_icon_nothing_rgba16);
+        u8 *rightTexture = segmented_to_virtual(&menu_patch_right_icon_nothing_rgba16);
+        u8 *downTexture = segmented_to_virtual(&menu_patch_down_icon_nothing_rgba16);
+        u8 *upTexture = segmented_to_virtual(&menu_patch_up_icon_nothing_rgba16);
+
+        dma_read(leftTexture, (dpadMap[3]*2048) + patch_textures_dma, (dpadMap[3]*2048) + patch_textures_dma + 2048);
+        dma_read(rightTexture, (dpadMap[1]*2048) + patch_textures_dma, (dpadMap[1]*2048) + patch_textures_dma + 2048);
+        dma_read(downTexture, (dpadMap[2]*2048) + patch_textures_dma, (dpadMap[2]*2048) + patch_textures_dma + 2048);
+        dma_read(upTexture, (dpadMap[0]*2048) + patch_textures_dma, (dpadMap[0]*2048) + patch_textures_dma + 2048);
+}
+
 #ifdef BREATH_METER
 /**
  * Renders breath meter health segment texture using a table list.
@@ -586,6 +674,7 @@ void render_hud(void) {
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
             render_hud_power_meter();
+            render_dl_dpad_patches(2);
 #ifdef PUPPYCAM
             if (!gPuppyCam.enabled) {
 #endif

@@ -80,6 +80,16 @@ extern Gfx menu_layer_1_Plane_mesh[];
 extern Gfx menu_layer_2_Plane_001_mesh[];
 extern Gfx menu_layer_3_Plane_002_mesh[];
 extern Gfx menu_options_Plane_003_mesh[];
+extern Gfx menu_dpad_icon_Plane_004_mesh[];
+extern  Gfx menu_patch_left_icon_Plane_007_mesh[];
+extern Gfx menu_patch_right_icon_Plane_008_mesh[];
+extern Gfx menu_patch_up_icon_Plane_005_mesh[];
+extern Gfx menu_patch_down_icon_Plane_006_mesh[];
+
+extern Gfx menu_patch_mario_patch_mario_mesh[];
+extern Gfx menu_patch_stone_patch_stone_mesh[];
+extern Gfx menu_patch_chillstep_patch_chillstep_mesh[];
+extern Gfx menu_patch_grapple_patch_grapple_mesh[];
 
 
 #endif // SEGMENT2_H

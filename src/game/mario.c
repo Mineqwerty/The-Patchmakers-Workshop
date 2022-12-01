@@ -1770,6 +1770,17 @@ void perform_patch_action(struct MarioState *m) {
         }
             }
         break;
+
+        case 3:
+            if (!m->iceFloorObj && m->action != ACT_SIDE_FLIP && m->action != ACT_DIVE && m->grappleCooldownTimer == 0) {
+                m->vel[1] = 20.0f;
+                m->forwardVel -= 20.0f;
+                set_mario_action(gMarioState, ACT_SHOOT_GRAPPLE_HOOK, 0);
+                play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
+                m->curPatch = 3;
+                m->iceFloorObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
+            }
+        break;
         }
 }
 
@@ -1780,11 +1791,26 @@ void common_patch_cancel(struct MarioState *m) {
             o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
             cur_obj_spawn_particles(&StoneBreak);
             play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+
+            if (gMarioState->action == ACT_STONE_PATCH_AIRBORNE || ACT_STONE_PATCH_AIR_LAND) {
+                m->usedStonePatch = 1;
+                set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
+            }
+        break;
+        case 2:
+        case 3:
+            //m->curPatch = 0;
+            //gMarioState->iceFloorObj = NULL;
         break;
     }
 }
 
 void patch_update(struct MarioState *m ) {
+
+    if (m->grappleCooldownTimer > 0) {
+        m->grappleCooldownTimer--;
+    }
+
     switch (m->curPatch) {
         case 1: 
             if (gMarioState->action & ACT_FLAG_INTANGIBLE) {
@@ -1814,18 +1840,57 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     patch_update(gMarioState);
 
+/*
     if (gPlayer1Controller->buttonPressed & R_JPAD) {
         gMarioState->equippedPatch += 1;
-        if (gMarioState->equippedPatch > 2) {
+        if (gMarioState->equippedPatch > 3) {
         gMarioState->equippedPatch = 0;
         }
         gMarioState->updatePatch = 1;
+        gMarioState->iceFloorObj = NULL;
     }
 
     if (gPlayer1Controller->buttonPressed & L_JPAD) {
+        //play_secondary_music(38, 255, 255, 10);
+    }
+    */
+
+    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
         play_secondary_music(38, 255, 255, 10);
     }
 
+    if (gPlayer3Controller->buttonPressed & (U_JPAD)) {
+        common_patch_cancel(gMarioState);
+        u8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+        gMarioState->equippedPatch = dpadMap[0];
+        gMarioState->updatePatch = 1;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+    }
+    if (gPlayer3Controller->buttonPressed & (R_JPAD)) {
+        common_patch_cancel(gMarioState);
+        u8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+        gMarioState->equippedPatch = dpadMap[1];
+        gMarioState->updatePatch = 1;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+    }
+    if (gPlayer3Controller->buttonPressed & (D_JPAD)) {
+        common_patch_cancel(gMarioState);
+        u8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+        gMarioState->equippedPatch = dpadMap[2];
+        gMarioState->updatePatch = 1;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+    }
+    if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
+        common_patch_cancel(gMarioState);
+        u8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+        gMarioState->equippedPatch = dpadMap[3];
+        gMarioState->updatePatch = 1;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+    }
 
     if (gMarioState->updatePatch == 1) {
     //dma patches
@@ -1835,6 +1900,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
     gMarioState->updatePatch = 0;
+
     }
 
     // Updates once per frame:
@@ -1954,9 +2020,19 @@ void init_mario(void) {
     gMarioState->framesSinceB = 0xFF;
 
     //CHANGE THIS
-    gMarioState->equippedPatch = 1;
+    //gMarioState->equippedPatch = 1;
 
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
+    
+    gMarioState->curPatch = 0;
+    gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+    gMarioState->iceFloorObj = NULL;
     gMarioState->invincTimer = 0;
+    update_dl_dpad_patches();
+
+    
 
     if (save_file_get_flags()
         & (SAVE_FLAG_CAP_ON_GROUND | SAVE_FLAG_CAP_ON_KLEPTO | SAVE_FLAG_CAP_ON_UKIKI

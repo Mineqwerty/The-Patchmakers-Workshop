@@ -54,6 +54,16 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "08_chillstep_patch_freeze"
+        },
+        "inst9": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "09_grapple_hook_1"
+        },
+        "inst10": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0A_grapple_hook_2"
         }
     },
     "instrument_list": [
@@ -65,6 +75,8 @@
         "inst5",
         "inst6",
         "inst7",
-        "inst8"
+        "inst8",
+        "inst9",
+        "inst10"
     ]
 }

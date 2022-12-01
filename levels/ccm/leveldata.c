@@ -45,3 +45,12 @@
 #include "levels/ccm/areas/2/collision.inc.c"
 #include "levels/ccm/areas/2/macro.inc.c"
 #include "levels/ccm/areas/2/trajectory.inc.c"
+
+#include "levels/ccm/leveldata.inc.c"
+
+#include "levels/ccm/gss_skybox/model.inc.c"
+#include "levels/ccm/gold_cloud/model.inc.c"
+#include "levels/ccm/gold_cloud/collision.inc.c"
+#include "levels/ccm/goddess/model.inc.c"
+#include "levels/ccm/goddess/anims/data.inc.c"
+#include "levels/ccm/goddess/anims/table.inc.c"

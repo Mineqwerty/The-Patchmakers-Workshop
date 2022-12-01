@@ -36,8 +36,10 @@ struct SaveFile {
 #else
     // Note: the coordinates get set, but are never actually used, since the
     // cap can always be found in a fixed spot within the course
-    Vec3s capPos; // 48 bits
+    //Vec3s capPos; // 48 bits
 #endif
+    u16 patchFlags;
+    u8 dpadPatchMap[4];
 
     u32 flags;
 
@@ -142,6 +144,25 @@ enum SaveProgressFlags {
     SAVE_FLAG_COLLECTED_MIPS_STAR_2  = (1 << 28), /* 0x10000000 */
 };
 
+enum PatchCollectedFlags {
+    PATCH_FLAG_HAVE_STONE            = (1 <<  0), /* 0x00000001 */
+    PATCH_FLAG_HAVE_CHILLSTEP         = (1 <<  1), /* 0x00000002 */
+    PATCH_FLAG_HAVE_GRAPPLE         = (1 <<  2), /* 0x00000004 */
+    PATCH_FLAG_HAVE_HALO        = (1 <<  3), /* 0x00000008 */
+    PATCH_FLAG_HAVE_5             = (1 <<  4), /* 0x00000010 */
+    PATCH_FLAG_HAVE_6             = (1 <<  5), /* 0x00000020 */
+    PATCH_FLAG_HAVE_7 = (1 <<  6), /* 0x00000040 */
+    PATCH_FLAG_HAVE_8 = (1 <<  7), /* 0x00000080 */
+    PATCH_FLAG_HAVE_9         = (1 <<  8), /* 0x00000100 */
+    PATCH_FLAG_HAVE_10           = (1 <<  9), /* 0x00000200 */
+    PATCH_FLAG_HAVE_11      = (1 << 10), /* 0x00000400 */
+    PATCH_FLAG_HAVE_12       = (1 << 11), /* 0x00000800 */
+    PATCH_FLAG_HAVE_13      = (1 << 12), /* 0x00001000 */
+    PATCH_FLAG_HAVE_14      = (1 << 13), /* 0x00002000 */
+    PATCH_FLAG_HAVE_15    = (1 << 14), /* 0x00004000 */
+    PATCH_FLAG_FILLER    = (1 << 15), /* 0x00008000 */
+};
+
 enum StarFlags {
     STAR_FLAGS_NONE         = (0 << 0), // 0x00
     STAR_FLAG_ACT_1         = (1 << 0), // 0x01
@@ -187,7 +208,11 @@ void save_file_set_flags(u32 flags);
 void save_file_clear_flags(u32 flags);
 u32 save_file_get_flags(void);
 u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex);
+u16 save_file_get_patch_flags(s32 fileIndex);
 void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, u32 starFlags);
+void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags);
+void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]);
+void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]);
 s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex);
 s32 save_file_is_cannon_unlocked(void);
 void save_file_set_cannon_unlocked(void);

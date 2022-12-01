@@ -605,6 +605,22 @@ void bhv_stone_tower_door_loop(void);
 
 void bhv_stone_gear_loop(void);
 
+void bhv_grapple_hook_init(void);
+void bhv_grapple_hook_loop(void);
+void bhv_grapple_line_loop(void);
+
+void bhv_background_object_loop(void);
+
+void bhv_grapple_stone_loop(void);
+
+void bhv_rotating_stone_cylinder_loop(void);
+
+void bhv_enemy_obelisk_loop(void);
+
+void bhv_gold_cloud_loop(void);
+
+void bhv_goddess_init(void);
+void bhv_goddess_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 
