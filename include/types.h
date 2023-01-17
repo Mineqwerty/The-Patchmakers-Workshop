@@ -483,6 +483,8 @@ struct MarioState {
     s8 updatePatch;
     s8 usedStonePatch;
     u8 grappleCooldownTimer;
+    u8 specialWarpTransitionOperation;
+    u8 haloCaptureType;
     struct Object *iceFloorObj;
     struct Object *wallObj;
     // -- HackerSM64 MarioState fields begin --

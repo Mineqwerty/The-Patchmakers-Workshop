@@ -1,0 +1,10 @@
+extern const GeoLayout fling_ring_geo[];
+extern Lights1 fling_ring_f3dlite_material_001_layer1_lights;
+extern u8 fling_ring_goopgold1_ci8[];
+extern u8 fling_ring_goopgold1_ci8_pal_rgba16[];
+extern Vtx fling_ring_Circle_001_mesh_layer_1_vtx_0[114];
+extern Gfx fling_ring_Circle_001_mesh_layer_1_tri_0[];
+extern Gfx mat_fling_ring_f3dlite_material_001_layer1[];
+extern Gfx mat_revert_fling_ring_f3dlite_material_001_layer1[];
+extern Gfx fling_ring_Circle_001_mesh_layer_1[];
+extern Gfx fling_ring_material_revert_render_settings[];

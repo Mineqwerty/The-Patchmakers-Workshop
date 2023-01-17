@@ -29,7 +29,7 @@ enum SurfaceTypes {
     SURFACE_SLIPPERY,                   // 0x0014 // Slippery
     SURFACE_NOT_SLIPPERY,               // 0x0015 // Non-slippery, climbable
     SURFACE_TTM_VINES,                  // 0x0016 // TTM vines, has no action defined
-    SURFACE_0017,                       // 0x0017 // Unused
+    SURFACE_GSS_CLOUD_WARP,                       // 0x0017 // Unused
     SURFACE_0018,                       // 0x0018 // Unused
     SURFACE_0019,                       // 0x0019 // Unused
     SURFACE_MGR_MUSIC,                  // 0x001A // Plays the Merry go round music, see handle_merry_go_round_music in bbh_merry_go_round.inc.c for more details
@@ -229,7 +229,8 @@ enum SurfaceTypes {
     SURFACE_THORNS_PASS,                       
     SURFACE_THORN_BUSH,                     
     SURFACE_THORN_WALL,
-    SURFACE_SINK_MUD,                     
+    SURFACE_SINK_MUD,
+    SURFACE_WATER_DEATH,            
 };
 
 #define SURFACE_IS_NEW_WATER(cmd)               (((cmd) == SURFACE_NEW_WATER) || ((cmd) == SURFACE_NEW_WATER_BOTTOM))

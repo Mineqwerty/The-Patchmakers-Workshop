@@ -56,3 +56,8 @@
 #include "menu_patch_chillstep/model.inc.c"
 #include "menu_patch_grapple/model.inc.c"
 #include "menu_patch_stone/model.inc.c"
+#include "halo/model.inc.c"
+#include "menu_patch_halo/model.inc.c"
+#include "fire_smoke/model.inc.c"
+#include "mario/anims/data.inc.c"
+#include "mario/anims/table.inc.c"

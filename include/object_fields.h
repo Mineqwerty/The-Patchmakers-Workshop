@@ -1000,6 +1000,7 @@
 /* Hidden Star */
 // Secrets/Red Coins
 #define /*0x0F4*/ oHiddenStarTriggerCounter OBJECT_FIELD_S32(0x1B)
+#define oCurrentWillOWisp          OBJECT_FIELD_OBJ(0x1C)
 
 /* Sealed Door Star */
 #define /*0x108*/ oUnlockDoorStarState  OBJECT_FIELD_U32(0x20)
@@ -1282,6 +1283,17 @@
 
 //enemy combat obelisk
 #define oEnemyIncrement        OBJECT_FIELD_S32(0x1B)
+
+//halo
+#define oHaloApproachSpeed        OBJECT_FIELD_F32(0x1B)
+#define oHaloWallColSpeed        OBJECT_FIELD_F32(0x1C)
+#define oHaloCapturedObject           OBJECT_FIELD_OBJ(0x1D)
+
+//torch holder
+#define oTorchFlame           OBJECT_FIELD_OBJ(0x1B)
+
+//fire smoke
+#define oFireSmokeScale        OBJECT_FIELD_F32(0x1B)
 
 /*Custom general defines:
 

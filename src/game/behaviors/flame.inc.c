@@ -52,3 +52,12 @@ void bhv_moving_flame_particle_loop(void) {
 
     cur_obj_scale(o->header.gfx.scale[0]);
 }
+
+void bhv_stationary_flame_loop(void) {
+    if (o->oTimer < 30 && o->oBehParams2ndByte == 1) {
+        cur_obj_scale(7.0f * ((f32) o->oTimer) / 30.0f);
+    }
+    else {
+        cur_obj_scale(7.0f);
+    }
+}

@@ -97,6 +97,7 @@ void bhv_bounce_rosedrift_loop(void) {
                 o->oTimer = 160;
                 o->oAction = ACT_BULB_BOUNCE;
                 set_camera_mode(gMarioState->area->camera, CAMERA_MODE_FREE_ROAM, 1);
+                play_sound(SOUND_MARIO_HERE_WE_GO, gGlobalSoundSource);
             }
             else {
                 o->oInteractStatus = INT_STATUS_NONE;

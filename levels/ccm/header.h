@@ -70,4 +70,24 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/goddess/anim_header.h"
 
+#include "levels/ccm/torch_holder/geo_header.h"
+
+#include "levels/ccm/torch_holder/collision_header.h"
+
+#include "levels/ccm/torch_holder_lit/geo_header.h"
+
+#include "levels/ccm/flame_puzzle_barrier/collision_header.h"
+
+#include "levels/ccm/flame_puzzle_barrier/geo_header.h"
+
+#include "levels/ccm/halo_switch/geo_header.h"
+
+#include "levels/ccm/spekturr/geo_header.h"
+
+#include "levels/ccm/star_gate/geo_header.h"
+
+#include "levels/ccm/fling_ring/geo_header.h"
+
+#include "levels/ccm/fling_ring/collision_header.h"
+
 #endif

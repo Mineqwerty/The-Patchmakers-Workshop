@@ -574,5 +574,19 @@ extern const BehaviorScript bhvEnemyForcefield[];
 extern const BehaviorScript bhvRotatingStoneCylinder[];
 extern const BehaviorScript bhvGoldCloud[];
 extern const BehaviorScript bhvGoddessBoss[];
+extern const BehaviorScript bhvHalo[];
+extern const BehaviorScript bhvSewnia[];
+extern const BehaviorScript bhvTorchHolder[];
+extern const BehaviorScript bhvFireSmokeParticle[];
+extern const BehaviorScript bhvFireSmokeSpawner[];
+extern const BehaviorScript bhvWillOWisp[];
+extern const BehaviorScript bhvGSSHiddenStar[];
+extern const BehaviorScript bhvWillOWispSpawner[];
+extern const BehaviorScript bhvFlamePuzzleBarrier[];
+extern const BehaviorScript bhvHaloSwitch[];
+extern const BehaviorScript bhvSpekturr[];
+extern const BehaviorScript bhvStarGate[];
+extern const BehaviorScript bhvPatchmaker[];
+extern const BehaviorScript bhvFlingRing[];
 
 #endif // BEHAVIOR_DATA_H

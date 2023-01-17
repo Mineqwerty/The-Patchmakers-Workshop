@@ -12,6 +12,7 @@
 #include "screen_transition.h"
 #include "segment2.h"
 #include "sm64.h"
+#include "src/game/level_update.h"
 
 u8 sTransitionColorFadeCount[4] = { 0 };
 u16 sTransitionTextureFadeCount[2] = { 0 };
@@ -204,6 +205,67 @@ s32 render_textured_transition(s8 fadeTimer, s8 transTime, struct WarpTransition
     return set_and_reset_transition_fade_timer(fadeTimer, transTime);
 }
 
+s32 render_gss_cloud_transition(s8 fadeTimer, s8 transTime, struct WarpTransitionData *transData, s8 texID, s8 transTexType) {
+    //f32 texTransTime = calc_tex_transition_time(fadeTimer, transTime, transData);
+
+    /*
+    u16 texTransPos = convert_tex_transition_angle_to_pos(transData);
+    s16 centerTransX = center_tex_transition_x(transData, texTransTime, texTransPos);
+    s16 centerTransY = center_tex_transition_y(transData, texTransTime, texTransPos);
+    s16 texTransRadius = calc_tex_transition_radius(fadeTimer, transTime, transData);
+    Vtx *verts = alloc_display_list(8 * sizeof(*verts));
+
+    if (verts != NULL) {
+        load_tex_transition_vertex(verts, fadeTimer, transData, centerTransX, centerTransY, texTransRadius, transTexType);
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen);
+        gDPSetCombineMode(gDisplayListHead++, G_CC_SHADE, G_CC_SHADE);
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 8, 0);
+        gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region);
+        gDPPipeSync(gDisplayListHead++);
+        gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
+        switch (transTexType) {
+        case TRANS_TYPE_MIRROR:
+            gDPLoadTextureBlock(gDisplayListHead++, sTextureTransitionID[texID], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+                G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD);
+            break;
+        case TRANS_TYPE_CLAMP:
+            gDPLoadTextureBlock(gDisplayListHead++, sTextureTransitionID[texID], G_IM_FMT_IA, G_IM_SIZ_8b, 64, 64, 0,
+                G_TX_CLAMP, G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD);
+            break;
+        }
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0);
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF);
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end);
+        sTransitionTextureFadeCount[fadeTimer] += transData->texTimer;
+    }
+    */
+   ALIGNED8 static const Texture texture_gss_transition[] = {
+        #include "levels/ccm/cloudtransition.rgba16.inc.c"  
+    };
+
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
+
+        render_multi_image(&texture_gss_transition, 0, -200 + (int) (cube(((f32) (40 - gScreenEffectTimer)) * 0.2f)) , 320, 720, 1, 1, G_CYC_COPY);
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
+
+        gScreenEffectTimer++;
+
+        if (gScreenEffectTimer == 80) {
+            gMarioState->specialWarpTransitionOperation = 0;
+                        gScreenEffectTimer = 0;
+                        sDelayedWarpTimer = 0;
+                        gWarpTransition.isActive = 0;
+                        return TRUE;
+        }
+
+    return FALSE;
+}
+
 s32 render_screen_transition(s8 fadeTimer, s8 transType, u8 transTime, struct WarpTransitionData *transData) {
     switch (transType) {
         case WARP_TRANSITION_FADE_FROM_COLOR:
@@ -235,6 +297,9 @@ s32 render_screen_transition(s8 fadeTimer, s8 transType, u8 transTime, struct Wa
             break;
         case WARP_TRANSITION_FADE_INTO_BOWSER:
             return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR);
+            break;
+        case WARP_TRANSITION_GSS_CLOUDS:
+            return render_gss_cloud_transition(fadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR);
             break;
     }
 

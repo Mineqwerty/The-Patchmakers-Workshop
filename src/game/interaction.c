@@ -1987,6 +1987,34 @@ void check_death_barrier(struct MarioState *m) {
     }
 }
 
+void check_gss_cloud_warp(struct MarioState *m) {
+    if (m->pos[1] < m->floorHeight + 2048.0f) {
+        //if (level_trigger_warp(m, WARP_OP_GSS_CLOUDS) == 20 && !(m->flags & MARIO_FALL_SOUND_PLAYED)) {
+        //    play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
+        //}
+        play_transition(WARP_TRANSITION_GSS_CLOUDS, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+        if (gScreenEffectTimer == 39) {
+            gMarioState->specialWarpTransitionOperation = 1;
+        }
+        
+        if (gScreenEffectTimer == 40) {
+            //gMarioState->pos[1] += 5000;
+            change_area(2);
+                    gMarioState->area = gCurrentArea;
+                    if (gMarioState->equippedPatch == 4) {
+                gMarioState->iceFloorObj = spawn_object(m->marioObj, MODEL_HALO, bhvHalo);
+                switch(gMarioState->haloCaptureType) {
+                    case 1:
+                        gMarioState->iceFloorObj->oHaloCapturedObject = spawn_object(gMarioState->iceFloorObj, MODEL_NONE, bhvFireSmokeSpawner);
+                    break;
+                }
+            }
+                    
+                    
+        }
+    }
+}
+
 void check_lava_boost(struct MarioState *m) {
     if (!(m->action & ACT_FLAG_RIDING_SHELL) && m->pos[1] < m->floorHeight + 10.0f) {
         if (m->curPatch != 1) {
@@ -2042,6 +2070,10 @@ void mario_handle_special_floors(struct MarioState *m) {
 
             case SURFACE_TIMER_END:
                 pss_end_slide(m);
+                break;
+
+            case SURFACE_GSS_CLOUD_WARP:
+                check_gss_cloud_warp(m);
                 break;
         }
 

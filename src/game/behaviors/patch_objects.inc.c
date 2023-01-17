@@ -19,6 +19,18 @@ static struct ObjectHitbox sIceSpikesHitbox = {
     /* hurtboxHeight:     */ 20,
 };
 
+static struct ObjectHitbox sHaloHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE_ENEMY,
+    /* downOffset:        */ 25,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 20,
+    /* hurtboxHeight:     */ 20,
+};
+
 void bhv_ice_spikes_init(void) {
     obj_scale_xyz(o, 0, 0, 0);
     o->oFaceAngleYaw = 0x2000;
@@ -362,4 +374,158 @@ void bhv_grapple_line_loop(void) {
 
     }
 
+}
+
+void bhv_halo_loop(void) {
+
+    if (gMarioState->equippedPatch != 4) {
+        gMarioState->haloCaptureType = 0;
+        if (o->oHaloCapturedObject) {
+            obj_mark_for_deletion(o->oHaloCapturedObject);
+        }
+        obj_mark_for_deletion(o);
+    }
+
+
+    switch (o->oAction) {
+        //idle on marios head
+        case 0:
+            if (gPlayer1Controller->buttonPressed & L_TRIG) {
+                o->oMoveAngleYaw = gMarioState->faceAngle[1];
+                o->oAction = 1;
+                play_sound(SOUND_HALO_OUT, gMarioState->marioObj->header.gfx.cameraToObject);
+            }
+        break;
+        //moving forward where mario was looking
+        case 1:
+            halo_calculate_and_move_towards_goal();
+            if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & L_TRIG)) {
+                o->oAction = 2;
+                play_sound(SOUND_HALO_IN, gMarioState->marioObj->header.gfx.cameraToObject);
+            } 
+            else if (gPlayer1Controller->buttonPressed & L_TRIG) {
+                o->oAction = 3;
+                play_sound(SOUND_HALO_CIRCLE, gMarioState->marioObj->header.gfx.cameraToObject);
+            }
+
+        break;
+        case 2:
+            halo_calculate_and_move_back_to_mario();
+        break;
+        case 3:
+            halo_perform_circle();
+        break;
+    }
+    
+    obj_set_hitbox(o, &sHaloHitbox);
+    for (int i = 0; i < o->numCollidedObjs; i++) {
+        struct Object *other = o->collidedObjs[i];
+
+        if (other != gMarioObject) {
+            //other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+            attack_object(other, 8);
+
+            if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {
+                o->oHaloCapturedObject = spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
+                gMarioState->haloCaptureType = 1;
+            }
+        }
+    }
+
+    
+
+    o->oInteractStatus = 0;
+
+}
+
+void halo_calculate_and_move_towards_goal(void) {
+    o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
+    o->oHomeY = gMarioState->pos[1] + 110.0f;
+    o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
+
+    o->oHaloApproachSpeed = 0.5f;
+
+    Vec3f curPosVec = {o->oPosX, o->oPosY, o->oPosZ};
+    Vec3f goalVec = {o->oHomeX, o->oHomeY, o->oHomeZ};
+    f32 *dist;
+
+    vec3f_get_dist(curPosVec, goalVec, &dist);
+
+    if (dist > 50) {
+        halo_run_movement();
+    }
+}
+
+void halo_calculate_and_move_back_to_mario(void) {
+    o->oHomeX = gMarioState->pos[0];
+    o->oHomeY = gMarioState->pos[1] + 170;
+    o->oHomeZ = gMarioState->pos[2];
+
+    o->oHaloApproachSpeed = 0.5f;
+
+    Vec3f curPosVec = {o->oPosX, o->oPosY, o->oPosZ};
+    Vec3f goalVec = {o->oHomeX, o->oHomeY, o->oHomeZ};
+    f32 *dist;
+
+    vec3f_get_dist(curPosVec, goalVec, &dist);
+
+    if (o->oTimer < 5) {
+        halo_run_movement();
+    }
+    else {
+        o->oAction = 0;
+    }
+}
+
+void halo_perform_circle(void) {
+
+    o->oHaloApproachSpeed = 1;
+
+    if (o->oTimer < 8) {
+    o->oHomeX = gMarioState->pos[0] + (37 * o->oTimer) * sins(0x1000 * o->oTimer);
+    o->oHomeZ = gMarioState->pos[2] + (37 * o->oTimer) * coss(0x1000 * o->oTimer);
+    }
+    else if (o->oTimer > 24) {
+     o->oHomeX = gMarioState->pos[0] + (300 - (37 * (o->oTimer - 24))) * sins(0x1000 * o->oTimer);
+    o->oHomeZ = gMarioState->pos[2] + (300 - (37 * (o->oTimer - 24))) * coss(0x1000 * o->oTimer);
+    }
+    else {
+    o->oHomeX = gMarioState->pos[0] + 300 * sins(0x1000 * o->oTimer);
+    o->oHomeZ = gMarioState->pos[2] + 300 * coss(0x1000 * o->oTimer);
+    }
+
+    halo_run_movement();
+
+    if (o->oTimer == 32) {
+        o->oAction = 2;
+    }
+}
+
+void halo_run_movement(void) {
+
+    struct Surface *surf;
+        Vec3f originPos;
+        Vec3f hitpos;
+        Vec3f raydir;
+
+        raydir[0] = o->oHomeX - gMarioState->pos[0];
+        raydir[1] = o->oHomeY - gMarioState->pos[1];
+        raydir[2] = o->oHomeZ - gMarioState->pos[2];
+
+        vec3f_copy(originPos, gMarioState->pos);
+
+        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
+        if (surf != NULL) {
+            o->oHomeX = hitpos[0];
+            //o->oHomeY = hitpos[1];
+            o->oHomeZ = hitpos[2];
+        }
+
+    approach_f32_asymptotic_bool(&o->oPosX, o->oHomeX, o->oHaloApproachSpeed);
+    approach_f32_asymptotic_bool(&o->oPosY, o->oHomeY, o->oHaloApproachSpeed);
+    approach_f32_asymptotic_bool(&o->oPosZ, o->oHomeZ, o->oHaloApproachSpeed);
+
+    o->oWallHitboxRadius = 50.0f;
+
+    cur_obj_resolve_wall_collisions();
 }

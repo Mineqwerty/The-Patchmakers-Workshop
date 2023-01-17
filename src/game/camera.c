@@ -3726,25 +3726,6 @@ void init_camera(struct Camera *c) {
 
     // Set the camera's starting position or start a cutscene for certain levels
     switch (gCurrLevelNum) {
-        // Calls the initial cutscene when you enter Bowser battle levels
-        // Note: This replaced an "old" way to call these cutscenes using
-        // a camEvent value: CAM_EVENT_BOWSER_INIT
-        case LEVEL_BOWSER_1:
-            // Since Bowser 1 has a demo entry, check for it
-            // If it is, then set CamAct to the end to directly activate Bowser
-            // If it isn't, then start cutscene
-            if (gCurrDemoInput == NULL) {
-                start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
-            } else if (gSecondCameraFocus != NULL) {
-                gSecondCameraFocus->oBowserCamAct = BOWSER_CAM_ACT_END;
-            }
-            break;
-        case LEVEL_BOWSER_2:
-            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
-            break;
-        case LEVEL_BOWSER_3:
-            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
-            break;
 
 #ifdef ENABLE_VANILLA_CAM_PROCESSING
         //! Hardcoded position checks determine which cutscene to play when Mario enters castle grounds.
@@ -5427,6 +5408,7 @@ u8 get_cutscene_from_mario_status(struct Camera *c) {
                 cutscene = CUTSCENE_SUFFOCATION_DEATH;
                 break;
             case ACT_QUICKSAND_DEATH:
+            case ACT_RUSHING_WATER_DEATH:
             case ACT_SINK_MUD:
                 cutscene = CUTSCENE_QUICKSAND_DEATH;
                 break;
@@ -6576,6 +6558,12 @@ struct CameraTrigger sCamCastleGrounds[] = {
 	NULL_TRIGGER
 };
 struct CameraTrigger sCamPSS[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamBitDW[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamBowser_1[] = {
 	NULL_TRIGGER
 };
 struct CameraTrigger *sCameraTriggers[LEVEL_COUNT + 1] = {
@@ -10871,7 +10859,7 @@ u8 sDanceCutsceneIndexTable[][4] = {
 u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
-	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 1, 0), // BBH            | CCM
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 1, 1), // BBH            | CCM
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // CASTLE_INSIDE  | HMC
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW

@@ -64,6 +64,21 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "0A_grapple_hook_2"
+        },
+        "inst11": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0B_halo_out"
+        },
+        "inst12": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0C_halo_in"
+        },
+        "inst13": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0D_halo_circle"
         }
     },
     "instrument_list": [
@@ -77,6 +92,9 @@
         "inst7",
         "inst8",
         "inst9",
-        "inst10"
+        "inst10",
+        "inst11",
+        "inst12",
+        "inst13"
     ]
 }

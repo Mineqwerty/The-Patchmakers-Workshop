@@ -383,4 +383,12 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "menu_patch_stone/header.h"
 
+#include "halo/geo_header.h"
+
+#include "menu_patch_halo/header.h"
+
+#include "fire_smoke/geo_header.h"
+
+
+#include "mario/anim_header.h"
 #endif

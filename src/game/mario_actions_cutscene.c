@@ -759,6 +759,34 @@ s32 act_quicksand_death(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_rushing_water_death(struct MarioState *m) {
+
+    Vec3f step;
+    struct Object *marioObj = m->marioObj;
+
+    vec3f_copy(step, m->vel);
+
+    m->pos[0] -= 20.0f;
+
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_INIT) {
+        set_mario_animation(m, MARIO_ANIM_DYING_IN_QUICKSAND);
+        set_anim_to_frame(m, 60);
+        m->actionState = ACT_STATE_QUICKSAND_DEATH_SINK;
+    }
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_SINK) {
+        if (m->quicksandDepth >= 100.0f) {
+            play_sound_if_no_flag(m, SOUND_MARIO_WAAAOOOW, MARIO_ACTION_SOUND_PLAYED);
+        }
+        if ((m->quicksandDepth += 5.0f) >= 180.0f) {
+            level_trigger_warp(m, WARP_OP_DEATH);
+            m->actionState = ACT_STATE_QUICKSAND_DEATH_DEAD;
+        }
+    }
+    stationary_ground_step(m);
+    play_sound(SOUND_ENV_WATER, m->marioObj->header.gfx.cameraToObject);
+    return FALSE;
+}
+
 extern s16 gCutsceneTimer;
 
 s32 act_sink_mud(struct MarioState *m) {
@@ -2724,6 +2752,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_SINK_MUD:            cancel = act_sink_mud(m);            break;
+        case ACT_RUSHING_WATER_DEATH:            cancel = act_rushing_water_death(m);            break;
         case ACT_ELECTROCUTION:              cancel = act_electrocution(m);              break;
         case ACT_SUFFOCATION:                cancel = act_suffocation(m);                break;
         case ACT_DEATH_ON_STOMACH:           cancel = act_death_on_stomach(m);           break;

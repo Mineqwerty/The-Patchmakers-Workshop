@@ -784,6 +784,7 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/ptooie.inc.c"
 #include "behaviors/bounce_bulb.inc.c"
 #include "behaviors/freezable_enemies.inc.c"
+#include "behaviors/spekturr.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.

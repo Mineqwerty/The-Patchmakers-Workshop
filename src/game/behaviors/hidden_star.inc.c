@@ -29,6 +29,46 @@ void bhv_hidden_star_loop(void) {
     }
 }
 
+void bhv_gss_star_init(void) {
+    s16 remainingTriggers = count_objects_with_behavior(bhvTorchHolder);
+    if (remainingTriggers == 0) {
+        struct Object *starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        starObj->oBehParams = o->oBehParams;
+        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+    }
+
+    o->oHiddenStarTriggerCounter = 5 - remainingTriggers;
+}
+
+void bhv_gss_star_loop(void) {
+    switch (o->oAction) {
+        case 0:
+            if (o->oHiddenStarTriggerCounter == 5) {
+                o->oAction = 1;
+            }
+
+            if (o->oTimer > 30 && o->oTimer % 60 == 0 && !o->oCurrentWillOWisp) {
+                o->oPosX = gMarioState->pos[0];
+                o->oPosY = gMarioState->pos[1];
+                o->oPosZ = gMarioState->pos[2];
+                struct Object *flameHolder = cur_obj_find_object_with_bparam_2nd_byte(bhvTorchHolder, 0);
+                f32 newX = o->oPosX + (flameHolder->oPosX - o->oPosX)/2;
+                f32 newZ = o->oPosZ + (flameHolder->oPosZ - o->oPosZ)/2;
+                f32 yHeight = find_floor_height(newX, o->oPosY + 2000, newZ) + 150.0f;
+                o->oCurrentWillOWisp = spawn_object_abs_with_rot(o, 0, MODEL_GREY_FLAME, bhvWillOWisp, newX, yHeight, newZ, 0, 0, 0);
+            }
+            break;
+
+        case 1:
+            if (o->oTimer > 2) {
+                spawn_red_coin_cutscene_star(o->oPosX, o->oPosY + 100, o->oPosZ);
+                spawn_mist_particles();
+                o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+            }
+            break;
+    }
+}
+
 void bhv_hidden_star_trigger_loop(void) {
     if (obj_check_if_collided_with_object(o, gMarioObject)) {
         struct Object *hiddenStar = cur_obj_nearest_object_with_behavior(bhvHiddenStar);

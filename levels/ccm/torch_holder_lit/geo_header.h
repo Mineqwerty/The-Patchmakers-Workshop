@@ -1,0 +1,13 @@
+extern const GeoLayout torch_holder_lit_geo[];
+extern u8 torch_holder_lit__1815404117_ci8[];
+extern u8 torch_holder_lit__1815404117_ci8_pal_rgba16[];
+extern Vtx torch_holder_lit_Circle_003_mesh_layer_1_vtx_0[25];
+extern Gfx torch_holder_lit_Circle_003_mesh_layer_1_tri_0[];
+extern Vtx torch_holder_lit_Circle_003_mesh_layer_1_vtx_1[20];
+extern Gfx torch_holder_lit_Circle_003_mesh_layer_1_tri_1[];
+extern Gfx mat_torch_holder_lit_sink_mud_003[];
+extern Gfx mat_revert_torch_holder_lit_sink_mud_003[];
+extern Gfx mat_torch_holder_lit_sink_mud_002_layer1[];
+extern Gfx mat_revert_torch_holder_lit_sink_mud_002_layer1[];
+extern Gfx torch_holder_lit_Circle_003_mesh_layer_1[];
+extern Gfx torch_holder_lit_material_revert_render_settings[];

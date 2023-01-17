@@ -13,25 +13,20 @@
 #endif
 
 DEFINE_DIALOG(DIALOG_000, 1, 5, 30, 200, _("\
-Hi there! \n\
-Oh don't look so tense,\n\
-we aren't like our\n\
-Spindrift cousins at\n\
-all!\n\
-I'm a Rosedrift!\n\
-We live here in these\n\
-cliffs. Hey, here's a bit\n\
-of friendly advice:\n\
-Watch out from above.\n\
-The Ptooies that live\n\
-here aren't so friendly\n\
-towards new faces."))
+Hi there! You seem to be new around here.\n\
+Oh don't look so tense, we aren't like our\n\
+Spindrift cousins at all!\n\
+I'm a Rosedrift! Sort of a relative to\n\
+Spindrifts. We live here in these\n\
+rugged thorny cliffs. \n\
+Hey, here's a bit of friendly advice:\n\
+Watch out from above. The Ptooies that live\n\
+here aren't so friendly towards new faces."))
 
 DEFINE_DIALOG(DIALOG_001, 1, 4, 95, 200, _("\
-The local goombas have\n\
-been acting strangely...\n\
-Look at that blank stare,\n\
-are they ok?"))
+The local goombas have been acting strangely\n\
+for a decent while now.\n\
+Look at that blank stare, are they ok?"))
 
 DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
 The flowers that grow \n\
@@ -211,30 +206,7 @@ ride wherever you want to\n\
 go! Shred those enemies!"))
 
 DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
-I'm the Big Bob-omb, lord\n\
-of all blasting matter,\n\
-king of ka-booms the\n\
-world over!\n\
-How dare you scale my\n\
-mountain? By what right\n\
-do you set foot on my\n\
-imperial mountaintop?\n\
-You may have eluded my\n\
-guards, but you'll never\n\
-escape my grasp...\n\
-\n\
-...and you'll never take\n\
-away my Power Star. I\n\
-hereby challenge you,\n\
-Mario!\n\
-If you want the Star I\n\
-hold, you must prove\n\
-yourself in battle.\n\
-\n\
-Can you pick me up from\n\
-the back and hurl me to\n\
-this royal turf? I think\n\
-that you cannot!"))
+The workshop is pretty big, huh?"))
 
 DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
 I'm sleeping because...\n\
@@ -244,7 +216,8 @@ Please walk quietly."))
 
 DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
 Shhh! Please walk\n\
-quietly in the hallway!"))
+quietly in the hallway!\n\
+j"))
 
 DEFINE_DIALOG(DIALOG_020, 1, 6, 95, 150, _("\
 Dear Mario:\n\
@@ -711,34 +684,21 @@ Her parents must be\n\
 worried sick!"))
 
 DEFINE_DIALOG(DIALOG_060, 1, 4, 30, 200, _("\
-ATTENTION!\n\
-Read Before Diving In!\n\
+Why dost thou stand before me, foolish one?\n\
+Do you not know what this realm is?\n\
+Are you akin to the man who appeared here a few years ago?\n\
+It matters not to me. I simply do not want to see\n\
+any others here. This bleak hell is mine alone.\n\
+A long battle was fought for this realm...\n\
+I did not gain it without sacrifice.\n\
+So, mortal one, your presence here\n\
+is nothing but an impure blemish.\n\
+Leave at once.\n\
 \n\
 \n\
-If you stay under the\n\
-water for too long, you'll\n\
-run out of oxygen.\n\
-\n\
-Return to the surface for\n\
-air or find an air bubble\n\
-or coins to breathe while\n\
-underwater.\n\
-Press [A] to swim. Hold [A]\n\
-to swim slow and steady.\n\
-Tap [A] with smooth timing\n\
-to gain speed.\n\
-Press Up on the\n\
-Control Stick and press [A]\n\
-to dive.\n\
-\n\
-Press Down on the Control\n\
-Stick and press [A] to\n\
-return to the surface.\n\
-\n\
-Hold Down and press [A]\n\
-while on the surface near\n\
-the edge of the water to\n\
-jump out."))
+Just...\n\
+Get out...\n\
+NOW!"))
 
 DEFINE_DIALOG(DIALOG_061, 1, 4, 30, 200, _("\
 BRRR! Frostbite Danger!\n\

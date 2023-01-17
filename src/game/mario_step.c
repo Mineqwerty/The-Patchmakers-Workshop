@@ -181,6 +181,26 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed) {
     return FALSE;
 }
 
+u32 mario_update_water_death_floor(struct MarioState *m, f32 sinkingSpeed) {
+    if (m->quicksandDepth < 1.1f) {
+            m->quicksandDepth = 1.1f;
+        }
+
+        switch (m->floor->type) {
+            case SURFACE_WATER_DEATH:
+                update_mario_sound_and_camera(m);
+                return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                break;
+            break;
+
+            default:
+                m->quicksandDepth = 0.0f;
+                break;
+        }
+
+        return FALSE;
+}
+
 u32 mario_push_off_steep_floor(struct MarioState *m, u32 action, u32 actionArg) {
     s16 floorDYaw = m->floorYaw - m->faceAngle[1];
 

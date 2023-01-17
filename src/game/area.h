@@ -107,6 +107,7 @@ enum WarpTransitionTypes {
     WARP_TRANSITION_TYPES_LARGE = 0x0E,
     WARP_TRANSITION_TYPE_MARIO  = 0x10,
     WARP_TRANSITION_TYPE_BOWSER = 0x12,
+    WARP_TRANSITION_TYPE_GSS_CLOUDS = 0x14,
     WARP_TRANSITION_TYPES_MASK  = 0x1E
 };
 
@@ -124,6 +125,7 @@ enum WarpTransitions {
     WARP_TRANSITION_FADE_INTO_MARIO  = (WARP_TRANSITION_TYPE_MARIO  | WARP_TRANSITION_FADE_INTO), // 0x11
     WARP_TRANSITION_FADE_FROM_BOWSER = (WARP_TRANSITION_TYPE_BOWSER | WARP_TRANSITION_FADE_FROM), // 0x12
     WARP_TRANSITION_FADE_INTO_BOWSER = (WARP_TRANSITION_TYPE_BOWSER | WARP_TRANSITION_FADE_INTO), // 0x13
+    WARP_TRANSITION_GSS_CLOUDS = (WARP_TRANSITION_TYPE_GSS_CLOUDS),
 };
 
 struct WarpTransition {
@@ -178,6 +180,8 @@ extern struct Area *gCurrentArea;
 
 extern s16 gCurrSaveFileNum;
 extern s16 gCurrLevelNum;
+
+extern s16 gScreenEffectTimer;
 
 
 void override_viewport_and_clip(Vp *a, Vp *b, u8 c, u8 d, u8 e);

@@ -299,7 +299,13 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
         return;
     }
 
-    guTranslate(mtx, (f32) 30, (f32) 30, 0);
+    //translate it when a cutscene or dialog is going on
+    if (gDialogID != -1) {
+    guTranslate(mtx, (f32) 30 - (90 - gDialogBoxOpenTimer), (f32) 30, 0);
+    }
+    else {
+        guTranslate(mtx, (f32) 30, (f32) 30, 0);
+    }
     gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
               G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
@@ -657,11 +663,11 @@ void render_hud(void) {
 #endif
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT) {
-            render_hud_coins();
+            //render_hud_coins();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT) {
-            render_hud_stars();
+            //render_hud_stars();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_KEYS) {
@@ -678,7 +684,7 @@ void render_hud(void) {
 #ifdef PUPPYCAM
             if (!gPuppyCam.enabled) {
 #endif
-            render_hud_camera_status();
+            //render_hud_camera_status();
 #ifdef PUPPYCAM
             }
 #endif

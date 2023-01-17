@@ -26,3 +26,7 @@ UNUSED static const u64 binid_4 = 4;
 
 #include "impact_smoke/model.inc.c"
 UNUSED static const u64 binid_5 = 5;
+
+#include "the_patchmaker/model.inc.c"
+#include "the_patchmaker/anims/data.inc.c"
+#include "the_patchmaker/anims/table.inc.c"

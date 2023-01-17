@@ -609,6 +609,8 @@ void bhv_grapple_hook_init(void);
 void bhv_grapple_hook_loop(void);
 void bhv_grapple_line_loop(void);
 
+void bhv_halo_loop(void);
+
 void bhv_background_object_loop(void);
 
 void bhv_grapple_stone_loop(void);
@@ -621,6 +623,35 @@ void bhv_gold_cloud_loop(void);
 
 void bhv_goddess_init(void);
 void bhv_goddess_loop(void);
+
+void bhv_sewnia_init(void);
+void bhv_sewnia_loop(void);
+
+void bhv_torch_holder_init(void);
+void bhv_torch_holder_loop(void);
+
+void bhv_stationary_flame_loop(void);
+
+void bhv_fire_smoke_spawner_loop(void);
+void bhv_fire_smoke_init(void);
+void bhv_fire_smoke_loop(void);
+void bhv_willowisp_loop(void);
+void bhv_willowisp_spawner_loop(void);
+
+void bhv_gss_star_init(void);
+void bhv_gss_star_loop(void);
+
+void bhv_flame_puzzle_barrier_loop(void);
+void bhv_halo_switch_loop(void);
+
+void bhv_spekturr_loop(void);
+
+void bhv_star_gate_loop(void);
+
+void bhv_fling_ring_loop(void);
+
+void bhv_patchmaker_init(void);
+void bhv_patchmaker_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 
@@ -645,5 +676,13 @@ Gfx *geo_scale_bowser_key(s32 callContext, struct GraphNode *node, UNUSED Mat4 m
 // Water splash
 extern struct WaterDropletParams gShallowWaterSplashDropletParams;
 extern struct WaterDropletParams gShallowWaterWaveDropletParams;
+
+
+
+Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx);
+
+Gfx *geo_switch_fire_smoke(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+
+
 
 #endif // BEHAVIOR_ACTIONS_H

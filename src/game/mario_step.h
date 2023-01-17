@@ -25,6 +25,7 @@ void transfer_bully_speed(struct BullyCollisionData *obj1, struct BullyCollision
 void init_bully_collision_data(struct BullyCollisionData *data, f32 posX, f32 posZ,
                                           f32 forwardVel, s16 yaw, f32 conversionRatio, f32 radius);
 u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed);
+u32 mario_update_water_death_floor(struct MarioState *m, f32 sinkingSpeed);
 u32 mario_push_off_steep_floor(struct MarioState *m, u32 action, u32 actionArg);
 u32 mario_update_moving_sand(struct MarioState *m);
 u32 mario_update_windy_ground(struct MarioState *m);

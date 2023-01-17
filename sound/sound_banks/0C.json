@@ -223,6 +223,18 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope37": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope38": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -443,7 +455,7 @@
         "Music Box": {
             "release_rate": 119,
             "envelope": "envelope28",
-            "sound": "1D"
+            "sound": "3A_music_box"
         },
         "Melodic Tom": {
             "release_rate": 34,
@@ -535,6 +547,16 @@
             "release_rate": 208,
             "envelope": "envelope36",
             "sound": "4E_violin"
+        },
+        "Dark Music Box": {
+            "release_rate": 208,
+            "envelope": "envelope37",
+            "sound": "50_dark_music_box"
+        },
+        "Toy Piano": {
+            "release_rate": 208,
+            "envelope": "envelope38",
+            "sound": "51_toy_piano"
         },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
@@ -667,6 +689,9 @@
         "Bells",
         "Agogo",
         "Handpan",
-        "Violin"
+        "Violin",
+        "Dark Music Box",
+
+        "Toy Piano"
     ]
 }

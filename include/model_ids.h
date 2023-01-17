@@ -463,7 +463,7 @@
 #define MODEL_SPARKLES_ANIMATION          0x8F        // sparkles_animation_geo
 #define MODEL_RED_FLAME                   0x90        // red_flame_geo
 #define MODEL_BLUE_FLAME                  0x91        // blue_flame_geo
-// find me
+#define MODEL_GREY_FLAME                  0x92        // blue_flame_geo
 // find me
 #define MODEL_BURN_SMOKE                  0x94        // burn_smoke_geo
 #define MODEL_SPARKLES                    0x95        // sparkles_geo
@@ -545,6 +545,8 @@
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
+#define MODEL_SEWNIA                  0x100
+
 #define MODEL_BOUNCE_BULB                   0x100
 #define MODEL_BOUNCE_BULB_OPEN                   0x101
 #define MODEL_PTOOIE                   0x102
@@ -574,8 +576,18 @@
 
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
+#define MODEL_TORCH_HOLDER                   0x102
+#define MODEL_TORCH_HOLDER_LIT                   0x103
+#define MODEL_FLAME_PUZZLE_BARRIER                   0x104
+#define MODEL_HALO_SWITCH                   0x105
+#define MODEL_SPEKTURR                   0x106
+#define MODEL_STAR_GATE                   0x107
+#define MODEL_FLING_RING                   0x108
+
+#define MODEL_PATCHMAKER                   0x110
 
 #define MODEL_YARN_GOOMBA                   0x180
+#define MODEL_FIRE_SMOKE                    0x181
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
@@ -585,11 +597,13 @@
 #define MODEL_GRAPPLE_HOOK                  0x195
 #define MODEL_GRAPPLE_LINE                 0x196
 #define MODEL_SKYBOX_TEST                0x197
+#define MODEL_HALO                0x198
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
 #define MODEL_TTC_DIORAMA                      0x56
 #define MODEL_RDR_DIORAMA                      0x57
+#define MODEL_STC_DIORAMA                      0x58
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

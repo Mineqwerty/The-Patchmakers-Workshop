@@ -90,6 +90,7 @@ extern Gfx menu_patch_mario_patch_mario_mesh[];
 extern Gfx menu_patch_stone_patch_stone_mesh[];
 extern Gfx menu_patch_chillstep_patch_chillstep_mesh[];
 extern Gfx menu_patch_grapple_patch_grapple_mesh[];
+extern Gfx menu_patch_halo_patch_halo_mesh[];
 
 
 #endif // SEGMENT2_H

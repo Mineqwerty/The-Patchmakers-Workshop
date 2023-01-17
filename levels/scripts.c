@@ -80,6 +80,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_DL( MODEL_WHITE_PARTICLE_SMALL,    white_particle_small_dl,     LAYER_OCCLUDE_SILHOUETTE_ALPHA),
     LOAD_MODEL_FROM_GEO(MODEL_RED_FLAME,               red_flame_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BLUE_FLAME,              blue_flame_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_GREY_FLAME,              grey_flame_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BURN_SMOKE,              burn_smoke_geo),
     LOAD_MODEL_FROM_GEO(MODEL_LEAVES,                  leaves_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PURPLE_MARBLE,           purple_marble_geo),
@@ -125,6 +126,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_ICE_CUBE,            ice_cube_geo),
     LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_HOOK,            grapple_hook_geo),
     LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_LINE,            grapple_line_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_HALO,            halo_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_FIRE_SMOKE,            fire_smoke_geo),
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),
@@ -312,6 +315,7 @@ const LevelScript script_func_global_13[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_FLAMES,           bowser_flames_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_WAVE,             invisible_bowser_accessory_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_NO_SHADOW,        bowser_geo_no_shadow),
+    LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER,        the_patchmaker_geo),
     RETURN(),
 };
 
@@ -344,6 +348,7 @@ const LevelScript script_func_global_16[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOO_CASTLE,              boo_castle_geo),
     LOAD_MODEL_FROM_GEO(MODEL_LAKITU,                  lakitu_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TOAD,                    toad_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SEWNIA,                    sewnia_geo),
     RETURN(),
 };
 

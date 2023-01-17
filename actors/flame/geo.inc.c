@@ -44,3 +44,21 @@ const GeoLayout blue_flame_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
+
+const GeoLayout grey_flame_geo[] = {
+   GEO_NODE_START(),
+   GEO_OPEN_NODE(),
+      GEO_SWITCH_CASE(8, geo_switch_anim_state),
+      GEO_OPEN_NODE(),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex0),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex1),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex2),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex3),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex4),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex5),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex6),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT_INTER, grey_flame_tex7),
+      GEO_CLOSE_NODE(),
+   GEO_CLOSE_NODE(),
+   GEO_END(),
+};

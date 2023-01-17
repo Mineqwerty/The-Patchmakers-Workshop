@@ -1734,6 +1734,12 @@ void queue_rumble_particles(struct MarioState *m) {
 }
 #endif
 
+void check_special_warp_operation(u8 op) {
+    if (op == 1) {
+        play_transition(WARP_TRANSITION_GSS_CLOUDS, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+    }
+}
+
 struct SpawnParticlesInfo StoneBreak = {
     0, 30, MODEL_PEBBLE, 0, 40, 0, 20, 40, 252, 30, 5.0f, 0.0f
 };
@@ -1802,6 +1808,10 @@ void common_patch_cancel(struct MarioState *m) {
             //m->curPatch = 0;
             //gMarioState->iceFloorObj = NULL;
         break;
+        case 4:
+            m->curPatch = 0;
+            //gMarioState->iceFloorObj = NULL;
+        break;
     }
 }
 
@@ -1820,6 +1830,35 @@ void patch_update(struct MarioState *m ) {
                 play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
             }
         break;
+    }
+}
+
+void late_patch_update(struct MarioState *m ) {
+    switch (m->curPatch) {
+        case 4:
+        if (m->iceFloorObj && m->iceFloorObj->oAction == 0) {
+            m->iceFloorObj->oPosX = m->pos[0];
+            m->iceFloorObj->oPosY = m->pos[1] + 170 + (5 * sins(0x400 * gGlobalTimer));
+            m->iceFloorObj->oPosZ = m->pos[2];
+        }
+        if (m->iceFloorObj && m->iceFloorObj->oHaloCapturedObject) {
+                m->iceFloorObj->oHaloCapturedObject->oPosX = m->iceFloorObj->oPosX;
+                m->iceFloorObj->oHaloCapturedObject->oPosY = m->iceFloorObj->oPosY + 40.0f;
+                m->iceFloorObj->oHaloCapturedObject->oPosZ = m->iceFloorObj->oPosZ;
+            }
+        break;
+    }
+}
+
+void spawn_initial_patch_object(struct MarioState *m ) {
+    switch (m->equippedPatch) {
+
+        case 4:
+            
+            m->curPatch = 4;
+            m->iceFloorObj = spawn_object_relative(0, 0, 200, 0, gMarioObject, MODEL_HALO, bhvHalo);
+        break;
+
     }
 }
 
@@ -1881,7 +1920,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
         gMarioState->equippedPatch = dpadMap[2];
         gMarioState->updatePatch = 1;
-        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+        //play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
     }
     if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
         common_patch_cancel(gMarioState);
@@ -1899,8 +1938,18 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     u8 *patchTexture = segmented_to_virtual(&mario_mario_cap_rgba16);
 
     dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
+    
+    
+    spawn_initial_patch_object(gMarioState);
     gMarioState->updatePatch = 0;
 
+    }
+
+    check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
+
+
+    if (gPlayer1Controller->buttonPressed & D_JPAD) {
+        create_dialog_box(17);
     }
 
     // Updates once per frame:
@@ -1976,6 +2025,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             }
         }
 
+        late_patch_update(gMarioState);
+
         sink_mario_in_quicksand(gMarioState);
         squish_mario_model(gMarioState);
         set_submerged_cam_preset_and_spawn_bubbles(gMarioState);
@@ -2025,6 +2076,7 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
     
     gMarioState->curPatch = 0;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];

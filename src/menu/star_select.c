@@ -125,6 +125,10 @@ void spawn_stage_diorama(void) {
             spawn_object_abs_with_rot(o, 0, MODEL_RDR_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_RAINY_DAY_ROADSIDE_SELECT), 0);
         break;
+        case LEVEL_JRB:
+            spawn_object_abs_with_rot(o, 0, MODEL_STC_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_STONE_TERRACE_CITY_SELECT), 0);
+        break;
     }
 }
 

@@ -118,13 +118,13 @@ static u32 perform_water_full_step(struct MarioState *m, Vec3f nextPos) {
     }
 }
 
-static void apply_water_current(struct MarioState *m, Vec3f step) {
+void apply_water_current(struct MarioState *m, Vec3f step) {
     s32 i;
     f32 whirlpoolRadius = 2000.0f;
     f32 distance, strength;
     s16 pitchToWhirlpool, yawToWhirlpool;
 
-    if (m->floor->type == SURFACE_FLOWING_WATER) {
+    if (m->floor->type == SURFACE_FLOWING_WATER || m->floor->type == SURFACE_WATER_DEATH) {
         s16 currentAngle = m->floor->force << 8;
         f32 currentSpeed = sWaterCurrentSpeeds[m->floor->force >> 8];
 
@@ -1543,7 +1543,11 @@ s32 mario_execute_submerged_action(struct MarioState *m) {
         return TRUE;
     }
 
-    m->quicksandDepth = 0.0f;
+    if (mario_update_water_death_floor(m, 0.25f)) {
+        return TRUE;
+    }
+
+    //m->quicksandDepth = 0.0f;
 
     m->marioBodyState->headAngle[1] = 0;
     m->marioBodyState->headAngle[2] = 0;

@@ -97,6 +97,80 @@ Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUS
     return dlStart;
 }
 
+Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+   Gfx *dlStart, *dlHead;
+    struct Object *objectGraphNode;
+    struct GraphNodeGenerated *currentGraphNode;
+
+    dlStart = NULL;
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        
+        objectGraphNode = (struct Object *) gCurGraphNodeObject;
+        currentGraphNode = (struct GraphNodeGenerated *) node;
+        
+
+        u8 red = 230;
+        u8 green = 0;
+        u8 blue = 30;
+
+        if (GET_BPARAM1(objectGraphNode->oBehParams) == 1) {
+            if (objectGraphNode->oTimer <= 4) {
+                red = 75;
+            green = 130;
+            blue = 155;
+        }
+        else if (objectGraphNode->oTimer < 15) {
+            green = 130 - ((u8) (5 * (objectGraphNode->oTimer - 4)));
+            red = 75 + ((u8) (5 * (objectGraphNode->oTimer - 4)));
+            blue = 155;
+        }
+        else if (objectGraphNode->oTimer < 30) {
+            red = 130 + (o->oTimer-15);
+            green = 75 + (objectGraphNode->oTimer - 15)*6;
+            blue = 155;
+        }
+        else {
+            red = 155;
+            green = 155;
+            blue = 155;
+        }
+        }
+        else {
+        
+        if (objectGraphNode->oTimer <= 4) {
+            green = 205;
+        }
+        else if (objectGraphNode->oTimer < 15) {
+            green = 205 - ((u8) (14.09f * (objectGraphNode->oTimer - 4)));
+            blue = 30 - (2 * (objectGraphNode->oTimer-4));
+        }
+        else if (objectGraphNode->oTimer < 30) {
+            red = 230 - (o->oTimer-15) - ((objectGraphNode->oTimer - 15)*6);
+            green = 50 + (objectGraphNode->oTimer - 15)*4;
+            blue = -(objectGraphNode->oTimer - 15) + (objectGraphNode->oTimer - 15)*8;
+        }
+        else {
+            red = 115;
+            green = 115;
+            blue = 115;
+        }
+
+        }
+        
+        dlStart = alloc_display_list(sizeof(Gfx) * 2);
+
+        dlHead = dlStart;
+
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_TRANSPARENT);
+
+        gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255);
+        gSPEndDisplayList(dlHead);
+    }
+
+    return dlStart;
+}
+
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context) {
     if (callContext == GEO_CONTEXT_RENDER) {
         struct Object *obj = gCurGraphNodeObjectNode;
@@ -2376,4 +2450,31 @@ void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 o
     o->oPosY += offsetY + gDebugInfo[DEBUG_PAGE_ENEMYINFO][0];
     spawn_default_star(targetX, targetY, targetZ);
     o->oPosY = objectPosY;
+}
+
+struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *behavior, int bparam) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    struct Object *returnObj = NULL;
+    struct Object *obj;
+    struct ObjectNode *listHead;
+    
+
+    listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    obj = (struct Object *) listHead->next;
+
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr) {
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
+                f32 objDist = dist_between_objects(o, obj);
+                if (obj->oBehParams2ndByte == bparam) {
+                    returnObj = obj;
+                    
+                }
+            }
+        }
+        obj = (struct Object *) obj->header.next;
+    }
+
+    
+    return returnObj;
 }

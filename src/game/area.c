@@ -57,6 +57,8 @@ Color gWarpTransBlue = 0;
 s16 gCurrSaveFileNum = 1;
 s16 gCurrLevelNum = LEVEL_MIN;
 
+s16 gScreenEffectTimer = 0;
+
 /*
  * The following two tables are used in get_mario_spawn_type() to determine spawn type
  * from warp behavior.
@@ -296,6 +298,10 @@ void change_area(s32 index) {
 
         gCurrentArea->flags = areaFlags;
         gMarioObject->oActiveParticleFlags = ACTIVE_PARTICLE_NONE;
+
+        if (gMarioState->specialWarpTransitionOperation == 1) {
+            play_transition(WARP_TRANSITION_GSS_CLOUDS, 40, 0x00, 0x00, 0x00);
+        }
     }
 
     if (areaFlags & AREA_FLAG_LOAD) {
@@ -330,7 +336,15 @@ void play_transition(s16 transType, s16 time, Color red, Color green, Color blue
         gWarpTransition.data.red = red;
         gWarpTransition.data.green = green;
         gWarpTransition.data.blue = blue;
-    } else { // if transition is textured
+    } 
+    else if (transType == WARP_TRANSITION_TYPE_GSS_CLOUDS) {
+        gWarpTransition.data.red = red;
+        gWarpTransition.data.green = green;
+        gWarpTransition.data.blue = blue;
+
+        
+    }
+    else { // if transition is textured
         gWarpTransition.data.red = red;
         gWarpTransition.data.green = green;
         gWarpTransition.data.blue = blue;

@@ -27,3 +27,5 @@
 #include "ice_cube/geo.inc.c"
 #include "grapple_hook/geo.inc.c"
 #include "grapple_line/geo.inc.c"
+#include "halo/geo.inc.c"
+#include "fire_smoke/geo.inc.c"

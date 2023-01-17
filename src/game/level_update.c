@@ -32,6 +32,7 @@
 #include "puppyprint.h"
 #include "puppylights.h"
 #include "level_commands.h"
+#include "include/behavior_data.h"
 
 #include "config.h"
 
@@ -363,6 +364,14 @@ void init_mario_after_warp(void) {
 
         gMarioState->interactObj = spawnNode->object;
         gMarioState->usedObj = spawnNode->object;
+
+        if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
+            if (gMarioState->equippedPatch == 4) {
+                gMarioState->iceFloorObj = NULL;
+                gMarioState->updatePatch = 1;
+                }
+            
+        }
     }
 
     reset_camera(gCurrentArea->camera);
@@ -536,6 +545,11 @@ void check_instant_warp(void) {
 
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
+
+                if (gMarioState->equippedPatch == 4) {
+                gMarioState->iceFloorObj = NULL;
+                gMarioState->updatePatch = 1;
+                }
 
                 warp_camera(warp->displacement[0], warp->displacement[1], warp->displacement[2]);
 
@@ -755,6 +769,16 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
 
                 sDelayedWarpTimer = 20;
                 play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                break;
+
+                case WARP_OP_GSS_CLOUDS:
+                sSourceWarpNodeId = WARP_NODE_WARP_FLOOR;
+                if (area_get_warp_node(sSourceWarpNodeId) == NULL) {
+                    sSourceWarpNodeId = 0x0A;
+                }
+
+                sDelayedWarpTimer = 40;
+                play_transition(WARP_TRANSITION_GSS_CLOUDS, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_LOOK_UP: // enter totwc
@@ -1318,6 +1342,8 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     sWarpCheckpointActive = FALSE;
     gCurrLevelNum = levelNum;
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
+	if (gCurrLevelNum == LEVEL_BOWSER_1) return 0;
+	if (gCurrLevelNum == LEVEL_BITDW) return 0;
 
     if (gCurrDemoInput != NULL || gCurrCreditsEntry != NULL || gCurrCourseNum == COURSE_NONE) {
         return FALSE;

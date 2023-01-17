@@ -2798,6 +2798,9 @@ sound_ref .sound_stone_patch_deform
 sound_ref .sound_chillstep_patch_freeze
 sound_ref .sound_grapple_hook_1
 sound_ref .sound_grapple_hook_2
+sound_ref .sound_halo_out
+sound_ref .sound_halo_in
+sound_ref .sound_halo_circle
 sound_ref .sound_menu_enter_hole
 sound_ref .sound_general_red_coin
 sound_ref .sound_general_birds_fly_away
@@ -4839,6 +4842,24 @@ chan_end
 .sound_grapple_hook_2:
 chan_setbank 0
 chan_setinstr 10
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_out:
+chan_setbank 0
+chan_setinstr 11
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_in:
+chan_setbank 0
+chan_setinstr 12
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_circle:
+chan_setbank 0
+chan_setinstr 13
 chan_setlayer 0, .layer_AAAA
 chan_end
 
@@ -6955,6 +6976,7 @@ sound_ref .chan_2D18
 sound_ref .sound_menu_power_meter
 sound_ref .sound_menu_camera_buzz
 sound_ref .sound_menu_camera_turn
+sound_ref .sound_sewnia_blurb
 
 .sound_menu_change_select:
 chan_setbank 9
@@ -7267,6 +7289,19 @@ chan_end
 .layer_2DB1:
 layer_delay 1
 layer_end
+
+
+.sound_sewnia_blurb:
+chan_setbank 9
+chan_setinstr 7
+chan_setlayer 0, .layer_BBBB
+chan_end
+
+
+.layer_BBBB:
+  layer_note1 39, 0x100, 127
+  layer_end
+
 
 .sound_menu_click_file_select:
 chan_setmutebhv 0x0

@@ -63,7 +63,7 @@
         "12"
     ],
     "11_level_koopa_road": [
-        "19"
+        "25"
     ],
     "12_event_high_score": [
         "1F"
@@ -143,5 +143,11 @@
     ],
     "29_rainy_day_roadside_select": [
         "14_piranha_music_box"
+    ],
+    "2A_stone_terrace_city_select": [
+        "14_piranha_music_box"
+    ],
+    "2B_patchmaker_theme": [
+        "0C"
     ]
 }
