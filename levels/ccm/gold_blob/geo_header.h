@@ -1,0 +1,10 @@
+extern const GeoLayout gold_blob_geo[];
+extern Lights1 gold_blob_darkgold_001_layer1_lights;
+extern u8 gold_blob_goldblob_ci8[];
+extern u8 gold_blob_goldblob_ci8_pal_rgba16[];
+extern Vtx gold_blob_Sphere_mesh_layer_1_vtx_0[27];
+extern Gfx gold_blob_Sphere_mesh_layer_1_tri_0[];
+extern Gfx mat_gold_blob_darkgold_001_layer1[];
+extern Gfx mat_revert_gold_blob_darkgold_001_layer1[];
+extern Gfx gold_blob_Sphere_mesh_layer_1[];
+extern Gfx gold_blob_material_revert_render_settings[];

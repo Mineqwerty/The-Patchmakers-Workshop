@@ -36,3 +36,6 @@
 #include "levels/ccm/spekturr/geo.inc.c"
 #include "levels/ccm/star_gate/geo.inc.c"
 #include "levels/ccm/fling_ring/geo.inc.c"
+#include "levels/ccm/gold_blob/geo.inc.c"
+#include "levels/ccm/gold_fragment/geo.inc.c"
+#include "levels/ccm/gold_sword/geo.inc.c"

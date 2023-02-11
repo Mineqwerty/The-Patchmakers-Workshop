@@ -1,0 +1,17 @@
+extern const GeoLayout gold_sword_geo[];
+extern Lights1 gold_sword_f3dlite_material_001_layer1_lights;
+extern u8 gold_sword_goopgold1_ci8[];
+extern u8 gold_sword_goopgold1_ci8_pal_rgba16[];
+extern u8 gold_sword_goldripples_ci4[];
+extern u8 gold_sword_goldripples_ci4_pal_rgba16[];
+extern Vtx gold_sword_root_mesh_layer_1_vtx_0[89];
+extern Gfx gold_sword_root_mesh_layer_1_tri_0[];
+extern Vtx gold_sword_bill_mesh_layer_5_vtx_0[42];
+extern Gfx gold_sword_bill_mesh_layer_5_tri_0[];
+extern Gfx mat_gold_sword_f3dlite_material_001_layer1[];
+extern Gfx mat_revert_gold_sword_f3dlite_material_001_layer1[];
+extern Gfx mat_gold_sword_f[];
+extern Gfx mat_revert_gold_sword_f[];
+extern Gfx gold_sword_root_mesh_layer_1[];
+extern Gfx gold_sword_bill_mesh_layer_5[];
+extern Gfx gold_sword_material_revert_render_settings[];

@@ -1127,4 +1127,11 @@ void render_multi_image(Texture *image, s32 x, s32 y, s32 width, s32 height, UNU
     }
 }
 
+void render_boss_health(void) {
+    prepare_blank_box();
+    render_blank_box(110, 220, 210, 230, 46, 46, 46, 255);
+    render_blank_box(110, 220, 110 + 100.0f*(((f32)gBossHealth)/((f32)gBossMaxHealth)), 230, 181, 42, 42, 255);
+    finish_blank_box();
+}
+
 #endif

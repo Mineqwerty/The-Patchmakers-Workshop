@@ -3,7 +3,7 @@
 const GeoLayout ttc_skybox_geo[] = {
 	GEO_CULLING_RADIUS(0x7FFF),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttc_skybox_Sphere_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttc_skybox_Sphere_002_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttc_skybox_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),

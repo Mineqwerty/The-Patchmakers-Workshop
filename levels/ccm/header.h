@@ -90,4 +90,10 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/fling_ring/collision_header.h"
 
+#include "levels/ccm/gold_blob/geo_header.h"
+
+#include "levels/ccm/gold_fragment/geo_header.h"
+
+#include "levels/ccm/gold_sword/geo_header.h"
+
 #endif

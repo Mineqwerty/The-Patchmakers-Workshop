@@ -64,3 +64,6 @@
 #include "levels/ccm/star_gate/model.inc.c"
 #include "levels/ccm/fling_ring/model.inc.c"
 #include "levels/ccm/fling_ring/collision.inc.c"
+#include "levels/ccm/gold_blob/model.inc.c"
+#include "levels/ccm/gold_fragment/model.inc.c"
+#include "levels/ccm/gold_sword/model.inc.c"

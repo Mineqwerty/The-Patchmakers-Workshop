@@ -1,11 +1,8 @@
 #include "actors/grapple_line/geo_header.h"
 
-struct SpawnParticlesInfo sMistIce = {
-    2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
-};
-struct SpawnParticlesInfo sSnowflakeFly = {
-    2, 8, MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0, 0, 30, 13.0f, 6.0f
-};
+struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
+struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
+                                            0, 30, 13.0f,           6.0f };
 
 static struct ObjectHitbox sIceSpikesHitbox = {
     /* interactType:      */ INTERACT_DAMAGE_ENEMY,
@@ -15,6 +12,18 @@ static struct ObjectHitbox sIceSpikesHitbox = {
     /* numLootCoins:      */ 0,
     /* radius:            */ 90,
     /* height:            */ 50,
+    /* hurtboxRadius:     */ 20,
+    /* hurtboxHeight:     */ 20,
+};
+
+static struct ObjectHitbox sGrappleHookHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE_ENEMY,
+    /* downOffset:        */ 30,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 60,
     /* hurtboxRadius:     */ 20,
     /* hurtboxHeight:     */ 20,
 };
@@ -34,7 +43,6 @@ static struct ObjectHitbox sHaloHitbox = {
 void bhv_ice_spikes_init(void) {
     obj_scale_xyz(o, 0, 0, 0);
     o->oFaceAngleYaw = 0x2000;
-    
 }
 
 void bhv_ice_spikes_loop(void) {
@@ -43,7 +51,8 @@ void bhv_ice_spikes_loop(void) {
         struct Object *other = o->collidedObjs[i];
 
         if (other != gMarioObject) {
-            //other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+            // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
+            // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
             attack_object(other, 8);
         }
     }
@@ -57,13 +66,12 @@ void bhv_ice_spikes_loop(void) {
     }
     if (o->oTimer <= 9) {
         obj_scale_xyz(o, ((f32) o->oTimer) / 6.0f, ((f32) o->oTimer) / 6.0f, ((f32) o->oTimer) / 6.0f);
-    }
-    else if (o->oTimer > 30 && o->oTimer < 35) {
+    } else if (o->oTimer > 30 && o->oTimer < 35) {
         obj_scale_xyz(o, 1.5f, 4.5f - ((f32) o->oTimer) / 10.0f, 1.5f);
         o->oPosY -= 5.0f;
-    }
-    else if(o->oTimer >= 35) {
-        obj_scale_xyz(o, 3.5f - ((f32) o->oTimer - 5) / 15.0f, 4.5f - ((f32) o->oTimer) / 10.0f, 3.5f - ((f32) o->oTimer - 5) / 15.0f);
+    } else if (o->oTimer >= 35) {
+        obj_scale_xyz(o, 3.5f - ((f32) o->oTimer - 5) / 15.0f, 4.5f - ((f32) o->oTimer) / 10.0f,
+                      3.5f - ((f32) o->oTimer - 5) / 15.0f);
     }
 
     if (o->oTimer == 40) {
@@ -74,63 +82,61 @@ void bhv_ice_spikes_loop(void) {
 void bhv_ice_floor_init(void) {
     obj_scale_xyz(o, 0, 0, 0);
     cur_obj_spawn_particles(&sSnowflakeFly);
-cur_obj_spawn_particles(&sMistIce);
-//obj_orient_graph(o, gMarioState->floor->normal.x, gMarioState->floor->normal.y, gMarioState->floor->normal.z, 1);
-/*
-struct Surface *waterFloor;
-Vec3f position;
+    cur_obj_spawn_particles(&sMistIce);
+    // obj_orient_graph(o, gMarioState->floor->normal.x, gMarioState->floor->normal.y,
+    // gMarioState->floor->normal.z, 1);
+    /*
+    struct Surface *waterFloor;
+    Vec3f position;
 
-vec3f_copy(position, &o->oPosVec);
+    vec3f_copy(position, &o->oPosVec);
 
-find_water_floor(o->oPosX, o->oPosY + 100, o->oPosZ, &waterFloor);
-if (gMarioState->floor) {
-    Vec3f floorNormal;
-    surface_normal_to_vec3f(floorNormal, gMarioState->floor);
-    mtxf_align_terrain_normal(o->transform, floorNormal, position, o->oFaceAngleYaw);
-    o->header.gfx.throwMatrix = &o->transform;
+    find_water_floor(o->oPosX, o->oPosY + 100, o->oPosZ, &waterFloor);
+    if (gMarioState->floor) {
+        Vec3f floorNormal;
+        surface_normal_to_vec3f(floorNormal, gMarioState->floor);
+        mtxf_align_terrain_normal(o->transform, floorNormal, position, o->oFaceAngleYaw);
+        o->header.gfx.throwMatrix = &o->transform;
 
-}
-*/
+    }
+    */
 }
 
 void bhv_ice_floor_loop(void) {
 
-    
-   cur_obj_align_gfx_with_floor_ice();
+    cur_obj_align_gfx_with_floor_ice();
 
     switch (o->oAction) {
         case 0:
-    if (o->oTimer < 2) {
-        obj_scale_xyz(o, ((f32) o->oTimer) / 2.0f, 1, ((f32) o->oTimer) / 2.0f);
-    }
-    else if (sqr(gMarioState->pos[0] - o->oPosX) + sqr(gMarioState->pos[2] - o->oPosZ) > 20000.0f) {
-        o->oAction += 1;
-        o->oTimer = 0;
-    }
-    else {
-        obj_scale_xyz(o, 1.5f, 1.5f, 1.5f);
-    }
+            if (o->oTimer < 2) {
+                obj_scale_xyz(o, ((f32) o->oTimer) / 2.0f, 1, ((f32) o->oTimer) / 2.0f);
+            } else if (sqr(gMarioState->pos[0] - o->oPosX) + sqr(gMarioState->pos[2] - o->oPosZ)
+                       > 20000.0f) {
+                o->oAction += 1;
+                o->oTimer = 0;
+            } else {
+                obj_scale_xyz(o, 1.5f, 1.5f, 1.5f);
+            }
 
+            if (o->oTimer > 20 && !o->parentObj) {
+                o->oAction += 1;
+                o->oTimer = 0;
+            }
+            break;
+        case 1:
+            obj_scale_xyz(o, 1.0f - ((f32) o->oTimer) / 10.0f, 1, 1.0f - ((f32) o->oTimer) / 10.0f);
 
-    if (o->oTimer > 20 && !o->parentObj) {
-         o->oAction += 1;
-        o->oTimer = 0;
-    }
-    break;
-    case 1:
-        obj_scale_xyz(o, 1.0f - ((f32) o->oTimer) / 10.0f, 1, 1.0f - ((f32) o->oTimer) / 10.0f);
-
-        if (o->oTimer >= 10) {
-            obj_mark_for_deletion(o);
-        }
-    break;
+            if (o->oTimer >= 10) {
+                obj_mark_for_deletion(o);
+            }
+            break;
     }
 }
 
 void bhv_ice_cube_init(void) {
     gMarioState->forwardVel = 0;
-    //gMarioState->pos[0] += (o->oPosX - gMarioState->pos[0] / 3.0f);
-    //gMarioState->pos[2] += (o->oPosZ - gMarioState->pos[2] / 3.0f);
+    // gMarioState->pos[0] += (o->oPosX - gMarioState->pos[0] / 3.0f);
+    // gMarioState->pos[2] += (o->oPosZ - gMarioState->pos[2] / 3.0f);
     gMarioState->pos[0] = o->oPosX;
     gMarioState->pos[2] = o->oPosZ;
     gMarioState->action = ACT_JUMP_LAND;
@@ -145,7 +151,6 @@ void bhv_ice_cube_loop(void) {
     if (o->oIsPushingIceCube == 1 && o->oTimer < 10) {
         check_ice_cube_corners_and_push();
     }
-
 
     if (o->oTimer <= 3) {
 
@@ -163,7 +168,7 @@ void bhv_ice_cube_loop(void) {
                 break;
         }
 
-        //sinking mud failsafe
+        // sinking mud failsafe
         if (gMarioState->action == ACT_SINK_MUD) {
             gMarioState->pos[0] = o->oPosX;
             gMarioState->pos[1] = o->oPosY + 100;
@@ -176,8 +181,6 @@ void bhv_ice_cube_loop(void) {
         }
     }
 
-
-
     if (cur_obj_was_attacked_or_ground_pounded() && o->oBehParams2ndByte != 2) {
         for (int i = 0; i < o->parentObj->oNumLootCoins; i++) {
             struct Object *coin;
@@ -186,10 +189,10 @@ void bhv_ice_cube_loop(void) {
             coin->oForwardVel = 3.0f;
             coin->oMoveAngleYaw = random_u16();
         }
-        
+
         obj_mark_for_deletion(o->parentObj);
-        
-        //obj_explode_and_spawn_coins(46.0f, 0);
+
+        // obj_explode_and_spawn_coins(46.0f, 0);
         spawn_mist_particles();
         spawn_triangle_break_particles(20, MODEL_SL_CRACKED_ICE_CHUNK, 3.0f, 0);
         obj_mark_for_deletion(o);
@@ -226,8 +229,7 @@ void check_ice_cube_corners_and_push(void) {
     if (o->oIsPushingIceCube == 1) {
         o->parentObj->oFreezeObject = 0;
         o->parentObj->oIntangibleTimer = -1;
-    }
-    else {
+    } else {
         o->parentObj->oFreezeObject = 1;
     }
 
@@ -238,7 +240,6 @@ void check_ice_cube_corners_and_push(void) {
     o->parentObj->oPosZ = o->oPosZ;
     gMarioState->pos[0] = o->oPosX;
     gMarioState->pos[2] = o->oPosZ;
-    
 }
 
 void bhv_grapple_hook_init(void) {
@@ -247,7 +248,7 @@ void bhv_grapple_hook_init(void) {
 }
 
 void bhv_grapple_hook_loop(void) {
-Vec3f adjustedPos;
+    Vec3f adjustedPos;
 
     switch (o->oAction) {
         case 0:
@@ -256,47 +257,56 @@ Vec3f adjustedPos;
             o->oForwardVel -= 2.0f;
 
             struct Surface *surf;
-        Vec3f originPos;
-        Vec3f hitpos;
-        Vec3f raydir;
+            Vec3f originPos;
+            Vec3f hitpos;
+            Vec3f raydir;
 
-        raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
-        raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
+            raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
+            raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
 
-        vec3f_set(originPos, o->oPosX - (sins(o->oMoveAngleYaw) * 50.0f), o->oPosY, o->oPosZ - (coss(o->oMoveAngleYaw) * 50.0f));
+            vec3f_set(originPos, o->oPosX - (sins(o->oMoveAngleYaw) * 50.0f), o->oPosY,
+                      o->oPosZ - (coss(o->oMoveAngleYaw) * 50.0f));
 
-        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
-        if (surf != NULL) {
-            o->oPosX = hitpos[0];
-            o->oPosY = hitpos[1];
-            o->oPosZ = hitpos[2];
-            play_sound(SOUND_GRAPPLE_HOOK_2, gMarioState->marioObj->header.gfx.cameraToObject);
-            return o->oAction = 1;
-        }
-        else if (o->oTimer > 1){
-            //perform raycasts down and then up to see if it collides with a floor or ceiling
-            raydir[0] = 0.0f;
-            raydir[2] = 0.0f;
-
-            raydir[1] = -30.0f;
-            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 1U, 1);
+            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
             if (surf != NULL) {
-                o->oAngleVelPitch = -0x800;
-                o->oVelY = 5.0f;
-                return o->oAction = 2;
-            }
-            raydir[1] = 90.0f;
-            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 4U, 1);
-            if (surf != NULL) {
-                o->oAngleVelPitch = 0x1000;
-                o->oVelY = -30.0f;
-                return o->oAction = 2;
-            }
-            
+                o->oPosX = hitpos[0];
+                o->oPosY = hitpos[1];
+                o->oPosZ = hitpos[2];
+                play_sound(SOUND_GRAPPLE_HOOK_2, gMarioState->marioObj->header.gfx.cameraToObject);
+                return o->oAction = 1;
+            } else if (o->oTimer > 1) {
+                // perform raycasts down and then up to see if it collides with a floor or ceiling
+                raydir[0] = 0.0f;
+                raydir[2] = 0.0f;
 
-        }
+                raydir[1] = -30.0f;
+                find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 1U, 1);
+                if (surf != NULL) {
+                    o->oAngleVelPitch = -0x800;
+                    o->oVelY = 5.0f;
+                    return o->oAction = 2;
+                }
+                raydir[1] = 90.0f;
+                find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 4U, 1);
+                if (surf != NULL) {
+                    o->oAngleVelPitch = 0x1000;
+                    o->oVelY = -30.0f;
+                    return o->oAction = 2;
+                }
+            }
 
             obj_move_xyz_using_fvel_and_yaw(o);
+            //o->oInteractStatus = 0;
+            //obj_set_hitbox(o, &sGrappleHookHitbox);
+            for (int i = 0; i < o->numCollidedObjs; i++) {
+                struct Object *other = o->collidedObjs[i];
+
+                if (other != gMarioObject) {
+                    // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
+                    // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+                    attack_object(other, 2);
+                }
+            }
 
             if (o->oTimer == 15) {
                 o->oAction = 2;
@@ -305,34 +315,40 @@ Vec3f adjustedPos;
             }
             break;
         case 1:
-            
+
+            if (gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT || gMarioState->action == ACT_FALL_AFTER_STAR_GRAB) {
+                gMarioState->patchChildObj = NULL;
+                gMarioState->curPatch = 0;
+                obj_mark_for_deletion(o->oGrappleLine);
+                obj_mark_for_deletion(o);
+                return;
+            }
+
             vec3f_set(&adjustedPos, o->oPosX, o->oPosY + 50, o->oPosZ);
             approach_vec3f_asymptotic(&gMarioState->pos, &adjustedPos, 0.5f, 0.5f, 0.5f);
             if (o->oTimer == 4) {
                 gMarioState->faceAngle[1] += 0x8000;
                 set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
-                gMarioState->iceFloorObj = NULL;
+                gMarioState->patchChildObj = NULL;
                 gMarioState->curPatch = 0;
                 obj_mark_for_deletion(o->oGrappleLine);
                 obj_mark_for_deletion(o);
-                
             }
             break;
         case 2:
-        o->oGravity = 2.0f;
-        o->oForwardVel = 10.0f;
+            o->oGravity = 2.0f;
+            o->oForwardVel = 10.0f;
 
-        cur_obj_rotate_face_angle_using_vel();
-        object_step_without_floor_orient();
+            cur_obj_rotate_face_angle_using_vel();
+            object_step_without_floor_orient();
             if (o->oTimer == 15) {
-                gMarioState->iceFloorObj = NULL;
+                gMarioState->patchChildObj = NULL;
                 gMarioState->curPatch = 0;
                 obj_mark_for_deletion(o->oGrappleLine);
                 obj_mark_for_deletion(o);
             }
             break;
     }
-    
 }
 
 void bhv_grapple_line_loop(void) {
@@ -341,39 +357,35 @@ void bhv_grapple_line_loop(void) {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_GRAPPLE_LINE];
     }
 
-    
-
     o->oPosX = o->parentObj->oPosX;
     o->oPosY = o->parentObj->oPosY;
     o->oPosZ = o->parentObj->oPosZ;
 
     if (o->parentObj->oAction != 2) {
 
-    f32 dx = gMarioObject->header.gfx.pos[0] - o->oPosX;
-    f32 dy = gMarioObject->header.gfx.pos[1] - o->oPosY + 90.0f;
-    f32 dz = gMarioObject->header.gfx.pos[2] - o->oPosZ;
-    s16 targetPitch = atan2s(sqrtf(sqr(dx) + sqr(dz)), dy);
+        f32 dx = gMarioObject->header.gfx.pos[0] - o->oPosX;
+        f32 dy = gMarioObject->header.gfx.pos[1] - o->oPosY + 90.0f;
+        f32 dz = gMarioObject->header.gfx.pos[2] - o->oPosZ;
+        s16 targetPitch = atan2s(sqrtf(sqr(dx) + sqr(dz)), dy);
 
-    s16 targetAngle = atan2s(dz, dx);
+        s16 targetAngle = atan2s(dz, dx);
 
-    o->oMoveAngleYaw = targetAngle;
+        o->oMoveAngleYaw = targetAngle;
 
-    o->oMoveAnglePitch = -targetPitch;
-    o->oFaceAnglePitch = -targetPitch;
+        o->oMoveAnglePitch = -targetPitch;
+        o->oFaceAnglePitch = -targetPitch;
 
-    extern Vtx grapple_line_Plane_002_mesh_layer_1_vtx_0[12];
+        extern Vtx grapple_line_Plane_002_mesh_layer_1_vtx_0[12];
 
-    Vtx *new = segmented_to_virtual(grapple_line_Plane_002_mesh_layer_1_vtx_0);
-    
-    new[0].v.ob[2] = o->oDistanceToMario;
-    new[1].v.ob[2] = o->oDistanceToMario;
-    new[2].v.ob[2] = o->oDistanceToMario;
-    new[5].v.ob[2] = o->oDistanceToMario;
-    new[6].v.ob[2] = o->oDistanceToMario;
-    new[7].v.ob[2] = o->oDistanceToMario;
+        Vtx *new = segmented_to_virtual(grapple_line_Plane_002_mesh_layer_1_vtx_0);
 
+        new[0].v.ob[2] = o->oDistanceToMario;
+        new[1].v.ob[2] = o->oDistanceToMario;
+        new[2].v.ob[2] = o->oDistanceToMario;
+        new[5].v.ob[2] = o->oDistanceToMario;
+        new[6].v.ob[2] = o->oDistanceToMario;
+        new[7].v.ob[2] = o->oDistanceToMario;
     }
-
 }
 
 void bhv_halo_loop(void) {
@@ -386,67 +398,135 @@ void bhv_halo_loop(void) {
         obj_mark_for_deletion(o);
     }
 
-
     switch (o->oAction) {
-        //idle on marios head
+        // idle on marios head
         case 0:
+
+            cur_obj_become_intangible();
+
             if (gPlayer1Controller->buttonPressed & L_TRIG) {
                 o->oMoveAngleYaw = gMarioState->faceAngle[1];
                 o->oAction = 1;
                 play_sound(SOUND_HALO_OUT, gMarioState->marioObj->header.gfx.cameraToObject);
             }
-        break;
-        //moving forward where mario was looking
+
+            break;
+        // moving forward where mario was looking
         case 1:
+            cur_obj_become_tangible();
             halo_calculate_and_move_towards_goal();
             if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & L_TRIG)) {
                 o->oAction = 2;
                 play_sound(SOUND_HALO_IN, gMarioState->marioObj->header.gfx.cameraToObject);
-            } 
-            else if (gPlayer1Controller->buttonPressed & L_TRIG) {
+            } else if (gPlayer1Controller->buttonPressed & L_TRIG) {
                 o->oAction = 3;
                 play_sound(SOUND_HALO_CIRCLE, gMarioState->marioObj->header.gfx.cameraToObject);
             }
 
-        break;
+            break;
         case 2:
+            cur_obj_become_tangible();
             halo_calculate_and_move_back_to_mario();
-        break;
+            break;
         case 3:
+            cur_obj_become_tangible();
             halo_perform_circle();
-        break;
+            break;
     }
-    
+
     obj_set_hitbox(o, &sHaloHitbox);
     for (int i = 0; i < o->numCollidedObjs; i++) {
         struct Object *other = o->collidedObjs[i];
 
         if (other != gMarioObject) {
-            //other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 8);
+            // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
+            // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+            attack_object(other, 2);
 
             if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {
-                o->oHaloCapturedObject = spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
+                o->oHaloCapturedObject =
+                    spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
                 gMarioState->haloCaptureType = 1;
+            }
+
+            if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
+                if (!o->oHaloCapturedObject) {
+                other->oIntangibleTimer = -1;
+                o->oHaloCapturedObject = other;
+                gMarioState->haloCaptureType = 3;
+                }
+                else {
+                    o->oHaloCapturedObject->oGoldBlobCount += 1;
+                    obj_mark_for_deletion(other);
+                }
             }
         }
     }
 
-    
+    f32 dist;
+
+    struct Object *nearCoin = cur_obj_find_nearest_object_with_behavior(bhvYellowCoin, &dist);
+    if (dist < 200) {
+        if (o->oHaloCapturedObject) {
+            o->oHaloCapturedObject->oHaloCoinValue += 1;
+            if (nearCoin->parentObj)
+                nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
+            obj_mark_for_deletion(nearCoin);
+        } else {
+            o->oHaloCapturedObject =
+                spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
+            gMarioState->haloCaptureType = 2;
+            o->oHaloCapturedObject->oHaloCoinValue += 1;
+            if (nearCoin->parentObj)
+                nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
+            obj_mark_for_deletion(nearCoin);
+        }
+    }
+
+    struct Object *nearRedCoin = cur_obj_find_nearest_object_with_behavior(bhvRedCoin, &dist);
+    if (dist < 200) {
+        if (o->oHaloCapturedObject) {
+            o->oHaloCapturedObject->oHaloCoinValue += 2;
+            if (nearRedCoin->parentObj)
+                nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
+            play_sound(SOUND_MENU_COLLECT_RED_COIN
+                           + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
+                       gGlobalSoundSource);
+            nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+
+            if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
+                spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+            }
+
+        } else {
+            o->oHaloCapturedObject =
+                spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
+            gMarioState->haloCaptureType = 2;
+            o->oHaloCapturedObject->oHaloCoinValue += 2;
+            if (nearRedCoin->parentObj)
+                nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
+            play_sound(SOUND_MENU_COLLECT_RED_COIN
+                           + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
+                       gGlobalSoundSource);
+            nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+            if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
+                spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+            }
+        }
+    }
 
     o->oInteractStatus = 0;
-
 }
 
 void halo_calculate_and_move_towards_goal(void) {
     o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
-    o->oHomeY = gMarioState->pos[1] + 110.0f;
+    o->oHomeY = gMarioState->pos[1] + 70.0f;
     o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
 
     o->oHaloApproachSpeed = 0.5f;
 
-    Vec3f curPosVec = {o->oPosX, o->oPosY, o->oPosZ};
-    Vec3f goalVec = {o->oHomeX, o->oHomeY, o->oHomeZ};
+    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
+    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
     f32 *dist;
 
     vec3f_get_dist(curPosVec, goalVec, &dist);
@@ -463,35 +543,39 @@ void halo_calculate_and_move_back_to_mario(void) {
 
     o->oHaloApproachSpeed = 0.5f;
 
-    Vec3f curPosVec = {o->oPosX, o->oPosY, o->oPosZ};
-    Vec3f goalVec = {o->oHomeX, o->oHomeY, o->oHomeZ};
+    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
+    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
     f32 *dist;
 
     vec3f_get_dist(curPosVec, goalVec, &dist);
 
     if (o->oTimer < 5) {
         halo_run_movement();
-    }
-    else {
+    } else {
         o->oAction = 0;
     }
 }
 
 void halo_perform_circle(void) {
 
+    if (o->oHaloCapturedObject && gMarioState->haloCaptureType == 3 && o->oTimer == 18 && o->oHaloCapturedObject->oGoldBlobCount >= 2) {
+        o->oHaloCapturedObject->oAction = 1;
+
+        o->oHaloCapturedObject = NULL;
+        gMarioState->haloCaptureType = 0;
+    }
+
     o->oHaloApproachSpeed = 1;
 
     if (o->oTimer < 8) {
-    o->oHomeX = gMarioState->pos[0] + (37 * o->oTimer) * sins(0x1000 * o->oTimer);
-    o->oHomeZ = gMarioState->pos[2] + (37 * o->oTimer) * coss(0x1000 * o->oTimer);
-    }
-    else if (o->oTimer > 24) {
-     o->oHomeX = gMarioState->pos[0] + (300 - (37 * (o->oTimer - 24))) * sins(0x1000 * o->oTimer);
-    o->oHomeZ = gMarioState->pos[2] + (300 - (37 * (o->oTimer - 24))) * coss(0x1000 * o->oTimer);
-    }
-    else {
-    o->oHomeX = gMarioState->pos[0] + 300 * sins(0x1000 * o->oTimer);
-    o->oHomeZ = gMarioState->pos[2] + 300 * coss(0x1000 * o->oTimer);
+        o->oHomeX = gMarioState->pos[0] + (37 * o->oTimer) * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + (37 * o->oTimer) * coss(0x1000 * o->oTimer);
+    } else if (o->oTimer > 24) {
+        o->oHomeX = gMarioState->pos[0] + (300 - (37 * (o->oTimer - 24))) * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + (300 - (37 * (o->oTimer - 24))) * coss(0x1000 * o->oTimer);
+    } else {
+        o->oHomeX = gMarioState->pos[0] + 300 * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + 300 * coss(0x1000 * o->oTimer);
     }
 
     halo_run_movement();
@@ -504,22 +588,22 @@ void halo_perform_circle(void) {
 void halo_run_movement(void) {
 
     struct Surface *surf;
-        Vec3f originPos;
-        Vec3f hitpos;
-        Vec3f raydir;
+    Vec3f originPos;
+    Vec3f hitpos;
+    Vec3f raydir;
 
-        raydir[0] = o->oHomeX - gMarioState->pos[0];
-        raydir[1] = o->oHomeY - gMarioState->pos[1];
-        raydir[2] = o->oHomeZ - gMarioState->pos[2];
+    raydir[0] = o->oHomeX - gMarioState->pos[0];
+    raydir[1] = o->oHomeY - gMarioState->pos[1];
+    raydir[2] = o->oHomeZ - gMarioState->pos[2];
 
-        vec3f_copy(originPos, gMarioState->pos);
+    vec3f_copy(originPos, gMarioState->pos);
 
-        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
-        if (surf != NULL) {
-            o->oHomeX = hitpos[0];
-            //o->oHomeY = hitpos[1];
-            o->oHomeZ = hitpos[2];
-        }
+    find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
+    if (surf != NULL) {
+        o->oHomeX = hitpos[0];
+        // o->oHomeY = hitpos[1];
+        o->oHomeZ = hitpos[2];
+    }
 
     approach_f32_asymptotic_bool(&o->oPosX, o->oHomeX, o->oHaloApproachSpeed);
     approach_f32_asymptotic_bool(&o->oPosY, o->oHomeY, o->oHaloApproachSpeed);

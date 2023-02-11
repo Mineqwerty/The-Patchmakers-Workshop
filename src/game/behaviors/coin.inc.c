@@ -74,6 +74,26 @@ void bhv_yellow_coin_loop(void) {
     o->oAnimState++;
 }
 
+void bhv_coin_with_value_loop(void) {
+    if (o->parentObj && o->parentObj->oAction == 0) {
+        spawn_object(o, MODEL_SPARKLES, bhvCoinSparklesSpawner);
+
+        gMarioState->numCoins += o->oHaloCoinValue;
+        gMarioState->healCounter += 4 * o->oHaloCoinValue;
+        #ifdef BREATH_METER
+            m->breathCounter += (4 * obj->oDamageOrCoinValue);
+        #endif
+        if (COURSE_IS_MAIN_COURSE(gCurrCourseNum) && gMarioState->numCoins - o->oHaloCoinValue < X_COIN_STAR
+        && gMarioState->numCoins >= X_COIN_STAR) {
+        bhv_spawn_star_no_level_exit(STAR_BP_ACT_100_COINS);
+    }
+        o->parentObj->oHaloCapturedObject = NULL;
+        obj_mark_for_deletion(o);
+    }
+
+    o->oAnimState++;
+}
+
 void bhv_temp_coin_loop(void) {
     o->oAnimState++;
 

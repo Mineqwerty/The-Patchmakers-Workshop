@@ -588,5 +588,10 @@ extern const BehaviorScript bhvSpekturr[];
 extern const BehaviorScript bhvStarGate[];
 extern const BehaviorScript bhvPatchmaker[];
 extern const BehaviorScript bhvFlingRing[];
+extern const BehaviorScript bhvCoinWithValue[];
+extern const BehaviorScript bhvGoldBlob[];
+extern const BehaviorScript bhvGoldFragment[];
+extern const BehaviorScript bhvStoneElevator[];
+extern const BehaviorScript bhvExtendingStoneBridge[];
 
 #endif // BEHAVIOR_DATA_H

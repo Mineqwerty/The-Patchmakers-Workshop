@@ -3,6 +3,7 @@
 const GeoLayout grapple_stone_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
+	GEO_ASM(0, geo_update_prim_color_from_obj_fields),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, grapple_stone_Cube_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, grapple_stone_material_revert_render_settings),
 	GEO_CLOSE_NODE(),

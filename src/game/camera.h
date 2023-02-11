@@ -623,6 +623,7 @@ struct Camera {
     /*0x68*/ f32 areaCenY;
         u16 camTimer;
         u8 prevMode;
+        u8 controlBossCameraYaw;
 };
 
 /**

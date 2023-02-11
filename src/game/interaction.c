@@ -49,7 +49,7 @@ u32 interact_hit_from_below(struct MarioState *m, u32 interactType, struct Objec
 u32 interact_bounce_top    (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_spiny_walking (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_damage        (struct MarioState *m, u32 interactType, struct Object *obj);
-u32 interact_damage_enemy        (struct MarioState *m, u32 interactType, struct Object *obj);
+
 u32 interact_breakable     (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_koopa_shell   (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_pole          (struct MarioState *m, u32 interactType, struct Object *obj);
@@ -57,6 +57,7 @@ u32 interact_hoot          (struct MarioState *m, u32 interactType, struct Objec
 u32 interact_cap           (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_grabbable     (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_text          (struct MarioState *m, u32 interactType, struct Object *obj);
+u32 interact_damage_enemy        (struct MarioState *m, u32 interactType, struct Object *obj);
 
 struct InteractionHandler {
     u32 interactType;
@@ -86,7 +87,6 @@ static struct InteractionHandler sInteractionHandlers[] = {
     { INTERACT_HIT_FROM_BELOW, interact_hit_from_below },
     { INTERACT_BOUNCE_TOP,     interact_bounce_top },
     { INTERACT_DAMAGE,         interact_damage },
-    { INTERACT_DAMAGE_ENEMY,         interact_damage_enemy },
     { INTERACT_POLE,           interact_pole },
     { INTERACT_HOOT,           interact_hoot },
     { INTERACT_BREAKABLE,      interact_breakable },
@@ -96,6 +96,7 @@ static struct InteractionHandler sInteractionHandlers[] = {
     { INTERACT_CAP,            interact_cap },
     { INTERACT_GRABBABLE,      interact_grabbable },
     { INTERACT_TEXT,           interact_text },
+    { INTERACT_DAMAGE_ENEMY,         interact_damage_enemy },
 };
 
 static u32 sForwardKnockbackActions[][3] = {
@@ -1405,6 +1406,11 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
         queue_rumble_data(5, 80);
 #endif
 
+    if (!(interaction & INT_HIT_FROM_ABOVE) && obj->oInteractionSubtype & INT_SUBTYPE_BULB) {
+        bounce_back_from_attack(m, interaction);
+        return FALSE;
+    }
+
     
 
         attack_object(obj, interaction);
@@ -1929,6 +1935,11 @@ void mario_process_interactions(struct MarioState *m) {
         s32 i;
         for (i = 0; i < ARRAY_COUNT(sInteractionHandlers); i++) {
             u32 interactType = sInteractionHandlers[i].interactType;
+
+            if (interactType == INTERACT_DAMAGE_ENEMY) {
+                break;
+            }
+
             if (m->collidedObjInteractTypes & interactType) {
                 struct Object *object = mario_get_collided_object(m, interactType);
 
@@ -2002,10 +2013,10 @@ void check_gss_cloud_warp(struct MarioState *m) {
             change_area(2);
                     gMarioState->area = gCurrentArea;
                     if (gMarioState->equippedPatch == 4) {
-                gMarioState->iceFloorObj = spawn_object(m->marioObj, MODEL_HALO, bhvHalo);
+                gMarioState->patchChildObj = spawn_object(m->marioObj, MODEL_HALO, bhvHalo);
                 switch(gMarioState->haloCaptureType) {
                     case 1:
-                        gMarioState->iceFloorObj->oHaloCapturedObject = spawn_object(gMarioState->iceFloorObj, MODEL_NONE, bhvFireSmokeSpawner);
+                        gMarioState->patchChildObj->oHaloCapturedObject = spawn_object(gMarioState->patchChildObj, MODEL_NONE, bhvFireSmokeSpawner);
                     break;
                 }
             }

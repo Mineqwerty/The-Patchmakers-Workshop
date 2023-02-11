@@ -573,6 +573,8 @@
 #define MODEL_ENEMY_OBELISK                   0x103
 #define MODEL_FORCEFIELD                   0x104
 #define MODEL_ROTATING_STONE_CYLINDER                   0x105
+#define MODEL_STONE_ELEVATOR                   0x106
+#define MODEL_EXTENDING_STONE_BRIDGE                   0x107
 
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
@@ -583,6 +585,9 @@
 #define MODEL_SPEKTURR                   0x106
 #define MODEL_STAR_GATE                   0x107
 #define MODEL_FLING_RING                   0x108
+#define MODEL_GOLD_BLOB                   0x109
+#define MODEL_GOLD_SWORD                  0x10A
+#define MODEL_GOLD_FRAGMENT                 0x10B
 
 #define MODEL_PATCHMAKER                   0x110
 

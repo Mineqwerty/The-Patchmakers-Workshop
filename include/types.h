@@ -485,7 +485,7 @@ struct MarioState {
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
-    struct Object *iceFloorObj;
+    struct Object *patchChildObj;
     struct Object *wallObj;
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER

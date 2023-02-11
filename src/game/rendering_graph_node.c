@@ -565,6 +565,10 @@ void geo_process_switch(struct GraphNodeSwitchCase *node) {
 void geo_process_camera(struct GraphNodeCamera *node) {
     Mat4 cameraTransform;
     Mtx *rollMtx = alloc_display_list(sizeof(*rollMtx));
+    Mat4 mtxf;
+        Vec3f translation;
+        Mtx *mtx;
+        s32 i,j,relX,relZ;
 
     if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
@@ -580,7 +584,37 @@ void geo_process_camera(struct GraphNodeCamera *node) {
     if (node->fnNode.node.children != 0) {
         gCurGraphNodeCamera = node;
         node->matrixPtr = &gMatStack[gMatStackIndex];
-        geo_process_node_and_siblings(node->fnNode.node.children);
+        if (gCurrLevelNum != LEVEL_BBH) {
+           geo_process_node_and_siblings(node->fnNode.node.children);
+        }
+        else {
+
+        for (i = -2; i < 1; i++) {
+            for (j = -2; j < 1; j++) {
+                relX = (i == -2 ? 1 : i);
+                relZ = (j == -2 ? 1 : j);
+
+                if ((relX == 1) && (gMarioState->pos[0] < 2000.f))
+                    continue;
+                if ((relZ == 1) && (gMarioState->pos[2] < 2000.f))
+                    continue;
+                if ((relX == -1) && (gMarioState->pos[0] > -2000.f))
+                    continue;
+                if ((relZ == -1) && (gMarioState->pos[2] > -2000.f))
+                    continue;
+                mtx = alloc_display_list(sizeof(*mtx));
+                vec3f_set(translation,relX*32762,0,relZ*32762);
+                mtxf_rotate_zxy_and_translate(mtxf, translation, gVec3sZero);
+                mtxf_mul(gMatStack[gMatStackIndex + 1], mtxf, gMatStack[gMatStackIndex]);
+                gMatStackIndex++;
+                mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
+                gMatStackFixed[gMatStackIndex] = mtx;
+
+                geo_process_node_and_siblings(node->fnNode.node.children);
+                gMatStackIndex--;
+            }
+        }
+        }
         gCurGraphNodeCamera = NULL;
     }
     gMatStackIndex--;

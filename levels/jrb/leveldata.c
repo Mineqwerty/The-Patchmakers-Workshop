@@ -55,3 +55,7 @@
 #include "levels/jrb/forcefield/model.inc.c"
 #include "levels/jrb/rotating_stone_cylinder/collision.inc.c"
 #include "levels/jrb/rotating_stone_cylinder/model.inc.c"
+#include "levels/jrb/stone_elevator/collision.inc.c"
+#include "levels/jrb/stone_elevator/model.inc.c"
+#include "levels/jrb/extending_stone_bridge/collision.inc.c"
+#include "levels/jrb/extending_stone_bridge/model.inc.c"

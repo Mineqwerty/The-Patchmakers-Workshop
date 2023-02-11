@@ -367,7 +367,7 @@ void init_mario_after_warp(void) {
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
             if (gMarioState->equippedPatch == 4) {
-                gMarioState->iceFloorObj = NULL;
+                gMarioState->patchChildObj = NULL;
                 gMarioState->updatePatch = 1;
                 }
             
@@ -547,7 +547,7 @@ void check_instant_warp(void) {
                 gMarioState->area = gCurrentArea;
 
                 if (gMarioState->equippedPatch == 4) {
-                gMarioState->iceFloorObj = NULL;
+                gMarioState->patchChildObj = NULL;
                 gMarioState->updatePatch = 1;
                 }
 
@@ -1342,6 +1342,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     sWarpCheckpointActive = FALSE;
     gCurrLevelNum = levelNum;
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
+	if (gCurrLevelNum == LEVEL_BBH) return 0;
 	if (gCurrLevelNum == LEVEL_BOWSER_1) return 0;
 	if (gCurrLevelNum == LEVEL_BITDW) return 0;
 

@@ -1,6 +1,7 @@
 extern const GeoLayout grapple_stone_geo[];
-extern u8 grapple_stone__3642133886_rgba16[];
-extern Vtx grapple_stone_Cube_mesh_layer_1_vtx_0[32];
+extern u8 grapple_stone_runeglowpattern_i8[];
+extern u8 grapple_stone_runestone2_ia8[];
+extern Vtx grapple_stone_Cube_mesh_layer_1_vtx_0[26];
 extern Gfx grapple_stone_Cube_mesh_layer_1_tri_0[];
 extern Gfx mat_grapple_stone_f3d_material_013_layer1[];
 extern Gfx mat_revert_grapple_stone_f3d_material_013_layer1[];

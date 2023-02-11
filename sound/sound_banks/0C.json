@@ -235,6 +235,18 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope39": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope40": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -558,6 +570,16 @@
             "envelope": "envelope38",
             "sound": "51_toy_piano"
         },
+        "Wind": {
+            "release_rate": 208,
+            "envelope": "envelope39",
+            "sound": "52_wind"
+        },
+        "Crank": {
+            "release_rate": 208,
+            "envelope": "envelope40",
+            "sound": "53_crank"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -692,6 +714,8 @@
         "Violin",
         "Dark Music Box",
 
-        "Toy Piano"
+        "Toy Piano",
+        "Wind",
+        "Crank"
     ]
 }

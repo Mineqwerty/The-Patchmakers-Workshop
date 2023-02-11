@@ -782,6 +782,7 @@ void bhv_pushpin_pokey_camera_focus_init(void) {
     switch(o->oBehParams2ndByte) {
         case 0:
     gSecondCameraFocus = o;
+    gCamera->controlBossCameraYaw = 1;
     break;
     case 8:
         o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 1000, o->oPosZ);

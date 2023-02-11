@@ -803,11 +803,11 @@ s32 act_shockwave_bounce(struct MarioState *m) {
 s32 landing_step(struct MarioState *m, s32 animID, u32 action) {
 /*
     if (m->equippedPatch == 2) {
-        if (!m->iceFloorObj && m->pos[1] - m->waterLevel < 5.0f) {
-            m->iceFloorObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+        if (!m->patchChildObj && m->pos[1] - m->waterLevel < 5.0f) {
+            m->patchChildObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
         }
-        if (m->iceFloorObj && sqr(m->pos[0] - m->iceFloorObj->oPosX) + sqr(m->pos[2] - m->iceFloorObj->oPosZ) > 10000.0f ) {
-            m->iceFloorObj = NULL;
+        if (m->patchChildObj && sqr(m->pos[0] - m->patchChildObj->oPosX) + sqr(m->pos[2] - m->patchChildObj->oPosZ) > 10000.0f ) {
+            m->patchChildObj = NULL;
         }
     }
 */

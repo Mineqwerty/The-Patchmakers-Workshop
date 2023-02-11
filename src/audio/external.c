@@ -178,6 +178,11 @@ s16 sDynWdw[] = {
     SEQ_LEVEL_UNDERGROUND, DYN2(MARIO_Y_LT, -670, MARIO_IS_IN_AREA, AREA_WDW_MAIN & 0xf, 4),
     DYN1(MARIO_IS_IN_AREA, AREA_WDW_TOWN & 0xf, 4), 3,
 };
+s16 sDynCcm[] = {
+    SEQ_GOLD_SOAKED_SKY, 
+    DYN1(MARIO_IS_IN_AREA, 1, 7),
+    DYN1(MARIO_IS_IN_AREA, 2, 8),
+};
 s16 sDynHmc[] = {
     SEQ_LEVEL_UNDERGROUND, DYN2(MARIO_X_GE, 0, MARIO_Y_LT, -203, 4),
     DYN2(MARIO_X_LT, 0, MARIO_Y_LT, -2400, 4), 3,
@@ -215,7 +220,7 @@ struct MusicDynamic {
     /*0xA*/ s16 dur2;
 }; // size = 0xC
 
-struct MusicDynamic sMusicDynamics[8] = {
+struct MusicDynamic sMusicDynamics[9] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0003, 127, 100, 0x0e40, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0e43, 127, 200, 0x0000, 0, 200 }, // SEQ_LEVEL_WATER
@@ -223,7 +228,9 @@ struct MusicDynamic sMusicDynamics[8] = {
     { 0x03f7, 127, 100, 0x0008, 0, 100 }, // SEQ_LEVEL_UNDERGROUND
     { 0x0070, 127, 10, 0x0000, 0, 100 },  // SEQ_LEVEL_SPOOKY
     { 0x0000, 127, 100, 0x0070, 0, 10 },  // SEQ_LEVEL_SPOOKY
-    { 0xffff, 127, 100, 0x0000, 0, 100 }, // any (unused)
+    { 0x0205, 127, 50, 0x0060, 0, 50 },
+    { 0x0060, 127, 50, 0x0205, 0, 50 }, // any (unused)
+    
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },
@@ -296,6 +303,8 @@ u8 sBackgroundMusicDefaultVolume[] = {
     70,  // SEQ_EVENT_CUTSCENE_ENDING
     65,  // SEQ_MENU_FILE_SELECT
     0,   // SEQ_EVENT_CUTSCENE_LAKITU (not in JP)
+    80,
+    80,
     80,
     80,
     80,

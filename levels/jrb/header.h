@@ -92,4 +92,12 @@ extern const LevelScript level_jrb_entry[];
 
 #include "levels/jrb/rotating_stone_cylinder/geo_header.h"
 
+#include "levels/jrb/stone_elevator/collision_header.h"
+
+#include "levels/jrb/stone_elevator/geo_header.h"
+
+#include "levels/jrb/extending_stone_bridge/collision_header.h"
+
+#include "levels/jrb/extending_stone_bridge/geo_header.h"
+
 #endif

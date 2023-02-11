@@ -663,11 +663,11 @@ void render_hud(void) {
 #endif
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT) {
-            //render_hud_coins();
+            render_hud_coins();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT) {
-            //render_hud_stars();
+            render_hud_stars();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_KEYS) {
@@ -678,16 +678,14 @@ void render_hud(void) {
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_BREATH_METER) render_hud_breath_meter();
 #endif
 
+        if (gBossMaxHealth > 0) {
+            render_boss_health();
+        }
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
             render_hud_power_meter();
             render_dl_dpad_patches(2);
-#ifdef PUPPYCAM
-            if (!gPuppyCam.enabled) {
-#endif
-            //render_hud_camera_status();
-#ifdef PUPPYCAM
-            }
-#endif
+            render_hud_camera_status();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {

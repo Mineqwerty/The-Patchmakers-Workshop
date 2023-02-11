@@ -2757,7 +2757,7 @@ s32 render_pause_courses_and_castle(void) {
                 common_patch_cancel(gMarioState);
                 gMarioState->equippedPatch = gPatchIndex;
                 gMarioState->updatePatch = 1;
-                gMarioState->iceFloorObj = NULL;
+                gMarioState->patchChildObj = NULL;
                 play_sound(SOUND_MENU_READ_A_SIGN, gGlobalSoundSource);
 
 

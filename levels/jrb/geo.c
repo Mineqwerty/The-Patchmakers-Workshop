@@ -31,3 +31,5 @@
 #include "levels/jrb/enemy_obelisk/geo.inc.c"
 #include "levels/jrb/forcefield/geo.inc.c"
 #include "levels/jrb/rotating_stone_cylinder/geo.inc.c"
+#include "levels/jrb/stone_elevator/geo.inc.c"
+#include "levels/jrb/extending_stone_bridge/geo.inc.c"

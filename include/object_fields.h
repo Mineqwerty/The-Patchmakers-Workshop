@@ -130,7 +130,7 @@
 #define /*0x140*/ oParentRelativePosZ                           OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_Z_INDEX)
 /* Common fields */
 #define /*0x144*/ oBehParams2ndByte                             OBJECT_FIELD_S32(0x2F)
-// 0x148 unused, possibly a third param byte.
+#define /*0x144*/ oPrimColorParams                             OBJECT_FIELD_S32(0x30)
 #define /*0x14C*/ oAction                                       OBJECT_FIELD_S32(0x31)
 #define /*0x150*/ oSubAction                                    OBJECT_FIELD_S32(0x32)
 #define /*0x154*/ oTimer                                        OBJECT_FIELD_S32(0x33)
@@ -1294,6 +1294,19 @@
 
 //fire smoke
 #define oFireSmokeScale        OBJECT_FIELD_F32(0x1B)
+
+//value coin
+#define oHaloCoinValue        OBJECT_FIELD_S32(0x1B)
+#define oHaloCoinNumReds        OBJECT_FIELD_S32(0x1C)
+
+//gold blob
+#define oGoldBlobDistX        OBJECT_FIELD_F32(0x1B)
+#define oGoldBlobDistY        OBJECT_FIELD_F32(0x1C)
+#define oGoldBlobDistZ        OBJECT_FIELD_F32(0x1D)
+#define oGoldBlobCount        OBJECT_FIELD_F32(0x1E)
+
+//stc beat object
+#define oBeatNumber        OBJECT_FIELD_S32(0x1B)
 
 /*Custom general defines:
 

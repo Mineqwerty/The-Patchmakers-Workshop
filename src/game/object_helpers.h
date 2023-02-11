@@ -62,6 +62,7 @@ enum GeoUpdateLayerTransparencyModes {
 Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context);
 void obj_update_pos_from_parent_transformation(Mat4 mtx, struct Object *obj);
@@ -74,6 +75,7 @@ void cur_obj_forward_vel_approach_upward(f32 target, f32 increment);
 s32 cur_obj_rotate_yaw_toward(s16 target, s16 increment);
 s32 obj_angle_to_object(struct Object *obj1, struct Object *obj2);
 s32 obj_turn_toward_object(struct Object *obj, struct Object *target, s16 angleIndex, s16 turnAmount);
+s32 obj_turn_toward_position(struct Object *obj, f32 x, f32 y, f32 z, s16 angleIndex, s16 turnAmount);
 void obj_set_parent_relative_pos(struct Object *obj, s16 relX, s16 relY, s16 relZ);
 void obj_set_pos(struct Object *obj, s16 x, s16 y, s16 z);
 void obj_set_angle(struct Object *obj, s16 pitch, s16 yaw, s16 roll);

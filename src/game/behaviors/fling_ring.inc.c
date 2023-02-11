@@ -2,8 +2,9 @@ void bhv_fling_ring_loop(void) {
     if (o->oAction == 0 && o->oDistanceToMario < 300.0f) {
         gMarioState->faceAngle[1] = o->oFaceAngleYaw;
         gMarioState->action = ACT_TRIPLE_JUMP;
-        gMarioState->vel[1] = 40.0f;
-        gMarioState->forwardVel = 90.0f;
+        gMarioState->vel[1] = 40.0f - (o->oFaceAnglePitch / 0x199);
+        gMarioState->forwardVel = 90.0f - absi(o->oFaceAnglePitch / 0xB6);
+        set_mario_animation(gMarioState, MARIO_ANIM_FORWARD_FLIP);
         o->oAction = 1;
     }
 

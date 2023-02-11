@@ -1,0 +1,10 @@
+extern const GeoLayout gold_fragment_geo[];
+extern Lights1 gold_fragment_darkgold_001_layer1_lights;
+extern u8 gold_fragment_goldblob_ci8[];
+extern u8 gold_fragment_goldblob_ci8_pal_rgba16[];
+extern Vtx gold_fragment_Plane_012_mesh_layer_1_vtx_0[6];
+extern Gfx gold_fragment_Plane_012_mesh_layer_1_tri_0[];
+extern Gfx mat_gold_fragment_darkgold_001_layer1[];
+extern Gfx mat_revert_gold_fragment_darkgold_001_layer1[];
+extern Gfx gold_fragment_Plane_012_mesh_layer_1[];
+extern Gfx gold_fragment_material_revert_render_settings[];

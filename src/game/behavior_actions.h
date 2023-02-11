@@ -129,6 +129,7 @@ void bhv_init_room(void);
 void bhv_small_water_wave_loop(void);
 void bhv_yellow_coin_init(void);
 void bhv_yellow_coin_loop(void);
+void bhv_coin_with_value_loop(void);
 void bhv_squarish_path_moving_loop(void);
 void bhv_heave_ho_loop(void);
 void bhv_heave_ho_throw_mario_loop(void);
@@ -605,6 +606,11 @@ void bhv_stone_tower_door_loop(void);
 
 void bhv_stone_gear_loop(void);
 
+void bhv_stone_elevator_loop(void);
+
+void bhv_extending_stone_bridge_init(void);
+void bhv_extending_stone_bridge_loop(void);
+
 void bhv_grapple_hook_init(void);
 void bhv_grapple_hook_loop(void);
 void bhv_grapple_line_loop(void);
@@ -649,6 +655,10 @@ void bhv_spekturr_loop(void);
 void bhv_star_gate_loop(void);
 
 void bhv_fling_ring_loop(void);
+
+void bhv_gold_blob_loop(void);
+
+void bhv_gold_fragment_loop(void);
 
 void bhv_patchmaker_init(void);
 void bhv_patchmaker_loop(void);

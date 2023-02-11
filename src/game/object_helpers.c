@@ -171,6 +171,39 @@ Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void
     return dlStart;
 }
 
+Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+   Gfx *dlStart, *dlHead;
+    struct Object *objectGraphNode;
+    struct GraphNodeGenerated *currentGraphNode;
+
+    dlStart = NULL;
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        
+        objectGraphNode = (struct Object *) gCurGraphNodeObject;
+        currentGraphNode = (struct GraphNodeGenerated *) node;
+        
+
+        u8 red = GET_BPARAM1(objectGraphNode->oPrimColorParams);
+        u8 green = GET_BPARAM2(objectGraphNode->oPrimColorParams);
+        u8 blue = GET_BPARAM3(objectGraphNode->oPrimColorParams);
+        u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
+
+        
+        
+        dlStart = alloc_display_list(sizeof(Gfx) * 2);
+
+        dlHead = dlStart;
+
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE);
+
+        gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255);
+        gSPEndDisplayList(dlHead);
+    }
+
+    return dlStart;
+}
+
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context) {
     if (callContext == GEO_CONTEXT_RENDER) {
         struct Object *obj = gCurGraphNodeObjectNode;
@@ -357,6 +390,35 @@ s32 obj_turn_toward_object(struct Object *obj, struct Object *target, s16 angleI
         case O_FACE_ANGLE_YAW_INDEX:
             d[0] = target->oPosX - obj->oPosX;
             d[2] = target->oPosZ - obj->oPosZ;
+
+            targetAngle = atan2s(d[2], d[0]);
+            break;
+    }
+
+    startAngle = o->rawData.asU32[angleIndex];
+    o->rawData.asU32[angleIndex] = approach_s16_symmetric(startAngle, targetAngle, turnAmount);
+    return targetAngle;
+}
+
+s32 obj_turn_toward_position(struct Object *obj, f32 x, f32 y, f32 z, s16 angleIndex, s16 turnAmount) {
+    Vec3f d;
+    s16 targetAngle = 0x0;
+    s16 startAngle;
+
+    switch (angleIndex) {
+        case O_MOVE_ANGLE_PITCH_INDEX:
+        case O_FACE_ANGLE_PITCH_INDEX:
+            d[0] = x - obj->oPosX;
+            d[1] = y + obj->oPosY;
+            d[2] = z - obj->oPosZ;
+
+            targetAngle = atan2s(sqrtf(sqr(d[0]) + sqr(d[2])), d[1]);
+            break;
+
+        case O_MOVE_ANGLE_YAW_INDEX:
+        case O_FACE_ANGLE_YAW_INDEX:
+            d[0] = x - obj->oPosX;
+            d[2] = x - obj->oPosZ;
 
             targetAngle = atan2s(d[2], d[0]);
             break;

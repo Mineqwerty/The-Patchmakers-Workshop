@@ -1,0 +1,9 @@
+extern const GeoLayout extending_stone_bridge_geo[];
+extern u8 extending_stone_bridge_RMGP01_42c04f35_14_mip2_ci4[];
+extern u8 extending_stone_bridge_RMGP01_42c04f35_14_mip2_ci4_pal_rgba16[];
+extern Vtx extending_stone_bridge_Cube_005_mesh_layer_1_vtx_0[24];
+extern Gfx extending_stone_bridge_Cube_005_mesh_layer_1_tri_0[];
+extern Gfx mat_extending_stone_bridge_f3d_material_005[];
+extern Gfx mat_revert_extending_stone_bridge_f3d_material_005[];
+extern Gfx extending_stone_bridge_Cube_005_mesh_layer_1[];
+extern Gfx extending_stone_bridge_material_revert_render_settings[];

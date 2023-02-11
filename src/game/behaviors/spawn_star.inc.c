@@ -151,7 +151,7 @@ void spawn_bp3_star(f32 x, f32 y, f32 z) {
 
 void spawn_arena_star_stc(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
-    starObj = spawn_star(starObj, -9646, 1045, 8968);
+    starObj = spawn_star(starObj, -9646, 3645, 8968);
     starObj->oBehParams2ndByte = 0x03030000;
 }
 

@@ -55,6 +55,10 @@ u8 gCacheEmulated = TRUE;
 u8 gBorderHeight;
 u8 gSlowdownCount;
 u8 gMarioWaterwalk;
+u8 gBossHealth;
+u8 gBossMaxHealth;
+u32 gTatumCount;
+u8 gTatumStall;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;
 #endif

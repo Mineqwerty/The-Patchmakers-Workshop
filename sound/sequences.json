@@ -72,13 +72,13 @@
         "21"
     ],
     "14_event_race": [
-        "1A"
+        "0C"
     ],
     "15_cutscene_star_spawn": [
         "0E"
     ],
     "16_event_boss": [
-        "1B"
+        "0C"
     ],
     "17_cutscene_collect_key": [
         "1A"
@@ -149,5 +149,11 @@
     ],
     "2B_patchmaker_theme": [
         "0C"
+    ],
+    "2C_gold_soaked_sky": [
+        "0C"
+    ],
+    "2D_gold_soaked_sky_select": [
+        "14_piranha_music_box"
     ]
 }

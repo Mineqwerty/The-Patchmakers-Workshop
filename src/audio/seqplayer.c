@@ -6,6 +6,8 @@
 #include "heap.h"
 #include "load.h"
 #include "seqplayer.h"
+#include "src/game/game_init.h"
+#include "src/game/level_update.h"
 
 #ifdef VERSION_SH
 void seq_channel_layer_process_script_part1(struct SequenceChannelLayer *layer);
@@ -21,6 +23,8 @@ u32 get_instrument(struct SequenceChannel *seqChannel, u8 instId, struct Instrum
 
 void sequence_channel_init(struct SequenceChannel *seqChannel) {
     s32 i;
+
+    gTatumCount = 0;
 
     seqChannel->enabled = FALSE;
     seqChannel->finished = FALSE;
@@ -2290,6 +2294,15 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
     }
     seqPlayer->tempoAcc -= (u16) gTempoInternalToExternal;
 
+    if (sCurrPlayMode != PLAY_MODE_PAUSED) {
+        if (gTatumCount % 505 == 0) {
+            gTatumCount+= 2;
+        }
+        else {
+            gTatumCount++;
+        }
+    }
+
     state = &seqPlayer->scriptState;
     if (seqPlayer->delay > 1) {
         seqPlayer->delay--;
@@ -2364,6 +2377,7 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                     case 0xfa: // seq_beqz; jump if == 0
                     case 0xf9: // seq_bltz; jump if < 0
                     case 0xf5: // seq_bgez; jump if >= 0
+                    gTatumCount = 0;
                         u16v = m64_read_s16(state);
                         if (cmd == 0xfa && value != 0) {
                             break;
