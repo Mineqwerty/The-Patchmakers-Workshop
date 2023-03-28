@@ -118,6 +118,7 @@ const LevelScript level_main_scripts_entry[] = {
 #endif
 
     LOAD_MODEL_FROM_GEO(MODEL_SL_CRACKED_ICE_CHUNK,            sl_geo_000378),
+    LOAD_MODEL_FROM_GEO(MODEL_FIRE_SMOKE,            fire_smoke_geo),
 
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_MARIO_STONE,            patch_mario_stone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_SPIKES,            ice_spikes_geo),
@@ -127,7 +128,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_HOOK,            grapple_hook_geo),
     LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_LINE,            grapple_line_geo),
     LOAD_MODEL_FROM_GEO(MODEL_HALO,            halo_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_FIRE_SMOKE,            fire_smoke_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PORTAL,            portal_geo),
+    
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),

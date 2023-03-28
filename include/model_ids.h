@@ -115,7 +115,7 @@
 // sl
 #define MODEL_SL_SNOW_TRIANGLE                 0x36        // sl_geo_000390
 #define MODEL_SL_CRACKED_ICE                   0x37        // sl_geo_000360 - unused
-#define MODEL_SL_CRACKED_ICE_CHUNK             0x38        // sl_geo_000378 - unused
+     // sl_geo_000378 - unused
 
 // wdw
 #define MODEL_WDW_SQUARE_FLOATING_PLATFORM        0x36        // wdw_geo_000580
@@ -575,6 +575,15 @@
 #define MODEL_ROTATING_STONE_CYLINDER                   0x105
 #define MODEL_STONE_ELEVATOR                   0x106
 #define MODEL_EXTENDING_STONE_BRIDGE                   0x107
+#define MODEL_FALLING_STONE_BLOCK_1                   0x108
+#define MODEL_FALLING_STONE_BLOCK_2                   0x109
+#define MODEL_FALLING_STONE_BLOCK_3                   0x10A
+#define MODEL_FALLING_STONE_BLOCK_4                   0x10B
+#define MODEL_FALLING_STONE_BLOCK_5                   0x10C
+#define MODEL_FALLING_STONE_BLOCK_6                   0x10D
+#define MODEL_FALLING_STONE_BLOCK_7                   0x10E
+#define MODEL_FORCEFIELD_NO_INSIDE                   0x10F
+#define MODEL_FALLING_STONE_BLOCK_SHADOW                   0x110
 
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
@@ -588,6 +597,10 @@
 #define MODEL_GOLD_BLOB                   0x109
 #define MODEL_GOLD_SWORD                  0x10A
 #define MODEL_GOLD_FRAGMENT                 0x10B
+#define MODEL_SERAPHIM                 0x10C
+#define MODEL_GOLD_SPIKE_BALL                 0x10D
+
+#define MODEL_FLOATING_PLANE                   0x100
 
 #define MODEL_PATCHMAKER                   0x110
 
@@ -603,6 +616,8 @@
 #define MODEL_GRAPPLE_LINE                 0x196
 #define MODEL_SKYBOX_TEST                0x197
 #define MODEL_HALO                0x198
+#define MODEL_SL_CRACKED_ICE_CHUNK             0x199
+#define MODEL_PORTAL             0x19A
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

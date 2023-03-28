@@ -100,4 +100,36 @@ extern const LevelScript level_jrb_entry[];
 
 #include "levels/jrb/extending_stone_bridge/geo_header.h"
 
+#include "levels/jrb/falling_stone_1/geo_header.h"
+
+#include "levels/jrb/falling_stone_1/collision_header.h"
+
+#include "levels/jrb/falling_stone_2/collision_header.h"
+
+#include "levels/jrb/falling_stone_2/geo_header.h"
+
+#include "levels/jrb/falling_stone_3/geo_header.h"
+
+#include "levels/jrb/falling_stone_3/collision_header.h"
+
+#include "levels/jrb/falling_stone_4/geo_header.h"
+
+#include "levels/jrb/falling_stone_4/collision_header.h"
+
+#include "levels/jrb/falling_stone_5/geo_header.h"
+
+#include "levels/jrb/falling_stone_5/collision_header.h"
+
+#include "levels/jrb/falling_stone_6/geo_header.h"
+
+#include "levels/jrb/falling_stone_7/collision_header.h"
+
+#include "levels/jrb/falling_stone_7/geo_header.h"
+
+#include "levels/jrb/falling_stone_6/collision_header.h"
+
+#include "levels/jrb/forcefield_no_inside/geo_header.h"
+
+#include "levels/jrb/falling_stone_shadow/geo_header.h"
+
 #endif

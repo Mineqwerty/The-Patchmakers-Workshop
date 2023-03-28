@@ -53,6 +53,8 @@ enum HUDFlashModes {
 
 extern s8 gHudFlash;
 
+extern s8 gDialogBoxState;
+extern u8 gPageNum;
 extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
 

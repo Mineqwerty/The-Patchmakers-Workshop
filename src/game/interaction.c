@@ -724,6 +724,35 @@ u32 take_damage_from_interact_object(struct MarioState *m) {
     return damage;
 }
 
+u32 take_damage_from_no_interact_object(struct MarioState *m, s32 damage) {
+    s32 shake;
+
+    if (damage >= 4) {
+        shake = SHAKE_LARGE_DAMAGE;
+    } else if (damage >= 2) {
+        shake = SHAKE_MED_DAMAGE;
+    } else {
+        shake = SHAKE_SMALL_DAMAGE;
+    }
+
+    if (!(m->flags & MARIO_CAP_ON_HEAD)) {
+        damage += (damage + 1) / 2;
+    }
+
+    if (m->flags & MARIO_METAL_CAP) {
+        damage = 0;
+    }
+
+    m->hurtCounter += 4 * damage;
+
+#if ENABLE_RUMBLE
+    queue_rumble_data(5, 80);
+#endif
+    set_camera_shake_from_hit(shake);
+
+    return damage;
+}
+
 u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
     u32 damage;
 
@@ -2017,6 +2046,7 @@ void check_gss_cloud_warp(struct MarioState *m) {
                 switch(gMarioState->haloCaptureType) {
                     case 1:
                         gMarioState->patchChildObj->oHaloCapturedObject = spawn_object(gMarioState->patchChildObj, MODEL_NONE, bhvFireSmokeSpawner);
+                        gMarioState->haloCaptureType = 0;
                     break;
                 }
             }
@@ -2057,6 +2087,26 @@ void pss_end_slide(struct MarioState *m) {
     }
 }
 
+void check_hurt_floor(struct MarioState *m) {
+    if (m->pos[1] < m->floorHeight + 2048.0f) {
+        
+        
+            if (m->health > 0xFF*3) {
+                play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
+            take_damage_from_no_interact_object(m, 2);
+            }
+            else {
+                if (level_trigger_warp(m, WARP_OP_WARP_FLOOR) == 20 && !(m->flags & MARIO_FALL_SOUND_PLAYED)) {
+                    
+            play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
+        }
+            }
+        
+        
+        set_mario_action(m, ACT_FLOOR_CHECKPOINT_WARP_OUT, m->floor->force);
+    }
+}
+
 void mario_handle_special_floors(struct MarioState *m) {
     if ((m->action & ACT_GROUP_MASK) == ACT_GROUP_CUTSCENE) {
         return;
@@ -2083,6 +2133,10 @@ void mario_handle_special_floors(struct MarioState *m) {
                 pss_end_slide(m);
                 break;
 
+            case SURFACE_HURT_FLOOR:
+                check_hurt_floor(m);
+                break;
+
             case SURFACE_GSS_CLOUD_WARP:
                 check_gss_cloud_warp(m);
                 break;
@@ -2105,5 +2159,7 @@ void mario_handle_special_floors(struct MarioState *m) {
                 }
         }
     }
+
+    if ((m->action & ACT_GROUP_MASK) <= ACT_GROUP_MOVING) check_mario_floor_checkpoint(m);
 }
 }

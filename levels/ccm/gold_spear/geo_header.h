@@ -1,0 +1,11 @@
+extern const GeoLayout gold_spear_geo[];
+extern Lights1 gold_spear_f3dlite_material_004_lights;
+extern u8 gold_spear_gilded_ci8[];
+extern u8 gold_spear_gilded_ci8_pal_rgba16[];
+extern Vtx gold_spear_Cube_001_mesh_layer_1_vtx_cull[8];
+extern Vtx gold_spear_Cube_001_mesh_layer_1_vtx_0[209];
+extern Gfx gold_spear_Cube_001_mesh_layer_1_tri_0[];
+extern Gfx mat_gold_spear_f3dlite_material_004[];
+extern Gfx mat_revert_gold_spear_f3dlite_material_004[];
+extern Gfx gold_spear_Cube_001_mesh_layer_1[];
+extern Gfx gold_spear_material_revert_render_settings[];

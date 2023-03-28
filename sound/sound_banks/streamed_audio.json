@@ -23,9 +23,15 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "26_custom_seq_streamed_rain"
+        },
+        "inst1": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "2E_custom_chamber"
         }
     },
     "instrument_list": [
-        "inst0"
+        "inst0",
+        "inst1"
     ]
 }

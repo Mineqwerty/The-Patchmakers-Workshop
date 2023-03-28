@@ -519,9 +519,6 @@ extern const BehaviorScript bhvEyerokBoss[];
 extern const BehaviorScript bhvEyerokHand[];
 extern const BehaviorScript bhvKlepto[];
 extern const BehaviorScript bhvBird[];
-extern const BehaviorScript bhvRacingPenguin[];
-extern const BehaviorScript bhvPenguinRaceFinishLine[];
-extern const BehaviorScript bhvPenguinRaceShortcutCheck[];
 extern const BehaviorScript bhvCoffinSpawner[];
 extern const BehaviorScript bhvCoffin[];
 extern const BehaviorScript bhvClamShell[];
@@ -593,5 +590,12 @@ extern const BehaviorScript bhvGoldBlob[];
 extern const BehaviorScript bhvGoldFragment[];
 extern const BehaviorScript bhvStoneElevator[];
 extern const BehaviorScript bhvExtendingStoneBridge[];
+extern const BehaviorScript bhvFallingStoneBlock[];
+extern const BehaviorScript bhvFallingStoneBlockShadow[];
+extern const BehaviorScript bhvBanishFragment[];
+extern const BehaviorScript bhvSeraphim[];
 
 #endif // BEHAVIOR_DATA_H
+
+extern const BehaviorScript bhvFloatingPlane[];
+extern const BehaviorScript bhvPortal[];

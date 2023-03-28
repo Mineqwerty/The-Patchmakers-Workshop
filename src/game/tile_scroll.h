@@ -16,4 +16,5 @@ void shift_s(Gfx *dl, u32 cmd, u16 s);
 void shift_t(Gfx *dl, u32 cmd, u16 t);
 void shift_s_down(Gfx *dl, u32 cmd, u16 s);
 void shift_t_down(Gfx *dl, u32 cmd, u16 t);
+void align_st_to_cam(Gfx *dl, u32 cmd);
 

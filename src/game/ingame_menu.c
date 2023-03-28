@@ -1305,7 +1305,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
     }
     if (gDialogRenderLineNum < 4 && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
     gDialogCharNum++;
-    play_sound(SOUND_SEWNIA_BLURB, gGlobalSoundSource);
+    //play_sound(SOUND_SEWNIA_BLURB, gGlobalSoundSource);
     }
 
     if (gDialogRenderLineNum == 4 || pageState != DIALOG_PAGE_STATE_NONE) {
@@ -2469,6 +2469,9 @@ void render_patch_selection() {
     if (patchFlags & (1 << 3)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_halo_patch_halo_mesh);
     }
+    //if (patchFlags & (1 << 4)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
+    //}
 
     //selector
     if (gSubMenuIndex == 2) {
@@ -2757,7 +2760,6 @@ s32 render_pause_courses_and_castle(void) {
                 common_patch_cancel(gMarioState);
                 gMarioState->equippedPatch = gPatchIndex;
                 gMarioState->updatePatch = 1;
-                gMarioState->patchChildObj = NULL;
                 play_sound(SOUND_MENU_READ_A_SIGN, gGlobalSoundSource);
 
 
@@ -3084,7 +3086,7 @@ s32 render_menus_and_dialogs(void) {
             return mode;
         }
 
-        if (gDialogID == DIALOG_017 || gDialogID == DIALOG_060) {
+        if (gDialogID == DIALOG_017) {
             new_dialog_render_automatic_dialog();
         }
         else {

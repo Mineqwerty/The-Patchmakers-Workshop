@@ -29,3 +29,4 @@
 #include "grapple_line/geo.inc.c"
 #include "halo/geo.inc.c"
 #include "fire_smoke/geo.inc.c"
+#include "portal/geo.inc.c"

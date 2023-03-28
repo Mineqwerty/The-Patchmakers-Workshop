@@ -63,6 +63,7 @@ Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphN
 Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_update_transparent_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context);
 void obj_update_pos_from_parent_transformation(Mat4 mtx, struct Object *obj);

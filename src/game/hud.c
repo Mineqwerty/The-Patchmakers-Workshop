@@ -618,6 +618,54 @@ void render_hud_camera_status(void) {
     gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
 }
 
+void render_hud_boss_intro(void) {
+
+    char *bossTitles[2] = {
+        "Pushpin Pokey",
+        "Aurumcael"
+    };
+    u8 bossTitleColor[3];
+    switch (gHudDisplay.bossID) {
+        case 2:
+            bossTitleColor[0] = 222;
+            bossTitleColor[1] = 181;
+            bossTitleColor[2] = 58;
+        break;
+        default:
+            bossTitleColor[0] = 255;
+            bossTitleColor[1] = 255;
+            bossTitleColor[2] = 255;
+        break;
+    }
+
+    s32 flavorAlpha = gHudDisplay.bossIntroTimer * 10;
+    if (flavorAlpha > 255) {
+        flavorAlpha = 255;
+    }
+    print_set_envcolour(255, 255, 255, flavorAlpha);
+    print_small_text(160, 140, "Goddess of an empty heaven", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+
+    s32 titleAlpha = (gHudDisplay.bossIntroTimer - 60) * 10;
+    if (titleAlpha > 255) {
+        titleAlpha = 255;
+    }
+    if (titleAlpha < 0) {
+        titleAlpha = 0;
+    }
+
+    
+    print_set_envcolour(bossTitleColor[0], bossTitleColor[1], bossTitleColor[2], titleAlpha);
+    print_small_text(160, 160, bossTitles[gHudDisplay.bossID - 1], PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+
+    gHudDisplay.bossIntroTimer++;
+
+    if (gHudDisplay.bossIntroTimer > 150) {
+        gHudDisplay.bossIntroTimer = 0;
+        gHudDisplay.bossID = 0;
+        gHudDisplay.flags &= ~HUD_DISPLAY_BOSS_INTRO;
+    }
+}
+
 /**
  * Render HUD strings using hudDisplayFlags with it's render functions,
  * excluding the cannon reticle which detects a camera preset for it.
@@ -690,6 +738,10 @@ void render_hud(void) {
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {
             render_hud_timer();
+        }
+
+        if (hudDisplayFlags & HUD_DISPLAY_BOSS_INTRO) {
+            render_hud_boss_intro();
         }
 
         if (gSurfacePoolError & NOT_ENOUGH_ROOM_FOR_SURFACES) print_text(10, 40, "SURFACE POOL FULL");

@@ -391,4 +391,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 
 #include "mario/anim_header.h"
+#include "portal/geo_header.h"
+
+#include "menu_patch_portal/header.h"
+
 #endif

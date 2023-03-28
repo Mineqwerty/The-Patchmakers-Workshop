@@ -382,20 +382,22 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                 m->faceAngle[1] += 0x8000;
 
                 if (m->wall != NULL) {
+                    /*
                     if (m->equippedPatch == 3 && gPlayer1Controller->buttonDown & L_TRIG) {
 
                         m->faceAngle[1] += 0x8000;
 
-                        if (m->wall->object && m->wallObj == NULL) {
-                            m->wallObj = m->wall->object;
+                        if (m->wall->object && m->lastFrameObj == NULL) {
+                            m->lastFrameObj = m->wall->object;
                         }
                         
                         set_mario_animation(m, MARIO_ANIM_START_WALLKICK);
                         set_mario_action(m, ACT_GRAPPLE_WALL, 0);
                     }
                     else {
+                        */
                         set_mario_action(m, ACT_AIR_HIT_WALL, 0);
-                    }
+                    //}
                 } else {
                     if (m->vel[1] > 0.0f) {
                         m->vel[1] = 0.0f;
@@ -1345,26 +1347,66 @@ s32 act_grapple_wall(struct MarioState *m) {
     struct Surface *surf;
     Vec3f hitpos;
     Vec3f raydir;
+    Vec3f objDiff;
+
+    hitpos[0] = 0;
+    hitpos[1] = 0;
+    hitpos[2] = 0;
 
     raydir[0] = sins(m->faceAngle[1]+0x8000) * 150.0f;
+    raydir[1] = 0;
     raydir[2] = coss(m->faceAngle[1]+0x8000) * 150.0f;
 
     if (m->input & INPUT_A_PRESSED) {
+        m->lastFrameObj = NULL;
+        m->lastFrameObjPosition[0] = 0;
+            m->lastFrameObjPosition[1] = 0;
+            m->lastFrameObjPosition[2] = 0;
         return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
     }
 
-    find_surface_on_ray(m->pos, raydir, &surf, &hitpos, 2U, 1);
+    if (m->lastFrameObj) {
+        objDiff[0] = m->lastFrameObj->oPosX - m->lastFrameObjPosition[0];
+        objDiff[1] = m->lastFrameObj->oPosY - m->lastFrameObjPosition[1];
+        objDiff[2] = m->lastFrameObj->oPosZ - m->lastFrameObjPosition[2];
+    }
+    else {
+        objDiff[0] = 0;
+        objDiff[1] = 0;
+        objDiff[2] = 0;
+    }
+
+    Vec3f rayOrigin;
+    rayOrigin[0] = m->pos[0] + objDiff[0];
+    rayOrigin[1] = m->pos[1] + objDiff[1];
+    rayOrigin[2] = m->pos[2] + objDiff[2];
+
+    find_surface_on_ray(rayOrigin, raydir, &surf, hitpos, 2U, 1);
     if (surf == NULL) {
         Vec3f highPos;
-        vec3f_set(&highPos, m->pos[0], m->pos[1] + 100, m->pos[2]);
-        find_surface_on_ray(highPos, raydir, &surf, &hitpos, 2U, 1);
+        vec3f_set(&highPos, rayOrigin[0], rayOrigin[1] + 100, rayOrigin[2]);
+        find_surface_on_ray(highPos, raydir, &surf, hitpos, 2U, 1);
     }
     if (surf == NULL) {
+        m->lastFrameObj = NULL;
+        m->lastFrameObjPosition[0] = 0;
+            m->lastFrameObjPosition[1] = 0;
+            m->lastFrameObjPosition[2] = 0;
         return set_mario_action(m, ACT_FREEFALL, 0);
     } else {
         gMarioState->faceAngle[1] = atan2s(surf->normal.z, surf->normal.x);
         if (surf->object != NULL) {
             apply_platform_displacement(&sMarioDisplacementInfo, m->pos, &m->faceAngle[1], surf->object);
+            m->lastFrameObj = surf->object;
+            m->lastFrameObjPosition[0] = surf->object->oPosX;
+            m->lastFrameObjPosition[1] = surf->object->oPosY;
+            m->lastFrameObjPosition[2] = surf->object->oPosZ;
+            }
+            else {
+                m->lastFrameObj = NULL;
+                m->lastFrameObjPosition[0] = 0;
+            m->lastFrameObjPosition[1] = 0;
+            m->lastFrameObjPosition[2] = 0;
             }
     }
 

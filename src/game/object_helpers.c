@@ -187,7 +187,7 @@ Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *no
         u8 red = GET_BPARAM1(objectGraphNode->oPrimColorParams);
         u8 green = GET_BPARAM2(objectGraphNode->oPrimColorParams);
         u8 blue = GET_BPARAM3(objectGraphNode->oPrimColorParams);
-        u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
+        //u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
 
         
         
@@ -196,6 +196,39 @@ Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *no
         dlHead = dlStart;
 
         SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE);
+
+        gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255);
+        gSPEndDisplayList(dlHead);
+    }
+
+    return dlStart;
+}
+
+Gfx *geo_update_transparent_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+   Gfx *dlStart, *dlHead;
+    struct Object *objectGraphNode;
+    struct GraphNodeGenerated *currentGraphNode;
+
+    dlStart = NULL;
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        
+        objectGraphNode = (struct Object *) gCurGraphNodeObject;
+        currentGraphNode = (struct GraphNodeGenerated *) node;
+        
+
+        u8 red = GET_BPARAM1(objectGraphNode->oPrimColorParams);
+        u8 green = GET_BPARAM2(objectGraphNode->oPrimColorParams);
+        u8 blue = GET_BPARAM3(objectGraphNode->oPrimColorParams);
+        //u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
+
+        
+        
+        dlStart = alloc_display_list(sizeof(Gfx) * 2);
+
+        dlHead = dlStart;
+
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_TRANSPARENT);
 
         gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255);
         gSPEndDisplayList(dlHead);

@@ -526,10 +526,6 @@ void bhv_eyerok_hand_loop(void);
 void bhv_klepto_init(void);
 void bhv_klepto_update(void);
 void bhv_bird_update(void);
-void bhv_racing_penguin_init(void);
-void bhv_racing_penguin_update(void);
-void bhv_penguin_race_finish_line_update(void);
-void bhv_penguin_race_shortcut_check_update(void);
 void bhv_coffin_spawner_loop(void);
 void bhv_coffin_loop(void);
 void bhv_clam_loop(void);
@@ -624,6 +620,11 @@ void bhv_grapple_stone_loop(void);
 void bhv_rotating_stone_cylinder_loop(void);
 
 void bhv_enemy_obelisk_loop(void);
+void bhv_forcefield_loop(void);
+void bhv_falling_block_obelisk_loop(void);
+void bhv_falling_stone_block_loop(void);
+void bhv_falling_stone_block_init(void);
+void bhv_falling_stone_block_shadow_loop(void);
 
 void bhv_gold_cloud_loop(void);
 
@@ -659,6 +660,9 @@ void bhv_fling_ring_loop(void);
 void bhv_gold_blob_loop(void);
 
 void bhv_gold_fragment_loop(void);
+void bhv_banish_fragment_loop(void);
+
+void bhv_seraphim_loop(void);
 
 void bhv_patchmaker_init(void);
 void bhv_patchmaker_loop(void);
@@ -693,6 +697,17 @@ Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 
 
 Gfx *geo_switch_fire_smoke(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
+Gfx *geo_switch_falling_block_shadow(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+
+Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node);
+
+Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
+
 
 
 #endif // BEHAVIOR_ACTIONS_H
+
+void bhv_floating_plane_init(void);
+void bhv_floating_plane_loop(void);
+void bhv_portal_init(void);
+void bhv_portal_loop(void);

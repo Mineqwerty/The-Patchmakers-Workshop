@@ -1,3 +1,5 @@
+#include "src/game/obj_behaviors.h"
+
 struct SpawnParticlesInfo sSpekturrMist = {
     2, 15, MODEL_MIST, 0.0f, -30, 0, 10, 0, 2, 10, 8.0f, 3.0f
 };
@@ -26,6 +28,8 @@ static u8 sSpekturrAttackHandlers[] = {
     /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_KNOCKBACK,
     /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_KNOCKBACK,
 };
+
+s16 object_step_without_floor_orient();
 
 void bhv_spekturr_loop(void) {
     o->oGravity = 0;

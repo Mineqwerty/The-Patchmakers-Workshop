@@ -453,6 +453,14 @@ void warp_level(void) {
 
     level_control_timer(TIMER_CONTROL_HIDE);
 
+    gMarioState->portal1Position[0] = 0;
+    gMarioState->portal1Position[1] = 0;
+    gMarioState->portal1Position[2] = 0;
+
+    gMarioState->portal2Position[0] = 0;
+    gMarioState->portal2Position[1] = 0;
+    gMarioState->portal2Position[2] = 0;
+
     load_area(sWarpDest.areaIdx);
     init_mario_after_warp();
 }
@@ -1342,6 +1350,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     sWarpCheckpointActive = FALSE;
     gCurrLevelNum = levelNum;
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
+	if (gCurrLevelNum == LEVEL_SSL) return 0;
 	if (gCurrLevelNum == LEVEL_BBH) return 0;
 	if (gCurrLevelNum == LEVEL_BOWSER_1) return 0;
 	if (gCurrLevelNum == LEVEL_BITDW) return 0;

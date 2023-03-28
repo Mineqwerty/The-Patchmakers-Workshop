@@ -8,11 +8,11 @@ void bhv_generic_npc_init(void) {
     o->oInteractionSubtype = INT_SUBTYPE_NPC;
 
     if (cur_obj_has_model(MODEL_ROSEDRIFT)) {
-        o->oAnimations = rosedrift_anims;
+        o->oAnimations = (struct Animation **) rosedrift_anims;
         cur_obj_init_animation(0);
     }
     if (cur_obj_has_model(MODEL_TALOTAK)) {
-        o->oAnimations = talotak_anims;
+        o->oAnimations = (struct Animation **) talotak_anims;
         cur_obj_init_animation(0);
     }
 
@@ -28,7 +28,7 @@ void bhv_talotak_init(void) {
     o->oBuoyancy = 1.3f;
     o->oBounciness = 1.0f;
     o->oInteractionSubtype = INT_SUBTYPE_NOT_GRABBABLE;
-    o->oAnimations = talotak_anims;
+    o->oAnimations = (struct Animation **) talotak_anims;
     cur_obj_init_animation(0);
 }
 

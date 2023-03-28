@@ -71,3 +71,5 @@
 #include "levels/bbh/areas/1/movtext.inc.c"
 
 #include "levels/bbh/leveldata.inc.c"
+
+#include "levels/bbh/floating_plane/model.inc.c"

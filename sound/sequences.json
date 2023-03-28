@@ -14,7 +14,7 @@
         "0A_mario_peach"
     ],
     "01_cutscene_collect_star": [
-        "22"
+        "0C"
     ],
     "02_menu_title_screen": [
         "11"
@@ -155,5 +155,8 @@
     ],
     "2D_gold_soaked_sky_select": [
         "14_piranha_music_box"
+    ],
+    "2E_custom_chamber": [
+        "streamed_audio"
     ]
 }

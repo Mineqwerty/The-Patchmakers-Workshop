@@ -785,6 +785,7 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/bounce_bulb.inc.c"
 #include "behaviors/freezable_enemies.inc.c"
 #include "behaviors/spekturr.inc.c"
+#include "behaviors/seraphim.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.
@@ -810,7 +811,6 @@ void obj_spit_fire(s16 relativePosX, s16 relativePosY, s16 relativePosZ, f32 sca
 #include "behaviors/eyerok.inc.c"
 #include "behaviors/klepto.inc.c"
 #include "behaviors/bird.inc.c"
-#include "behaviors/racing_penguin.inc.c"
 #include "behaviors/coffin.inc.c"
 #include "behaviors/clam.inc.c"
 #include "behaviors/skeeter.inc.c"

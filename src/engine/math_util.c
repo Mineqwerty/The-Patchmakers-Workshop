@@ -1097,6 +1097,10 @@ s32 approach_s16_asymptotic(s16 current, s16 target, s16 divisor) {
     return current;
 }
 
+f32 get_relative_position_between_ranges(f32 x, f32 fromA, f32 toA, f32 fromB, f32 toB) {
+    return (x - fromA) / (toA - fromA) * (toB - fromB) + fromB;
+}
+
 s32 abs_angle_diff(s16 a0, s16 a1) {
     register s16 diff = (a1 - a0);
     if (diff == -0x8000) return 0x7FFF;

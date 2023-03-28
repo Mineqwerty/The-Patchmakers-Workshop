@@ -15,33 +15,6 @@ static struct ObjectHitbox sSewniaHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
-void bhv_sewnia_init(void) {
-    obj_set_hitbox(o, &sSewniaHitbox);
-    o->oAction = 1;
-    o->oGravity = -3.0f;
-}
-
-void bhv_sewnia_loop(void) {
-
-    cur_obj_update_floor_and_walls();
-    cur_obj_move_standard(-60);
-
-    switch (o->oAction) {
-        case 0:
-            sewnia_act_idle();
-        break;
-        case 1:
-            sewnia_act_follow_mario();
-        break;
-        case 2:
-            sewnia_act_talking_to_mario();
-        break;
-        case 3:
-            sewnia_act_cutscene();
-        break;
-    }
-}
-
 void sewnia_act_idle(void) {
     o->oInteractStatus = 0;
     cur_obj_init_animation(0);
@@ -69,11 +42,11 @@ void sewnia_act_follow_mario(void) {
 
         vec3f_set(originPos, o->oPosX, o->oPosY + 100.0f, o->oPosZ);
 
-        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
         if (surf != NULL) approachMode = 1;
-        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 1U, 1);
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 1U, 1);
         if (surf != NULL) approachMode = 1;
-        find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 4U, 1);
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
         if (surf != NULL) approachMode = 1;
 
 
@@ -109,6 +82,33 @@ void sewnia_act_talking_to_mario(void) {
 
 void sewnia_act_cutscene(void) {
 
+}
+
+void bhv_sewnia_init(void) {
+    obj_set_hitbox(o, &sSewniaHitbox);
+    o->oAction = 1;
+    o->oGravity = -3.0f;
+}
+
+void bhv_sewnia_loop(void) {
+
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(-60);
+
+    switch (o->oAction) {
+        case 0:
+            sewnia_act_idle();
+        break;
+        case 1:
+            sewnia_act_follow_mario();
+        break;
+        case 2:
+            sewnia_act_talking_to_mario();
+        break;
+        case 3:
+            sewnia_act_cutscene();
+        break;
+    }
 }
 
 Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {

@@ -5896,35 +5896,6 @@ const BehaviorScript bhvBird[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvRacingPenguin[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    LOAD_ANIMATIONS(oAnimations, penguin_seg5_anims_05008B74),
-    ANIMATE(PENGUIN_ANIM_IDLE),
-    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 300, /*Gravity*/ -800, /*Bounciness*/ -5, /*Drag strength*/ 0, /*Friction*/ 0, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
-    SCALE(/*Unused*/ 0, /*Field*/ 400),
-    CALL_NATIVE(bhv_racing_penguin_init),
-    BEGIN_LOOP(),
-        CALL_NATIVE(bhv_racing_penguin_update),
-    END_LOOP(),
-};
-
-const BehaviorScript bhvPenguinRaceFinishLine[] = {
-    BEGIN(OBJ_LIST_DEFAULT),
-    OR_INT(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    BEGIN_LOOP(),
-        CALL_NATIVE(bhv_penguin_race_finish_line_update),
-    END_LOOP(),
-};
-
-const BehaviorScript bhvPenguinRaceShortcutCheck[] = {
-    BEGIN(OBJ_LIST_DEFAULT),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    BEGIN_LOOP(),
-        CALL_NATIVE(bhv_penguin_race_shortcut_check_update),
-    END_LOOP(),
-};
-
 const BehaviorScript bhvCoffinSpawner[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -6342,6 +6313,7 @@ const BehaviorScript bhvStoneTowerDoor[] = {
     OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(stone_tower_door_collision),
     SET_FLOAT(oCollisionDistance, 4000),
+    SET_FLOAT(oDrawingDistance, 10000),
     CALL_NATIVE(bhv_stone_tower_door_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_stone_tower_door_loop),
@@ -6354,6 +6326,7 @@ const BehaviorScript bhvStoneGear[] = {
     OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(stone_gear_collision),
     SET_FLOAT(oCollisionDistance, 6000),
+    SET_FLOAT(oDrawingDistance, 10000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_stone_gear_loop),
         CALL_NATIVE(load_object_collision_model),
@@ -6389,8 +6362,9 @@ const BehaviorScript bhvHalo[] = {
 };
 
 const BehaviorScript bhvBackgroundObject[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 32000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_background_object_loop),
     END_LOOP(),
@@ -6398,9 +6372,9 @@ const BehaviorScript bhvBackgroundObject[] = {
 
 const BehaviorScript bhvGrappleStone[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(grapple_stone_collision),
-    SET_FLOAT(oCollisionDistance, 4000),
+    SET_FLOAT(oDrawingDistance, 10000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_grapple_stone_loop),
         CALL_NATIVE(load_object_collision_model),
@@ -6409,9 +6383,9 @@ const BehaviorScript bhvGrappleStone[] = {
 
 const BehaviorScript bhvStoneElevator[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(stone_elevator_collision),
-    SET_FLOAT(oCollisionDistance, 4000),
+    SET_FLOAT(oDrawingDistance, 10000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_stone_elevator_loop),
         CALL_NATIVE(load_object_collision_model),
@@ -6420,9 +6394,8 @@ const BehaviorScript bhvStoneElevator[] = {
 
 const BehaviorScript bhvExtendingStoneBridge[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(extending_stone_bridge_collision),
-    SET_FLOAT(oCollisionDistance, 4000),
     SET_FLOAT(oDrawingDistance, 32000),
     CALL_NATIVE(bhv_extending_stone_bridge_init),
     BEGIN_LOOP(),
@@ -6435,9 +6408,29 @@ const BehaviorScript bhvEnemyObelisk[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(enemy_obelisk_collision),
+    SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_enemy_obelisk_loop),
-        CALL_NATIVE(load_object_collision_model),
+        CALL_NATIVE(bhv_falling_block_obelisk_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFallingStoneBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    LOAD_COLLISION_DATA(falling_stone_1_collision),
+    SET_FLOAT(oDrawingDistance, 10000),
+    CALL_NATIVE(bhv_falling_stone_block_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_falling_stone_block_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFallingStoneBlockShadow[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_falling_stone_block_shadow_loop),
     END_LOOP(),
 };
 
@@ -6447,15 +6440,15 @@ const BehaviorScript bhvEnemyForcefield[] = {
     LOAD_COLLISION_DATA(forcefield_collision),
     SET_FLOAT(oCollisionDistance, 30000),
     BEGIN_LOOP(),
+        CALL_NATIVE(bhv_forcefield_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
 const BehaviorScript bhvRotatingStoneCylinder[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(rotating_stone_cylinder_collision),
-    SET_FLOAT(oCollisionDistance, 4000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_rotating_stone_cylinder_loop),
         CALL_NATIVE(load_object_collision_model),
@@ -6631,5 +6624,47 @@ const BehaviorScript bhvGoldFragment[] = {
     SET_FLOAT(oDrawingDistance, 30000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_gold_fragment_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBanishFragment[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    SET_INT(oIntangibleTimer, 0),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_banish_fragment_loop),
+        SET_INT(oInteractStatus, INT_STATUS_NONE),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSeraphim[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_INT(oIntangibleTimer, 0),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_seraphim_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFloatingPlane[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_floating_plane_init),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_plane_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPortal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    HIDE(),
+    CALL_NATIVE(bhv_portal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_portal_loop),
     END_LOOP(),
 };

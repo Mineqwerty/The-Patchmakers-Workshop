@@ -2003,7 +2003,9 @@ s32 act_hold_quicksand_jump_land(struct MarioState *m) {
 }
 
 s32 act_stone_patch_grounded(struct MarioState *m) {
-    act_walking(m);
+    //act_walking(m);
+
+    m->action = ACT_STONE_PATCH_AIR_LAND;
     
     if(m->forwardVel > 0) {
         //m->forwardVel -= 4;
@@ -2014,12 +2016,17 @@ s32 act_stone_patch_grounded(struct MarioState *m) {
 s32 act_stone_patch_air_land(struct MarioState *m) {
 
     //apply_slope_decel(m, 0.4f);
-    //perform_ground_step(m);
+    
 
     if (m->forwardVel != 0) {
         common_slide_action(m, ACT_STONE_PATCH_AIR_LAND, ACT_STONE_PATCH_AIRBORNE, m->animList);
         update_sliding(m, 7.0f);
     //cur_obj_play_sound_2(SOUND_ENV_SLIDING);
+    }
+    else {
+        if (perform_ground_step(m) == GROUND_STEP_LEFT_GROUND) {
+        set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);
+    }
     }
 
     return FALSE;

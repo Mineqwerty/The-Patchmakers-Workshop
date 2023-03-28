@@ -49,6 +49,7 @@ extern f32 gSineTable[];
 #define coss(x) gCosineTable[(u16) (x) >> 4]
 #define tans(x) (sins(x) / coss(x))
 #define cots(x) (coss(x) / sins(x))
+#define tanf(x) (sinf(x) / cosf(x))
 #define atans(x) gArctanTable[(s32)((((x) * 1024) + 0.5f))] // is this correct? used for atan2_lookup
 
 #define RAD_PER_DEG (M_PI / 180.0f)
@@ -475,6 +476,10 @@ ALWAYS_INLINE s32 absi(s32 in) {
 
 #define FLT_IS_NONZERO(x) (absf(x) > NEAR_ZERO)
 
+#ifndef MIN_MAX
+#define MIN_MAX(a, min, max) (MAX(MIN(a, max), min))
+#endif
+
 u32 random_u16(void);
 f32 random_float(void);
 s32 random_sign(void);
@@ -498,6 +503,8 @@ void vec3i_to_vec3s(Vec3s dest, const Vec3i src);
 void vec3i_to_vec3f(Vec3f dest, const Vec3i src);
 void vec3f_to_vec3s(Vec3s dest, const Vec3f src);
 void vec3f_to_vec3i(Vec3i dest, const Vec3f src);
+
+f32 get_relative_position_between_ranges(f32 x, f32 fromA, f32 toA, f32 fromB, f32 toB);
 
 void vec3f_copy_y_off(Vec3f dest, Vec3f src, f32 yOff);
 

@@ -67,3 +67,6 @@
 #include "levels/ccm/gold_blob/model.inc.c"
 #include "levels/ccm/gold_fragment/model.inc.c"
 #include "levels/ccm/gold_sword/model.inc.c"
+#include "levels/ccm/gold_spear/model.inc.c"
+#include "levels/ccm/seraphim/model.inc.c"
+#include "levels/ccm/gold_spike_ball/model.inc.c"

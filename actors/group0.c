@@ -61,3 +61,5 @@
 #include "fire_smoke/model.inc.c"
 #include "mario/anims/data.inc.c"
 #include "mario/anims/table.inc.c"
+#include "portal/model.inc.c"
+#include "menu_patch_portal/model.inc.c"

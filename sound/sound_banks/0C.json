@@ -247,6 +247,24 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope41": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope42": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope43": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -580,6 +598,21 @@
             "envelope": "envelope40",
             "sound": "53_crank"
         },
+        "Harp": {
+            "release_rate": 208,
+            "envelope": "envelope41",
+            "sound": "54_harp"
+        },
+        "Oboe": {
+            "release_rate": 208,
+            "envelope": "envelope42",
+            "sound": "55_oboe"
+        },
+        "Glockenspiel": {
+            "release_rate": 208,
+            "envelope": "envelope43",
+            "sound": "4C_glockenspiel"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -716,6 +749,10 @@
 
         "Toy Piano",
         "Wind",
-        "Crank"
+        "Crank",
+        "Harp",
+        "Oboe",
+
+        "Glockenspiel"
     ]
 }

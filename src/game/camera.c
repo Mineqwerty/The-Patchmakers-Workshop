@@ -27,6 +27,7 @@
 #include "level_table.h"
 #include "config.h"
 #include "puppyprint.h"
+#include "src/game/cutscene.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -75,7 +76,7 @@
  */
 
 #ifdef REONUCAM
-struct ReonucamState gReonucamState = { 2, FALSE, FALSE, FALSE, 0, 0, };
+struct ReonucamState gReonucamState = { 2, FALSE, FALSE, FALSE, 0, 0, 0};
 #endif
 
 // BSS
@@ -1306,6 +1307,9 @@ void mode_8_directions_camera(struct Camera *c) {
     lakitu_zoom(400.f, 0x900);
     c->nextYaw = update_8_directions_camera(c, c->focus, pos);
 #ifdef REONUCAM
+    if (gReonucamState.overhead == 1) {
+        pos[1] += 2000;
+    }
     set_camera_height(c, pos[1]);
 #endif
     c->pos[0] = pos[0];
@@ -1360,13 +1364,22 @@ void mode_fixed_above_mario_camera(struct Camera *c) {
     //radial_camera_input(c);
 
     //lakitu_zoom(800.f, 0x900);
-    
+    /*
     c->pos[1] = gMarioState->pos[1] + 3000.0f;
     c->pos[0] = gMarioState->pos[0] + (100 * -sins(gMarioState->faceAngle[1]));
     c->pos[2] = gMarioState->pos[2] + (100 * -coss(gMarioState->faceAngle[1]));
+    */
+
+    //approach_f32_asymptotic_bool(&c->pos[1], gMarioState->pos[1] + 3000.0f, 0.2f);
+    //approach_f32_asymptotic_bool(&c->pos[0], gMarioState->pos[0] + (100 * -sins(gMarioState->faceAngle[1])), 0.02f);
+    //approach_f32_asymptotic_bool(&c->pos[2], gMarioState->pos[2] + (100 * -coss(gMarioState->faceAngle[1])), 0.02f);
+
+    //c->focus[0] = gMarioState->pos[0];
+    //c->focus[1] = gMarioState->pos[1] + 100.0f;
+    //c->focus[2] = gMarioState->pos[2];
     //c->yaw = atan2s(c->pos[2] - c->focus[2], c->pos[0] - c->focus[0]);
     //c->nextYaw = update_outward_radial_camera(c, c->focus, pos);
-    c->yaw = 0x8000;
+    //c->yaw = 0x8000;
     //c->focus[0] = gMarioState->pos[0];
     //c->focus[1] = gMarioState->pos[1];
     //c->focus[2] = gMarioState->pos[2];
@@ -3367,6 +3380,8 @@ void update_camera(struct Camera *c) {
         sCButtonsPressed = find_c_buttons_pressed(sCButtonsPressed, gPlayer1Controller->buttonPressed,
                                                   gPlayer1Controller->buttonDown);
 
+        
+        event_handler();
         if (c->cutscene != CUTSCENE_NONE) {
             sYawSpeed = 0;
             play_cutscene(c);
@@ -6414,12 +6429,9 @@ struct CameraTrigger sCamHMC[] = {
  * setting close mode in the middle of the pyramid, and setting the boss fight camera mode to outward
  * radial.
  */
-struct CameraTrigger sCamSSL[] = { { 1, cam_ssl_enter_pyramid_top, -2048, 1080, -1024, 150, 150, 150,
-                                     0 },
-                                   { 2, cam_ssl_pyramid_center, 0, -104, -104, 1248, 1536, 2950, 0 },
-                                   { 2, cam_ssl_pyramid_center, 0, 2500, 256, 515, 5000, 515, 0 },
-                                   { 3, cam_ssl_boss_room, 0, -1534, -2040, 1000, 800, 1000, 0 },
-                                   NULL_TRIGGER };
+struct CameraTrigger sCamSSL[] = {
+	NULL_TRIGGER
+};
 
 /**
  * The RR triggers are for changing between fixed and 8 direction mode when entering / leaving the

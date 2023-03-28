@@ -39,3 +39,6 @@
 #include "levels/ccm/gold_blob/geo.inc.c"
 #include "levels/ccm/gold_fragment/geo.inc.c"
 #include "levels/ccm/gold_sword/geo.inc.c"
+#include "levels/ccm/gold_spear/geo.inc.c"
+#include "levels/ccm/seraphim/geo.inc.c"
+#include "levels/ccm/gold_spike_ball/geo.inc.c"

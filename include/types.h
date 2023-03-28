@@ -415,6 +415,15 @@ struct MarioBodyState {
     // u8 filler[4];
 };
 
+struct FloorCheckpoint
+{
+    Vec3f pos;
+    s16 yaw;
+    s16 level;
+    u8 area;
+    struct Surface *floor;
+};
+
 struct MarioState {
     /*0x00*/ u16 playerID;
     /*0x02*/ u16 input;
@@ -477,6 +486,7 @@ struct MarioState {
     /*0xBC*/ f32 peakHeight;
     /*0xC0*/ f32 quicksandDepth;
     /*0xC4*/ f32 windGravity;
+    struct FloorCheckpoint floorCheckpoint;
 
     s16 curPatch;
     s16 equippedPatch;
@@ -485,8 +495,16 @@ struct MarioState {
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
+    u8 patchTimer;
     struct Object *patchChildObj;
-    struct Object *wallObj;
+    struct Object *patchChildSecondaryObj;
+    struct Object *lastFrameObj;
+    Vec3f lastFrameObjPosition;
+
+    Vec3f portal1Position;
+    Vec3f portal2Position;
+    u8 portal1Info[3];
+    u8 portal2Info[3];
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER
              s16 breath;

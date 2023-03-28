@@ -1,4 +1,5 @@
 #include "src/game/game_init.h"
+#include "src/game/cutscene.h"
 
 void bhv_stone_gear_loop(void) {
 
@@ -49,7 +50,7 @@ void bhv_stone_tower_door_loop(void) {
     switch (o->oAction) {
         case ACT_STONE_TOWER_DOOR_CLOSED:
         case ACT_STONE_TOWER_DOOR_OPEN:
-            if (gGlobalTimer % 85 == 0) {
+            if ((gTatumCount / 41) % 16 == 0) {
                 o->oAction++;
                 o->oTimer = 0;
             }
@@ -79,22 +80,59 @@ void bhv_stone_tower_door_loop(void) {
     }
 }
 
+void grapple_stone_shift_color_to_grey(void) {
+    u8 r = GET_BPARAM1(o->oPrimColorParams);
+    u8 g = GET_BPARAM2(o->oPrimColorParams);
+    u8 b = GET_BPARAM3(o->oPrimColorParams);
+
+    if (r > 0x10) {
+        r -= 0x10;
+        if (r < 0x10)
+            r = 0x00;
+    }
+    if (g > 0x10) {
+        g -= 0x10;
+        if (g < 0x10)
+            g = 0x00;
+    }
+    if (b > 0x10) {
+        b -= 0x10;
+        if (b < 0x10)
+            b = 0x00;
+    }
+
+    SET_BPARAM1(o->oPrimColorParams, r);
+    SET_BPARAM2(o->oPrimColorParams, g);
+    SET_BPARAM3(o->oPrimColorParams, b);
+}
+
 void bhv_grapple_stone_loop(void) {
 
     if (o->oBehParams2ndByte == 0) {
         if (o->oAction % 2 == 0 && (gTatumCount / 41) % 16 == 0) {
             if (gMarioState->curPatch != 3) {
-                return o->oAction++;
+                o->oPrimColorParams = 0xb3a376FF;
+                    o->oBeatNumber = 8;
+                    o->oAction++;
+                return;
             }
         }
 
+        if ((gTatumCount / 41) % 16 == 12 && o->oBeatNumber != 4) {
+                o->oBeatNumber = 4;
+                o->oPrimColorParams = 0x4d4632FF;
+            }
+            if ((gTatumCount / 41) % 16 == 14 && o->oBeatNumber != 6) {
+                o->oBeatNumber = 6;
+                o->oPrimColorParams = 0x4d4632FF;
+            }
+
         u8 distance;
+        distance = GET_BPARAM3(o->oBehParams);
 
         switch (o->oAction) {
 
             case 1:
-
-                distance = GET_BPARAM1(o->oBehParams);
 
                 o->oPosX -= sins(o->oFaceAngleYaw) * (((f32)distance) * 10.0f / 15.0f);
                 o->oPosZ -= coss(o->oFaceAngleYaw) * (((f32)distance) * 10.0f / 15.0f);
@@ -116,7 +154,8 @@ void bhv_grapple_stone_loop(void) {
                 if (gMarioState->curPatch != 3) {
                     o->oPrimColorParams = 0x9500FFFF;
                     o->oBeatNumber = 8;
-                    return o->oAction++;
+                    o->oAction++;
+                    return;
                 }
             }
 
@@ -145,27 +184,41 @@ void bhv_grapple_stone_loop(void) {
     }
 
     else {
-        if (o->oAction % 2 == 0 && (gTatumCount / 41) % 8 == 0) {
+        if (o->oAction % 2 == 0 && (gTatumCount / 41) % 16 == 0) {
             if (gMarioState->curPatch != 3) {
-                return o->oAction++;
+                o->oPrimColorParams = 0x81bd79FF;
+                    o->oBeatNumber = 8;
+                     o->oAction++;
+                return;
             }
         }
 
-        // TODO: sort out a bparam system for distance and time traveled.
-        if (o->oTimer == 15) {
-            o->oAction++;
-            if (o->oAction > 3) {
-                o->oAction = 0;
+        if ((gTatumCount / 41) % 16 == 12 && o->oBeatNumber != 4) {
+                o->oBeatNumber = 4;
+                o->oPrimColorParams = 0x3d543aFF;
             }
-        }
+            if ((gTatumCount / 41) % 16 == 14 && o->oBeatNumber != 6) {
+                o->oBeatNumber = 6;
+                o->oPrimColorParams = 0x3d543aFF;
+            }
+
+        u8 distance;
+        distance = GET_BPARAM3(o->oBehParams);
 
         switch (o->oAction) {
 
             case 1:
-                o->oPosY += 30.0f;
+
+                o->oPosY += ((f32)distance) * 10.0f / 15.0f;
+                if (o->oTimer == 14) {
+                o->oAction++;
+                }
                 break;
             case 3:
-                o->oPosY -= 30.0f;
+                o->oPosY -= ((f32)distance) * 10.0f / 15.0f;
+                if (o->oTimer == 14) {
+                o->oAction = 0;
+                }
                 break;
         }
     }
@@ -173,31 +226,7 @@ void bhv_grapple_stone_loop(void) {
     grapple_stone_shift_color_to_grey();
 }
 
-void grapple_stone_shift_color_to_grey(void) {
-    u8 r = GET_BPARAM1(o->oPrimColorParams);
-    u8 g = GET_BPARAM2(o->oPrimColorParams);
-    u8 b = GET_BPARAM3(o->oPrimColorParams);
 
-    if (r > 0x10) {
-        r -= 0x10;
-        if (r < 0x10)
-            r = 0x00;
-    }
-    if (g > 0x10) {
-        g -= 0x10;
-        if (g < 0x10)
-            g = 0x00;
-    }
-    if (b > 0x10) {
-        b -= 0x10;
-        if (b < 0x10)
-            b = 0x00;
-    }
-
-    SET_BPARAM1(o->oPrimColorParams, r);
-    SET_BPARAM2(o->oPrimColorParams, g);
-    SET_BPARAM3(o->oPrimColorParams, b);
-}
 
 void bhv_rotating_stone_cylinder_loop(void) {
     if (gMarioState->curPatch != 3) {
@@ -262,10 +291,16 @@ void bhv_extending_stone_bridge_init(void) {
                 i, 0, 0, 0, o, MODEL_EXTENDING_STONE_BRIDGE, bhvExtendingStoneBridge);
             obj_scale_xyz(nextPanel, 0.99f, 1.0f - (((f32) i) * 0.05f), 1.0f - (((f32) i) * 0.05f));
         }
+
+        begin_cutscene_event(0);
     }
 
     o->oHomeX = o->oPosX;
 }
+
+struct SpawnParticlesInfo sBridgeMist = {
+    2, 15, MODEL_MIST, 10.0f, -30, 0, -50, 50, 2, 10, 65.0f, 10.0f
+};
 
 void bhv_extending_stone_bridge_loop(void) {
     if (o->oAction == 0) {
@@ -273,6 +308,8 @@ void bhv_extending_stone_bridge_loop(void) {
             o->oPosX += 40;
         } else {
             o->oAction++;
+            cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+            if (o->oBehParams2ndByte != 6) cur_obj_spawn_particles(&sBridgeMist);
         }
     }
 }

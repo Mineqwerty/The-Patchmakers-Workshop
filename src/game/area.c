@@ -244,6 +244,16 @@ void load_area(s32 index) {
             spawn_objects_from_info(0, gCurrentArea->objectSpawnInfos);
         }
 
+        if (gMarioState->portal1Info[0] == gCurrLevelNum && gMarioState->portal1Info[1] == gCurrAreaIndex) {
+            struct Object *portal = spawn_object_abs_with_rot(gMarioObject, 0, MODEL_PORTAL, bhvPortal, gMarioState->portal1Position[0], gMarioState->portal1Position[1], gMarioState->portal1Position[2], 0, 0, 0);
+            portal->oBehParams2ndByte = 0;
+        }
+
+        if (gMarioState->portal2Info[0] == gCurrLevelNum && gMarioState->portal2Info[1] == gCurrAreaIndex) {
+            struct Object *portal = spawn_object_abs_with_rot(gMarioObject, 0, MODEL_PORTAL, bhvPortal, gMarioState->portal2Position[0], gMarioState->portal2Position[1], gMarioState->portal2Position[2], 0, 0, 0);
+            portal->oBehParams2ndByte = 1;
+        }
+
         load_obj_warp_nodes();
 #ifndef DISABLE_GRAPH_NODE_TYPE_FUNCTIONAL
         geo_call_global_function_nodes(&gCurrentArea->graphNode->node, GEO_CONTEXT_AREA_LOAD);

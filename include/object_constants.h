@@ -55,6 +55,7 @@ enum ObjFlags {
     OBJ_FLAG_OCCLUDE_SILHOUETTE                = (1 << 20), // 0x00100000
     OBJ_FLAG_OPACITY_FROM_CAMERA_DIST          = (1 << 21), // 0x00200000
     OBJ_FLAG_EMIT_LIGHT                        = (1 << 22), // 0x00400000
+    OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK                        = (1 << 22), // 0x00800000
     OBJ_FLAG_HITBOX_WAS_SET                    = (1 << 30), // 0x40000000
 };
 
@@ -1973,17 +1974,6 @@ enum AnimIDsPenguin { // Animations
     PENGUIN_ANIM_IDLE
 };
 
-/* Racing Penguin */
-    /* oBehParams2ndByte */
-    #define RACING_PENGUIN_BP_NORMAL                        0x0
-    #define RACING_PENGUIN_BP_120_STARS                     0x1
-    /* oAction */
-    #define RACING_PENGUIN_ACT_WAIT_FOR_MARIO               0x0
-    #define RACING_PENGUIN_ACT_SHOW_INIT_TEXT               0x1
-    #define RACING_PENGUIN_ACT_PREPARE_FOR_RACE             0x2
-    #define RACING_PENGUIN_ACT_RACE                         0x3
-    #define RACING_PENGUIN_ACT_FINISH_RACE                  0x4
-    #define RACING_PENGUIN_ACT_SHOW_FINAL_TEXT              0x5
 
 /* Mother Penguin */
     /* oAction */

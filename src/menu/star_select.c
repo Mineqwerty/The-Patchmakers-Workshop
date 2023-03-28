@@ -244,6 +244,27 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
             }
         break;
 
+        case LEVEL_JRB:
+            switch (starIndex) {
+                case 0: coords[0] = -6046.0f; coords[1] = 1930.0f; coords[2] = -6248.0f;
+                break;
+                case 1: coords[0] = -4522.0f; coords[1] = 590.0f; coords[2] = -5867.0f;
+                break;
+                case 2: coords[0] = 656.0f; coords[1] = 550.0f; coords[2] = -8505.0f;
+                break;
+                case 3: coords[0] = 1643.0f; coords[1] = 410.0f; coords[2] = -5359.0f;
+                break;
+                case 4: coords[0] = -2548.0f; coords[1] = -370.0f; coords[2] = -4470.0f;
+                break;
+                case 5: coords[0] = -2040.0f; coords[1] = -350.0f; coords[2] = -9931.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
         default: coords[0] = 377.0f; coords[1] = 1470.0f; coords[2] = -9855.0f;
         break;
     }

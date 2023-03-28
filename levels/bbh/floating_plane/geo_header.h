@@ -1,0 +1,11 @@
+extern const GeoLayout floating_plane_geo[];
+extern Vtx floating_plane_Plane_002_mesh_layer_1_vtx_0[4];
+extern Gfx floating_plane_Plane_002_mesh_layer_1_tri_0[];
+extern Vtx floating_plane_Plane_002_mesh_layer_1_vtx_1[8];
+extern Gfx floating_plane_Plane_002_mesh_layer_1_tri_1[];
+extern Gfx mat_floating_plane_f3dlite_material_006[];
+extern Gfx mat_revert_floating_plane_f3dlite_material_006[];
+extern Gfx mat_floating_plane_f3dlite_material_005[];
+extern Gfx mat_revert_floating_plane_f3dlite_material_005[];
+extern Gfx floating_plane_Plane_002_mesh_layer_1[];
+extern Gfx floating_plane_material_revert_render_settings[];

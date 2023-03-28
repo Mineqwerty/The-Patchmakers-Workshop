@@ -1,0 +1,17 @@
+extern const GeoLayout gold_spike_ball_geo[];
+extern Lights1 gold_spike_ball_f3dlite_material_001_layer1_lights;
+extern u8 gold_spike_ball_goopgold1_ci8[];
+extern u8 gold_spike_ball_goopgold1_ci8_pal_rgba16[];
+extern u8 gold_spike_ball_goldripples_ci4[];
+extern u8 gold_spike_ball_goldripples_ci4_pal_rgba16[];
+extern Vtx gold_spike_ball_root_mesh_layer_1_vtx_0[45];
+extern Gfx gold_spike_ball_root_mesh_layer_1_tri_0[];
+extern Vtx gold_spike_ball_bill_mesh_layer_5_vtx_0[42];
+extern Gfx gold_spike_ball_bill_mesh_layer_5_tri_0[];
+extern Gfx mat_gold_spike_ball_f3dlite_material_001_layer1[];
+extern Gfx mat_revert_gold_spike_ball_f3dlite_material_001_layer1[];
+extern Gfx mat_gold_spike_ball_f[];
+extern Gfx mat_revert_gold_spike_ball_f[];
+extern Gfx gold_spike_ball_root_mesh_layer_1[];
+extern Gfx gold_spike_ball_bill_mesh_layer_5[];
+extern Gfx gold_spike_ball_material_revert_render_settings[];

@@ -1,3 +1,5 @@
+#include "src/game/game_init.h"
+
 static struct SpawnParticlesInfo sCrashingWaterParticles = {
     /* behParam:        */ 5,
     /* count:           */ 1,
@@ -18,13 +20,22 @@ void bhv_particle_crashing_water_spawner_loop(void) {
 }
 
 void bhv_fire_smoke_spawner_loop(void) {
+
+    u8 flameFrequency = 2;
+    if (gIsConsole) {
+        flameFrequency = 8;
+    }
+
     if (o->parentObj && obj_has_behavior(o->parentObj, bhvHalo)) {
+        flameFrequency /= 2;
+        if (o->oTimer % flameFrequency == 0) {
         struct Object *flameParticle = spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
         flameParticle->oVelY = (random_u16() % 8 + 5) / 1.8f;
         flameParticle->oMoveAngleYaw = random_u16();
         flameParticle->oForwardVel = (random_u16() % 4) / 1.2f;
+        }
     }
-    else if (o->oTimer % 2 == 0) {
+    else if (o->oTimer % flameFrequency == 0) {
         struct Object *flameParticle = spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
         flameParticle->oVelY = (random_u16() % 8 + 5) / 1.8f;
         flameParticle->oMoveAngleYaw = random_u16();

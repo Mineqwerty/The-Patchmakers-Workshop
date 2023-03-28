@@ -191,14 +191,8 @@ Do you want to Save?\n\
 //You Bet//Not Now"))
 
 DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
-You can punch enemies to\n\
-knock them down. Press [A]\n\
-to jump, [B] to punch.\n\
-Press [A] then [B] to Kick.\n\
-To pick something up,\n\
-press [B], too. To throw\n\
-something you're holding,\n\
-press [B] again."))
+Activate the Obelisk? \n\
+//Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
 Hop on the shiny shell and\n\
@@ -684,21 +678,33 @@ Her parents must be\n\
 worried sick!"))
 
 DEFINE_DIALOG(DIALOG_060, 1, 4, 30, 200, _("\
+Pathetic.\n\
+\n\
+\n\
 Why dost thou stand before me, foolish one?\n\
-Do you not know what this realm is?\n\
-Are you akin to the man who appeared here a few years ago?\n\
-It matters not to me. I simply do not want to see\n\
-any others here. This bleak hell is mine alone.\n\
-A long battle was fought for this realm...\n\
-I did not gain it without sacrifice.\n\
-So, mortal one, your presence here\n\
-is nothing but an impure blemish.\n\
-Leave at once.\n\
+Unaware of what this realm is, perhaps?\n\
 \n\
+You are akin to that foolish man\n\
+who entered these halls a few\n\
+years ago...\n\
+And now you stand before me, mocking\n\
+me by holding a fragment of my\n\
+divine strength upon your cap.\n\
+...The very same one that\n\
+man tried to overcome me with!\n\
+The impertinence of it is quite ironic, no?\n\
+That man was on a journey that would only\n\
+lead him to ruin. His pursuit of...\n\
 \n\
-Just...\n\
-Get out...\n\
-NOW!"))
+Tch! What am I doing here telling you\n\
+this? You are invading upon my\n\
+realm! Leave at once!\n\
+What gain have you from visiting\n\
+such a broken, shattered realm anyways?\n\
+There is nothing here for you!\n\
+There SHOULD be nothing here!\n\
+That's the way it needs to be!\n\
+An empty heaven, my hell alone!"))
 
 DEFINE_DIALOG(DIALOG_061, 1, 4, 30, 200, _("\
 BRRR! Frostbite Danger!\n\

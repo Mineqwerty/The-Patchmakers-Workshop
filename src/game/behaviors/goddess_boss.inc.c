@@ -1,14 +1,17 @@
-#define GODDESS_ACT_CUTSCENE    0
-#define GODDESS_ACT_IDLE_FLIGHT    1
-#define GODDESS_ACT_GOLD_BARRAGE    2
-#define GODDESS_ACT_SPEAR_DIVE  3
-#define GODDESS_ACT_CLOSE_COMBAT    4
-#define GODDESS_ACT_GROUND_SHOT    5
-#define GODDESS_ACT_FLY_UP    6
-#define GODDESS_ACT_BANISH    7
-#define GODDESS_ACT_DEATH    8
+#define GODDESS_ACT_CUTSCENE 0
+#define GODDESS_ACT_IDLE_FLIGHT 1
+#define GODDESS_ACT_GOLD_BARRAGE 2
+#define GODDESS_ACT_SPEAR_DIVE 3
+#define GODDESS_ACT_CLOSE_COMBAT 4
+#define GODDESS_ACT_HURT 5
+#define GODDESS_ACT_FLY_UP 6
+#define GODDESS_ACT_BANISH 7
+#define GODDESS_ACT_DEATH 8
 
 #include "src/game/game_init.h"
+#include "src/game/cutscene.h"
+#include "src/game/ingame_menu.h"
+#include "src/game/puppyprint.h"
 
 static struct ObjectHitbox sGoddessHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
@@ -18,55 +21,21 @@ static struct ObjectHitbox sGoddessHitbox = {
     /* numLootCoins:      */ 0,
     /* radius:            */ 600,
     /* height:            */ 1500,
-    /* hurtboxRadius:     */ 0,
-    /* hurtboxHeight:     */ 0,
+    /* hurtboxRadius:     */ 500,
+    /* hurtboxHeight:     */ 1000,
 };
 
-static struct ObjectHitbox sGoldBlobHitbox = {
-    /* interactType:      */ INTERACT_DAMAGE_ENEMY,
-    /* downOffset:        */ 25,
-    /* damageOrCoinValue: */ 1,
+static struct ObjectHitbox sBanishFragmentHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 4,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 50,
-    /* height:            */ 50,
-    /* hurtboxRadius:     */ 20,
-    /* hurtboxHeight:     */ 20,
+    /* radius:            */ 100,
+    /* height:            */ 100,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
 };
-
-void bhv_goddess_init(void) {
-    //create_dialog_box(60);
-    o->oGravity = 0;
-
-    obj_set_hitbox(o, &sGoddessHitbox);
-
-    o->oHealth = 100;
-    gBossMaxHealth = 100;
-    gBossHealth = 100;
-    
-}
-
-void bhv_goddess_loop(void) {
-
-    print_text_fmt_int(100, 100, "%d", o->oHealth);
-
-    
-    switch (o->oAction) {
-        case GODDESS_ACT_CUTSCENE: goddess_act_cutscene(); break;
-        case GODDESS_ACT_IDLE_FLIGHT: goddess_act_idle_flight(); break;
-        case GODDESS_ACT_GOLD_BARRAGE: goddess_act_gold_barrage(); break;
-        case GODDESS_ACT_SPEAR_DIVE: goddess_act_spear_dive(); break;
-        case GODDESS_ACT_CLOSE_COMBAT: goddess_act_close_combat(); break;
-        case GODDESS_ACT_GROUND_SHOT: goddess_act_ground_shot(); break;
-        case GODDESS_ACT_FLY_UP: goddess_act_fly_up(); break;
-        case GODDESS_ACT_BANISH: goddess_act_banish(); break;
-    }
-
-    
-    goddess_check_interactions();
-    gBossHealth = o->oHealth;
-    
-}
 
 void goddess_act_idle_flight(void) {
     cur_obj_init_animation(0);
@@ -75,34 +44,33 @@ void goddess_act_idle_flight(void) {
         switch (random_u16() % 2) {
             case 0:
                 o->oAction = GODDESS_ACT_GOLD_BARRAGE;
-            break;
+                break;
             case 1:
                 o->oAction = GODDESS_ACT_BANISH;
-            break;
+                break;
         }
     }
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
-    o->oPosY += 20*coss(0x400 * o->oTimer);
-    o->oPosX += 10*coss(0x200 * o->oTimer) * sins(o->oMoveAngleYaw + 0x4000);
-    o->oPosZ += 10*coss(0x400 * o->oTimer) * coss(o->oMoveAngleYaw + 0x4000);
+    o->oPosY += 20 * coss(0x400 * o->oTimer);
+    o->oPosX += 10 * coss(0x200 * o->oTimer) * sins(o->oMoveAngleYaw + 0x4000);
+    o->oPosZ += 10 * coss(0x400 * o->oTimer) * coss(o->oMoveAngleYaw + 0x4000);
 
     o->oForwardVel = 10;
     cur_obj_move_xz_using_fvel_and_yaw();
-
 }
 
 void goddess_act_gold_barrage(void) {
     if (cur_obj_init_animation_and_check_if_near_end(6)) {
-                o->oAction = GODDESS_ACT_SPEAR_DIVE;
-            }
+        o->oAction = GODDESS_ACT_SPEAR_DIVE;
+    }
 
-            if (o->oTimer % 8 == 0) {
-                struct Object *bullet = spawn_object_relative(0, 0, 2000, 0, o, MODEL_GOLD_BLOB, bhvGoldBlob);
-                bullet->oAction = 2;
-                bullet->oHomeX = gMarioState->pos[0];
-                bullet->oHomeY = gMarioState->pos[1];
-                bullet->oHomeZ = gMarioState->pos[2];
-            }
+    if (o->oTimer % 8 == 0) {
+        struct Object *bullet = spawn_object_relative(0, 0, 2000, 0, o, MODEL_GOLD_BLOB, bhvGoldBlob);
+        bullet->oAction = 2;
+        bullet->oHomeX = gMarioState->pos[0];
+        bullet->oHomeY = gMarioState->pos[1];
+        bullet->oHomeZ = gMarioState->pos[2];
+    }
 }
 
 void goddess_act_spear_dive(void) {
@@ -115,71 +83,86 @@ void goddess_act_spear_dive(void) {
             if (cur_obj_init_animation_and_check_if_near_end(7)) {
                 o->oSubAction++;
             }
-        break;
+            break;
         case 1:
             cur_obj_init_animation(8);
-
-            o->oForwardVel = 20.0f;
-            o->oVelY = -90.0f;
-            object_step();
 
             if (o->oTimer == 60) {
                 o->oSubAction++;
             }
-            
-        break;
+
+            break;
         case 2:
             if (cur_obj_init_animation_and_check_if_near_end(9)) {
-                o->oAction = GODDESS_ACT_CLOSE_COMBAT;
+                o->oAction = GODDESS_ACT_IDLE_FLIGHT;
                 o->oForwardVel = 0.0f;
             }
-
-            o->oForwardVel -= 1;
-        break;
+            break;
     }
 }
 
 void goddess_act_close_combat(void) {
     if (o->oTimer < 90) {
-    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
-    }
-    else {
+        o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
+    } else {
         gCamera->controlBossCameraYaw = 1;
     }
-    
-    if (cur_obj_init_animation_and_check_if_near_end(10)) {
-                o->oAction = GODDESS_ACT_FLY_UP;
-            }
 
-    
+    if (cur_obj_init_animation_and_check_if_near_end(10)) {
+        o->oAction = GODDESS_ACT_FLY_UP;
+    }
 
     o->oVelY = 0;
 
     if (o->oTimer == 2) {
-     o->oForwardVel = 60.0f;
+        o->oForwardVel = 60.0f;
     }
 
     if (o->oTimer == 25) {
-     o->oForwardVel = 60.0f;
-     
+        o->oForwardVel = 60.0f;
     }
 
     if (o->oTimer == 45) {
-     o->oForwardVel = 60.0f;
-     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
+        o->oForwardVel = 60.0f;
+        o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
     }
 
-
-
-            cur_obj_move_xz_using_fvel_and_yaw();
-            if (o->oForwardVel > 0) {
-                o->oForwardVel -= 2;
-            }
-    
+    cur_obj_move_xz_using_fvel_and_yaw();
+    if (o->oForwardVel > 0) {
+        o->oForwardVel -= 2;
+    }
 }
 
-void goddess_act_ground_shot(void) {
+void goddess_act_hurt(void) {
+    if (cur_obj_init_animation_and_check_if_near_end(10)) {
+        o->oAction = GODDESS_ACT_FLY_UP;
+    }
 
+    if (o->oTimer == 0) {
+        o->oForwardVel = -20.0f;
+        // o->oDragStrength = 2.0f;
+        o->oVelY = 20.0f;
+    }
+    f32 fHeight = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
+    if (o->oTimer < 60) {
+        object_step_without_floor_orient();
+        o->oGravity = 2.0f;
+        
+        if (o->oPosY - fHeight < 30.0f) {
+            o->oPosY = fHeight;
+            o->oTimer = 60;
+            o->oMoveAngleYaw += 0x8000;
+        }
+
+        if (o->oTimer > 40) {
+            o->oGravity += o->oTimer - 40;
+        }
+    } else {
+        o->oPosY = fHeight;
+        o->oGravity = 0.0f;
+        // o->oDragStrength = 0.0f;
+        o->oForwardVel = 0.0f;
+    }
 }
 
 void goddess_act_fly_up(void) {
@@ -190,8 +173,11 @@ void goddess_act_fly_up(void) {
 
     if (o->oTimer == 10) {
         o->oForwardVel = -60.0f;
-            o->oVelY = 40.0f;
-            
+        o->oVelY = 40.0f;
+    }
+
+    if (o->oPosY > gMarioState->pos[1] + 2000) {
+        o->oAction = GODDESS_ACT_IDLE_FLIGHT;
     }
 
     if (o->oTimer == 60) {
@@ -205,96 +191,122 @@ void goddess_act_banish(void) {
     switch (o->oSubAction) {
         case 0:
             if (cur_obj_init_animation_and_check_if_near_end(3)) {
+                for (int i = 0; i < 8; i++) {
+                    spawn_object_relative(i, 0, 0, 0, o, MODEL_GOLD_FRAGMENT, bhvBanishFragment);
+                }
                 o->oSubAction++;
             }
-        break;
+            break;
         case 1:
             cur_obj_init_animation(4);
             if (o->oTimer == 150) {
                 o->oSubAction++;
             }
-            
-        break;
+
+            break;
         case 2:
             if (cur_obj_init_animation_and_check_if_near_end(5)) {
                 o->oAction = GODDESS_ACT_SPEAR_DIVE;
             }
-        break;
+            break;
     }
 }
 
 void goddess_act_cutscene(void) {
 
-    
-
     switch (o->oSubAction) {
         case 0:
-            gSecondCameraFocus = o;
-            set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
-            o->oSubAction = 3;
-        break;
-        case 1: 
+            //gSecondCameraFocus = o;
+            //set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+            o->oSubAction = 1;
+            begin_cutscene_event(1);
+            break;
+        case 1:
+        /*
             gCamera->cutscene = 1;
-    gMarioState->action = ACT_WAITING_FOR_DIALOG;
-    gLakituState.goalPos[0] = -1495;
-    gLakituState.goalPos[1] = 912;
-    gLakituState.goalPos[2] = -1726;
+            gMarioState->action = ACT_WAITING_FOR_DIALOG;
+            gLakituState.goalPos[0] = -1495;
+            gLakituState.goalPos[1] = 912;
+            gLakituState.goalPos[2] = -1726;
 
-    gLakituState.goalFocus[0] = -107;
-    gLakituState.goalFocus[1] = 1792;
-    gLakituState.goalFocus[2] = 706;
+            gLakituState.goalFocus[0] = -107;
+            gLakituState.goalFocus[1] = 1792;
+            gLakituState.goalFocus[2] = 706;
+            */
             cur_obj_init_animation(1);
-            if (o->oTimer == 6) {
+            if (gPageNum == 9) {
                 o->oSubAction = 2;
             }
-        break;
+            break;
 
-        case 2: 
+        case 2:
             if (cur_obj_init_animation_and_check_if_near_end(2)) {
                 o->oSubAction = 3;
             }
 
             o->oPosZ -= 20.0f;
             o->oPosY += 5.0f;
-        break;
+            break;
 
-        case 3: 
+        case 3:
             cur_obj_init_animation(0);
 
-            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
-
-            if (o->oTimer == 30) {
-                gCamera->cutscene = 0;
-                gMarioState->action = ACT_IDLE;
-                o->oAction = GODDESS_ACT_IDLE_FLIGHT;
-                gCamera->cutscene = 0;
-                gMarioState->action = ACT_IDLE;
+            if (cCutsceneActive == 0) {
                 o->oAction = GODDESS_ACT_IDLE_FLIGHT;
                 cur_obj_init_animation(0);
-                o->oPosZ -= 200.0f;
-                o->oPosY += 50.0f;
                 gSecondCameraFocus = o;
-            set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+                o->oHealth = 100;
+                gBossMaxHealth = 100;
+                gBossHealth = 100;
             }
+            
+            
 
-        break;
+            break;
     }
+}
 
-    
+void keep_goddess_in_range(void) {
+    f32 xMax = 2800;
+    f32 xMin = -3000;
+    f32 yMax = 1840;
+    f32 zMax = -1500;
+    f32 zMin = -7000;
+
+    if (o->oPosX < xMin) {
+        o->oPosX += xMin - o->oPosX;
+    }
+    if (o->oPosX > xMax) {
+        o->oPosX -= o->oPosX - xMax;
+    }
+    if (o->oPosZ < zMin) {
+        o->oPosZ += zMin - o->oPosZ;
+    }
+    if (o->oPosZ > zMax) {
+        o->oPosZ -= o->oPosZ - zMax;
+    }
+    if (o->oPosY > yMax) {
+        o->oPosY -= o->oPosY - yMax;
+    }
 }
 
 void goddess_check_interactions(void) {
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
-            
+
             u8 healthSubtract = 1;
             for (int i = 0; i < (o->oInteractStatus & INT_STATUS_ATTACK_MASK); i++) {
                 healthSubtract *= 2;
             }
             o->oHealth -= healthSubtract;
 
-            for (int i = 0; i < 8; i++) {
-                struct Object *fragment = spawn_object_relative(0, 0, 1000, 0, o, MODEL_GOLD_FRAGMENT, bhvGoldFragment);
+            if (healthSubtract > 24) {
+                o->oAction = GODDESS_ACT_HURT;
+                for (int i = 0; i < 8; i++) {
+                    struct Object *fragment =
+                        spawn_object_relative(0, 0, 1000, 0, o, MODEL_GOLD_FRAGMENT, bhvGoldFragment);
+                }
             }
         }
     }
@@ -302,122 +314,161 @@ void goddess_check_interactions(void) {
     o->oInteractStatus = INT_STATUS_NONE;
 }
 
-void bhv_gold_bullet_loop(void) {
-    switch (o->oAction) {
-        case 0: 
-            if (o->oTimer == 40) {
-                o->oAction = 1;
-                o->oHomeX = gMarioState->pos[0];
-                o->oHomeY = gMarioState->pos[1];
-                o->oHomeZ = gMarioState->pos[2];
-            }
-        break;
-    }
+void gold_blob_approach_home(void) {
+    f32 x = o->oHomeX - o->oPosX;
+    f32 y = o->oHomeY - o->oPosY;
+    f32 z = o->oHomeZ - o->oPosZ;
+
+    o->oPosX += x * 3.0f * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
+    o->oPosY += y * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
+    o->oPosZ += z * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
 }
 
+
+
 void bhv_gold_blob_loop(void) {
-    obj_scale_xyz(o, 1.0f + (0.05f * sins((o->oTimer * 0x1000) + 0x4000)), 1.0f + (0.05f * coss(o->oTimer * 0x1000)), 1.0f + (0.05f * sins(o->oTimer * 0x1000)));
-    
+    obj_scale_xyz(o, 1.0f + (0.05f * sins((o->oTimer * 0x1000) + 0x4000)),
+                  1.0f + (0.05f * coss(o->oTimer * 0x1000)), 1.0f + (0.05f * sins(o->oTimer * 0x1000)));
+
     if (!obj_has_model(o, MODEL_GOLD_SWORD)) {
-    o->oFaceAnglePitch += 0x200;
-    o->oFaceAngleRoll += 0x100;
+        o->oFaceAnglePitch += 0x200;
+        o->oFaceAngleRoll += 0x100;
     }
 
-    if (o->oAction == 1)  {
+    if (o->oAction == 1) {
         if (o->oTimer < 30) {
             cur_obj_become_intangible();
-        }
-        else {
+        } else {
             cur_obj_become_tangible();
         }
         if (gCurrAreaIndex == 4) {
             f32 dist;
             struct Object *goddess = cur_obj_find_nearest_object_with_behavior(bhvGoddessBoss, &dist);
             if (goddess) {
-            o->oHomeX = goddess->oPosX;
-            o->oHomeY = goddess->oPosY + 1000;
-            o->oHomeZ = goddess->oPosZ;
+                o->oHomeX = goddess->oPosX;
+                o->oHomeY = goddess->oPosY + 1000;
+                o->oHomeZ = goddess->oPosZ;
 
-            obj_turn_toward_object(o, goddess, O_MOVE_ANGLE_YAW_INDEX, 0x400);
-                    obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ, O_FACE_ANGLE_PITCH_INDEX, 0x400);
-                    o->oFaceAngleRoll = 0;
+                obj_turn_toward_object(o, goddess, O_MOVE_ANGLE_YAW_INDEX, 0x400);
+                obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ,
+                                         O_FACE_ANGLE_PITCH_INDEX, 0x400);
+                o->oFaceAngleRoll = 0;
             }
-             
 
             gold_blob_approach_home();
 
             if (goddess && o->oTimer == 30) {
-                    attack_object(goddess, 32);
+                attack_object(goddess, 32);
+
+                obj_mark_for_deletion(o);
+            }
+        }
+
+        else {
+
+            f32 dist;
+            struct Object *seraphim = cur_obj_find_nearest_object_with_behavior(bhvSeraphim, &dist);
+            if (seraphim && dist < 8000) {
+                o->oHomeX = seraphim->oPosX;
+                o->oHomeY = seraphim->oPosY;
+                o->oHomeZ = seraphim->oPosZ;
+
+                o->oMoveAngleYaw += 0x80;
+                 o->oFaceAnglePitch += 0x200;
+        o->oFaceAngleRoll += 0x100;
+
+                gold_blob_approach_home();
+
+                if (seraphim && o->oTimer == 30) {
+                    attack_object(seraphim, 32);
 
                     obj_mark_for_deletion(o);
                 }
+            } else {
+                if (o->oTimer == 0) {
+                    o->oForwardVel = 50.0f;
+                    o->oVelY = 20.0f;
+                    o->oGravity = 2.0f;
+                    o->oMoveAngleYaw = gMarioState->faceAngle[1];
+                }
+                object_step();
             }
-        
-        else {
-            if (o->oTimer == 0) {
-                o->oForwardVel = 50.0f;
-                o->oVelY = 20.0f;
-                o->oGravity = 2.0f;
-                o->oMoveAngleYaw = gMarioState->faceAngle[1];
-            }
+        }
+    } else if (o->oAction == 2) {
+
+        if (o->oTimer == 35) {
+            o->oForwardVel = 70.0f;
+            o->oVelY = -6.0f;
+            o->oGravity = 2.0f;
+        }
+        if (o->oTimer < 35) {
+            gold_blob_approach_home();
+            obj_turn_toward_position(o, o->oHomeX, o->oHomeY, o->oHomeZ, O_MOVE_ANGLE_YAW_INDEX, 0x400);
+        } else {
             object_step();
         }
-    }
-    else if (o->oAction == 2) {
 
-        gold_blob_approach_home();
-
-        obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x1000);
-
-
-        if (o->oTimer == 40) {
+        if (o->oTimer == 60) {
             switch (random_u16() % 3) {
-                case 0: o->oAction = 3;
-                break;
+                case 0:
+                    o->oAction = 3;
+                    break;
                 default:
                     obj_mark_for_deletion(o);
-                break;  
+                    break;
+            }
         }
-        }
-    }
-    else if (o->oAction == 3) {
+    } else if (o->oAction == 3) {
         if (o->oTimer == 0) {
-                o->oForwardVel = 10.0f;
-                o->oGravity = 5.0f;
-            }
+            o->oForwardVel = 10.0f;
+            o->oGravity = 5.0f;
+        }
 
-            if (o->oTimer < 10) {
+        if (o->oTimer > 450 && gMarioState->patchChildObj && gMarioState->patchChildObj->oHaloCapturedObject && gMarioState->patchChildObj->oHaloCapturedObject != o) {
+            obj_mark_for_deletion(o);
+            
+        }
+
+        if (gMarioState->patchChildObj && gMarioState->patchChildObj->oHaloCapturedObject && gMarioState->patchChildObj->oHaloCapturedObject->oAction == 1) {
+            obj_mark_for_deletion(o);
+        }
+
+        if (o->oTimer < 20) {
             object_step();
+        }
+
+        if (o->oGoldBlobCount >= 2) {
+            if (gCurrAreaIndex == 4) {
+            obj_set_model(o, MODEL_GOLD_SWORD);
             }
-            
-
-            if (o->oGoldBlobCount >= 2) {
-                obj_set_model(o, MODEL_GOLD_SWORD);
-
-                f32 dist;
-                struct Object *goddess = cur_obj_find_nearest_object_with_behavior(bhvGoddessBoss, &dist);
-
-                if (goddess) {
-                    obj_turn_toward_object(o, goddess, O_MOVE_ANGLE_YAW_INDEX, 0x400);
-                    obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ, O_FACE_ANGLE_PITCH_INDEX, 0x400);
-                    o->oFaceAngleRoll = 0;
-                }
+            else {
+                obj_set_model(o, MODEL_GOLD_SPIKE_BALL);
             }
-            
-    }
-    else {
+
+            f32 dist;
+            struct Object *goddess = cur_obj_find_nearest_object_with_behavior(bhvGoddessBoss, &dist);
+
+            if (goddess) {
+                obj_turn_toward_object(o, goddess, O_MOVE_ANGLE_YAW_INDEX, 0x400);
+                obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ,
+                                         O_FACE_ANGLE_PITCH_INDEX, 0x400);
+                o->oFaceAngleRoll = 0;
+            }
+
+            f32 dist2;
+
+            struct Object *seraphim = cur_obj_find_nearest_object_with_behavior(bhvSeraphim, &dist2);
+
+            if (seraphim && dist2 < 8000) {
+                 o->oMoveAngleYaw += 0x80;
+                 o->oFaceAnglePitch += 0x200;
+        o->oFaceAngleRoll += 0x100;
+            }
+        }
+
+    } else {
         o->oMoveAngleYaw += 0x80;
     }
-}
-
-void gold_blob_approach_home(void) {
-    f32 x = o->oHomeX - o->oPosX;
-    f32 y = o->oHomeY - o->oPosY;
-    f32 z = o->oHomeZ - o->oPosZ;
-
-    o->oPosX += x * 3.0f * (1.0f - coss(((f32)o->oTimer / 90.0f) * 0x8000)) / 2.0f;
-    o->oPosY += y * (1.0f - coss(((f32)o->oTimer / 90.0f) * 0x8000)) / 2.0f;
-    o->oPosZ += z * (1.0f - coss(((f32)o->oTimer / 90.0f) * 0x8000)) / 2.0f;
 }
 
 void bhv_gold_fragment_loop(void) {
@@ -429,18 +480,122 @@ void bhv_gold_fragment_loop(void) {
 
     o->oGravity = 0;
     object_step();
-    cur_obj_scale(1.0f - ((f32) o->oTimer)/30.0f);
+    cur_obj_scale(1.0f - ((f32) o->oTimer) / 30.0f);
 
     f32 dist;
-                struct Object *goddess = cur_obj_find_nearest_object_with_behavior(bhvGoddessBoss, &dist);
+    struct Object *goddess = cur_obj_find_nearest_object_with_behavior(bhvGoddessBoss, &dist);
 
-                if (goddess) {
-                    
-                    obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ, O_FACE_ANGLE_PITCH_INDEX, 0x400);
-                    
-                }
+    if (goddess) {
 
-                if (o->oTimer == 29) {
-                    obj_mark_for_deletion(o);
-                }
+        obj_turn_toward_position(o, goddess->oPosX, goddess->oPosY + 1000, goddess->oPosZ,
+                                 O_FACE_ANGLE_PITCH_INDEX, 0x400);
+    }
+
+    if (o->oTimer == 29) {
+        obj_mark_for_deletion(o);
+    }
+}
+
+void banish_fragment_descend(f32 y) {
+    o->oPosY = approach_f32_asymptotic(o->oPosY, y, 0.1f);
+}
+
+void bhv_banish_fragment_loop(void) {
+    if (o->oTimer < 120) {
+        f32 offsetAngle = o->oBehParams2ndByte * 0x2492;
+
+        o->oPosX = gMarioState->pos[0] + 600.0f * sins(o->oTimer * 0x400 + offsetAngle);
+
+        banish_fragment_descend(gMarioState->pos[1] + 50.0f);
+
+        o->oPosZ = gMarioState->pos[2] + 600.0f * coss(o->oTimer * 0x400 + offsetAngle);
+
+        obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+        o->oFaceAnglePitch = 0x4000;
+
+    } else if (o->oTimer > 130) {
+            cur_obj_become_tangible();
+        obj_set_hitbox(o, &sBanishFragmentHitbox);
+        
+        o->oGravity = 0.0f;
+        o->oForwardVel = 120.0f;
+        object_step_without_floor_orient();
+    }
+
+    if (o->oTimer == 150) {
+        struct Object *blob;
+        switch (random_u16() % 5) {
+            case 0:
+                blob = spawn_object_relative(0, 0, 0, 0, o, MODEL_GOLD_BLOB, bhvGoldBlob);
+                blob->oAction = 3;
+                break;
+        }
+        spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+        obj_mark_for_deletion(o);
+    }
+}
+
+
+void bhv_goddess_init(void) {
+    // create_dialog_box(60);
+    o->oGravity = 0;
+    o->oWallHitboxRadius = 150.0f;
+
+    obj_set_hitbox(o, &sGoddessHitbox);
+
+    
+}
+
+void bhv_goddess_loop(void) {
+
+    switch (o->oAction) {
+        case GODDESS_ACT_CUTSCENE:
+            goddess_act_cutscene();
+            break;
+        case GODDESS_ACT_IDLE_FLIGHT:
+            goddess_act_idle_flight();
+            break;
+        case GODDESS_ACT_GOLD_BARRAGE:
+            goddess_act_gold_barrage();
+            break;
+        case GODDESS_ACT_SPEAR_DIVE:
+            goddess_act_spear_dive();
+            break;
+        case GODDESS_ACT_CLOSE_COMBAT:
+            goddess_act_close_combat();
+            break;
+        case GODDESS_ACT_HURT:
+            goddess_act_hurt();
+            break;
+        case GODDESS_ACT_FLY_UP:
+            goddess_act_fly_up();
+            break;
+        case GODDESS_ACT_BANISH:
+            goddess_act_banish();
+            break;
+    }
+
+    goddess_check_interactions();
+    cur_obj_update_floor_and_walls();
+
+    if (o->oAction != GODDESS_ACT_CUTSCENE) {
+        keep_goddess_in_range();
+    }
+    gBossHealth = o->oHealth;
+}
+
+Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+
+            if (cCutsceneIndex == 26) {
+                switchCase->selectedCase = 2;
+            } else if (cCutsceneIndex == 28) {
+                switchCase->selectedCase = 3;
+            } else {
+                switchCase->selectedCase = 1;
+            }
+    }
+    return NULL;
 }

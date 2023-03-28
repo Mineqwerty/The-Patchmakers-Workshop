@@ -39,7 +39,7 @@ static struct ObjectHitbox sPushpinPokeySegmentHitbox = {
 
 static struct ObjectHitbox sPushpinPokeyDisjointedHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
-    /* downOffset:        */ 400,
+    /* downOffset:        */ 255,
     /* damageOrCoinValue: */ 3,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
@@ -49,60 +49,24 @@ static struct ObjectHitbox sPushpinPokeyDisjointedHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
+void spawn_pokey_star(f32 x, f32 y, f32 z);
 
-void bhv_pushpin_pokey_init(void) {
-    o->oGravity = 30.5f;
-    o->oFriction = 0.8f;
-    o->oBuoyancy = 1.3f;
-    o->oCurrentNumSegments = 7;
-    o->oNextPokeyAttack = (random_u16() % 3);
-
-    seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
-}
-
-void bhv_pushpin_pokey_loop(void) {
+void pushpin_pokey_set_model() {
+    switch (o->oCurrentNumSegments) {
+        case 7:
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_1];
+        break;
+        case 5:
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_2];
+        break;
+        case 3:
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_3];
+        break;  
+        case 1:
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_SEGMENT_HEAD];
+        break;
+    }
     
-    if (o->oAction != POKEY_ACT_BURROW_DASH) {
-        o->oFaceAngleYaw = o->oMoveAngleYaw;
-    }
-
-
-    switch (o->oAction) {
-        case POKEY_ACT_IDLE:
-            pushpin_pokey_idle();
-            break;
-        case POKEY_ACT_CHASE_MARIO:
-            pushpin_pokey_chase_mario();
-            break;
-        case POKEY_ACT_BURROW:
-            pushpin_pokey_burrow();
-            break;
-        case POKEY_ACT_GROUND_NEEDLES:
-            pushpin_pokey_ground_needles();
-            break;
-        case POKEY_ACT_THROW_PARTS:
-            pushpin_pokey_throw_parts();
-            break;
-        case POKEY_ACT_BURROW_DASH:
-            pushpin_pokey_burrow_dash();
-            break;
-        case POKEY_ACT_BURST_FROM_GROUND:
-            pushpin_pokey_burst_from_ground();
-            break;
-            case POKEY_ACT_SCATTER:
-            pushpin_pokey_scatter();
-            break;
-            case POKEY_ACT_STUNNED:
-            pushpin_pokey_stunned();
-            break;
-            case POKEY_ACT_POP_UP:
-            pushpin_pokey_pop_up();
-            break;
-            case POKEY_ACT_DEATH:
-            pushpin_pokey_death();
-            break;
-    }
 }
 
 void pushpin_pokey_idle(void) {
@@ -154,6 +118,34 @@ void pushpin_pokey_chase_mario(void) {
     object_step_without_floor_orient();
 }
 
+void pushpin_pokey_next_attack() {
+    
+    o->oNumUndergroundAttacks += 1;
+    if (o->oNumUndergroundAttacks >= 3) {
+        o->oNumUndergroundAttacks = 0;
+        o->oAction = POKEY_ACT_BURST_FROM_GROUND;
+        return;
+    }
+    else {
+        cur_obj_become_tangible();
+    }
+    o->oNextPokeyAttack += ((random_u16() % 2) + 1);
+    if (o->oNextPokeyAttack >= 3) {
+        o->oNextPokeyAttack -= 3;
+    }
+
+    switch (o->oNextPokeyAttack) {
+                    case 0:
+                o->oAction = POKEY_ACT_GROUND_NEEDLES;
+                break;
+                case 1:
+                o->oAction = POKEY_ACT_BURROW_DASH;
+                break;
+                case 2:
+                o->oAction = POKEY_ACT_THROW_PARTS;
+                break;
+    }
+}
 
 
 void pushpin_pokey_burrow(void) {
@@ -253,6 +245,7 @@ void pushpin_pokey_throw_parts(void) {
         case 1:
             if (o->oTimer > 270) {
                 set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+                gReonucamState.overhead = 0;
                 pushpin_pokey_next_attack();
             }
         break;
@@ -467,10 +460,33 @@ void pushpin_pokey_burst_from_ground(void) {
     }
 }
 
+void pushpin_pokey_set_mario_style(void) {
+    switch (random_u16() % 8) {
+            case 0: set_mario_animation(gMarioState, MARIO_ANIM_SINGLE_JUMP);
+            break;
+            case 1: set_mario_animation(gMarioState, MARIO_ANIM_DOUBLE_JUMP_RISE);
+            break;
+            case 2: set_mario_animation(gMarioState, MARIO_ANIM_GROUND_POUND);
+            break;
+            case 3: set_mario_animation(gMarioState, MARIO_ANIM_FAST_LONGJUMP);
+            break;
+            case 4: set_mario_animation(gMarioState, MARIO_ANIM_DIVE);
+            break;
+            case 5: set_mario_animation(gMarioState, MARIO_ANIM_SLIDEFLIP);
+            break;
+            case 6: set_mario_animation(gMarioState, MARIO_ANIM_AIR_KICK);
+            break;
+            case 7: set_mario_animation(gMarioState, MARIO_ANIM_SLEEP_LYING);
+            break;
+        }
+        //gMarioState->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+}
+
 void pushpin_pokey_scatter(void) {
     if (o->oNumHitSegments >= o->oCurrentNumSegments) {
         o->oNumHitSegments = 0;
-        return o->oAction = POKEY_ACT_STUNNED;
+         o->oAction = POKEY_ACT_STUNNED;
+        return;
     }
 /*
     if (o->oNumHitSegments == 0) {
@@ -535,28 +551,6 @@ void pushpin_pokey_scatter(void) {
     }
     */
 
-}
-
-void pushpin_pokey_set_mario_style(void) {
-    switch (random_u16() % 8) {
-            case 0: set_mario_animation(gMarioState, MARIO_ANIM_SINGLE_JUMP);
-            break;
-            case 1: set_mario_animation(gMarioState, MARIO_ANIM_DOUBLE_JUMP_RISE);
-            break;
-            case 2: set_mario_animation(gMarioState, MARIO_ANIM_GROUND_POUND);
-            break;
-            case 3: set_mario_animation(gMarioState, MARIO_ANIM_FAST_LONGJUMP);
-            break;
-            case 4: set_mario_animation(gMarioState, MARIO_ANIM_DIVE);
-            break;
-            case 5: set_mario_animation(gMarioState, MARIO_ANIM_SLIDEFLIP);
-            break;
-            case 6: set_mario_animation(gMarioState, MARIO_ANIM_AIR_KICK);
-            break;
-            case 7: set_mario_animation(gMarioState, MARIO_ANIM_SLEEP_LYING);
-            break;
-        }
-        //gMarioState->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
 }
 
 void pushpin_pokey_stunned(void) {
@@ -732,51 +726,6 @@ void pushpin_pokey_death(void) {
     }
 }
 
-void pushpin_pokey_set_model() {
-    switch (o->oCurrentNumSegments) {
-        case 7:
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_1];
-        break;
-        case 5:
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_2];
-        break;
-        case 3:
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_3];
-        break;  
-        case 1:
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PUSHPIN_POKEY_SEGMENT_HEAD];
-        break;
-    }
-    
-}
-
-void pushpin_pokey_next_attack() {
-    
-    o->oNumUndergroundAttacks += 1;
-    if (o->oNumUndergroundAttacks >= 3) {
-        o->oNumUndergroundAttacks = 0;
-        return o->oAction = POKEY_ACT_BURST_FROM_GROUND;
-    }
-    else {
-        cur_obj_become_tangible();
-    }
-    o->oNextPokeyAttack += ((random_u16() % 2) + 1);
-    if (o->oNextPokeyAttack >= 3) {
-        o->oNextPokeyAttack -= 3;
-    }
-
-    switch (o->oNextPokeyAttack) {
-                    case 0:
-                o->oAction = POKEY_ACT_GROUND_NEEDLES;
-                break;
-                case 1:
-                o->oAction = POKEY_ACT_BURROW_DASH;
-                break;
-                case 2:
-                o->oAction = POKEY_ACT_THROW_PARTS;
-                break;
-    }
-}
 
 void bhv_pushpin_pokey_camera_focus_init(void) {
     switch(o->oBehParams2ndByte) {
@@ -871,7 +820,8 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
         if (o->oTimer == 90) {
             spawn_object_relative(0, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeySegment);
             play_sound(SOUND_OBJ_EVIL_LAKITU_THROW, gGlobalSoundSource);
-            set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SLIDE_HOOT, 1);
+            //set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SLIDE_HOOT, 1);
+            gReonucamState.overhead = 1;
             o->parentObj->oNumHitSegments = 0;
             obj_mark_for_deletion(o);
             
@@ -1065,8 +1015,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
          
             gLakituState.goalFocus[0] = gMarioState->pos[0];
             gLakituState.goalFocus[1] = gMarioState->pos[1];
-            gLakituState.goalFocus[2] = gMarioState->pos[2]; 
-            //vec3f_copy(&)
+            gLakituState.goalFocus[2] = gMarioState->pos[2];
 
 
 
@@ -1102,5 +1051,60 @@ void bhv_pushpin_pokey_segment_loop(void) {
             obj_mark_for_deletion(o);
         }
     break;
+    }
+}
+
+void bhv_pushpin_pokey_init(void) {
+    o->oGravity = 30.5f;
+    o->oFriction = 0.8f;
+    o->oBuoyancy = 1.3f;
+    o->oCurrentNumSegments = 7;
+    o->oNextPokeyAttack = (random_u16() % 3);
+
+    seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+}
+
+void bhv_pushpin_pokey_loop(void) {
+    
+    if (o->oAction != POKEY_ACT_BURROW_DASH) {
+        o->oFaceAngleYaw = o->oMoveAngleYaw;
+    }
+
+
+    switch (o->oAction) {
+        case POKEY_ACT_IDLE:
+            pushpin_pokey_idle();
+            break;
+        case POKEY_ACT_CHASE_MARIO:
+            pushpin_pokey_chase_mario();
+            break;
+        case POKEY_ACT_BURROW:
+            pushpin_pokey_burrow();
+            break;
+        case POKEY_ACT_GROUND_NEEDLES:
+            pushpin_pokey_ground_needles();
+            break;
+        case POKEY_ACT_THROW_PARTS:
+            pushpin_pokey_throw_parts();
+            break;
+        case POKEY_ACT_BURROW_DASH:
+            pushpin_pokey_burrow_dash();
+            break;
+        case POKEY_ACT_BURST_FROM_GROUND:
+            pushpin_pokey_burst_from_ground();
+            break;
+            case POKEY_ACT_SCATTER:
+            pushpin_pokey_scatter();
+            break;
+            case POKEY_ACT_STUNNED:
+            pushpin_pokey_stunned();
+            break;
+            case POKEY_ACT_POP_UP:
+            pushpin_pokey_pop_up();
+            break;
+            case POKEY_ACT_DEATH:
+            pushpin_pokey_death();
+            break;
     }
 }

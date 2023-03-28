@@ -16,6 +16,8 @@ enum ObjCollisionFlags {
     OBJ_COL_FLAGS_LANDED    = (OBJ_COL_FLAG_GROUNDED | OBJ_COL_FLAG_NO_Y_VEL)
 };
 
+s16 object_step_without_floor_orient(void);
+
 //! Lots of these are duplicates
 void set_yoshi_as_not_dead(void);
 s32 coin_step(s16 *collisionFlagsPtr);

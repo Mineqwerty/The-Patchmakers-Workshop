@@ -2294,8 +2294,10 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
     }
     seqPlayer->tempoAcc -= (u16) gTempoInternalToExternal;
 
+    
+
     if (sCurrPlayMode != PLAY_MODE_PAUSED) {
-        if (gTatumCount % 505 == 0) {
+        if (gTatumCount % 690 == 0) {
             gTatumCount+= 2;
         }
         else {

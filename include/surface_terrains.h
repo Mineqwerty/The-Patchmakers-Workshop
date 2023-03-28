@@ -21,7 +21,7 @@ enum SurfaceTypes {
     SURFACE_000C,                       // 0x000C // unused
     SURFACE_WATER,                      // 0x000D // Water, has no action, used on some waterboxes below
     SURFACE_FLOWING_WATER,              // 0x000E // Water (flowing), has parameters
-    SURFACE_000F,                       // 0x000F // Unused
+    SURFACE_HURT_FLOOR,                       // 0x000F // Unused
     SURFACE_0010,                       // 0x0010 // Unused
     SURFACE_0011,                       // 0x0011 // Unused
     SURFACE_INTANGIBLE,                 // 0x0012 // Intangible (Separates BBH mansion from merry-go-round, for room usage)
@@ -325,5 +325,8 @@ enum TerrainType {
 
 // Water Box
 #define COL_WATER_BOX(id, x1, z1, x2, z2, y) id, x1, z1, x2, z2, y
+
+#define FLOOR_CHECKPOINT_FORCE 0xFCE
+#define SURFACE_IS_WARP_PLANE(surfType) (surfType == SURFACE_DEATH_PLANE || surfType == SURFACE_HURT_FLOOR /*|| surfType == SURFACE_VERTICAL_WIND*/)
 
 #endif // SURFACE_TERRAINS_H

@@ -98,6 +98,7 @@ struct ReonucamState {
     u8 keepCliffCam;
     u16 rButtonCounter;
     u16 rButtonCounter2;
+    u8 overhead;
 };
 extern struct ReonucamState gReonucamState;
 #endif
@@ -731,6 +732,8 @@ extern struct Camera *gCamera;
 extern struct Object *gCutsceneFocus;
 extern struct Object *gSecondCameraFocus;
 extern u8 gRecentCutscene;
+
+extern struct CutsceneSplinePoint gIntroLakituStartToPipeFocus[];
 
 // TODO: sort all of this extremely messy shit out after the split
 

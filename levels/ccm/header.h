@@ -96,4 +96,10 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/gold_sword/geo_header.h"
 
+#include "levels/ccm/gold_spear/geo_header.h"
+
+#include "levels/ccm/seraphim/geo_header.h"
+
+#include "levels/ccm/gold_spike_ball/geo_header.h"
+
 #endif

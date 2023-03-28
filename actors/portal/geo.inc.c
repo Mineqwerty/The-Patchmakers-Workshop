@@ -1,0 +1,36 @@
+#include "src/game/envfx_snow.h"
+
+const GeoLayout portal_switch_opt1[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+	GEO_ASM(0, geo_update_transparent_prim_color_from_obj_fields),
+		GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, portal_mesh_mesh_layer_5_mat_override_portal_texture_2_0),
+		GEO_OPEN_NODE(),
+			GEO_DISPLAY_LIST(LAYER_OPAQUE, portal_mesh_mesh_layer_1_mat_override_portal_texture_2_0),
+		GEO_CLOSE_NODE(),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout portal_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
+		GEO_OPEN_NODE(),
+			GEO_SWITCH_CASE(0, geo_switch_portal_texture),
+			GEO_OPEN_NODE(),
+				GEO_NODE_START(),
+				GEO_OPEN_NODE(),
+				GEO_ASM(0, geo_update_transparent_prim_color_from_obj_fields),
+					GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, portal_mesh_mesh_layer_5),
+					GEO_OPEN_NODE(),
+						GEO_DISPLAY_LIST(LAYER_OPAQUE, portal_mesh_mesh_layer_1),
+					GEO_CLOSE_NODE(),
+				GEO_CLOSE_NODE(),
+				GEO_BRANCH(1, portal_switch_opt1),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, portal_material_revert_render_settings),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, portal_material_revert_render_settings),
+	GEO_CLOSE_NODE(),
+	GEO_END(),
+};

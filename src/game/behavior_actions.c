@@ -253,3 +253,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/star_gate.inc.c"
 #include "behaviors/fling_ring.inc.c"
 #include "behaviors/the_patchmaker.inc.c"
+//seraphim in obj_behaviors_2.c
+#include "behaviors/floating_plane.inc.c"

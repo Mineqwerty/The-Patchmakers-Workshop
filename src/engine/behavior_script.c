@@ -15,6 +15,8 @@
 #include "graph_node.h"
 #include "surface_collision.h"
 #include "game/puppylights.h"
+#include "types.h"
+#include "src/game/level_update.h"
 
 // Macros for retrieving arguments from behavior scripts.
 #define BHV_CMD_GET_1ST_U8(index)  (u8)((gCurBhvCommand[index] >> 24) & 0xFF) // unused
@@ -823,6 +825,14 @@ void cur_obj_update(void) {
     // Calculate the distance from the object to Mario.
     if (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_MARIO) {
         o->oDistanceToMario = dist_between_objects(o, gMarioObject);
+        if (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK) {
+            f32 grappleDist;
+            cur_obj_find_nearest_object_with_behavior(bhvGrappleHook, &grappleDist);
+
+            if (grappleDist < o->oDistanceToMario) {
+                o->oDistanceToMario = grappleDist;
+            }
+        }
         distanceFromMario = o->oDistanceToMario;
     } else {
         distanceFromMario = 0.0f;

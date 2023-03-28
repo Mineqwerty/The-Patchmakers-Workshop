@@ -33,6 +33,7 @@
 #include "sound_init.h"
 #include "rumble_init.h"
 #include "include/seq_ids.h"
+#include "src/game/cutscene.h"
 
 
 /**************************************************
@@ -1788,6 +1789,12 @@ void perform_patch_action(struct MarioState *m) {
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
             }
         break;
+        //halo is handled in its own object
+
+        case 5:
+            m->curPatch = 5;
+            m->patchTimer = 0;
+        break;
         }
 }
 
@@ -1831,6 +1838,21 @@ void patch_update(struct MarioState *m ) {
                 play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
             }
         break;
+
+        case 5:
+            if (gPlayer1Controller->buttonDown & L_TRIG) {
+                if (gMarioState->patchTimer >= 7) {
+                    if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
+                    m->patchChildSecondaryObj = spawn_object_relative(1, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
+                    m->curPatch = 0;
+                }
+            }
+            else if (gMarioState->patchTimer < 7) {
+                if (m->patchChildObj) obj_mark_for_deletion(m->patchChildObj);
+                m->patchChildObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
+                m->curPatch = 0;
+            }
+        break;
     }
 }
 
@@ -1861,7 +1883,9 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
         case 4:
             if (m->patchChildObj) {
-                obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
+                if (m->patchChildObj->oHaloCapturedObject) {
+                    obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
+                }
                 obj_mark_for_deletion(m->patchChildObj);
             }
             m->curPatch = 4;
@@ -1887,6 +1911,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     }
 
     patch_update(gMarioState);
+    gMarioState->patchTimer++;
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
@@ -1922,7 +1947,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         gMarioState->equippedPatch = dpadMap[2];
         gMarioState->updatePatch = 1;
         //play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-        //initiate_warp(LEVEL_CCM, 4, 10, 0);
+        initiate_warp(LEVEL_CCM, 4, 10, 0);
         //seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
             //play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL), 0);
     }
@@ -2061,6 +2086,78 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     return ACTIVE_PARTICLE_NONE;
 }
 
+void vec3f_center(Vec3f dest, Vec3s vtx1, Vec3s vtx2, Vec3s vtx3) {
+    dest[0] = ((f32)(vtx1[0] + vtx2[0] + vtx3[0])) * 0.33333333f;
+    dest[1] = ((f32)(vtx1[1] + vtx2[1] + vtx3[1])) * 0.33333333f;
+    dest[2] = ((f32)(vtx1[2] + vtx2[2] + vtx3[2])) * 0.33333333f;
+}
+
+void check_mario_floor_checkpoint(struct MarioState *m) {
+    if (
+        m->floor->force == FLOOR_CHECKPOINT_FORCE &&
+        m->floor != m->floorCheckpoint.floor &&
+        !mario_floor_is_slippery(m)
+    ) {
+        vec3f_center(m->floorCheckpoint.pos, m->floor->vertex1, m->floor->vertex2, m->floor->vertex3);
+        m->floorCheckpoint.yaw = m->faceAngle[1];
+        m->floorCheckpoint.level = gCurrLevelNum;
+        m->floorCheckpoint.area = gCurrAreaIndex;
+        m->floorCheckpoint.floor = m->floor;
+    }
+}
+
+s32 get_checkpoint_action(struct MarioState *m) {
+    if (m->waterLevel > m->pos[1] - 80.0f) return 0;
+    else if (m->floorCheckpoint.floor) return 1;
+    return 2;
+}
+
+s32 warp_to_checkpoint(struct MarioState *m, s32 damage) {
+    Vec3f displacement;
+    vec3_diff(displacement, m->pos, m->floorCheckpoint.pos);
+
+    vec3f_copy(m->pos, m->floorCheckpoint.pos);
+    vec3s_set(m->faceAngle, 0, m->floorCheckpoint.yaw, 0);
+    vec3_zero(m->vel);
+
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_copy(m->marioObj->header.gfx.angle, m->faceAngle);
+
+    m->flags |= MARIO_TELEPORTING;
+    m->fadeWarpOpacity = 0;
+
+    if (gMarioState->floorCheckpoint.area != gCurrAreaIndex) {
+        s16 cameraAngle = gMarioState->area->camera->yaw;
+        change_area(gMarioState->floorCheckpoint.area);
+        gMarioState->area = gCurrentArea;
+        warp_camera(displacement[0], displacement[1], displacement[2]);
+        gMarioState->area->camera->yaw = cameraAngle;
+    } else {
+        reset_camera(gCurrentArea->camera);
+    }
+
+    switch(get_checkpoint_action(m)) {
+        case 0:
+            set_mario_animation(m, MARIO_ANIM_WAKE_FROM_LYING);
+            break;
+        case 1:
+            set_mario_animation(m, MARIO_ANIM_WAKE_FROM_LYING);
+            break;
+        case 2:
+        default:
+            set_mario_animation(m, MARIO_ANIM_WAKE_FROM_LYING);
+            break;
+    }
+
+    m->health -= damage;
+    if (m->health < 0x100) {
+        m->health = 0xFF;
+    }
+
+    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 20, 0, 0, 0);
+    return set_mario_action(m, ACT_FLOOR_CHECKPOINT_WARP_IN, 0);
+}
+
 /**************************************************
  *                  INITIALIZATION                *
  **************************************************/
@@ -2072,6 +2169,8 @@ void init_mario(void) {
 
     //CHANGE THIS
     //gMarioState->equippedPatch = 1;
+
+    gReonucamState.overhead = 0;
 
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
@@ -2158,6 +2257,14 @@ void init_mario_from_save_file(void) {
     gMarioState->marioBodyState = &gBodyStates[0];
     gMarioState->controller = &gControllers[0];
     gMarioState->animList = &gMarioAnimsBuf;
+
+    gMarioState->portal1Position[0] = 0;
+    gMarioState->portal1Position[1] = 0;
+    gMarioState->portal1Position[2] = 0;
+
+    gMarioState->portal2Position[0] = 0;
+    gMarioState->portal2Position[1] = 0;
+    gMarioState->portal2Position[2] = 0;
 
     gMarioState->numCoins = 0;
     gMarioState->numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);

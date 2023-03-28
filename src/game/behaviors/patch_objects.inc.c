@@ -1,4 +1,7 @@
 #include "actors/grapple_line/geo_header.h"
+#include "src/buffers/framebuffers.h"
+#include "src/game/game_init.h"
+#include "actors/group0.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -262,12 +265,15 @@ void bhv_grapple_hook_loop(void) {
             Vec3f raydir;
 
             raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
+            raydir[1] = 0.0f;
             raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
+
+            vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
 
             vec3f_set(originPos, o->oPosX - (sins(o->oMoveAngleYaw) * 50.0f), o->oPosY,
                       o->oPosZ - (coss(o->oMoveAngleYaw) * 50.0f));
 
-            find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
+            find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
             if (surf != NULL) {
                 o->oPosX = hitpos[0];
                 o->oPosY = hitpos[1];
@@ -280,14 +286,14 @@ void bhv_grapple_hook_loop(void) {
                 raydir[2] = 0.0f;
 
                 raydir[1] = -30.0f;
-                find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 1U, 1);
+                find_surface_on_ray(originPos, raydir, &surf, hitpos, 1U, 1);
                 if (surf != NULL) {
                     o->oAngleVelPitch = -0x800;
                     o->oVelY = 5.0f;
                     return o->oAction = 2;
                 }
                 raydir[1] = 90.0f;
-                find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 4U, 1);
+                find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
                 if (surf != NULL) {
                     o->oAngleVelPitch = 0x1000;
                     o->oVelY = -30.0f;
@@ -324,8 +330,8 @@ void bhv_grapple_hook_loop(void) {
                 return;
             }
 
-            vec3f_set(&adjustedPos, o->oPosX, o->oPosY + 50, o->oPosZ);
-            approach_vec3f_asymptotic(&gMarioState->pos, &adjustedPos, 0.5f, 0.5f, 0.5f);
+            vec3f_set(adjustedPos, o->oPosX, o->oPosY + 50, o->oPosZ);
+            approach_vec3f_asymptotic(gMarioState->pos, adjustedPos, 0.5f, 0.5f, 0.5f);
             if (o->oTimer == 4) {
                 gMarioState->faceAngle[1] += 0x8000;
                 set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
@@ -385,6 +391,103 @@ void bhv_grapple_line_loop(void) {
         new[5].v.ob[2] = o->oDistanceToMario;
         new[6].v.ob[2] = o->oDistanceToMario;
         new[7].v.ob[2] = o->oDistanceToMario;
+    }
+}
+
+void halo_run_movement(void) {
+
+    struct Surface *surf;
+    Vec3f originPos;
+    Vec3f hitpos;
+    Vec3f raydir;
+
+    raydir[0] = o->oHomeX - gMarioState->pos[0];
+    raydir[1] = o->oHomeY - gMarioState->pos[1];
+    raydir[2] = o->oHomeZ - gMarioState->pos[2];
+
+    vec3f_copy(originPos, gMarioState->pos);
+
+    find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
+    if (surf != NULL) {
+        o->oHomeX = hitpos[0];
+        // o->oHomeY = hitpos[1];
+        o->oHomeZ = hitpos[2];
+    }
+
+    approach_f32_asymptotic_bool(&o->oPosX, o->oHomeX, o->oHaloApproachSpeed);
+    approach_f32_asymptotic_bool(&o->oPosY, o->oHomeY, o->oHaloApproachSpeed);
+    approach_f32_asymptotic_bool(&o->oPosZ, o->oHomeZ, o->oHaloApproachSpeed);
+
+    o->oWallHitboxRadius = 50.0f;
+
+    cur_obj_resolve_wall_collisions();
+}
+
+
+void halo_perform_circle(void) {
+
+    if (o->oHaloCapturedObject && gMarioState->haloCaptureType == 3 && o->oTimer == 18 && o->oHaloCapturedObject->oGoldBlobCount >= 2) {
+        o->oHaloCapturedObject->oAction = 1;
+
+        o->oHaloCapturedObject = NULL;
+        gMarioState->haloCaptureType = 0;
+    }
+
+    o->oHaloApproachSpeed = 1;
+
+    if (o->oTimer < 8) {
+        o->oHomeX = gMarioState->pos[0] + (37 * o->oTimer) * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + (37 * o->oTimer) * coss(0x1000 * o->oTimer);
+    } else if (o->oTimer > 24) {
+        o->oHomeX = gMarioState->pos[0] + (300 - (37 * (o->oTimer - 24))) * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + (300 - (37 * (o->oTimer - 24))) * coss(0x1000 * o->oTimer);
+    } else {
+        o->oHomeX = gMarioState->pos[0] + 300 * sins(0x1000 * o->oTimer);
+        o->oHomeZ = gMarioState->pos[2] + 300 * coss(0x1000 * o->oTimer);
+    }
+
+    halo_run_movement();
+
+    if (o->oTimer == 32) {
+        o->oAction = 2;
+    }
+}
+
+void halo_calculate_and_move_towards_goal(void) {
+    o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
+    o->oHomeY = gMarioState->pos[1] + 70.0f;
+    o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
+
+    o->oHaloApproachSpeed = 0.5f;
+
+    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
+    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
+    f32 *dist;
+
+    vec3f_get_dist(curPosVec, goalVec, &dist);
+
+    if (dist > 50) {
+        halo_run_movement();
+    }
+}
+
+void halo_calculate_and_move_back_to_mario(void) {
+    o->oHomeX = gMarioState->pos[0];
+    o->oHomeY = gMarioState->pos[1] + 170;
+    o->oHomeZ = gMarioState->pos[2];
+
+    o->oHaloApproachSpeed = 0.5f;
+
+    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
+    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
+    f32 *dist;
+
+    vec3f_get_dist(curPosVec, goalVec, &dist);
+
+    if (o->oTimer < 5) {
+        halo_run_movement();
+    } else {
+        o->oAction = 0;
     }
 }
 
@@ -463,11 +566,18 @@ void bhv_halo_loop(void) {
         }
     }
 
+    if (o->oAction != 0) {
+
     f32 dist;
 
     struct Object *nearCoin = cur_obj_find_nearest_object_with_behavior(bhvYellowCoin, &dist);
     if (dist < 200) {
         if (o->oHaloCapturedObject) {
+            if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                obj_mark_for_deletion(o->oHaloCapturedObject);
+                o->oHaloCapturedObject = spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
+            gMarioState->haloCaptureType = 2;
+            }
             o->oHaloCapturedObject->oHaloCoinValue += 1;
             if (nearCoin->parentObj)
                 nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
@@ -486,6 +596,11 @@ void bhv_halo_loop(void) {
     struct Object *nearRedCoin = cur_obj_find_nearest_object_with_behavior(bhvRedCoin, &dist);
     if (dist < 200) {
         if (o->oHaloCapturedObject) {
+            if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                obj_mark_for_deletion(o->oHaloCapturedObject);
+                o->oHaloCapturedObject = spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
+            gMarioState->haloCaptureType = 2;
+            }
             o->oHaloCapturedObject->oHaloCoinValue += 2;
             if (nearRedCoin->parentObj)
                 nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
@@ -514,102 +629,110 @@ void bhv_halo_loop(void) {
             }
         }
     }
+    }
 
     o->oInteractStatus = 0;
 }
 
-void halo_calculate_and_move_towards_goal(void) {
-    o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
-    o->oHomeY = gMarioState->pos[1] + 70.0f;
-    o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
 
-    o->oHaloApproachSpeed = 0.5f;
 
-    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
-    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
-    f32 *dist;
 
-    vec3f_get_dist(curPosVec, goalVec, &dist);
 
-    if (dist > 50) {
-        halo_run_movement();
+
+// Width and height of output texture
+#define FB_IMAGE__W         32
+#define FB_IMAGE__H         32
+// Number of pixels to sample for each individual pixel (samples more of the framebuffer)
+#define FB_SAMPLE_SIZE__W   2
+#define FB_SAMPLE_SIZE__H   2
+// Multiple of columns to skip during sampling (1 for every pixel, 2 for every other pixel, etc)
+#define FB_SAMPLE_SKIP      1
+// Num pixels to sample per pixel
+#define FB_SAMPLE_SIZE__TOTAL (FB_SAMPLE_SIZE__W * FB_SAMPLE_SIZE__H)
+// Multiplier (for dividing the strength of each sampled pixel)
+#define FB_SAMPLE_SIZE__MUL ((1.0f / FB_SAMPLE_SIZE__TOTAL) * FB_SAMPLE_SKIP)
+// Distance from center to edge of sample area
+#define FB_SAMPLE_OFFSET__W (FB_SAMPLE_SIZE__W * FB_IMAGE__W / 2)
+#define FB_SAMPLE_OFFSET__H (FB_SAMPLE_SIZE__H * FB_IMAGE__H / 2)
+
+void portal_sample_fb(void) {
+    s32 pixel;
+    f32 r, g, b;
+    s32 iy, ix, sy, sx;
+    static u32 curFrame = 0;
+    static s32 xOffset = (SCREEN_WIDTH / 2) - FB_IMAGE__W;
+    static s32 yOffset = (SCREEN_HEIGHT / 2) - FB_IMAGE__H;
+
+    u16 *fb = gFramebuffers[sRenderingFramebuffer];
+    u16 *image = segmented_to_virtual(portal_portal_rgba16);
+    if (o->oBehParams2ndByte == 1) {
+        image = segmented_to_virtual(portal_portal_2_rgba16);
+    }
+
+    for (iy = 0; iy < FB_IMAGE__H; iy++) {
+        for (ix = 0; ix < FB_IMAGE__W; ix++) {
+            r = 0;
+            g = 0;
+            b = 0;
+
+            for (sy = 0; sy < FB_SAMPLE_SIZE__H; sy += FB_SAMPLE_SKIP) {
+                for (sx = 0; sx < FB_SAMPLE_SIZE__W; sx += FB_SAMPLE_SKIP) {
+                    pixel = SCREEN_WIDTH * (FB_SAMPLE_SIZE__H * iy + sy + yOffset) + (FB_SAMPLE_SIZE__W * ix + xOffset) + sx;
+
+                    r += ((fb[pixel] >> 0xB) & 0x1F);
+                    g += ((fb[pixel] >> 0x6) & 0x1F);
+                    b += ((fb[pixel] >> 0x1) & 0x1F);
+                }
+            }
+
+            image[FB_IMAGE__H * iy + ix] =
+                ((((u16) ((r * FB_SAMPLE_SIZE__MUL) + 0.5) << 0xB) & 0xF800)) |
+                ((((u16) ((g * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x6) &  0x7C0)) |
+                ((((u16) ((b * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x1) &   0x3E)) | 1;
+        }
     }
 }
 
-void halo_calculate_and_move_back_to_mario(void) {
-    o->oHomeX = gMarioState->pos[0];
-    o->oHomeY = gMarioState->pos[1] + 170;
-    o->oHomeZ = gMarioState->pos[2];
-
-    o->oHaloApproachSpeed = 0.5f;
-
-    Vec3f curPosVec = { o->oPosX, o->oPosY, o->oPosZ };
-    Vec3f goalVec = { o->oHomeX, o->oHomeY, o->oHomeZ };
-    f32 *dist;
-
-    vec3f_get_dist(curPosVec, goalVec, &dist);
-
-    if (o->oTimer < 5) {
-        halo_run_movement();
-    } else {
-        o->oAction = 0;
-    }
+void bhv_portal_init(void) {
+   switch(o->oBehParams2ndByte) {
+    case 0:
+        SET_BPARAM1(o->oPrimColorParams, 178);
+        SET_BPARAM2(o->oPrimColorParams, 47);
+        SET_BPARAM3(o->oPrimColorParams, 235);
+        break;
+    case 1:
+        SET_BPARAM1(o->oPrimColorParams, 245);
+        SET_BPARAM2(o->oPrimColorParams, 196);
+        SET_BPARAM3(o->oPrimColorParams, 34);
+        break;
+   }
+    portal_sample_fb();
 }
 
-void halo_perform_circle(void) {
-
-    if (o->oHaloCapturedObject && gMarioState->haloCaptureType == 3 && o->oTimer == 18 && o->oHaloCapturedObject->oGoldBlobCount >= 2) {
-        o->oHaloCapturedObject->oAction = 1;
-
-        o->oHaloCapturedObject = NULL;
-        gMarioState->haloCaptureType = 0;
+void bhv_portal_loop(void) {
+    if (o->oTimer > 0 && o->oTimer < 20) {
+        cur_obj_unhide();
+        obj_scale_xyz(o, ((f32) o->oTimer) / 20.0f, 1.0f, 1.0f);
+    }
+    else {
+        obj_scale_xyz(o, 1.0f, 1.0f, 1.0f);
     }
 
-    o->oHaloApproachSpeed = 1;
+    print_text_fmt_int(100, 100 - (20 * o->oBehParams2ndByte), "Portal %d", o->oBehParams2ndByte);
 
-    if (o->oTimer < 8) {
-        o->oHomeX = gMarioState->pos[0] + (37 * o->oTimer) * sins(0x1000 * o->oTimer);
-        o->oHomeZ = gMarioState->pos[2] + (37 * o->oTimer) * coss(0x1000 * o->oTimer);
-    } else if (o->oTimer > 24) {
-        o->oHomeX = gMarioState->pos[0] + (300 - (37 * (o->oTimer - 24))) * sins(0x1000 * o->oTimer);
-        o->oHomeZ = gMarioState->pos[2] + (300 - (37 * (o->oTimer - 24))) * coss(0x1000 * o->oTimer);
-    } else {
-        o->oHomeX = gMarioState->pos[0] + 300 * sins(0x1000 * o->oTimer);
-        o->oHomeZ = gMarioState->pos[2] + 300 * coss(0x1000 * o->oTimer);
-    }
+    
 
-    halo_run_movement();
+    
 
-    if (o->oTimer == 32) {
-        o->oAction = 2;
-    }
 }
 
-void halo_run_movement(void) {
+Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
-    struct Surface *surf;
-    Vec3f originPos;
-    Vec3f hitpos;
-    Vec3f raydir;
-
-    raydir[0] = o->oHomeX - gMarioState->pos[0];
-    raydir[1] = o->oHomeY - gMarioState->pos[1];
-    raydir[2] = o->oHomeZ - gMarioState->pos[2];
-
-    vec3f_copy(originPos, gMarioState->pos);
-
-    find_surface_on_ray(&originPos, raydir, &surf, &hitpos, 2U, 1);
-    if (surf != NULL) {
-        o->oHomeX = hitpos[0];
-        // o->oHomeY = hitpos[1];
-        o->oHomeZ = hitpos[2];
+        switchCase->selectedCase = obj->oBehParams2ndByte;
+            
     }
-
-    approach_f32_asymptotic_bool(&o->oPosX, o->oHomeX, o->oHaloApproachSpeed);
-    approach_f32_asymptotic_bool(&o->oPosY, o->oHomeY, o->oHaloApproachSpeed);
-    approach_f32_asymptotic_bool(&o->oPosZ, o->oHomeZ, o->oHaloApproachSpeed);
-
-    o->oWallHitboxRadius = 50.0f;
-
-    cur_obj_resolve_wall_collisions();
+    return NULL;
 }
