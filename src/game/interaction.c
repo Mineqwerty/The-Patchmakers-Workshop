@@ -35,7 +35,7 @@ u32 interact_warp          (struct MarioState *m, u32 interactType, struct Objec
 u32 interact_warp_door     (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_door          (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_cannon_base   (struct MarioState *m, u32 interactType, struct Object *obj);
-u32 interact_igloo_barrier (struct MarioState *m, u32 interactType, struct Object *obj);
+u32 interact_igloo(struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_tornado       (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_whirlpool     (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_strong_wind   (struct MarioState *m, u32 interactType, struct Object *obj);
@@ -73,7 +73,7 @@ static struct InteractionHandler sInteractionHandlers[] = {
     { INTERACT_WARP_DOOR,      interact_warp_door },
     { INTERACT_DOOR,           interact_door },
     { INTERACT_CANNON_BASE,    interact_cannon_base },
-    { INTERACT_IGLOO_BARRIER,  interact_igloo_barrier },
+    { INTERACT_PUSH_OUT,  interact_igloo },
     { INTERACT_TORNADO,        interact_tornado },
     { INTERACT_WHIRLPOOL,      interact_whirlpool },
     { INTERACT_STRONG_WIND,    interact_strong_wind },
@@ -274,6 +274,9 @@ void mario_stop_riding_object(struct MarioState *m) {
 void mario_grab_used_object(struct MarioState *m) {
     if (m->heldObj == NULL) {
         m->heldObj = m->usedObj;
+        m->lastHeldBehavior = m->usedObj->behavior;
+        m->lastHeldModel = (u16) obj_get_model_id(m->usedObj);
+        m->lastHeldBehaviorParams = m->usedObj->oBehParams2ndByte;
         obj_set_held_state(m->heldObj, bhvCarrySomethingHeld);
     }
 }
@@ -297,6 +300,8 @@ void mario_drop_held_object(struct MarioState *m) {
         m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 
         m->heldObj = NULL;
+        m->lastHeldBehavior = NULL;
+        m->lastHeldModel = NULL;
     }
 }
 
@@ -315,6 +320,8 @@ void mario_throw_held_object(struct MarioState *m) {
         m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 
         m->heldObj = NULL;
+        m->lastHeldBehavior = NULL;
+        m->lastHeldModel = NULL;
     }
 }
 
@@ -653,7 +660,7 @@ void freeze_enemy(struct MarioState *m, struct Object *obj, u32 interaction) {
     cur_obj_spawn_particles(&MistIce2);
     //obj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
     struct Object *ice = spawn_object_abs_with_rot(obj, 0, MODEL_ICE_CUBE, bhvIceCube, obj->oPosX, obj->oPosY, obj->oPosZ, 0, 0, 0);
-    
+    check_for_max_ice_and_break_oldest();
     if (obj_has_behavior(obj, bhvSkeeter) || obj_has_behavior(obj, bhvSwampSkeeter)) {
             ice->oBehParams2ndByte = 1;
     }
@@ -757,7 +764,7 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
     u32 damage;
 
     if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP)
-        && !(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY) && !(m->curPatch == 1 && m->action == ACT_BOUNCED_ON_ROSEDRIFT)) {
+        && !(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY) && !(m->curPatch == PATCH_STONE && m->action == ACT_BOUNCED_ON_ROSEDRIFT)) {
         obj->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
         m->interactObj = obj;
 
@@ -775,7 +782,7 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
         return drop_and_set_mario_action(m, determine_knockback_action(m, obj->oDamageOrCoinValue), damage);
     }
 
-    if (m->curPatch == 1 && obj->oInteractionSubtype & INT_SUBTYPE_BREAK_STONE_PATCH) {
+    if (m->curPatch == PATCH_STONE && obj->oInteractionSubtype & INT_SUBTYPE_BREAK_STONE_PATCH) {
         m->interactObj = obj;
         common_patch_cancel(gMarioState);
         damage = take_damage_from_interact_object(m);
@@ -1142,12 +1149,12 @@ u32 interact_cannon_base(struct MarioState *m, UNUSED u32 interactType, struct O
     return FALSE;
 }
 
-u32 interact_igloo_barrier(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
+u32 interact_igloo(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     //! Sets used object without changing action (LOTS of interesting glitches,
     // but unfortunately the igloo barrier is the only object with this interaction
     // type)
-    m->interactObj = obj;
-    m->usedObj     = obj;
+    //m->interactObj = obj;
+    //m->usedObj     = obj;
     push_mario_out_of_object(m, obj, 5.0f);
     return FALSE;
 }
@@ -1446,7 +1453,7 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_ABOVE) {
-            if (m->equippedPatch == 2) {
+            if (m->equippedPatch == PATCH_CHILLSTEP) {
             freeze_enemy(m, obj, interaction);
             return TRUE;
         }
@@ -1911,6 +1918,24 @@ u32 check_talotak_talk(struct MarioState *m, struct Object *obj) {
     return FALSE;
 }
 
+u32 check_sewnia_talk(struct MarioState *m, struct Object *obj) {
+    if ((m->input & READ_MASK) && mario_can_talk(m, 1)) {
+        s16 facingDYaw = mario_obj_angle_to_object(m, obj) - m->faceAngle[1];
+        if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE) {
+            obj->oInteractStatus = INT_STATUS_INTERACTED;
+
+            m->interactObj = obj;
+            m->usedObj     = obj;
+
+            push_mario_out_of_object(m, obj, -10.0f);
+            return set_mario_action(m, ACT_WAITING_FOR_DIALOG, 0);
+        }
+    }
+
+    //push_mario_out_of_object(m, obj, -10.0f);
+    return FALSE;
+}
+
 u32 interact_text(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 interact = FALSE;
 
@@ -1976,18 +2001,18 @@ void mario_process_interactions(struct MarioState *m) {
 
                 if (!(object->oInteractStatus & INT_STATUS_INTERACTED)) {
                     if (sInvulnerable) {
-                        if (gMarioState->curPatch == 1) {
+                        if (gMarioState->curPatch == PATCH_STONE) {
                         push_mario_out_of_object(m, object, -5.0f);
                         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
                         }
 
-                        if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == 1) {
+                        if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == PATCH_STONE) {
                             if (gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT) {
                                 object->oAction = 1;
                             }
                         }
                     }
-                    if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == 1) {
+                    if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == PATCH_STONE) {
                             if (gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT) {
                                 object->oAction = 1;
                                 gSlowdownCount = 2;
@@ -2041,7 +2066,7 @@ void check_gss_cloud_warp(struct MarioState *m) {
             //gMarioState->pos[1] += 5000;
             change_area(2);
                     gMarioState->area = gCurrentArea;
-                    if (gMarioState->equippedPatch == 4) {
+                    if (gMarioState->equippedPatch == PATCH_HALO) {
                 gMarioState->patchChildObj = spawn_object(m->marioObj, MODEL_HALO, bhvHalo);
                 switch(gMarioState->haloCaptureType) {
                     case 1:
@@ -2058,7 +2083,7 @@ void check_gss_cloud_warp(struct MarioState *m) {
 
 void check_lava_boost(struct MarioState *m) {
     if (!(m->action & ACT_FLAG_RIDING_SHELL) && m->pos[1] < m->floorHeight + 10.0f) {
-        if (m->curPatch != 1) {
+        if (m->curPatch != PATCH_STONE) {
             m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
         }
 
@@ -2148,13 +2173,13 @@ void mario_handle_special_floors(struct MarioState *m) {
             }
 
             if (floorType ==  SURFACE_THORNS) {
-                if (gMarioState->curPatch != 1) {
+                if (gMarioState->curPatch != PATCH_STONE) {
                 check_lava_boost(m);
                 }
         }
 
             if (floorType ==  SURFACE_THORNS_PASS) {
-                if (gMarioState->curPatch != 1) {
+                if (gMarioState->curPatch != PATCH_STONE) {
                 check_lava_boost(m);
                 }
         }

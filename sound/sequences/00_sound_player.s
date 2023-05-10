@@ -2801,6 +2801,7 @@ sound_ref .sound_grapple_hook_2
 sound_ref .sound_halo_out
 sound_ref .sound_halo_in
 sound_ref .sound_halo_circle
+sound_ref .sound_box_blip
 sound_ref .sound_menu_enter_hole
 sound_ref .sound_general_red_coin
 sound_ref .sound_general_birds_fly_away
@@ -4863,8 +4864,18 @@ chan_setinstr 13
 chan_setlayer 0, .layer_AAAA
 chan_end
 
+.sound_box_blip:
+chan_setbank 0
+chan_setinstr 14
+chan_setlayer 0, .layer_AAAB
+chan_end
+
 .layer_AAAA:
   layer_note1 39, 0x100, 127
+  layer_end
+
+  .layer_AAAB:
+  layer_note1 39, 0x20, 127
   layer_end
 
 .layer_1DD4:

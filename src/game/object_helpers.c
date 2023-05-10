@@ -220,7 +220,7 @@ Gfx *geo_update_transparent_prim_color_from_obj_fields(s32 callContext, struct G
         u8 red = GET_BPARAM1(objectGraphNode->oPrimColorParams);
         u8 green = GET_BPARAM2(objectGraphNode->oPrimColorParams);
         u8 blue = GET_BPARAM3(objectGraphNode->oPrimColorParams);
-        //u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
+        u8 alpha = GET_BPARAM4(objectGraphNode->oPrimColorParams);
 
         
         
@@ -230,7 +230,7 @@ Gfx *geo_update_transparent_prim_color_from_obj_fields(s32 callContext, struct G
 
         SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_TRANSPARENT);
 
-        gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255);
+        gDPSetPrimColor(dlHead++, 0, 0, red, green, blue, 255 - alpha);
         gSPEndDisplayList(dlHead);
     }
 
@@ -372,6 +372,12 @@ f32 dist_between_objects(struct Object *obj1, struct Object *obj2) {
     return vec3_mag(d);
 }
 
+f32 dist_between_position_and_object(Vec3f origin, struct Object *obj2) {
+    Vec3f d;
+    vec3_diff(d, &obj2->oPosVec, origin);
+    return vec3_mag(d);
+}
+
 // Skip sqrtf
 f32 dist_between_objects_squared(struct Object *obj1, struct Object *obj2) {
     Vec3f d;
@@ -451,7 +457,7 @@ s32 obj_turn_toward_position(struct Object *obj, f32 x, f32 y, f32 z, s16 angleI
         case O_MOVE_ANGLE_YAW_INDEX:
         case O_FACE_ANGLE_YAW_INDEX:
             d[0] = x - obj->oPosX;
-            d[2] = x - obj->oPosZ;
+            d[2] = z - obj->oPosZ;
 
             targetAngle = atan2s(d[2], d[0]);
             break;
@@ -808,6 +814,62 @@ struct Object *cur_obj_find_nearest_object_with_behavior(const BehaviorScript *b
     return closestObj;
 }
 
+void check_for_max_ice_and_break_oldest() {
+    uintptr_t *behaviorAddr = segmented_to_virtual(bhvIceCube);
+    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    struct Object *obj = (struct Object *) listHead->next;
+    struct Object *oldestObj = NULL;
+    f32 minDist = 0x20000;
+    u32 maxTimer = 0;
+    u8 iceNum = 1;
+
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr
+            && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+            && obj != o
+        ) {
+            
+            iceNum++;
+            if (obj->oTimer > maxTimer) {
+                maxTimer = obj->oTimer;
+                oldestObj = obj;
+            }
+            if (iceNum >= 10) {
+                oldestObj->oAction = 20;
+            }
+        }
+
+        obj = (struct Object *) obj->header.next;
+    }
+    return;
+}
+
+struct Object *find_nearest_object_from_position_with_behavior(Vec3f origin, const BehaviorScript *behavior, f32 *dist) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    struct Object *obj = (struct Object *) listHead->next;
+    struct Object *closestObj = NULL;
+    f32 minDist = 0x20000;
+
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr
+            && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+            && obj != o
+        ) {
+            f32 objDist = dist_between_position_and_object(origin, obj);
+            if (objDist < minDist) {
+                closestObj = obj;
+                minDist = objDist;
+            }
+        }
+
+        obj = (struct Object *) obj->header.next;
+    }
+
+    *dist = minDist;
+    return closestObj;
+}
+
 struct Object *find_unimportant_object(void) {
     struct ObjectNode *listHead = &gObjectLists[OBJ_LIST_UNIMPORTANT];
     struct ObjectNode *obj = listHead->next;
@@ -1037,7 +1099,7 @@ s32 cur_obj_has_model(ModelID16 modelID) {
 
 // HackerSM64 function
 ModelID32 obj_get_model_id(struct Object *obj) {
-    if (!obj->header.gfx.sharedChild) {
+    if (obj && obj->header.gfx.sharedChild) {
         for (s32 i = MODEL_NONE; i < MODEL_ID_COUNT; i++) {
             if (obj->header.gfx.sharedChild == gLoadedGraphNodes[i]) {
                 return i;

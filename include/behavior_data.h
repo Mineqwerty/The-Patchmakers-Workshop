@@ -599,3 +599,16 @@ extern const BehaviorScript bhvSeraphim[];
 
 extern const BehaviorScript bhvFloatingPlane[];
 extern const BehaviorScript bhvPortal[];
+extern const BehaviorScript bhvFarPlaneCube[];
+extern const BehaviorScript bhvFarPlaneCubeHead[];
+extern const BehaviorScript bhvPortalPuzzleBarrier[];
+extern const BehaviorScript bhvPortalWindow[];
+extern const BehaviorScript bhvTfpGrowingBlock[];
+extern const BehaviorScript bhvTfpPuzzleBox[];
+extern const BehaviorScript bhvBoxSwitch[];
+extern const BehaviorScript bhvTfpRotaryPlatform[];
+extern const BehaviorScript bhvTfpRotaryArm[];
+extern const BehaviorScript bhvBoxBasket[];
+extern const BehaviorScript bhvBoxCounter[];
+extern const BehaviorScript bhvGroundPatch[];
+extern const BehaviorScript bhvSewniaStoppingPoint[];

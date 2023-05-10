@@ -2,6 +2,7 @@
 #include "src/buffers/framebuffers.h"
 #include "src/game/game_init.h"
 #include "actors/group0.h"
+#include "src/game/level_update.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -184,7 +185,7 @@ void bhv_ice_cube_loop(void) {
         }
     }
 
-    if (cur_obj_was_attacked_or_ground_pounded() && o->oBehParams2ndByte != 2) {
+    if ((cur_obj_was_attacked_or_ground_pounded() || o->oAction == 20) && o->oBehParams2ndByte != 2) {
         for (int i = 0; i < o->parentObj->oNumLootCoins; i++) {
             struct Object *coin;
             coin = spawn_object_relative(0, 0, 50, 0, o, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
@@ -302,8 +303,8 @@ void bhv_grapple_hook_loop(void) {
             }
 
             obj_move_xyz_using_fvel_and_yaw(o);
-            //o->oInteractStatus = 0;
-            //obj_set_hitbox(o, &sGrappleHookHitbox);
+            // o->oInteractStatus = 0;
+            // obj_set_hitbox(o, &sGrappleHookHitbox);
             for (int i = 0; i < o->numCollidedObjs; i++) {
                 struct Object *other = o->collidedObjs[i];
 
@@ -322,9 +323,11 @@ void bhv_grapple_hook_loop(void) {
             break;
         case 1:
 
-            if (gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT || gMarioState->action == ACT_FALL_AFTER_STAR_GRAB) {
+            if (gMarioState->action == ACT_STAR_DANCE_EXIT
+                || gMarioState->action == ACT_STAR_DANCE_NO_EXIT
+                || gMarioState->action == ACT_FALL_AFTER_STAR_GRAB) {
                 gMarioState->patchChildObj = NULL;
-                gMarioState->curPatch = 0;
+                gMarioState->curPatch = PATCH_NONE;
                 obj_mark_for_deletion(o->oGrappleLine);
                 obj_mark_for_deletion(o);
                 return;
@@ -336,7 +339,7 @@ void bhv_grapple_hook_loop(void) {
                 gMarioState->faceAngle[1] += 0x8000;
                 set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
                 gMarioState->patchChildObj = NULL;
-                gMarioState->curPatch = 0;
+                gMarioState->curPatch = PATCH_NONE;
                 obj_mark_for_deletion(o->oGrappleLine);
                 obj_mark_for_deletion(o);
             }
@@ -349,7 +352,7 @@ void bhv_grapple_hook_loop(void) {
             object_step_without_floor_orient();
             if (o->oTimer == 15) {
                 gMarioState->patchChildObj = NULL;
-                gMarioState->curPatch = 0;
+                gMarioState->curPatch = PATCH_NONE;
                 obj_mark_for_deletion(o->oGrappleLine);
                 obj_mark_for_deletion(o);
             }
@@ -423,10 +426,10 @@ void halo_run_movement(void) {
     cur_obj_resolve_wall_collisions();
 }
 
-
 void halo_perform_circle(void) {
 
-    if (o->oHaloCapturedObject && gMarioState->haloCaptureType == 3 && o->oTimer == 18 && o->oHaloCapturedObject->oGoldBlobCount >= 2) {
+    if (o->oHaloCapturedObject && gMarioState->haloCaptureType == 3 && o->oTimer == 18
+        && o->oHaloCapturedObject->oGoldBlobCount >= 2) {
         o->oHaloCapturedObject->oAction = 1;
 
         o->oHaloCapturedObject = NULL;
@@ -493,7 +496,7 @@ void halo_calculate_and_move_back_to_mario(void) {
 
 void bhv_halo_loop(void) {
 
-    if (gMarioState->equippedPatch != 4) {
+    if (gMarioState->equippedPatch != PATCH_HALO) {
         gMarioState->haloCaptureType = 0;
         if (o->oHaloCapturedObject) {
             obj_mark_for_deletion(o->oHaloCapturedObject);
@@ -554,11 +557,10 @@ void bhv_halo_loop(void) {
 
             if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
                 if (!o->oHaloCapturedObject) {
-                other->oIntangibleTimer = -1;
-                o->oHaloCapturedObject = other;
-                gMarioState->haloCaptureType = 3;
-                }
-                else {
+                    other->oIntangibleTimer = -1;
+                    o->oHaloCapturedObject = other;
+                    gMarioState->haloCaptureType = 3;
+                } else {
                     o->oHaloCapturedObject->oGoldBlobCount += 1;
                     obj_mark_for_deletion(other);
                 }
@@ -568,85 +570,82 @@ void bhv_halo_loop(void) {
 
     if (o->oAction != 0) {
 
-    f32 dist;
+        f32 dist;
 
-    struct Object *nearCoin = cur_obj_find_nearest_object_with_behavior(bhvYellowCoin, &dist);
-    if (dist < 200) {
-        if (o->oHaloCapturedObject) {
-            if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
-                obj_mark_for_deletion(o->oHaloCapturedObject);
-                o->oHaloCapturedObject = spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
-            gMarioState->haloCaptureType = 2;
-            }
-            o->oHaloCapturedObject->oHaloCoinValue += 1;
-            if (nearCoin->parentObj)
-                nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
-            obj_mark_for_deletion(nearCoin);
-        } else {
-            o->oHaloCapturedObject =
-                spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
-            gMarioState->haloCaptureType = 2;
-            o->oHaloCapturedObject->oHaloCoinValue += 1;
-            if (nearCoin->parentObj)
-                nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
-            obj_mark_for_deletion(nearCoin);
-        }
-    }
-
-    struct Object *nearRedCoin = cur_obj_find_nearest_object_with_behavior(bhvRedCoin, &dist);
-    if (dist < 200) {
-        if (o->oHaloCapturedObject) {
-            if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
-                obj_mark_for_deletion(o->oHaloCapturedObject);
-                o->oHaloCapturedObject = spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
-            gMarioState->haloCaptureType = 2;
-            }
-            o->oHaloCapturedObject->oHaloCoinValue += 2;
-            if (nearRedCoin->parentObj)
-                nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
-            play_sound(SOUND_MENU_COLLECT_RED_COIN
-                           + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
-                       gGlobalSoundSource);
-            nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
-
-            if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
-                spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
-            }
-
-        } else {
-            o->oHaloCapturedObject =
-                spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
-            gMarioState->haloCaptureType = 2;
-            o->oHaloCapturedObject->oHaloCoinValue += 2;
-            if (nearRedCoin->parentObj)
-                nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
-            play_sound(SOUND_MENU_COLLECT_RED_COIN
-                           + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
-                       gGlobalSoundSource);
-            nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
-            if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
-                spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+        struct Object *nearCoin = cur_obj_find_nearest_object_with_behavior(bhvYellowCoin, &dist);
+        if (dist < 200) {
+            if (o->oHaloCapturedObject) {
+                if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                    obj_mark_for_deletion(o->oHaloCapturedObject);
+                    o->oHaloCapturedObject = spawn_object_relative(
+                        0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
+                    gMarioState->haloCaptureType = 2;
+                }
+                o->oHaloCapturedObject->oHaloCoinValue += 1;
+                if (nearCoin->parentObj)
+                    nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
+                obj_mark_for_deletion(nearCoin);
+            } else {
+                o->oHaloCapturedObject =
+                    spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
+                gMarioState->haloCaptureType = 2;
+                o->oHaloCapturedObject->oHaloCoinValue += 1;
+                if (nearCoin->parentObj)
+                    nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
+                obj_mark_for_deletion(nearCoin);
             }
         }
-    }
+
+        struct Object *nearRedCoin = cur_obj_find_nearest_object_with_behavior(bhvRedCoin, &dist);
+        if (dist < 200) {
+            if (o->oHaloCapturedObject) {
+                if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                    obj_mark_for_deletion(o->oHaloCapturedObject);
+                    o->oHaloCapturedObject = spawn_object_relative(
+                        0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
+                    gMarioState->haloCaptureType = 2;
+                }
+                o->oHaloCapturedObject->oHaloCoinValue += 2;
+                if (nearRedCoin->parentObj)
+                    nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
+                play_sound(SOUND_MENU_COLLECT_RED_COIN
+                               + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
+                           gGlobalSoundSource);
+                nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+
+                if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
+                    spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+                }
+
+            } else {
+                o->oHaloCapturedObject =
+                    spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_COIN_NO_SHADOW, bhvCoinWithValue);
+                gMarioState->haloCaptureType = 2;
+                o->oHaloCapturedObject->oHaloCoinValue += 2;
+                if (nearRedCoin->parentObj)
+                    nearRedCoin->parentObj->oHiddenStarTriggerCounter++;
+                play_sound(SOUND_MENU_COLLECT_RED_COIN
+                               + (((u8) nearRedCoin->parentObj->oHiddenStarTriggerCounter - 1) << 16),
+                           gGlobalSoundSource);
+                nearRedCoin->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+                if (nearRedCoin->parentObj->oHiddenStarTriggerCounter != 8) {
+                    spawn_orange_number(nearRedCoin->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+                }
+            }
+        }
     }
 
     o->oInteractStatus = 0;
 }
 
-
-
-
-
-
 // Width and height of output texture
-#define FB_IMAGE__W         32
-#define FB_IMAGE__H         32
+#define FB_IMAGE__W 32
+#define FB_IMAGE__H 32
 // Number of pixels to sample for each individual pixel (samples more of the framebuffer)
-#define FB_SAMPLE_SIZE__W   2
-#define FB_SAMPLE_SIZE__H   2
+#define FB_SAMPLE_SIZE__W 3
+#define FB_SAMPLE_SIZE__H 3
 // Multiple of columns to skip during sampling (1 for every pixel, 2 for every other pixel, etc)
-#define FB_SAMPLE_SKIP      1
+#define FB_SAMPLE_SKIP 1
 // Num pixels to sample per pixel
 #define FB_SAMPLE_SIZE__TOTAL (FB_SAMPLE_SIZE__W * FB_SAMPLE_SIZE__H)
 // Multiplier (for dividing the strength of each sampled pixel)
@@ -660,13 +659,17 @@ void portal_sample_fb(void) {
     f32 r, g, b;
     s32 iy, ix, sy, sx;
     static u32 curFrame = 0;
-    static s32 xOffset = (SCREEN_WIDTH / 2) - FB_IMAGE__W;
+    static s32 xOffset = 0;
     static s32 yOffset = (SCREEN_HEIGHT / 2) - FB_IMAGE__H;
 
     u16 *fb = gFramebuffers[sRenderingFramebuffer];
-    u16 *image = segmented_to_virtual(portal_portal_rgba16);
+    u16 *image = segmented_to_virtual(portal_portal_2_rgba16);
     if (o->oBehParams2ndByte == 1) {
-        image = segmented_to_virtual(portal_portal_2_rgba16);
+        image = segmented_to_virtual(portal_portal_rgba16);
+    }
+
+    if (gMarioState->marioScreenX < 120) {
+        xOffset += 160;
     }
 
     for (iy = 0; iy < FB_IMAGE__H; iy++) {
@@ -677,7 +680,8 @@ void portal_sample_fb(void) {
 
             for (sy = 0; sy < FB_SAMPLE_SIZE__H; sy += FB_SAMPLE_SKIP) {
                 for (sx = 0; sx < FB_SAMPLE_SIZE__W; sx += FB_SAMPLE_SKIP) {
-                    pixel = SCREEN_WIDTH * (FB_SAMPLE_SIZE__H * iy + sy + yOffset) + (FB_SAMPLE_SIZE__W * ix + xOffset) + sx;
+                    pixel = SCREEN_WIDTH * (FB_SAMPLE_SIZE__H * iy + sy + yOffset)
+                            + (FB_SAMPLE_SIZE__W * ix + xOffset) + sx;
 
                     r += ((fb[pixel] >> 0xB) & 0x1F);
                     g += ((fb[pixel] >> 0x6) & 0x1F);
@@ -686,44 +690,119 @@ void portal_sample_fb(void) {
             }
 
             image[FB_IMAGE__H * iy + ix] =
-                ((((u16) ((r * FB_SAMPLE_SIZE__MUL) + 0.5) << 0xB) & 0xF800)) |
-                ((((u16) ((g * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x6) &  0x7C0)) |
-                ((((u16) ((b * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x1) &   0x3E)) | 1;
+                ((((u16) ((r * FB_SAMPLE_SIZE__MUL) + 0.5) << 0xB) & 0xF800))
+                | ((((u16) ((g * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x6) & 0x7C0))
+                | ((((u16) ((b * FB_SAMPLE_SIZE__MUL) + 0.5) << 0x1) & 0x3E)) | 1;
         }
     }
 }
 
 void bhv_portal_init(void) {
-   switch(o->oBehParams2ndByte) {
-    case 0:
-        SET_BPARAM1(o->oPrimColorParams, 178);
-        SET_BPARAM2(o->oPrimColorParams, 47);
-        SET_BPARAM3(o->oPrimColorParams, 235);
-        break;
-    case 1:
-        SET_BPARAM1(o->oPrimColorParams, 245);
-        SET_BPARAM2(o->oPrimColorParams, 196);
-        SET_BPARAM3(o->oPrimColorParams, 34);
-        break;
-   }
-    portal_sample_fb();
+    switch (o->oBehParams2ndByte) {
+        case 0:
+            SET_BPARAM1(o->oPrimColorParams, 178);
+            SET_BPARAM2(o->oPrimColorParams, 47);
+            SET_BPARAM3(o->oPrimColorParams, 235);
+            gMarioState->portal1Info[0] = gCurrLevelNum;
+            gMarioState->portal1Info[1] = gCurrAreaIndex;
+            gMarioState->portal1Position[0] = o->oPosX;
+            gMarioState->portal1Position[1] = o->oPosY;
+            gMarioState->portal1Position[2] = o->oPosZ;
+            break;
+        case 1:
+            SET_BPARAM1(o->oPrimColorParams, 245);
+            SET_BPARAM2(o->oPrimColorParams, 196);
+            SET_BPARAM3(o->oPrimColorParams, 34);
+            gMarioState->portal2Info[0] = gCurrLevelNum;
+            gMarioState->portal2Info[1] = gCurrAreaIndex;
+            gMarioState->portal2Position[0] = o->oPosX;
+            gMarioState->portal2Position[1] = o->oPosY;
+            gMarioState->portal2Position[2] = o->oPosZ;
+            break;
+    }
+
+    if (o->oPortalSpawnType == 1) {
+        portal_sample_fb();
+    }
+
+    if (gMarioState->specialWarpTransitionOperation == 3) {
+        gMarioState->specialWarpTransitionOperation = 0;
+    }
 }
 
 void bhv_portal_loop(void) {
-    if (o->oTimer > 0 && o->oTimer < 20) {
-        cur_obj_unhide();
-        obj_scale_xyz(o, ((f32) o->oTimer) / 20.0f, 1.0f, 1.0f);
+    if (o->oAction == 0) {
+        if (o->oTimer > 0 && o->oTimer < 20) {
+            cur_obj_unhide();
+            obj_scale_xyz(o, ((f32) o->oTimer) / 20.0f, 1.0f, 1.0f);
+        } else if (o->oTimer == 20) {
+            obj_scale_xyz(o, 1.0f, 1.0f, 1.0f);
+            o->oAction = 1;
+        }
+    } else if (o->oAction < 3) {
+        //if mario gets close, get ready to be able to warp him
+        if (o->oDistanceToMario > 300 && o->oDistanceToMario < 400) {
+            //check if the other portal exists, if it does go to action 2 to wait for mario to get near
+            if ((o->oBehParams2ndByte == 0 && gMarioState->portal2Info[0] != 0)
+                || (o->oBehParams2ndByte == 1 && gMarioState->portal1Info[0] != 0)) {
+                o->oAction = 2;
+            }
+        } else if (o->oDistanceToMario >= 400) {
+            o->oAction = 1;
+        }
+
+        if (gMarioState->action == ACT_SPAWN_SPIN_AIRBORNE
+            || gMarioState->action == ACT_SPAWN_HOLDING_OBJECT) {
+            o->oAction = 1;
+        }
     }
-    else {
-        obj_scale_xyz(o, 1.0f, 1.0f, 1.0f);
+
+    if (o->oAction == 2 && o->oDistanceToMario < 200 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE
+        && gMarioState->action != ACT_HOLD_CUTSCENE) {
+        o->oAction = 3;
     }
+    if (o->oAction == 3) {
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 55, 200, 18);
+        if (o->oTimer == 18) {
 
-    print_text_fmt_int(100, 100 - (20 * o->oBehParams2ndByte), "Portal %d", o->oBehParams2ndByte);
+            switch (o->oBehParams2ndByte) {
+                case 0:
 
-    
+                    initiate_warp(gMarioState->portal2Info[0], gMarioState->portal2Info[1], 0, 0, 2);
+                    o->oAction = 1;
+                    if (gMarioState->patchChildSecondaryObj) {
+                        gMarioState->patchChildSecondaryObj->oAction = 0;
+                    }
+                    break;
+                case 1:
+                    initiate_warp(gMarioState->portal1Info[0], gMarioState->portal1Info[1], 0, 0, 1);
+                    o->oAction = 1;
+                    if (gMarioState->patchChildPortalObj) {
+                        gMarioState->patchChildPortalObj->oAction = 0;
+                    }
+                    break;
+            }
+            if (gMarioState->heldObj) {
 
-    
+                obj_mark_for_deletion(gMarioState->heldObj);
+                gMarioState->heldObj = NULL;
+            }
+            gMarioState->specialWarpTransitionOperation = 3;
+        }
 
+        f32 x = o->oPosX - gMarioState->pos[0];
+        f32 y = o->oPosY - gMarioState->pos[1];
+        f32 z = o->oPosZ - gMarioState->pos[2];
+
+        gMarioState->pos[0] += x / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        gMarioState->pos[1] += y / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        gMarioState->pos[2] += z / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        if (gMarioState->heldObj) {
+            gMarioState->action = ACT_HOLD_CUTSCENE;
+        } else {
+            gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
+        }
+    }
 }
 
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
@@ -732,7 +811,6 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
         struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
         switchCase->selectedCase = obj->oBehParams2ndByte;
-            
     }
     return NULL;
 }

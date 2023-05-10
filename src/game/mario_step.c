@@ -10,6 +10,7 @@
 #include "interaction.h"
 #include "mario_step.h"
 #include "src/game/area.h"
+#include "src/game/level_update.h"
 
 #include "include/behavior_data.h"
 
@@ -319,7 +320,7 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
     }
 
-    if ((m->equippedPatch == 2) && floorHeight < waterLevel) {
+    if ((m->equippedPatch == PATCH_CHILLSTEP) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
         floor->originOffset = -floorHeight;
@@ -379,16 +380,6 @@ s32 perform_ground_step(struct MarioState *m) {
     set_mario_wall(m, NULL);
 
     m->usedStonePatch = 0;
-    /*
-    if (m->equippedPatch == 2) {
-        if (!m->patchChildObj && m->pos[1] - m->waterLevel < 5.0f) {
-            m->patchChildObj = spawn_object_relative(0, 0, 10, 0, m->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
-        }
-        if (m->patchChildObj && sqr(m->pos[0] - m->patchChildObj->oPosX) + sqr(m->pos[2] - m->patchChildObj->oPosZ) > 10000.0f ) {
-            m->patchChildObj = NULL;
-        }
-    }
-*/
     for (i = 0; i < 4; i++) {
         intendedPos[0] = m->pos[0] + m->floor->normal.y * (m->vel[0] / numSteps);
         intendedPos[2] = m->pos[2] + m->floor->normal.y * (m->vel[2] / numSteps);
@@ -544,7 +535,7 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
         return AIR_STEP_HIT_WALL;
     }
 
-    if ((m->equippedPatch == 2) && floorHeight < waterLevel) {
+    if ((m->equippedPatch == PATCH_CHILLSTEP) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
         floor->originOffset = -floorHeight;
@@ -690,7 +681,7 @@ void apply_gravity(struct MarioState *m) {
         if (m->vel[1] < -75.0f) {
             m->vel[1] = -75.0f;
         }
-    } else if (m->action == ACT_BOUNCED_ON_ROSEDRIFT && m->curPatch != 1) {
+    } else if (m->action == ACT_BOUNCED_ON_ROSEDRIFT && m->curPatch != PATCH_STONE) {
         m->vel[1] -= 2.0f;
         if (m->vel[1] < -35.0f) {
             m->vel[1] = -35.0f;
@@ -702,7 +693,7 @@ void apply_gravity(struct MarioState *m) {
         if (m->vel[1] < -16.0f) {
             m->vel[1] = -16.0f;
         }
-    } else if (m->curPatch == 1) {
+    } else if (m->curPatch == PATCH_STONE) {
         m->vel[1] -= 4.0f;
         if (m->vel[1] < -150.0f) {
             m->vel[1] = -150.0f;

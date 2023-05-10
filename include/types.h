@@ -497,14 +497,21 @@ struct MarioState {
     u8 haloCaptureType;
     u8 patchTimer;
     struct Object *patchChildObj;
+    struct Object *patchChildPortalObj;
     struct Object *patchChildSecondaryObj;
     struct Object *lastFrameObj;
     Vec3f lastFrameObjPosition;
+    s16 marioScreenX;
+    s16 marioScreenY;
 
     Vec3f portal1Position;
     Vec3f portal2Position;
     u8 portal1Info[3];
     u8 portal2Info[3];
+    const BehaviorScript *lastHeldBehavior;
+    u16 lastHeldModel;
+    u8 lastHeldBehaviorParams;
+    u8 specialWarpFlags;
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER
              s16 breath;

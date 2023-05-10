@@ -26,3 +26,13 @@
 #include "levels/bbh/geo.inc.c"
 
 #include "levels/bbh/floating_plane/geo.inc.c"
+#include "levels/bbh/far_plane_cube_head/geo.inc.c"
+#include "levels/bbh/far_plane_cube/geo.inc.c"
+#include "levels/bbh/tfp_skybox/geo.inc.c"
+#include "levels/bbh/portal_barrier/geo.inc.c"
+#include "levels/bbh/box_switch/geo.inc.c"
+#include "levels/bbh/tfp_growing_block/geo.inc.c"
+#include "levels/bbh/puzzle_box/geo.inc.c"
+#include "levels/bbh/tfp_rotary_arm/geo.inc.c"
+#include "levels/bbh/tfp_rotary_platform/geo.inc.c"
+#include "levels/bbh/box_basket/geo.inc.c"

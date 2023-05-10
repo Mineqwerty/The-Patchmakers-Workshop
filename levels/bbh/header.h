@@ -116,4 +116,46 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/floating_plane/geo_header.h"
 
+#include "levels/bbh/far_plane_cube_head/collision_header.h"
+
+#include "levels/bbh/far_plane_cube_head/geo_header.h"
+
+#include "levels/bbh/far_plane_cube/geo_header.h"
+
+#include "levels/bbh/far_plane_cube/collision_header.h"
+
+#include "levels/bbh/far_plane_cube_no_floor/collision_header.h"
+
+#include "levels/bbh/tfp_skybox/geo_header.h"
+
+#include "levels/bbh/portal_barrier/collision_header.h"
+
+#include "levels/bbh/portal_barrier/geo_header.h"
+
+#include "levels/bbh/portal_window/collision_header.h"
+
+#include "levels/bbh/box_switch/geo_header.h"
+
+#include "levels/bbh/tfp_growing_block/geo_header.h"
+
+#include "levels/bbh/tfp_growing_block/collision_header.h"
+
+#include "levels/bbh/box_switch/collision_header.h"
+
+#include "levels/bbh/puzzle_box/geo_header.h"
+
+#include "levels/bbh/tfp_growing_block_collision/collision_header.h"
+
+#include "levels/bbh/tfp_rotary_arm/collision_header.h"
+
+#include "levels/bbh/tfp_rotary_arm/geo_header.h"
+
+#include "levels/bbh/tfp_rotary_platform/geo_header.h"
+
+#include "levels/bbh/tfp_rotary_platform/collision_header.h"
+
+#include "levels/bbh/box_basket/collision_header.h"
+
+#include "levels/bbh/box_basket/geo_header.h"
+
 #endif

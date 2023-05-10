@@ -1,0 +1,8 @@
+extern const GeoLayout tfp_rotary_platform_geo[];
+extern Lights1 tfp_rotary_platform_f3dlite_material_028_lights;
+extern u8 tfp_rotary_platform__3142808797_rgba16[];
+extern Vtx tfp_rotary_platform_Plane_012_mesh_layer_1_vtx_0[48];
+extern Gfx tfp_rotary_platform_Plane_012_mesh_layer_1_tri_0[];
+extern Gfx mat_tfp_rotary_platform_f3dlite_material_028[];
+extern Gfx tfp_rotary_platform_Plane_012_mesh_layer_1[];
+extern Gfx tfp_rotary_platform_material_revert_render_settings[];

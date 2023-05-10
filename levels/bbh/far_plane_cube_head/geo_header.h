@@ -1,0 +1,12 @@
+extern const GeoLayout far_plane_cube_head_geo[];
+extern Lights1 far_plane_cube_head_f3dlite_material_008_lights;
+extern u8 far_plane_cube_head_cubei4_i8[];
+extern Vtx far_plane_cube_head_Cube_mesh_layer_1_vtx_0[24];
+extern Gfx far_plane_cube_head_Cube_mesh_layer_1_tri_0[];
+extern Vtx far_plane_cube_head_Cube_mesh_layer_1_vtx_1[96];
+extern Gfx far_plane_cube_head_Cube_mesh_layer_1_tri_1[];
+extern Gfx mat_far_plane_cube_head_f3dlite_material_010_layer1[];
+extern Gfx mat_revert_far_plane_cube_head_f3dlite_material_010_layer1[];
+extern Gfx mat_far_plane_cube_head_f3dlite_material_008[];
+extern Gfx far_plane_cube_head_Cube_mesh_layer_1[];
+extern Gfx far_plane_cube_head_material_revert_render_settings[];

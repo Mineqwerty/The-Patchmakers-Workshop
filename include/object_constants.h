@@ -709,6 +709,7 @@ enum oSubActionBowserActQuickJump { // BOWSER_ACT_QUICK_JUMP
     #define PURPLE_SWITCH_ACT_TICKING                       0x2
     #define PURPLE_SWITCH_ACT_UNPRESSED                     0x3
     #define PURPLE_SWITCH_ACT_WAIT_FOR_MARIO_TO_GET_OFF     0x4
+    #define PURPLE_SWITCH_ACT_ACTIVATED     0x5
 
 /* Animates on Floor Switch */
     /* oBehParams2ndByte */

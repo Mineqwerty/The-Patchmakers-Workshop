@@ -34,6 +34,7 @@
 #include "rumble_init.h"
 #include "include/seq_ids.h"
 #include "src/game/cutscene.h"
+#include "audio/load.h"
 
 
 /**************************************************
@@ -669,7 +670,7 @@ Bool32 set_mario_ceil(struct MarioState *m, struct Surface *ceil, f32 ceilHeight
 
 Bool32 set_mario_floor(struct MarioState *m, struct Surface *floor, f32 floorHeight) {
 
-    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == 2) {
+    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == PATCH_CHILLSTEP) {
         m->floor = &gWaterSurfacePseudoFloor;
         if (m->floor != NULL) m->floorYaw = SURFACE_YAW(floor);
         m->floorHeight = m->waterLevel;
@@ -1260,7 +1261,13 @@ void update_mario_joystick_inputs(struct MarioState *m) {
     }
 
     if (m->intendedMag > 0.0f) {
-        m->intendedYaw = atan2s(-controller->stickY, controller->stickX) + m->area->camera->yaw;
+        if (sFOVState.fov > 180) {
+            m->intendedYaw = atan2s(-controller->stickY, -controller->stickX) + m->area->camera->yaw;
+        }
+        else {
+           m->intendedYaw = atan2s(-controller->stickY, controller->stickX) + m->area->camera->yaw; 
+        }
+        //m->intendedYaw = atan2s(-controller->stickY, controller->stickX) + m->area->camera->yaw;
         m->input |= INPUT_NONZERO_ANALOG;
     } else {
         m->intendedYaw = m->faceAngle[1];
@@ -1281,7 +1288,7 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
     m->waterLevel = find_water_level_and_floor(m->pos[0], m->pos[1], m->pos[2], &waterFloor);
 
-    if ((m->equippedPatch == 2) && m->floorHeight < m->waterLevel && waterFloor) {
+    if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor) {
         m->floorHeight = m->waterLevel;
         m->floor = waterFloor;
         gMarioWaterwalk = TRUE;
@@ -1754,11 +1761,11 @@ struct SpawnParticlesInfo ThornPass = {
 
 void perform_patch_action(struct MarioState *m) {
     switch (m->equippedPatch) {
-            case 1:
+            case PATCH_STONE:
             if (m->usedStonePatch == 0) {
-        if (m->curPatch != 1) {
+        if (m->curPatch != PATCH_STONE) {
             o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
-        m->curPatch = 1;
+        m->curPatch = PATCH_STONE;
         cur_obj_spawn_particles(&StoneForm);
         play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
 
@@ -1779,20 +1786,20 @@ void perform_patch_action(struct MarioState *m) {
             }
         break;
 
-        case 3:
+        case PATCH_GRAPPLE:
             if (!m->patchChildObj && m->action != ACT_SIDE_FLIP && m->action != ACT_DIVE && m->grappleCooldownTimer == 0) {
                 m->vel[1] = 20.0f;
                 m->forwardVel -= 20.0f;
-                set_mario_action(gMarioState, ACT_SHOOT_GRAPPLE_HOOK, 0);
+                drop_and_set_mario_action(m, ACT_SHOOT_GRAPPLE_HOOK, 0);
                 play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
-                m->curPatch = 3;
+                m->curPatch = PATCH_GRAPPLE;
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
             }
         break;
         //halo is handled in its own object
 
-        case 5:
-            m->curPatch = 5;
+        case PATCH_PORTAL:
+            m->curPatch = PATCH_PORTAL;
             m->patchTimer = 0;
         break;
         }
@@ -1800,24 +1807,24 @@ void perform_patch_action(struct MarioState *m) {
 
 void common_patch_cancel(struct MarioState *m) {
     switch (m->curPatch) {
-        case 1:
-            m->curPatch = 0;
+        case PATCH_STONE:
+            m->curPatch = PATCH_NONE;
             o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
             cur_obj_spawn_particles(&StoneBreak);
             play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
 
             if (gMarioState->action == ACT_STONE_PATCH_AIRBORNE || ACT_STONE_PATCH_AIR_LAND) {
                 m->usedStonePatch = 1;
-                set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
+                drop_and_set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
             }
         break;
-        case 2:
-        case 3:
+        case PATCH_CHILLSTEP:
+        case PATCH_GRAPPLE:
             //m->curPatch = 0;
             //gMarioState->patchChildObj = NULL;
         break;
-        case 4:
-            m->curPatch = 0;
+        case PATCH_HALO:
+            m->curPatch = PATCH_NONE;
             //gMarioState->patchChildObj = NULL;
         break;
     }
@@ -1830,27 +1837,29 @@ void patch_update(struct MarioState *m ) {
     }
 
     switch (m->curPatch) {
-        case 1: 
+        case PATCH_STONE: 
             if (gMarioState->action & ACT_FLAG_INTANGIBLE) {
-                m->curPatch = 0;
+                m->curPatch = PATCH_NONE;
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                 cur_obj_spawn_particles(&StoneBreak);
                 play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
             }
         break;
 
-        case 5:
+        case PATCH_PORTAL:
             if (gPlayer1Controller->buttonDown & L_TRIG) {
                 if (gMarioState->patchTimer >= 7) {
                     if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
                     m->patchChildSecondaryObj = spawn_object_relative(1, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
-                    m->curPatch = 0;
+                    m->patchChildSecondaryObj->oPortalSpawnType = 1;
+                    m->curPatch = PATCH_NONE;
                 }
             }
             else if (gMarioState->patchTimer < 7) {
-                if (m->patchChildObj) obj_mark_for_deletion(m->patchChildObj);
-                m->patchChildObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
-                m->curPatch = 0;
+                if (m->patchChildPortalObj) obj_mark_for_deletion(m->patchChildPortalObj);
+                m->patchChildPortalObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
+                m->patchChildPortalObj->oPortalSpawnType = 1;
+                m->curPatch = PATCH_NONE;
             }
         break;
     }
@@ -1858,7 +1867,7 @@ void patch_update(struct MarioState *m ) {
 
 void late_patch_update(struct MarioState *m ) {
     switch (m->curPatch) {
-        case 4:
+        case PATCH_GRAPPLE:
         if (m->patchChildObj && m->patchChildObj->oAction == 0) {
             m->patchChildObj->oPosX = m->pos[0];
             m->patchChildObj->oPosY = m->pos[1] + 170 + (5 * sins(0x400 * gGlobalTimer));
@@ -1877,20 +1886,36 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
     switch (m->equippedPatch) {
 
-        case 3:
+        case PATCH_GRAPPLE:
             m->patchChildObj = NULL;
         break;
 
-        case 4:
+        case PATCH_HALO:
             if (m->patchChildObj) {
                 if (m->patchChildObj->oHaloCapturedObject) {
                     obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
                 }
                 obj_mark_for_deletion(m->patchChildObj);
             }
-            m->curPatch = 4;
+            m->curPatch = PATCH_HALO;
             m->patchChildObj = spawn_object_relative(0, 0, 200, 0, gMarioObject, MODEL_HALO, bhvHalo);
         break;
+
+    }
+}
+
+void update_mario_equipped_patch(void){
+    if (gMarioState->updatePatch == 1) {
+    //dma patches
+    extern const u8 patch_textures_dma[];
+    extern u8 mario_mario_cap_rgba16[];
+    u8 *patchTexture = segmented_to_virtual(&mario_mario_cap_rgba16);
+
+    dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
+    
+    
+    spawn_initial_patch_object(gMarioState);
+    gMarioState->updatePatch = 0;
 
     }
 }
@@ -1915,6 +1940,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
+
+    //print_text_fmt_int(100, 60, "%d", gMarioState->lastHeldModel);
+
+    //TODO: put these in a more permanent spot
 
     if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
         play_secondary_music(38, 255, 255, 10);
@@ -1947,7 +1976,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         gMarioState->equippedPatch = dpadMap[2];
         gMarioState->updatePatch = 1;
         //play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-        initiate_warp(LEVEL_CCM, 4, 10, 0);
         //seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
             //play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL), 0);
     }
@@ -1961,19 +1989,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         //func_80321080(90);
     }
 
-    if (gMarioState->updatePatch == 1) {
-    //dma patches
-    extern const u8 patch_textures_dma[];
-    extern u8 mario_mario_cap_rgba16[];
-    u8 *patchTexture = segmented_to_virtual(&mario_mario_cap_rgba16);
-
-    dma_read(patchTexture, (gMarioState->equippedPatch*2048) + patch_textures_dma, (gMarioState->equippedPatch*2048) + patch_textures_dma + 2048);
-    
-    
-    spawn_initial_patch_object(gMarioState);
-    gMarioState->updatePatch = 0;
-
-    }
+    update_mario_equipped_patch();
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
 
@@ -2015,7 +2031,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             return ACTIVE_PARTICLE_NONE;
         }
         
-        if ((gMarioState->equippedPatch == 2) && gMarioState->floorHeight < gMarioState->waterLevel) {
+        if ((gMarioState->equippedPatch == PATCH_CHILLSTEP) && gMarioState->floorHeight < gMarioState->waterLevel) {
         //gMarioState->floorHeight = gMarioState->waterLevel;
         //gMarioState->floor = &gWaterSurfacePseudoFloor;
         //gMarioState->floor->originOffset = -gMarioState->waterLevel;
@@ -2170,16 +2186,32 @@ void init_mario(void) {
     //CHANGE THIS
     //gMarioState->equippedPatch = 1;
 
-    gReonucamState.overhead = 0;
+    if (gCurrLevelNum != LEVEL_BBH && gCurrAreaIndex != 3) {
+        gReonucamState.overhead = 0;
+    }
+    else if (gReonucamState.overhead == 2) {
+        gReonucamState.overhead = 0;
+    }
+    
+    if (gMarioState->portal1Info[0] == gCurrLevelNum && gMarioState->portal1Info[1] == gCurrAreaIndex && !gMarioState->patchChildPortalObj) {
+            gMarioState->patchChildPortalObj = spawn_object_abs_with_rot(gMarioObject, 0, MODEL_PORTAL, bhvPortal, gMarioState->portal1Position[0], gMarioState->portal1Position[1], gMarioState->portal1Position[2], 0, 0, 0);
+            gMarioState->patchChildPortalObj->oBehParams2ndByte = 0;
+            
+        }
+
+        if (gMarioState->portal2Info[0] == gCurrLevelNum && gMarioState->portal2Info[1] == gCurrAreaIndex && !gMarioState->patchChildSecondaryObj) {
+            gMarioState->patchChildSecondaryObj = spawn_object_abs_with_rot(gMarioObject, 0, MODEL_PORTAL, bhvPortal, gMarioState->portal2Position[0], gMarioState->portal2Position[1], gMarioState->portal2Position[2], 0, 0, 0);
+            gMarioState->patchChildSecondaryObj->oBehParams2ndByte = 1;
+        }
 
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
     
-    gMarioState->curPatch = 0;
+    gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
-    gMarioState->patchChildObj = NULL;
+    //gMarioState->patchChildObj = NULL;
     gMarioState->invincTimer = 0;
     update_dl_dpad_patches();
 
@@ -2201,8 +2233,10 @@ void init_mario(void) {
 
     gMarioState->capTimer = 0;
     gMarioState->quicksandDepth = 0.0f;
-
-    gMarioState->heldObj = NULL;
+    
+    //if (gMarioState->action != ACT_SPAWN_HOLDING_OBJECT) {
+        gMarioState->heldObj = NULL;
+    //}
     gMarioState->riddenObj = NULL;
     gMarioState->usedObj = NULL;
 

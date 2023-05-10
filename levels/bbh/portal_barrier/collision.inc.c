@@ -1,0 +1,19 @@
+const Collision portal_barrier_collision[] = {
+	COL_INIT(),
+	COL_VERTEX_INIT(8),
+	COL_VERTEX(-410, -1, -23),
+	COL_VERTEX(-410, 815, -23),
+	COL_VERTEX(410, 815, -23),
+	COL_VERTEX(410, -1, -23),
+	COL_VERTEX(-410, -1, 23),
+	COL_VERTEX(410, -1, 23),
+	COL_VERTEX(410, 815, 23),
+	COL_VERTEX(-410, 815, 23),
+	COL_TRI_INIT(SURFACE_NO_CAM_COLLISION, 4),
+	COL_TRI(0, 1, 2),
+	COL_TRI(0, 2, 3),
+	COL_TRI(4, 5, 6),
+	COL_TRI(4, 6, 7),
+	COL_TRI_STOP(),
+	COL_END()
+};

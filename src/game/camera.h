@@ -342,7 +342,8 @@ enum CameraFov {
     CAM_FOV_APP_30,
     CAM_FOV_APP_60,
     CAM_FOV_ZOOM_30,
-    CAM_FOV_SET_29
+    CAM_FOV_SET_29,
+    CAM_FOV_APP_315
 };
 
 enum CameraEvent {
@@ -625,6 +626,7 @@ struct Camera {
         u16 camTimer;
         u8 prevMode;
         u8 controlBossCameraYaw;
+        u8 cancelFrameUpdate;
 };
 
 /**
@@ -718,6 +720,7 @@ struct LakituState {
     /// Mario's action from the previous frame. Only used to determine if Mario just finished a dive.
     /*0xB8*/ u32 lastFrameAction;
     /*0xBC*/ s16 unused;
+    
 };
 
 // BSS
@@ -732,6 +735,8 @@ extern struct Camera *gCamera;
 extern struct Object *gCutsceneFocus;
 extern struct Object *gSecondCameraFocus;
 extern u8 gRecentCutscene;
+
+extern struct CameraFOVStatus sFOVState;
 
 extern struct CutsceneSplinePoint gIntroLakituStartToPipeFocus[];
 

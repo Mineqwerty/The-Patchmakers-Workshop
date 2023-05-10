@@ -110,7 +110,7 @@ s16 sCreditsPlayer2Yaw;
  */
 u8 sFramesPaused;
 
-extern struct CameraFOVStatus sFOVState;
+struct CameraFOVStatus sFOVState;
 extern struct TransitionInfo sModeTransition;
 extern struct PlayerGeometry sMarioGeometry;
 extern s16 sAvoidYawVel;
@@ -1309,6 +1309,9 @@ void mode_8_directions_camera(struct Camera *c) {
 #ifdef REONUCAM
     if (gReonucamState.overhead == 1) {
         pos[1] += 2000;
+    }
+    else if (gReonucamState.overhead == 2) {
+        pos[1] = gMarioState->pos[1] + 600;
     }
     set_camera_height(c, pos[1]);
 #endif
@@ -3049,6 +3052,9 @@ void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {
 #define NUM_TTC_A1_VOLUMES 6
 #define NUM_TTC_A3_VOLUMES 2
 
+#define NUM_TFP_A1_VOLUMES 5
+#define NUM_TFP_A3_VOLUMES 3
+
 Vec3f ttcVolumes[(NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES) * 4] = {
     // bottom of cliffs
     { 4550, 924, -2950 },
@@ -3091,6 +3097,51 @@ Vec3f ttcVolumes[(NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES) * 4] = {
     { -870, -300, 300 },
     { 0, 500, 300 },
     { 0, 500, -257 }
+
+};
+
+Vec3f tfpVolumes[(NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES) * 4] = {
+    //front of window
+    { -300, 0, 12839 },
+    { -100, 0, 14239 },
+    { 300, 4000, 12839 },
+    { 100, 4000, 14239 },
+    //upside down zone
+    { -7286, 0, -11970 },
+    { -11440, 0, -11970 },
+    { -11440, 4000, -16120 },
+    { -7286, 4000, -16120 },
+    //entrance of the pit
+    { -8908, -2130, 4043 },
+    { -14680, -2130, 4043 },
+    { -14680, 4000, 9816 },
+    { -8908, 4000, 9816 },
+    //around entrance of the pit
+    { -9208, -2130, 3743 },
+    { -14980, -2130, 3743 },
+    { -14980, 4000, 10116 },
+    { -9208, 4000, 10116 },
+    //warp area
+    { -9208, -3000, 3743 },
+    { -14980, -3000, 3743 },
+    { -14980, -2135, 10116 },
+    { -9208, -2135, 10116 },
+    //A3
+    //warp area
+    { -9208, -3000, 3743 },
+    { -14980, -3000, 3743 },
+    { -14980, -2135, 10116 },
+    { -9208, -2135, 10116 },
+    //warp area 2
+    { 792, -3000, 3743 },
+    { -4980, -3000, 3743 },
+    { -4980, -2135, 10116 },
+    { 792, -2135, 10116 },
+    //warp area 3
+    { 10792, -3000, 3743 },
+    { 5020, -3000, 3743 },
+    { 5020, -2135, 10116 },
+    { 10792, -2135, 10116 },
 
 };
 
@@ -3161,6 +3212,54 @@ s16 check_mario_is_in_course_volume(void) {
                     break;
             }
             break;
+            case LEVEL_BBH:
+            switch (gCurrAreaIndex) {
+                case 1:
+                    for (int i = 0; i < NUM_TFP_A1_VOLUMES; i++) {
+                        // check XZ coords of tris 012 and 023
+                        if (point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
+                                                tfpVolumes[i * 4 + 1], tfpVolumes[i * 4 + 2])
+                                == TRUE
+                            || point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
+                                                   tfpVolumes[i * 4 + 2], tfpVolumes[i * 4 + 3])
+                                   == TRUE) {
+                            // always check the Y of the first and last coords
+                            if (gMarioState->pos[1] > tfpVolumes[i * 4][1]
+                                && gMarioState->pos[1] < tfpVolumes[i * 4 + 3][1]) {
+
+                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
+                                volumeID = i + 1;
+
+                                // since we're in a volume already, we can stop iterating
+                                i = NUM_TFP_A1_VOLUMES;
+                            }
+                        }
+                    }
+                    break;
+                    case 3:
+                    for (int i = NUM_TFP_A1_VOLUMES; i < NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES; i++) {
+                        // check XZ coords of tris 012 and 023
+                        if (point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
+                                                tfpVolumes[i * 4 + 1], tfpVolumes[i * 4 + 2])
+                                == TRUE
+                            || point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
+                                                   tfpVolumes[i * 4 + 2], tfpVolumes[i * 4 + 3])
+                                   == TRUE) {
+                            // always check the Y of the first and last coords
+                            if (gMarioState->pos[1] > tfpVolumes[i * 4][1]
+                                && gMarioState->pos[1] < tfpVolumes[i * 4 + 3][1]) {
+
+                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
+                                volumeID = i + 1;
+
+                                // since we're in a volume already, we can stop iterating
+                                i = NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES;
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
     }
 
     return volumeID;
@@ -3169,6 +3268,7 @@ s16 check_mario_is_in_course_volume(void) {
 void handle_course_volumes(struct Camera *c) {
 
     s16 volumeID = check_mario_is_in_course_volume();
+    s16 cameraAngle;
 
     if (sPrevCameraVolume != volumeID) {
         sPrevCameraVolume = volumeID;
@@ -3204,7 +3304,62 @@ void handle_course_volumes(struct Camera *c) {
                         s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -s8DirModeBaseYaw + 0xC000, 0x20);
                         break;
                 }
+                break;
+            case LEVEL_BBH:
+                switch (volumeID) {
+                    case 1:
+                        c->pos[0] = approach_f32_asymptotic(c->pos[0], 0, 0.4f);
+                        c->pos[1] = approach_f32_asymptotic(c->pos[1], 900, 0.4f);
+                        c->pos[2] = approach_f32_asymptotic(c->pos[2], 13300, 0.4f);
+
+                        c->focus[0] = approach_f32_asymptotic(c->focus[0], 0, 0.4f);
+                        c->focus[1] = approach_f32_asymptotic(c->focus[1], 1500, 0.4f);
+                        c->focus[2] = approach_f32_asymptotic(c->focus[2], 12600, 0.4f);
+
+                        s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -s8DirModeBaseYaw, 10);
+                    break;
+                    case 2:
+                        sFOVState.fovFunc = CAM_FOV_APP_315;
+                        //gMarioState->squishTimer = 1;
+                    break;
+                    case 3:
+                        gReonucamState.overhead = 1;
+                    break;
+                    case 4:
+                        gReonucamState.overhead = 0;
+                    break;
+                    case 5:
+                        cameraAngle = gMarioState->area->camera->yaw;
+                        change_area(3);
+                        gMarioState->area = gCurrentArea;
+                        
+                        gMarioState->area->camera->yaw = cameraAngle;
+                    break;
+                    case 6:
+                       gMarioState->specialWarpFlags = 1;
+                       if (gMarioState->action == ACT_GROUND_POUND || gMarioState->action == ACT_AIR_HIT_WALL || gMarioState->action == ACT_SPAWN_SPIN_AIRBORNE) {
+                        gMarioState->action = ACT_FREEFALL;
+                       }
+                    break;
+                    case 7:
+                       gMarioState->specialWarpFlags = 2;
+                       if (gMarioState->action == ACT_GROUND_POUND || gMarioState->action == ACT_AIR_HIT_WALL || gMarioState->action == ACT_SPAWN_SPIN_AIRBORNE) {
+                        gMarioState->action = ACT_FREEFALL;
+                       }
+                    break;
+                    case 8:
+                       gMarioState->specialWarpFlags = 3;
+                       if (gMarioState->action == ACT_GROUND_POUND || gMarioState->action == ACT_AIR_HIT_WALL || gMarioState->action == ACT_SPAWN_SPIN_AIRBORNE) {
+                        gMarioState->action = ACT_FREEFALL;
+                       }
+                    break;
+                }
+                break;
         }
+    }
+    else if (sFOVState.fovFunc == CAM_FOV_APP_315 && gCurrLevelNum == LEVEL_BBH && sCameraDisturbed == 0) {
+        sFOVState.fovFunc = CAM_FOV_APP_45;
+        gReonucamState.overhead = 0;
     }
 }
 
@@ -3220,7 +3375,7 @@ void update_lakitu(struct Camera *c) {
 
     handle_course_volumes(c);
 
-    if (!(gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN)) {
+    if (!(gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN) && c->cancelFrameUpdate == 0) {
         newYaw =
             next_lakitu_state(newPos, newFoc, c->pos, c->focus, sOldPosition, sOldFocus, c->nextYaw);
         set_or_approach_s16_symmetric(&c->yaw, newYaw, sYawSpeed);
@@ -3294,6 +3449,8 @@ void update_lakitu(struct Camera *c) {
 
         vec3f_copy(sModeTransition.marioPos, sMarioCamState->pos);
     }
+
+    c->cancelFrameUpdate = 0;
 
     if (c->mode == CAMERA_MODE_SLIDE_HOOT) {
         gLakituState.pos[1] = gMarioState->pos[1] + 3000.0f;
@@ -10816,7 +10973,7 @@ u8 sDanceCutsceneIndexTable[][4] = {
 u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 1, 1, 1), // BBH            | CCM
+	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 1), // BBH            | CCM
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // CASTLE_INSIDE  | HMC
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW
@@ -11288,6 +11445,16 @@ void approach_fov_45(struct MarioState *m) {
     sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
 }
 
+void approach_fov_315(struct MarioState *m) {
+    f32 targetFoV = 315.f;
+
+    sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
+
+    if (sFOVState.fov > 180) {
+        gReonucamState.overhead = 2;
+    }
+}
+
 void approach_fov_80(UNUSED struct MarioState *m) {
     camera_approach_f32_symmetric_bool(&sFOVState.fov, 80.f, 3.5f);
 }
@@ -11350,6 +11517,9 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
                 break;
             case CAM_FOV_APP_60:
                 approach_fov_60(marioState);
+                break;
+            case CAM_FOV_APP_315:
+                approach_fov_315(marioState);
                 break;
                 //! No default case
         }

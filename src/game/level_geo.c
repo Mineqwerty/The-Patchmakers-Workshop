@@ -9,6 +9,7 @@
 #include "envfx_snow.h"
 #include "level_geo.h"
 #include "src/game/game_init.h"
+#include "src/game/level_update.h"
 
 /**
  * Geo function that generates a displaylist for environment effects such as
@@ -109,6 +110,27 @@ Gfx *geo_backdrop_move(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
         ((struct GraphNodeTranslation *) node->next)->translation[0] = gLakituState.pos[0];
         ((struct GraphNodeTranslation *) node->next)->translation[1] = gLakituState.pos[1];
         ((struct GraphNodeTranslation *) node->next)->translation[2] = gLakituState.pos[2];
+    }
+    return 0;
+}
+
+Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        Vec3f portalPos;
+        vec3f_set(portalPos, 0, 1065, 12889);
+    
+        f32 scale, dist;
+        vec3f_get_lateral_dist(portalPos, gMarioState->pos, &dist);
+
+    
+
+        if (dist < 600) {
+            scale = 1.0f + 9.0f*(1 - (dist / 600.0f));
+        }
+    else {
+       scale = 1.0f; 
+    }
+        ((struct GraphNodeScale *) node->next)->scale = scale;
     }
     return 0;
 }

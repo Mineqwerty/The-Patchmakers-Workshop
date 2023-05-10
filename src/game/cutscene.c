@@ -9,6 +9,7 @@
 #include "src/game/ingame_menu.h"
 #include "include/seq_ids.h"
 
+#include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
 #include "levels/ccm/header.inc.h"
 
@@ -114,13 +115,20 @@ s32 *splineList[] = {
     ccm_area_4_spline_GoddessIntroCutscene1Pos,
     ccm_area_4_spline_GoddessIntroCutscene1Foc,
     ccm_area_4_spline_GoddessIntroCutscene2Pos,
+    //5
     ccm_area_4_spline_GoddessIntroCutscene2Foc,
     ccm_area_4_spline_GoddessIntroCutscene3Pos,
     ccm_area_4_spline_GoddessIntroCutscene3Foc,
     ccm_area_4_spline_GoddessIntroCutscene4Pos,
     ccm_area_4_spline_GoddessIntroCutscene4Foc,
+    //10
     ccm_area_4_spline_GoddessIntroCutscene5Pos,
     ccm_area_4_spline_GoddessIntroCutscene5Foc,
+    bob_area_1_spline_PokeyIntroCutscene1Pos,
+    bob_area_1_spline_PokeyIntroCutscene1Foc,
+    bob_area_1_spline_PokeyIntroCutscene2Pos,
+    //15
+    bob_area_1_spline_PokeyIntroCutscene2Foc
 };
 
 void begin_cutscene_event(s32 event) {

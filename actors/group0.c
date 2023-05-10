@@ -63,3 +63,5 @@
 #include "mario/anims/table.inc.c"
 #include "portal/model.inc.c"
 #include "menu_patch_portal/model.inc.c"
+#include "grabbable_puzzle_box/model.inc.c"
+#include "grabbable_puzzle_box/collision.inc.c"

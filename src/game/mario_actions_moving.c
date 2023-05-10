@@ -14,6 +14,7 @@
 #include "memory.h"
 #include "behavior_data.h"
 #include "rumble_init.h"
+#include "src/game/level_update.h"
 
 #include "config.h"
 
@@ -191,7 +192,7 @@ void update_sliding_angle(struct MarioState *m, f32 accel, f32 lossFactor) {
 
     //! Speed is capped a frame late (butt slide HSG)
     m->forwardVel = sqrtf(sqr(m->slideVelX) + sqr(m->slideVelZ));
-    if (m->curPatch == 1) {
+    if (m->curPatch == PATCH_STONE) {
         if (m->forwardVel > 300.0f) {
         m->slideVelX = m->slideVelX * 300.0f / m->forwardVel;
         m->slideVelZ = m->slideVelZ * 300.0f / m->forwardVel;
@@ -228,7 +229,7 @@ s32 update_sliding(struct MarioState *m, f32 stopSpeed) {
 
     switch (mario_get_floor_class(m)) {
         case SURFACE_CLASS_VERY_SLIPPERY:
-        if (m->curPatch == 1) {
+        if (m->curPatch == PATCH_STONE) {
             accel = 20.0f;
         }
         else {
@@ -285,7 +286,7 @@ void apply_slope_accel(struct MarioState *m) {
     f32 steepness = sqrtf(sqr(floor->normal.x) + sqr(floor->normal.z));
 
     //treat slopes as less steep while the stone patch is equipped
-    if (m->curPatch == 1) {
+    if (m->curPatch == PATCH_STONE) {
         steepness *= 0.8f;
     }
 
@@ -437,7 +438,7 @@ void update_walking_speed(struct MarioState *m) {
     f32 maxTargetSpeed;
     f32 targetSpeed;
 
-    if (m->floor != NULL && m->floor->type == SURFACE_SLOW || m->floor != NULL && m->curPatch == 1) {
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW || m->floor != NULL && m->curPatch == PATCH_STONE) {
         maxTargetSpeed = 24.0f;
     } else {
         maxTargetSpeed = 32.0f;
@@ -774,7 +775,7 @@ void tilt_body_ground_shell(struct MarioState *m, s16 startYaw) {
 }
 
 void handle_stone_patch_walking(struct MarioState *m) {
-    if (m->curPatch == 1) {
+    if (m->curPatch == PATCH_STONE) {
         if (m->forwardVel < 0.3f && m->intendedMag == 0) {
             m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
             
@@ -793,7 +794,7 @@ s32 act_walking(struct MarioState *m) {
 
 
     if (should_begin_sliding(m)) {
-        if (m->curPatch == 1) {
+        if (m->curPatch == PATCH_STONE) {
             return set_mario_action(m, ACT_STONE_PATCH_AIR_LAND, 0);
         }
         else {
@@ -802,7 +803,7 @@ s32 act_walking(struct MarioState *m) {
     }
 
     //no other actions can be taken while using the stone patch
-if (m->curPatch != 1) {
+if (m->curPatch != PATCH_STONE) {
 
     if (m->input & INPUT_FIRST_PERSON) {
         return begin_braking_action(m);
@@ -841,7 +842,7 @@ if (m->curPatch != 1) {
 
     switch (perform_ground_step(m)) {
         case GROUND_STEP_LEFT_GROUND:
-        if (m->curPatch == 1) {
+        if (m->curPatch == PATCH_STONE) {
           set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);  
         }
         else {
@@ -858,7 +859,7 @@ if (m->curPatch != 1) {
             break;
 
         case GROUND_STEP_HIT_WALL:
-        if (m->curPatch != 1) {
+        if (m->curPatch != PATCH_STONE) {
             push_or_sidle_wall(m, startPos);
             m->actionTimer = 0;
         }
@@ -894,7 +895,7 @@ s32 act_move_punching(struct MarioState *m) {
 
     switch (perform_ground_step(m)) {
         case GROUND_STEP_LEFT_GROUND:
-        if (m->curPatch == 1) {
+        if (m->curPatch == PATCH_STONE) {
           set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);  
         }
         else {

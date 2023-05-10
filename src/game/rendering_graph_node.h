@@ -13,6 +13,8 @@ extern struct GraphNodeObject      *gCurGraphNodeObject;
 extern struct GraphNodeHeldObject  *gCurGraphNodeHeldObject;
 #define gCurGraphNodeObjectNode ((struct Object *)gCurGraphNodeObject)
 extern u16 gAreaUpdateCounter;
+extern s16 gMatStackIndex;
+extern Mat4 gMatStack[32];
 
 enum AnimType {
     // after processing an object, the type is reset to this

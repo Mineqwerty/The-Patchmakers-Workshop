@@ -1316,6 +1316,16 @@
 //floating plane
 #define oNextPlaneRotation        OBJECT_FIELD_S32(0x1B)
 
+//portal
+#define oPortalSpawnType        OBJECT_FIELD_S32(0x1B)
+
+//uncollapsing cube
+#define oFarPlaneCubeStartWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
+
+//sewnia
+#define oSewniaLastWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
+#define oSewniaNextWaypoint          OBJECT_FIELD_WAYPOINT(0x1C)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

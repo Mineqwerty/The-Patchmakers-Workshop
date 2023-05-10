@@ -1,4 +1,5 @@
 #include "src/game/game_init.h"
+#include "src/game/level_update.h"
 
 
 #define POKEY_ACT_IDLE 0
@@ -27,6 +28,18 @@ static struct ObjectHitbox sPushpinPokeyHitbox = {
 
 static struct ObjectHitbox sPushpinPokeySegmentHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 300,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
+static struct ObjectHitbox sPushpinPokeyPushingHitbox = {
+    /* interactType:      */ INTERACT_PUSH_OUT,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
@@ -438,7 +451,7 @@ void pushpin_pokey_burst_from_ground(void) {
                 obj_become_tangible(o);
                 o->oTimer = 0;
                 if (o->oCamFocus) obj_mark_for_deletion(o->oCamFocus);
-                if (gMarioState->curPatch == 1 && calc_hor_dist(gMarioState->pos, &o->oPosVec) < 300.0f) {
+                if (gMarioState->curPatch == PATCH_STONE && calc_hor_dist(gMarioState->pos, &o->oPosVec) < 300.0f) {
                     o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
                     o->oAction = POKEY_ACT_SCATTER;
                 }
@@ -494,7 +507,7 @@ void pushpin_pokey_scatter(void) {
         o->oCamFocus->oPosX = gMarioState->pos[0];
         o->oCamFocus->oPosY = gMarioState->pos[1] - 100.0f;
         o->oCamFocus->oPosZ = gMarioState->pos[2];
-        if (gMarioState->curPatch == 1) {
+        if (gMarioState->curPatch == PATCH_STONE) {
         gMarioState->vel[1] = 70.0f;
         gMarioState->pos[1] += 10.0f;
         pushpin_pokey_set_mario_style();
@@ -527,13 +540,13 @@ void pushpin_pokey_scatter(void) {
         }
     }
 
-    if (gMarioState->curPatch != 1) {
+    if (gMarioState->curPatch != PATCH_STONE) {
         o->oAction = POKEY_ACT_STUNNED;
     }
     /*
     if (o->oTimer >= 30) {
         o->oTimer = 0;
-        if (gMarioState->curPatch == 1) {
+        if (gMarioState->curPatch == PATCH_STONE) {
         o->oCamFocus = spawn_object_relative(1, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_BODY, bhvPushpinPokeySegment);
         o->oCamFocus->oPosX = gMarioState->pos[0];
         o->oCamFocus->oPosY = gMarioState->pos[1] - 100.0f;
@@ -558,7 +571,7 @@ void pushpin_pokey_stunned(void) {
     switch (o->oSubAction) {
         case 0:
         play_secondary_music(SEQ_LADY_SECOND_PHASE, 0, 255, 10);
-        if (gMarioState->curPatch != 1) {
+        if (gMarioState->curPatch != PATCH_STONE) {
             for (int i = 0; i < 3; i++) {
                 o->oCamFocus = spawn_object_relative(i, 0, 0, 0, o, MODEL_ROSEDRIFT, bhvBounceRosedrift);
                 o->oCamFocus->oPosX = gMarioState->pos[0] + (1250 * sins(gLakituState.yaw));
@@ -575,7 +588,7 @@ void pushpin_pokey_stunned(void) {
         }
         break;
         case 1:
-            if (gMarioState->curPatch == 1 && gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT && gMarioState->vel[1] < -5.0f) {
+            if (gMarioState->curPatch == PATCH_STONE && gMarioState->action == ACT_BOUNCED_ON_ROSEDRIFT && gMarioState->vel[1] < -5.0f) {
                 o->oFallingWind1 = spawn_object(o, MODEL_FALLING_WIND, bhvStaticObject);
                 o->oSubAction++;
                 o->oTimer = 0;
@@ -831,6 +844,10 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
 
     case 12:
         //head poking up from ground
+
+        obj_set_hitbox(o, &sPushpinPokeyPushingHitbox);
+        o->oInteractStatus = 0;
+
         if (o->oTimer % 7 == 0) {
             cur_obj_spawn_particles(&sBurrowStones);
             cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
@@ -986,7 +1003,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
             }
             o->oInteractionSubtype = INT_SUBTYPE_BULB;
 
-            if (o->oInteractStatus != INT_STATUS_NONE && gMarioState->curPatch == 1) {
+            if (o->oInteractStatus != INT_STATUS_NONE && gMarioState->curPatch == PATCH_STONE) {
                 gMarioState->vel[1] = 30.0f;
                 gMarioState->forwardVel = -20.0f;
                 //doesnt actually work
@@ -999,7 +1016,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
                 }
                 */
             }
-            else if (o->oInteractStatus != INT_STATUS_NONE && gMarioState->curPatch != 1) {
+            else if (o->oInteractStatus != INT_STATUS_NONE && gMarioState->curPatch != PATCH_STONE) {
             o->oInteractStatus = INT_STATUS_NONE;
             }
         }
@@ -1031,7 +1048,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
                 gMarioState->action = ACT_BACKFLIP;
                 gMarioState->vel[1] = 70.0f;
                 gMarioState->forwardVel = 40.0f;
-                gMarioState->curPatch = 0;
+                common_patch_cancel(gMarioState);
                 gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                 obj_mark_for_deletion(o);
                 o->parentObj->oAction = POKEY_ACT_POP_UP;

@@ -53,7 +53,7 @@ s32 lava_boost_on_wall(struct MarioState *m) {
         m->forwardVel = 24.0f;
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
     }
 
@@ -978,7 +978,7 @@ s32 act_ground_pound(struct MarioState *m) {
                 if (!check_fall_damage(m, ACT_HARD_BACKWARD_GROUND_KB)) {
                     
 
-                    if (m->equippedPatch == 2) {
+                    if (m->equippedPatch == PATCH_CHILLSTEP) {
                         spawn_object_relative(0, 0, 0, 0, m->marioObj, MODEL_ICE_SPIKES, bhvIceSpikes);
                         cur_obj_spawn_particles(&SnowflakeFly);
                         cur_obj_spawn_particles(&MistIce);
@@ -1098,6 +1098,8 @@ s32 act_crazy_box_bounce(struct MarioState *m) {
             } else {
                 m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
                 m->heldObj = NULL;
+                m->lastHeldBehavior = NULL;
+                m->lastHeldModel = NULL;
                 set_mario_action(m, ACT_STOMACH_SLIDE, 0);
             }
 #if ENABLE_RUMBLE
@@ -1634,7 +1636,7 @@ s32 act_lava_boost(struct MarioState *m) {
         case AIR_STEP_LANDED:
             if (m->floor->type == SURFACE_BURNING) {
                 m->actionState = ACT_STATE_LAVA_BOOST_HIT_LAVA;
-                if (m->curPatch != 1) {
+                if (m->curPatch != PATCH_STONE) {
                     m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
                 }
                 m->vel[1] = 84.0f;
@@ -2171,12 +2173,12 @@ s32 act_stone_patch_airborne(struct MarioState *m) {
 s32 act_bounced_on_rosedrift(struct MarioState *m) {
     s32 stepResult;
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && m->vel[1] < 0.0f && m->curPatch != 1 && m->equippedPatch == 1) {
+    if (gPlayer1Controller->buttonPressed & L_TRIG && m->vel[1] < 0.0f && m->curPatch != PATCH_STONE && m->equippedPatch == PATCH_STONE) {
             m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
             m->forwardVel = 0;
             m->vel[0] = 0;
             m->vel[2] = 0;
-        m->curPatch = 1;
+        m->curPatch = PATCH_STONE;
         set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
         
         }
@@ -2185,7 +2187,7 @@ s32 act_bounced_on_rosedrift(struct MarioState *m) {
     
     update_air_without_turn(m);
 
-    if (m->curPatch == 1) {
+    if (m->curPatch == PATCH_STONE) {
     m->vel[1] -= 1.0f;
     m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
     m->forwardVel = 0;

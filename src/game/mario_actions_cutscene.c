@@ -821,7 +821,8 @@ s32 act_sink_mud(struct MarioState *m) {
         gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], 0.05f);
 
         gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
-        gMarioState->pos[1] = 300.0f;
+        gMarioState->pos[1] = 900.0f;
+        gMarioObject->oPosY = 900.0f;
         
         m->actionTimer++;
         if (m->actionTimer >= 10) {
@@ -1133,6 +1134,32 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
         m->actionState = ACT_STATE_SPAWN_SPIN_AIRBORNE_FALLING;
         set_mario_animation(m, MARIO_ANIM_GENERAL_FALL);
     }
+
+    return FALSE;
+}
+
+s32 act_spawn_holding_object(struct MarioState *m) {
+    if (m->heldObj == NULL) {
+        m->heldObj = spawn_object_relative(m->lastHeldBehaviorParams, 0, 0, 0, o, m->lastHeldModel, virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, m->lastHeldBehavior));
+        m->heldObj->oIntangibleTimer = -1;
+        m->heldObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+    }
+    if (m->actionTimer++ > 5) {
+        set_mario_action(m, ACT_HOLD_FREEFALL, 0);
+    }
+
+    set_mario_animation(m, MARIO_ANIM_FALL_WITH_LIGHT_OBJ);
+
+    return FALSE;
+}
+
+s32 act_hold_cutscene(struct MarioState *m) {
+
+    // updates all velocity variables based on m->forwardVel
+    mario_set_forward_vel(m, m->forwardVel);
+    perform_air_step(m, AIR_STEP_CHECK_NONE);
+
+    set_mario_animation(m, MARIO_ANIM_FALL_WITH_LIGHT_OBJ);
 
     return FALSE;
 }
@@ -2828,6 +2855,8 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_EMERGE_FROM_PIPE:           cancel = act_emerge_from_pipe(m);           break;
         case ACT_SPAWN_SPIN_AIRBORNE:        cancel = act_spawn_spin_airborne(m);        break;
         case ACT_SPAWN_SPIN_LANDING:         cancel = act_spawn_spin_landing(m);         break;
+        case ACT_SPAWN_HOLDING_OBJECT:        cancel = act_spawn_holding_object(m);        break;
+        case ACT_HOLD_CUTSCENE:        cancel = act_hold_cutscene(m);        break;
         case ACT_EXIT_AIRBORNE:              cancel = act_exit_airborne(m);              break;
         case ACT_EXIT_LAND_SAVE_DIALOG:      cancel = act_exit_land_save_dialog(m);      break;
         case ACT_DEATH_EXIT:                 cancel = act_death_exit(m);                 break;

@@ -1781,8 +1781,20 @@ const BehaviorScript bhvFloorSwitchHardcodedModel[] = {
     // Floor switch - common:
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     LOAD_COLLISION_DATA(purple_switch_seg8_collision_0800C7A8),
+    CALL_NATIVE(bhv_purple_switch_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_purple_switch_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBoxSwitch[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    // Floor switch - common:
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    LOAD_COLLISION_DATA(box_switch_collision),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_box_switch_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -1922,7 +1934,7 @@ const BehaviorScript bhvStub[] = {
 const BehaviorScript bhvIgloo[] = {
     BEGIN(OBJ_LIST_LEVEL),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    SET_INTERACT_TYPE(INTERACT_IGLOO_BARRIER),
+    SET_INTERACT_TYPE(INTERACT_PUSH_OUT),
     SET_HITBOX(/*Radius*/ 100, /*Height*/ 200),
     SET_INT(oIntangibleTimer, 0),
     SET_HOME(),
@@ -6482,11 +6494,13 @@ const BehaviorScript bhvGoddessBoss[] = {
 
 const BehaviorScript bhvSewnia[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_INTERACT_TYPE(INTERACT_TEXT),
     LOAD_ANIMATIONS(oAnimations, sewnia_anims),
-    SET_INT(oIntangibleTimer, 0),
+    
     CALL_NATIVE(bhv_sewnia_init),
     BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
         CALL_NATIVE(bhv_sewnia_loop),
     END_LOOP(),
 };
@@ -6666,5 +6680,137 @@ const BehaviorScript bhvPortal[] = {
     CALL_NATIVE(bhv_portal_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_portal_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFarPlaneCube[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(far_plane_cube_collision),
+    CALL_NATIVE(bhv_far_plane_cube_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_far_plane_cube_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFarPlaneCubeHead[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(far_plane_cube_head_collision),
+    CALL_NATIVE(bhv_far_plane_cube_head_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_far_plane_cube_head_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPortalPuzzleBarrier[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(portal_barrier_collision),
+    CALL_NATIVE(bhv_portal_puzzle_barrier_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_portal_puzzle_barrier_loop),
+        
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPortalWindow[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(portal_window_collision),
+    SET_FLOAT(oCollisionDistance, 2000),
+    CALL_NATIVE(bhv_portal_window_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_portal_window_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTfpGrowingBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    LOAD_COLLISION_DATA(tfp_growing_block_collision),
+    CALL_NATIVE(bhv_tfp_growing_block_init),
+    SET_FLOAT(oCollisionDistance, 5000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tfp_growing_block_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTfpPuzzleBox[] = {
+    BEGIN(OBJ_LIST_DESTRUCTIVE),
+    OR_INT(oFlags, (OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    DROP_TO_FLOOR(),
+    SET_HOME(),
+    CALL_NATIVE(bhv_breakable_box_small_init),
+    CALL_NATIVE(bhv_tfp_puzzle_box_init),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_breakable_box_small_loop),
+        CALL_NATIVE(bhv_tfp_puzzle_box_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTfpRotaryPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(tfp_rotary_platform_collision),
+    SET_HOME(),
+    CALL_NATIVE(bhv_tfp_rotary_platform_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tfp_rotary_platform_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTfpRotaryArm[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(tfp_rotary_arm_collision),
+    SET_HOME(),
+    CALL_NATIVE(bhv_tfp_rotary_arm_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tfp_rotary_arm_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBoxBasket[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(box_basket_collision),
+    CALL_NATIVE(bhv_box_basket_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_box_basket_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBoxCounter[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_box_counter_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_box_counter_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGroundPatch[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_ground_patch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ground_patch_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSewniaStoppingPoint[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_sewnia_stopping_point_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sewnia_stopping_point_loop),
     END_LOOP(),
 };

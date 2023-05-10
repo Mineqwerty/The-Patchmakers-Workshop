@@ -601,6 +601,15 @@
 #define MODEL_GOLD_SPIKE_BALL                 0x10D
 
 #define MODEL_FLOATING_PLANE                   0x100
+#define MODEL_FAR_PLANE_CUBE                   0x101
+#define MODEL_FAR_PLANE_CUBE_HEAD                   0x102
+#define MODEL_PORTAL_BARRIER                   0x103
+#define MODEL_BOX_SWITCH                   0x104
+#define MODEL_TFP_PUZZLE_BOX                   0x105
+#define MODEL_TFP_GROWING_BLOCK                   0x106
+#define MODEL_TFP_ROTARY_ARM                  0x107
+#define MODEL_TFP_ROTARY_PLATFORM                   0x108
+#define MODEL_BOX_BASKET                   0x109
 
 #define MODEL_PATCHMAKER                   0x110
 
@@ -618,6 +627,8 @@
 #define MODEL_HALO                0x198
 #define MODEL_SL_CRACKED_ICE_CHUNK             0x199
 #define MODEL_PORTAL             0x19A
+#define MODEL_GRABBABLE_PUZZLE_BOX                   0x19B
+#define MODEL_GROUND_PATCH           0x19C
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

@@ -2,24 +2,40 @@
 
 struct ObjectHitbox sBreakableBoxSmallHitbox = {
     /* interactType:      */ INTERACT_GRABBABLE,
-    /* downOffset:        */ 20,
+    /* downOffset:        */ 25,
     /* damageOrCoinValue: */ 0,
     /* health:            */ 1,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 150,
-    /* height:            */ 250,
-    /* hurtboxRadius:     */ 150,
-    /* hurtboxHeight:     */ 250,
+    /* radius:            */ 50,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
 };
 
 void bhv_breakable_box_small_init(void) {
     o->oGravity = 2.5f;
     o->oFriction = 0.99f;
     o->oBuoyancy = 1.4f;
-    cur_obj_scale(0.4f);
+    //cur_obj_scale(0.4f);
     obj_set_hitbox(o, &sBreakableBoxSmallHitbox);
     o->oAnimState = BREAKABLE_BOX_ANIM_STATE_CORK_BOX;
     o->activeFlags |= ACTIVE_FLAG_DESTRUCTIVE_OBJ_DONT_DESTROY;
+    switch (o->oBehParams2ndByte) {
+    case 0:
+        SET_BPARAM1(o->oPrimColorParams, 255);
+        SET_BPARAM2(o->oPrimColorParams, 255);
+        SET_BPARAM3(o->oPrimColorParams, 255);
+    break;
+    case 1:
+        SET_BPARAM1(o->oPrimColorParams, 255);
+    break;  
+    case 2:
+        SET_BPARAM2(o->oPrimColorParams, 255);
+    break;  
+    case 3:
+        SET_BPARAM3(o->oPrimColorParams, 255);
+    break;  
+   }
 }
 
 void small_breakable_box_spawn_dust(void) {
@@ -45,11 +61,7 @@ void small_breakable_box_act_move(void) {
     }
 
     if (collisionFlags & OBJ_COL_FLAG_HIT_WALL) {
-        spawn_mist_particles();
-        spawn_triangle_break_particles(20, MODEL_DIRT_ANIMATION, 0.7f, 3);
-        obj_spawn_yellow_coins(o, 3);
-        create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
-        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        cur_obj_reflect_move_angle_off_wall();
     }
 
     obj_check_floor_death(collisionFlags, sObjFloor);
@@ -65,8 +77,21 @@ void breakable_box_small_released_loop(void) {
 
     // Despawn, and create a corkbox respawner
     if (o->oBreakableBoxSmallFramesSinceReleased > 900) {
-        create_respawner(MODEL_BREAKABLE_BOX, bhvBreakableBoxSmall, 3000);
-        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        o->oPosX = o->oHomeX;
+         o->oPosY = o->oHomeY;
+          o->oPosZ = o->oHomeZ;
+          o->oVelY = 0;
+          o->oForwardVel = 0;
+          o->oBreakableBoxSmallFramesSinceReleased = 0;
+          o->oBreakableBoxSmallReleased = FALSE;
+    }
+
+    if (gCurrLevelNum == LEVEL_BBH && o->oPosY < -3000) {
+        o->oPosX = o->oHomeX;
+         o->oPosY = o->oHomeY;
+          o->oPosZ = o->oHomeZ;
+          o->oVelY = 0;
+          o->oForwardVel = 0;
     }
 }
 
@@ -81,8 +106,11 @@ void breakable_box_small_idle_loop(void) {
             break;
 
         case OBJ_ACT_DEATH_PLANE_DEATH:
-            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
-            create_respawner(MODEL_BREAKABLE_BOX, bhvBreakableBoxSmall, 3000);
+            o->oPosX = o->oHomeX;
+         o->oPosY = o->oHomeY;
+          o->oPosZ = o->oHomeZ;
+          o->oVelY = 0;
+          o->oForwardVel = 0;
             break;
     }
 

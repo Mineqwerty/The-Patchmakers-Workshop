@@ -79,6 +79,11 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "0D_halo_circle"
+        },
+        "inst14": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0E_box_blip"
         }
     },
     "instrument_list": [
@@ -95,6 +100,7 @@
         "inst10",
         "inst11",
         "inst12",
-        "inst13"
+        "inst13",
+        "inst14"
     ]
 }

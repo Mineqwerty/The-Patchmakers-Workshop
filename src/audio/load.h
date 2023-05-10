@@ -57,6 +57,8 @@ extern s16 gTempoInternalToExternal;
 extern s8 gAudioUpdatesPerFrame; // = 4
 extern s8 gSoundMode;
 
+extern s16 gOverrideTempo;
+
 #ifdef VERSION_SH
 extern OSMesgQueue gUnkQueue1;
 

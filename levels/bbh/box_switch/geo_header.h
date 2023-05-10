@@ -1,0 +1,16 @@
+extern const GeoLayout box_switch_geo[];
+extern Lights1 box_switch_f3dlite_material_022_lights;
+extern Lights1 box_switch_f3dlite_material_021_lights;
+extern Lights1 box_switch_f3dlite_material_020_lights;
+extern u8 box_switch_boxswitch_i8[];
+extern Vtx box_switch_Cube_003_mesh_layer_1_vtx_0[28];
+extern Gfx box_switch_Cube_003_mesh_layer_1_tri_0[];
+extern Vtx box_switch_Cube_003_mesh_layer_1_vtx_1[16];
+extern Gfx box_switch_Cube_003_mesh_layer_1_tri_1[];
+extern Vtx box_switch_Cube_003_mesh_layer_1_vtx_2[4];
+extern Gfx box_switch_Cube_003_mesh_layer_1_tri_2[];
+extern Gfx mat_box_switch_f3dlite_material_022[];
+extern Gfx mat_box_switch_f3dlite_material_021[];
+extern Gfx mat_box_switch_f3dlite_material_020[];
+extern Gfx box_switch_Cube_003_mesh_layer_1[];
+extern Gfx box_switch_material_revert_render_settings[];

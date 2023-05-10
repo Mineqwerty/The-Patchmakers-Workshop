@@ -128,7 +128,7 @@ void apply_water_current(struct MarioState *m, Vec3f step) {
         s16 currentAngle = m->floor->force << 8;
         f32 currentSpeed = sWaterCurrentSpeeds[m->floor->force >> 8];
 
-        if (m->curPatch == 1) {
+        if (m->curPatch == PATCH_STONE) {
             currentSpeed *= 0.2;
         }
 
@@ -174,7 +174,7 @@ static u32 perform_water_step(struct MarioState *m) {
 
     vec3f_copy(step, m->vel);
 
-    if (m->action & ACT_FLAG_SWIMMING || m->curPatch == 1) {
+    if (m->action & ACT_FLAG_SWIMMING || m->curPatch == PATCH_STONE) {
         apply_water_current(m, step);
     }
 
@@ -189,7 +189,7 @@ static u32 perform_water_step(struct MarioState *m) {
 
     stepResult = perform_water_full_step(m, nextPos);
 
-    if (m->curPatch == 1) {
+    if (m->curPatch == PATCH_STONE) {
         m->vel[1] = -10.0f;
     }
 
@@ -761,6 +761,8 @@ static s32 act_water_shell_swimming(struct MarioState *m) {
     if (m->actionTimer++ == 240) {
         m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
         m->heldObj = NULL;
+        m->lastHeldBehavior = NULL;
+        m->lastHeldModel = NULL;
         stop_shell_music();
         set_mario_action(m, ACT_FLUTTER_KICK, 0);
     }
@@ -965,7 +967,7 @@ static s32 act_water_plunge(struct MarioState *m) {
         endVSpeed = -5.0f;
     }
 
-    if (m->flags & MARIO_METAL_CAP || m->curPatch == 1) {
+    if (m->flags & MARIO_METAL_CAP || m->curPatch == PATCH_STONE) {
         stateFlags |= PLUNGE_FLAG_METAL_CAP;
     } else if ((m->prevAction & ACT_FLAG_DIVING) || (m->input & INPUT_A_DOWN)) {
         stateFlags |= PLUNGE_FLAG_DIVING;
@@ -1171,7 +1173,7 @@ static s32 update_metal_water_jump_speed(struct MarioState *m) {
 }
 
 static s32 act_metal_water_standing(struct MarioState *m) {
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1215,7 +1217,7 @@ static s32 act_hold_metal_water_standing(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1235,7 +1237,7 @@ static s32 act_hold_metal_water_standing(struct MarioState *m) {
 static s32 act_metal_water_walking(struct MarioState *m) {
     s32 animSpeed;
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1279,7 +1281,7 @@ static s32 act_hold_metal_water_walking(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_WALKING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1315,7 +1317,7 @@ static s32 act_hold_metal_water_walking(struct MarioState *m) {
 }
 
 static s32 act_metal_water_jump(struct MarioState *m) {
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1344,7 +1346,7 @@ static s32 act_hold_metal_water_jump(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1369,7 +1371,7 @@ static s32 act_hold_metal_water_jump(struct MarioState *m) {
 }
 
 static s32 act_metal_water_falling(struct MarioState *m) {
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1394,7 +1396,7 @@ static s32 act_hold_metal_water_falling(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1415,7 +1417,7 @@ static s32 act_hold_metal_water_falling(struct MarioState *m) {
 static s32 act_metal_water_jump_land(struct MarioState *m) {
     play_metal_water_jumping_sound(m, TRUE);
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1440,7 +1442,7 @@ static s32 act_hold_metal_water_jump_land(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         //return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1461,7 +1463,7 @@ static s32 act_hold_metal_water_jump_land(struct MarioState *m) {
 static s32 act_metal_water_fall_land(struct MarioState *m) {
     play_metal_water_jumping_sound(m, TRUE);
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_WATER_IDLE, 0);
     }
 
@@ -1486,7 +1488,7 @@ static s32 act_hold_metal_water_fall_land(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
     }
 
-    if (m->curPatch != 1) {
+    if (m->curPatch != PATCH_STONE) {
         return set_mario_action(m, ACT_HOLD_WATER_IDLE, 0);
     }
 
@@ -1522,6 +1524,8 @@ static s32 check_common_submerged_cancels(struct MarioState *m) {
             if (m->action == ACT_WATER_SHELL_SWIMMING && m->heldObj != NULL) {
                 m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
                 m->heldObj = NULL;
+                m->lastHeldBehavior = NULL;
+                m->lastHeldModel = NULL;
                 stop_shell_music();
             }
 

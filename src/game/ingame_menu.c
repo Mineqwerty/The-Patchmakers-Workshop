@@ -856,6 +856,14 @@ void create_dialog_box_with_response(s16 dialog) {
     }
 }
 
+void create_sewnia_dialog_box(s16 dialog) {
+    if (gDialogID == DIALOG_NONE) {
+        gDialogID = dialog;
+        gDialogBoxType = DIALOG_TYPE_ROTATE;
+        gLastDialogResponse = 2;
+    }
+}
+
 void reset_dialog_render_state(void) {
     level_set_transition(0, NULL);
 
@@ -902,14 +910,14 @@ void new_dialog_render_dialog_box_type(struct DialogEntry *dialog, s8 linesPerBo
     //create_dl_translation_matrix(MENU_MTX_NOPUSH, 20, 100, 0);
 
             if ((gDialogBoxState == DIALOG_STATE_OPENING) || (gDialogBoxState == DIALOG_STATE_CLOSING)) {
-                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 - gDialogBoxOpenTimer, 0);
+                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3) - (gDialogBoxOpenTimer * ((f32)linesPerBox / 3.0f)) , 0);
             }
             else {
-                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55, 0);
+                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3), 0);
             }
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 150);
-    create_dl_translation_matrix(MENU_MTX_PUSH, -7.0f, 5.0f, 0);
-    create_dl_scale_matrix(MENU_MTX_NOPUSH, 4.0f, 1.2f, 1.0f);
+    create_dl_translation_matrix(MENU_MTX_PUSH, -7.0f, 5.0f + (linesPerBox - 3), 0);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 4.0f, 0.4f * ((f32)linesPerBox), 1.0f);
 
     gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -1188,7 +1196,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
     s8 pageState = DIALOG_PAGE_STATE_NONE;
     UNUSED s8 mark = DIALOG_MARK_NONE; // unused in US and EU
     s8 xMatrix = 1;
-    s8 linesPerBox = 3;
+    s8 linesPerBox = dialog->linesPerBox;
     s16 strIdx;
     s16 linePos = 0;
 
@@ -1209,7 +1217,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
     create_dl_translation_matrix(MENU_MTX_PUSH, 0, 2 - lineNum * Y_VAL3, 0);
 
-    while (pageState == DIALOG_PAGE_STATE_NONE && (strIdx <= gDialogCharNum || (gForceDialogLoad == 1 && gPageNum < 4))) {
+    while (pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState != DIALOG_STATE_CLOSING && (strIdx <= gDialogCharNum || (gForceDialogLoad == 1 && gPageNum < (dialog->linesPerBox + 1)))) {
 
         get_colors_for_unique_speaker(gDialogID, &rgbaColors);
 
@@ -1303,12 +1311,12 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
             gDialogCharNum = strIdx;
         }
     }
-    if (gDialogRenderLineNum < 4 && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
+    if (gDialogRenderLineNum < (linesPerBox + 1) && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
     gDialogCharNum++;
     //play_sound(SOUND_SEWNIA_BLURB, gGlobalSoundSource);
     }
 
-    if (gDialogRenderLineNum == 4 || pageState != DIALOG_PAGE_STATE_NONE) {
+    if (gDialogRenderLineNum == (linesPerBox + 1) || pageState != DIALOG_PAGE_STATE_NONE) {
         gDialogAdvanceTimer--;
     }
 
@@ -1331,19 +1339,30 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 #define Y_VAL4_2 16
 
 void render_dialog_triangle_choice(void) {
-    if (gDialogBoxState == DIALOG_STATE_VERTICAL) {
+    if (gDialogBoxState == DIALOG_STATE_VERTICAL && gLastDialogResponse == 1) {
         handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &gDialogLineNum, 1, 2);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, (gDialogLineNum * X_VAL4_1) - X_VAL4_2, Y_VAL4_1 - (gLastDialogLineNum * Y_VAL4_2), 0);
+    }
+    else if (gLastDialogResponse == 2) {
+        if (gDialogBoxState != DIALOG_STATE_CLOSING) {
+            handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gDialogLineNum, 1, 4);
+        }
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 9, -(gDialogLineNum * 16) + Y_VAL4_1 - (32), 0);
+    }
+    else {
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, (gDialogLineNum * X_VAL4_1) - X_VAL4_2, Y_VAL4_1 - (gLastDialogLineNum * Y_VAL4_2), 0);
     }
 
-    create_dl_translation_matrix(MENU_MTX_NOPUSH, (gDialogLineNum * X_VAL4_1) - X_VAL4_2, Y_VAL4_1 - (gLastDialogLineNum * Y_VAL4_2), 0);
+    
 
     if (gDialogBoxType == DIALOG_TYPE_ROTATE) {
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
     } else {
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     }
-
-    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+    if (gDialogBoxState != DIALOG_STATE_CLOSING) {
+        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+    }
 }
 
 #define X_VAL5 118.0f
@@ -1358,7 +1377,7 @@ void render_dialog_triangle_next(s8 linesPerBox) {
         return;
     }
 
-    create_dl_translation_matrix(MENU_MTX_PUSH, X_VAL5, (linesPerBox * Y_VAL5_1) + Y_VAL5_2, 0);
+    create_dl_translation_matrix(MENU_MTX_PUSH, 240, (linesPerBox * Y_VAL5_1) + Y_VAL5_2, 0);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, X_Y_VAL6, X_Y_VAL6, 1.0f);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, -DEFAULT_DIALOG_BOX_ANGLE, 0, 0, 1.0f);
 
@@ -1555,7 +1574,7 @@ void render_dialog_entries(void) {
                   ensure_nonnegative(240 + ((dialog->linesPerBox * 80) / DIAG_VAL4) - dialog->width));
     handle_dialog_text_and_pages(0, dialog, lowerBound);
 
-    if (gLastDialogPageStrPos == -1 && gLastDialogResponse == 1) {
+    if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
     }
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, SCREEN_WIDTH - gBorderHeight / 2, SCREEN_HEIGHT - gBorderHeight / 2);
@@ -1607,7 +1626,7 @@ void new_dialog_render_dialog_entries(void) {
             if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
                 
                 
-                if (gDialogRenderLineNum == 4 || gForceDialogLoad == 1) {
+                if (gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) {
                     if (gLastDialogPageStrPos == -1) {
                         handle_special_dialog_text(gDialogID);
                         gDialogBoxState = DIALOG_STATE_CLOSING;
@@ -1676,7 +1695,7 @@ void new_dialog_render_dialog_entries(void) {
                   */
     new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
 
-    if (gLastDialogPageStrPos == -1 && gLastDialogResponse == 1) {
+    if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
     }
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, SCREEN_WIDTH - gBorderHeight / 2, SCREEN_HEIGHT - gBorderHeight / 2);
@@ -1777,7 +1796,7 @@ void new_dialog_render_automatic_dialog(void) {
     new_dialog_render_dialog_box_type(dialog, dialog->linesPerBox);
     new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
 
-    if (gLastDialogPageStrPos == -1 && gLastDialogResponse == 1) {
+    if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
     }
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, SCREEN_WIDTH - gBorderHeight / 2, SCREEN_HEIGHT - gBorderHeight / 2);
@@ -2452,7 +2471,7 @@ Vtx *createSelectorEdge() {
 
 void render_patch_selection() {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
-    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
 
     u16 patchFlags = save_file_get_patch_flags(gCurrSaveFileNum - 1);
     gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_mesh);
@@ -2491,7 +2510,7 @@ void render_patch_selection() {
     //upper left corner
     create_dl_translation_matrix(MENU_MTX_PUSH, -20 - 3*(1 + sins(0x600 * gGlobalTimer)), 20 + 3*(1 + sins(0x600 * gGlobalTimer)), 6);
     Vtx *verts1 = createSelectorEdge();
-    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
     gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
     gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -2575,7 +2594,7 @@ void render_pause_screen_felt() {
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 0.9f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
 
     gSPDisplayList(gDisplayListHead++, menu_layer_3_Plane_002_mesh);
 
@@ -2622,7 +2641,7 @@ void render_pause_screen_felt() {
 
     
 
-    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
     create_dl_translation_matrix(MENU_MTX_PUSH, 0, 90, 9);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, 0, 0, 0, 1.0f); 
     gSPDisplayList(gDisplayListHead++, menu_options_Plane_003_mesh);
@@ -2760,6 +2779,7 @@ s32 render_pause_courses_and_castle(void) {
                 common_patch_cancel(gMarioState);
                 gMarioState->equippedPatch = gPatchIndex;
                 gMarioState->updatePatch = 1;
+                update_mario_equipped_patch();
                 play_sound(SOUND_MENU_READ_A_SIGN, gGlobalSoundSource);
 
 

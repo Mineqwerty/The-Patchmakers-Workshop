@@ -59,6 +59,7 @@ enum GeoLayoutCommands {
     /*0x1F*/ GEO_CMD_NOP_1F,
     /*0x20*/ GEO_CMD_NODE_CULLING_RADIUS,
     /*0x21*/ GEO_CMD_BONE,
+    /*0x1D*/ GEO_CMD_NODE_SCALE_PORTAL,
 };
 
 // geo layout macros
@@ -442,6 +443,10 @@ enum GeoLayoutCommands {
     CMD_BBH(GEO_CMD_NODE_SCALE, (layer | 0x80), 0x0000), \
     CMD_W(scale), \
     CMD_PTR(displayList)
+    
+#define GEO_SCALE_PORTAL(layer, scale) \
+    CMD_BBH(GEO_CMD_NODE_SCALE_PORTAL, layer, 0x0000), \
+    CMD_W(scale)
 
 /**
  * 0x1E: No operation

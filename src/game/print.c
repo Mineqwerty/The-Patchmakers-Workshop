@@ -219,6 +219,10 @@ void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n) {
     sTextLabelsCount++;
 }
 
+void dbp(s32 n) {
+    print_text_fmt_int(100, 100, "%d", n);
+}
+
 /**
  * Prints text in the colorful lettering at given X, Y coordinates.
  */

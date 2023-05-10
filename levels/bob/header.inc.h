@@ -2,6 +2,12 @@ extern const GeoLayout bob_area_1_geo[];
 extern const GeoLayout bob_area_1[];
 extern const Collision bob_area_1_collision[];
 extern const MacroObject bob_area_1_macro_objs[];
+#include "src/game/camera.h"
+
+extern struct CutsceneSplinePoint bob_area_1_spline_PokeyIntroCutscene1Foc[];
+extern struct CutsceneSplinePoint bob_area_1_spline_PokeyIntroCutscene1Pos[];
+extern struct CutsceneSplinePoint bob_area_1_spline_PokeyIntroCutscene2Foc[];
+extern struct CutsceneSplinePoint bob_area_1_spline_PokeyIntroCutscene2Pos[];
 extern const GeoLayout bob_area_2_geo[];
 extern const GeoLayout bob_area_2[];
 extern const Collision bob_area_2_collision[];

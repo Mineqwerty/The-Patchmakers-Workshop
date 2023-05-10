@@ -1325,6 +1325,7 @@ s32 ray_surface_intersect(Vec3f orig, Vec3f dir, f32 dir_length, struct Surface 
     vec3s_to_vec3f(v1, surface->vertex2);
     vec3s_to_vec3f(v2, surface->vertex3);
     // Get surface normal and extend it by RAY_OFFSET.
+    if (callContext != 2) {
     Vec3f norm;
     surface_normal_to_vec3f(norm, surface);
     vec3_mul_val(norm, RAY_OFFSET);
@@ -1332,6 +1333,7 @@ s32 ray_surface_intersect(Vec3f orig, Vec3f dir, f32 dir_length, struct Surface 
     vec3f_add(v0, norm);
     vec3f_add(v1, norm);
     vec3f_add(v2, norm);
+    }
     // Make 'e1' (edge 1) the vector from vertex 0 to vertex 1.
     Vec3f e1;
     vec3f_diff(e1, v1, v0);

@@ -92,7 +92,7 @@ void snowmans_bottom_act_final_stretch(void) { // act 2
     }
 
     if (o->oTimer == 200) {
-        create_respawner(MODEL_CCM_SNOWMAN_BASE, bhvSnowmansBottom, 3000);
+        create_respawner(MODEL_CCM_SNOWMAN_BASE, bhvSnowmansBottom, 3000, o->oBehParams);
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     }
 }

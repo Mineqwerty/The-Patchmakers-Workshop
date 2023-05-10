@@ -1,5 +1,6 @@
 #include "src/game/game_init.h"
 #include "src/game/cutscene.h"
+#include "src/game/level_update.h"
 
 void bhv_stone_gear_loop(void) {
 
@@ -11,7 +12,7 @@ void bhv_stone_gear_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            if (gMarioState->curPatch != 3 && (gTatumCount / 41) % turnTimer == 0) {
+            if (gMarioState->curPatch != PATCH_GRAPPLE && (gTatumCount / 41) % turnTimer == 0) {
                 o->oAction++;
                 o->oTimer = 0;
                 cur_obj_play_sound_2(SOUND_GENERAL_BIG_CLOCK);
@@ -110,7 +111,7 @@ void bhv_grapple_stone_loop(void) {
 
     if (o->oBehParams2ndByte == 0) {
         if (o->oAction % 2 == 0 && (gTatumCount / 41) % 16 == 0) {
-            if (gMarioState->curPatch != 3) {
+            if (gMarioState->curPatch != PATCH_GRAPPLE) {
                 o->oPrimColorParams = 0xb3a376FF;
                     o->oBeatNumber = 8;
                     o->oAction++;
@@ -151,7 +152,7 @@ void bhv_grapple_stone_loop(void) {
     } else if (o->oBehParams2ndByte == 1) {
         if (o->oAction % 2 == 0) {
             if ((gTatumCount / 41) % 8 == 0) {
-                if (gMarioState->curPatch != 3) {
+                if (gMarioState->curPatch != PATCH_GRAPPLE) {
                     o->oPrimColorParams = 0x9500FFFF;
                     o->oBeatNumber = 8;
                     o->oAction++;
@@ -185,7 +186,7 @@ void bhv_grapple_stone_loop(void) {
 
     else {
         if (o->oAction % 2 == 0 && (gTatumCount / 41) % 16 == 0) {
-            if (gMarioState->curPatch != 3) {
+            if (gMarioState->curPatch != PATCH_GRAPPLE) {
                 o->oPrimColorParams = 0x81bd79FF;
                     o->oBeatNumber = 8;
                      o->oAction++;
@@ -229,7 +230,7 @@ void bhv_grapple_stone_loop(void) {
 
 
 void bhv_rotating_stone_cylinder_loop(void) {
-    if (gMarioState->curPatch != 3) {
+    if (gMarioState->curPatch != PATCH_GRAPPLE) {
         o->oMoveAngleYaw += 0x400 * (1 - (o->oBehParams2ndByte * 2));
     }
     // else {

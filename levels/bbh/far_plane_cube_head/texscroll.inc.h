@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_far_plane_cube_head_f3dlite_material_010_layer1();
+extern void scroll_bbh_level_geo_far_plane_cube_head();

@@ -12,6 +12,15 @@ enum TimerControl {
     TIMER_CONTROL_HIDE
 };
 
+enum patchNames {
+    PATCH_NONE,
+    PATCH_STONE,
+    PATCH_CHILLSTEP,
+    PATCH_GRAPPLE,
+    PATCH_HALO,
+    PATCH_PORTAL
+};
+
 enum WarpOperation {
     WARP_OP_NONE,
     WARP_OP_LOOK_UP,
@@ -68,7 +77,7 @@ enum MarioSpawnType {
     MARIO_SPAWN_AIRBORNE_DEATH,
     MARIO_SPAWN_LAUNCH_STAR_COLLECT,
     MARIO_SPAWN_LAUNCH_DEATH,
-    MARIO_SPAWN_UNUSED_38,
+    MARIO_SPAWN_HOLDING_OBJECT,
     MARIO_SPAWN_FADE_FROM_BLACK
 };
 
@@ -97,6 +106,7 @@ struct WarpDest {
     u8 areaIdx;
     u8 nodeId;
     u32 arg;
+    u8 portalID;
 };
 
 extern struct WarpDest sWarpDest;

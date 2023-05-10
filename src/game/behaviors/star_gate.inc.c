@@ -16,7 +16,7 @@ void bhv_star_gate_loop(void) {
     if (o->oAction == 1) {
         play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 196, 149, 18);
         if (o->oTimer == 18) {
-            initiate_warp(LEVEL_CCM, 1, o->oBehParams2ndByte, 0);
+            initiate_warp(LEVEL_CCM, 1, o->oBehParams2ndByte, 0, 0);
             gMarioState->specialWarpTransitionOperation = 2;
         }
 

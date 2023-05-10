@@ -119,6 +119,7 @@ const LevelScript level_main_scripts_entry[] = {
 
     LOAD_MODEL_FROM_GEO(MODEL_SL_CRACKED_ICE_CHUNK,            sl_geo_000378),
     LOAD_MODEL_FROM_GEO(MODEL_FIRE_SMOKE,            fire_smoke_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_GRABBABLE_PUZZLE_BOX,            grabbable_puzzle_box_geo),
 
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_MARIO_STONE,            patch_mario_stone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_SPIKES,            ice_spikes_geo),

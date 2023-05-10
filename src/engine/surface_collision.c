@@ -70,7 +70,7 @@ static s32 find_wall_collisions_from_list(struct SurfaceNode *surfaceNode, struc
             if (type == SURFACE_CAMERA_BOUNDARY) continue;
 
             if (type == SURFACE_THORN_WALL) {
-                if (gMarioState->curPatch == 1) {
+                if (gMarioState->curPatch == PATCH_STONE) {
                     continue;
                 }
             }
@@ -426,7 +426,7 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
             continue; // If we are not checking for the camera, ignore camera only floors.
         }
 
-        if (surf != NULL && surf->type == SURFACE_THORNS_PASS && gMarioState->curPatch == 1) {
+        if (surf != NULL && surf->type == SURFACE_THORNS_PASS && gMarioState->curPatch == PATCH_STONE) {
             continue;
         }
 

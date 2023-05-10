@@ -301,6 +301,9 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
         case MARIO_SPAWN_SPIN_AIRBORNE:
             set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);
             break;
+        case MARIO_SPAWN_HOLDING_OBJECT:
+            set_mario_action(m, ACT_SPAWN_HOLDING_OBJECT, 0);
+            break;
         case MARIO_SPAWN_FLYING:
             set_mario_action(m, ACT_FLYING, 2);
             break;
@@ -338,21 +341,56 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
 }
 
 void init_mario_after_warp(void) {
-    struct ObjectWarpNode *spawnNode = area_get_warp_node(sWarpDest.nodeId);
-    u32 marioSpawnType = get_mario_spawn_type(spawnNode->object);
+    struct ObjectWarpNode *spawnNode;
+    u32 marioSpawnType;
+    
+    if (sWarpDest.portalID == 0) {
+        spawnNode = area_get_warp_node(sWarpDest.nodeId);
+        marioSpawnType = get_mario_spawn_type(spawnNode->object);
+    }
+    else {
+        if (gMarioState->lastHeldModel != NULL) {
+            marioSpawnType = MARIO_SPAWN_HOLDING_OBJECT;
+        }
+        else {
+            marioSpawnType = MARIO_SPAWN_SPIN_AIRBORNE;
+        }
+    }
+
+    
 
     if (gMarioState->action != ACT_UNINITIALIZED) {
-        gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->oPosX;
-        gPlayerSpawnInfos[0].startPos[1] = (s16) spawnNode->object->oPosY;
-        gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->oPosZ;
+        if (sWarpDest.portalID == 0) {
+            gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->oPosX;
+            gPlayerSpawnInfos[0].startPos[1] = (s16) spawnNode->object->oPosY;
+            gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->oPosZ;
 
-        gPlayerSpawnInfos[0].startAngle[0] = 0;
-        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oMoveAngleYaw;
-        gPlayerSpawnInfos[0].startAngle[2] = 0;
+            gPlayerSpawnInfos[0].startAngle[0] = 0;
+            gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oMoveAngleYaw;
+            gPlayerSpawnInfos[0].startAngle[2] = 0;
+        }
+        else if (sWarpDest.portalID == 1) {
+            gPlayerSpawnInfos[0].startPos[0] = gMarioState->portal1Position[0];
+            gPlayerSpawnInfos[0].startPos[1] = gMarioState->portal1Position[1];
+            gPlayerSpawnInfos[0].startPos[2] = gMarioState->portal1Position[2];
+
+            gPlayerSpawnInfos[0].startAngle[0] = 0;
+            gPlayerSpawnInfos[0].startAngle[1] = 0;
+            gPlayerSpawnInfos[0].startAngle[2] = 0;
+        }
+        else if (sWarpDest.portalID == 2) {
+            gPlayerSpawnInfos[0].startPos[0] = gMarioState->portal2Position[0];
+            gPlayerSpawnInfos[0].startPos[1] = gMarioState->portal2Position[1];
+            gPlayerSpawnInfos[0].startPos[2] = gMarioState->portal2Position[2];
+
+            gPlayerSpawnInfos[0].startAngle[0] = 0;
+            gPlayerSpawnInfos[0].startAngle[1] = 0;
+            gPlayerSpawnInfos[0].startAngle[2] = 0;
+        }
 
         if (marioSpawnType == MARIO_SPAWN_DOOR_WARP) {
-            init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
-        }
+                init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
+            }
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
             gPlayerSpawnInfos[0].areaIndex = sWarpDest.areaIdx;
@@ -362,11 +400,19 @@ void init_mario_after_warp(void) {
         init_mario();
         set_mario_initial_action(gMarioState, marioSpawnType, sWarpDest.arg);
 
-        gMarioState->interactObj = spawnNode->object;
-        gMarioState->usedObj = spawnNode->object;
+        if (sWarpDest.portalID == 0) {
+            gMarioState->interactObj = spawnNode->object;
+            gMarioState->usedObj = spawnNode->object;
+        }
+        else {
+            play_sound(SOUND_GENERAL_PAINTING_EJECT,
+                       gMarioStates[0].marioObj->header.gfx.cameraToObject);
+            gMarioState->forwardVel = 10.0f;
+            gMarioState->vel[1] = 10.0f;
+        }
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
-            if (gMarioState->equippedPatch == 4) {
+            if (gMarioState->equippedPatch == PATCH_HALO) {
                 gMarioState->patchChildObj = NULL;
                 gMarioState->updatePatch = 1;
                 }
@@ -453,13 +499,13 @@ void warp_level(void) {
 
     level_control_timer(TIMER_CONTROL_HIDE);
 
-    gMarioState->portal1Position[0] = 0;
-    gMarioState->portal1Position[1] = 0;
-    gMarioState->portal1Position[2] = 0;
+    //gMarioState->portal1Position[0] = 0;
+    //gMarioState->portal1Position[1] = 0;
+    //gMarioState->portal1Position[2] = 0;
 
-    gMarioState->portal2Position[0] = 0;
-    gMarioState->portal2Position[1] = 0;
-    gMarioState->portal2Position[2] = 0;
+    //gMarioState->portal2Position[0] = 0;
+    //gMarioState->portal2Position[1] = 0;
+    //gMarioState->portal2Position[2] = 0;
 
     load_area(sWarpDest.areaIdx);
     init_mario_after_warp();
@@ -529,6 +575,35 @@ void check_instant_warp(void) {
     }
 #endif // ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
 
+    if (gMarioState->specialWarpFlags != 0) {
+                        cameraAngle = gMarioState->area->camera->yaw;
+                        gMarioState->pos[1] += 12000;
+                        gMarioState->marioObj->oPosY += 12000;
+                        gMarioObject->header.gfx.pos[1] = gMarioState->pos[1];
+                        switch (gMarioState->specialWarpFlags) {
+                            case 1:
+                            case 2:
+                                gMarioState->pos[0] += 10000;
+                                gMarioState->marioObj->oPosX += 10000;
+                                gMarioObject->header.gfx.pos[0] = gMarioState->pos[0];
+                                warp_camera(10000, 12000.0f, 0);
+                            break;
+                            case 3:
+                                gMarioState->pos[0] -= 20000;
+                                gMarioState->marioObj->oPosX -= 20000;
+                                gMarioObject->header.gfx.pos[0] = gMarioState->pos[0];
+                                warp_camera(-20000, 12000.0f, 0);
+                            break;
+                        }
+                        
+                        //c->cancelFrameUpdate = 1;
+                        gReonucamState.overhead = 1;
+                        gMarioState->area->camera->yaw = cameraAngle;
+
+                        
+                        gMarioState->specialWarpFlags = 0;
+    }
+
     if ((floor = gMarioState->floor) != NULL) {
         s32 index = floor->type - SURFACE_INSTANT_WARP_1B;
         if (index >= INSTANT_WARP_INDEX_START && index < INSTANT_WARP_INDEX_STOP
@@ -554,7 +629,7 @@ void check_instant_warp(void) {
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
 
-                if (gMarioState->equippedPatch == 4) {
+                if (gMarioState->equippedPatch == PATCH_HALO) {
                 gMarioState->patchChildObj = NULL;
                 gMarioState->updatePatch = 1;
                 }
@@ -602,7 +677,7 @@ s16 music_unchanged_through_warp(s16 arg) {
 /**
  * Set the current warp type and destination level/area/node.
  */
-void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags) {
+void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags, s16 portalID) {
     if (destWarpNode >= WARP_NODE_CREDITS_MIN) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
     } else if (destLevel != gCurrLevelNum) {
@@ -617,6 +692,7 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags)
     sWarpDest.areaIdx = destArea;
     sWarpDest.nodeId = destWarpNode;
     sWarpDest.arg = warpFlags;
+    sWarpDest.portalID = portalID;
 #if defined(PUPPYCAM) || defined(PUPPYLIGHTS)
     s32 i = 0;
 #endif
@@ -684,7 +760,7 @@ void initiate_painting_warp(void) {
                     sWarpCheckpointActive = check_warp_checkpoint(&warpNode);
                 }
 
-                initiate_warp(warpNode.destLevel & 0x7F, warpNode.destArea, warpNode.destNode, WARP_FLAGS_NONE);
+                initiate_warp(warpNode.destLevel & 0x7F, warpNode.destArea, warpNode.destNode, WARP_FLAGS_NONE, 0);
                 check_if_should_set_warp_checkpoint(&warpNode);
 
                 play_transition_after_delay(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255, 45);
@@ -886,7 +962,7 @@ void initiate_delayed_warp(void) {
                 case WARP_OP_CREDITS_START:
                     gCurrCreditsEntry = &sCreditsSequence[0];
                     initiate_warp(gCurrCreditsEntry->levelNum, gCurrCreditsEntry->areaIndex,
-                                  WARP_NODE_CREDITS_START, WARP_FLAGS_NONE);
+                                  WARP_NODE_CREDITS_START, WARP_FLAGS_NONE, 0);
                     break;
 
                 case WARP_OP_CREDITS_NEXT:
@@ -900,14 +976,14 @@ void initiate_delayed_warp(void) {
                         destWarpNode = WARP_NODE_CREDITS_NEXT;
                     }
 
-                    initiate_warp(gCurrCreditsEntry->levelNum, gCurrCreditsEntry->areaIndex, destWarpNode, WARP_FLAGS_NONE);
+                    initiate_warp(gCurrCreditsEntry->levelNum, gCurrCreditsEntry->areaIndex, destWarpNode, WARP_FLAGS_NONE, 0);
                     break;
 
                 default:
                     warpNode = area_get_warp_node(sSourceWarpNodeId);
 
                     initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
-                                  warpNode->node.destNode, sDelayedWarpArg);
+                                  warpNode->node.destNode, sDelayedWarpArg, 0);
 
                     check_if_should_set_warp_checkpoint(&warpNode->node);
                     if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
@@ -1067,7 +1143,7 @@ s32 play_mode_paused(void) {
         if (gDebugLevelSelect) {
             fade_into_special_warp(WARP_SPECIAL_LEVEL_SELECT, 1);
         } else {
-            initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAGS_NONE);
+            initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAGS_NONE, 0);
             fade_into_special_warp(WARP_SPECIAL_NONE, 0);
             gSavedCourseNum = COURSE_NONE;
         }

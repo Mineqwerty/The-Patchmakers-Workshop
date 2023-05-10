@@ -255,3 +255,12 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/the_patchmaker.inc.c"
 //seraphim in obj_behaviors_2.c
 #include "behaviors/floating_plane.inc.c"
+//far plane cube in obj_behaviors_2.c
+#include "behaviors/portal_puzzle_barrier.inc.c"
+#include "behaviors/portal_window.inc.c"
+#include "behaviors/tfp_growing_block.inc.c"
+#include "behaviors/tfp_puzzle_box.inc.c"
+#include "behaviors/tfp_rotary_platform.inc.c"
+#include "behaviors/box_basket.inc.c"
+#include "behaviors/ground_patch.inc.c"
+#include "behaviors/sewnia_stopping_point.inc.c"
