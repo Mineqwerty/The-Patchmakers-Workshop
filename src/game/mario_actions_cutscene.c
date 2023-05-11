@@ -821,8 +821,9 @@ s32 act_sink_mud(struct MarioState *m) {
         gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], 0.05f);
 
         gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
-        gMarioState->pos[1] = 900.0f;
-        gMarioObject->oPosY = 900.0f;
+        m->pos[0] = 6921.0f;
+            m->pos[1] = 206.0f;
+            m->pos[2] = -4398.0f;
         
         m->actionTimer++;
         if (m->actionTimer >= 10) {
@@ -833,6 +834,7 @@ s32 act_sink_mud(struct MarioState *m) {
 
         if (m->actionTimer >= 50) {
             gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            
             m->pos[0] = 6921.0f;
             m->pos[1] = 106.0f;
             m->pos[2] = -4398.0f;
@@ -843,6 +845,10 @@ s32 act_sink_mud(struct MarioState *m) {
             gCamera->cutscene = 0;
             clear_cutscene_vars(gCamera);
             gCutsceneTimer = 0;
+
+            if (m->patchChildObj) {
+                cur_obj_enable_rendering_and_become_tangible(m->patchChildObj);
+            }
         }
     }
 

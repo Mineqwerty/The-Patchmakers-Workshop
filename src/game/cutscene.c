@@ -46,6 +46,7 @@ enum cutscene_events {
     EVENT_CAMERA_POSITION,
     EVENT_CAMERA_FOCUS_SPLINE_DATA,
     EVENT_CAMERA_POSITION_SPLINE_DATA,
+    EVENT_CAMERA_SHAKE,
 
     EVENT_DISABLE_MARIO,
     EVENT_ENABLE_MARIO,
@@ -104,9 +105,31 @@ s32 event_goddess_intro[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_pokey_intro[] = {
+    EVENT_HUD_DISABLE,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 12,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 13,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_AUTO, 54,
+    EVENT_WAIT, 90,
+    EVENT_WAIT, 120,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 14,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 15,
+    EVENT_WAIT, 100,
+    EVENT_SHOW_BOSS_TITLE, 1,
+    EVENT_WAIT, 50,
+    EVENT_CAMERA_SHAKE, -446, 3563, -1802, 
+    EVENT_WAIT, 90,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
-    event_goddess_intro
+    event_goddess_intro,
+    event_pokey_intro
 };
 
 s32 *splineList[] = {
@@ -172,7 +195,7 @@ void event_handler(void) {
                     
                 break;
                 case EVENT_DIALOG_AUTO:
-                    create_dialog_box(param1);
+                    create_automatic_dialog_box(param1);
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_CAMERA_ENABLE_CUTSCENE:
@@ -201,6 +224,10 @@ void event_handler(void) {
                     gCamera->cutscene = 1;
                     posSpline = splineList[cEventPointer[cCutsceneIndex + 1]];
                     cCutsceneIndex += 2;
+                break;
+                case EVENT_CAMERA_SHAKE:
+                    set_camera_shake_from_point(SHAKE_POS_LARGE, param1, param2, param3);
+                    cCutsceneIndex += 4;
                 break;
                 case EVENT_SET_MARIO_POSITION:
                     gMarioState->pos[0] = param1;

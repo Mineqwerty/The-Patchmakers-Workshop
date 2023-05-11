@@ -3,3 +3,4 @@
 #include "anim_StartBurrow.inc.c"
 #include "anim_Spinning.inc.c"
 #include "anim_Action.inc.c"
+#include "anim_Shake.inc.c"

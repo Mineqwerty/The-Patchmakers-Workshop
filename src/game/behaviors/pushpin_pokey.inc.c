@@ -13,6 +13,7 @@
 #define POKEY_ACT_STUNNED 8
 #define POKEY_ACT_POP_UP 9
 #define POKEY_ACT_DEATH 10
+#define POKEY_ACT_CUTSCENE 11
 
 static struct ObjectHitbox sPushpinPokeyHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
@@ -84,6 +85,7 @@ void pushpin_pokey_set_model() {
 
 void pushpin_pokey_idle(void) {
     o->oForwardVel = 0;
+    o->oNumHitSegments = 0;
     object_step_without_floor_orient();
 
     obj_set_hitbox(o, &sPushpinPokeyHitbox);
@@ -256,7 +258,7 @@ void pushpin_pokey_throw_parts(void) {
             o->oSubAction++;
         break;
         case 1:
-            if (o->oTimer > 270) {
+            if (o->oTimer > 280 - (10*(7 - o->oCurrentNumSegments))) {
                 set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
                 gReonucamState.overhead = 0;
                 pushpin_pokey_next_attack();
@@ -497,10 +499,13 @@ void pushpin_pokey_set_mario_style(void) {
 
 void pushpin_pokey_scatter(void) {
     if (o->oNumHitSegments >= o->oCurrentNumSegments) {
-        o->oNumHitSegments = 0;
-         o->oAction = POKEY_ACT_STUNNED;
-        return;
+        gMarioState->usedStonePatch = 0;
     }
+    else {
+        gMarioState->usedStonePatch = 2;
+    }
+
+    
 /*
     if (o->oNumHitSegments == 0) {
         o->oCamFocus = spawn_object_relative(1, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeySegment);
@@ -655,6 +660,7 @@ void pushpin_pokey_pop_up(void) {
             seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
             */
+           o->oInteractType = INTERACT_PUSH_OUT;
            func_80321080(90);
         }
             if (o->oTimer >= 60) {
@@ -662,7 +668,7 @@ void pushpin_pokey_pop_up(void) {
             o->oTimer = 0;
             o->oPosX = gMarioState->pos[0];
             o->oPosZ = gMarioState->pos[2];
-            o->oPosY = gMarioState->pos[1] - 4000;
+            o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 4000, o->oPosZ) - (520 * (o->oCurrentNumSegments));
             o->oCamFocus = spawn_object_relative(8, 0, 900, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);
             o->oTimer = 0;
             o->oFaceAnglePitch = 0;
@@ -674,6 +680,9 @@ void pushpin_pokey_pop_up(void) {
         if (o->oTimer % 3 == 0) {
             cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
         }
+            if (o->oTimer < 30) {
+                o->oPosY += 10.0f;
+            }
             if (o->oTimer < 50) {
                 cur_obj_init_animation(1);
             }
@@ -685,13 +694,14 @@ void pushpin_pokey_pop_up(void) {
             }
         break;
         case 2:
-        o->oPosY += 130.0f - o->oTimer;
+        o->oInteractType = INTERACT_DAMAGE;
+        o->oPosY += 80.0f - o->oTimer;
         o->oFaceAngleYaw += 0x800;
         o->oMoveAngleYaw += 0x800;
         if (o->oTimer % 5 == 4) {
             cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB_JUMP);
         }
-            if (o->oTimer > 40) {
+            if (o->oTimer > o->oCurrentNumSegments * 8) {
                 o->oAction = POKEY_ACT_IDLE;
                 o->oTimer = 0;
                 o->oVelY = 30.0f;
@@ -736,6 +746,62 @@ void pushpin_pokey_death(void) {
             obj_mark_for_deletion(o);
            }
         break;
+    }
+}
+
+void pushpin_pokey_cutscene(void) {
+    if (o->oTimer == 0) {
+        begin_cutscene_event(2);
+        cur_obj_init_animation(1);
+        o->oPosY -= 4000;
+    }
+
+    if (o->oTimer == 8) {
+        o->oCamFocus = spawn_object_relative(8, 0, 900, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);
+    }
+    if (gCamera->cutscene == 0 && o->oTimer > 30) {
+        o->oAction = POKEY_ACT_IDLE;
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+    }
+
+    if (o->oTimer == 190) {
+        if (o->oCamFocus) obj_mark_for_deletion(o->oCamFocus);
+    }
+
+    if (o->oTimer >= 90 && o->oTimer < 190) {
+        o->oFaceAngleYaw += 0x800;
+        o->oMoveAngleYaw += 0x800;
+        o->oPosY += 130.0f - o->oTimer + 90;
+        if (o->oTimer % 5 == 4) {
+            cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB_JUMP);
+        }
+    }
+    else if (o->oTimer < 90) {
+        if (o->oTimer % 3 == 0) {
+            cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+        }
+    }
+
+    if (o->oTimer == 170) {
+        seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_INTRO), 0);
+    }
+    if (o->oTimer == 190) {
+        o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 1000, o->oPosZ);
+    }
+
+    if (o->oTimer == 240) {
+        o->oMoveAngleYaw = -0x34C3;
+        
+    }
+
+
+    if (o->oTimer == 390) {
+        cur_obj_init_animation(4);
+    }
+
+    if (o->oTimer == 450) {
+        cur_obj_init_animation(1);
     }
 }
 
@@ -824,17 +890,16 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
 
 
     case 11:
-        if (o->oTimer < 89 && o->oTimer % 15 == 0 && (o->parentObj->oNumHitSegments + 1) < o->parentObj->oCurrentNumSegments) {
+        if (o->oTimer % 15 == 0 && (o->parentObj->oNumHitSegments + 1) < o->parentObj->oCurrentNumSegments) {
             spawn_object_relative(0, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_BODY, bhvPushpinPokeySegment);
             play_sound(SOUND_OBJ_EVIL_LAKITU_THROW, gGlobalSoundSource);
             o->parentObj->oNumHitSegments++;
         }
-
-        if (o->oTimer == 90) {
+        else if ((o->parentObj->oNumHitSegments + 1) == o->parentObj->oCurrentNumSegments) {
             spawn_object_relative(0, 0, 0, 0, o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeySegment);
             play_sound(SOUND_OBJ_EVIL_LAKITU_THROW, gGlobalSoundSource);
-            //set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SLIDE_HOOT, 1);
-            gReonucamState.overhead = 1;
+            set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+            gReonucamState.overhead = 3;
             o->parentObj->oNumHitSegments = 0;
             obj_mark_for_deletion(o);
             
@@ -847,6 +912,9 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
 
         obj_set_hitbox(o, &sPushpinPokeyPushingHitbox);
         o->oInteractStatus = 0;
+        o->oIntangibleTimer = 0;
+
+        obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x1000);
 
         if (o->oTimer % 7 == 0) {
             cur_obj_spawn_particles(&sBurrowStones);
@@ -865,7 +933,7 @@ void bhv_pushpin_pokey_camera_focus_loop(void) {
     }
 
     if (o->oTimer > 20) {
-        o->oPosY -= 60 - o->oTimer * 2;
+        o->oPosY -= 120 - o->oTimer * 2;
     }
 
 
@@ -935,6 +1003,8 @@ void bhv_pushpin_pokey_segment_init(void) {
 }
 
 void bhv_pushpin_pokey_segment_loop(void) {
+    f32 dist;
+    struct Object *pokey = cur_obj_find_nearest_object_with_behavior(bhvPushpinPokey, &dist);
     
     switch(o->oBehParams2ndByte) {
         case 0:
@@ -947,7 +1017,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
     o->oFaceAnglePitch += 0x800;
     //object_step_without_floor_orient();
 
-    if (o->oTimer == 90) {
+    if (o->oTimer == 90 || (o->oTimer == 45 && gReonucamState.overhead == 1)) {
         o->oPosX = gMarioState->pos[0] + (random_u16() / 64) - 0x200;
         o->oPosZ = gMarioState->pos[2] + (random_u16() / 64) - 0x200;
         o->oPosY -= 2000.0f;
@@ -966,7 +1036,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
     break;
 
     case 1:
-        if (o->oTimer < 60 && o->oAction == 0) {
+        if (o->oTimer < (60 - (8 * (7 - o->parentObj->oCurrentNumSegments))) && o->oAction == 0) {
             o->oPosY += 66.0f; //- o->oTimer;
 
             if (cur_obj_has_model(MODEL_PUSHPIN_POKEY_SEGMENT_HEAD)) {
@@ -979,6 +1049,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
         }
         //else if (o->oTimer == 60 && o->oAction == 0) {
         else if (o->oSubAction == 0 && o->oAction == 0) {
+            o->oInteractionSubtype = INT_SUBTYPE_BULB;
             if (gMarioState->pos[1] - o->oPosY < 300.0f) {
             cur_obj_play_sound_2(SOUND_ACTION_BONK);
             o->oMoveAngleYaw = random_u16();
@@ -988,6 +1059,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
             o->oForwardVel = 90.0f * (1 + random_float());
             o->oVelY = -9.0f;
             o->oSubAction++;
+            pokey->oNumHitSegments++;
             obj_update_pos_vel_xz();
             }
         }
@@ -1059,7 +1131,7 @@ void bhv_pushpin_pokey_segment_loop(void) {
                 o->oPosY -= 20.0f;
             }
 
-            if (o->oTimer == 1690) {
+            if (o->oTimer == 1590) {
                 obj_mark_for_deletion(o);
                 o->parentObj->oAction = POKEY_ACT_POP_UP;
             }
@@ -1078,8 +1150,10 @@ void bhv_pushpin_pokey_init(void) {
     o->oCurrentNumSegments = 7;
     o->oNextPokeyAttack = (random_u16() % 3);
 
-    seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+    o->oAction = POKEY_ACT_CUTSCENE;
+
+    seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, 0);
+            
 }
 
 void bhv_pushpin_pokey_loop(void) {
@@ -1122,6 +1196,9 @@ void bhv_pushpin_pokey_loop(void) {
             break;
             case POKEY_ACT_DEATH:
             pushpin_pokey_death();
+            break;
+            case POKEY_ACT_CUTSCENE:
+            pushpin_pokey_cutscene();
             break;
     }
 }

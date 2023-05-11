@@ -7,5 +7,6 @@ const struct Animation *const pushpin_pokey_anims[] = {
 
 	&pushpin_pokey_anim_Action,
 
+	&pushpin_pokey_anim_Shake,
 	NULL,
 };

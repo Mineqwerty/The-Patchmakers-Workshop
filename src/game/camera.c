@@ -1313,6 +1313,9 @@ void mode_8_directions_camera(struct Camera *c) {
     else if (gReonucamState.overhead == 2) {
         pos[1] = gMarioState->pos[1] + 600;
     }
+    else if (gReonucamState.overhead == 3) {
+        pos[1] = gMarioState->pos[1] + 6000;
+    }
     set_camera_height(c, pos[1]);
 #endif
     c->pos[0] = pos[0];

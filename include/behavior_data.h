@@ -612,3 +612,4 @@ extern const BehaviorScript bhvBoxBasket[];
 extern const BehaviorScript bhvBoxCounter[];
 extern const BehaviorScript bhvGroundPatch[];
 extern const BehaviorScript bhvSewniaStoppingPoint[];
+extern const BehaviorScript bhvRosedriftCutscene[];

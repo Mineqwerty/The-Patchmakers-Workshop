@@ -21,7 +21,7 @@ void bhv_bounce_bulb_loop(void) {
     o->oInteractionSubtype = INT_SUBTYPE_BULB;
     switch (o->oAction) {
         case ACT_BULB_IDLE:
-            if (o->oInteractStatus != INT_STATUS_NONE ) {
+            if (o->oInteractStatus != INT_STATUS_NONE && o->collidedObjs[0] == gMarioObject) {
                 gMarioState->action = ACT_TRIPLE_JUMP;
                 gMarioState->vel[1] = 90.0f;
                 o->oInteractStatus = INT_STATUS_NONE;

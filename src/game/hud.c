@@ -626,6 +626,11 @@ void render_hud_boss_intro(void) {
     };
     u8 bossTitleColor[3];
     switch (gHudDisplay.bossID) {
+        case 1:
+            bossTitleColor[0] = 209;
+            bossTitleColor[1] = 141;
+            bossTitleColor[2] = 63;
+        break;
         case 2:
             bossTitleColor[0] = 222;
             bossTitleColor[1] = 181;
@@ -643,7 +648,14 @@ void render_hud_boss_intro(void) {
         flavorAlpha = 255;
     }
     print_set_envcolour(255, 255, 255, flavorAlpha);
-    print_small_text(160, 140, "Goddess of an empty heaven", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+    switch (gHudDisplay.bossID) {
+        case 1:
+            print_small_text(160, 140, "Mummified scourge of the cliffs", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+        break;
+        case 2:
+            print_small_text(160, 140, "Goddess of an empty heaven", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+        break;
+    }
 
     s32 titleAlpha = (gHudDisplay.bossIntroTimer - 60) * 10;
     if (titleAlpha > 255) {

@@ -1768,14 +1768,7 @@ void perform_patch_action(struct MarioState *m) {
         m->curPatch = PATCH_STONE;
         cur_obj_spawn_particles(&StoneForm);
         play_sound(SOUND_STONE_PATCH_BREAK, m->marioObj->header.gfx.cameraToObject);
-
-        //if (m->action == ACT_IDLE || m->action == ACT_PANTING || m->action == ACT_WALKING) {
-        //set_mario_action(m, ACT_STONE_PATCH_GROUNDED, 0);
-        //}
-        //else {
             set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);
-            
-        //}
         }
         else {
             common_patch_cancel(m);
@@ -1867,7 +1860,7 @@ void patch_update(struct MarioState *m ) {
 
 void late_patch_update(struct MarioState *m ) {
     switch (m->curPatch) {
-        case PATCH_GRAPPLE:
+        case PATCH_HALO:
         if (m->patchChildObj && m->patchChildObj->oAction == 0) {
             m->patchChildObj->oPosX = m->pos[0];
             m->patchChildObj->oPosY = m->pos[1] + 170 + (5 * sins(0x400 * gGlobalTimer));
@@ -1941,7 +1934,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
-    //print_text_fmt_int(100, 60, "%d", gMarioState->lastHeldModel);
+    //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
     //TODO: put these in a more permanent spot
 

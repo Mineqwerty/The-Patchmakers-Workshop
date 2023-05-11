@@ -515,12 +515,8 @@ If you trigger five red\n\
 numbers, a secret Star\n\
 will show up."))
 
-DEFINE_DIALOG(DIALOG_054, 1, 5, 30, 200, _("\
-Welcome to the snow\n\
-slide! Hop on! To speed\n\
-up, press forward on the\n\
-Control Stick. To slow\n\
-down, pull back."))
+DEFINE_DIALOG(DIALOG_054, 1, 1, 30, 200, _("\
+IT'S BACK! EVERYBODY RUN!!!"))
 
 DEFINE_DIALOG(DIALOG_055, 1, 4, 30, 200, _("\
 Hey-ey, Mario, buddy,\n\

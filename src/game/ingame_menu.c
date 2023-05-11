@@ -44,6 +44,7 @@ u8 gDialogRenderLineNum;
 u8 gPageNum;
 u8 gForceDialogLoad;
 u16 gDialogAdvanceTimer;
+u8 gDialogAuto;
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -830,6 +831,15 @@ void create_dialog_box(s16 dialog) {
     if (gDialogID == DIALOG_NONE) {
         gDialogID = dialog;
         gDialogBoxType = DIALOG_TYPE_ROTATE;
+        gDialogAuto = 0;
+    }
+}
+
+void create_automatic_dialog_box(s16 dialog) {
+    if (gDialogID == DIALOG_NONE) {
+        gDialogID = dialog;
+        gDialogBoxType = DIALOG_TYPE_ROTATE;
+        gDialogAuto = 1;
     }
 }
 
@@ -838,6 +848,7 @@ void create_dialog_box_with_var(s16 dialog, s32 dialogVar) {
         gDialogID = dialog;
         gDialogVariable = dialogVar;
         gDialogBoxType = DIALOG_TYPE_ROTATE;
+        gDialogAuto = 0;
     }
 }
 
@@ -845,6 +856,7 @@ void create_dialog_inverted_box(s16 dialog) {
     if (gDialogID == DIALOG_NONE) {
         gDialogID = dialog;
         gDialogBoxType = DIALOG_TYPE_ZOOM;
+        gDialogAuto = 0;
     }
 }
 
@@ -853,6 +865,7 @@ void create_dialog_box_with_response(s16 dialog) {
         gDialogID = dialog;
         gDialogBoxType = DIALOG_TYPE_ROTATE;
         gLastDialogResponse = 1;
+        gDialogAuto = 0;
     }
 }
 
@@ -861,6 +874,7 @@ void create_sewnia_dialog_box(s16 dialog) {
         gDialogID = dialog;
         gDialogBoxType = DIALOG_TYPE_ROTATE;
         gLastDialogResponse = 2;
+        gDialogAuto = 0;
     }
 }
 
@@ -1155,6 +1169,7 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
         case 0:
         case 1:
         case 2:
+        case 54:
             //rosedrift
             rgba[0] = 230;
             rgba[1] = 168;
@@ -3106,7 +3121,7 @@ s32 render_menus_and_dialogs(void) {
             return mode;
         }
 
-        if (gDialogID == DIALOG_017) {
+        if (gDialogAuto == 1) {
             new_dialog_render_automatic_dialog();
         }
         else {

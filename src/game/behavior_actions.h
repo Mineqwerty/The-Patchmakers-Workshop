@@ -705,6 +705,8 @@ Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_rosedrift_eyes(s32 callContext, struct GraphNode *node);
+
 
 
 #endif // BEHAVIOR_ACTIONS_H
@@ -737,3 +739,5 @@ void bhv_ground_patch_init(void);
 void bhv_ground_patch_loop(void);
 void bhv_sewnia_stopping_point_init(void);
 void bhv_sewnia_stopping_point_loop(void);
+void bhv_rosedrift_cutscene_init(void);
+void bhv_rosedrift_cutscene_loop(void);

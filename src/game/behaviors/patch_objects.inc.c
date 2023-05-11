@@ -395,6 +395,10 @@ void bhv_grapple_line_loop(void) {
         new[6].v.ob[2] = o->oDistanceToMario;
         new[7].v.ob[2] = o->oDistanceToMario;
     }
+
+    if (gMarioState->equippedPatch != PATCH_GRAPPLE) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void halo_run_movement(void) {
@@ -496,10 +500,20 @@ void halo_calculate_and_move_back_to_mario(void) {
 
 void bhv_halo_loop(void) {
 
+    if (gMarioState->action == ACT_SINK_MUD) {
+        cur_obj_hide();
+    }
+    else {
+        cur_obj_unhide();
+    }
+
     if (gMarioState->equippedPatch != PATCH_HALO) {
         gMarioState->haloCaptureType = 0;
         if (o->oHaloCapturedObject) {
             obj_mark_for_deletion(o->oHaloCapturedObject);
+        }
+        if (gMarioState->patchChildObj == o) {
+            gMarioState->patchChildObj = NULL;
         }
         obj_mark_for_deletion(o);
     }

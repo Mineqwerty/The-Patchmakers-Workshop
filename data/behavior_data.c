@@ -6197,7 +6197,7 @@ const BehaviorScript bhvPushpinPokey[] = {
 };
 
 const BehaviorScript bhvPushpinPokeyCameraFocus[] = {
-    BEGIN(OBJ_LIST_DEFAULT),
+    BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     CALL_NATIVE(bhv_pushpin_pokey_camera_focus_init),
     BEGIN_LOOP(),
@@ -6812,5 +6812,16 @@ const BehaviorScript bhvSewniaStoppingPoint[] = {
     CALL_NATIVE(bhv_sewnia_stopping_point_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sewnia_stopping_point_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRosedriftCutscene[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    LOAD_ANIMATIONS(oAnimations, rosedrift_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_rosedrift_cutscene_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rosedrift_cutscene_loop),
     END_LOOP(),
 };
