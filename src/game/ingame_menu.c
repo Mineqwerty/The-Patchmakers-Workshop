@@ -1170,6 +1170,9 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
         case 1:
         case 2:
         case 54:
+        case 55:
+        case 56:
+        case 57:
             //rosedrift
             rgba[0] = 230;
             rgba[1] = 168;
@@ -1643,7 +1646,7 @@ void new_dialog_render_dialog_entries(void) {
                 
                 if (gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) {
                     if (gLastDialogPageStrPos == -1) {
-                        handle_special_dialog_text(gDialogID);
+                        //handle_special_dialog_text(gDialogID);
                         gDialogBoxState = DIALOG_STATE_CLOSING;
                         gForceDialogLoad = 0;
                     } else {

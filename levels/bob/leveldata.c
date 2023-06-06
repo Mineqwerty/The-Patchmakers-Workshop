@@ -49,3 +49,4 @@
 #include "levels/bob/pushpin_pokey_3/model.inc.c"
 #include "levels/bob/pokey_boss_walls/collision.inc.c"
 #include "levels/bob/ttc_skybox/model.inc.c"
+#include "levels/bob/grounded_patch_stone/model.inc.c"

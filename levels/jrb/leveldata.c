@@ -75,3 +75,6 @@
 #include "levels/jrb/falling_stone_6/collision.inc.c"
 #include "levels/jrb/forcefield_no_inside/model.inc.c"
 #include "levels/jrb/falling_stone_shadow/model.inc.c"
+#include "levels/jrb/fortogoo/model.inc.c"
+#include "levels/jrb/fortogoo/anims/data.inc.c"
+#include "levels/jrb/fortogoo/anims/table.inc.c"

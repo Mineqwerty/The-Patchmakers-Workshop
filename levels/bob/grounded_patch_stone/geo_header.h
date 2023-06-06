@@ -1,0 +1,10 @@
+extern const GeoLayout grounded_patch_stone_geo[];
+extern u8 grounded_patch_stone_stone_patch_rgba16_ci8[];
+extern u8 grounded_patch_stone_stone_patch_rgba16_pal_rgba16[];
+extern Vtx grounded_patch_stone_Plane_001_mesh_layer_4_vtx_cull[8];
+extern Vtx grounded_patch_stone_Plane_001_mesh_layer_4_vtx_0[4];
+extern Gfx grounded_patch_stone_Plane_001_mesh_layer_4_tri_0[];
+extern Gfx mat_grounded_patch_stone_f3dlite_material[];
+extern Gfx mat_revert_grounded_patch_stone_f3dlite_material[];
+extern Gfx grounded_patch_stone_Plane_001_mesh_layer_4[];
+extern Gfx grounded_patch_stone_material_revert_render_settings[];

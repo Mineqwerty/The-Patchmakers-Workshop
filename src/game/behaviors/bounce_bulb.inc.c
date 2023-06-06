@@ -55,6 +55,7 @@ void bhv_bounce_rosedrift_init(void) {
 
 void bhv_bounce_rosedrift_loop(void) {
     if (o->oTimer < 60 && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT) {
+        cur_obj_init_animation(1);
         struct Surface *surface;
         struct Surface *homeSurface;
         f32 floorHeight = find_floor(o->oPosX, o->oPosY + 50, o->oPosZ, &surface);
@@ -76,6 +77,12 @@ void bhv_bounce_rosedrift_loop(void) {
     obj_resolve_object_collisions(NULL);
     }
     else {
+        if (o->oTimer == 60) {
+        cur_obj_init_animation(2);
+        }
+        if (o->oTimer == 105) {
+        cur_obj_init_animation(0);
+        }
         struct Surface *surface;
         f32 floorHeight = find_floor(o->oPosX, o->oPosY + 2000, o->oPosZ, &surface);
         if (o->oPosY < floorHeight) {

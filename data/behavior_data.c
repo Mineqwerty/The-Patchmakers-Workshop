@@ -6093,7 +6093,6 @@ const BehaviorScript bhvIntroScene[] = {
 const BehaviorScript bhvBounceBulb[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    DROP_TO_FLOOR(),
     SET_INT(oInteractionSubtype, INT_SUBTYPE_BULB),
     CALL_NATIVE(bhv_bounce_bulb_init),
     BEGIN_LOOP(),
@@ -6106,6 +6105,8 @@ const BehaviorScript bhvBounceRosedrift[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     DROP_TO_FLOOR(),
     SET_INT(oInteractionSubtype, INT_SUBTYPE_BULB),
+    LOAD_ANIMATIONS(oAnimations, rosedrift_anims),
+    ANIMATE(1),
     CALL_NATIVE(bhv_bounce_rosedrift_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_bounce_rosedrift_loop),
@@ -6346,7 +6347,7 @@ const BehaviorScript bhvStoneGear[] = {
 };
 
 const BehaviorScript bhvGrappleHook[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_DESTRUCTIVE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     //SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 180, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 1200, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_grapple_hook_init),
@@ -6799,10 +6800,19 @@ const BehaviorScript bhvBoxCounter[] = {
 
 const BehaviorScript bhvGroundPatch[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO )),
     CALL_NATIVE(bhv_ground_patch_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_ground_patch_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGroundCutscenePatch[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO )),
+    CALL_NATIVE(bhv_ground_patch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ground_cutscene_patch_loop),
     END_LOOP(),
 };
 
@@ -6819,9 +6829,41 @@ const BehaviorScript bhvRosedriftCutscene[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
     LOAD_ANIMATIONS(oAnimations, rosedrift_anims),
-    ANIMATE(0),
+    ANIMATE(1),
+    SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_rosedrift_cutscene_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_rosedrift_cutscene_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPodogoo[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 0, /*Gravity*/ 0, /*Bounciness*/ 0, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
+    CALL_NATIVE(bhv_podogoo_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_podogoo_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFortogoo[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_HOME(),
+    LOAD_ANIMATIONS(oAnimations, fortogoo_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_fortogoo_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fortogoo_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFortogooVulnerableObject[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_fortogoo_vulnerable_object_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fortogoo_vulnerable_object_loop),
     END_LOOP(),
 };

@@ -1,0 +1,23 @@
+static const s16 fortogoo_anim_Idle_values[] = {
+	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+	
+};
+
+static const u16 fortogoo_anim_Idle_indices[] = {
+	0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0003, 0x0001, 
+	0x0004, 0x0001, 0x0005, 0x0001, 0x0006, 0x0001, 0x0007, 0x0001, 0x0008, 
+	
+};
+
+static const struct Animation fortogoo_anim_Idle = {
+	0,
+	0,
+	0,
+	1,
+	2,
+	ANIMINDEX_NUMPARTS(fortogoo_anim_Idle_indices),
+	fortogoo_anim_Idle_values,
+	fortogoo_anim_Idle_indices,
+	0,
+};
+

@@ -139,7 +139,7 @@ void spawn_default_star(f32 x, f32 y, f32 z) {
 
 void spawn_pokey_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
-    starObj = spawn_star(starObj, -1530, 500, -650);
+    starObj = spawn_star(starObj, -1530, 1500, -650);
     starObj->oBehParams2ndByte = 0x05050000;
 }
 

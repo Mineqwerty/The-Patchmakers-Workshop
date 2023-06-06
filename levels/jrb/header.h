@@ -132,4 +132,8 @@ extern const LevelScript level_jrb_entry[];
 
 #include "levels/jrb/falling_stone_shadow/geo_header.h"
 
+#include "levels/jrb/fortogoo/geo_header.h"
+
+#include "levels/jrb/fortogoo/anim_header.h"
+
 #endif

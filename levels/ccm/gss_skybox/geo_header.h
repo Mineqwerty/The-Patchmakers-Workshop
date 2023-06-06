@@ -1,6 +1,6 @@
 extern const GeoLayout gss_skybox_geo[];
 extern u8 gss_skybox_GSS_skybox_rgba32[];
-extern Vtx gss_skybox_Sphere_001_mesh_layer_3_vtx_0[368];
+extern Vtx gss_skybox_Sphere_001_mesh_layer_3_vtx_0[377];
 extern Gfx gss_skybox_Sphere_001_mesh_layer_3_tri_0[];
 extern Gfx mat_gss_skybox_sky_002_v4_004[];
 extern Gfx gss_skybox_Sphere_001_mesh_layer_3[];

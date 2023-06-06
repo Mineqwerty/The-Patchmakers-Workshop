@@ -254,6 +254,11 @@ void bhv_grapple_hook_init(void) {
 void bhv_grapple_hook_loop(void) {
     Vec3f adjustedPos;
 
+    if (gMarioState->equippedPatch != PATCH_GRAPPLE) {
+        obj_mark_for_deletion(o);
+        return;
+    }
+
     switch (o->oAction) {
         case 0:
 
@@ -291,6 +296,7 @@ void bhv_grapple_hook_loop(void) {
                 if (surf != NULL) {
                     o->oAngleVelPitch = -0x800;
                     o->oVelY = 5.0f;
+                    o->oForwardVel = 10.0f;
                     return o->oAction = 2;
                 }
                 raydir[1] = 90.0f;
@@ -298,24 +304,32 @@ void bhv_grapple_hook_loop(void) {
                 if (surf != NULL) {
                     o->oAngleVelPitch = 0x1000;
                     o->oVelY = -30.0f;
+                    o->oForwardVel = 10.0f;
                     return o->oAction = 2;
                 }
             }
 
             obj_move_xyz_using_fvel_and_yaw(o);
-            // o->oInteractStatus = 0;
-            // obj_set_hitbox(o, &sGrappleHookHitbox);
+             o->oInteractStatus = 0;
+             obj_set_hitbox(o, &sGrappleHookHitbox);
             for (int i = 0; i < o->numCollidedObjs; i++) {
                 struct Object *other = o->collidedObjs[i];
 
                 if (other != gMarioObject) {
-                    // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
-                    // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+                     other->oInteractStatus |= INT_STATUS_INTERACTED;
                     attack_object(other, 2);
+
+                    if (!obj_has_behavior(other, bhvFortogoo)) {
+                        o->oAngleVelPitch = -0x400;
+                        o->oVelY = 0.0f;
+                         o->oForwardVel = -10.0f;
+                        return o->oAction = 2;
+                    }
                 }
             }
 
             if (o->oTimer == 15) {
+                o->oForwardVel = 10.0f;
                 o->oAction = 2;
                 o->oAngleVelYaw = 0x400;
                 o->oAngleVelPitch = 0x400;

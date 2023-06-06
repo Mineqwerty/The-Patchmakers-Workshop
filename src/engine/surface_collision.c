@@ -10,6 +10,10 @@
 #include "surface_load.h"
 #include "game/puppyprint.h"
 
+struct SpawnParticlesInfo ThornPass = {
+    1, 10, MODEL_LEAVES, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
+};
+
 /**************************************************
  *                      WALLS                     *
  **************************************************/
@@ -70,8 +74,16 @@ static s32 find_wall_collisions_from_list(struct SurfaceNode *surfaceNode, struc
             if (type == SURFACE_CAMERA_BOUNDARY) continue;
 
             if (type == SURFACE_THORN_WALL) {
-                if (gMarioState->curPatch == PATCH_STONE) {
+                if (gMarioState->curPatch == PATCH_STONE && (surf == gMarioState->wall || gMarioState->patchFlags & PATCH_FLAGS_STONE_PASSING_THORNS)) {
+                    if (!(gMarioState->patchFlags & PATCH_FLAGS_STONE_PASSING_THORNS)) {
+                    gMarioState->patchFlags |= PATCH_FLAGS_STONE_PASSING_THORNS;
+                    play_sound(SOUND_ACTION_CLIMB_UP_TREE, gMarioState->marioObj->header.gfx.cameraToObject);
+                    obj_spawn_particles(&ThornPass, gMarioState->marioObj);
+                    }
                     continue;
+                }
+                else {
+                    gMarioState->patchFlags &= ~(PATCH_FLAGS_STONE_PASSING_THORNS);
                 }
             }
 

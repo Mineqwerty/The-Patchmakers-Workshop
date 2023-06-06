@@ -199,4 +199,6 @@ extern const Collision unknown_seg8_collision_080262F8[];
 
 
 #include "yarn_goomba/anim_header.h"
+#include "podogoo/geo_header.h"
+
 #endif

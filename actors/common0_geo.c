@@ -29,3 +29,4 @@
 #include "koopa_shell/geo.inc.c"
 
 #include "yarn_goomba/geo.inc.c"
+#include "podogoo/geo.inc.c"

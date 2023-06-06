@@ -1107,6 +1107,12 @@ s16 abs_angle_diff(s16 a0, s16 a1) {
     return abss(diff);
 }
 
+void elastic_approach(f32 *cur, f32 *curVel, f32 goal, f32 speedDown, f32 speedUp) {
+    f32 diff = goal - *cur;
+    *curVel = approach_f32_asymptotic(*curVel, diff, *cur < goal ? speedUp : speedDown);
+    *cur = *cur + *curVel;
+}
+
 /**
  * Helper function for atan2s. Does a look up of the arctangent of y/x assuming
  * the resulting angle is in range [0, 0x2000] (1/8 of a circle).

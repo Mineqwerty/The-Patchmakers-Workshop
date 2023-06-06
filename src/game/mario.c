@@ -35,6 +35,7 @@
 #include "include/seq_ids.h"
 #include "src/game/cutscene.h"
 #include "audio/load.h"
+#include "actors/group0.h"
 
 
 /**************************************************
@@ -89,6 +90,65 @@ s16 set_mario_animation(struct MarioState *m, s32 targetAnimID) {
     }
 
     return marioObj->header.gfx.animInfo.animFrame;
+}
+
+extern const struct Animation *const mario_anims[];
+
+s16 set_custom_mario_animation(struct MarioState *m, s32 targetAnimID) {
+    struct Object *o = m->marioObj;
+
+    if (o->header.gfx.animInfo.animID != targetAnimID) {
+        struct Animation **animPtrAddr = &mario_anims[targetAnimID];
+        struct Animation **animSegmented = segmented_to_virtual(animPtrAddr);
+        struct Animation *targetAnim = segmented_to_virtual(*animSegmented);
+
+        o->header.gfx.animInfo.animID = targetAnimID;
+        o->header.gfx.animInfo.curAnim = targetAnim;
+        o->header.gfx.animInfo.animAccel = 0;
+        o->header.gfx.animInfo.animYTrans = m->animYTrans;
+
+        if (targetAnim->flags & ANIM_FLAG_NO_ACCEL) {
+            o->header.gfx.animInfo.animFrame = targetAnim->startFrame;
+        } else {
+            if (targetAnim->flags & ANIM_FLAG_FORWARD) {
+                o->header.gfx.animInfo.animFrame = targetAnim->startFrame + 1;
+            } else {
+                o->header.gfx.animInfo.animFrame = targetAnim->startFrame - 1;
+            }
+        }
+    }
+
+    return o->header.gfx.animInfo.animFrame;
+}
+
+s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel) {
+    struct Object *o = m->marioObj;
+
+    if (o->header.gfx.animInfo.animID != targetAnimID) {
+        struct Animation **animPtrAddr = &mario_anims[targetAnimID];
+        struct Animation **animSegmented = segmented_to_virtual(animPtrAddr);
+        struct Animation *targetAnim = segmented_to_virtual(*animSegmented);
+
+        o->header.gfx.animInfo.animID = targetAnimID;
+        o->header.gfx.animInfo.curAnim = targetAnim;
+        o->header.gfx.animInfo.animYTrans = m->animYTrans;
+
+        if (targetAnim->flags & ANIM_FLAG_NO_ACCEL) {
+            o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10);
+        } else {
+            if (targetAnim->flags & ANIM_FLAG_FORWARD) {
+                o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) + accel;
+            } else {
+                o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) - accel;
+            }
+        }
+
+        o->header.gfx.animInfo.animFrame = (o->header.gfx.animInfo.animFrameAccelAssist >> 0x10);
+    }
+
+    o->header.gfx.animInfo.animAccel = accel;
+
+    return o->header.gfx.animInfo.animFrame;
 }
 
 /**
@@ -1755,9 +1815,6 @@ struct SpawnParticlesInfo StoneBreak = {
 struct SpawnParticlesInfo StoneForm = {
     2, 25, MODEL_MIST, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
 };
-struct SpawnParticlesInfo ThornPass = {
-    1, 10, MODEL_LEAVES, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
-};
 
 void perform_patch_action(struct MarioState *m) {
     switch (m->equippedPatch) {
@@ -1780,7 +1837,7 @@ void perform_patch_action(struct MarioState *m) {
         break;
 
         case PATCH_GRAPPLE:
-            if (!m->patchChildObj && m->action != ACT_SIDE_FLIP && m->action != ACT_DIVE && m->grappleCooldownTimer == 0) {
+            if (!m->patchChildObj && m->action != ACT_SIDE_FLIP && m->action != ACT_DIVE && m->grappleCooldownTimer == 0 && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
                 m->vel[1] = 20.0f;
                 m->forwardVel -= 20.0f;
                 drop_and_set_mario_action(m, ACT_SHOOT_GRAPPLE_HOOK, 0);
@@ -1897,7 +1954,7 @@ void spawn_initial_patch_object(struct MarioState *m ) {
     }
 }
 
-void update_mario_equipped_patch(void){
+void update_mario_equipped_patch(void) {
     if (gMarioState->updatePatch == 1) {
     //dma patches
     extern const u8 patch_textures_dma[];
@@ -1913,18 +1970,45 @@ void update_mario_equipped_patch(void){
     }
 }
 
+u8 check_able_to_use_patch() {
+    if (!(gMarioState->action & ACT_FLAG_INTANGIBLE)
+    && gMarioState->action != ACT_FIRST_PERSON 
+    && !(gMarioState->flags & MARIO_TELEPORTING)
+    && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT
+    ) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+void check_and_change_patch_dpad(u32 dir) {
+    if (gPlayer3Controller->buttonPressed & (dir)) {
+
+        u8 mapID = 0;
+        switch (dir) {
+            case U_JPAD: mapID = 0; break;
+            case R_JPAD: mapID = 1; break;
+            case D_JPAD: mapID = 2; break;
+            case L_JPAD: mapID = 3; break;
+        }
+
+        common_patch_cancel(gMarioState);
+        u8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+        gMarioState->equippedPatch = dpadMap[mapID];
+        gMarioState->updatePatch = 1;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
+    }
+}
+
 /**
  * Main function for executing Mario's behavior. Returns particleFlags.
  */
 s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG 
-    && !(gMarioState->action & ACT_FLAG_INTANGIBLE)
-    && gMarioState->action != ACT_FIRST_PERSON 
-    && !(gMarioState->flags & MARIO_TELEPORTING)
-    && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT
-    ) {
+    if (gPlayer1Controller->buttonPressed & L_TRIG && check_able_to_use_patch()) {
         perform_patch_action(gMarioState);
     }
 
@@ -1936,6 +2020,11 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
+    if (gPlayer3Controller->buttonPressed & D_JPAD) {
+        set_mario_action(gMarioState, ACT_COLLECTING_PATCH, 0);
+    }
+    
+
     //TODO: put these in a more permanent spot
 
     if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
@@ -1945,41 +2034,11 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SPIRAL_STAIRS, 1);
     }
 
-    if (gPlayer3Controller->buttonPressed & (U_JPAD)) {
-        common_patch_cancel(gMarioState);
-        u8 dpadMap[4]; 
-        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-        gMarioState->equippedPatch = dpadMap[0];
-        gMarioState->updatePatch = 1;
-        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-    }
-    if (gPlayer3Controller->buttonPressed & (R_JPAD)) {
-        common_patch_cancel(gMarioState);
-        u8 dpadMap[4]; 
-        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-        gMarioState->equippedPatch = dpadMap[1];
-        gMarioState->updatePatch = 1;
-        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-        //play_secondary_music(SEQ_GOLD_SOAKED_SKY, 0, 255, 10);
-    }
-    if (gPlayer3Controller->buttonPressed & (D_JPAD)) {
-        common_patch_cancel(gMarioState);
-        u8 dpadMap[4]; 
-        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-        gMarioState->equippedPatch = dpadMap[2];
-        gMarioState->updatePatch = 1;
-        //play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-        //seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-            //play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL), 0);
-    }
-    if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
-        common_patch_cancel(gMarioState);
-        u8 dpadMap[4]; 
-        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-        gMarioState->equippedPatch = dpadMap[3];
-        gMarioState->updatePatch = 1;
-        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
-        //func_80321080(90);
+    if (check_able_to_use_patch()) {
+        check_and_change_patch_dpad(U_JPAD);
+        check_and_change_patch_dpad(R_JPAD);
+        check_and_change_patch_dpad(D_JPAD);
+        check_and_change_patch_dpad(L_JPAD);
     }
 
     update_mario_equipped_patch();

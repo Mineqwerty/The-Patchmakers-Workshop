@@ -609,6 +609,7 @@ f32 approach_f32_asymptotic(f32 current, f32 target, f32 multiplier);
 s16 approach_s16_asymptotic_bool(s16 *current, s16 target, s16 divisor);
 s16 approach_s16_asymptotic(s16 current, s16 target, s16 divisor);
 s16 abs_angle_diff(s16 a0, s16 a1);
+void elastic_approach(f32 *cur, f32 *curVel, f32 goal, f32 speedDown, f32 speedUp);
 s16 atan2s(f32 y, f32 x);
 f32 atan2f(f32 a, f32 b);
 void spline_get_weights(Vec4f result, f32 t, UNUSED s32 c);

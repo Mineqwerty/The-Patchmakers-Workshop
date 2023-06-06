@@ -70,4 +70,6 @@ extern const LevelScript level_bob_entry[];
 
 #include "levels/bob/ttc_skybox/geo_header.h"
 
+#include "levels/bob/grounded_patch_stone/geo_header.h"
+
 #endif

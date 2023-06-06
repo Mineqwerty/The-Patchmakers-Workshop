@@ -83,3 +83,4 @@ UNUSED static const u64 binid_18 = 18;
 #include "yarn_goomba/model.inc.c"
 #include "yarn_goomba/anims/data.inc.c"
 #include "yarn_goomba/anims/table.inc.c"
+#include "podogoo/model.inc.c"

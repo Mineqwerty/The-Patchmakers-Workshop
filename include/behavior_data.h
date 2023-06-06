@@ -613,3 +613,7 @@ extern const BehaviorScript bhvBoxCounter[];
 extern const BehaviorScript bhvGroundPatch[];
 extern const BehaviorScript bhvSewniaStoppingPoint[];
 extern const BehaviorScript bhvRosedriftCutscene[];
+extern const BehaviorScript bhvPodogoo[];
+extern const BehaviorScript bhvFortogoo[];
+extern const BehaviorScript bhvFortogooVulnerableObject[];
+extern const BehaviorScript bhvGroundCutscenePatch[];

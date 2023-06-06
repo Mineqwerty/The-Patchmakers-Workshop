@@ -584,6 +584,7 @@
 #define MODEL_FALLING_STONE_BLOCK_7                   0x10E
 #define MODEL_FORCEFIELD_NO_INSIDE                   0x10F
 #define MODEL_FALLING_STONE_BLOCK_SHADOW                   0x110
+#define MODEL_FORTOGOO                   0x111
 
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
@@ -639,6 +640,7 @@
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo
 #define MODEL_SILVER_COIN_NO_SHADOW       0xE3        // silver_coin_no_shadow_geo
+#define MODEL_PODOGOO                     0xE4
 #endif
 
 // Menu Models (overwrites Level Geometry IDs)

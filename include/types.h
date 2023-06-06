@@ -207,6 +207,13 @@ enum AnimFlags {
     ANIM_FLAG_UNUSED     = BIT(7), // 0x80
 };
 
+enum PatchFlags {
+    PATCH_FLAGS_NONE = /* 0x00000000 */ (0 <<  0),
+    PATCH_FLAGS_STONE_PASSING_THORNS                 = /* 0x00000001 */ (1 <<  0),
+    PATCH_FLAGS_STONE_2        = /* 0x00000002 */ (1 <<  1),
+    PATCH_FLAGS_STONE_3                    = /* 0x00000004 */ (1 <<  2),
+};
+
 struct Animation {
     /*0x00*/ s16 flags;
     /*0x02*/ s16 animYTransDivisor;
@@ -485,6 +492,7 @@ struct MarioState {
     s16 curPatch;
     s16 equippedPatch;
     s8 updatePatch;
+    u16 patchFlags;
     s8 usedStonePatch;
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;

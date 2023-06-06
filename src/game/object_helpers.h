@@ -204,6 +204,7 @@ void obj_translate_xyz_random(struct Object *obj, f32 rangeLength);
 void obj_translate_xz_random(struct Object *obj, f32 rangeLength);
 void cur_obj_set_pos_via_transform(void);
 void cur_obj_spawn_particles(struct SpawnParticlesInfo *info);
+void obj_spawn_particles(struct SpawnParticlesInfo *info, struct Object *obj);
 s32 cur_obj_reflect_move_angle_off_wall(void);
 struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *behavior, int bparam);
 void check_for_max_ice_and_break_oldest();

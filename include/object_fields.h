@@ -1268,6 +1268,7 @@
 #define oFallingWind1           OBJECT_FIELD_OBJ(0x1E)
 #define oNextPokeyAttack OBJECT_FIELD_S32(0x1F)
 #define oNumUndergroundAttacks OBJECT_FIELD_S32(0x20)
+#define oPokeyCutsceneFlags OBJECT_FIELD_S32(0x21)
 
 //stupid fucking ice platforms
 #define oIceSurface        OBJECT_FIELD_SURFACE(0x1B)
@@ -1325,6 +1326,15 @@
 //sewnia
 #define oSewniaLastWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
 #define oSewniaNextWaypoint          OBJECT_FIELD_WAYPOINT(0x1C)
+
+//podogoo
+#define oPotogooApproachXZ        OBJECT_FIELD_F32(0x1B)
+#define oPotogooApproachY        OBJECT_FIELD_F32(0x1C)
+#define oPotogooVelXZ        OBJECT_FIELD_F32(0x1D)
+#define oPotogooVelY        OBJECT_FIELD_F32(0x1E)
+
+//fortogoo
+#define oFortogooChildHitbox           OBJECT_FIELD_OBJ(0x1B)
 
 /*Custom general defines:
 

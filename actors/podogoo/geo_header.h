@@ -1,0 +1,17 @@
+extern const GeoLayout podogoo_geo[];
+extern Lights1 podogoo_f3dlite_material_lights;
+extern u8 podogoo_slime_ci8[];
+extern u8 podogoo_slime_pal_rgba16[];
+extern u8 podogoo_podogoo_eye_ci8[];
+extern u8 podogoo_podogoo_eye_pal_rgba16[];
+extern Vtx podogoo_Cube_mesh_layer_1_vtx_0[91];
+extern Gfx podogoo_Cube_mesh_layer_1_tri_0[];
+extern Vtx podogoo_Cube_mesh_layer_6_vtx_0[14];
+extern Gfx podogoo_Cube_mesh_layer_6_tri_0[];
+extern Gfx mat_podogoo_f3dlite_material_001[];
+extern Gfx mat_revert_podogoo_f3dlite_material_001[];
+extern Gfx mat_podogoo_f3dlite_material[];
+extern Gfx mat_revert_podogoo_f3dlite_material[];
+extern Gfx podogoo_Cube_mesh_layer_1[];
+extern Gfx podogoo_Cube_mesh_layer_6[];
+extern Gfx podogoo_material_revert_render_settings[];

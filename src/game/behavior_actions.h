@@ -707,6 +707,8 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_rosedrift_eyes(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_podogoo_eyes(s32 callContext, struct GraphNode *node);
+
 
 
 #endif // BEHAVIOR_ACTIONS_H
@@ -737,7 +739,14 @@ void bhv_box_counter_init(void);
 void bhv_box_counter_loop(void);
 void bhv_ground_patch_init(void);
 void bhv_ground_patch_loop(void);
+void bhv_ground_cutscene_patch_loop(void);
 void bhv_sewnia_stopping_point_init(void);
 void bhv_sewnia_stopping_point_loop(void);
 void bhv_rosedrift_cutscene_init(void);
 void bhv_rosedrift_cutscene_loop(void);
+void bhv_podogoo_init(void);
+void bhv_podogoo_loop(void);
+void bhv_fortogoo_init(void);
+void bhv_fortogoo_loop(void);
+void bhv_fortogoo_vulnerable_object_init(void);
+void bhv_fortogoo_vulnerable_object_loop(void);

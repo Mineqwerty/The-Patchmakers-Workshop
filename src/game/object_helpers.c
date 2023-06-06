@@ -1945,6 +1945,51 @@ void cur_obj_spawn_particles(struct SpawnParticlesInfo *info) {
     }
 }
 
+void obj_spawn_particles(struct SpawnParticlesInfo *info, struct Object *obj) {
+    struct Object *particle;
+    s32 i;
+    f32 scale;
+    s32 numParticles = info->count;
+
+    // If there are a lot of objects already, limit the number of particles
+    if ((gPrevFrameObjectCount > (OBJECT_POOL_CAPACITY - 90)) && numParticles > 10) {
+        numParticles = 10;
+    }
+
+    // We're close to running out of object slots, so don't spawn particles at
+    // all
+    if (gPrevFrameObjectCount > (OBJECT_POOL_CAPACITY - 30)) {
+        numParticles = 0;
+    }
+
+    for (i = 0; i < numParticles; i++) {
+        scale = random_float() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
+
+        particle = spawn_object(obj, info->model, bhvWhitePuffExplosion);
+
+        particle->oBehParams2ndByte = info->behParam;
+
+        //different particle direction based on bparam
+        switch (info->behParam) {
+            case 5:
+                particle->oMoveAngleYaw = 0x4000;
+                particle->oPosZ += (random_float() * 120.0f) - 60.0f;
+                break;
+            default:
+                particle->oMoveAngleYaw = random_u16();
+                break;
+        }
+        particle->oGravity = info->gravity;
+        particle->oDragStrength = info->dragStrength;
+
+        particle->oPosY += info->offsetY;
+        particle->oForwardVel = random_float() * info->forwardVelRange + info->forwardVelBase;
+        particle->oVelY = random_float() * info->velYRange + info->velYBase;
+
+        obj_scale(particle, scale);
+    }
+}
+
 void obj_set_hitbox(struct Object *obj, struct ObjectHitbox *hitbox) {
     if (!(obj->oFlags & OBJ_FLAG_HITBOX_WAS_SET)) {
         obj->oFlags |= OBJ_FLAG_HITBOX_WAS_SET;

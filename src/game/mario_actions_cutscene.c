@@ -403,6 +403,18 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_collecting_patch(struct MarioState *m) {
+    if (m->actionArg == 0) {
+        set_custom_mario_animation(m, 2);
+    }
+    else {
+        set_custom_mario_animation(m, 1);
+    }
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    return FALSE;
+}
+
 // makes Mario disappear and triggers warp
 s32 act_disappeared(struct MarioState *m) {
     set_mario_animation(m, MARIO_ANIM_A_POSE);
@@ -2843,6 +2855,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_READING_SIGN:               cancel = act_reading_sign(m);               break;
         case ACT_JUMBO_STAR_CUTSCENE:        cancel = act_jumbo_star_cutscene(m);        break;
         case ACT_WAITING_FOR_DIALOG:         cancel = act_waiting_for_dialog(m);         break;
+        case ACT_COLLECTING_PATCH:         cancel = act_collecting_patch(m);         break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_SINK_MUD:            cancel = act_sink_mud(m);            break;

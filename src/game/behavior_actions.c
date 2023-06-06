@@ -265,3 +265,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/ground_patch.inc.c"
 #include "behaviors/sewnia_stopping_point.inc.c"
 #include "behaviors/rosedrift_cutscene.inc.c"
+//podogoo in obj behaviors 2 blah blah blah

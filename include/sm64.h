@@ -175,6 +175,7 @@ enum MarioParticleFlags {
     PARTICLE_BREATH               = /* 0x00020000 */ (1 << 17),
     PARTICLE_TRIANGLE             = /* 0x00040000 */ (1 << 18),
     PARTICLE_19                   = /* 0x00080000 */ (1 << 19),
+    PARTICLE_THORNS_LEAVES         =         /* 0x00100000 */ (1 << 20),
 };
 
 enum ModelStates {
@@ -519,7 +520,7 @@ enum MarioActionFlags {
 #define ACT_WAITING_FOR_DIALOG         0x0000130A // (0x10A | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_SINK_MUD                 0x0002130B // (0x10B)
 #define ACT_HOLD_CUTSCENE                 0x0000190C // (0x10C)
-#define ACT_UNUSED_10D                 0x0000010D // (0x10D)
+#define ACT_COLLECTING_PATCH                 0x0000110D // (0x10D)
 #define ACT_UNUSED_10E                 0x0000010E // (0x10E)
 #define ACT_DEBUG_FREE_MOVE            0x0000130F // (0x10F | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_RUSHING_WATER_DEATH                 0x00021310 // (0x110)

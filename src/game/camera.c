@@ -3060,35 +3060,35 @@ void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {
 
 Vec3f ttcVolumes[(NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES) * 4] = {
     // bottom of cliffs
-    { 4550, 924, -2950 },
-    { -900, 924, 2283 },
-    { 3014, 4000, 2283 },
-    { 5828, 4000, -227 },
+    { 4550, 1924, -2950 },
+    { -900, 1924, 2283 },
+    { 3014, 5000, 2283 },
+    { 5828, 5000, -227 },
     // three rock cliff platforming section
-    { -900, 924, 2280 },
-    { -900, 924, 3250 },
-    { 3435, 4000, 3250 },
-    { 3435, 4000, 2280 },
+    { -900, 1924, 2280 },
+    { -900, 1924, 3250 },
+    { 3435, 5000, 3250 },
+    { 3435, 5000, 2280 },
     // top o the cliff
-    { 6026, 2800, -533 },
-    { 6883, 2800, -533 },
-    { 7017, 3750, 3555 },
-    { 6287, 3750, 2546 },
+    { 6026, 3800, -533 },
+    { 6883, 3800, -533 },
+    { 7017, 4750, 3555 },
+    { 6287, 4750, 2546 },
     // area under branch bridge
-    { -4468, 150, -7300 },
-    { -5980, 150, -9440 },
-    { -8027, 1100, -7093 },
-    { -6822, 1100, -5803 },
+    { -4468, 1150, -7300 },
+    { -5980, 1150, -9440 },
+    { -8027, 2100, -7093 },
+    { -6822, 2100, -5803 },
     // coming up the path from the cave
-    { -8105, 1300, -5551 },
-    { -7490, 1300, -4253 },
-    { -5555, 1980, -4400 },
-    { -6109, 1980, -6280 },
+    { -8105, 2300, -5551 },
+    { -7490, 2300, -4253 },
+    { -5555, 2980, -4400 },
+    { -6109, 2980, -6280 },
     // entering cave
-    { -3886, 100, -9060 },
-    { -4125, 100, -7380 },
-    { 1863, 200, -9670 },
-    { 720, 200, -10800 },
+    { -3886, 1100, -9060 },
+    { -4125, 1100, -7380 },
+    { 1863, 1200, -9670 },
+    { 720, 1200, -10800 },
     // A3
     // beginning
     { -2807, -300, -2862 },
@@ -6575,13 +6575,7 @@ struct CameraTrigger sCamTHI[] = {
  * start the cutscene for entering the CotMC pool.
  */
 struct CameraTrigger sCamHMC[] = {
-    { 1, cam_hmc_enter_maze, 1996, 102, 0, 205, 100, 205, 0 },
-    { 1, cam_castle_hmc_start_pool_cutscene, 3350, -4689, 4800, 600, 50, 600, 0 },
-    { 1, cam_hmc_elevator_black_hole, -3278, 1236, 1379, 358, 200, 358, 0 },
-    { 1, cam_hmc_elevator_maze_emergency_exit, -2816, 2055, -2560, 358, 200, 358, 0 },
-    { 1, cam_hmc_elevator_lake, -3532, 1543, -7040, 358, 200, 358, 0 },
-    { 1, cam_hmc_elevator_maze, -972, 1543, -7347, 358, 200, 358, 0 },
-    NULL_TRIGGER
+	NULL_TRIGGER
 };
 
 /**
@@ -10977,7 +10971,7 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 1), // BBH            | CCM
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // CASTLE_INSIDE  | HMC
+	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_INSIDE  | HMC
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 1, 0, 0), // JRB            | THI

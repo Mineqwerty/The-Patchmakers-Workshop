@@ -1,5 +1,6 @@
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
+#include "src/game/cutscene.h"
 
 
 #define POKEY_ACT_IDLE 0
@@ -63,6 +64,14 @@ static struct ObjectHitbox sPushpinPokeyDisjointedHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
+enum PushpinPokeyCutsceneFlags {
+    POKEY_CUTSCENE                 = (0 <<  0), /* 0x00000000 */
+    // Mario Interaction Status
+    POKEY_CUTSCENE_ROSEDRIFT_EXPLAINATION        = (1 <<  0), /* 0x00000001 */
+    POKEY_CUTSCENE_ROSEDRIFT_CLIFF  = (1 <<  1), /* 0x00000002 */
+    POKEY_CUTSCENE_ROSEDRIFT_HELP  = (1 <<  2), /* 0x00000004 */
+};
+
 void spawn_pokey_star(f32 x, f32 y, f32 z);
 
 void pushpin_pokey_set_model() {
@@ -105,6 +114,11 @@ cur_obj_init_animation(0);
         o->oAction = POKEY_ACT_DEATH;
         }
     
+    }
+
+    if (!(o->oPokeyCutsceneFlags & POKEY_CUTSCENE_ROSEDRIFT_EXPLAINATION)) {
+        create_automatic_dialog_box(55);
+        o->oPokeyCutsceneFlags |= POKEY_CUTSCENE_ROSEDRIFT_EXPLAINATION;
     }
 }
 
@@ -216,17 +230,17 @@ void pushpin_pokey_ground_needles(void) {
             switch (random_u16() % 3) {
                 case 0:
                     o->oCamFocus->oPosX = -522;
-                    o->oCamFocus->oPosY = 560;
+                    o->oCamFocus->oPosY = 1560;
                     o->oCamFocus->oPosZ = -3517;
                     break;
                 case 1:
                     o->oCamFocus->oPosX = -1500;
-                    o->oCamFocus->oPosY = 230;
+                    o->oCamFocus->oPosY = 1230;
                     o->oCamFocus->oPosZ = 1424;
                     break;
                 case 2:
                     o->oCamFocus->oPosX = -6550;
-                    o->oCamFocus->oPosY = 0;
+                    o->oCamFocus->oPosY = 1000;
                     o->oCamFocus->oPosZ = -300;
                 break;
             }
@@ -251,7 +265,7 @@ void pushpin_pokey_throw_parts(void) {
         case 0:
             o->oCamFocus = spawn_object_relative(11, 0, 0, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);
             o->oCamFocus->oPosX = 7200;
-            o->oCamFocus->oPosY = 4500;
+            o->oCamFocus->oPosY = 5500;
             o->oCamFocus->oPosZ = 1800;
 
             gSecondCameraFocus = o->oCamFocus;
@@ -270,18 +284,18 @@ void pushpin_pokey_throw_parts(void) {
 void pushpin_pokey_burrow_dash(void) {
     cur_obj_become_intangible();
     Vec3f burstPositions[] = {
-        {2878, 800, 3908},
-        {10000, 1000, -3120},
-        {-3780, 700, 7228},
-        {-6800, 700, 6500},
-        {-6300, 700, -6500}
+        {2878, 1800, 3908},
+        {10000, 2000, -3120},
+        {-3780, 1700, 7228},
+        {-6800, 1700, 6500},
+        {-6300, 1700, -6500}
     };
     Vec3f particlePositions[] = {
-        {-347, 900, 1080},
-        {5384, 1100, -3120},
-        {-3780, 700, 8228},
-        {-6800, 700, 2500},
-        {-6300, 700, -1200}
+        {-347, 1900, 1080},
+        {5384, 2100, -3120},
+        {-3780, 1700, 8228},
+        {-6800, 1700, 2500},
+        {-6300, 1700, -1200}
     };
     int closestPoint = 0;
         int closestPointValue = 0x8000;
@@ -416,8 +430,20 @@ void pushpin_pokey_burst_from_ground(void) {
         if (o->oTimer % 31 == 0) {
             o->oPosX = gMarioState->pos[0];
             o->oPosZ = gMarioState->pos[2];
-            o->oPosY = gMarioState->pos[1] - 4000;
+            o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 4000, o->oPosZ) - 4000;
             o->oCamFocus = spawn_object_relative(12, (random_u16() / 32 - 1028), 3500, (random_u16() / 32 - 1028), o, MODEL_PUSHPIN_POKEY_SEGMENT_HEAD, bhvPushpinPokeyCameraFocus);
+        }
+
+        if (o->oTimer == 20) {
+            if (!(o->oPokeyCutsceneFlags & POKEY_CUTSCENE_ROSEDRIFT_CLIFF)) {
+            begin_cutscene_event(3);
+            o->oPokeyCutsceneFlags |= POKEY_CUTSCENE_ROSEDRIFT_CLIFF;
+            }
+        }
+
+        //during the rosedrift cliff explaination, make sure that the pokey doesn't continue its attempt to burrow up
+        if (cCutsceneActive != 0) {
+            o->oTimer = 21;
         }
 
         if (o->oTimer == 130) {
@@ -546,6 +572,10 @@ void pushpin_pokey_scatter(void) {
     }
 
     if (gMarioState->curPatch != PATCH_STONE) {
+        if (!(o->oPokeyCutsceneFlags & POKEY_CUTSCENE_ROSEDRIFT_HELP)) {
+            create_automatic_dialog_box(57);
+            o->oPokeyCutsceneFlags |= POKEY_CUTSCENE_ROSEDRIFT_HELP;
+        }
         o->oAction = POKEY_ACT_STUNNED;
     }
     /*
@@ -579,6 +609,7 @@ void pushpin_pokey_stunned(void) {
         if (gMarioState->curPatch != PATCH_STONE) {
             for (int i = 0; i < 3; i++) {
                 o->oCamFocus = spawn_object_relative(i, 0, 0, 0, o, MODEL_ROSEDRIFT, bhvBounceRosedrift);
+                SET_BPARAM1(o->oCamFocus->oBehParams, 22);
                 o->oCamFocus->oPosX = gMarioState->pos[0] + (1250 * sins(gLakituState.yaw));
                 o->oCamFocus->oPosZ = gMarioState->pos[2] + (1250 * coss(gLakituState.yaw));
                 f32 floor = find_floor_height(gMarioState->pos[0], gMarioState->pos[1] + 200.0f, gMarioState->pos[2]);
@@ -669,6 +700,11 @@ void pushpin_pokey_pop_up(void) {
             o->oPosX = gMarioState->pos[0];
             o->oPosZ = gMarioState->pos[2];
             o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 4000, o->oPosZ) - (520 * (o->oCurrentNumSegments));
+
+            //if the pokey has all segments and pops back up, he'll stick in the ground. Do this to ensure he makes it back up
+            if (o->oCurrentNumSegments == 7) {
+                o->oPosY += 500.0f;
+            }
             o->oCamFocus = spawn_object_relative(8, 0, 900, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);
             o->oTimer = 0;
             o->oFaceAnglePitch = 0;
@@ -701,7 +737,12 @@ void pushpin_pokey_pop_up(void) {
         if (o->oTimer % 5 == 4) {
             cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB_JUMP);
         }
+
+            //stuck in ground failsafe
             if (o->oTimer > o->oCurrentNumSegments * 8) {
+                if (o->oPosY < find_floor_height(o->oPosX, o->oPosY + 4000, o->oPosZ)) {
+                    o->oPosY = find_floor_height(o->oPosX, o->oPosY + 4000, o->oPosZ);
+                }
                 o->oAction = POKEY_ACT_IDLE;
                 o->oTimer = 0;
                 o->oVelY = 30.0f;

@@ -23,7 +23,7 @@ void bhv_generic_npc_loop(void) {
 }
 
 void bhv_talotak_init(void) {
-    o->oGravity  = 5.5f;
+    o->oGravity  = 1.5f;
     o->oFriction = 0.8f;
     o->oBuoyancy = 1.3f;
     o->oBounciness = 1.0f;
@@ -35,10 +35,8 @@ void bhv_talotak_init(void) {
 void bhv_talotak_loop(void) {
     switch (o->oAction) {
         case 0:
-            if (o->oInteractStatus == INT_STATUS_INTERACTED) {
-                if (cur_obj_check_if_near_animation_end()) {
+            if (o->oInteractStatus == INT_STATUS_INTERACTED || o->oDistanceToMario < 400.0f) {
                  o->oAction = 1;
-                }
             }
         break;
         case 1:
@@ -48,11 +46,23 @@ void bhv_talotak_loop(void) {
         break;
         case 2:
             o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x300);
+            object_step();
             if (cur_obj_check_if_near_animation_end()) {
                 cur_obj_init_animation(0);
-                o->oInteractStatus = 0;
+                o->oAction = 3;
+            }
+        break;
+        case 3:
+            if (o->oInteractStatus == INT_STATUS_INTERACTED) {
+                 o->oAction = 1;
+            }
+            if (o->oDistanceToMario > 500.0f) {
+                o->oAction = 0;
             }
         break;
     }
+
+    o->oInteractStatus = 0;
+
 }
 

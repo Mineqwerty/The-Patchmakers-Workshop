@@ -43,7 +43,7 @@ const LevelScript level_bitdw_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_PATCHMAKER, -12026, 5, -1, 0, -90, 0, 0x00000000, bhvPatchmaker),
+		OBJECT(MODEL_GOOMBA, -12026, 5, -1, 0, -90, 0, 0x00000000, bhvGroundPatch),
 		OBJECT(MODEL_NONE, -15071, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -15071, 200, 0),
 		TERRAIN(bitdw_area_1_collision),
