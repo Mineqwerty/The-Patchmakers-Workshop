@@ -358,9 +358,11 @@ void render_generic_char(u8 c) {
 #else
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, VIRTUAL_TO_PHYSICAL(packedTexture));
+    //gDPLoadTextureBlock(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(packedTexture), G_IM_FMT_IA, G_IM_SIZ_16b, 64, 32, 0, G_TX_CLAMP, G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD);
 #endif
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_tex_settings);
+    
 }
 
 

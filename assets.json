@@ -1398,7 +1398,7 @@
 "textures/segment2/font_graphics.060E0.ia1.png": [16,8,16,{"eu":[909712,24800]}],
 "textures/segment2/font_graphics.060F0.ia1.png": [16,8,16,{"eu":[909712,24816]}],
 "textures/segment2/font_graphics.06100.ia1.png": [16,8,16,{"eu":[909712,24832]}],
-"textures/segment2/font_graphics.06100.ia4.png": [16,8,64,{"us":[1083968,24832]}],
+"textures/segment2/font_graphics.06100.ia4.png": [64,32,64,{"us":[1083968,24832]}],
 "textures/segment2/font_graphics.06110.ia1.png": [16,8,16,{"eu":[909712,24848]}],
 "textures/segment2/font_graphics.06120.ia1.png": [16,8,16,{"eu":[909712,24864]}],
 "textures/segment2/font_graphics.06130.ia1.png": [16,8,16,{"eu":[909712,24880]}],
