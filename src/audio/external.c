@@ -1983,7 +1983,7 @@ void sound_init(void) {
         sSoundBanks[i][j].next = 0xff;
     }
 
-    for (j = 0; j < 3; j++) {
+    for (j = 0; j < SEQUENCE_PLAYERS; j++) {
         for (i = 0; i < CHANNELS_MAX; i++) {
             D_80360928[j][i].remainingFrames = 0;
         }

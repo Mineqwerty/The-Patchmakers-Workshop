@@ -2040,7 +2040,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
     if (gPlayer3Controller->buttonPressed & D_JPAD) {
-        set_mario_action(gMarioState, ACT_COLLECTING_PATCH, 0);
+        alert_rcp_hung_up();
     }
     
 
