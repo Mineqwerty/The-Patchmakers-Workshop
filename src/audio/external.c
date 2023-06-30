@@ -1975,7 +1975,7 @@ void sound_init(void) {
         sSoundBanks[i][0].next = 0xff;
 
         // Set free list to contain every sound slot
-        for (j = 0; j < SEQUENCE_PLAYERS; j++) {
+        for (j = 0; j < 40 - 1; j++) {
             sSoundBanks[i][j].prev = j - 1;
             sSoundBanks[i][j].next = j + 1;
         }
