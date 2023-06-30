@@ -2,3 +2,7 @@
 #include "anim_patch_get.inc.c"
 #include "anim_mario_IKAction.inc.c"
 #include "anim_mario_animtest.inc.c"
+#include "anim_patchpickup.inc.c"
+#include "anim_pickuppatch.inc.c"
+#include "anim_patchequip.inc.c"
+#include "anim_marine_spin.inc.c"

@@ -611,8 +611,13 @@
 #define MODEL_TFP_ROTARY_ARM                  0x107
 #define MODEL_TFP_ROTARY_PLATFORM                   0x108
 #define MODEL_BOX_BASKET                   0x109
+#define MODEL_FAR_PLANE_BOOST_PANEL                   0x10A
+#define MODEL_RING_MISSION_RING                   0x10B
+#define MODEL_RING_MISSION_TARGET                   0x10C
+#define MODEL_RING_FRAGMENT                   0x10D
+#define MODEL_TFP_CHECKER_PLATFORM                   0x10E
 
-#define MODEL_PATCHMAKER                   0x110
+#define MODEL_PATCHMAKER                   0x130
 
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181

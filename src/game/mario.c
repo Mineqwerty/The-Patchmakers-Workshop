@@ -814,6 +814,10 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         action = ACT_JUMP;
     }
 
+    if (action == ACT_TWIRLING) {
+        m->actionArg = actionArg;
+    }
+
     switch (action) {
         case ACT_DOUBLE_JUMP:
             set_mario_y_vel_based_on_fspeed(m, 52.0f, 0.25f);
@@ -841,6 +845,9 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
                 set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.0f);
             }
             break;
+        case ACT_MARINE_PATCH_SPIN:
+            set_mario_y_vel_based_on_fspeed(m, 60.0f, 0.0f);
+        break;
 
         case ACT_BURNING_JUMP:
             m->vel[1] = 31.5f;
@@ -1208,19 +1215,31 @@ s32 set_water_plunge_action(struct MarioState *m) {
     m->pos[1] = m->waterLevel - 100;
 #endif
 
-    m->faceAngle[2] = 0;
+    
 
     vec3_zero(m->angleVel);
 
-    if (!(m->action & ACT_FLAG_DIVING)) {
+    if (!(m->action & ACT_FLAG_DIVING) && m->action != ACT_MARINE_PATCH_AIRBORNE) {
         m->faceAngle[0] = 0;
     }
 
     if (m->area->camera->mode != WATER_SURFACE_CAMERA_MODE) {
         set_camera_mode(m->area->camera, WATER_SURFACE_CAMERA_MODE, 1);
     }
+    if (m->action == ACT_MARINE_PATCH_AIRBORNE) {
+        m->faceAngle[0] = -0x4000;
+        m->vel[1] *= 1.75f;
+        play_sound(SOUND_ACTION_WATER_PLUNGE, m->marioObj->header.gfx.cameraToObject);
 
-    return set_mario_action(m, ACT_WATER_PLUNGE, 0);
+        m->particleFlags |= PARTICLE_WATER_SPLASH;
+        m->particleFlags |= PARTICLE_PLUNGE_BUBBLE;
+        return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
+    }
+    else {
+        m->faceAngle[2] = 0;
+        return set_mario_action(m, ACT_WATER_PLUNGE, 0);
+    }
+    
 }
 
 /**
@@ -1548,7 +1567,7 @@ void update_mario_health(struct MarioState *m) {
                     // If using the debug level select, do not lose any HP to water.
                     if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow) {
                         m->health += 0x1A;
-                    } else if (!gDebugLevelSelect) {
+                    } else if (!gDebugLevelSelect && m->equippedPatch != PATCH_MARINE) {
                         m->health -= (terrainIsSnow ? 3 : 1);
                     }
 #endif
@@ -2260,6 +2279,10 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];

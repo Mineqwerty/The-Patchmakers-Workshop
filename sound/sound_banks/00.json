@@ -39,51 +39,6 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "05_heavy_landing"
-        },
-        "inst6": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "06_stone_patch_break"
-        },
-        "inst7": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "07_stone_patch_deform"
-        },
-        "inst8": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "08_chillstep_patch_freeze"
-        },
-        "inst9": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "09_grapple_hook_1"
-        },
-        "inst10": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "0A_grapple_hook_2"
-        },
-        "inst11": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "0B_halo_out"
-        },
-        "inst12": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "0C_halo_in"
-        },
-        "inst13": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "0D_halo_circle"
-        },
-        "inst14": {
-            "release_rate": 208,
-            "envelope": "envelope0",
-            "sound": "0E_box_blip"
         }
     },
     "instrument_list": [
@@ -92,15 +47,6 @@
         "inst2",
         "inst3",
         "inst4",
-        "inst5",
-        "inst6",
-        "inst7",
-        "inst8",
-        "inst9",
-        "inst10",
-        "inst11",
-        "inst12",
-        "inst13",
-        "inst14"
+        "inst5"
     ]
 }

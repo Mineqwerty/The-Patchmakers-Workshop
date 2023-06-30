@@ -11,7 +11,8 @@
         "07",
         "08_mario",
         "09",
-        "0A_mario_peach"
+        "0A_mario_peach",
+        "0B_patch_abilities"
     ],
     "01_cutscene_collect_star": [
         "0C"
@@ -35,7 +36,7 @@
         "12"
     ],
     "08_level_snow": [
-        "0B"
+        "0C"
     ],
     "09_level_slide": [
         "0D"
@@ -161,5 +162,8 @@
     ],
     "2F_lady_intro": [
         "21"
+    ],
+    "30_the_far_plane": [
+        "streamed_audio"
     ]
 }

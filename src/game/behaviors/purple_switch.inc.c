@@ -8,7 +8,7 @@
  */
 
 void bhv_purple_switch_init(void) {
-    if (o->oBehParams2ndByte % 2 == 0) {
+    if (o->oBehParams2ndByte % 2 == 0 && GET_BPARAM1(o->oBehParams) == 0) {
         o->oAction = PURPLE_SWITCH_ACT_PRESSED;
         cur_obj_scale(1.5f);
     }

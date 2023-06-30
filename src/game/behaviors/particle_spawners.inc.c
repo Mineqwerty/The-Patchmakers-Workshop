@@ -131,3 +131,33 @@ Gfx *geo_switch_fire_smoke(s32 callContext, struct GraphNode *node, UNUSED Mat4 
     return NULL;
 }
 
+void bhv_ring_fragment_particle_init(void) {
+    o->oFaceAngleYaw = random_u16();
+   o->oFaceAnglePitch = random_u16();
+   o->oFaceAngleRoll = random_u16();
+   o->oAngleVelYaw = random_u16() / 128 + 0x200 * random_sign();
+   o->oAngleVelPitch = random_u16() / 128 + 0x200 * random_sign();
+   o->oAngleVelRoll = random_u16() / 128 + 0x200 * random_sign();
+   o->oVelY = (random_float() * 15.0f) - 7.5f;
+   o->oForwardVel = (random_float() * 30.0f) - 15.0f;
+   o->oMoveAngleYaw = random_u16();
+}
+
+void bhv_ring_fragment_particle_loop(void) {
+
+
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+    o->oFaceAnglePitch += o->oAngleVelPitch;
+    o->oFaceAngleRoll += o->oAngleVelRoll;
+
+    o->oPosY += o->oVelY;
+
+   if (o->oTimer >= 15) {
+    cur_obj_scale(((f32)(30 - o->oTimer)) / 15.0f);
+   }
+
+   if (o->oTimer == 29) {
+    obj_mark_for_deletion(o);
+   }
+}
+

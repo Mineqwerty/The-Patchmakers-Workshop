@@ -1193,6 +1193,13 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
             rgba[2] = 15;
         break;
 
+        case 30:
+            //faded gray
+            rgba[0] = 180;
+            rgba[1] = 180;
+            rgba[2] = 180;
+        break;
+
         default:
             rgba[0] = 255;
             rgba[1] = 255;
@@ -2494,21 +2501,24 @@ void render_patch_selection() {
     u16 patchFlags = save_file_get_patch_flags(gCurrSaveFileNum - 1);
     gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_mesh);
 
-    if (patchFlags & (1 << 0)) {
+    if (patchFlags & (1 << PATCH_STONE)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_stone_patch_stone_mesh);
     }
-    if (patchFlags & (1 << 1)) {
+    if (patchFlags & (1 << PATCH_CHILLSTEP)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_chillstep_patch_chillstep_mesh);
     }
-    if (patchFlags & (1 << 2)) {
+    if (patchFlags & (1 << PATCH_GRAPPLE)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_grapple_patch_grapple_mesh);
     }
-    if (patchFlags & (1 << 3)) {
+    if (patchFlags & (1 << PATCH_HALO)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_halo_patch_halo_mesh);
     }
-    //if (patchFlags & (1 << 4)) {
+    if (patchFlags & (1 << PATCH_MARINE)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_marine_patch_chillstep_001_mesh);
+    }
+    if (patchFlags & (1 << PATCH_PORTAL)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
-    //}
+    }
 
     //selector
     if (gSubMenuIndex == 2) {

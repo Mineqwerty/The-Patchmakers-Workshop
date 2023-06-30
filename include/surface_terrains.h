@@ -230,7 +230,8 @@ enum SurfaceTypes {
     SURFACE_THORN_BUSH,                     
     SURFACE_THORN_WALL,
     SURFACE_SINK_MUD,
-    SURFACE_WATER_DEATH,            
+    SURFACE_WATER_DEATH,
+    SURFACE_VERTICAL_FLOWING_WATER,  
 };
 
 #define SURFACE_IS_NEW_WATER(cmd)               (((cmd) == SURFACE_NEW_WATER) || ((cmd) == SURFACE_NEW_WATER_BOTTOM))

@@ -14,6 +14,9 @@ void bhv_ground_cutscene_patch_loop(void) {
             begin_cutscene_event(4);
         }
     break;
+    case 1:
+        gMarioState->marioBodyState->grabPos = GRAB_POS_CUTSCENE_STONE_PATCH;
+    break;
     }
 }
 

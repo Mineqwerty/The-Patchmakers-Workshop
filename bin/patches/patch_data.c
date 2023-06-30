@@ -14,7 +14,10 @@ ALIGNED8 const u8 patch_textures_dma[] = {
     ,
     #include "actors/amp/halo_patch.rgba16.inc.c"
     ,
+    #include "actors/amp/marine_patch.rgba16.inc.c"
+    ,
     #include "actors/amp/portal_patch.rgba16.inc.c"
+    
 };
 
 ALIGNED8 static const Texture texture_menu_stone_patch[] = {
@@ -29,6 +32,9 @@ ALIGNED8 static const Texture texture_menu_grapple_patch[] = {
 ALIGNED8 static const Texture texture_menu_halo_patch[] = {
 #include "actors/amp/halo_patch.rgba16.inc.c"
 };
+ALIGNED8 static const Texture texture_menu_marine_patch[] = {
+#include "actors/amp/marine_patch.rgba16.inc.c"
+};
 ALIGNED8 static const Texture texture_menu_portal_patch[] = {
 #include "actors/amp/portal_patch.rgba16.inc.c"
 };
@@ -39,8 +45,8 @@ const Texture *const patch_textures_lut[] = {
     texture_menu_chillstep_patch,
     texture_menu_grapple_patch,
     texture_menu_halo_patch,
+    texture_menu_marine_patch,
     texture_menu_portal_patch,
-    texture_menu_stone_patch,
     texture_menu_stone_patch,
     texture_menu_stone_patch,
     texture_menu_stone_patch,

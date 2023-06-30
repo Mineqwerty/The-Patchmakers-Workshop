@@ -15,7 +15,8 @@ enum EnvFxMode {
     /*13*/ ENVFX_WHIRLPOOL_BUBBLES, // DDD
     /*14*/ ENVFX_JETSTREAM_BUBBLES,  // JRB, DDD (submarine area)
     ENVFX_PETALS,
-    ENVFX_RAIN
+    ENVFX_RAIN,
+    ENVFX_FORCE_FLOOR_BUBBLES
 };
 
 Gfx *geo_envfx_main(s32 callContext, struct GraphNode *node, Mat4 mtxf);
@@ -23,6 +24,7 @@ Gfx *geo_skybox_main(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_zbuffer_clear(s32 callContext, UNUSED struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_backdrop_move(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H

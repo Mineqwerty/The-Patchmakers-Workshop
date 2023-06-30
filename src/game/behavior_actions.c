@@ -266,3 +266,8 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/sewnia_stopping_point.inc.c"
 #include "behaviors/rosedrift_cutscene.inc.c"
 //podogoo in obj behaviors 2 blah blah blah
+#include "behaviors/far_plane_boost_panel.inc.c"
+#include "behaviors/ring_mission_ring.inc.c"
+#include "behaviors/ring_mission.inc.c"
+#include "behaviors/ring_mission_target.inc.c"
+#include "behaviors/tfp_checker_platform.inc.c"

@@ -506,6 +506,8 @@ struct MarioState {
     s16 marioScreenX;
     s16 marioScreenY;
 
+    Vec3f waterCurrentVel;
+
     Vec3f portal1Position;
     Vec3f portal2Position;
     u8 portal1Info[3];

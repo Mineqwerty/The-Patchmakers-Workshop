@@ -1,0 +1,10 @@
+extern const GeoLayout ring_mission_geo[];
+extern Lights1 ring_mission_f3dlite_material_041_lights;
+extern u8 ring_mission_fragmented_sparkles_ci4[];
+extern u8 ring_mission_fragmented_sparkles_pal_rgba16[];
+extern Vtx ring_mission_Circle_004_mesh_layer_4_vtx_0[87];
+extern Gfx ring_mission_Circle_004_mesh_layer_4_tri_0[];
+extern Gfx mat_ring_mission_f3dlite_material_041[];
+extern Gfx mat_revert_ring_mission_f3dlite_material_041[];
+extern Gfx ring_mission_Circle_004_mesh_layer_4[];
+extern Gfx ring_mission_material_revert_render_settings[];

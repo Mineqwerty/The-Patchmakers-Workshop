@@ -291,7 +291,7 @@ void bhv_grapple_hook_loop(void) {
                 raydir[0] = 0.0f;
                 raydir[2] = 0.0f;
 
-                raydir[1] = -30.0f;
+                raydir[1] = -20.0f;
                 find_surface_on_ray(originPos, raydir, &surf, hitpos, 1U, 1);
                 if (surf != NULL) {
                     o->oAngleVelPitch = -0x800;
@@ -751,6 +751,7 @@ void bhv_portal_init(void) {
 
     if (o->oPortalSpawnType == 1) {
         portal_sample_fb();
+        play_sound(SOUND_GENERAL_PAINTING_EJECT, gMarioState->marioObj->header.gfx.cameraToObject);
     }
 
     if (gMarioState->specialWarpTransitionOperation == 3) {
@@ -788,8 +789,15 @@ void bhv_portal_loop(void) {
     if (o->oAction == 2 && o->oDistanceToMario < 200 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE
         && gMarioState->action != ACT_HOLD_CUTSCENE) {
         o->oAction = 3;
+        play_sound(SOUND_PORTAL_IN, gMarioState->marioObj->header.gfx.cameraToObject);
     }
     if (o->oAction == 3) {
+
+        if (gMarioState->action == ACT_FALL_AFTER_STAR_GRAB || gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT || gMarioState->action == ACT_STAR_DANCE_WATER) {
+            o->oAction = 1;
+            return;
+        }
+
         play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 55, 200, 18);
         if (o->oTimer == 18) {
 

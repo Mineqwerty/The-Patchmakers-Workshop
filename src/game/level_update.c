@@ -143,6 +143,7 @@ s16 sSourceWarpNodeId;
 s32 sDelayedWarpArg;
 s8 sTimerRunning;
 s8 gNeverEnteredCastle;
+u8 gLoopCounter;
 
 struct MarioState *gMarioState = &gMarioStates[0];
 s8 sWarpCheckpointActive = FALSE;
@@ -405,7 +406,7 @@ void init_mario_after_warp(void) {
             gMarioState->usedObj = spawnNode->object;
         }
         else {
-            play_sound(SOUND_GENERAL_PAINTING_EJECT,
+            play_sound(SOUND_PORTAL_OUT,
                        gMarioStates[0].marioObj->header.gfx.cameraToObject);
             gMarioState->forwardVel = 10.0f;
             gMarioState->vel[1] = 10.0f;
@@ -1270,6 +1271,8 @@ s32 update_level(void) {
         reset_volume();
         enable_background_sound();
     }
+
+    gLoopCounter = 0;
 
     return changeLevel;
 }

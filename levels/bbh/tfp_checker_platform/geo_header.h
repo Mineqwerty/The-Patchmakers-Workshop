@@ -1,0 +1,8 @@
+extern const GeoLayout tfp_checker_platform_geo[];
+extern Lights1 tfp_checker_platform_f3dlite_material_043_lights;
+extern u8 tfp_checker_platform_RMGP01_9b1a69aa_14_mip2_ia8[];
+extern Vtx tfp_checker_platform_Cube_006_mesh_layer_1_vtx_0[24];
+extern Gfx tfp_checker_platform_Cube_006_mesh_layer_1_tri_0[];
+extern Gfx mat_tfp_checker_platform_f3dlite_material_043[];
+extern Gfx tfp_checker_platform_Cube_006_mesh_layer_1[];
+extern Gfx tfp_checker_platform_material_revert_render_settings[];

@@ -1336,6 +1336,9 @@
 //fortogoo
 #define oFortogooChildHitbox           OBJECT_FIELD_OBJ(0x1B)
 
+//ring mission controller
+#define oRingMissionCount           OBJECT_FIELD_S32(0x1B)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

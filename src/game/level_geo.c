@@ -134,3 +134,16 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
     }
     return 0;
 }
+
+Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+
+
+        
+        ((struct GraphNodeTranslation *) node->next)->translation[0] = ((gLoopCounter % 3) - 1) * 32762;
+        ((struct GraphNodeTranslation *) node->next)->translation[2] = ((gLoopCounter / 3) - 1) * 32762;
+
+        gLoopCounter++;
+    }
+    return 0;
+}

@@ -399,4 +399,6 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "grabbable_puzzle_box/collision_header.h"
 
+#include "menu_patch_marine/header.h"
+
 #endif

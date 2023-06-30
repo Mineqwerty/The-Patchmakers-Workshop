@@ -1,0 +1,2 @@
+extern void scroll_ring_mission_target_Circle_005_mesh_layer_5_vtx_0();
+extern void scroll_bbh_level_geo_ring_mission_target();

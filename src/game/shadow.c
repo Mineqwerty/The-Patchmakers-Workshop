@@ -286,6 +286,8 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
             // Set the shadow height to the lava height in specific areas.
             correct_lava_shadow_height(&floorHeight);
 #endif
+        } else if (type == SURFACE_VERTICAL_FLOWING_WATER) {
+            s->overrideDrawing = 1;
         } else if (floor->object != NULL
                    && floor->object->behavior == segmented_to_virtual(bhvPlatformOnTrack)
                    && floor->object->oPlatformOnTrackType == PLATFORM_ON_TRACK_TYPE_CARPET) {
@@ -293,6 +295,9 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
             floorHeight += 5;
             // The flying carpet is transparent.
             s->isDecal = FALSE;
+        }
+        else {
+            s->overrideDrawing = 0;
         }
     }
 
@@ -340,6 +345,9 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
     vec3f_set(s->floorNormal, nx, ny, nz);
 
     if (isPlayer) {
+        if (s->overrideDrawing == 1) {
+            return NULL;
+        }
         // Set the shadow solidity manually for certain Mario animations.
         s32 solidityAction = correct_shadow_solidity_for_animations(shadowSolidity);
         switch (solidityAction) {

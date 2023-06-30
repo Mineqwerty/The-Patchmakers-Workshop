@@ -585,7 +585,7 @@ void geo_process_camera(struct GraphNodeCamera *node) {
     if (node->fnNode.node.children != 0) {
         gCurGraphNodeCamera = node;
         node->matrixPtr = &gMatStack[gMatStackIndex];
-        if (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 1) {
+        if (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 1 || 1) {
            geo_process_node_and_siblings(node->fnNode.node.children);
         }
         else {
@@ -595,13 +595,13 @@ void geo_process_camera(struct GraphNodeCamera *node) {
                 relX = (i == -2 ? 1 : i);
                 relZ = (j == -2 ? 1 : j);
 
-                if ((relX == 1) && (gMarioState->pos[0] < 2000.f))
+                if ((relX == 1) && (gMarioState->pos[0] < 1000.f))
                     continue;
-                if ((relZ == 1) && (gMarioState->pos[2] < 2000.f))
+                if ((relZ == 1) && (gMarioState->pos[2] < 1000.f))
                     continue;
-                if ((relX == -1) && (gMarioState->pos[0] > -2000.f))
+                if ((relX == -1) && (gMarioState->pos[0] > -1000.f))
                     continue;
-                if ((relZ == -1) && (gMarioState->pos[2] > -2000.f))
+                if ((relZ == -1) && (gMarioState->pos[2] > -1000.f))
                     continue;
                 mtx = alloc_display_list(sizeof(*mtx));
                 vec3f_set(translation,relX*32762,0,relZ*32762);
@@ -1182,7 +1182,8 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
     if (node->objNode != NULL && node->objNode->header.gfx.sharedChild != NULL) {
         vec3_prod_val(translation, node->translation, 0.25f);
 
-        mtxf_translate(mat, translation);
+        //mtxf_translate(mat, translation);
+        mtxf_rotate_xyz_and_translate(mat, translation, node->rotation);
         mtxf_copy(gMatStack[gMatStackIndex + 1], *gCurGraphNodeObject->throwMatrix);
         vec3f_copy(gMatStack[gMatStackIndex + 1][3], gMatStack[gMatStackIndex][3]);
         mtxf_copy(tempMtx, gMatStack[gMatStackIndex + 1]);

@@ -62,6 +62,7 @@ struct Shadow {
      * It should not be a decal when it's on a transparent surface (water, lava, ice, flying carpet, etc.).
      */
     s8 isDecal;
+    s8 overrideDrawing;
 };
 
 enum ShadowSolidity {

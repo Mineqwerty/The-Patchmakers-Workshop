@@ -405,10 +405,13 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
 
 s32 act_collecting_patch(struct MarioState *m) {
     if (m->actionArg == 0) {
-        set_custom_mario_animation(m, 2);
+        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_WALK_TO_STONE_PATCH);
     }
-    else {
-        set_custom_mario_animation(m, 1);
+    else  if (m->actionArg == 1) {
+        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PATCH_GET);
+    }
+    else  if (m->actionArg == 2) {
+        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PICK_UP_STONE_PATCH);
     }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);

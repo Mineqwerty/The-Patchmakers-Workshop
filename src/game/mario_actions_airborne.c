@@ -246,6 +246,8 @@ void update_lava_boost_or_twirling(struct MarioState *m) {
         intendedDYaw = m->intendedYaw - m->faceAngle[1];
         intendedMag = m->intendedMag / 32.0f;
 
+       
+
         m->forwardVel += coss(intendedDYaw) * intendedMag;
         m->faceAngle[1] += sins(intendedDYaw) * intendedMag * 1024.0f;
 
@@ -256,6 +258,10 @@ void update_lava_boost_or_twirling(struct MarioState *m) {
 
         if (m->forwardVel > 32.0f) {
             m->forwardVel -= 2.0f;
+        }
+
+         if (m->actionArg == 5) {
+            m->forwardVel = 70.0f;
         }
     }
 
@@ -706,7 +712,7 @@ s32 act_twirling(struct MarioState *m) {
     m->twirlYaw += m->angleVel[1];
 
     set_mario_animation(m, m->actionArg == 0 ? MARIO_ANIM_START_TWIRL : MARIO_ANIM_TWIRL);
-    if (is_anim_past_end(m)) {
+    if (is_anim_past_end(m) && m->actionArg != 5) {
         m->actionArg = 1;
     }
 
@@ -843,6 +849,40 @@ s32 act_water_jump(struct MarioState *m) {
     switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB)) {
         case AIR_STEP_LANDED:
             set_mario_action(m, ACT_JUMP_LAND, 0);
+            set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+            break;
+
+        case AIR_STEP_HIT_WALL:
+            mario_set_forward_vel(m, 15.0f);
+            break;
+
+        case AIR_STEP_GRABBED_LEDGE:
+            set_mario_animation(m, MARIO_ANIM_IDLE_ON_LEDGE);
+            set_mario_action(m, ACT_LEDGE_GRAB, 0);
+            set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+            break;
+
+        case AIR_STEP_HIT_LAVA_WALL:
+            lava_boost_on_wall(m);
+            break;
+    }
+
+    return FALSE;
+}
+
+s32 act_marine_patch_airborne(struct MarioState *m) {
+    if (m->forwardVel < 15.0f) {
+        mario_set_forward_vel(m, 15.0f);
+    }
+
+    play_mario_sound(m, SOUND_ACTION_WATER_JUMP, 0);
+    set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_MARINE_SPIN);
+    m->marioObj->header.gfx.angle[2] += 0x2000;
+    m->marioObj->header.gfx.angle[0] = -0x80 * m->vel[1];
+
+    switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB)) {
+        case AIR_STEP_LANDED:
+            set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
             set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
             break;
 
@@ -2246,6 +2286,7 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
         case ACT_WALL_KICK_AIR:        cancel = act_wall_kick_air(m);        break;
         case ACT_TWIRLING:             cancel = act_twirling(m);             break;
         case ACT_WATER_JUMP:           cancel = act_water_jump(m);           break;
+        case ACT_MARINE_PATCH_AIRBORNE: cancel = act_marine_patch_airborne(m);   break;
         case ACT_HOLD_WATER_JUMP:      cancel = act_hold_water_jump(m);      break;
         case ACT_STEEP_JUMP:           cancel = act_steep_jump(m);           break;
         case ACT_BURNING_JUMP:         cancel = act_burning_jump(m);         break;

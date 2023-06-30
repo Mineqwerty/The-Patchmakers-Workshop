@@ -431,7 +431,7 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
 
         // Determine if we are checking for the camera or not.
         if (gCollisionFlags & COLLISION_FLAG_CAMERA) {
-            if (surf->flags & SURFACE_FLAG_NO_CAM_COLLISION) {
+            if (surf->flags & SURFACE_FLAG_NO_CAM_COLLISION || surf->type == SURFACE_VERTICAL_FLOWING_WATER) {
                 continue;
             }
         } else if (type == SURFACE_CAMERA_BOUNDARY) {
@@ -452,6 +452,10 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
 
         // Exclude floors lower than the previous highest floor.
         if (height <= *pheight) continue;
+
+        if (surf != NULL && surf->type == SURFACE_VERTICAL_FLOWING_WATER && (gMarioState->pos[1] - height < 100)) {
+            continue;
+        }
 
         // Checks for floor interaction with a FIND_FLOOR_BUFFER unit buffer.
         if (bufferY < height) continue;

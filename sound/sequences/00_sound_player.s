@@ -12,7 +12,7 @@ seq_setmutescale 0
   seq_setvol 127
 #endif
 seq_settempo 120
-seq_initchannels 0x3ff
+seq_initchannels 0xfff
 seq_startchannel 0, .channel0
 seq_startchannel 1, .channel1
 seq_startchannel 2, .channel2
@@ -23,6 +23,7 @@ seq_startchannel 6, .channel6
 seq_startchannel 7, .channel7
 seq_startchannel 8, .channel38
 seq_startchannel 9, .channel59
+seq_startchannel 10, .channelPatch
 .seq_loop:
 seq_delay 20000
 seq_jump .seq_loop
@@ -69,6 +70,17 @@ chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
 chan_setdyntable .channel59_table
+chan_jump .main_loop_023589
+
+.channelPatch:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channelPatch_table
 chan_jump .main_loop_023589
 
 // Main loop for standard, non-continuous sound effects
@@ -2793,26 +2805,6 @@ sound_ref .sound_general_grand_star
 sound_ref .sound_general_grand_star_jump
 sound_ref .sound_general_boat_rock
 sound_ref .sound_general_vanish_sfx
-sound_ref .sound_stone_patch_break
-sound_ref .sound_stone_patch_deform
-sound_ref .sound_chillstep_patch_freeze
-sound_ref .sound_grapple_hook_1
-sound_ref .sound_grapple_hook_2
-sound_ref .sound_halo_out
-sound_ref .sound_halo_in
-sound_ref .sound_halo_circle
-sound_ref .sound_box_blip
-sound_ref .sound_menu_enter_hole
-sound_ref .sound_general_red_coin
-sound_ref .sound_general_birds_fly_away
-sound_ref .sound_general_right_answer
-sound_ref .sound_general_metal_pound
-sound_ref .sound_general_boing1
-sound_ref .sound_general_boing2
-sound_ref .sound_general_yoshi_walk
-sound_ref .sound_general_enemy_alert1
-
-
 
 .sound_general_activate_cap_switch:
 chan_setbank 5
@@ -4815,68 +4807,6 @@ chan_setdecayrelease 20
 chan_setlayer 1, .layer_1DE4
 chan_setlayer 2, .layer_1DE2
 chan_end
-
-.sound_stone_patch_break:
-chan_setbank 0
-chan_setinstr 6
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_stone_patch_deform:
-chan_setbank 0
-chan_setinstr 7
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_chillstep_patch_freeze:
-chan_setbank 0
-chan_setinstr 8
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_grapple_hook_1:
-chan_setbank 0
-chan_setinstr 9
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_grapple_hook_2:
-chan_setbank 0
-chan_setinstr 10
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_halo_out:
-chan_setbank 0
-chan_setinstr 11
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_halo_in:
-chan_setbank 0
-chan_setinstr 12
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_halo_circle:
-chan_setbank 0
-chan_setinstr 13
-chan_setlayer 0, .layer_AAAA
-chan_end
-
-.sound_box_blip:
-chan_setbank 0
-chan_setinstr 14
-chan_setlayer 0, .layer_AAAB
-chan_end
-
-.layer_AAAA:
-  layer_note1 39, 0x100, 127
-  layer_end
-
-  .layer_AAAB:
-  layer_note1 39, 0x20, 127
-  layer_end
 
 .layer_1DD4:
 layer_transpose -12
@@ -7981,6 +7911,93 @@ layer_note0 38, 0x3, 127, 127
 layer_delay 0x2a
 layer_jump .layer_32B7
 
+.channelPatch_table:
+sound_ref .sound_stone_patch_break
+sound_ref .sound_stone_patch_deform
+sound_ref .sound_chillstep_patch_freeze
+sound_ref .sound_grapple_hook_1
+sound_ref .sound_grapple_hook_2
+sound_ref .sound_halo_out
+sound_ref .sound_halo_in
+sound_ref .sound_halo_circle
+sound_ref .sound_box_blip
+sound_ref .sound_portal_in
+sound_ref .sound_portal_out
+
+.sound_stone_patch_break:
+chan_setbank 11
+chan_setinstr 0
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_stone_patch_deform:
+chan_setbank 11
+chan_setinstr 1
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_chillstep_patch_freeze:
+chan_setbank 11
+chan_setinstr 2
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_grapple_hook_1:
+chan_setbank 11
+chan_setinstr 3
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_grapple_hook_2:
+chan_setbank 11
+chan_setinstr 4
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_out:
+chan_setbank 11
+chan_setinstr 5
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_in:
+chan_setbank 11
+chan_setinstr 6
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_halo_circle:
+chan_setbank 11
+chan_setinstr 7
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_box_blip:
+chan_setbank 11
+chan_setinstr 8
+chan_setlayer 0, .layer_AAAB
+chan_end
+
+.sound_portal_in:
+chan_setbank 11
+chan_setinstr 9
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_portal_out:
+chan_setbank 11
+chan_setinstr 10
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.layer_AAAA:
+  layer_note1 39, 0x100, 127
+  layer_end
+
+  .layer_AAAB:
+  layer_note1 39, 0x20, 127
+  layer_end
+
 .align 2, 0
 .envelope_32C4:
 envelope_line 7 20000
@@ -8155,3 +8172,4 @@ envelope_line 1000 32700
 envelope_line 10 16000
 envelope_line 200 32760
 envelope_goto 3
+

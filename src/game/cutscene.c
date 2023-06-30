@@ -50,6 +50,7 @@ enum cutscene_events {
     EVENT_CAMERA_POSITION,
     EVENT_CAMERA_FOCUS_SPLINE_DATA,
     EVENT_CAMERA_POSITION_SPLINE_DATA,
+    EVENT_CANCEL_SPLINE_DATA,
     EVENT_CAMERA_SHAKE,
 
     EVENT_DISABLE_MARIO_RENDER,
@@ -57,6 +58,7 @@ enum cutscene_events {
     EVENT_SET_MARIO_POSITION,
     EVENT_SET_MARIO_YAW,
     EVENT_SET_MARIO_ACTION,
+    EVENT_SET_MARIO_ACTION_ARG,
 
     EVENT_SPAWN_OBJECT,
 
@@ -67,6 +69,8 @@ enum cutscene_events {
     EVENT_HUD_DISABLE,
     EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
+
+    EVENT_STONE_PATCH_PICKED_UP,
 
     EVENT_END_CUTSCENE
 };
@@ -159,7 +163,17 @@ s32 event_find_stone_patch[] = {
     EVENT_CAMERA_POSITION_SPLINE_DATA, 20,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 21,
     EVENT_WAIT, 200,
+    //EVENT_DIALOG_AUTO, 30,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_SET_MARIO_ACTION_ARG, 2,
+    EVENT_WAIT, 2,
     EVENT_ENABLE_MARIO_RENDER,
+    EVENT_CAMERA_POSITION, -1800, 306, 30,
+    EVENT_CAMERA_FOCUS, 500, 40, -40,
+    EVENT_WAIT, 64,
+    EVENT_STONE_PATCH_PICKED_UP,
+    EVENT_WAIT, 200,
+
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_END_CUTSCENE
@@ -215,6 +229,7 @@ void event_handler(void) {
     if (cCutsceneActive) {
         s32 eventCommand;
         struct Object *eventObj;
+        f32 dist;
 
 
 
@@ -268,6 +283,18 @@ void event_handler(void) {
                     gCamera->cutscene = 0;
                     cCutsceneIndex += 1;
                 break;
+                case EVENT_CAMERA_POSITION:
+                    gCamera->pos[0] = param1;
+                    gCamera->pos[1] = param2;
+                    gCamera->pos[2] = param3;
+                    cCutsceneIndex += 4;
+                break;
+                case EVENT_CAMERA_FOCUS:
+                    gCamera->focus[0] = param1;
+                    gCamera->focus[1] = param2;
+                    gCamera->focus[2] = param3;
+                    cCutsceneIndex += 4;
+                break;
                 case EVENT_DISABLE_MARIO_RENDER:
                     gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
                     cCutsceneIndex += 1;
@@ -275,9 +302,6 @@ void event_handler(void) {
                 case EVENT_ENABLE_MARIO_RENDER:
                     gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                     cCutsceneIndex += 1;
-                break;
-                case EVENT_CAMERA_FOCUS:
-                    cCutsceneIndex += 4;
                 break;
                 case EVENT_CAMERA_FOCUS_SPLINE_DATA:
                     cFocusSplineActive = 1;
@@ -295,6 +319,11 @@ void event_handler(void) {
                     posSpline = splineList[cEventPointer[cCutsceneIndex + 1]];
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_CANCEL_SPLINE_DATA:
+                    cPositionSplineActive = 0;
+                    cFocusSplineActive = 0;
+                    cCutsceneIndex += 1;
+                break;
                 case EVENT_CAMERA_SHAKE:
                     set_camera_shake_from_point(SHAKE_POS_LARGE, param1, param2, param3);
                     cCutsceneIndex += 4;
@@ -311,6 +340,10 @@ void event_handler(void) {
                 break;
                 case EVENT_SET_MARIO_ACTION:
                     gMarioState->action = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_SET_MARIO_ACTION_ARG:
+                    gMarioState->actionArg = param1;
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_DIALOG_USER_ADVANCE:
@@ -345,6 +378,16 @@ void event_handler(void) {
                 case EVENT_SONG_PRIMARY:
                     play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, param1), 0);
                     cCutsceneIndex += 2;
+                break;
+
+                case EVENT_STONE_PATCH_PICKED_UP:
+                    eventObj = obj_find_nearest_object_with_behavior(gMarioState->marioObj, bhvGroundCutscenePatch, &dist);
+                    
+                    eventObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+                    eventObj = spawn_object_abs_with_rot(gMarioState->marioObj, 0, MODEL_GROUND_PATCH, bhvGroundPatch, 0, 0, 0, 0, -90, 0);
+                    eventObj->oAction = 10;
+                    gMarioState->heldObj = eventObj;
+                    cCutsceneIndex += 1;
                 break;
             }
         }

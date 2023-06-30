@@ -1,0 +1,18 @@
+extern const GeoLayout boost_panel_geo[];
+extern Lights1 boost_panel_f3dlite_material_037_lights;
+extern Lights1 boost_panel_f3dlite_material_038_lights;
+extern u8 boost_panel_boostarrows_ci8[];
+extern u8 boost_panel_boostarrows_pal_rgba16[];
+extern Vtx boost_panel_rood_mesh_layer_1_vtx_0[24];
+extern Gfx boost_panel_rood_mesh_layer_1_tri_0[];
+extern Vtx boost_panel_spinL_mesh_layer_1_vtx_0[24];
+extern Gfx boost_panel_spinL_mesh_layer_1_tri_0[];
+extern Vtx boost_panel_spinR_mesh_layer_1_vtx_0[24];
+extern Gfx boost_panel_spinR_mesh_layer_1_tri_0[];
+extern Gfx mat_boost_panel_f3dlite_material_037[];
+extern Gfx mat_revert_boost_panel_f3dlite_material_037[];
+extern Gfx mat_boost_panel_f3dlite_material_038[];
+extern Gfx boost_panel_rood_mesh_layer_1[];
+extern Gfx boost_panel_spinL_mesh_layer_1[];
+extern Gfx boost_panel_spinR_mesh_layer_1[];
+extern Gfx boost_panel_material_revert_render_settings[];

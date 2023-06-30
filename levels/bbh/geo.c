@@ -36,3 +36,8 @@
 #include "levels/bbh/tfp_rotary_arm/geo.inc.c"
 #include "levels/bbh/tfp_rotary_platform/geo.inc.c"
 #include "levels/bbh/box_basket/geo.inc.c"
+#include "levels/bbh/boost_panel/geo.inc.c"
+#include "levels/bbh/ring_mission/geo.inc.c"
+#include "levels/bbh/ring_mission_target/geo.inc.c"
+#include "levels/bbh/ring_fragment/geo.inc.c"
+#include "levels/bbh/tfp_checker_platform/geo.inc.c"

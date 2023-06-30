@@ -65,3 +65,4 @@
 #include "menu_patch_portal/model.inc.c"
 #include "grabbable_puzzle_box/model.inc.c"
 #include "grabbable_puzzle_box/collision.inc.c"
+#include "menu_patch_marine/model.inc.c"

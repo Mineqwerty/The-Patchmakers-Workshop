@@ -18,6 +18,7 @@ enum patchNames {
     PATCH_CHILLSTEP,
     PATCH_GRAPPLE,
     PATCH_HALO,
+    PATCH_MARINE,
     PATCH_PORTAL
 };
 
@@ -135,6 +136,7 @@ struct HudDisplay {
 
 extern struct HudDisplay gHudDisplay;
 extern s8 gNeverEnteredCastle;
+extern u8 gLoopCounter;
 
 enum HUDDisplayFlag {
     HUD_DISPLAY_FLAG_LIVES            = (1 <<  0), // 0x0001

@@ -572,6 +572,10 @@ Gfx *geo_switch_mario_hand_grab_pos(s32 callContext, struct GraphNode *node, Mat
                 case GRAB_POS_BOWSER:
                     vec3s_set(asHeldObj->translation, 80, -270, 1260);
                     break;
+                case GRAB_POS_CUTSCENE_STONE_PATCH:
+                    vec3s_set(asHeldObj->translation, -150, 0, 170);
+                    asHeldObj->rotation[1] = 0x4000;
+                break;
             }
         }
     } else if (callContext == GEO_CONTEXT_HELD_OBJ) {

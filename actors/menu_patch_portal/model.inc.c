@@ -1,5 +1,5 @@
-Gfx menu_patch_portal_portal_patch_ci8_aligner[] = {gsSPEndDisplayList()};
-u8 menu_patch_portal_portal_patch_ci8[] = {
+Gfx menu_patch_portal_portal_patch_rgba16_ci8_aligner[] = {gsSPEndDisplayList()};
+u8 menu_patch_portal_portal_patch_rgba16_ci8[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -131,8 +131,8 @@ u8 menu_patch_portal_portal_patch_ci8[] = {
 	
 };
 
-Gfx menu_patch_portal_portal_patch_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 menu_patch_portal_portal_patch_ci8_pal_rgba16[] = {
+Gfx menu_patch_portal_portal_patch_rgba16_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 menu_patch_portal_portal_patch_rgba16_pal_rgba16[] = {
 	0xff, 0xfe, 0xf7, 0xbd, 0xf7, 0x79, 0xf7, 0x7d, 
 	0xee, 0xbd, 0xdd, 0x3d, 0xdd, 0xbd, 0xf7, 0x33, 
 	0xf6, 0x9f, 0xf6, 0xe5, 0xf7, 0x77, 0xee, 0xfd, 
@@ -163,10 +163,10 @@ u8 menu_patch_portal_portal_patch_ci8_pal_rgba16[] = {
 };
 
 Vtx menu_patch_portal_patch_stone_001_mesh_vtx_0[4] = {
-	{{ {-38, -6, 4}, 0, {-16, 1008}, {0, 0, 127, 0} }},
-	{{ {-12, -6, 4}, 0, {1008, 1008}, {0, 0, 127, 0} }},
-	{{ {-12, 20, 4}, 0, {1008, -16}, {0, 0, 127, 0} }},
-	{{ {-38, 20, 4}, 0, {-16, -16}, {0, 0, 127, 0} }},
+	{{ {-38, -40, 4}, 0, {-16, 1008}, {0, 0, 127, 0} }},
+	{{ {-11, -40, 4}, 0, {1008, 1008}, {0, 0, 127, 0} }},
+	{{ {-11, -13, 4}, 0, {1008, -16}, {0, 0, 127, 0} }},
+	{{ {-38, -13, 4}, 0, {-16, -16}, {0, 0, 127, 0} }},
 };
 
 Gfx menu_patch_portal_patch_stone_001_mesh_tri_0[] = {
@@ -180,14 +180,13 @@ Gfx mat_menu_patch_portal_patch_portal[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, menu_patch_portal_portal_patch_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 105),
-	gsDPLoadSync(),
-	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, menu_patch_portal_portal_patch_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, menu_patch_portal_portal_patch_rgba16_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 105),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, menu_patch_portal_portal_patch_rgba16_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),

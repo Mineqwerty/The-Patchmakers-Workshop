@@ -6867,3 +6867,68 @@ const BehaviorScript bhvFortogooVulnerableObject[] = {
         CALL_NATIVE(bhv_fortogoo_vulnerable_object_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFarPlaneBoostPanel[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, boost_panel_anims),
+    ANIMATE(0),
+    LOAD_COLLISION_DATA(boost_panel_collision),
+    CALL_NATIVE(bhv_far_plane_boost_panel_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_far_plane_boost_panel_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRingMissionRing[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_ring_mission_ring_init),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ring_mission_ring_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRingMission[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_ring_mission_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ring_mission_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRingMissionTarget[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_ring_mission_target_init),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ring_mission_target_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRingFragmentParticle[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL)),
+    CALL_NATIVE(bhv_ring_fragment_particle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ring_fragment_particle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTfpCheckerPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE)),
+    LOAD_COLLISION_DATA(tfp_checker_platform_collision),
+    SET_HOME(),
+    CALL_NATIVE(bhv_tfp_checker_platform_init),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tfp_checker_platform_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

@@ -208,6 +208,8 @@ void obj_spawn_particles(struct SpawnParticlesInfo *info, struct Object *obj);
 s32 cur_obj_reflect_move_angle_off_wall(void);
 struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *behavior, int bparam);
 void check_for_max_ice_and_break_oldest();
+struct Object *obj_find_nearest_object_with_behavior(struct Object *obj, const BehaviorScript *behavior, f32 *dist);
+struct Object *cur_obj_find_object_with_bparam_1st_byte(const BehaviorScript *behavior, int bparam);
 
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_NONE 0
