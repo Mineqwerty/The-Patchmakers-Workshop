@@ -600,6 +600,9 @@
 #define MODEL_GOLD_FRAGMENT                 0x10B
 #define MODEL_SERAPHIM                 0x10C
 #define MODEL_GOLD_SPIKE_BALL                 0x10D
+#define MODEL_WIND_CLOUD                 0x10E
+#define MODEL_SWINGING_AXE                 0x10F
+#define MODEL_WING_SURFACE              0x110
 
 #define MODEL_FLOATING_PLANE                   0x100
 #define MODEL_FAR_PLANE_CUBE                   0x101

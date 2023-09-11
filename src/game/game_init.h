@@ -58,6 +58,7 @@ extern u8 gBossHealth;
 extern u8 gBossMaxHealth;
 extern u32 gTatumCount;
 extern u8 gTatumStall;
+extern u8 gFBEffect;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif
@@ -86,6 +87,7 @@ extern struct DmaHandlerList gDemoInputsBuf;
 extern u8 gMarioAnims[];
 extern u8 gDemoInputs[];
 
+extern u16 sRenderedFramebuffer;
 extern u16 sRenderingFramebuffer;
 extern u32 gGlobalTimer;
 

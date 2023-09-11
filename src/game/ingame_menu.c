@@ -173,6 +173,8 @@ s8 gPatchIndexX = 0;
 s8 gPatchIndexY = 0;
 u8 gPatchMenuTimer = 0;
 
+u16 gShakeOffset;
+
 
 void create_dl_identity_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
@@ -1208,7 +1210,18 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
     }
 }
 
-void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound) {
+u16 shakeBitmasks[8] = {
+    0b0000000000000011,
+    0b0000000000001100,
+    0b0000000000110000,
+    0b0000000011000000,
+    0b0000001100000000,
+    0b0000110000000000,
+    0b0011000000000000,
+    0b1100000000000000
+};
+
+void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound, u32 flags) {
     u8 strChar;
     s16 colorLoop;
     ColorRGBA rgbaColors = { 0x00, 0x00, 0x00, 0xFF };
@@ -1318,12 +1331,24 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 break;
             default: // any other character
                 if ((lineNum >= lowerBound) && (lineNum <= (lowerBound + linesPerBox))) {
+                    f32 shakeOffsets[2] = {
+                            ((gShakeOffset >> ((linePos % 4) * 4)) & 0x3) - 1,
+                            ((gShakeOffset >> (((linePos % 4) * 4) + 2)) & 0x3) - 1
+                        };
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) {
+                        if (shakeOffsets[0] == 2) shakeOffsets[0] = 0;
+                        if (shakeOffsets[1] == 2) shakeOffsets[1] = 0;
+                        if (linePos % 4 == 0 && (gGlobalTimer % 2) == 1) {
+                            gShakeOffset = random_u16();
+                        }
+                    }
                     if (linePos || xMatrix != 1) {
                         create_dl_translation_matrix(
                             MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
                     }
-
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, shakeOffsets[0], shakeOffsets[1], 0);
                     render_generic_char(strChar);
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, -(shakeOffsets[0]), -(shakeOffsets[1]), 0);
                     create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0, 0);
                     xMatrix = 1;
                     linePos++;
@@ -1718,7 +1743,7 @@ void new_dialog_render_dialog_entries(void) {
 #endif
                   ensure_nonnegative(240 + ((dialog->linesPerBox * 80) / DIAG_VAL4) - dialog->width));
                   */
-    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
+    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound, dialog->flags);
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
@@ -1819,7 +1844,7 @@ void new_dialog_render_automatic_dialog(void) {
     }
 
     new_dialog_render_dialog_box_type(dialog, dialog->linesPerBox);
-    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
+    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound, dialog->flags);
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();

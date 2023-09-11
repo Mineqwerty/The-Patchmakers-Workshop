@@ -585,9 +585,11 @@ void geo_process_camera(struct GraphNodeCamera *node) {
     if (node->fnNode.node.children != 0) {
         gCurGraphNodeCamera = node;
         node->matrixPtr = &gMatStack[gMatStackIndex];
-        if (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 1 || 1) {
+        
+        //if (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 1 || 1) {
            geo_process_node_and_siblings(node->fnNode.node.children);
-        }
+        //}
+        /*
         else {
 
         for (i = -2; i < 1; i++) {
@@ -616,8 +618,10 @@ void geo_process_camera(struct GraphNodeCamera *node) {
             }
         }
         }
+        */
         gCurGraphNodeCamera = NULL;
     }
+    if (gMarioState) {
     // Convert Mario's coordinates into vec3s so they can be used in mtxf_mul_vec3s
         vec3f_to_vec3s(marioPos3s, gMarioState->pos);
 
@@ -625,8 +629,10 @@ void geo_process_camera(struct GraphNodeCamera *node) {
         mtxf_mul_vec3s(gMatStack[gMatStackIndex], marioPos3s);
 
         // Perspective divide
-        gMarioState->marioScreenX = 2 * (0.5f - marioPos3s[0] / (f32)marioPos3s[2]) * (gCurGraphNodeRoot->width);
-        gMarioState->marioScreenY = 2 * (0.5f - marioPos3s[1] / (f32)marioPos3s[2]) * (gCurGraphNodeRoot->height);
+        //TODO: crashes when loading into a course, likely from star select. Investigate
+        //gMarioState->marioScreenX = 2 * (0.5f - marioPos3s[0] / (f32)marioPos3s[2]) * (gCurGraphNodeRoot->width);
+        //gMarioState->marioScreenY = 2 * (0.5f - marioPos3s[1] / (f32)marioPos3s[2]) * (gCurGraphNodeRoot->height);
+        }
     gMatStackIndex--;
 }
 

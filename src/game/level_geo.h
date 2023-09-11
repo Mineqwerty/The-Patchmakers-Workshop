@@ -25,6 +25,8 @@ Gfx *geo_zbuffer_clear(s32 callContext, UNUSED struct GraphNode *node, UNUSED Ma
 Gfx *geo_backdrop_move(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H

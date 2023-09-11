@@ -6,3 +6,6 @@
 #include "anim_pickuppatch.inc.c"
 #include "anim_patchequip.inc.c"
 #include "anim_marine_spin.inc.c"
+#include "anim_mario_geoAction.inc.c"
+#include "anim_PoseLib.inc.c"
+#include "anim_patchequip_001.inc.c"

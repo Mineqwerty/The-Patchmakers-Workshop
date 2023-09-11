@@ -1272,8 +1272,6 @@ s32 update_level(void) {
         enable_background_sound();
     }
 
-    gLoopCounter = 0;
-
     return changeLevel;
 }
 

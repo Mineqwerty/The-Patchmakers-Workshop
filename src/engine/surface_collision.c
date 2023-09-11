@@ -442,6 +442,10 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
             continue;
         }
 
+        if (surf != NULL && surf->type == SURFACE_WING_FLOOR) {
+            //continue;
+        }
+
         // Exclude all floors above the point.
         if (bufferY < surf->lowerY) continue;
         // Check that the point is within the triangle bounds.

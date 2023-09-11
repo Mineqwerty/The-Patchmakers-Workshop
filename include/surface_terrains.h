@@ -18,11 +18,11 @@ enum SurfaceTypes {
     SURFACE_SLOW,                       // 0x0009 // Slow down Mario, unused
     SURFACE_DEATH_PLANE,                // 0x000A // Death floor
     SURFACE_CLOSE_CAMERA,               // 0x000B // Close camera
-    SURFACE_000C,                       // 0x000C // unused
+    SURFACE_SHADOW_OFFSET,              // 0x000C // param is shadow distance above floor, scales if floor is an object
     SURFACE_WATER,                      // 0x000D // Water, has no action, used on some waterboxes below
     SURFACE_FLOWING_WATER,              // 0x000E // Water (flowing), has parameters
-    SURFACE_HURT_FLOOR,                       // 0x000F // Unused
-    SURFACE_0010,                       // 0x0010 // Unused
+    SURFACE_HURT_FLOOR,                       // 0x000F
+    SURFACE_WING_FLOOR,                       // 0x0010 // Unused
     SURFACE_0011,                       // 0x0011 // Unused
     SURFACE_INTANGIBLE,                 // 0x0012 // Intangible (Separates BBH mansion from merry-go-round, for room usage)
     SURFACE_VERY_SLIPPERY,              // 0x0013 // Very slippery, mostly used for slides

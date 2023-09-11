@@ -11,6 +11,9 @@
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
 
+struct GraphNode *loopNode;
+struct GraphNode *originalContinueNode;
+
 /**
  * Geo function that generates a displaylist for environment effects such as
  * snow or jet stream bubbles.
@@ -135,15 +138,68 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
     return 0;
 }
 
+s32 renderThreshold = -5000;
+
+Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        
+        //main level geo
+        gLoopCounter = 4;
+        geo_process_node_and_siblings(node->children);
+        gLoopCounter = 0;
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 1;
+        if (gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 2;
+        if (gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 3;
+        if (gMarioState->pos[0] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 5;
+        if (gMarioState->pos[0] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 6;
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 7;
+        if (gMarioState->pos[2] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 8;
+    }
+    return 0;
+}
+
 Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
 
+        if (gLoopCounter == 8) {
+            if (!(gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] > renderThreshold)) {
+                //((struct GraphNodeDisplayList *) node->next)->displayList = NULL; 
+            }
+        }
 
-        
         ((struct GraphNodeTranslation *) node->next)->translation[0] = ((gLoopCounter % 3) - 1) * 32762;
         ((struct GraphNodeTranslation *) node->next)->translation[2] = ((gLoopCounter / 3) - 1) * 32762;
+    }
+    return 0;
+}
 
-        gLoopCounter++;
+Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+
+        if (gLoopCounter >= 8) {
+            gLoopCounter = 0;
+        }
     }
     return 0;
 }

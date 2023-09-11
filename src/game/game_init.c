@@ -59,6 +59,8 @@ u8 gBossHealth;
 u8 gBossMaxHealth;
 u32 gTatumCount;
 u8 gTatumStall;
+u8 gFBEffect;
+u32 gFBEffectTimer;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;
 #endif
@@ -501,6 +503,43 @@ void display_and_vsync(void) {
             sRenderingFramebuffer = 0;
         }
     }
+
+    if (gFBEffect == 1) {
+        if (gFBEffectTimer < 4) {
+            sRenderingFramebuffer = 2;
+        }
+        else {
+            sRenderingFramebuffer = 1;
+        }
+        
+        if (gFBEffectTimer == 0) {
+            u8 drawColor[3];
+            for (int i = 0; i < 240; i+=1) {
+                for (int j = 1; j < 320; j+=2) {
+                    drawColor[0] = ( gFramebuffers[0][j + (i*320)] & 0xf800) >>8;
+                    drawColor[1] = ( gFramebuffers[0][j + (i*320)] & 0x7c0) >>3;
+                    drawColor[2] = ( gFramebuffers[0][j + (i*320)] & 0x3e) << 2;
+
+                    gFramebuffers[0][j + (i*320)] = GPACK_RGBA5551(255 - drawColor[0], 255 - drawColor[1], 255 - drawColor[2], 255);
+
+                    drawColor[0] = ( gFramebuffers[0][j - 1 + (i*320)] & 0xf800) >>8;
+                    drawColor[1] = ( gFramebuffers[0][j - 1 + (i*320)] & 0x7c0) >>3;
+                    drawColor[2] = ( gFramebuffers[0][j - 1 + (i*320)] & 0x3e) << 2;
+
+                    gFramebuffers[0][j - 1 + (i*320)] = GPACK_RGBA5551(255 - drawColor[0], 255 - drawColor[1], 255 - drawColor[2], 255);
+            
+
+                }
+            }
+        }
+
+        gFBEffectTimer++;
+
+    }
+    else {
+        gFBEffectTimer = 0;
+    }
+    
     gGlobalTimer++;
 }
 

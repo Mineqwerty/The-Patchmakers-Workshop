@@ -252,6 +252,7 @@
 
 /* Hidden Blue Coin */
 #define /*0x0F8*/ oHiddenBlueCoinSwitch OBJECT_FIELD_OBJ(0x1C)
+#define /*0x0F4*/ oHiddenBlueCoinTimer OBJECT_FIELD_S32(0x1D)
 
 /* Bob-omb */
 #define /*0x0F4*/ oBobombBlinkTimer OBJECT_FIELD_S32(0x1B)
@@ -1338,6 +1339,15 @@
 
 //ring mission controller
 #define oRingMissionCount           OBJECT_FIELD_S32(0x1B)
+
+//swinging axe
+#define oAxeHitbox1           OBJECT_FIELD_OBJ(0x1B)
+#define oAxeHitbox2           OBJECT_FIELD_OBJ(0x1C)
+
+//spekturr spawn
+#define oSpekturrSpawnOffsetValue        OBJECT_FIELD_S32(0x1B)
+#define oSpekturrSpawnBehParam        OBJECT_FIELD_S32(0x1C)
+#define oSpekturrCount        OBJECT_FIELD_S32(0x1D)
 
 /*Custom general defines:
 

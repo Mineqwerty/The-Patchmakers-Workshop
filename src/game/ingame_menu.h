@@ -59,11 +59,18 @@ extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
 
 struct DialogEntry {
-    /*0x00*/ u32 unused;
+    /*0x00*/ u32 flags;
     /*0x04*/ s8 linesPerBox;
     /*0x06*/ s16 leftOffset;
     /*0x08*/ s16 width;
     /*0x0C*/ const u8 *str;
+};
+
+enum NewDialogFlags {
+    NEWDIALOG_FLAG_NONE                 = /* 0x00000000 */ (0 <<  0),
+    NEWDIALOG_FLAG_VANILLA                 = /* 0x00000001 */ (1 <<  0),
+    NEWDIALOG_FLAG_SHAKE_TEXT            = /* 0x00000002 */ (1 <<  1)
+    
 };
 
 // EU only

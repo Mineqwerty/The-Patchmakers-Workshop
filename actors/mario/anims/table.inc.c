@@ -6,5 +6,6 @@ const struct Animation *const mario_anims[] = {
 	&mario_anim_patchpickup,
 	&mario_anim_patchequip,
 	&mario_anim_marine_spin,
+	&mario_anim_pickuppatch,
 	NULL,
 };

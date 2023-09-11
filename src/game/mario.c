@@ -2039,10 +2039,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
-    if (gPlayer3Controller->buttonPressed & D_JPAD) {
-        alert_rcp_hung_up();
+    if (gPlayer1Controller->buttonPressed & D_JPAD) {
+        initiate_warp(LEVEL_BOB, 2, 0x0A, 0);
+        //gFBEffect = 1;
     }
-    
 
     //TODO: put these in a more permanent spot
 

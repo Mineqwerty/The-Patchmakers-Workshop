@@ -271,3 +271,6 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/ring_mission.inc.c"
 #include "behaviors/ring_mission_target.inc.c"
 #include "behaviors/tfp_checker_platform.inc.c"
+#include "behaviors/wind_cloud.inc.c"
+#include "behaviors/swinging_axe.inc.c"
+#include "behaviors/wing_surface.inc.c"

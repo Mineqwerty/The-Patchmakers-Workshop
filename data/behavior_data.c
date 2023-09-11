@@ -6932,3 +6932,46 @@ const BehaviorScript bhvTfpCheckerPlatform[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvWindCloud[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL)),
+    LOAD_COLLISION_DATA(wind_cloud_collision),
+    SET_HOME(),
+    CALL_NATIVE(bhv_wind_cloud_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_wind_cloud_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSwingingAxe[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(swinging_axe_collision),
+    CALL_NATIVE(bhv_swinging_axe_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_swinging_axe_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSwingingAxeHitbox[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_swinging_axe_hitbox_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_swinging_axe_hitbox_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWingSurface[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(wing_surface_collision),
+    CALL_NATIVE(bhv_wing_surface_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_wing_surface_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

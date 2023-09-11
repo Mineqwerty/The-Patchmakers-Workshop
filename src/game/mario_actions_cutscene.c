@@ -413,6 +413,9 @@ s32 act_collecting_patch(struct MarioState *m) {
     else  if (m->actionArg == 2) {
         set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PICK_UP_STONE_PATCH);
     }
+    else  if (m->actionArg == 3) {
+        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_EQUIP_STONE_PATCH);
+    }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     return FALSE;

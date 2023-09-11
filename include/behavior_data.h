@@ -623,3 +623,7 @@ extern const BehaviorScript bhvRingMission[];
 extern const BehaviorScript bhvRingMissionTarget[];
 extern const BehaviorScript bhvRingFragmentParticle[];
 extern const BehaviorScript bhvTfpCheckerPlatform[];
+extern const BehaviorScript bhvWindCloud[];
+extern const BehaviorScript bhvSwingingAxe[];
+extern const BehaviorScript bhvSwingingAxeHitbox[];
+extern const BehaviorScript bhvWingSurface[];

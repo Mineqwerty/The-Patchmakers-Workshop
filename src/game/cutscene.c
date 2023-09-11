@@ -70,7 +70,11 @@ enum cutscene_events {
     EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
 
+    EVENT_SET_FB_EFFECT,
+    EVENT_CLEAR_FB_EFFECT,
+
     EVENT_STONE_PATCH_PICKED_UP,
+    EVENT_STONE_PATCH_EQUIPPED,
 
     EVENT_END_CUTSCENE
 };
@@ -172,8 +176,19 @@ s32 event_find_stone_patch[] = {
     EVENT_CAMERA_FOCUS, 500, 40, -40,
     EVENT_WAIT, 64,
     EVENT_STONE_PATCH_PICKED_UP,
-    EVENT_WAIT, 200,
+    EVENT_WAIT, 120,
+    EVENT_SET_MARIO_POSITION, -1434, 180, -100,
+    EVENT_CAMERA_POSITION, -1600, 306, -80,
+    EVENT_CAMERA_FOCUS, -934, 200, 0,
+    EVENT_SET_MARIO_ACTION_ARG, 3,
+    EVENT_WAIT, 40,
+    EVENT_STONE_PATCH_EQUIPPED,
+    EVENT_WAIT, 100,
+    EVENT_SET_FB_EFFECT, 1,
+    EVENT_WAIT, 20,
+    EVENT_CLEAR_FB_EFFECT,
 
+    EVENT_WAIT, 200,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_END_CUTSCENE
@@ -369,6 +384,16 @@ void event_handler(void) {
                     cCutsceneIndex += 2;
                     
                 break;
+                case EVENT_SET_FB_EFFECT:
+                    gFBEffect = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_CLEAR_FB_EFFECT:
+                    gFBEffect = 0;
+                    sRenderedFramebuffer = 0;
+                    sRenderingFramebuffer = 0;
+                    cCutsceneIndex += 1;
+                break;
                 case EVENT_SPAWN_OBJECT:
                     eventObj = spawn_object_abs_with_rot(gMarioState->marioObj, 0, cEventPointer[cCutsceneIndex + 9], cEventPointer[cCutsceneIndex + 8], 
                         param1, param2, param3, cEventPointer[cCutsceneIndex + 4], cEventPointer[cCutsceneIndex + 5], cEventPointer[cCutsceneIndex + 6]);
@@ -380,6 +405,12 @@ void event_handler(void) {
                     cCutsceneIndex += 2;
                 break;
 
+
+
+
+
+
+
                 case EVENT_STONE_PATCH_PICKED_UP:
                     eventObj = obj_find_nearest_object_with_behavior(gMarioState->marioObj, bhvGroundCutscenePatch, &dist);
                     
@@ -387,6 +418,17 @@ void event_handler(void) {
                     eventObj = spawn_object_abs_with_rot(gMarioState->marioObj, 0, MODEL_GROUND_PATCH, bhvGroundPatch, 0, 0, 0, 0, -90, 0);
                     eventObj->oAction = 10;
                     gMarioState->heldObj = eventObj;
+                    cCutsceneIndex += 1;
+                break;
+
+                case EVENT_STONE_PATCH_EQUIPPED:
+                    if (gMarioState->heldObj) {
+
+                        obj_mark_for_deletion(gMarioState->heldObj);
+                        gMarioState->heldObj = NULL;
+                    }
+                    gMarioState->equippedPatch = PATCH_STONE;
+                    gMarioState->updatePatch = 1;
                     cCutsceneIndex += 1;
                 break;
             }
