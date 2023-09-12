@@ -205,7 +205,7 @@ void render_motion_blur(void) {
     gDPSetTexturePersp(gDisplayListHead++, G_TP_NONE);
 
     if (gFBE) {
-        render_tiled_screen_effect(imageFB, mode, fmt);
+        render_tiled_screen_effect((u8 *)gFramebuffers[srcFB], mode, fmt);
     } /* else { // MITM potential later use
         u8 *emu_tex = segmented_to_virtual(youre_emu);
         render_tiled_screen_effect(emu_tex, G_CYC_1CYCLE, G_IM_FMT_RGBA);

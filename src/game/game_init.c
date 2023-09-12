@@ -503,14 +503,14 @@ void display_and_vsync(void) {
         if (++sRenderingFramebuffer == 3) {
             sRenderingFramebuffer = 0;
         }
-    } /* else {
+    }  else {
         if (++sRenderedFramebuffer == 2) {
             sRenderedFramebuffer = 0;
         }
         if (++sRenderingFramebuffer == 2) {
             sRenderingFramebuffer = 0;
         }
-    } */
+    } 
     
     gGlobalTimer++;
 }
