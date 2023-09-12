@@ -34,6 +34,7 @@
 #include "camera.h"
 #endif
 #include "profiling.h"
+#include "fb_effects.h"
 
 // First 3 controller slots
 struct Controller gControllers[3];
@@ -59,8 +60,7 @@ u8 gBossHealth;
 u8 gBossMaxHealth;
 u32 gTatumCount;
 u8 gTatumStall;
-u8 gFBEffect;
-u32 gFBEffectTimer;
+u8 gFBE = FALSE;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;
 #endif
@@ -368,6 +368,7 @@ void init_rcp(s32 resetZB) {
 void end_master_display_list(void) {
     draw_screen_borders();
 
+    render_fb_effects();
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
 
@@ -502,43 +503,14 @@ void display_and_vsync(void) {
         if (++sRenderingFramebuffer == 3) {
             sRenderingFramebuffer = 0;
         }
-    }
-
-    if (gFBEffect == 1) {
-        if (gFBEffectTimer < 4) {
-            sRenderingFramebuffer = 2;
+    } /* else {
+        if (++sRenderedFramebuffer == 2) {
+            sRenderedFramebuffer = 0;
         }
-        else {
-            sRenderingFramebuffer = 1;
+        if (++sRenderingFramebuffer == 2) {
+            sRenderingFramebuffer = 0;
         }
-        
-        if (gFBEffectTimer == 0) {
-            u8 drawColor[3];
-            for (int i = 0; i < 240; i+=1) {
-                for (int j = 1; j < 320; j+=2) {
-                    drawColor[0] = ( gFramebuffers[0][j + (i*320)] & 0xf800) >>8;
-                    drawColor[1] = ( gFramebuffers[0][j + (i*320)] & 0x7c0) >>3;
-                    drawColor[2] = ( gFramebuffers[0][j + (i*320)] & 0x3e) << 2;
-
-                    gFramebuffers[0][j + (i*320)] = GPACK_RGBA5551(255 - drawColor[0], 255 - drawColor[1], 255 - drawColor[2], 255);
-
-                    drawColor[0] = ( gFramebuffers[0][j - 1 + (i*320)] & 0xf800) >>8;
-                    drawColor[1] = ( gFramebuffers[0][j - 1 + (i*320)] & 0x7c0) >>3;
-                    drawColor[2] = ( gFramebuffers[0][j - 1 + (i*320)] & 0x3e) << 2;
-
-                    gFramebuffers[0][j - 1 + (i*320)] = GPACK_RGBA5551(255 - drawColor[0], 255 - drawColor[1], 255 - drawColor[2], 255);
-            
-
-                }
-            }
-        }
-
-        gFBEffectTimer++;
-
-    }
-    else {
-        gFBEffectTimer = 0;
-    }
+    } */
     
     gGlobalTimer++;
 }

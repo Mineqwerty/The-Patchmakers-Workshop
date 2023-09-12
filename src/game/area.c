@@ -26,6 +26,7 @@
 #include "debug_box.h"
 #include "engine/colors.h"
 #include "profiling.h"
+#include "fb_effects.h"
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *gGraphNodePointers[MODEL_ID_COUNT];
@@ -402,6 +403,8 @@ void render_game(void) {
         if (gCurrentArea->graphNode) {
             geo_process_root(gCurrentArea->graphNode, gViewportOverride, gViewportClip, gFBSetColor);
         }
+
+        render_fb_effects();
 
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gViewport));
 

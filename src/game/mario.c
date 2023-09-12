@@ -2041,7 +2041,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     if (gPlayer1Controller->buttonPressed & D_JPAD) {
         initiate_warp(LEVEL_BOB, 2, 0x0A, 0);
-        //gFBEffect = 1;
     }
 
     //TODO: put these in a more permanent spot

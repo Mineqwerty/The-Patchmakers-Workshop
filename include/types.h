@@ -176,6 +176,21 @@ typedef u8  CutsceneID;
 
 typedef u8 uchar;
 
+typedef uint8_t   qu08_t;
+typedef uint16_t  qu016_t;
+typedef int16_t   qs48_t;
+typedef int16_t   qs510_t;
+typedef uint16_t  qu510_t;
+typedef int16_t   qs102_t;
+typedef uint16_t  qu102_t;
+typedef int16_t   qs105_t;
+typedef uint16_t  qu105_t;
+typedef int16_t   qs132_t;
+typedef int16_t   qs142_t;
+typedef int32_t   qs1516_t;
+typedef int32_t   qs1616_t;
+typedef int32_t   qs205_t;
+
 enum SpTaskState {
     SPTASK_STATE_NOT_STARTED,
     SPTASK_STATE_RUNNING,

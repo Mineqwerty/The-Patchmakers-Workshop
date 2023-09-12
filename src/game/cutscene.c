@@ -10,6 +10,7 @@
 #include "src/game/ingame_menu.h"
 #include "include/behavior_data.h"
 #include "include/seq_ids.h"
+#include "src/game/fb_effects.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -184,7 +185,7 @@ s32 event_find_stone_patch[] = {
     EVENT_WAIT, 40,
     EVENT_STONE_PATCH_EQUIPPED,
     EVENT_WAIT, 100,
-    EVENT_SET_FB_EFFECT, 1,
+    EVENT_SET_FB_EFFECT, FBE_EFFECT_INVERT,
     EVENT_WAIT, 20,
     EVENT_CLEAR_FB_EFFECT,
 
@@ -385,13 +386,12 @@ void event_handler(void) {
                     
                 break;
                 case EVENT_SET_FB_EFFECT:
-                    gFBEffect = param1;
+                    set_fb_effect_type(param1);
+                    set_motion_blur(255);
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_CLEAR_FB_EFFECT:
-                    gFBEffect = 0;
-                    sRenderedFramebuffer = 0;
-                    sRenderingFramebuffer = 0;
+                    set_fb_effect_type(FBE_EFFECT_NONE);
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_SPAWN_OBJECT:
