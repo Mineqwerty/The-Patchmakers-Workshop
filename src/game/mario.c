@@ -36,6 +36,7 @@
 #include "src/game/cutscene.h"
 #include "audio/load.h"
 #include "actors/group0.h"
+#include "src/game/fb_effects.h"
 
 
 /**************************************************

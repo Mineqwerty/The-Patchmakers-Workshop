@@ -388,6 +388,7 @@ void event_handler(void) {
                 case EVENT_SET_FB_EFFECT:
                     set_fb_effect_type(param1);
                     set_motion_blur(255);
+                    set_fb_effect_col(255, 255, 255);
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_CLEAR_FB_EFFECT:

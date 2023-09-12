@@ -368,7 +368,6 @@ void init_rcp(s32 resetZB) {
 void end_master_display_list(void) {
     draw_screen_borders();
 
-    render_fb_effects();
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
 
