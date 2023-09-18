@@ -1,11 +1,11 @@
-void scroll_seraphim_root_mesh_layer_4_vtx_2() {
+void scroll_seraphim_root_mesh_layer_4_vtx_0() {
 	int i = 0;
 	int count = 56;
 	int height = 32 * 0x20;
 
 	static int currentY = 0;
 	int deltaY;
-	Vtx *vertices = segmented_to_virtual(seraphim_root_mesh_layer_4_vtx_2);
+	Vtx *vertices = segmented_to_virtual(seraphim_root_mesh_layer_4_vtx_0);
 
 	deltaY = (int)(0.25 * 0x20) % height;
 
@@ -20,5 +20,5 @@ void scroll_seraphim_root_mesh_layer_4_vtx_2() {
 }
 
 void scroll_ccm_level_geo_seraphim() {
-	scroll_seraphim_root_mesh_layer_4_vtx_2();
+	scroll_seraphim_root_mesh_layer_4_vtx_0();
 };

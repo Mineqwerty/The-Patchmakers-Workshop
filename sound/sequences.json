@@ -165,5 +165,8 @@
     ],
     "30_the_far_plane": [
         "streamed_audio"
+    ],
+    "31_stone_patch_cutscene": [
+        "0C"
     ]
 }

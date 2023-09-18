@@ -35,6 +35,8 @@ static struct Object *sEndLeftToadObj;
 static struct Object *sEndJumboStarObj;
 static s16 sEndPeachAnimation;
 static s16 sEndToadAnims[2];
+static s16 marioCutsceneFaceAnglePitch;
+static s16 marioCutsceneFaceAngleRoll;
 
 Vp sEndCutsceneVp = {
     {
@@ -404,20 +406,67 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
 }
 
 s32 act_collecting_patch(struct MarioState *m) {
-    if (m->actionArg == 0) {
-        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_WALK_TO_STONE_PATCH);
+    switch (m->actionArg) {
+        case 0:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_WALK_TO_STONE_PATCH);
+        break;
+        case 1:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PATCH_GET);
+        break;
+        case 2:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PICK_UP_STONE_PATCH);
+        break;
+        case 3:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_EQUIP_STONE_PATCH);
+        break;
+        case 4:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_REEL_BACK);
+        break;
+        case 5:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_STONE_TRANSFORMATION);
+            m->actionTimer = 0;
+        break;
+        case 6:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_FALL_BACK);
+            m->actionTimer++;
+            marioCutsceneFaceAnglePitch -= 0x200 + (m->actionTimer * m->actionTimer * m->actionTimer * 0.1f);
+            m->pos[0] += 3.0f;
+            m->pos[1] -= CLAMP(m->actionTimer / 5, 0, 2);
+        break;
+        case 7:
+            m->actionTimer++;
+            m->pos[1] -= CLAMP(4.0f + (m->actionTimer/2), 0, 40);
+            m->pos[0] += 1.0f;
+        break;
+        case 8:
+            m->pos[1] -= 35.0f;
+            marioCutsceneFaceAngleRoll += 0x100;
+            marioCutsceneFaceAnglePitch += 0x50;
+        break;
+        case 9:
+            m->pos[1] -= 35.0f;
+            marioCutsceneFaceAngleRoll = 0;
+            marioCutsceneFaceAnglePitch = 0x4000;
+        break;
+        case 10:
+            marioCutsceneFaceAnglePitch = 0;
+            marioCutsceneFaceAngleRoll = -0x4000;
+            set_mario_animation(m, MARIO_ANIM_HANG_ON_OWL);
+            if (m->actionTimer == 1) {
+                m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+            }
+            m->actionTimer++;
+        break;
+        case 11:
+            marioCutsceneFaceAnglePitch = 0;
+            set_mario_animation(m, MARIO_ANIM_HANG_ON_OWL);
+            m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+            m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
+        break;
     }
-    else  if (m->actionArg == 1) {
-        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PATCH_GET);
-    }
-    else  if (m->actionArg == 2) {
-        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PICK_UP_STONE_PATCH);
-    }
-    else  if (m->actionArg == 3) {
-        set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_EQUIP_STONE_PATCH);
-    }
+
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+        vec3s_set(m->marioObj->header.gfx.angle, marioCutsceneFaceAngleRoll, m->faceAngle[1], marioCutsceneFaceAnglePitch);
     return FALSE;
 }
 

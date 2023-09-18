@@ -265,6 +265,12 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope44": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -613,6 +619,16 @@
             "envelope": "envelope43",
             "sound": "4C_glockenspiel"
         },
+        "Angklung": {
+            "release_rate": 208,
+            "envelope": "envelope44",
+            "sound": "56_angklung"
+        },
+        "Maracas": {
+            "release_rate": 208,
+            "envelope": "envelope42",
+            "sound": "57_maracas"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -753,6 +769,8 @@
         "Harp",
         "Oboe",
 
-        "Glockenspiel"
+        "Glockenspiel",
+        "Angklung",
+        "Maracas"
     ]
 }

@@ -9,3 +9,6 @@
 #include "anim_mario_geoAction.inc.c"
 #include "anim_PoseLib.inc.c"
 #include "anim_patchequip_001.inc.c"
+#include "anim_spcReelBack.inc.c"
+#include "anim_scpStoneTransformation.inc.c"
+#include "anim_spcFallDown.inc.c"

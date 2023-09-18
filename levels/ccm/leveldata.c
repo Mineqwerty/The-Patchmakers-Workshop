@@ -76,3 +76,7 @@
 #include "levels/ccm/swinging_axe/collision.inc.c"
 #include "levels/ccm/wing_surface/model.inc.c"
 #include "levels/ccm/wing_surface/collision.inc.c"
+#include "levels/ccm/seraphim_anims/anims/data.inc.c"
+#include "levels/ccm/seraphim_anims/anims/table.inc.c"
+#include "levels/ccm/seraphim/anims/data.inc.c"
+#include "levels/ccm/seraphim/anims/table.inc.c"

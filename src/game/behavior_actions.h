@@ -770,3 +770,5 @@ void bhv_swinging_axe_hitbox_init(void);
 void bhv_swinging_axe_hitbox_loop(void);
 void bhv_wing_surface_init(void);
 void bhv_wing_surface_loop(void);
+void bhv_stone_patch_cutscene_shard_init(void);
+void bhv_stone_patch_cutscene_shard_loop(void);

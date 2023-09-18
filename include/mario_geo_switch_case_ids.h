@@ -12,7 +12,8 @@ enum MarioEyesGSCId {
     /*0x05*/ MARIO_EYES_LOOK_RIGHT, // unused
     /*0x06*/ MARIO_EYES_LOOK_UP,    // unused
     /*0x07*/ MARIO_EYES_LOOK_DOWN,  // unused
-    /*0x08*/ MARIO_EYES_DEAD
+    /*0x08*/ MARIO_EYES_DEAD,
+    MARIO_EYES_WINCE
 };
 
 enum MarioHandGSCId {

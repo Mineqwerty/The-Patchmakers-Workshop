@@ -1879,8 +1879,8 @@ void common_patch_cancel(struct MarioState *m) {
     switch (m->curPatch) {
         case PATCH_STONE:
             m->curPatch = PATCH_NONE;
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
-            cur_obj_spawn_particles(&StoneBreak);
+            m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            obj_spawn_particles(&StoneBreak, m->marioObj);
             play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
 
             if (gMarioState->action == ACT_STONE_PATCH_AIRBORNE || ACT_STONE_PATCH_AIR_LAND) {
@@ -2034,6 +2034,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     patch_update(gMarioState);
     gMarioState->patchTimer++;
+    
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);

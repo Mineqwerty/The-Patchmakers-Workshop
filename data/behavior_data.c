@@ -6657,6 +6657,8 @@ const BehaviorScript bhvSeraphim[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_INT(oIntangibleTimer, 0),
+    LOAD_ANIMATIONS(oAnimations, seraphim_anims),
+    ANIMATE(0),
     SET_HOME(),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_seraphim_loop),
@@ -6973,5 +6975,14 @@ const BehaviorScript bhvWingSurface[] = {
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_wing_surface_loop),
         CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStonePatchCutsceneShard[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_stone_patch_cutscene_shard_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_stone_patch_cutscene_shard_loop),
     END_LOOP(),
 };

@@ -1,0 +1,10 @@
+extern const GeoLayout shard30_geo[];
+extern u8 shard30_RMGP01_9457e379_14_ci8[];
+extern u8 shard30_RMGP01_9457e379_14_pal_rgba16[];
+extern Vtx shard30_shard30_mesh_layer_1_vtx_cull[8];
+extern Vtx shard30_shard30_mesh_layer_1_vtx_0[3];
+extern Gfx shard30_shard30_mesh_layer_1_tri_0[];
+extern Gfx mat_shard30_cavesurround[];
+extern Gfx mat_revert_shard30_cavesurround[];
+extern Gfx shard30_shard30_mesh_layer_1[];
+extern Gfx shard30_material_revert_render_settings[];

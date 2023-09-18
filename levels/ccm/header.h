@@ -114,4 +114,8 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/wing_surface/collision_header.h"
 
+#include "levels/ccm/seraphim_anims/anim_header.h"
+
+#include "levels/ccm/seraphim/anim_header.h"
+
 #endif
