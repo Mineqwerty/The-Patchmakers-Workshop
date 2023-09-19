@@ -162,10 +162,10 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, -357, -6875, 8116, 0, 0, 0, (5 << 24) | (5 << 16), bhvStar),
-		OBJECT(MODEL_NONE, -4189, 1722, -398, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, -3678, 1722, -270, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(wf_area_3_collision),
 		MACRO_OBJECTS(wf_area_3_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_WATER),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_RAINY_DAY_ROADSIDE),
 		TERRAIN_TYPE(TERRAIN_SLIDE),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

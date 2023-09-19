@@ -11,6 +11,7 @@ const GeoLayout wf_area_3_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Circle_003_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_Circle_004_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Circle_004_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Circle_009_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -3566, 1210, -267, wf_dl_Plane_003_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -289, -8086, 7704, wf_dl_Plane_006_mesh_layer_1),
 	GEO_CLOSE_NODE(),
