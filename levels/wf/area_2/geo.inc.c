@@ -6,6 +6,7 @@ const GeoLayout wf_area_2_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Circle_005_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_Circle_005_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Circle_006_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_Circle_006_mesh_layer_5),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
