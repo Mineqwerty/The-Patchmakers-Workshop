@@ -75,7 +75,7 @@ void scroll_bob_dl_Plane_006_mesh_layer_5_vtx_0() {
 
 void scroll_bob_dl_Plane_016_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 41;
+	int count = 27;
 	int width = 32 * 0x20;
 
 	static int currentX = 0;
