@@ -82,12 +82,21 @@ void goddess_act_spear_dive(void) {
             o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
             if (cur_obj_init_animation_and_check_if_near_end(7)) {
                 o->oSubAction++;
+                o->oTimer = 0;
             }
             break;
         case 1:
             cur_obj_init_animation(8);
+            f32 floorHeight = find_floor_height(o->oPosX, o->oPosY - 100, o->oPosZ);
 
-            if (o->oTimer == 60) {
+            o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + (500 * (1 + coss(o->oTimer * 0x2D8))), 0.2f);
+
+            if (o->oTimer >= 15) {
+                o->oForwardVel = 70.0f;
+            }
+            cur_obj_move_xz_using_fvel_and_yaw();
+
+            if (o->oTimer == 90) {
                 o->oSubAction++;
             }
 
@@ -597,5 +606,33 @@ Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node) {
                 switchCase->selectedCase = 1;
             }
     }
+    return NULL;
+}
+
+Gfx *geo_switch_goddess_spear(s32 callContext, struct GraphNode *node) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+
+            if (cCutsceneIndex == 26) {
+                switchCase->selectedCase = 2;
+            } else if (cCutsceneIndex == 28) {
+                switchCase->selectedCase = 3;
+            } else {
+                switchCase->selectedCase = 1;
+            }
+    }
+    return NULL;
+}
+
+Vec3f goddessRightHandLocation = {0, 0, 0};
+Mat4 posMtx;
+Gfx *geo_goddess_hand_location_update(s32 callContext, UNUSED struct GraphNode *node, Mat4 *mtx) {
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        create_transformation_from_matrices(posMtx, *mtx, *gCurGraphNodeCamera->matrixPtr);
+        vec3f_set(goddessRightHandLocation, posMtx[3][0], posMtx[3][1], posMtx[3][2]);
+    }
+
     return NULL;
 }

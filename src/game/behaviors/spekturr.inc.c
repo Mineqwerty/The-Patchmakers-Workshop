@@ -47,7 +47,7 @@ void bhv_spekturr_loop(void) {
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_SPEKTURR];
                 cur_obj_spawn_particles(&sSpekturrEmergeMist);
                 if (gDialogID == -1) {
-                    create_automatic_dialog_box(DIALOG_039);
+                    create_automatic_dialog_box(DIALOG_047);
                 }
             }
         break;

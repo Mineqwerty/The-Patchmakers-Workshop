@@ -703,6 +703,8 @@ Gfx *geo_switch_falling_block_shadow(s32 callContext, struct GraphNode *node, UN
 
 Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_goddess_spear(s32 callContext, struct GraphNode *node);
+
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_rosedrift_eyes(s32 callContext, struct GraphNode *node);

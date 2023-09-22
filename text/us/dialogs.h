@@ -305,110 +305,61 @@ Reacting to the Star\n\
 power, the door slowly\n\
 opens."))
 
-DEFINE_DIALOG(DIALOG_039, 0b10, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_039, 0b10, 3, 30, 200, _("\
 Another fallen to the wastes...\n\
-Tell us, why do we not live?"))
+Please, share a sliver of your life...\n\
+Ours were taken in a long, long battle."))
 
-DEFINE_DIALOG(DIALOG_040, 1, 3, 30, 200, _("\
-Warning!\n\
-Cold, Cold Crevasse\n\
-Below!"))
+DEFINE_DIALOG(DIALOG_040, 0b10, 3, 30, 200, _("\
+It was centuries ago when we perished...\n\
+We remember it clearly. When the war began,\n\
+the realm was still a pristine blue..."))
 
-DEFINE_DIALOG(DIALOG_041, 1, 3, 30, 200, _("\
-I win! You lose!\n\
-Ha ha ha!\n\
-\n\
-That's what you get for\n\
-messin' with Koopa the\n\
-Quick.\n\
-Better luck next time!"))
+DEFINE_DIALOG(DIALOG_041, 0b10, 3, 30, 200, _("\
+Many say gods have no flaws, but\n\
+they often overlook the consuming greed\n\
+all powerful beings are taken by eventually..."))
 
-DEFINE_DIALOG(DIALOG_042, 1, 4, 30, 200, _("\
-Caution! Narrow Bridge!\n\
-Cross slowly!\n\
-\n\
-\n\
-You can jump to the edge\n\
-of the cliff and hang on,\n\
-and you can climb off the\n\
-edge if you move slowly.\n\
-When you want to let go,\n\
-either press [Z] or press\n\
-the Control Stick in the\n\
-direction of Mario's back.\n\
-To climb up, press Up on\n\
-the Control Stick. To\n\
-scurry up quickly, press\n\
-the [A] Button."))
+DEFINE_DIALOG(DIALOG_042, 0b10, 3, 30, 200, _("\
+This realm was sought after by many of the\n\
+gods. And when that greed set in, a bloody\n\
+war broke out..."))
 
-DEFINE_DIALOG(DIALOG_043, 1, 5, 30, 200, _("\
-If you jump and hold the\n\
-[A] Button, you can hang on\n\
-to some objects overhead.\n\
-It's the same as grabbing\n\
-a flying bird!"))
+DEFINE_DIALOG(DIALOG_043, 0b10, 3, 30, 200, _("\
+We lost our lives early on. Mere servants could\n\
+never stand up to gods. Our bodies fell to the\n\
+ground below and quickly polluted it in a fog..."))
 
-DEFINE_DIALOG(DIALOG_044, 1, 5, 95, 200, _("\
-Whooo's there? Whooo\n\
-woke me up? It's still\n\
-daylight--I should be\n\
-sleeping!\n\
-\n\
-Hey, as long as I'm\n\
-awake, why not take a\n\
-short flight with me?\n\
-Press and hold [A] to grab\n\
-on. Release [A] to let go.\n\
-I'll take you wherever\n\
-you want to go, as long\n\
-as my wings hold out.\n\
-Watch my shadow, and\n\
-grab on."))
+DEFINE_DIALOG(DIALOG_044, 0b10, 3, 95, 200, _("\
+Our spirits, however, got to witness the battles.\n\
+The gods were relentless in killing each other.\n\
+Their golden ichor was spread throughout the sky."))
 
-DEFINE_DIALOG(DIALOG_045, 1, 6, 95, 200, _("\
-Whew! I'm just about\n\
-flapped out. You should\n\
-lay off the pasta, Mario!\n\
-That's it for now. Press\n\
-[A] to let go. Okay,\n\
-bye byyyyyyeeee!"))
+DEFINE_DIALOG(DIALOG_045, 0b10, 3, 95, 200, _("\
+It became apparent that one goddess in particular\n\
+had her eyes set on this realm being her dominion.\n\
+Throughout the war, she inflicted many wounds."))
 
-DEFINE_DIALOG(DIALOG_046, 1, 5, 30, 200, _("\
-You have to master three\n\
-important jumping\n\
-techniques.\n\
-First try the Triple Jump.\n\
-\n\
-Run fast, then jump three\n\
-times, one, two, three.\n\
-If you time the jumps\n\
-right, you'll hop, skip,\n\
-then jump really high.\n\
-Next, go for distance\n\
-with the Long Jump. Run,\n\
-press [Z] to crouch then [A]\n\
-to jump really far.\n\
-\n\
-To do the Wall Kick, press\n\
-[A] to jump at a wall, then\n\
-jump again when you hit\n\
-the wall.\n\
-\n\
-Got that? Triple Jump,\n\
-Long Jump, Wall Kick.\n\
-Practice, practice,\n\
-practice. You don't stand\n\
-a chance without them."))
+DEFINE_DIALOG(DIALOG_046, 0b10, 3, 30, 200, _("\
+The goddess Aurumcael...\n\
+With her spear in hand, she had slain the final\n\
+gods, forever dyeing the realm a deep golden color.\n\
+She had won, but at the cost of the realm's\n\
+beauty. The realm was now an empty graveyard.\n\
+Aurumcael did not make it out unscathed though."))
 
-DEFINE_DIALOG(DIALOG_047, 1, 2, 95, 200, _("\
-Hi! I'll prepare the\n\
-cannon for you!"))
+DEFINE_DIALOG(DIALOG_047, 0b10, 3, 95, 200, _("\
+The last gods dying to her blade bestowed a final\n\
+curse upon her. One that prevented her from ever\n\
+leaving the realm she had ruined.\n\
+The curse also placed a shining halo on her head...\n\
+One that drips burning ichor that pierces her flesh,\n\
+weakening her so that even a mortal can harm her."))
 
-DEFINE_DIALOG(DIALOG_048, 1, 4, 30, 200, _("\
-Snow Mountain Summit\n\
-Watch for slippery\n\
-conditions! Please enter\n\
-the cottage first."))
+DEFINE_DIALOG(DIALOG_048, 0b10, 3, 30, 200, _("\
+Aurumcael now resides alone in her airborne palace...\n\
+The victor of a battle turned fruitless because of\n\
+her..."))
 
 DEFINE_DIALOG(DIALOG_049, 1, 5, 30, 200, _("\
 Remember that tricky Wall\n\
