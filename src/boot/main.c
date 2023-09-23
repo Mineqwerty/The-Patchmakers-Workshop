@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include <PR/os_internal_reg.h>
 #include <PR/os_system.h>
 #include <PR/os_vi.h>
 #include <stdio.h>
@@ -21,6 +22,7 @@
 #include "game/puppyprint.h"
 #include "game/puppylights.h"
 #include "game/profiling.h"
+#include "game/emutest.h"
 
 // Message IDs
 enum MessageIDs {
@@ -80,8 +82,8 @@ UNUSED static u16 sDebugTextKeySequence[] = {
 };
 static s16 sDebugTextKey = 0;
 UNUSED void handle_debug_key_sequences(void) {
-    if (gPlayer3Controller->buttonPressed != 0) {
-        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer3Controller->buttonPressed) {
+    if (gPlayer1Controller->buttonPressed != 0) {
+        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer1Controller->buttonPressed) {
             if (sDebugTextKey == ARRAY_COUNT(sDebugTextKeySequence)) {
                 sDebugTextKey = 0;
                 gShowDebugText ^= 1;
@@ -301,24 +303,57 @@ void handle_dp_complete(void) {
     sCurrentDisplaySPTask = NULL;
 }
 
-OSTimer RCPHangTimer;
+OSTimerEx RCPHangTimer;
 void start_rcp_hang_timer(void) {
-    osSetTimer(&RCPHangTimer, OS_USEC_TO_CYCLES(3000000), (OSTime) 0, &gIntrMesgQueue, MESG_RCP_HUNG);
+    if (RCPHangTimer.started == FALSE) {
+        osSetTimer(&RCPHangTimer.timer, OS_USEC_TO_CYCLES(3000000), (OSTime) 0, &gIntrMesgQueue, (OSMesg) MESG_RCP_HUNG);
+        RCPHangTimer.started = TRUE;
+    }
 }
 
 void stop_rcp_hang_timer(void) {
-    osStopTimer(&RCPHangTimer);
+    osStopTimer(&RCPHangTimer.timer);
+    RCPHangTimer.started = FALSE;
 }
 
 void alert_rcp_hung_up(void) {
     error("RCP is HUNG UP!! Oh! MY GOD!!");
 }
-extern void crash_screen_init(void);
 
+/**
+ * Increment the first and last values of the stack.
+ * If they're different, that means an error has occured, so trigger a crash.
+*/
+#ifdef DEBUG
+void check_stack_validity(void) {
+    gIdleThreadStack[0]++;
+    gIdleThreadStack[THREAD1_STACK - 1]++;
+    assert(gIdleThreadStack[0] == gIdleThreadStack[THREAD1_STACK - 1], "Thread 1 stack overflow.")
+    gThread3Stack[0]++;
+    gThread3Stack[THREAD3_STACK - 1]++;
+    assert(gThread3Stack[0] == gThread3Stack[THREAD3_STACK - 1], "Thread 3 stack overflow.")
+    gThread4Stack[0]++;
+    gThread4Stack[THREAD4_STACK - 1]++;
+    assert(gThread4Stack[0] == gThread4Stack[THREAD4_STACK - 1], "Thread 4 stack overflow.")
+    gThread5Stack[0]++;
+    gThread5Stack[THREAD5_STACK - 1]++;
+    assert(gThread5Stack[0] == gThread5Stack[THREAD5_STACK - 1], "Thread 5 stack overflow.")
+#if ENABLE_RUMBLE
+    gThread6Stack[0]++;
+    gThread6Stack[THREAD6_STACK - 1]++;
+    assert(gThread6Stack[0] == gThread6Stack[THREAD6_STACK - 1], "Thread 6 stack overflow.")
+#endif
+}
+#endif
+
+
+extern void crash_screen_init(void);
+extern OSViMode VI;
 void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
     alloc_pool();
     load_engine_code_segment();
+    detect_emulator();
 #ifndef UNF
     crash_screen_init();
 #endif
@@ -335,16 +370,48 @@ void thread3_main(UNUSED void *arg) {
     osSyncPrintf("Compiler: %s\n", __compiler__);
     osSyncPrintf("Linker  : %s\n", __linker__);
 #endif
+
+    if (!(gEmulator & EMU_CONSOLE)) {
+        gBorderHeight = BORDER_HEIGHT_EMULATOR;
+#ifdef RCVI_HACK
+        VI.comRegs.vSync = 525*20;   
+        change_vi(&VI, SCREEN_WIDTH, SCREEN_HEIGHT);
+        osViSetMode(&VI);
+        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+        osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
+#endif
+    } else {
+        gBorderHeight = BORDER_HEIGHT_CONSOLE;
+    }
+#ifdef DEBUG
+    gIdleThreadStack[0] = 0;
+    gIdleThreadStack[THREAD1_STACK - 1] = 0;
+    gThread3Stack[0] = 0;
+    gThread3Stack[THREAD3_STACK - 1] = 0;
+    gThread4Stack[0] = 0;
+    gThread4Stack[THREAD4_STACK - 1] = 0;
+    gThread5Stack[0] = 0;
+    gThread5Stack[THREAD5_STACK - 1] = 0;
+#if ENABLE_RUMBLE
+    gThread6Stack[0] = 0;
+    gThread6Stack[THREAD6_STACK - 1] = 0;
+#endif
+#endif
+
     gCacheEmulated = TRUE;
-    create_thread(&gSoundThread, THREAD_4_SOUND, thread4_sound, NULL, gThread4Stack + 0x2000, 20);
+
+    create_thread(&gSoundThread, THREAD_4_SOUND, thread4_sound, NULL, gThread4Stack + THREAD4_STACK, 20);
     osStartThread(&gSoundThread);
 
-    create_thread(&gGameLoopThread, THREAD_5_GAME_LOOP, thread5_game_loop, NULL, gThread5Stack + 0x2000, 10);
+    create_thread(&gGameLoopThread, THREAD_5_GAME_LOOP, thread5_game_loop, NULL, gThread5Stack + THREAD5_STACK, 10);
     osStartThread(&gGameLoopThread);
 
     while (TRUE) {
         OSMesg msg;
         osRecvMesg(&gIntrMesgQueue, &msg, OS_MESG_BLOCK);
+#ifdef DEBUG
+        check_stack_validity();
+#endif
         switch ((uintptr_t) msg) {
             case MESG_VI_VBLANK:
                 handle_vblank();
@@ -424,7 +491,7 @@ void turn_off_audio(void) {
     }
 }
 
-void change_vi(OSViMode *mode, int width, int height){
+void change_vi(OSViMode *mode, int width, int height) {
     mode->comRegs.width  = width;
     mode->comRegs.xScale = ((width * 512) / 320);
     if (height > 240) {
@@ -485,7 +552,7 @@ void thread1_idle(UNUSED void *arg) {
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
-    create_thread(&gMainThread, THREAD_3_MAIN, thread3_main, NULL, gThread3Stack + 0x2000, 100);
+    create_thread(&gMainThread, THREAD_3_MAIN, thread3_main, NULL, gThread3Stack + THREAD3_STACK, 100);
     osStartThread(&gMainThread);
 
     osSetThreadPri(NULL, 0);
@@ -523,6 +590,6 @@ void main_func(void) {
 #ifdef ISVPRINT
     osInitialize_fakeisv();
 #endif
-    create_thread(&gIdleThread, THREAD_1_IDLE, thread1_idle, NULL, gIdleThreadStack + 0x800, 100);
+    create_thread(&gIdleThread, THREAD_1_IDLE, thread1_idle, NULL, gIdleThreadStack + THREAD1_STACK, 100);
     osStartThread(&gIdleThread);
 }

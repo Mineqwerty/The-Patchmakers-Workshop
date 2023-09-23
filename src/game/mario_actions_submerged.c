@@ -210,7 +210,7 @@ void apply_water_current(struct MarioState *m, Vec3f step) {
     step[0] += m->waterCurrentVel[0];
     step[1] += m->waterCurrentVel[1];
     step[2] += m->waterCurrentVel[2];
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < ARRAY_COUNT(gCurrentArea->whirlpools); i++) {
         struct Whirlpool *whirlpool = gCurrentArea->whirlpools[i];
         if (whirlpool != NULL) {
             strength = 0.0f;

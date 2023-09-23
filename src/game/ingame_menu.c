@@ -1561,7 +1561,7 @@ void render_dialog_entries(void) {
         case DIALOG_STATE_VERTICAL:
             gDialogBoxOpenTimer = 0.0f;
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON)) {
                 if (gLastDialogPageStrPos == -1) {
                     handle_special_dialog_text(gDialogID);
                     gDialogBoxState = DIALOG_STATE_CLOSING;
@@ -2104,20 +2104,14 @@ void change_dialog_camera_angle(void) {
 }
 
 void shade_screen(void) {
-    create_dl_translation_matrix(MENU_MTX_PUSH, GFX_DIMENSIONS_FROM_LEFT_EDGE(0), SCREEN_HEIGHT, 0);
+    Gfx* dlHead = gDisplayListHead;
 
-    // This is a bit weird. It reuses the dialog text box (width 130, height -80),
-    // so scale to at least fit the screen.
-#ifdef WIDESCREEN
-    create_dl_scale_matrix(MENU_MTX_NOPUSH,
-                           GFX_DIMENSIONS_ASPECT_RATIO * SCREEN_HEIGHT / 130.0f, 3.0f, 1.0f);
-#else
-    create_dl_scale_matrix(MENU_MTX_NOPUSH, 2.6f, 3.4f, 1.0f);
-#endif
+    gSPDisplayList(dlHead++, dl_shade_screen_begin);
+    gDPFillRectangle(dlHead++, GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), gBorderHeight,
+        (GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1), ((SCREEN_HEIGHT - gBorderHeight) - 1));
+    gSPDisplayList(dlHead++, dl_shade_screen_end);
 
-    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 110);
-    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
-    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gDisplayListHead = dlHead;
 }
 
 void print_animated_red_coin(s16 x, s16 y) {
@@ -2154,8 +2148,36 @@ void print_animated_red_coin(s16 x, s16 y) {
 void render_pause_red_coins(void) {
     s8 x;
 
-    for (x = 0; x < gRedCoinsCollected; x++) {
-        print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(30) - x * 20, 16);
+    if (gRedCoinsCollected <= 9) {
+        for (x = 0; x < gRedCoinsCollected; x++) {
+            print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(30) - x * 20, 16);
+        }
+    }
+    else {
+        print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(108), 16);
+        Mtx *mtx;
+
+        mtx = alloc_display_list(sizeof(*mtx));
+        if (mtx == NULL) {
+            return;
+        }
+        guOrtho(mtx, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -10.0f, 10.0f, 1.0f);
+        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH);
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
+
+        s8 redCoinCount = gRedCoinsCollected;
+        if (redCoinCount > 99) {
+            redCoinCount = 99;
+        }
+
+        add_glyph_texture(GLYPH_MULTIPLY);
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(100), 16, 0);
+        add_glyph_texture(char_to_glyph_index((char) (48 + (redCoinCount / 10))));
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(86), 16, 0);
+        add_glyph_texture(char_to_glyph_index((char) (48 + (redCoinCount % 10))));
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(86), 16, 1);
+
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
     }
 }
 
@@ -2367,6 +2389,7 @@ void render_pause_castle_menu_box(s16 x, s16 y) {
 
     create_dl_translation_matrix(MENU_MTX_PUSH, x + 6, y - 28, 0);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, DEFAULT_DIALOG_BOX_ANGLE, 0, 0, 1.0f);
+    gDPPipeSync(gDisplayListHead++);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -2789,7 +2812,7 @@ s32 render_pause_courses_and_castle(void) {
                 update_dl_dpad_patches();
             }
 
-            if (gPlayer3Controller->buttonPressed & (START_BUTTON)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
@@ -2864,7 +2887,7 @@ s32 render_pause_courses_and_castle(void) {
             render_pause_castle_menu_box(160, 143);
             render_pause_castle_main_strings(104, 60);
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON | Z_TRIG)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON | Z_TRIG)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_NONE;
@@ -2944,7 +2967,7 @@ void print_hud_course_complete_coins(s16 x, s16 y) {
             gCourseCompleteCoins++;
             play_sound(SOUND_MENU_YOSHI_GAIN_LIVES, gGlobalSoundSource);
 
-#ifndef DISABLE_LIVES
+#ifdef ENABLE_LIVES
             if (gCourseCompleteCoins && ((gCourseCompleteCoins % 50) == 0)) {
                 play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
                 gMarioState->numLives++;
@@ -3088,9 +3111,6 @@ s32 render_course_complete_screen(void) {
         case DIALOG_STATE_OPENING:
             render_course_complete_lvl_info_and_hud_str();
             if (gCourseDoneMenuTimer > 100 && gCourseCompleteCoinsEqual) {
-#ifdef SAVE_NUM_LIVES
-                save_file_set_num_lives(gMarioState->numLives);
-#endif
                 gDialogBoxState = DIALOG_STATE_VERTICAL;
                 level_set_transition(-1, NULL);
                 gDialogTextAlpha = 0;
@@ -3103,7 +3123,7 @@ s32 render_course_complete_screen(void) {
             render_course_complete_lvl_info_and_hud_str();
             render_save_confirmation(100, 86, &gDialogLineNum, 20);
 
-            if (gCourseDoneMenuTimer > 110 && (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
+            if (gCourseDoneMenuTimer > 110 && (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
                 gDialogBoxState = DIALOG_STATE_OPENING;
