@@ -1,14 +1,5 @@
-Lights1 bitdw_dl_f3dlite_material_015_lights = gdSPDefLights1(
-	0x2B, 0x21, 0x19,
-	0x5D, 0x4B, 0x3C, 0x28, 0x28, 0x28);
 
-Lights1 bitdw_dl_hurt_floor_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
-Lights1 bitdw_dl_f3dlite_material_021_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
 Gfx bitdw_dl_bigthorn_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 bitdw_dl_bigthorn_ci4[] = {
@@ -14377,7 +14368,8 @@ Gfx mat_bitdw_dl_f3dlite_material_015[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(bitdw_dl_f3dlite_material_015_lights),
+    gsSPLightColor(LIGHT_1, 0x5d4b3cff),
+    gsSPLightColor(LIGHT_2, 0x2b2119ff),
 	gsSPEndDisplayList(),
 };
 
@@ -14548,7 +14540,8 @@ Gfx mat_bitdw_dl_hurt_floor[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(bitdw_dl_hurt_floor_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 
@@ -14748,7 +14741,8 @@ Gfx mat_bitdw_dl_f3dlite_material_021[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(bitdw_dl_f3dlite_material_021_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 

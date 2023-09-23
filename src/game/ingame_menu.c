@@ -26,6 +26,7 @@
 #include "config.h"
 #include "puppycam2.h"
 #include "main.h"
+#include "src/game/geo_misc.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
@@ -624,15 +625,15 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     u8 index = 0;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
-        if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
-        if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
         
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
-        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
             index += 2;
              gStarSelectDisturbed = 1;
         }
-        if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
             index++;
             gStarSelectDisturbed = 1;
         }
@@ -668,10 +669,10 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
 void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
     u8 index = 0;
 
-        if (gPlayer3Controller->buttonDown & R_TRIG) {
+        if (gPlayer1Controller->buttonDown & R_TRIG) {
             index += 2;
         }
-        else if (gPlayer3Controller->buttonDown & L_TRIG || gPlayer3Controller->buttonDown & Z_TRIG) {
+        else if (gPlayer1Controller->buttonDown & L_TRIG || gPlayer1Controller->buttonDown & Z_TRIG) {
             index++;
         }
         else {
@@ -714,13 +715,13 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
 
 void handle_patch_menu_scrolling(s8 *currentIndex) {
     s8 index = 0;
-    if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS))) index -=4;
-    if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS))) index += 4;
-    if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS))) index +=1;
-    if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS))) index -=1;
+    if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS))) index -=4;
+    if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS))) index += 4;
+    if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS))) index +=1;
+    if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS))) index -=1;
     
-    if (gPlayer3Controller->rawStickX < 60 && gPlayer3Controller->rawStickX > -60 &&
-        gPlayer3Controller->rawStickY < 60 && gPlayer3Controller->rawStickY > -60 && gPatchMenuTimer == 1) {
+    if (gPlayer1Controller->rawStickX < 60 && gPlayer1Controller->rawStickX > -60 &&
+        gPlayer1Controller->rawStickY < 60 && gPlayer1Controller->rawStickY > -60 && gPatchMenuTimer == 1) {
             gPatchMenuTimer = 0;
     }
 
@@ -1673,7 +1674,7 @@ void new_dialog_render_dialog_entries(void) {
         case DIALOG_STATE_VERTICAL:
             gDialogBoxOpenTimer = 0.0f;
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
                 
                 
                 if (gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) {
@@ -2789,22 +2790,22 @@ s32 render_pause_courses_and_castle(void) {
             if (gSubMenuIndex == 2) {
                 u8 dpadMap[4]; 
                 save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-                if (gPlayer3Controller->buttonPressed & (U_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (U_JPAD)) {
                     dpadMap[0] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (R_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (R_JPAD)) {
                     dpadMap[1] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (D_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (D_JPAD)) {
                     dpadMap[2] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (L_JPAD)) {
                     dpadMap[3] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
@@ -2831,7 +2832,7 @@ s32 render_pause_courses_and_castle(void) {
                 return index;
             }
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON)) {
                 if (gSubMenuIndex == 1) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);

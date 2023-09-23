@@ -1,18 +1,6 @@
-Lights1 hmc_dl_f3dlite_material_003_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 hmc_dl_f3dlite_material_lights = gdSPDefLights1(
-	0x3B, 0x29, 0xF,
-	0x7C, 0x5A, 0x29, 0x28, 0x28, 0x28);
 
-Lights1 hmc_dl_noslip_lights = gdSPDefLights1(
-	0x66, 0x7F, 0x56,
-	0xCE, 0xFF, 0xB0, 0x28, 0x28, 0x28);
 
-Lights1 hmc_dl_wattah_lights = gdSPDefLights1(
-	0x2C, 0x5A, 0x7F,
-	0x5F, 0xB8, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx hmc_dl_stainedwalls_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_stainedwalls_rgba16[] = {
@@ -3426,7 +3414,8 @@ Gfx mat_hmc_dl_f3dlite_material_003[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(hmc_dl_f3dlite_material_003_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -3496,7 +3485,8 @@ Gfx mat_hmc_dl_f3dlite_material[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(hmc_dl_f3dlite_material_lights),
+    gsSPLightColor(LIGHT_1, 0x7c5a29ff),
+    gsSPLightColor(LIGHT_2, 0x3b290fff),
 	gsSPEndDisplayList(),
 };
 
@@ -3504,7 +3494,8 @@ Gfx mat_hmc_dl_noslip[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(hmc_dl_noslip_lights),
+    gsSPLightColor(LIGHT_1, 0xceffb0ff),
+    gsSPLightColor(LIGHT_2, 0x667f56ff),
 	gsSPEndDisplayList(),
 };
 
@@ -3532,7 +3523,8 @@ Gfx mat_hmc_dl_wattah[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetPrimColor(0, 0, 255, 255, 255, 62),
-	gsSPSetLights1(hmc_dl_wattah_lights),
+    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
+    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
 	gsSPEndDisplayList(),
 };
 

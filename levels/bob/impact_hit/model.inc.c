@@ -1,10 +1,4 @@
-Lights1 impact_hit_f3d_material_003_lights = gdSPDefLights1(
-	0x7F, 0x75, 0x0,
-	0xFE, 0xEB, 0x0, 0x28, 0x28, 0x28);
 
-Lights1 impact_hit_f3d_material_002_lights = gdSPDefLights1(
-	0x7F, 0x41, 0x0,
-	0xFE, 0x83, 0x0, 0x28, 0x28, 0x28);
 
 Vtx impact_hit_umesh_mesh_layer_5_vtx_0[8] = {
 	{{{45, -100, 37},0, {-16, 1008},{0x0, 0x7F, 0x0, 0xEB}}},
@@ -94,7 +88,8 @@ Gfx mat_impact_hit_f3d_material_003[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(impact_hit_f3d_material_003_lights),
+    gsSPLightColor(LIGHT_1, 0xfeeb00ff),
+    gsSPLightColor(LIGHT_2, 0x7f7500ff),
 	gsSPEndDisplayList(),
 };
 
@@ -102,7 +97,8 @@ Gfx mat_impact_hit_f3d_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(impact_hit_f3d_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xfe8300ff),
+    gsSPLightColor(LIGHT_2, 0x7f4100ff),
 	gsSPEndDisplayList(),
 };
 

@@ -1307,15 +1307,15 @@ s32 ray_surface_intersect(Vec3f orig, Vec3f dir, f32 dir_length, struct Surface 
     vec3s_to_vec3f(v1, surface->vertex2);
     vec3s_to_vec3f(v2, surface->vertex3);
     // Get surface normal and extend it by RAY_OFFSET.
-    if (callContext != 2) {
-    Vec3f norm;
-    surface_normal_to_vec3f(norm, surface);
-    vec3_mul_val(norm, RAY_OFFSET);
+    //if (callContext != 2) {
+    //Vec3f norm;
+    //surface_normal_to_vec3f(norm, surface);
+    //vec3_mul_val(norm, RAY_OFFSET);
     // Move the face forward by RAY_OFFSET.
-    vec3f_add(v0, norm);
-    vec3f_add(v1, norm);
-    vec3f_add(v2, norm);
-    }
+    //vec3f_add(v0, norm);
+    //vec3f_add(v1, norm);
+    //vec3f_add(v2, norm);
+    //}
     // Make 'e1' (edge 1) the vector from vertex 0 to vertex 1.
     Vec3f e1;
     vec3f_diff(e1, v1, v0);
@@ -1415,7 +1415,7 @@ void find_surface_on_ray_cell(s32 cellX, s32 cellZ, Vec3f orig, Vec3f normalized
     }
 }
 
-void find_surface_on_ray(Vec3f orig, Vec3f dir, struct Surface **hit_surface, Vec3f hit_pos, s32 flags, u8 callContext) {
+f32 find_surface_on_ray(Vec3f orig, Vec3f dir, struct Surface **hit_surface, Vec3f hit_pos, s32 flags, u8 callContext) {
     Vec3f normalized_dir;
     const f32 invcell = 1.0f / CELL_SIZE;
     PUPPYPRINT_ADD_COUNTER(gPuppyCallCounter.collision_raycast);
@@ -1458,7 +1458,7 @@ void find_surface_on_ray(Vec3f orig, Vec3f dir, struct Surface **hit_surface, Ve
     f32 t_max_z = ABS((p_z + MAX(stp_z, 0.0f) - start_cell_coord_z) * rdinv_z);
 
     while (TRUE) {
-        find_surface_on_ray_cell((s32)p_x, (s32)p_z, orig, normalized_dir, dir_length, hit_surface, hit_pos, &max_length, flags);
+        find_surface_on_ray_cell((s32)p_x, (s32)p_z, orig, normalized_dir, dir_length, hit_surface, hit_pos, &max_length, flags, callContext);
         f32 t_next = MIN(t_max_x, t_max_z);
         if (t_next > 1.0f) {
             break;

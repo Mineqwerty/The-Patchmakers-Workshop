@@ -1,10 +1,4 @@
-Lights1 bob_dl_f3d_material_035_lights = gdSPDefLights1(
-	0x2B, 0x7F, 0x21,
-	0x5E, 0xFF, 0x4B, 0x28, 0x28, 0x28);
 
-Lights1 bob_dl_creepingthornmat_lights = gdSPDefLights1(
-	0x32, 0x50, 0x28,
-	0x6B, 0xA5, 0x59, 0x28, 0x28, 0x28);
 
 Gfx bob_dl_RMGP01_5eaa6816_4_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 bob_dl_RMGP01_5eaa6816_4_ci8[] = {
@@ -26841,7 +26835,8 @@ Gfx mat_bob_dl_f3d_material_035[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(bob_dl_f3d_material_035_lights),
+    gsSPLightColor(LIGHT_1, 0x5eff4bff),
+    gsSPLightColor(LIGHT_2, 0x2b7f21ff),
 	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 1, bob_dl_greentreeceiling_i8),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 2047, 256),
@@ -26937,7 +26932,8 @@ Gfx mat_bob_dl_creepingthornmat[] = {
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(bob_dl_creepingthornmat_lights),
+    gsSPLightColor(LIGHT_1, 0x6ba559ff),
+    gsSPLightColor(LIGHT_2, 0x325028ff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_dl_bigthorn_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadTLUTCmd(5, 4),

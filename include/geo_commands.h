@@ -58,7 +58,6 @@ enum GeoLayoutCommands {
     /*0x1E*/ GEO_CMD_NOP_1E,
     /*0x1F*/ GEO_CMD_NOP_1F,
     /*0x20*/ GEO_CMD_NODE_CULLING_RADIUS,
-    /*0x21*/ GEO_CMD_BONE,
     /*0x1D*/ GEO_CMD_NODE_SCALE_PORTAL,
 };
 

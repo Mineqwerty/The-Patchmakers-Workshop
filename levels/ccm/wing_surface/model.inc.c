@@ -1,6 +1,3 @@
-Lights1 wing_surface_wing_surface_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Vtx wing_surface_Plane_013_mesh_layer_1_vtx_0[28] = {
 	{{ {5713, 2064, 4334}, 0, {-16, 1008}, {237, 126, 0, 255} }},
@@ -58,7 +55,8 @@ Gfx mat_wing_surface_wing_surface[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(wing_surface_wing_surface_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 

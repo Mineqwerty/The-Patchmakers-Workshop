@@ -972,7 +972,7 @@ void initiate_delayed_warp(void) {
 
 #ifdef PUPPYPRINT_DEBUG
     if (gPuppyWarp) {
-        initiate_warp(gPuppyWarp, gPuppyWarpArea, 0x0A, 0);
+        initiate_warp(gPuppyWarp, gPuppyWarpArea, 0x0A, 0, 0);
     }
 #endif
 

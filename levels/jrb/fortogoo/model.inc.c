@@ -1,18 +1,6 @@
-Lights1 fortogoo_f3dlite_material_002_lights = gdSPDefLights1(
-	0x5D, 0x56, 0x47,
-	0xBD, 0xB1, 0x94, 0x28, 0x28, 0x28);
 
-Lights1 fortogoo_f3dlite_material_003_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 fortogoo_fortogoo_eyes_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 fortogoo_podogoo_eyes_hurt_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx fortogoo_imgonline_com_ua_TextureSeamless_HQj5xIdEw9_i8_aligner[] = {gsSPEndDisplayList()};
 u8 fortogoo_imgonline_com_ua_TextureSeamless_HQj5xIdEw9_i8[] = {
@@ -2088,7 +2076,8 @@ Gfx mat_fortogoo_f3dlite_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(fortogoo_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xbdb194ff),
+    gsSPLightColor(LIGHT_2, 0x5d5647ff),
 	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 1, fortogoo_imgonline_com_ua_TextureSeamless_HQj5xIdEw9_i8),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
@@ -2102,7 +2091,8 @@ Gfx mat_fortogoo_f3dlite_material_003[] = {
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(fortogoo_f3dlite_material_003_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fortogoo_maaaarble_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadTLUTCmd(5, 50),
@@ -2152,7 +2142,8 @@ Gfx mat_fortogoo_fortogoo_eyes[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(fortogoo_fortogoo_eyes_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fortogoo_fortogoo_eye_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadTLUTCmd(5, 62),
@@ -2177,7 +2168,8 @@ Gfx mat_fortogoo_podogoo_eyes_hurt[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(fortogoo_podogoo_eyes_hurt_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fortogoo_podogooeyehurt_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadTLUTCmd(5, 33),

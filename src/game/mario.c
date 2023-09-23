@@ -2011,7 +2011,7 @@ u8 check_able_to_use_patch() {
 }
 
 void check_and_change_patch_dpad(u32 dir) {
-    if (gPlayer3Controller->buttonPressed & (dir)) {
+    if (gPlayer1Controller->buttonPressed & (dir)) {
 
         u8 mapID = 0;
         switch (dir) {
@@ -2050,7 +2050,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
     if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        initiate_warp(LEVEL_CCM, 4, 0x0A, 0);
+        initiate_warp(LEVEL_CCM, 4, 0x0A, 0, 0);
     }
 
     //TODO: put these in a more permanent spot

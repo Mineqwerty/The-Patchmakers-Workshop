@@ -1,10 +1,4 @@
-Lights1 blue_star_marker_f3d_material_026_lights = gdSPDefLights1(
-	0x47, 0x50, 0x7A,
-	0x8F, 0xA1, 0xF5, 0x28, 0x28, 0x28);
 
-Lights1 blue_star_marker_f3d_material_025_lights = gdSPDefLights1(
-	0x44, 0x2E, 0x42,
-	0x89, 0x5D, 0x85, 0x28, 0x28, 0x28);
 
 Gfx blue_star_marker_pushpinenv_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 blue_star_marker_pushpinenv_ci8[] = {
@@ -659,7 +653,8 @@ Gfx mat_blue_star_marker_f3d_material_026[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(blue_star_marker_f3d_material_026_lights),
+    gsSPLightColor(LIGHT_1, 0x8fa1f5ff),
+    gsSPLightColor(LIGHT_2, 0x47507aff),
 	gsSPEndDisplayList(),
 };
 
@@ -675,7 +670,8 @@ Gfx mat_blue_star_marker_f3d_material_025[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(blue_star_marker_f3d_material_025_lights),
+    gsSPLightColor(LIGHT_1, 0x895d85ff),
+    gsSPLightColor(LIGHT_2, 0x442e42ff),
 	gsSPEndDisplayList(),
 };
 

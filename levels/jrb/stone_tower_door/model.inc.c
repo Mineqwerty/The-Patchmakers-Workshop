@@ -1,6 +1,3 @@
-Lights1 stone_tower_door_f3d_material_005_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
 Gfx stone_tower_door_RMGP01_42c04f35_14_mip2_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 stone_tower_door_RMGP01_42c04f35_14_mip2_ci4[] = {
@@ -336,7 +333,8 @@ Gfx mat_stone_tower_door_f3d_material_005[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(stone_tower_door_f3d_material_005_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 

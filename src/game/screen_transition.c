@@ -348,7 +348,7 @@ s32 render_screen_transition(s8 transType, u8 transTime, struct WarpTransitionDa
             return render_textured_transition(transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR);
             break;
         case WARP_TRANSITION_GSS_CLOUDS:
-            return render_gss_cloud_transition(fadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR);
+            return render_gss_cloud_transition(sTransitionFadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR);
             break;
     }
 

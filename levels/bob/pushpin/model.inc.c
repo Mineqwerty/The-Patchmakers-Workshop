@@ -1,6 +1,3 @@
-Lights1 pushpin_f3d_material_010_lights = gdSPDefLights1(
-	0x67, 0x25, 0x12,
-	0xCF, 0x4B, 0x25, 0x28, 0x28, 0x28);
 
 Gfx pushpin_pushpinenv_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 pushpin_pushpinenv_ci8[] = {
@@ -322,7 +319,8 @@ Gfx mat_pushpin_f3d_material_010[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(pushpin_f3d_material_010_lights),
+    gsSPLightColor(LIGHT_1, 0xcf4b25ff),
+    gsSPLightColor(LIGHT_2, 0x672512ff),
 	gsSPEndDisplayList(),
 };
 

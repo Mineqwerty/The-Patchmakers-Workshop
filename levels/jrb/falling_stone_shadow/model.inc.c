@@ -1,6 +1,3 @@
-Lights1 falling_stone_shadow_shadow_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
 Vtx falling_stone_shadow_umesh_mesh_layer_6_vtx_0[12] = {
 	{{{-2059, 0, -1150},0, {-2974, -473},{0x0, 0x7F, 0x0, 0xFF}}},
@@ -357,7 +354,8 @@ Gfx mat_falling_stone_shadow_shadow[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, SHADE, SHADE, 0, ENVIRONMENT, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(falling_stone_shadow_shadow_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 

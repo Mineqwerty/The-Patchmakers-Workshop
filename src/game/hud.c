@@ -307,10 +307,10 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
     gSPDisplayList(gDisplayListHead++, &menu_dpad_icon_Plane_004_mesh);
         s8 animateBounce[4] = {0, 0, 0, 0};
 
-        if (gPlayer3Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
-        if (gPlayer3Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
-        if (gPlayer3Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
-        if (gPlayer3Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
+        if (gPlayer1Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
+        if (gPlayer1Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
+        if (gPlayer1Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
+        if (gPlayer1Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
 
         for (int i = 0; i < 4; i++) {
             if (animateBounce[i] % 2 == 1) {

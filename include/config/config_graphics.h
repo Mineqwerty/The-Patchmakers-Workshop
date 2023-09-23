@@ -21,7 +21,7 @@
 // Skybox size modifier, changing this will add support for larger skybox images. NOTE: Vanilla skyboxes may break if you change this option. Be sure to rescale them accordingly.
 // Whenever you change this, make sure to run "make -C tools clean" to rebuild the skybox tool (alternatively go into skyconv.c and change the file in any way (like adding/deleting a space) to specifically rebuild that tool).
 // When increasing this, you should probably also increase the GFX pool size. (the GFX_POOL_SIZE define above)
-#define SKYBOX_SIZE 2
+#define SKYBOX_SIZE 1
 
 /**
  * When this option is enabled, LODs will ONLY work on console.

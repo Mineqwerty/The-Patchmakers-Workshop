@@ -13,6 +13,7 @@
 #include "print.h"
 #include "levels/intro/header.h"
 #include "level_update.h"
+#include "src/game/emutest.h"
 
 
 extern u16 sRenderedFramebuffer;

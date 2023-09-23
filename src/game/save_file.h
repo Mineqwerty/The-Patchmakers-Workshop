@@ -33,7 +33,6 @@ struct SaveFile {
     // Note: the coordinates get set, but are never actually used, since the
     // cap can always be found in a fixed spot within the course
     //Vec3s capPos; // 48 bits
-#endif
     u16 patchFlags;
     u8 dpadPatchMap[4];
 
