@@ -141,7 +141,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (3 << 16), bhvTfpRotaryPlatform),
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (5 << 16), bhvTfpRotaryPlatform),
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (7 << 16), bhvTfpRotaryPlatform),
-		OBJECT(MODEL_SKYBOX_TEST, -95, 1571, -240, 0, 0, 0, 0x00000000, bhvBackgroundObject),
+		//OBJECT(MODEL_SKYBOX_TEST, -95, 1571, -240, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 15012, 6499, -7397, 0, 90, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 7, 910, -1750, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 7, 910, -1750),

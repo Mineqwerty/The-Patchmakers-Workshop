@@ -59,4 +59,6 @@ extern const LevelScript level_main_menu_entry_act_select[];
 
 #include "levels/menu/stc_diorama/geo_header.h"
 
+#include "levels/menu/gss_diorama/geo_header.h"
+
 #endif

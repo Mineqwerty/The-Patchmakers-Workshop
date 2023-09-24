@@ -130,7 +130,7 @@ void spawn_stage_diorama(void) {
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_STONE_TERRACE_CITY_SELECT), 0);
         break;
         case LEVEL_CCM:
-            //spawn_object_abs_with_rot(o, 0, MODEL_STC_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_GOLD_SOAKED_SKY_SELECT), 0);
         break;
     }
@@ -257,6 +257,27 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
                 case 4: coords[0] = -2548.0f; coords[1] = -370.0f; coords[2] = -4470.0f;
                 break;
                 case 5: coords[0] = -2040.0f; coords[1] = -350.0f; coords[2] = -9931.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_CCM:
+            switch (starIndex) {
+                case 0: coords[0] = 2000.0f; coords[1] = 2990.0f; coords[2] = -9660.0f;
+                break;
+                case 1: coords[0] = -80.0f; coords[1] = -270.0f; coords[2] = -9820.0f;
+                break;
+                case 2: coords[0] = -6160.0f; coords[1] = 1890.0f; coords[2] = -3900.0f;
+                break;
+                case 3: coords[0] = -2560.0f; coords[1] = 4550.0f; coords[2] = -2780.0f;
+                break;
+                case 4: coords[0] = -2240.0f; coords[1] = -270.0f; coords[2] = -4460.0f;
+                break;
+                case 5: coords[0] = -2400.0f; coords[1] = 3510.0f; coords[2] = -10060.0f;
                 break;
 
 

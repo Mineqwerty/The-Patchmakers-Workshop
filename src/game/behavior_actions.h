@@ -604,6 +604,7 @@ void bhv_stone_tower_door_init(void);
 void bhv_stone_tower_door_loop(void);
 
 void bhv_stone_gear_loop(void);
+void bhv_stone_gear_init(void);
 
 void bhv_stone_elevator_loop(void);
 

@@ -1351,7 +1351,7 @@ void geo_process_node_and_siblings(struct GraphNode *firstNode) {
         if (curGraphNode->flags & GRAPH_RENDER_ACTIVE) {
             if (curGraphNode->flags & GRAPH_RENDER_CHILDREN_FIRST) {
                 geo_try_process_children(curGraphNode);
-            } else {
+            } else if (curGraphNode->type < ARRAY_COUNT(GeoProcessJumpTable)) {
                 GeoProcessJumpTable[curGraphNode->type](curGraphNode);
             }
         } else {

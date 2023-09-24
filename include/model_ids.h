@@ -645,6 +645,7 @@
 #define MODEL_TTC_DIORAMA                      0x56
 #define MODEL_RDR_DIORAMA                      0x57
 #define MODEL_STC_DIORAMA                      0x58
+#define MODEL_GSS_DIORAMA                      0x59
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo
