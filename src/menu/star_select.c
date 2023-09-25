@@ -115,6 +115,8 @@ void render_100_coin_star(u8 stars) {
     }
 }
 
+// DO NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT FORGET ABOUT THE HARDCODED SCRIPT JUMP IN levels/menu/script.c PLEASE!!!!!!!!!!!!!!!!!!!!
+
 void spawn_stage_diorama(void) {
     switch (gCurrLevelNum) {
         case LEVEL_BOB:

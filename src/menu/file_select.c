@@ -491,14 +491,14 @@ void render_menu_buttons(s32 selectedButtonID) {
 
     // Return to main menu button
     sMainMenuButtons[idx + 4] =
-        spawn_object_rel_with_rot(button, MODEL_MAIN_MENU_YELLOW_FILE_BUTTON,
+        spawn_object_rel_with_rot(button, MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,
                                   bhvMenuButton,  711, -388, -100, 0x0, -0x8000, 0x0);
     sMainMenuButtons[idx + 4]->oMenuButtonScale = MENU_BUTTON_SCALE;
     // Switch to copy menu button
     sMainMenuButtons[idx + 5] =
-        spawn_object_rel_with_rot(button, selectedButtonID == MENU_BUTTON_SCORE ? MODEL_MAIN_MENU_BLUE_COPY_BUTTON : MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,
+        spawn_object_rel_with_rot(button, selectedButtonID == MENU_BUTTON_SCORE ? MODEL_MAIN_MENU_GREEN_SCORE_BUTTON : MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,
                                   bhvMenuButton,    0, -388, -100, 0x0, -0x8000, 0x0);
-    sMainMenuButtons[idx + 5]->oMenuButtonScale = MENU_BUTTON_SCALE;
+    sMainMenuButtons[idx + 5]->oMenuButtonScale = 2.0f;
     // Switch to erase menu button
     sMainMenuButtons[idx + 6] =
         spawn_object_rel_with_rot(button, selectedButtonID == MENU_BUTTON_ERASE ? MODEL_MAIN_MENU_BLUE_COPY_BUTTON : MODEL_MAIN_MENU_RED_ERASE_BUTTON,

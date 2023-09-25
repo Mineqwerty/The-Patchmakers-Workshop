@@ -547,6 +547,7 @@
 
 #define MODEL_SEWNIA                  0x100
 
+//Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100
 #define MODEL_BOUNCE_BULB_OPEN                   0x101
 #define MODEL_PTOOIE                   0x102
@@ -562,12 +563,14 @@
 #define MODEL_IMPACT_HIT           0x10C
 #define MODEL_SHARD_START           0x10D
 
+//Rainy Day Roadside
 #define MODEL_SWAMP_SKEETER                   0x100
 #define MODEL_TALOTAK                   0x101
 #define MODEL_TAEBER                   0x102
 #define MODEL_TAEBER_LEAVES                   0x103
 #define MODEL_BLUBOL                    0x104
 
+//Stone Terrace City
 #define MODEL_STONE_TOWER_DOOR                   0x100
 #define MODEL_GEAR                   0x101
 #define MODEL_GRAPPLE_STONE                   0x102
@@ -587,6 +590,7 @@
 #define MODEL_FALLING_STONE_BLOCK_SHADOW                   0x110
 #define MODEL_FORTOGOO                   0x111
 
+//Gold Soaked Sky
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
 #define MODEL_TORCH_HOLDER                   0x102
@@ -605,6 +609,7 @@
 #define MODEL_SWINGING_AXE                 0x10F
 #define MODEL_WING_SURFACE              0x110
 
+//The Far Plane
 #define MODEL_FLOATING_PLANE                   0x100
 #define MODEL_FAR_PLANE_CUBE                   0x101
 #define MODEL_FAR_PLANE_CUBE_HEAD                   0x102
@@ -620,6 +625,10 @@
 #define MODEL_RING_MISSION_TARGET                   0x10C
 #define MODEL_RING_FRAGMENT                   0x10D
 #define MODEL_TFP_CHECKER_PLATFORM                   0x10E
+
+
+//New File Select
+#define MODEL_PATCHMAKER_SHADOW                   0x100
 
 #define MODEL_PATCHMAKER                   0x130
 

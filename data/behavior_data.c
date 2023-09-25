@@ -54,6 +54,7 @@
 #include "levels/bowser_2/header.h"
 #include "levels/ttm/header.h"
 #include "levels/ccm/header.h"
+#include "levels/new_file_select/header.h"
 
 #include "make_const_nonconst.h"
 #include "behavior_data.h"
@@ -6977,5 +6978,16 @@ const BehaviorScript bhvStonePatchCutsceneShard[] = {
     CALL_NATIVE(bhv_stone_patch_cutscene_shard_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_stone_patch_cutscene_shard_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPatchmakerFileSelect[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, patchmaker_title_screen_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_patchmaker_file_select_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_patchmaker_file_select_loop),
     END_LOOP(),
 };

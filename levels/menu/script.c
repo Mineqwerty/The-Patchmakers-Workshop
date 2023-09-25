@@ -28,7 +28,7 @@ const LevelScript level_main_menu_entry_file_select[] = {
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_RED_ERASE_BUTTON,       geo_menu_erase_button),
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_BLUE_COPY_BUTTON,       geo_menu_copy_button),
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_YELLOW_FILE_BUTTON,     geo_menu_file_button),
-    LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,     geo_menu_score_button),
+    LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,     geo_menu_copy_button),
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, geo_menu_mario_save_button_fade),
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_MARIO_NEW_BUTTON,       geo_menu_mario_new_button),
     LOAD_MODEL_FROM_GEO(MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,  geo_menu_mario_new_button_fade),
@@ -64,7 +64,7 @@ const LevelScript level_main_menu_entry_act_select_exit[] = {
 const LevelScript level_main_menu_entry_act_select[] = {
     
     /* 0*/ CALL(/*arg*/ 0, /*func*/ lvl_set_current_level),
-    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 52)), // goto L1 (exit)
+    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 54)), // goto L1 (exit)
     /* 5*/ INIT_LEVEL(),
     /* 6*/ LOAD_GODDARD(),
     /*10*/ LOAD_LEVEL_DATA(menu),
