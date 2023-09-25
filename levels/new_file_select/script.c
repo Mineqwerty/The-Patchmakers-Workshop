@@ -25,8 +25,8 @@ const LevelScript level_new_file_select_entry[] = {
 	INIT_LEVEL(),
 	LOAD_YAY0(0x7, _new_file_select_segment_7SegmentRomStart, _new_file_select_segment_7SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
-	LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER_SHADOW, patchmaker_title_screen_geo),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
+	LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER_SHADOW, patchmaker_title_screen_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
