@@ -628,3 +628,4 @@ extern const BehaviorScript bhvSwingingAxe[];
 extern const BehaviorScript bhvSwingingAxeHitbox[];
 extern const BehaviorScript bhvWingSurface[];
 extern const BehaviorScript bhvStonePatchCutsceneShard[];
+extern const BehaviorScript bhvPatchmakerFileSelect[];

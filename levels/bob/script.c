@@ -159,7 +159,6 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_ROSEDRIFT, -4835, 2862, -11743, 0, -179, 0, (2 << 16), bhvGenericNPC),
 		OBJECT_WITH_ACTS(MODEL_ROSEDRIFT, -2361, 1140, 1084, 0, -74, 0, (0 << 24) | (0 << 16), bhvGenericNPC, ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_ROSEDRIFT, 5166, 2033, -3303, 0, -74, 0, (1 << 16), bhvGenericNPC, ACT_4 | ACT_5),
-		OBJECT(MODEL_SKYBOX_TEST, -3643, 1100, 1649, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 5063, 6050, 2195, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -2633, 5205, -11776, 0, 0, 0, (3 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1648, 2076, -4289, 0, 157, 0, (1 << 16), bhvCoinFormation),

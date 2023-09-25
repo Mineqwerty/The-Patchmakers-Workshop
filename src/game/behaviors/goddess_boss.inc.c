@@ -89,14 +89,14 @@ void goddess_act_spear_dive(void) {
             cur_obj_init_animation(8);
             f32 floorHeight = find_floor_height(o->oPosX, o->oPosY - 100, o->oPosZ);
 
-            o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + (500 * (1 + coss(o->oTimer * 0x2D8))), 0.2f);
+            o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + (500 * (1 + coss(o->oTimer * 0x5B0))), 0.2f);
 
             if (o->oTimer >= 15) {
-                o->oForwardVel = 70.0f;
+                o->oForwardVel = 140.0f;
             }
             cur_obj_move_xz_using_fvel_and_yaw();
 
-            if (o->oTimer == 90) {
+            if (o->oTimer == 53) {
                 o->oSubAction++;
             }
 

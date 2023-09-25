@@ -1,0 +1,11 @@
+extern const GeoLayout new_file_select_area_1_geo[];
+extern const GeoLayout new_file_select_area_1[];
+extern const Collision new_file_select_area_1_collision[];
+extern const MacroObject new_file_select_area_1_macro_objs[];
+extern Lights1 new_file_select_dl_f3dlite_material_lights;
+extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_cull[8];
+extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_0[28];
+extern Gfx new_file_select_dl_Plane_mesh_layer_1_tri_0[];
+extern Gfx mat_new_file_select_dl_f3dlite_material[];
+extern Gfx new_file_select_dl_Plane_mesh_layer_1[];
+extern Gfx new_file_select_dl_material_revert_render_settings[];

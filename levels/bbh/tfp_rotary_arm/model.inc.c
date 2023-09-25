@@ -1,6 +1,3 @@
-Lights1 tfp_rotary_arm_f3dlite_material_027_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx tfp_rotary_arm_weldarrow_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 tfp_rotary_arm_weldarrow_rgba16[] = {
@@ -539,7 +536,8 @@ Gfx mat_tfp_rotary_arm_f3dlite_material_027[] = {
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(tfp_rotary_arm_f3dlite_material_027_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, tfp_rotary_arm_weldarrow_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, 0, G_TX_WRAP | G_TX_NOMIRROR, 7, 0),
 	gsDPLoadBlock(7, 0, 0, 2047, 64),

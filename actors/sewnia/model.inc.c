@@ -1,30 +1,9 @@
-Lights1 sewnia_f3d_material_010_lights = gdSPDefLights1(
-	0x6E, 0x6E, 0x6E,
-	0xDE, 0xDE, 0xDE, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3d_material_005_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3dlite_material_lights = gdSPDefLights1(
-	0x74, 0x6B, 0x50,
-	0xEA, 0xD8, 0xA4, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3dlite_material_001_lights = gdSPDefLights1(
-	0x74, 0x6B, 0x50,
-	0xEA, 0xD8, 0xA4, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3d_material_003_layer1_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3d_material_003_layer4_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 sewnia_f3d_material_008_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx sewnia_sewniabody_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 sewnia_sewniabody_ci8[] = {
@@ -3594,7 +3573,8 @@ Gfx mat_sewnia_f3d_material_010[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-	gsSPSetLights1(sewnia_f3d_material_010_lights),
+    gsSPLightColor(LIGHT_1, 0xdededeff),
+    gsSPLightColor(LIGHT_2, 0x6e6e6eff),
 	gsSPEndDisplayList(),
 };
 
@@ -3623,7 +3603,8 @@ Gfx mat_sewnia_f3d_material_005[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-	gsSPSetLights1(sewnia_f3d_material_005_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -3646,7 +3627,8 @@ Gfx mat_sewnia_f3dlite_material[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-	gsSPSetLights1(sewnia_f3dlite_material_lights),
+    gsSPLightColor(LIGHT_1, 0xead8a4ff),
+    gsSPLightColor(LIGHT_2, 0x746b50ff),
 	gsSPEndDisplayList(),
 };
 
@@ -3676,7 +3658,8 @@ Gfx mat_sewnia_f3dlite_material_001[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(sewnia_f3dlite_material_001_lights),
+    gsSPLightColor(LIGHT_1, 0xead8a4ff),
+    gsSPLightColor(LIGHT_2, 0x746b50ff),
 	gsSPEndDisplayList(),
 };
 
@@ -3704,7 +3687,8 @@ Gfx mat_sewnia_f3d_material_003_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(sewnia_f3d_material_003_layer1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -3733,7 +3717,8 @@ Gfx mat_sewnia_f3d_material_003_layer4[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(sewnia_f3d_material_003_layer4_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -3758,7 +3743,8 @@ Gfx mat_sewnia_f3d_material_008[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(sewnia_f3d_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 

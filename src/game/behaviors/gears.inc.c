@@ -2,6 +2,12 @@
 #include "src/game/cutscene.h"
 #include "src/game/level_update.h"
 
+void bhv_stone_gear_init(void) {
+    if (o->oBehParams2ndByte >= 2) {
+        obj_scale_xyz(o, 1.0f, 2.0f, 1.0f);
+    }
+}
+
 void bhv_stone_gear_loop(void) {
 
     u8 turnTimer = 16;
@@ -30,10 +36,6 @@ void bhv_stone_gear_loop(void) {
                 o->oAction = 0;
             }
             break;
-    }
-
-    if (o->oBehParams2ndByte >= 2) {
-        obj_scale_xyz(o, 1, 2, 1);
     }
 }
 

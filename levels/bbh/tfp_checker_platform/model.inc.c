@@ -1,6 +1,3 @@
-Lights1 tfp_checker_platform_f3dlite_material_043_lights = gdSPDefLights1(
-	0x62, 0x4F, 0x7F,
-	0xC7, 0xA3, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx tfp_checker_platform_RMGP01_9b1a69aa_14_mip2_ia8_aligner[] = {gsSPEndDisplayList()};
 u8 tfp_checker_platform_RMGP01_9b1a69aa_14_mip2_ia8[] = {
@@ -185,7 +182,8 @@ Gfx mat_tfp_checker_platform_f3dlite_material_043[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(tfp_checker_platform_f3dlite_material_043_lights),
+    gsSPLightColor(LIGHT_1, 0xc7a3ffff),
+    gsSPLightColor(LIGHT_2, 0x624f7fff),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, tfp_checker_platform_RMGP01_9b1a69aa_14_mip2_ia8),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),

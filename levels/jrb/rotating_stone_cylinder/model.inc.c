@@ -1,6 +1,3 @@
-Lights1 rotating_stone_cylinder_f3dlite_material_002_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx rotating_stone_cylinder__1090940010_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 rotating_stone_cylinder__1090940010_rgba16[] = {
@@ -606,7 +603,8 @@ Gfx mat_rotating_stone_cylinder_f3dlite_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-	gsSPSetLights1(rotating_stone_cylinder_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 

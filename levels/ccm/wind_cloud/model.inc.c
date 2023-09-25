@@ -1,6 +1,3 @@
-Lights1 wind_cloud_envcloud_001_layer1_lights = gdSPDefLights1(
-	0x7F, 0x79, 0x4C,
-	0xFF, 0xF4, 0x9E, 0x28, 0x28, 0x28);
 
 Gfx wind_cloud_goldencloud_ia16_aligner[] = {gsSPEndDisplayList()};
 u8 wind_cloud_goldencloud_ia16[] = {
@@ -655,7 +652,8 @@ Gfx mat_wind_cloud_envcloud_001_layer1[] = {
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(wind_cloud_envcloud_001_layer1_lights),
+    gsSPLightColor(LIGHT_1, 0xfff49eff),
+    gsSPLightColor(LIGHT_2, 0x7f794cff),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b_LOAD_BLOCK, 1, wind_cloud_goldencloud_ia16),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 2047, 128),

@@ -27,15 +27,9 @@
  **/
 
 #ifdef BREATH_METER
-// #ifdef DISABLE_LIVES
-// #define HUD_BREATH_METER_X         64
-// #define HUD_BREATH_METER_Y        200
-// #define HUD_BREATH_METER_HIDDEN_Y 300
-// #else
 #define HUD_BREATH_METER_X         40
 #define HUD_BREATH_METER_Y         32
 #define HUD_BREATH_METER_HIDDEN_Y -20
-// #endif
 #endif
 
 // ------------- FPS COUNTER ---------------
@@ -313,10 +307,10 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
     gSPDisplayList(gDisplayListHead++, &menu_dpad_icon_Plane_004_mesh);
         s8 animateBounce[4] = {0, 0, 0, 0};
 
-        if (gPlayer3Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
-        if (gPlayer3Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
-        if (gPlayer3Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
-        if (gPlayer3Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
+        if (gPlayer1Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
+        if (gPlayer1Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
+        if (gPlayer1Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
+        if (gPlayer1Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
 
         for (int i = 0; i < 4; i++) {
             if (animateBounce[i] % 2 == 1) {
@@ -716,7 +710,7 @@ void render_hud(void) {
             render_hud_cannon_reticle();
         }
 
-#ifndef DISABLE_LIVES
+#ifdef ENABLE_LIVES
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES) {
             render_hud_mario_lives();
         }
@@ -756,19 +750,11 @@ void render_hud(void) {
             render_hud_boss_intro();
         }
 
-        if (gSurfacePoolError & NOT_ENOUGH_ROOM_FOR_SURFACES) print_text(10, 40, "SURFACE POOL FULL");
-        if (gSurfacePoolError & NOT_ENOUGH_ROOM_FOR_NODES) print_text(10, 60, "SURFACE NODE POOL FULL");
-
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
         if (gCustomDebugMode) {
             render_debug_mode();
         }
 #endif
-#ifdef PUPPYPRINT
-        print_set_envcolour(255, 255, 255, 255);
-#endif
-
-
     }
     /*
     if (gMarioState->floor != NULL) {

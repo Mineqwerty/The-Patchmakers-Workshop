@@ -1,4 +1,5 @@
 #include "src/game/game_init.h"
+#include "src/game/emutest.h"
 
 static struct SpawnParticlesInfo sCrashingWaterParticles = {
     /* behParam:        */ 5,

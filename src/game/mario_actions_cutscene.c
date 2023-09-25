@@ -37,6 +37,7 @@ static s16 sEndPeachAnimation;
 static s16 sEndToadAnims[2];
 static s16 marioCutsceneFaceAnglePitch;
 static s16 marioCutsceneFaceAngleRoll;
+ModelID32 gStarModelLastCollected = MODEL_STAR;
 
 Vp sEndCutsceneVp = {
     {
@@ -656,10 +657,10 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
             case 1:
                 celebStar = spawn_object(m->marioObj, MODEL_STAR, bhvCelebrationStar);
 #ifdef STAR_DANCE_USES_STARS_MODEL
-                celebStar->header.gfx.sharedChild = m->interactObj->header.gfx.sharedChild;
+                obj_set_model(celebStar, gStarModelLastCollected);
 #else
-                if (obj_has_model(m->interactObj, MODEL_BOWSER_KEY)) {
-                    obj_set_model(celebStar, MODEL_BOWSER_KEY);
+                if (gStarModelLastCollected == MODEL_BOWSER_KEY) {
+                    obj_set_model(celebStar, gStarModelLastCollected);
                 }
 #endif
                 disable_background_sound();
@@ -1372,9 +1373,8 @@ s32 act_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1390,9 +1390,8 @@ s32 act_death_exit(struct MarioState *m) {
 s32 act_unused_death_exit(struct MarioState *m) {
     if (launch_mario_until_land(m, ACT_FREEFALL_LAND_STOP, MARIO_ANIM_GENERAL_FALL, 0.0f)) {
         play_sound(SOUND_MARIO_OOOF2, m->marioObj->header.gfx.cameraToObject);
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1411,9 +1410,8 @@ s32 act_falling_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1467,9 +1465,8 @@ s32 act_special_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         m->healCounter = 31;
     }
@@ -1669,6 +1666,7 @@ s32 act_teleport_fade_in(struct MarioState *m) {
         }
     }
 
+    m->pos[1] = m->floorHeight;
     stop_and_set_height_to_floor(m);
 
     return FALSE;
