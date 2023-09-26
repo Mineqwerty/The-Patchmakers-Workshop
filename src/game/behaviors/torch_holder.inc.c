@@ -15,6 +15,8 @@ void bhv_torch_holder_loop(void) {
         o->oTorchFlame = spawn_object_relative(1, 0, 250, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
         spawn_object_relative(0, 0, 250, 0, o, MODEL_NONE, bhvFlame);
 
+        if (gCurrAreaIndex == 2) spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvWillOWispSpawner);
+
          struct Object *hiddenStar = cur_obj_nearest_object_with_behavior(bhvGSSHiddenStar);
 
         if (hiddenStar != NULL) {

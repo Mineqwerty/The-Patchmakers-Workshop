@@ -47,7 +47,11 @@ void bhv_spekturr_loop(void) {
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_SPEKTURR];
                 cur_obj_spawn_particles(&sSpekturrEmergeMist);
                 if (gDialogID == -1) {
-                    create_automatic_dialog_box(DIALOG_047);
+                    create_automatic_dialog_box(39 + gMarioState->dialogStoryNum);
+                    gMarioState->dialogStoryNum++;
+                    if (gMarioState->dialogStoryNum == 10) {
+                        gMarioState->dialogStoryNum = 0;
+                    }
                 }
             }
         break;
@@ -99,7 +103,7 @@ void bhv_spekturr_loop(void) {
         break;
     }
 
-    if (o->oAction != 0 && obj_handle_attacks(&sSpekturrHitbox, 0, sSpekturrAttackHandlers)) {
+    if (o->oAction != 0 && obj_handle_attacks(&sSpekturrHitbox, 3, sSpekturrAttackHandlers)) {
             o->oAction = 3;
             o->oVelY = 20.0f;
         } 

@@ -512,6 +512,7 @@ struct MarioState {
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
     u8 patchTimer;
+    u8 dialogStoryNum;
     struct Object *patchChildObj;
     struct Object *patchChildPortalObj;
     struct Object *patchChildSecondaryObj;

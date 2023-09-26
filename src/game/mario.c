@@ -1871,6 +1871,7 @@ void perform_patch_action(struct MarioState *m) {
                 drop_and_set_mario_action(m, ACT_SHOOT_GRAPPLE_HOOK, 0);
                 play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
                 m->curPatch = PATCH_GRAPPLE;
+                m->grappleCooldownTimer = 40;
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
             }
         break;

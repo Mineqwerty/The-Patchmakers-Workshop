@@ -96,13 +96,17 @@ void bhv_willowisp_spawner_loop(void) {
                 o->oPosY = gMarioState->pos[1];
                 o->oPosZ = gMarioState->pos[2];
                 if (o->oSpekturrSpawnOffsetValue == 0) {
-                    o->oSpekturrSpawnOffsetValue = 90;
+                    o->oSpekturrSpawnOffsetValue = 120;
                 }
                 if (o->oTimer % o->oSpekturrSpawnOffsetValue == 0 && o->oSpekturrCount < 3) {
                     spawn_object_relative(o->oSpekturrSpawnBehParam++ % 4, (random_u16() % 512) - 256, 300.0f, (random_u16() % 512) - 256, o, MODEL_NONE, bhvSpekturr);
-                    o->oSpekturrSpawnOffsetValue = (random_u16() % 60) + 60;
+                    o->oSpekturrSpawnOffsetValue = (random_u16() % 30) + 20;
                     o->oSpekturrCount++;
                     o->oTimer = 0;
+                }
+
+                if (o->oSpekturrCount == 3) {
+                    obj_mark_for_deletion(o);
                 }
     }
     else {

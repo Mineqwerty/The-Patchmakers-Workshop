@@ -716,7 +716,9 @@ s32 act_star_dance(struct MarioState *m) {
         if (m->patchChildObj->oHaloCapturedObject) {
             obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
         }
-        obj_mark_for_deletion(m->patchChildObj);
+        if (!obj_has_behavior(m->patchChildObj, bhvIceFloor)) {
+            obj_mark_for_deletion(m->patchChildObj);
+        }
     }
     m->faceAngle[1] = m->area->camera->yaw;
     set_mario_animation(m, m->actionState == ACT_STATE_STAR_DANCE_RETURN ? MARIO_ANIM_RETURN_FROM_STAR_DANCE
@@ -884,9 +886,13 @@ s32 act_sink_mud(struct MarioState *m) {
         gCamera->cutscene = 1;
         Vec3f mudCoords = {5611, 764, -4398};
         Vec3f mudFocCoords = {6921, 106, -4398};
-        gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], mudCoords[0], 0.05f);
-        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], mudCoords[1], 0.05f);
-        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], 0.05f);
+        f32 approachSpeed = 0.05f + ((f32)m->actionTimer / 3000.0f);
+        gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], mudCoords[0], approachSpeed);
+        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], mudCoords[1], approachSpeed);
+        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], approachSpeed);
+        gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], mudFocCoords[0], approachSpeed);
+        gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], mudFocCoords[1], approachSpeed);
+        gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], mudFocCoords[2], approachSpeed);
 
         gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
         m->pos[0] = 6921.0f;
@@ -894,11 +900,6 @@ s32 act_sink_mud(struct MarioState *m) {
             m->pos[2] = -4398.0f;
         
         m->actionTimer++;
-        if (m->actionTimer >= 10) {
-        gLakituState.goalFocus[0] = approach_s16_asymptotic(gLakituState.goalFocus[0], mudFocCoords[0], 20);
-        gLakituState.goalFocus[1] = approach_s16_asymptotic(gLakituState.goalFocus[1], mudFocCoords[1], 20);
-        gLakituState.goalFocus[2] = approach_s16_asymptotic(gLakituState.goalFocus[2], mudFocCoords[2], 20);
-        }
 
         if (m->actionTimer >= 50) {
             gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
@@ -910,6 +911,7 @@ s32 act_sink_mud(struct MarioState *m) {
             m->vel[1] = 20.0f;
             m->action = ACT_FORWARD_AIR_KB;
             m->forwardVel = 20.0f;
+            m->particleFlags |= PARTICLE_MIST_CIRCLE;
             gCamera->cutscene = 0;
             clear_cutscene_vars(gCamera);
             gCutsceneTimer = 0;

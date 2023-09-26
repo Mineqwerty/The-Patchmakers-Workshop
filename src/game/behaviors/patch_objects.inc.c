@@ -160,13 +160,13 @@ void bhv_ice_cube_loop(void) {
 
         switch (o->oBehParams2ndByte) {
             case 0:
-                obj_scale_xyz(o, 1, ((f32) o->oTimer) / 3.0f, 1);
+                obj_scale_xyz(o, 1, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 1);
                 break;
             case 1:
-                obj_scale_xyz(o, 2, ((f32) o->oTimer) / 3.0f, 2);
+                obj_scale_xyz(o, 2, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 2);
                 break;
             case 2:
-                obj_scale_xyz(o, 4, ((f32) o->oTimer) / 1.5f, 4);
+                obj_scale_xyz(o, 4, CLAMP(((f32) o->oTimer) / 1.5f, 0.1f, 2.0f), 4);
                 gMarioState->pos[1] += 50;
                 gMarioState->vel[1] = 0;
                 break;

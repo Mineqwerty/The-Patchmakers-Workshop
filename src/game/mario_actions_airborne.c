@@ -1383,6 +1383,8 @@ s32 act_air_hit_wall(struct MarioState *m) {
 
 s32 act_grapple_wall(struct MarioState *m) {
 
+    m->grappleCooldownTimer = 0;
+
     struct Surface *surf;
     Vec3f hitpos;
     Vec3f raydir;
