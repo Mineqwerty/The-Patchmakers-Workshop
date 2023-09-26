@@ -168,5 +168,8 @@
     ],
     "31_stone_patch_cutscene": [
         "0C"
+    ],
+    "32_title": [
+        "streamed_audio"
     ]
 }

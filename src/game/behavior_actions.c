@@ -274,3 +274,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/wing_surface.inc.c"
 #include "behaviors/stone_patch_cutscene_shard.inc.c"
 #include "behaviors/patchmaker_file_select.inc.c"
+#include "behaviors/new_file_select_manager.inc.c"

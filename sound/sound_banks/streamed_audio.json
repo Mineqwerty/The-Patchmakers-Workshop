@@ -42,12 +42,24 @@
             "release_rate": 10,
             "envelope": "envelope1",
             "sound": "the_far_plane_R"
+        },
+        "inst4": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "title_L"
+        },
+        "inst5": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "title_R"
         }
     },
     "instrument_list": [
         "inst0",
         "inst1",
         "inst2",
-        "inst3"
+        "inst3",
+        "inst4",
+        "inst5"
     ]
 }

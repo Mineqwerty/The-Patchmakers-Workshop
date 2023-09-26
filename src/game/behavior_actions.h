@@ -778,3 +778,5 @@ void bhv_stone_patch_cutscene_shard_init(void);
 void bhv_stone_patch_cutscene_shard_loop(void);
 void bhv_patchmaker_file_select_init(void);
 void bhv_patchmaker_file_select_loop(void);
+void bhv_new_file_select_manager_init(void);
+void bhv_new_file_select_manager_loop(void);

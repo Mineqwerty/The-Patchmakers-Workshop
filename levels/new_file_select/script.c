@@ -36,11 +36,12 @@ const LevelScript level_new_file_select_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_PATCHMAKER_SHADOW, 482, 0, 0, 0, 90, 0, 0x00000000, bhvPatchmakerFileSelect),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 90, 0, 0x00000000, bhvNewFileSelectManager),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		TERRAIN(new_file_select_area_1_collision),
 		MACRO_OBJECTS(new_file_select_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_GRASS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_TITLE_SCREEN),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

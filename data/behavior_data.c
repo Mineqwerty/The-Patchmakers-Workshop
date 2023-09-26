@@ -6991,3 +6991,12 @@ const BehaviorScript bhvPatchmakerFileSelect[] = {
         CALL_NATIVE(bhv_patchmaker_file_select_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvNewFileSelectManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_new_file_select_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_new_file_select_manager_loop),
+    END_LOOP(),
+};
