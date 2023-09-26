@@ -17,6 +17,7 @@
 #include "engine/math_util.h"
 #include "puppycam2.h"
 #include "puppyprint.h"
+#include "levels/new_file_select/header.h"
 
 #include "config.h"
 
@@ -100,6 +101,9 @@ static struct PowerMeterHUD sPowerMeterHUD = {
 // Gets reset when the health is filled and stops counting
 // when the power meter is hidden.
 s32 sPowerMeterVisibleTimer = 0;
+
+u8 gSpecialHudRender = 0;
+u8 gSpecialHudElementAlpha = 255;
 
 #ifdef BREATH_METER
 static s16 sBreathMeterStoredValue;
@@ -478,6 +482,24 @@ void render_hud_breath_meter(void) {
 }
 #endif
 
+void render_dl_title_screen() {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+    
+    guTranslate(mtx, (f32) SCREEN_WIDTH/2, (f32) SCREEN_HEIGHT/2, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+              G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.6f, 0.6f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gSpecialHudElementAlpha);
+    gSPDisplayList(gDisplayListHead++, &tpw_logo_titlematMesh_mesh);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 
 /**
  * Renders the amount of lives Mario has.
@@ -756,13 +778,9 @@ void render_hud(void) {
         }
 #endif
     }
-    /*
-    if (gMarioState->floor != NULL) {
-        if (gMarioState->floor->type == SURFACE_NEW_WATER) {
-            gMarioWaterwalk = TRUE;
-        } else {
-            gMarioWaterwalk = FALSE;
+
+    if (gSpecialHudRender == 1) {
+        create_dl_ortho_matrix();
+            render_dl_title_screen();
         }
-    }
-    */
 }

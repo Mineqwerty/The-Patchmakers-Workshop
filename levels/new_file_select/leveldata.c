@@ -16,3 +16,4 @@
 #include "levels/new_file_select/patchmaker_title_screen/model.inc.c"
 #include "levels/new_file_select/patchmaker_title_screen/anims/data.inc.c"
 #include "levels/new_file_select/patchmaker_title_screen/anims/table.inc.c"
+#include "levels/new_file_select/tpw_logo/model.inc.c"

@@ -13,4 +13,6 @@ extern const LevelScript level_new_file_select_entry[];
 
 #include "levels/new_file_select/patchmaker_title_screen/anim_header.h"
 
+#include "levels/new_file_select/tpw_logo/header.h"
+
 #endif
