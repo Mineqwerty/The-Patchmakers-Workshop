@@ -26,9 +26,9 @@
 #include "game/object_list_processor.h"
 
 const LevelScript level_intro_splash_screen[] = {
-#ifdef SKIP_TITLE_SCREEN
+//#ifdef SKIP_TITLE_SCREEN
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_mario_head_regular, _introSegmentBssStart, _introSegmentBssEnd),
-#endif
+//#endif
     INIT_LEVEL(),
     LOAD_GODDARD(),
     LOAD_BEHAVIOR_DATA(),
@@ -110,6 +110,7 @@ const LevelScript level_intro_mario_head_regular[] = {
     BLACKOUT(/*active*/ FALSE),
 #endif
     CALL_LOOP(/*arg*/ LVL_INTRO_REGULAR, /*func*/ lvl_intro_update),
+    SET_REG(/*value*/ LEVEL_NEW_FILE_SELECT),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ LEVEL_FILE_SELECT,  script_intro_file_select),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ LEVEL_LEVEL_SELECT, script_intro_level_select),
     JUMP(script_intro_main_level_entry),

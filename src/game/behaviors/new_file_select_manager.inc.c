@@ -25,14 +25,14 @@ void bhv_new_file_select_manager_loop(void) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 40, 0, 0, 0);
                 sTransitionFadeTimer = 20;
             }
-            if (o->oTimer == 50) {
+            if (o->oTimer == 40) {
                 play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 40, 0, 0, 0);
             }
-            if (o->oTimer == 70) {
+            if (o->oTimer == 60) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 40, 0, 0, 0);
                 sTransitionFadeTimer = 20;
             }
-            if (o->oTimer == 100) {
+            if (o->oTimer == 80) {
                 play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 40, 0, 0, 0);
             }
 
@@ -50,8 +50,8 @@ void bhv_new_file_select_manager_loop(void) {
                 gSpecialHudElementAlpha = CLAMP_U8(o->oTimer * 6);
             Vec3f goalTitlePos = {-100, 300, 0};
             Vec3f goalTitleFoc = {500, 180, 0};
-                approach_vec3f_asymptotic(gLakituState.goalPos, goalTitlePos, 0.3f, 0.3f, 0.3f);
-                approach_vec3f_asymptotic(gLakituState.goalFocus, goalTitleFoc, 0.3f, 0.3f, 0.3f);
+                approach_vec3f_asymptotic(gLakituState.goalPos, goalTitlePos, 0.25f, 0.25f, 0.25f);
+                approach_vec3f_asymptotic(gLakituState.goalFocus, goalTitleFoc, 0.2f, 0.2f, 0.2f);
 
                 if (o->oTimer > 50 && gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
                     o->oAction = NEW_FILE_SELECT_CAM_FILES;
