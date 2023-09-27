@@ -66,6 +66,7 @@ void goddess_act_gold_barrage(void) {
 
     if (o->oTimer % 8 == 0) {
         struct Object *bullet = spawn_object_relative(0, 0, 2000, 0, o, MODEL_GOLD_BLOB, bhvGoldBlob);
+        bullet->oGoldBlobDirection = random_u16() % 2;
         bullet->oAction = 2;
         bullet->oHomeX = gMarioState->pos[0];
         bullet->oHomeY = gMarioState->pos[1];
@@ -151,16 +152,21 @@ void goddess_act_hurt(void) {
         o->oForwardVel = -20.0f;
         // o->oDragStrength = 2.0f;
         o->oVelY = 20.0f;
+        f32 startFHeight = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
+        if (o->oPosY - startFHeight <= 1100.0f) {
+            o->oPosY = startFHeight + 1110;
+        }
     }
     f32 fHeight = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
     if (o->oTimer < 60) {
         object_step_without_floor_orient();
         o->oGravity = 2.0f;
         
-        if (o->oPosY - fHeight < 30.0f) {
+        if (o->oPosY - fHeight < 1100.0f) {
             o->oPosY = fHeight;
             o->oTimer = 60;
-            o->oMoveAngleYaw += 0x8000;
+            o->header.gfx.animInfo.animFrame = 90;
+            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1040);
         }
 
         if (o->oTimer > 40) {
@@ -312,6 +318,7 @@ void goddess_check_interactions(void) {
 
             if (healthSubtract > 24) {
                 o->oAction = GODDESS_ACT_HURT;
+                o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1040);
                 for (int i = 0; i < 8; i++) {
                     struct Object *fragment =
                         spawn_object_relative(0, 0, 1000, 0, o, MODEL_GOLD_FRAGMENT, bhvGoldFragment);
@@ -324,13 +331,16 @@ void goddess_check_interactions(void) {
 }
 
 void gold_blob_approach_home(void) {
-    f32 x = o->oHomeX - o->oPosX;
-    f32 y = o->oHomeY - o->oPosY;
-    f32 z = o->oHomeZ - o->oPosZ;
+    f32 x = (o->oHomeX - o->oPosX) * (o->oGoldBlobDirection == 0 ? 3.0f : 1.0f) * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
+    f32 y = (o->oHomeY - o->oPosY) * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
+    f32 z = (o->oHomeZ - o->oPosZ) * (o->oGoldBlobDirection == 0 ? 1.0f : 3.0f) * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
 
-    o->oPosX += x * 3.0f * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
-    o->oPosY += y * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
-    o->oPosZ += z * (1.0f - coss(((f32) o->oTimer / 90.0f) * 0x8000)) / 2.0f;
+    o->oPosX += x;
+    o->oPosY += y;
+    o->oPosZ += z;
+    o->oVelX = x;
+    o->oVelY = y;
+    o->oVelZ = z;
 }
 
 
@@ -406,15 +416,24 @@ void bhv_gold_blob_loop(void) {
     } else if (o->oAction == 2) {
 
         if (o->oTimer == 35) {
-            o->oForwardVel = 70.0f;
-            o->oVelY = -6.0f;
+            //o->oForwardVel = 70.0f;
+            //o->oVelY = -6.0f;
             o->oGravity = 2.0f;
+            o->oBounciness = 2.0f;
         }
         if (o->oTimer < 35) {
             gold_blob_approach_home();
             obj_turn_toward_position(o, o->oHomeX, o->oHomeY, o->oHomeZ, O_MOVE_ANGLE_YAW_INDEX, 0x400);
-        } else {
+        }
+        else {
             object_step();
+        }
+
+         
+        if (o->oTimer < 20) {
+            o->oHomeX = gMarioState->pos[0];
+            o->oHomeY = gMarioState->pos[1];
+            o->oHomeZ = gMarioState->pos[2];    
         }
 
         if (o->oTimer == 60) {
@@ -423,6 +442,7 @@ void bhv_gold_blob_loop(void) {
                     o->oAction = 3;
                     break;
                 default:
+                    spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
                     obj_mark_for_deletion(o);
                     break;
             }
@@ -433,12 +453,16 @@ void bhv_gold_blob_loop(void) {
             o->oGravity = 5.0f;
         }
 
-        if (o->oTimer > 450 && gMarioState->patchChildObj && gMarioState->patchChildObj->oHaloCapturedObject && gMarioState->patchChildObj->oHaloCapturedObject != o) {
+        if (o->oTimer > 450 && (gMarioState->patchChildObj == NULL || 
+            gMarioState->patchChildObj->oHaloCapturedObject == NULL || 
+            (gMarioState->patchChildObj && gMarioState->patchChildObj->oHaloCapturedObject && gMarioState->patchChildObj->oHaloCapturedObject != o))) {
+            spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
             obj_mark_for_deletion(o);
             
         }
 
         if (gMarioState->patchChildObj && gMarioState->patchChildObj->oHaloCapturedObject && gMarioState->patchChildObj->oHaloCapturedObject->oAction == 1) {
+            spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
             obj_mark_for_deletion(o);
         }
 
@@ -546,11 +570,13 @@ void bhv_banish_fragment_loop(void) {
 
 
 void bhv_goddess_init(void) {
-    // create_dialog_box(60);
     o->oGravity = 0;
     o->oWallHitboxRadius = 150.0f;
 
     obj_set_hitbox(o, &sGoddessHitbox);
+    o->oAction = 1;
+    gSecondCameraFocus = o;
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
 
     
 }

@@ -1310,6 +1310,7 @@
 #define oGoldBlobDistY        OBJECT_FIELD_F32(0x1C)
 #define oGoldBlobDistZ        OBJECT_FIELD_F32(0x1D)
 #define oGoldBlobCount        OBJECT_FIELD_F32(0x1E)
+#define oGoldBlobDirection        OBJECT_FIELD_S32(0x1F)
 
 //stc beat object
 #define oBeatNumber        OBJECT_FIELD_S32(0x1B)

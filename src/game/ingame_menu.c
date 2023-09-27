@@ -2813,7 +2813,7 @@ s32 render_pause_courses_and_castle(void) {
                 update_dl_dpad_patches();
             }
 
-            if (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
+            if (gPlayer1Controller->buttonPressed & (START_BUTTON)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
