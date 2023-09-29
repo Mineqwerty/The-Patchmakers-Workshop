@@ -107,6 +107,7 @@ void goddess_act_spear_dive(void) {
             if (cur_obj_init_animation_and_check_if_near_end(9)) {
                 o->oAction = GODDESS_ACT_IDLE_FLIGHT;
                 o->oForwardVel = 0.0f;
+                spawn_object_relative(0, 0, -1000, 0, o, MODEL_GODDESS_SPEAR, bhvGoddessSpear);
             }
             break;
     }
@@ -691,6 +692,71 @@ void bhv_goddess_spear_init(void) {
 }
 
 void bhv_goddess_spear_loop(void) {
-    
+    switch (o->oAction) {
+        case 0:
+            //spawning in action
+            o->oFaceAnglePitch = approach_s32_symmetric(o->oFaceAnglePitch, -0x2000, 0x200);
+            o->oPosY += 5.0f;
+            if (o->oTimer == 60) {
+                o->oAction = (random_u16() % 3) + 1;
+            }
+        break;
+        case 1:
+            //try to stab mario action
+            switch (o->oSubAction) {
+                case 0:
+                    o->oGoddessSpearApproachYaw = random_u16();
+                    o->oSubAction++;
+                break;
+                case 1:
+                    o->oPosY += 200 * sins(o->oTimer * 0x444);
+                    if (o->oTimer >= 30) {
+                        o->oSubAction++;
+                    }
+
+                    approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(o->oGoddessSpearApproachYaw), 0.06f);
+                    approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(o->oGoddessSpearApproachYaw), 0.06f);
+                break;
+                case 2:
+                    approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(o->oGoddessSpearApproachYaw), 0.06f);
+                    approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(o->oGoddessSpearApproachYaw), 0.06f);
+                    o->oPosX += (random_u16() % 5 - 2);
+                    o->oPosY += (random_u16() % 5 - 2);
+                    o->oPosZ += (random_u16() % 5 - 2);
+
+                    if (o->oTimer == 60) {
+                        o->oSubAction++;
+                    }
+                break;
+                case 3:
+                    o->oForwardVel = 100.0f;
+                    o->oVelY = -20.0f;
+                    o->oDragStrength = 0.0f;
+                    o->oGravity = 0.0f;
+
+                    if (object_step_without_floor_orient() & OBJ_COL_FLAG_GROUNDED) {
+                        o->oVelY = 0;
+                        o->oForwardVel = 0;
+                    }
+
+                    if (o->oTimer == 110) {
+                        if (o->oGoddessSpearAttackAttempts++ < 3) {
+                            o->oTimer = 0;
+                            o->oSubAction = 0;
+                        }
+                        else {
+                            obj_mark_for_deletion(o);
+                        }
+                    }
+                break;
+            }
+        break;
+        case 2:
+            //drawing fire on the ground
+        break;
+        case 3:
+            //laser of fire spinning
+        break;
+    }
 }
 

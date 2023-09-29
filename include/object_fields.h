@@ -1318,6 +1318,10 @@
 #define oGoldBlobCount        OBJECT_FIELD_F32(0x1E)
 #define oGoldBlobDirection        OBJECT_FIELD_S32(0x1F)
 
+//goddess spear
+#define oGoddessSpearAttackAttempts        OBJECT_FIELD_S32(0x1B)
+#define oGoddessSpearApproachYaw        OBJECT_FIELD_S32(0x1C)
+
 //stc beat object
 #define oBeatNumber        OBJECT_FIELD_S32(0x1B)
 

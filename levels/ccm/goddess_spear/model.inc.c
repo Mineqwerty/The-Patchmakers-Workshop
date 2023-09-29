@@ -1,6 +1,3 @@
-Lights1 goddess_spear_spear_lights = gdSPDefLights1(
-	0x76, 0x70, 0x7F,
-	0x76, 0xB0, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx goddess_spear_gilded_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 goddess_spear_gilded_ci8[] = {
@@ -621,7 +618,8 @@ Gfx mat_goddess_spear_spear[] = {
 	gsDPSetCombineLERP(1, TEXEL0, SHADE, 1, 0, 0, 0, ENVIRONMENT, 1, TEXEL0, SHADE, 1, 0, 0, 0, ENVIRONMENT),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(goddess_spear_spear_lights),
+    gsSPLightColor(LIGHT_1, 0x76b0ffff),
+    gsSPLightColor(LIGHT_2, 0x76707fff),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, goddess_spear_gilded_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadTLUTCmd(5, 112),

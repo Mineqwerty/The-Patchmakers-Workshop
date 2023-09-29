@@ -608,6 +608,7 @@
 #define MODEL_WIND_CLOUD                 0x10E
 #define MODEL_SWINGING_AXE                 0x10F
 #define MODEL_WING_SURFACE              0x110
+#define MODEL_GODDESS_SPEAR              0x111
 
 //The Far Plane
 #define MODEL_FLOATING_PLANE                   0x100

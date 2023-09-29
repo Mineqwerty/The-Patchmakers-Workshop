@@ -57,6 +57,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_WIND_CLOUD, wind_cloud_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SWINGING_AXE, swinging_axe_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WING_SURFACE, wing_surface_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GODDESS_SPEAR, goddess_spear_geo),
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
