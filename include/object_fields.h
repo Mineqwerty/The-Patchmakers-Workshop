@@ -1294,6 +1294,12 @@
 #define oHaloApproachSpeed        OBJECT_FIELD_F32(0x1B)
 #define oHaloWallColSpeed        OBJECT_FIELD_F32(0x1C)
 #define oHaloCapturedObject           OBJECT_FIELD_OBJ(0x1D)
+#define oHaloKnockbackSpeed        OBJECT_FIELD_S32(0x1E)
+#define oHaloLengthMod        OBJECT_FIELD_F32(0x1F)
+
+//goddess
+#define oGoddessInvulnerableTimer        OBJECT_FIELD_S32(0x1B)
+#define oGoddessSpearIsOut        OBJECT_FIELD_S32(0x1C)
 
 //torch holder
 #define oTorchFlame           OBJECT_FIELD_OBJ(0x1B)

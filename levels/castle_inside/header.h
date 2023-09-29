@@ -157,4 +157,8 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/header.inc.h"
 
+#include "levels/castle_inside/garage_door/geo_header.h"
+
+#include "levels/castle_inside/garage_door/collision_header.h"
+
 #endif

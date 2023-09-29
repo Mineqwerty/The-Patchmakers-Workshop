@@ -233,7 +233,7 @@ u32 determine_interaction(struct MarioState *m, struct Object *obj) {
 /**
  * Sets the interaction types for INT_STATUS_INTERACTED, INT_STATUS_WAS_ATTACKED
  */
-u32 attack_object(struct Object *obj, s32 interaction) {
+u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     u32 attackType = ATTACK_NONE;
 
     switch (interaction) {
@@ -260,6 +260,10 @@ u32 attack_object(struct Object *obj, s32 interaction) {
     }
 
     obj->oInteractStatus = attackType + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED);
+    if (obj->oFlags & OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO) {
+        
+        obj->oHealth -= damage;
+    }
     return attackType;
 }
 
@@ -301,7 +305,7 @@ void mario_drop_held_object(struct MarioState *m) {
 
         m->heldObj = NULL;
         m->lastHeldBehavior = NULL;
-        m->lastHeldModel = NULL;
+        m->lastHeldModel = 0;
     }
 }
 
@@ -321,7 +325,7 @@ void mario_throw_held_object(struct MarioState *m) {
 
         m->heldObj = NULL;
         m->lastHeldBehavior = NULL;
-        m->lastHeldModel = NULL;
+        m->lastHeldModel = 0;
     }
 }
 
@@ -1323,7 +1327,7 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
         obj->oMoveAngleYaw = m->faceAngle[1];
         obj->oForwardVel = 3392.0f / obj->hitboxRadius;
 
-        attack_object(obj, interaction);
+        attack_object(obj, interaction, 0);
         bounce_back_from_attack(m, interaction);
         return TRUE;
     } else if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP)
@@ -1406,7 +1410,7 @@ u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType, struc
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        attack_object(obj, interaction);
+        attack_object(obj, interaction, 1);
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_BELOW) {
@@ -1454,7 +1458,7 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
 
     
 
-        attack_object(obj, interaction);
+        attack_object(obj, interaction, 1);
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_ABOVE) {
@@ -1538,7 +1542,7 @@ u32 interact_breakable(struct MarioState *m, UNUSED u32 interactType, struct Obj
     u32 interaction = determine_interaction(m, obj);
 
     if (interaction & INT_ATTACK_NOT_WEAK_FROM_ABOVE) {
-        attack_object(obj, interaction);
+        attack_object(obj, interaction, 1);
         bounce_back_from_attack(m, interaction);
 
         m->interactObj = obj;
@@ -1569,7 +1573,7 @@ u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, struct O
             m->usedObj = obj;
             m->riddenObj = obj;
 
-            attack_object(obj, interaction);
+            attack_object(obj, interaction, 0);
             update_mario_sound_and_camera(m);
             play_shell_music();
             mario_drop_held_object(m);
@@ -1731,7 +1735,7 @@ u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Object *ob
     if (obj->oInteractionSubtype & INT_SUBTYPE_KICKABLE) {
         u32 interaction = determine_interaction(m, obj);
         if (interaction & (INT_KICK | INT_TRIP)) {
-            attack_object(obj, interaction);
+            attack_object(obj, interaction, 0);
             bounce_back_from_attack(m, interaction);
             return FALSE;
         }

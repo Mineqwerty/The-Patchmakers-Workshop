@@ -615,6 +615,7 @@ void bhv_grapple_hook_init(void);
 void bhv_grapple_hook_loop(void);
 void bhv_grapple_line_loop(void);
 
+void bhv_halo_init(void);
 void bhv_halo_loop(void);
 
 void bhv_background_object_loop(void);
@@ -780,3 +781,7 @@ void bhv_patchmaker_file_select_init(void);
 void bhv_patchmaker_file_select_loop(void);
 void bhv_new_file_select_manager_init(void);
 void bhv_new_file_select_manager_loop(void);
+void bhv_goddess_spear_init(void);
+void bhv_goddess_spear_loop(void);
+void bhv_garage_door_init(void);
+void bhv_garage_door_loop(void);

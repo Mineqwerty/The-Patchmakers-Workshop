@@ -57,7 +57,7 @@ void bhv_ice_spikes_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 8);
+            attack_object(other, 8, 8);
         }
     }
 
@@ -317,7 +317,7 @@ void bhv_grapple_hook_loop(void) {
 
                 if (other != gMarioObject) {
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
-                    attack_object(other, 2);
+                    attack_object(other, 2, 3);
 
                     if (!obj_has_behavior(other, bhvFortogoo)) {
                         o->oAngleVelPitch = -0x400;
@@ -475,9 +475,9 @@ void halo_perform_circle(void) {
 }
 
 void halo_calculate_and_move_towards_goal(void) {
-    o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
+    o->oHomeX = gMarioState->pos[0] + 300 * o->oHaloLengthMod * sins(o->oMoveAngleYaw);
     o->oHomeY = gMarioState->pos[1] + 70.0f;
-    o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
+    o->oHomeZ = gMarioState->pos[2] + 300 * o->oHaloLengthMod * coss(o->oMoveAngleYaw);
 
     o->oHaloApproachSpeed = 0.5f;
 
@@ -510,6 +510,23 @@ void halo_calculate_and_move_back_to_mario(void) {
     } else {
         o->oAction = 0;
     }
+}
+
+void halo_apply_knockback(void) {
+    cur_obj_move_xz_using_fvel_and_yaw();
+    
+        o->oForwardVel += 15.0f;
+
+    o->oHaloKnockbackSpeed += 1;
+
+    if (o->oHaloKnockbackSpeed >= 10) {
+        o->oForwardVel = 0;
+        o->oHaloKnockbackSpeed = 0;
+    }
+}
+
+void bhv_halo_init(void) {
+    o->oHaloLengthMod = 1.0f;
 }
 
 void bhv_halo_loop(void) {
@@ -549,6 +566,9 @@ void bhv_halo_loop(void) {
         case 1:
             cur_obj_become_tangible();
             halo_calculate_and_move_towards_goal();
+            if (o->oHaloKnockbackSpeed > 0) {
+                halo_apply_knockback();
+            }
             if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & L_TRIG)) {
                 o->oAction = 2;
                 play_sound(SOUND_HALO_IN, gMarioState->marioObj->header.gfx.cameraToObject);
@@ -575,15 +595,15 @@ void bhv_halo_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 2);
+            attack_object(other, 2, 1);
+            
 
             if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {
                 o->oHaloCapturedObject =
                     spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
                 gMarioState->haloCaptureType = 1;
             }
-
-            if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
+            else if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
                 if (!o->oHaloCapturedObject) {
                     other->oIntangibleTimer = -1;
                     o->oHaloCapturedObject = other;
@@ -592,6 +612,10 @@ void bhv_halo_loop(void) {
                     o->oHaloCapturedObject->oGoldBlobCount += 1;
                     obj_mark_for_deletion(other);
                 }
+            }
+            else {
+                o->oForwardVel = -110.0f;
+                o->oHaloKnockbackSpeed = 1;
             }
         }
     }

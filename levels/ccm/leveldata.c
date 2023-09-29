@@ -80,3 +80,4 @@
 #include "levels/ccm/seraphim_anims/anims/table.inc.c"
 #include "levels/ccm/seraphim/anims/data.inc.c"
 #include "levels/ccm/seraphim/anims/table.inc.c"
+#include "levels/ccm/goddess_spear/model.inc.c"

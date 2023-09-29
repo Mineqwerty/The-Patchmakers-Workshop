@@ -24,3 +24,5 @@
 #include "levels/castle_inside/areas/3/geo.inc.c"
 
 #include "levels/castle_inside/geo.inc.c"
+
+#include "levels/castle_inside/garage_door/geo.inc.c"

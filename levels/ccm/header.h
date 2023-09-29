@@ -118,4 +118,6 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/seraphim/anim_header.h"
 
+#include "levels/ccm/goddess_spear/geo_header.h"
+
 #endif

@@ -630,3 +630,5 @@ extern const BehaviorScript bhvWingSurface[];
 extern const BehaviorScript bhvStonePatchCutsceneShard[];
 extern const BehaviorScript bhvPatchmakerFileSelect[];
 extern const BehaviorScript bhvNewFileSelectManager[];
+extern const BehaviorScript bhvGoddessSpear[];
+extern const BehaviorScript bhvGarageDoor[];

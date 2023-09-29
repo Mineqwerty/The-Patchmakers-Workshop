@@ -45,3 +45,4 @@
 #include "levels/ccm/wind_cloud/geo.inc.c"
 #include "levels/ccm/swinging_axe/geo.inc.c"
 #include "levels/ccm/wing_surface/geo.inc.c"
+#include "levels/ccm/goddess_spear/geo.inc.c"
