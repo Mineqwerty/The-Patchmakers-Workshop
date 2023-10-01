@@ -632,3 +632,4 @@ extern const BehaviorScript bhvPatchmakerFileSelect[];
 extern const BehaviorScript bhvNewFileSelectManager[];
 extern const BehaviorScript bhvGoddessSpear[];
 extern const BehaviorScript bhvGarageDoor[];
+extern const BehaviorScript bhvStcDoor[];

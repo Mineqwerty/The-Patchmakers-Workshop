@@ -546,6 +546,9 @@
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
 #define MODEL_SEWNIA                  0x100
+#define MODEL_RDR_GARAGE_DOOR                  0x101
+#define MODEL_STC_DOOR_RIGHT                  0x102
+#define MODEL_STC_DOOR_LEFT                  0x103
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

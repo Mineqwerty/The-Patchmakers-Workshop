@@ -785,3 +785,5 @@ void bhv_goddess_spear_init(void);
 void bhv_goddess_spear_loop(void);
 void bhv_garage_door_init(void);
 void bhv_garage_door_loop(void);
+void bhv_stc_door_init(void);
+void bhv_stc_door_loop(void);

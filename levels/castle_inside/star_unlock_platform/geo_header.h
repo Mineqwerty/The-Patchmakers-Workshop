@@ -1,0 +1,10 @@
+extern const GeoLayout star_unlock_platform_geo[];
+extern u8 star_unlock_platform_starplatform_ci8[];
+extern u8 star_unlock_platform_starplatform_pal_rgba16[];
+extern Vtx star_unlock_platform_Cube_016_mesh_layer_1_vtx_cull[8];
+extern Vtx star_unlock_platform_Cube_016_mesh_layer_1_vtx_0[16];
+extern Gfx star_unlock_platform_Cube_016_mesh_layer_1_tri_0[];
+extern Gfx mat_star_unlock_platform_f3dlite_material_037[];
+extern Gfx mat_revert_star_unlock_platform_f3dlite_material_037[];
+extern Gfx star_unlock_platform_Cube_016_mesh_layer_1[];
+extern Gfx star_unlock_platform_material_revert_render_settings[];

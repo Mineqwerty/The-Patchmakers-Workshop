@@ -36,6 +36,9 @@ const LevelScript level_castle_inside_entry[] = {
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_16), 
 	JUMP_LINK(script_func_global_1), 
+	LOAD_MODEL_FROM_GEO(MODEL_STC_DOOR_RIGHT, stc_entrance_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_STC_DOOR_LEFT, stc_entrance_door2_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_RDR_GARAGE_DOOR, garage_door_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -57,6 +60,9 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -1004, 1808, 590, 0, 0, 0, 0x050E0000, bhvWarp),
 		OBJECT(MODEL_SEWNIA, -217, 100, -1359, 0, 0, 0, 0x00000000, bhvSewnia),
 		OBJECT(MODEL_NONE, 5373, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
+		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 90, 0, 0x00000000, bhvStcDoor),
+		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2906, 0, 90, 0, (1 << 16), bhvStcDoor),
+		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, -180, 0, 0x00000000, bhvGarageDoor),
 		OBJECT(MODEL_NONE, -2096, 100, -508, 0, 0, 0, 0x00000000, bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, -4134, 100, -1677, 0, 0, 0, (1 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, 4862, 554, 357, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),

@@ -27,3 +27,5 @@
 
 #include "levels/castle_inside/garage_door/geo.inc.c"
 #include "levels/castle_inside/stc_entrance_door/geo.inc.c"
+#include "levels/castle_inside/stc_entrance_door2/geo.inc.c"
+#include "levels/castle_inside/star_unlock_platform/geo.inc.c"
