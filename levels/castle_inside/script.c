@@ -69,6 +69,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 4862, 554, 357, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, 510, 1699, 255, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, -4862, 0, 731, 0, 0, 0, (0 << 24) | (1 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4443, 554, 2697, 0, -90, 0, (0 << 24) | (2 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		TERRAIN(castle_inside_area_1_collision),

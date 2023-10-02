@@ -19,7 +19,7 @@ void bhv_garage_door_loop(void) {
         o->oPosY += 4;
 
         if (o->oTimer % 15 == 0) {
-            cur_obj_shake_screen(1);
+            cur_obj_shake_screen(4);
         }
 
         if (o->oTimer % 4 == 0) {

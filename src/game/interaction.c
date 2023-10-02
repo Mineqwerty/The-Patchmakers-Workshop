@@ -260,7 +260,7 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     }
 
     obj->oInteractStatus = attackType + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED);
-    if (obj->oFlags & OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO) {
+    if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) {
         
         obj->oHealth -= damage;
     }
@@ -2179,6 +2179,18 @@ void mario_handle_special_floors(struct MarioState *m) {
 
             case SURFACE_GSS_CLOUD_WARP:
                 check_gss_cloud_warp(m);
+                break;
+
+            case SURFACE_STC_WARP:
+            if (!(m->action & (ACT_FLAG_AIR))) {
+                set_mario_action(m, ACT_WARP_STC, 0);
+            }
+                break;
+
+            case SURFACE_RDR_WARP:
+            if (!(m->action & (ACT_FLAG_AIR))) {
+                set_mario_action(m, ACT_WARP_RDR, 0);
+            }
                 break;
         }
 
