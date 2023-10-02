@@ -1364,6 +1364,12 @@
 #define oSpekturrSpawnBehParam        OBJECT_FIELD_S32(0x1C)
 #define oSpekturrCount        OBJECT_FIELD_S32(0x1D)
 
+//star unlock platform
+#define oStarCountHeight           OBJECT_FIELD_S32(0x1B)
+#define oStarCountNum1           OBJECT_FIELD_OBJ(0x1C)
+#define oStarCountNum2           OBJECT_FIELD_OBJ(0x1D)
+#define oStarCountNumStar           OBJECT_FIELD_OBJ(0x1E)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

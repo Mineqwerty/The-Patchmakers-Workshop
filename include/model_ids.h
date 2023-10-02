@@ -549,6 +549,7 @@
 #define MODEL_RDR_GARAGE_DOOR                  0x101
 #define MODEL_STC_DOOR_RIGHT                  0x102
 #define MODEL_STC_DOOR_LEFT                  0x103
+#define MODEL_STAR_UNLOCK_PLATFORM                  0x104
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

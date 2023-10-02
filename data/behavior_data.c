@@ -4902,6 +4902,16 @@ const BehaviorScript bhvOrangeNumber[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvOrangeStarCountNumber[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_orange_number_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_orange_number_star_count_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvMantaRay[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -7018,6 +7028,7 @@ const BehaviorScript bhvGarageDoor[] = {
     CALL_NATIVE(bhv_garage_door_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_garage_door_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
@@ -7028,6 +7039,17 @@ const BehaviorScript bhvStcDoor[] = {
     CALL_NATIVE(bhv_stc_door_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_stc_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStarUnlockPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(star_unlock_platform_collision),
+    CALL_NATIVE(bhv_star_unlock_platform_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_star_unlock_platform_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
