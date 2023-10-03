@@ -197,7 +197,7 @@ enum MarioFlags {
     MARIO_TELEPORTING         = /* 0x00000080 */ (1 <<  7),
     MARIO_JUMPING             = /* 0x00000100 */ (1 <<  8),
     MARIO_USED_STONE_PATCH            = /* 0x00000200 */ (1 <<  9),
-    MARIO_UNUSED_10           = /* 0x00000400 */ (1 << 10),
+    MARIO_TRANSPARENT           = /* 0x00000400 */ (1 << 10),
     MARIO_UNUSED_11           = /* 0x00000800 */ (1 << 11),
     MARIO_UNUSED_12           = /* 0x00001000 */ (1 << 12),
     MARIO_NO_PURPLE_SWITCH    = /* 0x00002000 */ (1 << 13),
@@ -536,7 +536,7 @@ enum MarioActionFlags {
 #define ACT_END_WAVING_CUTSCENE        0x0000131A // (0x11A | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_WARP_STC                   0x0000131B // (0x11B)
 #define ACT_WARP_RDR                   0x0000131C // (0x11C)
-#define ACT_UNUSED_11D                 0x0000011D // (0x11D)
+#define ACT_WARP_GSS                   0x0000131D // (0x11D)
 #define ACT_UNUSED_11E                 0x0000011E // (0x11E)
 #define ACT_UNUSED_11F                 0x0000011F // (0x11F)
 #define ACT_PULLING_DOOR               0x00001320 // (0x120 | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)

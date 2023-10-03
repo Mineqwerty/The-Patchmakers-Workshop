@@ -1752,7 +1752,7 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
     struct MarioBodyState *bodyState = m->marioBodyState;
     s32 flags = update_and_return_cap_flags(m);
 
-    if (flags & MARIO_VANISH_CAP) {
+    if (flags & (MARIO_VANISH_CAP | MARIO_TRANSPARENT)) {
         bodyState->modelState = MODEL_STATE_NOISE_ALPHA;
     }
 
@@ -1790,7 +1790,7 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
         m->marioObj->hitboxHeight = 160.0f;
     }
 
-    if ((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != MODEL_STATE_MASK)) {
+    if (((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != MODEL_STATE_MASK)) || m->flags & MARIO_TRANSPARENT) {
         bodyState->modelState &= ~MODEL_STATE_MASK;
         bodyState->modelState |= (MODEL_STATE_ALPHA | m->fadeWarpOpacity);
     }

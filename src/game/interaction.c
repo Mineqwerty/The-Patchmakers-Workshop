@@ -2192,6 +2192,19 @@ void mario_handle_special_floors(struct MarioState *m) {
                 set_mario_action(m, ACT_WARP_RDR, 0);
             }
                 break;
+
+            case SURFACE_GSS_WARP:
+                m->flags |= MARIO_TRANSPARENT;
+                m->fadeWarpOpacity = CLAMP_U8((2181.9f + gMarioState->pos[0])/4.89f);
+
+                if (m->fadeWarpOpacity == 0) {
+                    set_mario_action(m, ACT_WARP_GSS, 0);
+                }
+            break;
+
+            default:
+                m->flags &= ~(MARIO_TRANSPARENT);
+            break;
         }
 
         if (!(m->action & (ACT_FLAG_AIR | ACT_FLAG_SWIMMING))) {
