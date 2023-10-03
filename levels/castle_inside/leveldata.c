@@ -94,3 +94,7 @@
 #include "levels/castle_inside/stc_entrance_door2/collision.inc.c"
 #include "levels/castle_inside/star_unlock_platform/model.inc.c"
 #include "levels/castle_inside/star_unlock_platform/collision.inc.c"
+#include "levels/castle_inside/gss_window_lit/collision.inc.c"
+#include "levels/castle_inside/gss_window_lit/model.inc.c"
+#include "levels/castle_inside/gss_window_unlit/model.inc.c"
+#include "levels/castle_inside/gss_window_light/model.inc.c"

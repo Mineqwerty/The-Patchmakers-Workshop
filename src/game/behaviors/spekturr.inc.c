@@ -65,21 +65,9 @@ void bhv_spekturr_loop(void) {
             obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
             obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
 
-            approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 300 * sins((o->oBehParams2ndByte * 0x6000) + (0x400*o->parentObj->oTimer)), 0.07f);
-            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 300 * coss((o->oBehParams2ndByte * 0x6000) + (0x400*o->parentObj->oTimer)), 0.07f);
+            approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 300 * sins((o->oBehParams2ndByte * 0x6000) + (gGlobalTimer)), 0.07f);
+            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 300 * coss((o->oBehParams2ndByte * 0x6000) + (gGlobalTimer)), 0.07f);
             approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 100 * sins(o->oTimer * 0x400), 0.2f);
-            
-            /* o->oForwardVel = 10.0f;
-            if (o->oPosY > gMarioState->pos[1] + 100) {
-                o->oVelY = -10.0f;
-            }
-            else if (o->oPosY < gMarioState->pos[1]) {
-                o->oVelY = 10.0f;
-            }
-            else {
-                o->oVelY = 0.0f;
-            } */
-
 
             if (o->oTimer % 25 == 0) {
                 struct Object *flame = spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);

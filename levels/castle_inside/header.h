@@ -173,4 +173,12 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/star_unlock_platform/collision_header.h"
 
+#include "levels/castle_inside/gss_window_lit/collision_header.h"
+
+#include "levels/castle_inside/gss_window_lit/geo_header.h"
+
+#include "levels/castle_inside/gss_window_unlit/geo_header.h"
+
+#include "levels/castle_inside/gss_window_light/geo_header.h"
+
 #endif

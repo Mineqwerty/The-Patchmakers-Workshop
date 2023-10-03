@@ -7053,3 +7053,23 @@ const BehaviorScript bhvStarUnlockPlatform[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvGssWindow[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(gss_window_lit_collision),
+    CALL_NATIVE(bhv_gss_window_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_gss_window_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGssWindowLight[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_gss_window_light_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_gss_window_light_loop),
+    END_LOOP(),
+};

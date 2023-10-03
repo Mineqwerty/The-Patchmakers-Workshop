@@ -635,3 +635,5 @@ extern const BehaviorScript bhvGoddessSpear[];
 extern const BehaviorScript bhvGarageDoor[];
 extern const BehaviorScript bhvStcDoor[];
 extern const BehaviorScript bhvStarUnlockPlatform[];
+extern const BehaviorScript bhvGssWindow[];
+extern const BehaviorScript bhvGssWindowLight[];

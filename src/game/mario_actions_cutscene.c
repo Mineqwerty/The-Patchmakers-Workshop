@@ -406,6 +406,29 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_warp_ttc(struct MarioState *m) {
+    gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+    m->actionTimer++;
+
+    gCamera->cutscene = 1;
+    f32 approachSpeed = 0.05f;
+    gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
+        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], gMarioState->pos[1] + 500, approachSpeed);
+        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
+        gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
+        gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
+        gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
+
+    if (m->actionTimer == 30) {
+        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+    }
+    if (m->actionTimer == 59) {
+        initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
+    }
+    return FALSE;
+}
+
 s32 act_warp_rdr(struct MarioState *m) {
     set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, 0x00028000);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
@@ -2983,6 +3006,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_WAITING_FOR_DIALOG:         cancel = act_waiting_for_dialog(m);         break;
         case ACT_WARP_STC:         cancel = act_warp_stc(m);         break;
         case ACT_WARP_RDR:         cancel = act_warp_rdr(m);         break;
+        case ACT_WARP_TTC:         cancel = act_warp_ttc(m);         break;
         case ACT_WARP_GSS:         cancel = act_warp_gss(m);         break;
         case ACT_COLLECTING_PATCH:         cancel = act_collecting_patch(m);         break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;

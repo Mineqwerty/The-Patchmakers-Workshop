@@ -790,3 +790,7 @@ void bhv_stc_door_init(void);
 void bhv_stc_door_loop(void);
 void bhv_star_unlock_platform_init(void);
 void bhv_star_unlock_platform_loop(void);
+void bhv_gss_window_init(void);
+void bhv_gss_window_loop(void);
+void bhv_gss_window_light_init(void);
+void bhv_gss_window_light_loop(void);

@@ -1074,7 +1074,7 @@ u32 get_door_save_file_flag(struct Object *door) {
     s16 isPssDoor = door->oPosY > 500.0f;
 
     switch (requiredNumStars) {
-        case  1: saveFileFlag = (isPssDoor ? SAVE_FLAG_UNLOCKED_PSS_DOOR : SAVE_FLAG_UNLOCKED_WF_DOOR ); break;
+        case  1: saveFileFlag = (isPssDoor ? 1 : 1 ); break;
         case  3: saveFileFlag = (isCcmDoor ? SAVE_FLAG_UNLOCKED_CCM_DOOR : SAVE_FLAG_UNLOCKED_JRB_DOOR); break;
         case  8: saveFileFlag = SAVE_FLAG_UNLOCKED_BITDW_DOOR;                                           break;
         case 30: saveFileFlag = SAVE_FLAG_UNLOCKED_BITFS_DOOR;                                           break;
@@ -2190,6 +2190,12 @@ void mario_handle_special_floors(struct MarioState *m) {
             case SURFACE_RDR_WARP:
             if (!(m->action & (ACT_FLAG_AIR))) {
                 set_mario_action(m, ACT_WARP_RDR, 0);
+            }
+                break;
+
+            case SURFACE_TTC_WARP:
+            if (!(m->action & (ACT_FLAG_AIR))) {
+                set_mario_action(m, ACT_WARP_TTC, 0);
             }
                 break;
 

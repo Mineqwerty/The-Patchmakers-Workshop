@@ -25,8 +25,6 @@ const GeoLayout castle_inside_area_1_geo[] = {
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 28, 100, -37, castle_inside_dl_Plane_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, castle_inside_dl_Plane_002_mesh_layer_5),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1510, 1412, 588, 0, -180, 0, castle_inside_dl_Plane_003_mesh_layer_1),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -3095, 122, -1045, 0, 90, 0, castle_inside_dl_Plane_006_mesh_layer_1),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -3095, 122, -1601, 0, 90, 0, castle_inside_dl_Plane_007_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 3569, 1309, 965, 19, -146, 78, castle_inside_dl_Plane_008_mesh_layer_5),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 2710, 1840, 941, -27, -51, 112, castle_inside_dl_Plane_009_mesh_layer_5),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 2377, 840, -466, 0, -90, 0, castle_inside_dl_Plane_010_mesh_layer_1),

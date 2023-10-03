@@ -1,3 +1,5 @@
+#include "src/game/save_file.h"
+
 enum StarUnlockPlatformActions {
     STAR_UNLOCK_ACTION_IDLE,
     STAR_UNLOCK_ACTION_RAISE_NUMBER,
@@ -6,8 +8,27 @@ enum StarUnlockPlatformActions {
     STAR_UNLOCK_ACTION_UNLOCK_COURSE_ENTRY,
 };
 
-void bhv_star_unlock_platform_init(void) {
+u32 star_unlock_get_course_flag(void) {
+    u32 courseFlag;
+    switch (o->oBehParams2ndByte) {
+        case 1:
+            courseFlag = SAVE_FLAG_UNLOCKED_COURSE_RDR;
+        break;
+        case 2:
+            courseFlag = SAVE_FLAG_UNLOCKED_COURSE_STC;
+        break;
+        default:
+            courseFlag = SAVE_FLAG_FILE_EXISTS;
+        break;
+    }
 
+    return courseFlag;
+}
+
+void bhv_star_unlock_platform_init(void) {
+    if (save_file_get_flags() & star_unlock_get_course_flag()) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_star_unlock_platform_loop(void) {
@@ -30,6 +51,7 @@ void bhv_star_unlock_platform_loop(void) {
             if (gMarioState->numStars >= GET_BPARAM1(o->oBehParams)) {
                 spawn_object(gMarioObject, MODEL_STAR, bhvUnlockDoorStar);
                 o->oAction = STAR_UNLOCK_ACTION_UNLOCK_COURSE_ENTRY;
+                save_file_set_flags(star_unlock_get_course_flag());
             }
         break;
         case STAR_UNLOCK_ACTION_LOWER_NUMBER:

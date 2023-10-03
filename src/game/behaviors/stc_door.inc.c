@@ -1,4 +1,5 @@
 #include "levels/castle_inside/header.h"
+#include "src/game/save_file.h"
 
 void bhv_stc_door_init(void) {
     switch(o->oBehParams2ndByte) {
@@ -11,15 +12,17 @@ void bhv_stc_door_init(void) {
     }
 
     o->parentObj = cur_obj_find_object_with_bparam_2nd_byte(bhvStarUnlockPlatform, 2);
+
+    if (save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC) {
+        o->oAction = 2;
+        o->oMoveAngleYaw += (o->oBehParams2ndByte == 0 ? 0x5A00 : -0x5A00);
+        o->oFaceAngleYaw += (o->oBehParams2ndByte == 0 ? 0x5A00 : -0x5A00);
+    }
 }
 
 void bhv_stc_door_loop(void) {
-   if (!o->parentObj) {
-        obj_mark_for_deletion(o);
-        return;
-    }
 
-    if (o->oAction == 0 && o->parentObj->oAction == 4 && o->parentObj->oTimer >= 90) {
+    if (o->oAction == 0 && o->parentObj && o->parentObj->oAction == 4 && o->parentObj->oTimer >= 90) {
         o->oAction = 1;
         cur_obj_shake_screen(1);
     }

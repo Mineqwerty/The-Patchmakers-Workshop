@@ -278,3 +278,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/garage_door.inc.c"
 #include "behaviors/stc_door.inc.c"
 #include "behaviors/star_unlock_platform.inc.c"
+#include "behaviors/gss_window.inc.c"

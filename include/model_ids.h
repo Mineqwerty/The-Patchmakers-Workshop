@@ -550,6 +550,9 @@
 #define MODEL_STC_DOOR_RIGHT                  0x102
 #define MODEL_STC_DOOR_LEFT                  0x103
 #define MODEL_STAR_UNLOCK_PLATFORM                  0x104
+#define MODEL_GSS_WINDOW_LIT                  0x105
+#define MODEL_GSS_WINDOW_UNLIT                  0x106
+#define MODEL_GSS_WINDOW_LIGHT                  0x107
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

@@ -2043,6 +2043,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     patch_update(gMarioState);
     gMarioState->patchTimer++;
+
+    //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
