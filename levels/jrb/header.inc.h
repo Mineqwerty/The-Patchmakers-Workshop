@@ -60,7 +60,7 @@ extern Gfx jrb_dl_Sphere_mesh_layer_0_tri_2[];
 extern Vtx jrb_dl_bbb_floor_mesh_layer_1_vtx_cull[8];
 extern Vtx jrb_dl_bbb_floor_mesh_layer_1_vtx_0[8];
 extern Gfx jrb_dl_bbb_floor_mesh_layer_1_tri_0[];
-extern Vtx jrb_dl_bbb_floor_mesh_layer_1_vtx_1[95];
+extern Vtx jrb_dl_bbb_floor_mesh_layer_1_vtx_1[92];
 extern Gfx jrb_dl_bbb_floor_mesh_layer_1_tri_1[];
 extern Vtx jrb_dl_fences_mesh_layer_4_vtx_cull[8];
 extern Vtx jrb_dl_fences_mesh_layer_4_vtx_0[76];

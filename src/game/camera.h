@@ -735,6 +735,7 @@ extern struct Camera *gCamera;
 extern struct Object *gCutsceneFocus;
 extern struct Object *gSecondCameraFocus;
 extern u8 gRecentCutscene;
+extern s16 s8DirModeYawOffset;
 
 extern struct CameraFOVStatus sFOVState;
 

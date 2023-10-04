@@ -3156,7 +3156,7 @@ void render_new_course_complete_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
         if (gNewStarIconArcValues[0] > 0) gNewStarIconArcValues[0] -= 1;
         if (gNewStarIconArcValues[1] > 0) gNewStarIconArcValues[1] -= 1;
         create_dl_translation_matrix(MENU_MTX_PUSH, gNewStarIconCoordsX, gNewStarIconCoordsY, 1);
-        print_generic_string(x + 14 + gMenuShakeX + (gLastCompletedStarNum - 1)*20, y + 13 + gMenuShakeY, growStar);
+        print_generic_string(x + 14 + gMenuShakeX + (gLastCompletedStarNum - 1)*15, y + 13 + gMenuShakeY, growStar);
         gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
         gNewStarIconTimer++;
@@ -3318,6 +3318,9 @@ s32 render_new_star_complete_text(void) {
                 level_set_transition(0, NULL);
                 set_mario_action(gMarioState, ACT_IDLE, 0);
                 gMarioState->faceAngle[1] += 0x8000;
+                s8DirModeYawOffset = -gMarioState->faceAngle[1];
+                gNewStarCollected = 0;
+                save_file_do_save(gCurrSaveFileNum - 1);
             }
             if (gDialogTextAlpha < 250) {
                 gDialogTextAlpha += 25;
