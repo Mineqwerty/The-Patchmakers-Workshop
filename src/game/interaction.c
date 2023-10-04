@@ -24,6 +24,7 @@
 #include "sound_init.h"
 #include "rumble_init.h"
 #include "config.h"
+#include "src/game/ingame_menu.h"
 
 u8  sDelayInvincTimer;
 s16 sInvulnerable;
@@ -919,6 +920,9 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
 #else
         starIndex = (obj->oBehParams >> 24) & 0x1F;
 #endif
+
+        gNewStarCollected = !(save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & (1 << starIndex));
+
         save_file_collect_star_or_key(m->numCoins, starIndex);
 
         m->numStars =

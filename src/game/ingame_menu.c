@@ -46,6 +46,7 @@ u8 gPageNum;
 u8 gForceDialogLoad;
 u16 gDialogAdvanceTimer;
 u8 gDialogAuto;
+u8 gNewStarCollected;
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -176,6 +177,8 @@ u8 gPatchMenuTimer = 0;
 
 u16 gShakeOffset;
 
+s16 gNewStarIconCoords[2];
+s16 gNewStarIconArcValues[2];
 
 void create_dl_identity_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
@@ -1860,6 +1863,10 @@ void new_dialog_render_automatic_dialog(void) {
 void set_menu_mode(s16 mode) {
     if (gMenuMode == MENU_MODE_NONE || gMenuMode == MENU_MODE_FELT_GOING_UP) {
         gMenuMode = mode;
+        gNewStarIconCoords[0] = -30.0f;
+        gNewStarIconCoords[1] = 130.0f;
+        gNewStarIconArcValues[0] = 30.0f;
+        gNewStarIconArcValues[1] = 30.0f;
     }
 }
 
@@ -3077,6 +3084,131 @@ void render_course_complete_lvl_info_and_hud_str(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 }
 
+void render_new_course_complete_stars(s16 x, s16 y, s16 fileIndex, s16 courseIndex, s8 starIndex) {
+    s16 curStar = 0;
+
+    u8 str[COURSE_STAGES_COUNT * 2];
+
+    u8 textStar[] = { TEXT_STAR };
+
+    u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
+    u16 starCount = save_file_get_course_star_count(fileIndex, courseIndex);
+
+    u16 nextStar = 0;
+
+    if (starFlags & STAR_FLAG_ACT_100_COINS) {
+        print_generic_string(x + 89, y - 5, textStar);
+    }
+
+    dbp(gNewStarCollected);
+
+    while (curStar < 6) {
+        //Check to see if each star has been collected, skipping the last collected star if it
+        //was collected for the first time.
+        if ((starFlags & (1 << nextStar)) && ((gLastCompletedStarNum - 1) != curStar || !gNewStarCollected)) {
+            str[nextStar * 2] = DIALOG_CHAR_STAR_FILLED;
+        } else {
+            str[nextStar * 2] = DIALOG_CHAR_STAR_OPEN;
+        }
+
+        curStar++;
+
+        str[nextStar * 2 + 1] = DIALOG_CHAR_SPACE;
+        nextStar++;
+    }
+
+    if (starCount == nextStar && starCount != 6) {
+        str[nextStar * 2] = DIALOG_CHAR_STAR_OPEN;
+        str[nextStar * 2 + 1] = DIALOG_CHAR_SPACE;
+        nextStar++;
+    }
+
+    
+
+    str[nextStar * 2] = DIALOG_CHAR_TERMINATOR;
+
+    print_generic_string(x + 14, y + 13, str);
+
+    if (gNewStarCollected) {
+        u8 growStar[2];
+        growStar[0] = DIALOG_CHAR_STAR_FILLED;
+        growStar[1] = DIALOG_CHAR_TERMINATOR;
+
+        gNewStarIconCoords[0] = approach_s16_asymptotic(gNewStarIconCoords[0], 0, 0.05f);
+        gNewStarIconCoords[1] = approach_s16_asymptotic(gNewStarIconCoords[1], 0, 0.05f);
+        gNewStarIconCoords[0] += gNewStarIconArcValues[0];
+        gNewStarIconCoords[1] += gNewStarIconArcValues[1];
+
+        if (gNewStarIconArcValues[0] > 0) gNewStarIconArcValues[0] -= 1;
+        if (gNewStarIconArcValues[1] > 0) gNewStarIconArcValues[1] -= 1;
+        create_dl_translation_matrix(MENU_MTX_PUSH, gNewStarIconCoords[0], gNewStarIconCoords[1], 1);
+        print_generic_string(x + 14 + (gLastCompletedStarNum - 1)*20, y + 13, growStar);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+}
+
+void render_new_course_complete_text(void) {
+    u8 textCourse[] = { TEXT_COURSE };
+    u8 textClear[] = { TEXT_CLEAR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
+
+    u8 *actName;
+    u8 *courseName;
+
+    u8 strCourseNum[4];
+
+    void **actNameTbl    = segmented_to_virtual(languageTable[gInGameLanguage][2]);
+    void **courseNameTbl = segmented_to_virtual(languageTable[gInGameLanguage][1]);
+
+    if (gLastCompletedCourseNum <= COURSE_STAGES_MAX) { // Main courses
+        print_hud_course_complete_coins(118, 103);
+        play_star_fanfare_and_flash_hud(HUD_FLASH_STARS, (1 << (gLastCompletedStarNum - 1)));
+
+        if (gLastCompletedStarNum == 7) {
+            actName = segmented_to_virtual(actNameTbl[COURSE_STAGES_MAX * 6 + 1]);
+        } else {
+            actName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gLastCompletedCourseNum) * 6 + gLastCompletedStarNum - 1]);
+            courseName = segmented_to_virtual(courseNameTbl[gLastCompletedCourseNum-1]);
+        }
+
+        // Print course number
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+
+        int_to_str(gLastCompletedCourseNum, strCourseNum);
+
+        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+        print_generic_string(65, 165, courseName);
+        //print_generic_string(CRS_NUM_X2, 165, strCourseNum);
+
+        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        print_generic_string(63, 167, courseName);
+        //print_generic_string(CRS_NUM_X3, 167, strCourseNum);
+
+        render_new_course_complete_stars(100, 60, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gLastCompletedCourseNum), gLastCompletedStarNum - 1);
+
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    }
+
+    // Print star glyph
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    print_hud_lut_string(HUD_LUT_GLOBAL, 55, 77, textSymStar);
+
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+
+    // Print act name and catch text
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+    print_generic_string(76, 145, actName);
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    print_generic_string(74, 147, actName);
+
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+}
+
 #define X_VAL9 x
 #define TXT_SAVEOPTIONS_X x + 12
 #define TXT_SAVECONT_Y 0
@@ -3148,6 +3280,47 @@ s32 render_course_complete_screen(void) {
     return MENU_OPT_NONE;
 }
 
+s32 render_new_star_complete_text(void) {
+    switch (gDialogBoxState) {
+        case DIALOG_STATE_OPENING:
+            render_new_course_complete_text();
+            if (gCourseDoneMenuTimer > 100 && gCourseCompleteCoinsEqual) {
+                gDialogBoxState = DIALOG_STATE_VERTICAL;
+                level_set_transition(-1, NULL);
+                gDialogTextAlpha = 0;
+                gDialogLineNum = MENU_OPT_DEFAULT;
+            }
+            break;
+
+        case DIALOG_STATE_VERTICAL:
+            shade_screen();
+            render_new_course_complete_text();
+            render_save_confirmation(100, 86, &gDialogLineNum, 20);
+
+            if (gCourseDoneMenuTimer > 110 && (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
+                level_set_transition(0, NULL);
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                gDialogBoxState = DIALOG_STATE_OPENING;
+                gMenuMode = MENU_MODE_NONE;
+                gCourseDoneMenuTimer = 0;
+                gCourseCompleteCoins = 0;
+                gCourseCompleteCoinsEqual = FALSE;
+                gHudFlash = HUD_FLASH_NONE;
+
+                return gDialogLineNum;
+            }
+            break;
+    }
+
+    if (gDialogTextAlpha < 250) {
+        gDialogTextAlpha += 25;
+    }
+
+    gCourseDoneMenuTimer++;
+
+    return MENU_OPT_NONE;
+}
+
 s32 render_menus_and_dialogs(void) {
     s32 mode = MENU_OPT_NONE;
 
@@ -3164,8 +3337,8 @@ s32 render_menus_and_dialogs(void) {
             case MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN:
                 mode = render_course_complete_screen();
                 break;
-            case MENU_MODE_UNUSED_3:
-                mode = render_course_complete_screen();
+            case MENU_MODE_NEW_STAR_COMPLETE_TEXT:
+                mode = render_new_star_complete_text();
                 break;
             case MENU_MODE_FELT_GOING_UP:
                 render_pause_screen_felt();

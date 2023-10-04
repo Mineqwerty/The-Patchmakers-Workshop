@@ -41,7 +41,7 @@ enum MenuMode {
     MENU_MODE_UNUSED_0,
     MENU_MODE_RENDER_PAUSE_SCREEN,
     MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN,
-    MENU_MODE_UNUSED_3,
+    MENU_MODE_NEW_STAR_COMPLETE_TEXT,
     MENU_MODE_FELT_GOING_UP
 };
 
@@ -160,6 +160,7 @@ extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 extern s16 gDialogID;
 extern f32 gDialogBoxOpenTimer;
+extern u8 gNewStarCollected;
 
 void create_dl_identity_matrix(void);
 void create_dl_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);
