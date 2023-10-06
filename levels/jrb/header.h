@@ -136,4 +136,6 @@ extern const LevelScript level_jrb_entry[];
 
 #include "levels/jrb/fortogoo/anim_header.h"
 
+#include "levels/jrb/grounded_patch_grapple/geo_header.h"
+
 #endif

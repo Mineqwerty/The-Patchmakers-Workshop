@@ -79,3 +79,4 @@
 #include "levels/wf/taeber/model.inc.c"
 #include "levels/wf/taeber_leaves/model.inc.c"
 #include "levels/wf/blubol/model.inc.c"
+#include "levels/wf/grounded_patch_chillstep/model.inc.c"

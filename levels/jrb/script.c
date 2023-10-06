@@ -58,6 +58,7 @@ const LevelScript level_jrb_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_7, falling_stone_7_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_SHADOW, falling_stone_shadow_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FORTOGOO, fortogoo_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -123,7 +124,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_PODOGOO, 1546, 1404, 5952, 0, -178, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_PODOGOO, 4449, 1465, 11298, 0, -91, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_RED_COIN, 2063, 2717, 10781, 0, -180, 0, 0x00000000, bhvRedCoin),
-		OBJECT(MODEL_NONE, 2321, 1871, 7069, 0, -180, 0, (2 << 24) | (2 << 16), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, 2321, 1871, 7069, 0, -180, 0, (2 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_RED_COIN, 4807, 2871, 6855, 0, -180, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 6134, 1644, 8476, 0, -180, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 4807, 2871, 8310, 0, -180, 0, 0x00000000, bhvRedCoin),
@@ -171,7 +172,8 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GRAPPLE_STONE, 1411, 2603, -1727, 0, 180, 0, (166 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 781, 2721, 600, 0, 90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, -1336, 2901, 1741, 0, -180, 0, (1 << 16), bhvGrappleStone),
-		OBJECT(MODEL_STAR, -1795, 3112, 1741, 0, -180, 0, (1 << 24) | (1 << 16), bhvStar),
+		OBJECT(MODEL_STAR, -1795, 3112, 1741, 0, -180, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_GROUND_PATCH, -166, 589, -73, -90, 0, 0, (2 << 16), bhvGroundPatch),
 		OBJECT(MODEL_NONE, -2035, 4645, 1077, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(jrb_area_2_collision),
 		MACRO_OBJECTS(jrb_area_2_macro_objs),

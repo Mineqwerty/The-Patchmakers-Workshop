@@ -1796,24 +1796,25 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     s16 angleDiff;
     vec3f_get_yaw(gMarioState->pos, &obj->oPosVec, &angleDiff);
 
-    /*
-    f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
-    if (xDiff > 600) xDiff = 600;
-    if (xDiff < -600) xDiff = -600;
-    f32 zDiff = secondFocus[2] - gMarioState->pos[2] / 3.0f;
-    if (zDiff > 600) zDiff = 600;
-    if (zDiff < -600) zDiff = -600;
+    if (gCurrLevelNum == LEVEL_BOB) {
+        f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
+        if (xDiff > 600) xDiff = 600;
+        if (xDiff < -600) xDiff = -600;
+        f32 zDiff = secondFocus[2] - gMarioState->pos[2] / 3.0f;
+        if (zDiff > 600) zDiff = 600;
+        if (zDiff < -600) zDiff = -600;
 
-    c->pos[0] = gMarioState->pos[0] - xDiff;
-    c->pos[2] = gMarioState->pos[2] - zDiff;
-    */
+        //c->pos[0] = gMarioState->pos[0] - xDiff;
+        //c->pos[2] = gMarioState->pos[2] - zDiff;
 
-   approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
-   approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
-
-   //c->pos[0] = gMarioState->pos[0] + (2000 * -sins(angleDiff));
-    //c->pos[2] = gMarioState->pos[2] + (2000 * -coss(angleDiff));
-    c->pos[1] += 300.0f;
+        c->pos[0] = gMarioState->pos[0] + (2000 * -sins(angleDiff));
+        c->pos[2] = gMarioState->pos[2] + (2000 * -coss(angleDiff));
+        c->pos[1] += 300.0f;
+    }
+    else if (gCurrLevelNum == LEVEL_CCM) {
+        approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
+        approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
+    }
 
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
     // Prevent the camera from going to the ground in the outside boss fight

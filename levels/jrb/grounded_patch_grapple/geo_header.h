@@ -1,0 +1,9 @@
+extern const GeoLayout grounded_patch_grapple_geo[];
+extern u8 grounded_patch_grapple_grapple_patch_rgba16_ia8[];
+extern Vtx grounded_patch_grapple_Plane_012_mesh_layer_4_vtx_cull[8];
+extern Vtx grounded_patch_grapple_Plane_012_mesh_layer_4_vtx_0[4];
+extern Gfx grounded_patch_grapple_Plane_012_mesh_layer_4_tri_0[];
+extern Gfx mat_grounded_patch_grapple_f3dlite_material_011[];
+extern Gfx mat_revert_grounded_patch_grapple_f3dlite_material_011[];
+extern Gfx grounded_patch_grapple_Plane_012_mesh_layer_4[];
+extern Gfx grounded_patch_grapple_material_revert_render_settings[];

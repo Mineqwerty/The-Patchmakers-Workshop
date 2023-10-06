@@ -1,0 +1,9 @@
+extern const GeoLayout grounded_patch_chillstep_geo[];
+extern u8 grounded_patch_chillstep_chillstep_patch_rgba16_ci8[];
+extern u8 grounded_patch_chillstep_chillstep_patch_rgba16_pal_rgba16[];
+extern Vtx grounded_patch_chillstep_Plane_012_mesh_layer_4_vtx_0[4];
+extern Gfx grounded_patch_chillstep_Plane_012_mesh_layer_4_tri_0[];
+extern Gfx mat_grounded_patch_chillstep_f3dlite_material_003[];
+extern Gfx mat_revert_grounded_patch_chillstep_f3dlite_material_003[];
+extern Gfx grounded_patch_chillstep_Plane_012_mesh_layer_4[];
+extern Gfx grounded_patch_chillstep_material_revert_render_settings[];

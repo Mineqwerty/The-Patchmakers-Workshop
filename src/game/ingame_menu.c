@@ -173,7 +173,7 @@ s8 gOptionsIndex = 0;
 s8 gPatchIndex = 0;
 s8 gPatchIndexX = 0;
 s8 gPatchIndexY = 0;
-u8 gPatchMenuTimer = 0;
+s16 gPatchMenuTimer = 0;
 
 u16 gShakeOffset;
 
@@ -722,27 +722,86 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
     }
 }
 
-void handle_patch_menu_scrolling(s8 *currentIndex) {
+s16 find_patch_menu_valid_scroll(s8 direction) {
+    s8 currentIndex = gPatchIndex;
+    u8 indexChanged = FALSE;
+
+        //jump a column if the input moves off the start or end of a row
+        if (currentIndex / 4 == 0 && direction == -4) {
+            u8 balls;
+        }
+        else if (currentIndex / 4 == 3 && direction == 4) {
+            u8 balls;
+        }
+        else {
+            currentIndex = CLAMP(currentIndex + direction, 0, 15);
+        }
+
+        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << currentIndex))) {
+            if (currentIndex / 4 == 0 && direction == -4) {
+                currentIndex = gPatchIndex;
+                break;
+            }
+            else if (currentIndex / 4 == 3 && direction == 4) {
+                currentIndex = gPatchIndex;
+                break;
+            } 
+            else if (currentIndex == 0 && direction == -1) {
+                currentIndex = 15;
+            }
+            else if (currentIndex == 15 && direction == 1) {
+                currentIndex = 0;
+            }
+            else {
+                currentIndex = CLAMP(currentIndex + direction, 0, 15);
+            }
+        }
+
+        indexChanged = !(gPatchIndex == currentIndex);
+        gPatchIndex = currentIndex;
+        return indexChanged;
+}
+
+void handle_patch_menu_scrolling(s8 *currentIndex, u16 patchFlags) {
     s8 index = 0;
-    if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS))) index -=4;
-    if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS))) index += 4;
-    if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS))) index +=1;
-    if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS))) index -=1;
+    u8 indexChanged = 0;
+    u8 direction = 0;
+
+    //patch menu timer will be positive for X and negative for Y
+
+    if (gPatchMenuTimer == 0) {
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS))) {
+            indexChanged = find_patch_menu_valid_scroll(-4);
+            direction = 1;
+        }
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS))) {
+            indexChanged = find_patch_menu_valid_scroll(4);
+            direction = 1;
+        }
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(1);
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(-1);
+    }
     
-    if (gPlayer1Controller->rawStickX < 60 && gPlayer1Controller->rawStickX > -60 &&
-        gPlayer1Controller->rawStickY < 60 && gPlayer1Controller->rawStickY > -60 && gPatchMenuTimer == 1) {
+    if (gPlayer1Controller->rawStickX < 60 && gPlayer1Controller->rawStickX > -60 && gPatchMenuTimer > 0) {
+        gPatchMenuTimer = 0;
+    }
+
+    if (gPlayer1Controller->rawStickY < 60 && gPlayer1Controller->rawStickY > -60 && gPatchMenuTimer < 0) {
             gPatchMenuTimer = 0;
     }
 
 
-    if (gPatchIndex + index < 16 && gPatchIndex + index >= 0 && gPatchMenuTimer == 0 && index != 0) {
-        gPatchIndex += index;
-        gPatchMenuTimer = 1;
+    if (indexChanged) {
+        //gPatchIndex += index;
+        gPatchMenuTimer = (direction == 0 ? 20 : -20);
         play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
     }
 
-    if (gPatchMenuTimer > 1) {
+    if (gPatchMenuTimer > 0) {
         gPatchMenuTimer--;
+    }
+    else if (gPatchMenuTimer < 0) {
+        gPatchMenuTimer++;
     }
 }
 
@@ -2587,7 +2646,7 @@ void render_patch_selection() {
 
     //selector
     if (gSubMenuIndex == 2) {
-    handle_patch_menu_scrolling(gPatchIndex);
+    handle_patch_menu_scrolling(gPatchIndex, patchFlags);
     gPatchIndexX = gPatchIndex % 4;
     gPatchIndexY = gPatchIndex / 4;
     }
@@ -3161,6 +3220,9 @@ void render_new_course_complete_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
 
         gNewStarIconTimer++;
 
+        if (gNewStarIconTimer == 21) {
+            play_sound(SOUND_GENERAL_LOUD_POUND, &gGlobalSoundSource);
+        }
         if (gNewStarIconTimer >= 22 && gNewStarIconTimer < 40) {
             gMenuShakeX = random_f32_around_zero(6) - 3;
             gMenuShakeY = random_f32_around_zero(6) - 3;

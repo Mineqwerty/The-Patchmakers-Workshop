@@ -171,5 +171,8 @@
     ],
     "32_title": [
         "streamed_audio"
+    ],
+    "33_patch_get": [
+        "0C"
     ]
 }

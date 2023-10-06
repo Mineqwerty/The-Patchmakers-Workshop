@@ -44,6 +44,7 @@ const LevelScript level_wf_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_TAEBER, taeber_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TAEBER_LEAVES, taeber_leaves_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BLUBOL, blubol_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_chillstep_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -148,6 +149,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_TAEBER, 3463, 2058, 11706, 0, 0, 0, 0x00000000, bhvTaeber),
 		OBJECT(MODEL_YARN_GOOMBA, 3739, 2518, 13486, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_STAR, 3212, 3507, 13369, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_GROUND_PATCH, -481, 250, -1306, -90, 0, 0, (1 << 16), bhvGroundPatch),
 		OBJECT(MODEL_NONE, -5356, -18, -1325, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(wf_area_2_collision),
 		MACRO_OBJECTS(wf_area_2_macro_objs),

@@ -400,7 +400,7 @@
             "sound": "46_pizzicato_strings_1",
             "sound_hi": "47_pizzicato_strings_2"
         },
-        "Cello": {
+        "Trombone": {
             "release_rate": 119,
             "envelope": "envelope18",
             "sound": "2D_trombone"
@@ -629,6 +629,11 @@
             "envelope": "envelope42",
             "sound": "57_maracas"
         },
+        "Cello": {
+            "release_rate": 208,
+            "envelope": "envelope42",
+            "sound": "58_cello"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -721,7 +726,7 @@
         "Snare Clap",
         "Pizzicato Strings",
 
-        "Cello",
+        "Trombone",
         "Choir Ooh",
         "Sitar Drone",
         "Sitar",
@@ -771,6 +776,7 @@
 
         "Glockenspiel",
         "Angklung",
-        "Maracas"
+        "Maracas",
+        "Cello"
     ]
 }

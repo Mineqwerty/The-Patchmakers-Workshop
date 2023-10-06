@@ -46,3 +46,4 @@
 #include "levels/ccm/swinging_axe/geo.inc.c"
 #include "levels/ccm/wing_surface/geo.inc.c"
 #include "levels/ccm/goddess_spear/geo.inc.c"
+#include "levels/ccm/grounded_patch_halo/geo.inc.c"

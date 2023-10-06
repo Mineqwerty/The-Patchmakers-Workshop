@@ -115,4 +115,6 @@ extern const LevelScript level_wf_entry[];
 
 #include "levels/wf/blubol/geo_header.h"
 
+#include "levels/wf/grounded_patch_chillstep/geo_header.h"
+
 #endif

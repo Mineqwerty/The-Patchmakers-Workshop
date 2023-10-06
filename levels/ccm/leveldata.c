@@ -81,3 +81,4 @@
 #include "levels/ccm/seraphim/anims/data.inc.c"
 #include "levels/ccm/seraphim/anims/table.inc.c"
 #include "levels/ccm/goddess_spear/model.inc.c"
+#include "levels/ccm/grounded_patch_halo/model.inc.c"

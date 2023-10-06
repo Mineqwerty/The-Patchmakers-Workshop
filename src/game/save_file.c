@@ -588,8 +588,8 @@ u32 save_file_get_flags(void) {
             SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR |
             SAVE_FLAG_DDD_MOVED_BACK         |
             SAVE_FLAG_MOAT_DRAINED           |
-            SAVE_FLAG_UNLOCKED_PSS_DOOR      |
-            SAVE_FLAG_UNLOCKED_WF_DOOR       |
+            SAVE_FLAG_UNLOCKED_COURSE_RDR      |
+            SAVE_FLAG_UNLOCKED_COURSE_STC       |
             SAVE_FLAG_UNLOCKED_CCM_DOOR      |
             SAVE_FLAG_UNLOCKED_JRB_DOOR      |
             SAVE_FLAG_UNLOCKED_BITDW_DOOR    |
@@ -633,13 +633,13 @@ u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
 u16 save_file_get_patch_flags(s32 fileIndex) {
     u16 patchFlags;
     patchFlags = gSaveBuffer.files[fileIndex][0].patchFlags & 0x7F;
-    
+    patchFlags |= (1 << 0);
 
     return patchFlags;
 }
 
 void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags) {
-
+    patchFlags |= (1 << 0);
     gSaveBuffer.files[fileIndex][0].patchFlags |= patchFlags;
     gSaveFileModified = TRUE;
 }

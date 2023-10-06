@@ -723,6 +723,15 @@ void load_object_collision_model(void) {
         && (verticalMarioDiff < 0 || verticalMarioDiff < o->oCollisionDistance + 2000.f)
     );
 
+    if (o->oFlags & OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK) {
+    f32 grappleDist;
+            struct Object *grapple = cur_obj_find_nearest_object_with_behavior(bhvGrappleHook, &grappleDist);
+
+            if (grapple && grappleDist < o->oDistanceToMario && grappleDist < 6000.0f) {
+                inColRadius = TRUE;
+            }
+    }
+
     // Update if no Time Stop, in range, and in the current room.
     if (
         !(gTimeStopState & TIME_STOP_ACTIVE)

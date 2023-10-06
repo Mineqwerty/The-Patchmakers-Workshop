@@ -2053,7 +2053,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
 
     if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        initiate_warp(LEVEL_CCM, 4, 0x0A, 0, 0);
+        //initiate_warp(LEVEL_CCM, 4, 0x0A, 0, 0);
     }
 
     //TODO: put these in a more permanent spot
@@ -2291,13 +2291,13 @@ void init_mario(void) {
         }
 
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
+    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];

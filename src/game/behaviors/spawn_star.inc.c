@@ -140,25 +140,25 @@ void spawn_default_star(f32 x, f32 y, f32 z) {
 void spawn_pokey_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, -1530, 1500, -650);
-    starObj->oBehParams2ndByte = 0x05050000;
+    starObj->oBehParams = 0x05000000;
 }
 
 void spawn_bp3_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, 8861, -1406, -13869);
-    starObj->oBehParams2ndByte = 0x03030000;
+    starObj->oBehParams = 0x03000000;
 }
 
 void spawn_arena_star_stc(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, -12318, 7100, 9470);
-    starObj->oBehParams2ndByte = 0x03030000;
+    starObj->oBehParams = 0x03000000;
 }
 
 void spawn_ring_challenge_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, 9490, 2070, 4620);
-    starObj->oBehParams2ndByte = 0x03030000;
+    starObj->oBehParams = 0x03000000;
 }
 
 void spawn_red_coin_cutscene_star(f32 x, f32 y, f32 z) {

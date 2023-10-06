@@ -69,7 +69,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_GSS_WINDOW_LIT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindow),
 		OBJECT(MODEL_NONE, -2014, 100, -1225, 0, 0, 0, 0x051F0000, bhvPaintingDeathWarp),
 		OBJECT(MODEL_SEWNIA, -217, 100, -1359, 0, 0, 0, 0x00000000, bhvSewnia),
-		OBJECT(MODEL_NONE, 5373, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
+		OBJECT(MODEL_NONE, 6545, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
 		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 0, 0, 0x00000000, bhvStcDoor),
 		OBJECT(MODEL_STC_DOOR_LEFT, 3889, 554, 2906, 0, 0, 0, (1 << 16), bhvStcDoor),
 		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, 0, 0, 0x00000000, bhvGarageDoor),

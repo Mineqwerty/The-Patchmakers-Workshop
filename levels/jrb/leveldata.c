@@ -78,3 +78,4 @@
 #include "levels/jrb/fortogoo/model.inc.c"
 #include "levels/jrb/fortogoo/anims/data.inc.c"
 #include "levels/jrb/fortogoo/anims/table.inc.c"
+#include "levels/jrb/grounded_patch_grapple/model.inc.c"

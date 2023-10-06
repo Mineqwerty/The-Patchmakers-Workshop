@@ -58,6 +58,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SWINGING_AXE, swinging_axe_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WING_SURFACE, wing_surface_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GODDESS_SPEAR, goddess_spear_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_halo_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -107,7 +108,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_NONE, 7701, 694, -5940, 0, 0, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7342, 750, -6122, 0, 0, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_RED_COIN, 8959, 3098, -3552, 0, 0, 0, 0x00000000, bhvRedCoin),
-		OBJECT(MODEL_NONE, 11496, -795, -8042, 0, 0, 0, (4 << 24), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, 11496, -795, -8042, 0, 0, 0, (2 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_RED_COIN, 9498, 3119, -4605, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 7669, 1622, -5951, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 7315, 2152, -6025, 0, 0, 0, 0x00000000, bhvRedCoin),
@@ -117,7 +118,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_RED_COIN, 9836, -646, -8632, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_SERAPHIM, -2461, -237, -10890, 0, 0, 0, 0x00000000, bhvSeraphim),
 		OBJECT(MODEL_STAR, -11229, 1378, 4818, 0, 0, 0, 0x00000000, bhvStar),
-		OBJECT(MODEL_STAR, 64, 5142, -11949, 0, 0, 0, (4 << 24) | (4 << 16), bhvStar),
+		OBJECT(MODEL_STAR, 64, 5142, -11949, 0, 0, 0, (3 << 24), bhvStar),
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, -6342, 3801, -5384, 0, 0, 0, 0x00000000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, -6342, 3801, -5384, 0, 0, 0, 0x00100000, bhvSpinAirborneWarp, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, 5505, 2011, -82, 0, 0, 0, 0x00000000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
@@ -164,7 +165,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_TORCH_HOLDER, -8761, -9322, -9120, 0, 0, 0, 0x00000000, bhvTorchHolder),
 		OBJECT(MODEL_TORCH_HOLDER, 7571, -9242, -10747, 0, 0, 0, 0x00000000, bhvTorchHolder),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2295, -8764, 493, 0, 0, 0, (1 << 16), bhvWillOWispSpawner, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
-		OBJECT_WITH_ACTS(MODEL_NONE, -2028, -8587, -345, 0, 0, 0, (3 << 24) | (3 << 16), bhvGSSHiddenStar, ACT_4),
+		OBJECT_WITH_ACTS(MODEL_NONE, -2028, -8587, -345, 0, 0, 0, (4 << 24), bhvGSSHiddenStar, ACT_4),
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, -6342, -8511, -5384, 0, 0, 0, 0x00100000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, 5505, -8667, -82, 0, 0, 0, 0x00110000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2573, -8601, -752, 0, 0, 0, 0x00000000, bhvWillOWispSpawner, ACT_2),
@@ -188,6 +189,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_HALO_SWITCH, -1681, -9214, -2556, 0, 0, 0, 0x00000000, bhvHaloSwitch),
 		OBJECT(MODEL_FLAME_PUZZLE_BARRIER, -1820, -9234, -9993, 0, 0, 0, (2 << 16), bhvFlamePuzzleBarrier),
 		OBJECT(MODEL_SERAPHIM, -1820, -8881, -9508, 0, 0, 0, 0x00000000, bhvSeraphim),
+		OBJECT(MODEL_GROUND_PATCH, -6268, -9875, 8137, -90, 0, 0, (3 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, -1873, -8971, -11516, 0, 0, 0, (1 << 24) | (1 << 16), bhvStar),
 		TERRAIN(ccm_area_3_collision),
 		MACRO_OBJECTS(ccm_area_3_macro_objs),
