@@ -465,15 +465,15 @@ Her parents must be\n\
 worried sick!"))
 
 DEFINE_DIALOG(DIALOG_060, 1, 3, 30, 200, _("\
-Pathetic.\n\
+Why?\n\
 \n\
 \n\
-Why dost thou stand before me, foolish one?\n\
-Unaware of what this realm is, perhaps?\n\
-\n\
-You are akin to that foolish man\n\
-who entered these halls a few\n\
-years ago...\n\
+Why does another life show itself to me?\n\
+This place lost its luster long ago...\n\
+And yet, you come here seeking more.\n\
+You are akin to that foolish man who entered\n\
+these halls asking a ludicrous feat of me!\n\
+Things that \n\
 And now you stand before me, mocking\n\
 me by holding a fragment of my\n\
 divine strength upon your cap.\n\

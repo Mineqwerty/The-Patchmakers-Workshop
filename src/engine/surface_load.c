@@ -727,7 +727,7 @@ void load_object_collision_model(void) {
     f32 grappleDist;
             struct Object *grapple = cur_obj_find_nearest_object_with_behavior(bhvGrappleHook, &grappleDist);
 
-            if (grapple && grappleDist < o->oDistanceToMario && grappleDist < 6000.0f) {
+            if (grapple && sqr(grappleDist) < sqrLateralDist && grappleDist < 6000.0f) {
                 inColRadius = TRUE;
             }
     }

@@ -37,8 +37,21 @@ static struct ObjectHitbox sBanishFragmentHitbox = {
     /* hurtboxHeight:     */ 50,
 };
 
+static struct ObjectHitbox sGoddessSpearHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
+};
+
 void goddess_act_idle_flight(void) {
     cur_obj_init_animation(0);
+    o->oFlags |= OBJ_FLAG_NEW_DAMAGE_SYSTEM;
     gCamera->controlBossCameraYaw = 1;
     o->hitboxRadius = 600;
     if (o->oTimer == 90) {
@@ -593,6 +606,8 @@ void bhv_goddess_init(void) {
     o->oWallHitboxRadius = 150.0f;
 
     obj_set_hitbox(o, &sGoddessHitbox);
+
+    o->oFlags |= OBJ_FLAG_NEW_DAMAGE_SYSTEM;
     //o->oAction = 1;
     //gSecondCameraFocus = o;
     //            set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
@@ -688,17 +703,18 @@ Gfx *geo_goddess_hand_location_update(s32 callContext, UNUSED struct GraphNode *
 }
 
 void bhv_goddess_spear_init(void) {
-
+    obj_set_hitbox(o, &sGoddessSpearHitbox);
 }
 
 void bhv_goddess_spear_loop(void) {
+    o->oInteractStatus = 0;
     switch (o->oAction) {
         case 0:
             //spawning in action
             o->oFaceAnglePitch = approach_s32_symmetric(o->oFaceAnglePitch, -0x2000, 0x200);
-            o->oPosY += 5.0f;
+            o->oPosY += 12.0f;
             if (o->oTimer == 60) {
-                o->oAction = (random_u16() % 3) + 1;
+                o->oAction = 1; //(random_u16() % 3) + 1;
             }
         break;
         case 1:
@@ -709,28 +725,34 @@ void bhv_goddess_spear_loop(void) {
                     o->oSubAction++;
                 break;
                 case 1:
-                    o->oPosY += 200 * sins(o->oTimer * 0x444);
-                    if (o->oTimer >= 30) {
+                    o->oPosY += 20 * sins(o->oTimer * 0x444);
+                    if (o->oTimer >= 90) {
                         o->oSubAction++;
                     }
 
                     approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(o->oGoddessSpearApproachYaw), 0.06f);
                     approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(o->oGoddessSpearApproachYaw), 0.06f);
+                    obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
+                    obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+                    obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
                 break;
                 case 2:
                     approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(o->oGoddessSpearApproachYaw), 0.06f);
                     approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(o->oGoddessSpearApproachYaw), 0.06f);
+                    obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
+                    obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+                    obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
                     o->oPosX += (random_u16() % 5 - 2);
                     o->oPosY += (random_u16() % 5 - 2);
                     o->oPosZ += (random_u16() % 5 - 2);
 
-                    if (o->oTimer == 60) {
+                    if (o->oTimer >= 60) {
                         o->oSubAction++;
                     }
                 break;
                 case 3:
-                    o->oForwardVel = 100.0f;
-                    o->oVelY = -20.0f;
+                    o->oForwardVel = 135.0f * coss(o->oFaceAnglePitch);
+                    o->oVelY = -135.0f * sins(o->oFaceAnglePitch);;
                     o->oDragStrength = 0.0f;
                     o->oGravity = 0.0f;
 
@@ -740,7 +762,7 @@ void bhv_goddess_spear_loop(void) {
                     }
 
                     if (o->oTimer == 110) {
-                        if (o->oGoddessSpearAttackAttempts++ < 3) {
+                        if (o->oGoddessSpearAttackAttempts++ < 2) {
                             o->oTimer = 0;
                             o->oSubAction = 0;
                         }
