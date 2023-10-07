@@ -320,6 +320,18 @@ s32 event_find_stone_patch[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_goddess_intro[] = {
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_DIALOG_USER_ADVANCE, 61,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_MARIO_POSITION, 0, -400, -1700,
+    EVENT_SET_MARIO_YAW, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 2,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 3,
+
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,

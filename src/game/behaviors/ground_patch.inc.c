@@ -1,4 +1,5 @@
 #include "include/seq_ids.h"
+#include "src/game/cutscene.h"
 
 void bhv_ground_patch_init(void) {
    
@@ -13,7 +14,7 @@ void bhv_ground_cutscene_patch_loop(void) {
             gMarioState->pos[1] = o->oPosY + 50;
             gMarioState->pos[2] = o->oPosZ - 20;
             gMarioState->faceAngle[1] = 0;
-            begin_cutscene_event(4);
+            begin_cutscene_event(CUTSCENE_EVENT_STONE_PATCH);
         }
     break;
     case 1:

@@ -91,7 +91,7 @@ void bhv_willowisp_loop(void) {
 }
 
 void bhv_willowisp_spawner_loop(void) {
-    if (o->oBehParams2ndByte == 1) {
+    if (o->oBehParams2ndByte >= 1) {
         o->oPosX = gMarioState->pos[0];
                 o->oPosY = gMarioState->pos[1];
                 o->oPosZ = gMarioState->pos[2];
@@ -106,7 +106,9 @@ void bhv_willowisp_spawner_loop(void) {
                 }
 
                 if (o->oSpekturrCount == 3) {
-                    obj_mark_for_deletion(o);
+                    if (o->oBehParams2ndByte == 2) {
+                        obj_mark_for_deletion(o);
+                    }
                 }
     }
     else {

@@ -295,7 +295,7 @@ void bhv_extending_stone_bridge_init(void) {
             obj_scale_xyz(nextPanel, 0.99f, 1.0f - (((f32) i) * 0.05f), 1.0f - (((f32) i) * 0.05f));
         }
 
-        begin_cutscene_event(0);
+        begin_cutscene_event(CUTSCENE_EVENT_STC_BRIDGE);
     }
 
     o->oHomeX = o->oPosX;

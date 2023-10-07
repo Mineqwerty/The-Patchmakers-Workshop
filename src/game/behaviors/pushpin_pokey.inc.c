@@ -436,7 +436,7 @@ void pushpin_pokey_burst_from_ground(void) {
 
         if (o->oTimer == 20) {
             if (!(o->oPokeyCutsceneFlags & POKEY_CUTSCENE_ROSEDRIFT_CLIFF)) {
-            begin_cutscene_event(3);
+            begin_cutscene_event(CUTSCENE_EVENT_ROSEDRIFT_CLIFF);
             o->oPokeyCutsceneFlags |= POKEY_CUTSCENE_ROSEDRIFT_CLIFF;
             }
         }
@@ -792,7 +792,7 @@ void pushpin_pokey_death(void) {
 
 void pushpin_pokey_cutscene(void) {
     if (o->oTimer == 0) {
-        begin_cutscene_event(2);
+        begin_cutscene_event(CUTSCENE_EVENT_POKEY_INTRO);
         cur_obj_init_animation(1);
         o->oPosY -= 4000;
     }

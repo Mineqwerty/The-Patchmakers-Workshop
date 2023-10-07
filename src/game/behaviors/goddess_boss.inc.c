@@ -258,6 +258,15 @@ void goddess_act_banish(void) {
     }
 }
 
+void goddess_act_death(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oSubAction = 1;
+            begin_cutscene_event(CUTSCENE_EVENT_GODDESS_DEATH);
+            break;
+    }
+}
+
 void goddess_act_cutscene(void) {
 
     switch (o->oSubAction) {
@@ -265,7 +274,7 @@ void goddess_act_cutscene(void) {
             //gSecondCameraFocus = o;
             //set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
             o->oSubAction = 1;
-            begin_cutscene_event(1);
+            begin_cutscene_event(CUTSCENE_EVENT_GODDESS_INTRO);
             break;
         case 1:
         /*
@@ -642,6 +651,9 @@ void bhv_goddess_loop(void) {
         case GODDESS_ACT_BANISH:
             goddess_act_banish();
             break;
+        case GODDESS_ACT_DEATH:
+            goddess_act_death();
+        break;
     }
     if (o->oGoddessInvulnerableTimer == 0) {
         cur_obj_become_tangible();

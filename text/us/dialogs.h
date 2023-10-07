@@ -472,17 +472,17 @@ Why does another life show itself to me?\n\
 This place lost its luster long ago...\n\
 And yet, you come here seeking more.\n\
 You are akin to that foolish man who entered\n\
-these halls asking a ludicrous feat of me!\n\
-Things that \n\
+these halls years ago, asking a ludicrous feat!\n\
+Something that, even to a goddess, is a miracle.\n\
 And now you stand before me, mocking\n\
-me by holding a fragment of my\n\
-divine strength upon your cap.\n\
+me by holding a fragment of my diminished\n\
+divine strength upon your cap...\n\
 ...The very same one that\n\
 man tried to overcome me with!\n\
 The impertinence of it is quite ironic, no?\n\
-That man was on a journey that would only\n\
-lead him to ruin. His pursuit of...\n\
-\n\
+Unfortunately, that man escaped with his\n\
+life. Such is the sorrow of a goddess that\n\
+is trapped within a burning curse...\n\
 Tch! What am I doing here telling you\n\
 this? You are invading upon my\n\
 realm! Leave at once!\n\
@@ -493,35 +493,53 @@ There SHOULD be nothing here!\n\
 That's the way it needs to be!\n\
 An empty heaven, my hell alone!"))
 
-DEFINE_DIALOG(DIALOG_061, 1, 4, 30, 200, _("\
-BRRR! Frostbite Danger!\n\
-Do not swim here.\n\
-I'm serious.\n\
-/--The Penguin"))
+DEFINE_DIALOG(DIALOG_061, 1, 3, 30, 200, _("\
+Enough!!!\n\
+\n\
+\n\
+What is it you want!?\n\
+Strength? Treasure?\n\
+Or is it simply my head?\n\
+How do you even know of me?\n\
+\n\
+"))
 
 DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
-Hidden inside the green\n\
-block is the amazing\n\
-Metal Cap.\n\
-Wearing it, you won't\n\
-catch fire or be hurt\n\
-by enemy attacks.\n\
-You don't even have to\n\
-breathe while wearing it.\n\
-\n\
-The only problem:\n\
-It is too heavy to\n\
-swim with."))
+I see... So, those restless souls that\n\
+remain in the abyss below told you of my\n\
+past. Were you trying to avenge them? Haha...\n\
+Perhaps those souls have not\n\
+moved on merely to witness my\n\
+gruesome demise one day...\n\
+It is regrettable in that case.\n\
+I cannot be killed. Not while my\n\
+curse remains, that is.\n\
+You can cause the searing pain of\n\
+thousands of blades to me, but I will\n\
+never perish. Your efforts are for naught."))
 
-DEFINE_DIALOG(DIALOG_063, 1, 5, 30, 200, _("\
-The Vanish Cap is inside\n\
-the blue block. Mr. I.\n\
-will be surprised, since\n\
-you'll be invisible when\n\
-you wear it!\n\
-Even the Big Boo will be\n\
-fooled--and you can walk\n\
-through secret walls, too."))
+DEFINE_DIALOG(DIALOG_063, 1, 3, 30, 200, _("\
+What did you say?\n\
+Star Power?\n\
+\n\
+Ha... HAHAHAHA!!!\n\
+\n\
+\n\
+You aren't some valiant mortal\n\
+avenging restless spirits!\n\
+You're just a shallow human!\n\
+Well... I suppose those tangents\n\
+I went on were in vain. Though, you are\n\
+a formidable foe for a lousy human.\n\
+Do note that I would have ended your\n\
+pitiful life on the spot were I at my true\n\
+power, unburdened by this burning ichor.\n\
+Very well. For your meaningless victory,\n\
+you may have some of this Star Power\n\
+that you seek.\n\
+Oh but do keep in mind, if you ever\n\
+enter this place again I will not\n\
+hesitate to impale you. Understood?"))
 
 DEFINE_DIALOG(DIALOG_064, 1, 5, 30, 200, _("\
 When you put on the Wing\n\
