@@ -23,6 +23,7 @@ void bhv_ground_cutscene_patch_loop(void) {
             gMarioState->pos[2] = o->oPosZ - 20;
             gMarioState->faceAngle[1] = 0;
             begin_cutscene_event(CUTSCENE_EVENT_STONE_PATCH);
+            save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
         }
     break;
     case 1:
