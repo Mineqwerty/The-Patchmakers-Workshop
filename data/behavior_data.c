@@ -3068,9 +3068,8 @@ const BehaviorScript bhvBooStaircase[] = {
 const BehaviorScript bhvBbhTiltingTrapPlatform[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    LOAD_COLLISION_DATA(bbh_seg7_collision_tilt_floor_platform),
+    LOAD_COLLISION_DATA(tilting_stone_bridge_collision),
     SET_HOME(),
-    SET_INT(oRoom, 2),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_bbh_tilting_trap_platform_loop),
         CALL_NATIVE(load_object_collision_model),

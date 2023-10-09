@@ -1,0 +1,11 @@
+extern const GeoLayout tilting_stone_bridge_geo[];
+extern Lights1 tilting_stone_bridge_f3dlite_material_001_lights;
+extern u8 tilting_stone_bridge_limestotne_ci8[];
+extern u8 tilting_stone_bridge_limestotne_pal_rgba16[];
+extern Vtx tilting_stone_bridge_Cube_mesh_layer_1_vtx_cull[8];
+extern Vtx tilting_stone_bridge_Cube_mesh_layer_1_vtx_0[84];
+extern Gfx tilting_stone_bridge_Cube_mesh_layer_1_tri_0[];
+extern Gfx mat_tilting_stone_bridge_f3dlite_material_001[];
+extern Gfx mat_revert_tilting_stone_bridge_f3dlite_material_001[];
+extern Gfx tilting_stone_bridge_Cube_mesh_layer_1[];
+extern Gfx tilting_stone_bridge_material_revert_render_settings[];

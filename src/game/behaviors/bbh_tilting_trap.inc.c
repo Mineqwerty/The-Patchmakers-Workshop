@@ -20,7 +20,7 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
     }
 
     if (o->oAction == BBH_TILTING_TRAP_PLATFORM_ACT_MARIO_ON) {
-        o->oAngleVelPitch = (s32)(o->oDistanceToMario * coss(o->oAngleToMario));
+        o->oAngleVelPitch = -(s32)(o->oDistanceToMario * coss(o->oAngleToMario) * 0.5f);
         o->oFaceAnglePitch += o->oAngleVelPitch;
     } else
         // In the post-JP versions, if the platform has tilted more than 3000 angle units

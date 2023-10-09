@@ -634,6 +634,9 @@
 #define MODEL_RING_FRAGMENT                   0x10D
 #define MODEL_TFP_CHECKER_PLATFORM                   0x10E
 
+//Subterranean Seaway
+#define MODEL_TILTING_STONE_BRIDGE                   0x100
+
 
 //New File Select
 #define MODEL_PATCHMAKER_SHADOW                   0x100

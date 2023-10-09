@@ -61,3 +61,6 @@
 #include "levels/hmc/areas/1/movtext.inc.c"
 
 #include "levels/hmc/leveldata.inc.c"
+
+#include "levels/hmc/tilting_stone_bridge/collision.inc.c"
+#include "levels/hmc/tilting_stone_bridge/model.inc.c"
