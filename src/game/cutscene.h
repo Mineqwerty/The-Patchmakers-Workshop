@@ -1,9 +1,11 @@
+#pragma once
+
 #include <PR/ultratypes.h>
 
 #include "types.h"
 #include "src/game/camera.h"
 
-enum cutscene_titles {
+enum CutsceneTitles {
     CUTSCENE_EVENT_STC_BRIDGE,
     CUTSCENE_EVENT_GODDESS_INTRO,
     CUTSCENE_EVENT_POKEY_INTRO,

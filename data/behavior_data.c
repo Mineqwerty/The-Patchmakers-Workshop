@@ -6817,7 +6817,7 @@ const BehaviorScript bhvGroundPatch[] = {
 const BehaviorScript bhvGroundCutscenePatch[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO )),
-    CALL_NATIVE(bhv_ground_patch_init),
+    CALL_NATIVE(bhv_ground_cutscene_patch_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_ground_cutscene_patch_loop),
     END_LOOP(),

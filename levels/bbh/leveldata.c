@@ -102,3 +102,4 @@
 #include "levels/bbh/ring_fragment/model.inc.c"
 #include "levels/bbh/tfp_checker_platform/model.inc.c"
 #include "levels/bbh/tfp_checker_platform/collision.inc.c"
+#include "levels/bbh/ground_patch_portal/model.inc.c"

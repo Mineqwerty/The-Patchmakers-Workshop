@@ -2204,12 +2204,14 @@ void mario_handle_special_floors(struct MarioState *m) {
                 break;
 
             case SURFACE_GSS_WARP:
+            if (m->numStars >= 8) {
                 m->flags |= MARIO_TRANSPARENT;
                 m->fadeWarpOpacity = CLAMP_U8((2181.9f + gMarioState->pos[0])/4.89f);
 
                 if (m->fadeWarpOpacity == 0) {
                     set_mario_action(m, ACT_WARP_GSS, 0);
                 }
+            }
             break;
 
             default:

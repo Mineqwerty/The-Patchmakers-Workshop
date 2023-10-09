@@ -2,13 +2,21 @@
 #include "src/game/cutscene.h"
 
 void bhv_ground_patch_init(void) {
-   
+    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << o->oBehParams2ndByte + 1)) {
+        obj_mark_for_deletion(o);
+    }
+}
+
+void bhv_ground_cutscene_patch_init(void) {
+    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << 1)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_ground_cutscene_patch_loop(void) {
     switch (o->oAction) {
     case 0:
-        if (o->oDistanceToMario < 200.0f && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
+        if (o->oDistanceToMario < 900.0f && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
             o->oAction++;
             gMarioState->pos[0] = o->oPosX;
             gMarioState->pos[1] = o->oPosY + 50;
@@ -19,12 +27,6 @@ void bhv_ground_cutscene_patch_loop(void) {
     break;
     case 1:
         gMarioState->marioBodyState->grabPos = GRAB_POS_CUTSCENE_STONE_PATCH;
-
-        if (o->oTimer <= 5) {
-            gMarioState->pos[0] = o->oPosX;
-            gMarioState->pos[1] = o->oPosY + 50;
-            gMarioState->pos[2] = o->oPosZ - 20;
-        }
     break;
     }
 }

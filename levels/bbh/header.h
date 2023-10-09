@@ -174,4 +174,6 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/tfp_checker_platform/collision_header.h"
 
+#include "levels/bbh/ground_patch_portal/geo_header.h"
+
 #endif

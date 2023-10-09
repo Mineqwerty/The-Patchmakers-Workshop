@@ -54,6 +54,7 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_RING_MISSION_TARGET, ring_mission_target_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_RING_FRAGMENT, ring_fragment_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_CHECKER_PLATFORM, tfp_checker_platform_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -141,7 +142,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (3 << 16), bhvTfpRotaryPlatform),
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (5 << 16), bhvTfpRotaryPlatform),
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (7 << 16), bhvTfpRotaryPlatform),
-		//OBJECT(MODEL_SKYBOX_TEST, -95, 1571, -240, 0, 0, 0, 0x00000000, bhvBackgroundObject),
+		OBJECT(MODEL_SKYBOX_TEST, -95, 1571, -240, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 15012, 6499, -7397, 0, 90, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 7, 910, -1750, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 7, 910, -1750),
@@ -166,6 +167,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_PORTAL_BARRIER, 131, 1469, -2363, 0, 90, 0, (3 << 16), bhvPortalPuzzleBarrier),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 1271, -3719, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 2342, -5667, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
+		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (5 << 16), bhvGroundPatch),
 		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, 842, 1469, -2363, 0, 90, 0, 0x00000000, bhvTfpPuzzleBox),
 		OBJECT(MODEL_STAR, -948, 3847, -6576, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_PURPLE_SWITCH, 831, 743, 3559, 0, 0, 0, 0x00000000, bhvFloorSwitchHardcodedModel),

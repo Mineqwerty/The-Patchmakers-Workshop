@@ -320,7 +320,7 @@ s32 event_find_stone_patch[] = {
     EVENT_END_CUTSCENE
 };
 
-s32 event_goddess_intro[] = {
+s32 event_goddess_death[] = {
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
     EVENT_DIALOG_USER_ADVANCE, 61,
@@ -337,8 +337,9 @@ s32 *eventList[] = {
     event_goddess_intro,
     event_pokey_intro,
     event_rosedrift_cliff,
-    event_find_stone_patch
+    event_find_stone_patch,
     //5
+    event_goddess_death
 };
 
 s32 *splineList[] = {

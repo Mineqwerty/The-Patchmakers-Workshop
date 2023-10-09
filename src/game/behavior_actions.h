@@ -744,6 +744,7 @@ void bhv_box_basket_loop(void);
 void bhv_box_counter_init(void);
 void bhv_box_counter_loop(void);
 void bhv_ground_patch_init(void);
+void bhv_ground_cutscene_patch_init(void);
 void bhv_ground_patch_loop(void);
 void bhv_ground_cutscene_patch_loop(void);
 void bhv_sewnia_stopping_point_init(void);
