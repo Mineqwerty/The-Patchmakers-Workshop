@@ -39,7 +39,7 @@ const LevelScript level_hmc_entry[] = {
 	JUMP_LINK(script_func_global_1), 
 	JUMP_LINK(script_func_global_7), 
 	JUMP_LINK(script_func_global_18), 
-	LOAD_MODEL_FROM_GEO(MODEL_TILTING_STONE_BRIDGE, tilting_stone_bridge_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_TILTING_STONE_BRIDGE, tilting_stone_bridge_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */

@@ -37,6 +37,8 @@
 #include "audio/load.h"
 #include "actors/group0.h"
 #include "src/game/fb_effects.h"
+#include "src/game/dma_scroll.h"
+#include "levels/ssl/header.h"
 
 
 /**************************************************
@@ -2044,6 +2046,11 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
+    if (gGlobalTimer > 90 ){
+    extern u8 ssl_dl_foliageshados_i8[];
+    calculate_foliage_scroll(segmented_to_virtual(ssl_dl_foliageshados_i8));
+    }
+
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
@@ -2287,14 +2294,14 @@ void init_mario(void) {
             gMarioState->patchChildSecondaryObj->oBehParams2ndByte = 1;
         }
 
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
-    //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
