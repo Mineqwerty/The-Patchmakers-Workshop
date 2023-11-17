@@ -1,5 +1,6 @@
 #include "src/game/dma_scroll.h"
 #include "src/game/game_init.h"
+#include "src/engine/math_util.h"
 
 u8 sussyShadows[] = {
 	0xad, 0xff, 0xff, 0xff, 0xc1, 0x92, 0x92, 0x92, 
@@ -266,19 +267,20 @@ void calculate_foliage_scroll(u8 texture[]) {
     s16 samplePixelX;
     s16 samplePixelY;
     u8 newTexture[2048];
-    lightDirection[0] = sins(gGlobalTimer);
-    lightDirection[1] = sins(gGlobalTimer);
+    lightDirection[0] = (sins(gGlobalTimer * 0x200) + 1.0f) * 0.5f;
+    lightDirection[1] = (coss(gGlobalTimer * 0x250) + 1.0f) * 0.5f;
     for (int i = 0; i < 64*32; i++) {
         samplePixelX = (lightDirection[0] > 0 ? 1 : -1);
         samplePixelY = (lightDirection[1] > 0 ? 1 : -1);
 
+		//wrap around the texture if the sample pixel is OOB
         if (i < 64 && samplePixelY == -1) {
             samplePixelY = 31;
         }
         if ((i % 64 == 0) && samplePixelX == -1) {
             samplePixelX = 63;
         }
-        if (i >= 1983 && samplePixelY == 1) {
+        if (i >= 64*32 - 64 && samplePixelY == 1) {
             samplePixelY = -31;
         }
         if ((i % 64 == 63) && samplePixelX == 1) {
@@ -286,13 +288,11 @@ void calculate_foliage_scroll(u8 texture[]) {
         }
 
         u8 originalColor = sussyShadows[i];
-        originalColor += ((f32)((f32)sussyShadows[i + samplePixelX] - (f32)sussyShadows[i]) * lightDirection[0]);
-        originalColor += ((f32)((f32)sussyShadows[i + (samplePixelY * 64)] - (f32)sussyShadows[i]) * lightDirection[1]);
+        originalColor = CLAMP_U8(originalColor + (((f32)sussyShadows[i + samplePixelX] - (f32)sussyShadows[i]) * lightDirection[0]));
+        originalColor = CLAMP_U8(originalColor + (((f32)sussyShadows[i + (samplePixelY * 64)] - (f32)originalColor) * lightDirection[1]));
 
         newTexture[i] = originalColor;
     }
-
-    //texture[0] = 255;
 
     bcopy(newTexture, texture, 2048);
 }
