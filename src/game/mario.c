@@ -2046,10 +2046,11 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    if (gGlobalTimer > 90 ){
+    // TODO: put this in a geo asm for VTW 
+    /* if (gGlobalTimer > 90 ){
     extern u8 ssl_dl_foliageshados_i8[];
     calculate_foliage_scroll(segmented_to_virtual(ssl_dl_foliageshados_i8));
-    }
+    } */
 
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
