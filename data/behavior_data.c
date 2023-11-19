@@ -7096,3 +7096,24 @@ const BehaviorScript bhvSubSeaWaterRingManager[] = {
         CALL_NATIVE(bhv_sub_sea_water_ring_manager_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvUnderwaterStoneDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(underwater_stone_door_collision),
+    CALL_NATIVE(bhv_underwater_stone_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_underwater_stone_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvUnderwaterStoneButton[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ACTIVE_FROM_AFAR)),
+    LOAD_COLLISION_DATA(underwater_stone_button_collision),
+    CALL_NATIVE(bhv_underwater_stone_button_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_underwater_stone_button_loop),
+    END_LOOP(),
+};

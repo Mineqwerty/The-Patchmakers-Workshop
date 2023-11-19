@@ -799,3 +799,7 @@ void bhv_sub_sea_water_ring_init(void);
 void bhv_sub_sea_water_ring_loop(void);
 void bhv_sub_sea_water_ring_manager_init(void);
 void bhv_sub_sea_water_ring_manager_loop(void);
+void bhv_underwater_stone_door_init(void);
+void bhv_underwater_stone_door_loop(void);
+void bhv_underwater_stone_button_init(void);
+void bhv_underwater_stone_button_loop(void);

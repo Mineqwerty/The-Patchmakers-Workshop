@@ -1,0 +1,9 @@
+extern const GeoLayout underwater_stone_button_geo[];
+extern u8 underwater_stone_button_sotnebutone_i8[];
+extern Vtx underwater_stone_button_Circle_007_mesh_layer_1_vtx_cull[8];
+extern Vtx underwater_stone_button_Circle_007_mesh_layer_1_vtx_0[114];
+extern Gfx underwater_stone_button_Circle_007_mesh_layer_1_tri_0[];
+extern Gfx mat_underwater_stone_button_f3dlite_material_005[];
+extern Gfx mat_revert_underwater_stone_button_f3dlite_material_005[];
+extern Gfx underwater_stone_button_Circle_007_mesh_layer_1[];
+extern Gfx underwater_stone_button_material_revert_render_settings[];

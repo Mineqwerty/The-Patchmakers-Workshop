@@ -1,0 +1,10 @@
+extern const GeoLayout underwater_stone_door_geo[];
+extern Lights1 underwater_stone_door_f3dlite_material_004_layer1_lights;
+extern u8 underwater_stone_door_imgonline_com_ua_TextureSeamless_hvOi0ZxkkxgxB_i8[];
+extern Vtx underwater_stone_door_Cube_001_mesh_layer_1_vtx_cull[8];
+extern Vtx underwater_stone_door_Cube_001_mesh_layer_1_vtx_0[24];
+extern Gfx underwater_stone_door_Cube_001_mesh_layer_1_tri_0[];
+extern Gfx mat_underwater_stone_door_f3dlite_material_004_layer1[];
+extern Gfx mat_revert_underwater_stone_door_f3dlite_material_004_layer1[];
+extern Gfx underwater_stone_door_Cube_001_mesh_layer_1[];
+extern Gfx underwater_stone_door_material_revert_render_settings[];

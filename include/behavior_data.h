@@ -639,3 +639,5 @@ extern const BehaviorScript bhvGssWindow[];
 extern const BehaviorScript bhvGssWindowLight[];
 extern const BehaviorScript bhvSubSeaWaterRing[];
 extern const BehaviorScript bhvSubSeaWaterRingManager[];
+extern const BehaviorScript bhvUnderwaterStoneDoor[];
+extern const BehaviorScript bhvUnderwaterStoneButton[];

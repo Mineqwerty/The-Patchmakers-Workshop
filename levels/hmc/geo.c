@@ -25,3 +25,5 @@
 #include "levels/hmc/geo.inc.c"
 
 #include "levels/hmc/tilting_stone_bridge/geo.inc.c"
+#include "levels/hmc/underwater_stone_door/geo.inc.c"
+#include "levels/hmc/underwater_stone_button/geo.inc.c"
