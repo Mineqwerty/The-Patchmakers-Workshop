@@ -795,3 +795,7 @@ void bhv_gss_window_init(void);
 void bhv_gss_window_loop(void);
 void bhv_gss_window_light_init(void);
 void bhv_gss_window_light_loop(void);
+void bhv_sub_sea_water_ring_init(void);
+void bhv_sub_sea_water_ring_loop(void);
+void bhv_sub_sea_water_ring_manager_init(void);
+void bhv_sub_sea_water_ring_manager_loop(void);

@@ -965,6 +965,10 @@ enum oActionsStarDoor {
     /* Animations */
     #define WATER_RING_ANIM_WOBBLE                          0x0
 
+    #define SS_RING_ACT_INVIS                    0x0
+    #define SS_RING_ACT_NOT_COLLECTED                    0x1
+    #define SS_RING_ACT_COLLECTED                        0x2
+
 /* Jet Stream Water Ring Spawner */
     /* oAction */
     #define JS_RING_SPAWNER_ACT_ACTIVE                      0x0

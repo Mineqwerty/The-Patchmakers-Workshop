@@ -599,8 +599,10 @@ static s32 check_water_jump(struct MarioState *m) {
             vec3_zero(m->angleVel);
 
             m->vel[1] = 62.0f;
+            sFOVState.fovFunc = CAM_FOV_APP_45;
 
             if (m->action == ACT_MARINE_PATCH_SPIN) {
+                m->vel[1] = 80.0f;
                 return set_mario_action(m, ACT_MARINE_PATCH_AIRBORNE, 0);
             }
             else if (m->heldObj == NULL) {
@@ -1656,6 +1658,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m) {
                 m->pos[1] = waterHeight; // lock mario to top if the falloff isn't big enough
             } else {
                 // m->pos[1] = m->waterLevel - 80; // Vanilla bug: Downwarp swimming out of waterfalls
+                sFOVState.fovFunc = CAM_FOV_APP_45;
                 return transition_submerged_to_airborne(m);
             }
         } else {
@@ -1670,7 +1673,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m) {
                 m->lastHeldModel = NULL;
                 stop_shell_music();
             }
-
+            sFOVState.fovFunc = CAM_FOV_APP_45;
             return transition_submerged_to_walking(m);
         }
     }
@@ -1692,6 +1695,8 @@ s32 mario_execute_submerged_action(struct MarioState *m) {
     if (mario_update_water_death_floor(m, 0.25f)) {
         return TRUE;
     }
+
+    sFOVState.fovFunc = CAM_FOV_APP_60;
 
     //m->quicksandDepth = 0.0f;
 

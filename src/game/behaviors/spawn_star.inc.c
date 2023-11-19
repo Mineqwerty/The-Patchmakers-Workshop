@@ -161,6 +161,12 @@ void spawn_ring_challenge_star(f32 x, f32 y, f32 z) {
     starObj->oBehParams = 0x03000000;
 }
 
+void spawn_water_ring_challenge_star(f32 x, f32 y, f32 z) {
+    struct Object *starObj = NULL;
+    starObj = spawn_star(starObj, 13964.0f, -3200.0f, -765.0f);
+    starObj->oBehParams = 0x02000000;
+}
+
 void spawn_red_coin_cutscene_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, x, y, z);

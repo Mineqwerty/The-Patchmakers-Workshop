@@ -7072,3 +7072,27 @@ const BehaviorScript bhvGssWindowLight[] = {
         CALL_NATIVE(bhv_gss_window_light_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSubSeaWaterRing[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    LOAD_ANIMATIONS(oAnimations, water_ring_seg6_anims_06013F7C),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 75, /*Height*/ 20, /*Downwards offset*/ 20),
+    SET_INTERACT_TYPE(INTERACT_WATER_RING),
+    SET_INT(oDamageOrCoinValue, 2),
+    SET_INT(oIntangibleTimer, 0),
+    CALL_NATIVE(bhv_sub_sea_water_ring_init),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_sub_sea_water_ring_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSubSeaWaterRingManager[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_sub_sea_water_ring_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sub_sea_water_ring_manager_loop),
+    END_LOOP(),
+};

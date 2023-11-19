@@ -1239,7 +1239,7 @@ s32 set_water_plunge_action(struct MarioState *m) {
     }
     if (m->action == ACT_MARINE_PATCH_AIRBORNE) {
         m->faceAngle[0] = -0x4000;
-        m->vel[1] *= 1.75f;
+        m->vel[1] *= 0.75f;
         play_sound(SOUND_ACTION_WATER_PLUNGE, m->marioObj->header.gfx.cameraToObject);
 
         m->particleFlags |= PARTICLE_WATER_SPLASH;
@@ -1250,6 +1250,8 @@ s32 set_water_plunge_action(struct MarioState *m) {
         m->faceAngle[2] = 0;
         return set_mario_action(m, ACT_WATER_PLUNGE, 0);
     }
+
+    
     
 }
 
