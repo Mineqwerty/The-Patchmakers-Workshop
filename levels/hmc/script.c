@@ -41,7 +41,7 @@ const LevelScript level_hmc_entry[] = {
 	JUMP_LINK(script_func_global_14), 
 	LOAD_MODEL_FROM_GEO(MODEL_TILTING_STONE_BRIDGE, tilting_stone_bridge_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_UNDERWATER_STONE_DOOR, underwater_stone_door_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_UNDERWATER_STONE_BUTTON, underwater_stone_button_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_UNDERWATER_STONE_BUTTON, underwater_stone_button_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -89,6 +89,9 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, 11756, 3114, 13278, 0, -180, 0, (7 << 16), bhvUnderwaterStoneButton),
+		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, -12174, 4450, -3736, 0, 0, 0, (4 << 16), bhvUnderwaterStoneButton),
+		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, 5317, 3099, -2573, 0, -90, 0, (2 << 16), bhvUnderwaterStoneButton),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, 3365, 0, 0, 0, (7 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -733, 0, 0, 0, (4 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -4225, 0, 0, 0, (2 << 16), bhvUnderwaterStoneDoor),
