@@ -638,6 +638,7 @@
 #define MODEL_TILTING_STONE_BRIDGE                   0x100
 #define MODEL_UNDERWATER_STONE_DOOR                   0x101
 #define MODEL_UNDERWATER_STONE_BUTTON                   0x102
+#define MODEL_CORAL_SPINNER                   0x103
 
 
 //New File Select

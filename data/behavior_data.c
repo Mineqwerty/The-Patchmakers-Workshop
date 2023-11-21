@@ -7117,3 +7117,15 @@ const BehaviorScript bhvUnderwaterStoneButton[] = {
         CALL_NATIVE(bhv_underwater_stone_button_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvCoralSpinner[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(coral_spinner_collision),
+    SET_FLOAT(oDrawingDistance, 9000),
+    CALL_NATIVE(bhv_coral_spinner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_coral_spinner_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
