@@ -1650,6 +1650,23 @@ static s32 act_hold_metal_water_fall_land(struct MarioState *m) {
     return FALSE;
 }
 
+static s32 act_water_tumble(struct MarioState *m) {
+    set_mario_animation(m, MARIO_ANIM_BACKWARDS_WATER_KB);
+    perform_water_step(m);
+    gMarioState->faceAngle[2] += 0x400;
+    gMarioState->faceAngle[0] += 0x300;
+
+    if (m->actionTimer++ > 220) {
+        return set_mario_action(m, ACT_WATER_IDLE, 0);
+    }
+
+    if (m->actionTimer % 50 == 0) {
+        m->marioObj->header.gfx.animInfo.animFrame = 1;
+    }
+
+    return FALSE;
+}
+
 static s32 check_common_submerged_cancels(struct MarioState *m) {
     s16 waterHeight = m->waterLevel - 80;
     if (m->pos[1] > waterHeight) {
@@ -1738,6 +1755,7 @@ s32 mario_execute_submerged_action(struct MarioState *m) {
         case ACT_HOLD_METAL_WATER_FALL_LAND: cancel = act_hold_metal_water_fall_land(m); break;
         case ACT_HOLD_METAL_WATER_JUMP:      cancel = act_hold_metal_water_jump(m);      break;
         case ACT_HOLD_METAL_WATER_JUMP_LAND: cancel = act_hold_metal_water_jump_land(m); break;
+        case ACT_WATER_TUMBLE:               cancel = act_water_tumble(m); break;
     }
     /* clang-format on */
 

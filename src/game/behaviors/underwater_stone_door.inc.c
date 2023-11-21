@@ -1,5 +1,5 @@
 void bhv_underwater_stone_door_init(void) {
-
+    set_mario_action(gMarioState, ACT_WATER_TUMBLE, 0);
 }
 
 void bhv_underwater_stone_door_loop(void) {
