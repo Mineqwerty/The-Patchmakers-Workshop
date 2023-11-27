@@ -281,3 +281,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/gss_window.inc.c"
 #include "behaviors/sub_sea_water_ring.inc.c"
 #include "behaviors/underwater_stone_door.inc.c"
+#include "behaviors/coral_spinner.inc.c"

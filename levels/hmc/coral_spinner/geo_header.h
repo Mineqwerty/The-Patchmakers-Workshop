@@ -1,0 +1,14 @@
+extern const GeoLayout coral_spinner_geo[];
+extern Lights1 coral_spinner_f3dlite_material_007_lights;
+extern Lights1 coral_spinner_f3dlite_material_008_lights;
+extern u8 coral_spinner_spinnercoral_i8[];
+extern u8 coral_spinner_coralhole_i8[];
+extern Vtx coral_spinner_Circle_008_mesh_layer_1_vtx_cull[8];
+extern Vtx coral_spinner_Circle_008_mesh_layer_1_vtx_0[62];
+extern Gfx coral_spinner_Circle_008_mesh_layer_1_tri_0[];
+extern Vtx coral_spinner_Circle_008_mesh_layer_1_vtx_1[88];
+extern Gfx coral_spinner_Circle_008_mesh_layer_1_tri_1[];
+extern Gfx mat_coral_spinner_f3dlite_material_007[];
+extern Gfx mat_coral_spinner_f3dlite_material_008[];
+extern Gfx coral_spinner_Circle_008_mesh_layer_1[];
+extern Gfx coral_spinner_material_revert_render_settings[];
