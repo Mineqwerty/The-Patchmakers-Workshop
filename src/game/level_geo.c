@@ -10,6 +10,7 @@
 #include "level_geo.h"
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
+#include "levels/bbh/header.h"
 
 struct GraphNode *loopNode;
 struct GraphNode *originalContinueNode;
@@ -175,6 +176,29 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 8;
+
+        //TFP TILES
+        s8 themeTransition = -1;
+
+        if (gTatumCount == 4650) {
+            themeTransition = 1;
+        }
+        if (gTatumCount == 7770) {
+            themeTransition = 2;
+        }
+        if (gTatumCount == 10315) {
+            themeTransition = 3;
+        }
+
+        if (themeTransition >= 0) {
+            extern const u8 tfp_tile_textures_dma[];
+            extern u8 bbh_dl_tiles_rgba16[];
+
+            u8 *tileTexture = segmented_to_virtual(&bbh_dl_tiles_rgba16);
+
+            dma_read(tileTexture, (themeTransition*2048) + tfp_tile_textures_dma, (themeTransition*2048) + tfp_tile_textures_dma + 2048);
+        }
+
     }
     return 0;
 }

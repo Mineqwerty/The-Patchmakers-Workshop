@@ -57,3 +57,13 @@ const Texture *const patch_textures_lut[] = {
     texture_menu_stone_patch,
     texture_menu_stone_patch
 };
+
+ALIGNED8 const u8 tfp_tile_textures_dma[] = {
+    #include "actors/amp/tfp_tiles1.rgba16.inc.c" 
+    ,
+    #include "actors/amp/tfp_tiles2.rgba16.inc.c"
+    ,
+    #include "actors/amp/tfp_tiles3.rgba16.inc.c"
+    ,
+    #include "actors/amp/tfp_tiles4.rgba16.inc.c"
+};
