@@ -4,4 +4,7 @@
 #include "levels/hmc/area_2/collision.inc.c"
 #include "levels/hmc/area_2/macro.inc.c"
 #include "levels/hmc/area_2/spline.inc.c"
+#include "levels/hmc/area_3/collision.inc.c"
+#include "levels/hmc/area_3/macro.inc.c"
+#include "levels/hmc/area_3/spline.inc.c"
 #include "levels/hmc/model.inc.c"

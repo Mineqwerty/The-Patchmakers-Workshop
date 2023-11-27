@@ -805,3 +805,5 @@ void bhv_underwater_stone_button_init(void);
 void bhv_underwater_stone_button_loop(void);
 void bhv_coral_spinner_init(void);
 void bhv_coral_spinner_loop(void);
+void bhv_text_volume_init(void);
+void bhv_text_volume_loop(void);

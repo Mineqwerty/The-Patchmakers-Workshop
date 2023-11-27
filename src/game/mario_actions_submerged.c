@@ -146,10 +146,15 @@ static u32 perform_water_full_step(struct MarioState *m, Vec3f nextPos, Vec3f st
             apply_ceiling_slope_submerged(m, ceil, step);
             vec3f_set(nextPos, m->pos[0] + step[0], m->pos[1] + step[1], m->pos[2] + step[2]);
             floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
-            ceilHeight = find_mario_ceil(nextPos, floorHeight, &ceil);
-            vec3f_set(m->pos, nextPos[0], ceilHeight - 160.0f, nextPos[2]);
-            set_mario_floor(m, floor, floorHeight);
-            return WATER_STEP_HIT_CEILING;
+
+            if (floor && nextPos[2] < CELL_HEIGHT_LIMIT) {
+                ceilHeight = find_mario_ceil(nextPos, floorHeight, &ceil);
+                vec3f_set(m->pos, nextPos[0], ceilHeight - 160.0f, nextPos[2]);
+                set_mario_floor(m, floor, floorHeight);
+                return WATER_STEP_HIT_CEILING;
+            }
+            return WATER_STEP_CANCELLED;
+
         } else {
             vec3f_set(m->pos, nextPos[0], nextPos[1], nextPos[2]);
             set_mario_floor(m, floor, floorHeight);

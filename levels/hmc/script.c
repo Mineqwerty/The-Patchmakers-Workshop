@@ -50,6 +50,7 @@ const LevelScript level_hmc_entry[] = {
 	AREA(1, hmc_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_HMC, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_HMC, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_CORAL_SPINNER, 645, -5487, -8892, 0, -90, 0, 0x00000000, bhvCoralSpinner),
@@ -70,6 +71,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -2677, 4922, 113),
 		OBJECT(MODEL_NONE, 7338, 2647, 9109, 0, 0, 0, (50 << 24) | (11 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
 		OBJECT(MODEL_WATER_RING, 8564, -8131, 836, 0, -148, 0, 0x00000000, bhvSubSeaWaterRing),
 		OBJECT(MODEL_NONE, 6542, -8799, -42, 0, 119, 0, 0x00000000, bhvSubSeaWaterRingManager),
 		OBJECT(MODEL_WATER_RING, 9775, -7798, 2067, 0, -165, 0, (1 << 16), bhvSubSeaWaterRing),
@@ -102,6 +104,18 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, 43, 2941, -7459, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_2_collision),
 		MACRO_OBJECTS(hmc_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+
+	AREA(3, hmc_area_3),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		TERRAIN(hmc_area_3_collision),
+		MACRO_OBJECTS(hmc_area_3_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
