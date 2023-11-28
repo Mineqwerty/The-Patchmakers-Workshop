@@ -11,6 +11,7 @@
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
 #include "levels/bbh/header.h"
+#include "src/game/fb_effects.h"
 
 struct GraphNode *loopNode;
 struct GraphNode *originalContinueNode;
@@ -197,6 +198,10 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
             u8 *tileTexture = segmented_to_virtual(&bbh_dl_tiles_rgba16);
 
             dma_read(tileTexture, (themeTransition*2048) + tfp_tile_textures_dma, (themeTransition*2048) + tfp_tile_textures_dma + 2048);
+
+            set_fb_effect_type(FBE_EFFECT_MULT);
+            set_motion_blur(255);
+            set_fb_effect_col(255, 255, 255);
         }
 
     }

@@ -2057,7 +2057,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
-    print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
+    //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
     //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);

@@ -19,7 +19,7 @@
 extern u16 sRenderedFramebuffer;
 extern u8 gFBE;
 
-s32 sCurBlur = 255;
+s32 sCurBlur = 0;
 s32 sGoalBlur = 0;
 
 FBEffects sFBEffects = {
@@ -27,7 +27,7 @@ FBEffects sFBEffects = {
     .g = 255,
     .b = 255,
     .a = 255,
-    .type = FBE_EFFECT_MULT,
+    .type = FBE_EFFECT_NONE,
 };
 
 #define FUNNY_FBE_COLOR 0xFF00
