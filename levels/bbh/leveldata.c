@@ -103,3 +103,5 @@
 #include "levels/bbh/tfp_checker_platform/model.inc.c"
 #include "levels/bbh/tfp_checker_platform/collision.inc.c"
 #include "levels/bbh/ground_patch_portal/model.inc.c"
+#include "levels/bbh/tfp_skybox_bubbles/model.inc.c"
+#include "levels/bbh/tfp_skybox_squares/model.inc.c"

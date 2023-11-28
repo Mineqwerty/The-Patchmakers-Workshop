@@ -1,0 +1,18 @@
+extern const GeoLayout tfp_skybox_squares_geo[];
+extern u8 tfp_skybox_squares_bricks_ci8[];
+extern u8 tfp_skybox_squares_bricks_pal_rgba16[];
+extern Vtx tfp_skybox_squares_Cube_003_mesh_layer_1_vtx_0[14];
+extern Gfx tfp_skybox_squares_Cube_003_mesh_layer_1_tri_0[];
+extern Vtx tfp_skybox_squares_Cube_003_mesh_layer_4_vtx_0[40];
+extern Gfx tfp_skybox_squares_Cube_003_mesh_layer_4_tri_0[];
+extern Vtx tfp_skybox_squares_Cube_003_mesh_layer_4_vtx_1[32];
+extern Gfx tfp_skybox_squares_Cube_003_mesh_layer_4_tri_1[];
+extern Gfx mat_tfp_skybox_squares_sky_002_v4_006[];
+extern Gfx mat_revert_tfp_skybox_squares_sky_002_v4_006[];
+extern Gfx mat_tfp_skybox_squares_f3dlite_material_004[];
+extern Gfx mat_revert_tfp_skybox_squares_f3dlite_material_004[];
+extern Gfx mat_tfp_skybox_squares_f3dlite_material_005[];
+extern Gfx mat_revert_tfp_skybox_squares_f3dlite_material_005[];
+extern Gfx tfp_skybox_squares_Cube_003_mesh_layer_1[];
+extern Gfx tfp_skybox_squares_Cube_003_mesh_layer_4[];
+extern Gfx tfp_skybox_squares_material_revert_render_settings[];

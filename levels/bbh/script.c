@@ -42,6 +42,8 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FAR_PLANE_CUBE, far_plane_cube_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FAR_PLANE_CUBE_HEAD, far_plane_cube_head_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, tfp_skybox_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_BUBBLES, tfp_skybox_bubbles_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_SQUARES, tfp_skybox_squares_geo),
 	LOAD_MODEL_FROM_GEO(MODEL_PORTAL_BARRIER, portal_barrier_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_PUZZLE_BOX, puzzle_box_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_GROWING_BLOCK, tfp_growing_block_geo), 

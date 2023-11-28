@@ -42,3 +42,5 @@
 #include "levels/bbh/ring_fragment/geo.inc.c"
 #include "levels/bbh/tfp_checker_platform/geo.inc.c"
 #include "levels/bbh/ground_patch_portal/geo.inc.c"
+#include "levels/bbh/tfp_skybox_bubbles/geo.inc.c"
+#include "levels/bbh/tfp_skybox_squares/geo.inc.c"

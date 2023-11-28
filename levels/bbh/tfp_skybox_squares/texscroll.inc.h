@@ -1,0 +1,3 @@
+extern void scroll_gfx_mat_tfp_skybox_squares_f3dlite_material_004();
+extern void scroll_gfx_mat_tfp_skybox_squares_f3dlite_material_005();
+extern void scroll_bbh_level_geo_tfp_skybox_squares();

@@ -183,7 +183,7 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
         if (gTatumCount == 4650) {
             themeTransition = 1;
         }
-        if (gTatumCount == 7770) {
+        if (gTatumCount == 7777) {
             themeTransition = 2;
         }
         if (gTatumCount == 10315) {

@@ -633,6 +633,8 @@
 #define MODEL_RING_MISSION_TARGET                   0x10C
 #define MODEL_RING_FRAGMENT                   0x10D
 #define MODEL_TFP_CHECKER_PLATFORM                   0x10E
+#define MODEL_TFP_SKYBOX_BUBBLES                   0x10F
+#define MODEL_TFP_SKYBOX_SQUARES                   0x110
 
 //Subterranean Seaway
 #define MODEL_TILTING_STONE_BRIDGE                   0x100

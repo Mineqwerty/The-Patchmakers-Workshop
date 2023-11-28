@@ -1,3 +1,5 @@
+#include "levels/bbh/tfp_skybox_squares/texscroll.inc.h"
+#include "levels/bbh/tfp_skybox_bubbles/texscroll.inc.h"
 #include "levels/bbh/tfp_skybox/texscroll.inc.h"
 #include "levels/bbh/ring_mission_target/texscroll.inc.h"
 #include "levels/bbh/ring_mission/texscroll.inc.h"
