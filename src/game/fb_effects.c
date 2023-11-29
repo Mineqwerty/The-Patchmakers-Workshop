@@ -27,7 +27,7 @@ FBEffects sFBEffects = {
     .g = 255,
     .b = 255,
     .a = 255,
-    .type = FBE_EFFECT_NONE,
+    .type = FBE_EFFECT_MULT,
 };
 
 #define FUNNY_FBE_COLOR 0xFF00
@@ -199,7 +199,8 @@ void render_motion_blur(void) {
             fmt = G_IM_FMT_IA;
             break;
     }
-
+    gDPSetEnvColor(gDisplayListHead++, sFBEffects.r, sFBEffects.g, sFBEffects.b, sFBEffects.a);
+    gDPPipeSync(gDisplayListHead++);
     gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
     gDPSetColorDither(gDisplayListHead++, G_CD_NOISE);
     gDPSetAlphaDither(gDisplayListHead++, G_AD_NOISE);
