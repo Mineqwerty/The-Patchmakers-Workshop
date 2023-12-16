@@ -96,7 +96,7 @@ u8 *gAreaSkyboxEnd[AREA_COUNT];
 
 // Framebuffer rendering values (max 3)
 u16 sRenderedFramebuffer = 0;
-u16 sRenderingFramebuffer = 0;
+u16 sRenderingFramebuffer = 1;
 
 // Goddard Vblank Function Caller
 void (*gGoddardVblankCallback)(void) = NULL;

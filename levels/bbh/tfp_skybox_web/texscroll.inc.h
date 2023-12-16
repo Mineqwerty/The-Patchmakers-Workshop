@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_tfp_skybox_web_f3dlite_material_006_layer5();
+extern void scroll_bbh_level_geo_tfp_skybox_web();

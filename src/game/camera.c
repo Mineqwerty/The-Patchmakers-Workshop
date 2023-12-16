@@ -3363,8 +3363,9 @@ void handle_course_volumes(struct Camera *c) {
         }
     }
     else if (sFOVState.fovFunc == CAM_FOV_APP_315 && gCurrLevelNum == LEVEL_BBH && sCameraDisturbed == 0) {
-        sFOVState.fovFunc = CAM_FOV_APP_45;
+        sFOVState.fovFunc = CAM_FOV_SET_45;
         gReonucamState.overhead = 0;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
     }
 }
 
@@ -11453,12 +11454,10 @@ void approach_fov_45(struct MarioState *m) {
 }
 
 void approach_fov_315(struct MarioState *m) {
-    f32 targetFoV = 315.f;
-
-    sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
-
-    if (sFOVState.fov > 180) {
+    if (gReonucamState.overhead != 2) {
+        sFOVState.fov = 315.f;
         gReonucamState.overhead = 2;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
     }
 }
 

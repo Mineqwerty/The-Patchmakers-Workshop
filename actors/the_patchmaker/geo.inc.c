@@ -5,6 +5,7 @@ const GeoLayout the_patchmaker_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
 		GEO_OPEN_NODE(),
+			GEO_SHADOW(1, 128, 100),
 			GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 137, 0, the_patchmaker_waist_mesh_layer_1),
 			GEO_OPEN_NODE(),
 				GEO_DISPLAY_LIST(LAYER_OPAQUE, the_patchmaker_midriff_skinned_mesh_layer_1),

@@ -7,6 +7,7 @@
 #include "levels/bbh/tfp_skybox/texscroll.inc.c"
 #include "levels/bbh/tfp_skybox_bubbles/texscroll.inc.c"
 #include "levels/bbh/tfp_skybox_squares/texscroll.inc.c"
+#include "levels/bbh/tfp_skybox_web/texscroll.inc.c"
 void scroll_textures_bbh() {
 			scroll_bbh();
 	scroll_bbh_level_geo_far_plane_cube_head();
@@ -16,4 +17,5 @@ void scroll_textures_bbh() {
 	scroll_bbh_level_geo_tfp_skybox();
 	scroll_bbh_level_geo_tfp_skybox_bubbles();
 	scroll_bbh_level_geo_tfp_skybox_squares();
+	scroll_bbh_level_geo_tfp_skybox_web();
 }

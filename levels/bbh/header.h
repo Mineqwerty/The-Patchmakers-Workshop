@@ -180,4 +180,6 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/tfp_skybox_squares/geo_header.h"
 
+#include "levels/bbh/tfp_skybox_web/geo_header.h"
+
 #endif

@@ -2045,12 +2045,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         perform_patch_action(gMarioState);
     }
 
-    if (gGlobalTimer > 60) {
-        set_fb_effect_type(FBE_EFFECT_MULT);
-                    set_motion_blur(255);
-                    set_fb_effect_col(255, 255, 255);
-    }
-
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 

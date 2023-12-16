@@ -1,0 +1,14 @@
+extern const GeoLayout tfp_skybox_web_geo[];
+extern u8 tfp_skybox_web_web_ia4[];
+extern u8 tfp_skybox_web_coolcokloyolotr_rgba16[];
+extern Vtx tfp_skybox_web_Cube_004_mesh_layer_1_vtx_0[14];
+extern Gfx tfp_skybox_web_Cube_004_mesh_layer_1_tri_0[];
+extern Vtx tfp_skybox_web_Cube_004_mesh_layer_5_vtx_0[60];
+extern Gfx tfp_skybox_web_Cube_004_mesh_layer_5_tri_0[];
+extern Gfx mat_tfp_skybox_web_sky_002_v4_007[];
+extern Gfx mat_revert_tfp_skybox_web_sky_002_v4_007[];
+extern Gfx mat_tfp_skybox_web_f3dlite_material_006_layer5[];
+extern Gfx mat_revert_tfp_skybox_web_f3dlite_material_006_layer5[];
+extern Gfx tfp_skybox_web_Cube_004_mesh_layer_1[];
+extern Gfx tfp_skybox_web_Cube_004_mesh_layer_5[];
+extern Gfx tfp_skybox_web_material_revert_render_settings[];
