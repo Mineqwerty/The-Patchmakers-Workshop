@@ -74,6 +74,7 @@ const GeoLayout bitdw_area_1_geo[] = {
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1727, -2082, -8399, 0, -24, 0, bitdw_dl_Cube_008_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1446, -2082, -11064, 0, 32, 0, bitdw_dl_Cube_009_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bitdw_dl_Plane_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, bitdw_dl_Plane_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, bitdw_dl_Plane_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bitdw_dl_Plane_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bitdw_dl_Plane_002_mesh_layer_1),

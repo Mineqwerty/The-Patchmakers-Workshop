@@ -41,3 +41,5 @@
 #include "levels/bitdw/areas/1/geo.inc.c"
 
 #include "levels/bitdw/geo.inc.c"
+
+#include "levels/bitdw/dry_bones/geo.inc.c"

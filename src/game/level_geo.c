@@ -190,6 +190,10 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
         if (gTatumCount == 10315) {
             themeTransition = 3;
         }
+        if (gTatumCount == 16820) {
+            themeTransition = 0;
+            gTatumCount = 0;
+        }
 
         if (themeTransition >= 0) {
             extern const u8 tfp_tile_textures_dma[];

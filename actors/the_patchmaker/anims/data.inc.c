@@ -1,2 +1,5 @@
 #include "anim_idle.inc.c"
 #include "anim_walk.inc.c"
+#include "anim_slice.inc.c"
+#include "anim_jump.inc.c"
+#include "anim_jumpland.inc.c"

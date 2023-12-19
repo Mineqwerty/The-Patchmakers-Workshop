@@ -644,6 +644,9 @@
 #define MODEL_CORAL_SPINNER                   0x103
 
 
+//Workshop Recesses
+#define MODEL_DRY_BONES                   0x100
+
 //New File Select
 #define MODEL_PATCHMAKER_SHADOW                   0x100
 

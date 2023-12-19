@@ -709,6 +709,8 @@ Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_goddess_spear(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node);
+
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_rosedrift_eyes(s32 callContext, struct GraphNode *node);
@@ -807,3 +809,5 @@ void bhv_coral_spinner_init(void);
 void bhv_coral_spinner_loop(void);
 void bhv_text_volume_init(void);
 void bhv_text_volume_loop(void);
+void bhv_dry_bones_init(void);
+void bhv_dry_bones_loop(void);

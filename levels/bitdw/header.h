@@ -77,4 +77,8 @@ extern const LevelScript level_bitdw_entry[];
 
 #include "levels/bitdw/header.inc.h"
 
+#include "levels/bitdw/dry_bones/geo_header.h"
+
+#include "levels/bitdw/dry_bones/anim_header.h"
+
 #endif

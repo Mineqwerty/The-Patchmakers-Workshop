@@ -35,6 +35,7 @@ const LevelScript level_bitdw_entry[] = {
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_13), 
 	JUMP_LINK(script_func_global_1), 
+	LOAD_MODEL_FROM_GEO(MODEL_DRY_BONES, dry_bones_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -43,7 +44,7 @@ const LevelScript level_bitdw_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_GOOMBA, -12026, 5, -1, 0, -90, 0, 0x00000000, bhvGroundPatch),
+		OBJECT(MODEL_DRY_BONES, -12026, 56, -1, 0, -90, 0, 0x00000000, bhvDryBones),
 		OBJECT(MODEL_NONE, -15071, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -15071, 200, 0),
 		TERRAIN(bitdw_area_1_collision),

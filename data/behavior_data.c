@@ -7138,3 +7138,14 @@ const BehaviorScript bhvTextVolume[] = {
         CALL_NATIVE(bhv_text_volume_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDryBones[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, dry_bones_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_dry_bones_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dry_bones_loop),
+    END_LOOP(),
+};

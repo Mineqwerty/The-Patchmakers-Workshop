@@ -43,5 +43,8 @@ void bhv_background_object_loop(void) {
         if (gTatumCount == 10315) {
             cur_obj_set_model(MODEL_TFP_SKYBOX_WEB);
         }
+        if (gTatumCount == 16820) {
+            cur_obj_set_model(MODEL_SKYBOX_TEST);
+        }
     }
 }
