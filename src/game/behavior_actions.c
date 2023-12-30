@@ -284,3 +284,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/coral_spinner.inc.c"
 #include "behaviors/text_volume.inc.c"
 #include "behaviors/dry_bones.inc.c"
+#include "behaviors/geyser.inc.c"

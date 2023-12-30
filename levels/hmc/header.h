@@ -111,4 +111,6 @@ extern const LevelScript level_hmc_entry[];
 
 #include "levels/hmc/coral_spinner/collision_header.h"
 
+#include "levels/hmc/glassfish/geo_header.h"
+
 #endif

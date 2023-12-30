@@ -236,6 +236,7 @@ enum SurfaceTypes {
     SURFACE_RDR_WARP,
     SURFACE_STC_WARP,
     SURFACE_GSS_WARP,
+    SURFACE_WATER_WALL,
 };
 
 // From Surface 0x1B to 0x1E

@@ -6602,7 +6602,7 @@ const BehaviorScript bhvStarGate[] = {
 
 const BehaviorScript bhvPatchmaker[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_ANIMATIONS(oAnimations, the_patchmaker_anims),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 20000),
@@ -7147,5 +7147,25 @@ const BehaviorScript bhvDryBones[] = {
     CALL_NATIVE(bhv_dry_bones_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_dry_bones_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGeyser[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_geyser_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_geyser_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGeyserParticle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_geyser_particle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_geyser_particle_loop),
+        ADD_INT(oAnimState, 1),
     END_LOOP(),
 };

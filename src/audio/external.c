@@ -145,10 +145,14 @@ enum MusicDynConditionTypes {
     MARIO_Y_GE,
     MARIO_Z_GE,
     MARIO_X_LT,
-    MARIO_Y_LT,
-    MARIO_Z_LT,
+    MARIO_IS_ABOVE_WATER,
+    MARIO_IS_UNDER_WATER,
     MARIO_IS_IN_AREA,
     MARIO_IS_IN_ROOM,
+    // TODO: If i need more level dynamics, everything past here doesnt work due to a hardcoded 8 limit
+    MARIO_Y_LT,
+    MARIO_Z_LT,
+    DYN_CONDITION_COUNT,
 };
 
 #define DYN1(cond1, val1, res) (s16)(1 << (15 - cond1) | res), val1
@@ -187,8 +191,14 @@ s16 sDynCcm[] = {
     DYN1(MARIO_IS_IN_AREA, 2, 8),
 };
 s16 sDynHmc[] = {
-    SEQ_LEVEL_UNDERGROUND, DYN2(MARIO_X_GE, 0, MARIO_Y_LT, -203, 4),
-    DYN2(MARIO_X_LT, 0, MARIO_Y_LT, -2400, 4), 3,
+    SEQ_SUBTERRANEAN_SEAWAY, 
+    DYN1(MARIO_IS_ABOVE_WATER, 1, 11),
+    DYN1(MARIO_IS_UNDER_WATER, 2, 12),
+};
+s16 sDynWf[] = {
+    SEQ_RAINY_DAY_ROADSIDE, 
+    DYN1(MARIO_IS_IN_AREA, 1, 9),
+    DYN1(MARIO_IS_IN_AREA, 3, 10),
 };
 s16 sDynUnk38[] = {
     SEQ_LEVEL_UNDERGROUND,
@@ -223,17 +233,20 @@ struct MusicDynamic {
     /*0xA*/ s16 dur2;
 }; // size = 0xC
 
-struct MusicDynamic sMusicDynamics[9] = {
+struct MusicDynamic sMusicDynamics[13] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0003, 127, 100, 0x0e40, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0e43, 127, 200, 0x0000, 0, 200 }, // SEQ_LEVEL_WATER
     { 0x02ff, 127, 100, 0x0100, 0, 100 }, // SEQ_LEVEL_UNDERGROUND
     { 0x03f7, 127, 100, 0x0008, 0, 100 }, // SEQ_LEVEL_UNDERGROUND
     { 0x0070, 127, 10, 0x0000, 0, 100 },  // SEQ_LEVEL_SPOOKY
-    { 0x0000, 127, 100, 0x0070, 0, 10 },  // SEQ_LEVEL_SPOOKY
-    { 0x0205, 127, 50, 0x0060, 0, 50 },
-    { 0x0060, 127, 50, 0x0205, 0, 50 }, // any (unused)
-    
+    { 0x0000, 127, 100, 0x0070, 0, 10 },  
+    { 0x0205, 127, 50, 0x0060, 0, 50 }, // GSS
+    { 0x0060, 127, 50, 0x0205, 0, 50 }, // GSS i think
+    { 0x0107, 127, 100, 0x0270, 0, 10 },  //RDR A1
+    { 0x0377, 127, 50, 0x0000, 0, 50 }, // RDR A2
+    { 0x029F, 127, 100, 0xE000, 0, 10 },  //SS Above Water
+    { 0xE298, 127, 50, 0x0007, 0, 50 }, // SS Underwater 
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },
@@ -1707,8 +1720,8 @@ void process_level_music_dynamics(void) {
     u16 tempBits;
     u8 condIndex;
     u8 i, j;
-    s16 conditionValues[8];
-    u8 conditionTypes[8];
+    s16 conditionValues[DYN_CONDITION_COUNT];
+    u8 conditionTypes[DYN_CONDITION_COUNT];
     s16 dur1, dur2;
     u16 bit;
 
@@ -1725,14 +1738,14 @@ void process_level_music_dynamics(void) {
         return;
     }
 
-    u32 conditionBits = sLevelDynamics[gCurrLevelNum][1] & 0xFF00;
-    u8  musicDynIndex = (u8) sLevelDynamics[gCurrLevelNum][1] & 0xFF;
+    u32 conditionBits = sLevelDynamics[gCurrLevelNum][1] & 0xfC00;
+    u8  musicDynIndex = (u8) sLevelDynamics[gCurrLevelNum][1] & 0x3FF;
     i = 2;
-    while (conditionBits & 0xff00) {
+    while (conditionBits & 0xfC00) {
         j = 0;
         condIndex = 0;
         bit = 0x8000;
-        while (j < 8) {
+        while (j < DYN_CONDITION_COUNT) {
             if (conditionBits & bit) {
                 conditionValues[condIndex] = sLevelDynamics[gCurrLevelNum][i++];
                 conditionTypes[condIndex] = j;
@@ -1793,6 +1806,19 @@ void process_level_music_dynamics(void) {
                     }
                     break;
                 }
+                case MARIO_IS_ABOVE_WATER: {
+                    if ((gMarioStates[0].action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED && gMarioStates[0].pos[1] < gMarioStates[0].waterLevel - 130) {
+                        j = condIndex + 1;
+                    }
+                    break;
+                }
+                
+                case MARIO_IS_UNDER_WATER: {
+                    if ((gMarioStates[0].action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED || gMarioStates[0].pos[1] >= gMarioStates[0].waterLevel - 130) {
+                        j = condIndex + 1;
+                    }
+                    break;
+                }
             }
         }
 
@@ -1800,8 +1826,8 @@ void process_level_music_dynamics(void) {
             // The area matches. Break out of the loop.
             tempBits = 0;
         } else {
-            tempBits      = sLevelDynamics[gCurrLevelNum][i] & 0xff00;
-            musicDynIndex = sLevelDynamics[gCurrLevelNum][i] & 0xff;
+            tempBits      = sLevelDynamics[gCurrLevelNum][i] & 0xfC00;
+            musicDynIndex = sLevelDynamics[gCurrLevelNum][i] & 0x3ff;
             i++;
         }
 

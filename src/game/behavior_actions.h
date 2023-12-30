@@ -811,3 +811,7 @@ void bhv_text_volume_init(void);
 void bhv_text_volume_loop(void);
 void bhv_dry_bones_init(void);
 void bhv_dry_bones_loop(void);
+void bhv_geyser_init(void);
+void bhv_geyser_loop(void);
+void bhv_geyser_particle_init(void);
+void bhv_geyser_particle_loop(void);

@@ -271,6 +271,12 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope45": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -634,6 +640,11 @@
             "envelope": "envelope42",
             "sound": "58_cello"
         },
+        "Rich Piano": {
+            "release_rate": 208,
+            "envelope": "envelope45",
+            "sound": "59_rich_piano"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -777,6 +788,7 @@
         "Glockenspiel",
         "Angklung",
         "Maracas",
-        "Cello"
+        "Cello",
+        "Rich Piano"
     ]
 }

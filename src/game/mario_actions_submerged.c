@@ -327,7 +327,7 @@ static void update_swimming_speed(struct MarioState *m, f32 decelThreshold) {
     f32 buoyancy = get_buoyancy(m);
     f32 maxSpeed = 28.0f;
     if (m->equippedPatch == PATCH_MARINE) {
-         maxSpeed = 80.0f;
+         maxSpeed = 50.0f;
          if (m->action == ACT_MARINE_PATCH_SPIN) {
             maxSpeed = 100.0f;
          }
@@ -946,6 +946,9 @@ static s32 act_marine_patch_spin(struct MarioState *m) {
     if (check_water_jump(m)) {
         return TRUE;
     }
+
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_WHITE_PARTICLE, bhvBubbleMaybe);
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_BUBBLE, bhvBubbleMaybe);
 
     update_swimming_yaw(m);
     update_swimming_pitch(m);

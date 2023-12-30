@@ -71,3 +71,4 @@
 #include "levels/hmc/underwater_stone_button/collision.inc.c"
 #include "levels/hmc/coral_spinner/model.inc.c"
 #include "levels/hmc/coral_spinner/collision.inc.c"
+#include "levels/hmc/glassfish/model.inc.c"

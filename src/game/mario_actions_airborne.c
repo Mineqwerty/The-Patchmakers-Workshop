@@ -887,6 +887,9 @@ s32 act_marine_patch_airborne(struct MarioState *m) {
             break;
 
         case AIR_STEP_HIT_WALL:
+            if (m->wall && m->wall->type == SURFACE_WATER_WALL) {
+                return set_mario_action(m, ACT_MARINE_PATCH_WATERFALL, 0);
+            }
             mario_set_forward_vel(m, 15.0f);
             break;
 
@@ -900,6 +903,64 @@ s32 act_marine_patch_airborne(struct MarioState *m) {
             lava_boost_on_wall(m);
             break;
     }
+
+    return FALSE;
+}
+
+s32 act_marine_patch_waterfall(struct MarioState *m) {
+    if (m->forwardVel < 15.0f) {
+        mario_set_forward_vel(m, 15.0f);
+    }
+
+    //play_mario_sound(m, SOUND_ACTION_WATER_JUMP, 0);
+    set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_MARINE_SPIN);
+    m->marioObj->header.gfx.angle[2] += 0x2000;
+    //m->marioObj->header.gfx.angle[0] = -0x2000;
+
+    m->forwardVel = 0;
+    m->vel[1] = 0;
+
+    
+
+    if (m->wall == NULL) {
+        m->vel[1] = 15.0f;
+        m->forwardVel = 10.0f;
+        return set_mario_action(m, ACT_MARINE_PATCH_AIRBORNE, 0);
+    }
+
+    perform_air_step(m, AIR_STEP_CHECK_NONE);
+
+    m->pos[1] += 30.0f;
+
+    if (m->wall) {
+        m->faceAngle[1] = atan2s(m->wall->normal.z, m->wall->normal.x) + 0x8000;
+    }
+
+    m->marioObj->header.gfx.angle[0] = -0x4000;
+    m->marioObj->header.gfx.angle[2] += 0x2000;
+
+    /*
+    switch (perform_air_step(m, AIR_STEP_CHECK_NONE)) {
+        case AIR_STEP_LANDED:
+            set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
+            set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+            break;
+
+        case AIR_STEP_HIT_WALL:
+            mario_set_forward_vel(m, 15.0f);
+            break;
+
+        case AIR_STEP_GRABBED_LEDGE:
+            set_mario_animation(m, MARIO_ANIM_IDLE_ON_LEDGE);
+            set_mario_action(m, ACT_LEDGE_GRAB, 0);
+            set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+            break;
+
+        case AIR_STEP_HIT_LAVA_WALL:
+            lava_boost_on_wall(m);
+            break;
+    }
+    */
 
     return FALSE;
 }
@@ -2289,6 +2350,7 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
         case ACT_TWIRLING:             cancel = act_twirling(m);             break;
         case ACT_WATER_JUMP:           cancel = act_water_jump(m);           break;
         case ACT_MARINE_PATCH_AIRBORNE: cancel = act_marine_patch_airborne(m);   break;
+        case ACT_MARINE_PATCH_WATERFALL: cancel = act_marine_patch_waterfall(m);   break;
         case ACT_HOLD_WATER_JUMP:      cancel = act_hold_water_jump(m);      break;
         case ACT_STEEP_JUMP:           cancel = act_steep_jump(m);           break;
         case ACT_BURNING_JUMP:         cancel = act_burning_jump(m);         break;

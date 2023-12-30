@@ -56,6 +56,9 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_CORAL_SPINNER, 645, -5487, -8892, 0, -90, 0, 0x00000000, bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -2180, -5487, -8892, 0, -90, 0, (40 << 16), bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -5310, -5487, -8892, 0, -90, 0, (78 << 16), bhvCoralSpinner),
+		OBJECT(MODEL_NONE, 9762, 6510, -13813, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, 7580, 6702, -12617, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, 8272, 6943, -13275, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, 8022, 4543, -10957, 0, 119, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7488, 5282, -12000, 0, 119, 0, (200 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -10913, 7501, -13720, 0, 119, 0, (3 << 24), bhvHiddenRedCoinStar),
@@ -85,7 +88,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_WATER_RING, 11307, -2296, -5655, 0, 85, -23, (9 << 16), bhvSubSeaWaterRing),
 		TERRAIN(hmc_area_1_collision),
 		MACRO_OBJECTS(hmc_area_1_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -104,7 +107,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, 43, 2941, -7459, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_2_collision),
 		MACRO_OBJECTS(hmc_area_2_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -114,9 +117,17 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -2243, 3726, -4263, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, -2253, 3998, -5447, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, -2248, 5289, -4816, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, -2255, 5691, -5864, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, -2246, 5781, -3906, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_NONE, -2258, 2976, -4740, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_STAR, -4238, 7131, -4812, 0, 119, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_3_collision),
 		MACRO_OBJECTS(hmc_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

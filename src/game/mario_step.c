@@ -784,7 +784,7 @@ s32 perform_air_step(struct MarioState *m, u32 stepArg) {
     apply_vertical_wind(m);
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    if (m->action == ACT_MARINE_PATCH_AIRBORNE) {
+    if (m->action == ACT_MARINE_PATCH_AIRBORNE || m->action == ACT_MARINE_PATCH_WATERFALL) {
         m->marioObj->header.gfx.angle[1] = m->faceAngle[1];
     }
     else {
