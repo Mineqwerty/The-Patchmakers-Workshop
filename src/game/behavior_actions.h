@@ -815,3 +815,7 @@ void bhv_geyser_init(void);
 void bhv_geyser_loop(void);
 void bhv_geyser_particle_init(void);
 void bhv_geyser_particle_loop(void);
+void bhv_glassfish_init(void);
+void bhv_glassfish_loop(void);
+void bhv_glassfish_star_init(void);
+void bhv_glassfish_star_loop(void);

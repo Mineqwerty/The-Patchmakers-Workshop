@@ -53,6 +53,9 @@ void bhv_underwater_stone_button_loop(void) {
         case 0:
             if (o->oDistanceToMario < 300 && gMarioState->action == ACT_MARINE_PATCH_SPIN) {
                 o->oAction++;
+                cur_obj_play_sound_2(SOUND_GENERAL2_PURPLE_SWITCH);
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_spawn_particles(&sGlobalMistParticles);
             }
         break;
         case 1:

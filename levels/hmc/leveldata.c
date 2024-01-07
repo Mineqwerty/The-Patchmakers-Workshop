@@ -72,3 +72,5 @@
 #include "levels/hmc/coral_spinner/model.inc.c"
 #include "levels/hmc/coral_spinner/collision.inc.c"
 #include "levels/hmc/glassfish/model.inc.c"
+#include "levels/hmc/glassfish/anims/data.inc.c"
+#include "levels/hmc/glassfish/anims/table.inc.c"

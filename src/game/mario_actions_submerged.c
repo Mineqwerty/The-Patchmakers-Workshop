@@ -947,8 +947,8 @@ static s32 act_marine_patch_spin(struct MarioState *m) {
         return TRUE;
     }
 
-    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_WHITE_PARTICLE, bhvBubbleMaybe);
-    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_BUBBLE, bhvBubbleMaybe);
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_WHITE_PARTICLE, bhvQuickBubble);
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_BUBBLE, bhvQuickBubble);
 
     update_swimming_yaw(m);
     update_swimming_pitch(m);

@@ -4,7 +4,7 @@ const GeoLayout hmc_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, hmc_dl_Circle_mesh_layer_1),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT_DECAL, 0, 4749, 0, hmc_dl_Circle_001_mesh_layer_6),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT_DECAL, 0, 4750, 0, hmc_dl_Circle_001_mesh_layer_6),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_ALPHA, hmc_dl_Circle_001_mesh_layer_4),
 		GEO_CLOSE_NODE(),

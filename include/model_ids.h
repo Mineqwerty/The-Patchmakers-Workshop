@@ -642,6 +642,7 @@
 #define MODEL_UNDERWATER_STONE_DOOR                   0x101
 #define MODEL_UNDERWATER_STONE_BUTTON                   0x102
 #define MODEL_CORAL_SPINNER                   0x103
+#define MODEL_GLASSFISH                   0x104
 
 
 //Workshop Recesses

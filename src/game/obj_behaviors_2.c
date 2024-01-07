@@ -788,6 +788,7 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/seraphim.inc.c"
 #include "behaviors/far_plane_cube.inc.c"
 #include "behaviors/podogoo.inc.c"
+#include "behaviors/glassfish.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.

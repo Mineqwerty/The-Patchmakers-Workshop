@@ -425,6 +425,56 @@ s16 object_step(void) {
     return collisionFlags;
 }
 
+s16 object_step_no_water_particles(void) {
+    f32 objX = o->oPosX;
+    f32 objY = o->oPosY;
+    f32 objZ = o->oPosZ;
+
+    f32 floorY;
+    f32 waterY = FLOOR_LOWER_LIMIT_MISC;
+
+    f32 objVelX = o->oForwardVel * sins(o->oMoveAngleYaw);
+    f32 objVelZ = o->oForwardVel * coss(o->oMoveAngleYaw);
+
+    s16 collisionFlags = 0;
+
+    // Find any wall collisions, receive the push, and set the flag.
+    if (obj_find_wall(objX + objVelX, objY, objZ + objVelZ, objVelX, objVelZ) == 0) {
+        collisionFlags += OBJ_COL_FLAG_HIT_WALL;
+    }
+
+    floorY = find_floor(objX + objVelX, objY, objZ + objVelZ, &sObjFloor);
+
+    o->oFloor       = sObjFloor;
+    o->oFloorHeight = floorY;
+
+    if (turn_obj_away_from_steep_floor(sObjFloor, floorY, objVelX, objVelZ) == 1) {
+        waterY = find_water_level(objX + objVelX, objZ + objVelZ);
+        if (waterY > objY) {
+            calc_new_obj_vel_and_pos_y_underwater(sObjFloor, floorY, objVelX, objVelZ, waterY);
+            collisionFlags += OBJ_COL_FLAG_UNDERWATER;
+        } else {
+            o->oPosY = waterY;
+            calc_new_obj_vel_and_pos_y(sObjFloor, floorY, objVelX, objVelZ);
+        }
+    } else {
+        // Treat any awkward floors similar to a wall.
+        collisionFlags +=
+            ((collisionFlags & OBJ_COL_FLAG_HIT_WALL) ^ OBJ_COL_FLAG_HIT_WALL);
+    }
+
+    obj_update_pos_vel_xz();
+    if ((s32) o->oPosY == (s32) floorY) {
+        collisionFlags += OBJ_COL_FLAG_GROUNDED;
+    }
+
+    if ((s32) o->oVelY == 0) {
+        collisionFlags += OBJ_COL_FLAG_NO_Y_VEL;
+    }
+
+    return collisionFlags;
+}
+
 /**
  * Takes an object step but does not orient with the object's floor.
  * Used for boulders, falling pillars, and the rolling snowman body.
