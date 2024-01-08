@@ -7210,3 +7210,24 @@ const BehaviorScript bhvGlassfishStar[] = {
         CALL_NATIVE(bhv_glassfish_star_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvShadowChompHead[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, shadow_chomp_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_shadow_chomp_head_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shadow_chomp_head_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShadowChompTail[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_shadow_chomp_tail_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shadow_chomp_tail_loop),
+    END_LOOP(),
+};

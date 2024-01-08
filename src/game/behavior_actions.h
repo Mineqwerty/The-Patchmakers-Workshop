@@ -819,3 +819,7 @@ void bhv_glassfish_init(void);
 void bhv_glassfish_loop(void);
 void bhv_glassfish_star_init(void);
 void bhv_glassfish_star_loop(void);
+void bhv_shadow_chomp_head_init(void);
+void bhv_shadow_chomp_head_loop(void);
+void bhv_shadow_chomp_tail_init(void);
+void bhv_shadow_chomp_tail_loop(void);

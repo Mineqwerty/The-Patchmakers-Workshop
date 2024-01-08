@@ -130,6 +130,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_LINE,            grapple_line_geo),
     LOAD_MODEL_FROM_GEO(MODEL_HALO,            halo_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PORTAL,            portal_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_HEAD,            shadow_chomp_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_TAIL,            shadow_chomp_tail_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

@@ -649,3 +649,5 @@ extern const BehaviorScript bhvGeyser[];
 extern const BehaviorScript bhvGeyserParticle[];
 extern const BehaviorScript bhvGlassfish[];
 extern const BehaviorScript bhvGlassfishStar[];
+extern const BehaviorScript bhvShadowChompHead[];
+extern const BehaviorScript bhvShadowChompTail[];
