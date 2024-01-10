@@ -131,4 +131,8 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/header.inc.h"
 
+#include "levels/lll/chandelier/geo_header.h"
+
+#include "levels/lll/chandelier/collision_header.h"
+
 #endif
