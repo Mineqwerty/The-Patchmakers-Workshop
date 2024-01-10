@@ -873,34 +873,61 @@ void bhv_shadow_chomp_head_loop(void) {
 
 }
 
-void bhv_shadow_chomp_tail_init(void) {
+#define SHADOW_TAIL_X_AVERAGE 263
+#define SHADOW_TAIL_Z_AVERAGE 0
 
+short headVerts[9] = {0, 2, 6, 9, 10, 12, 22, 24, 26};
+short tailVerts[14] = {20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60};
+s16 shadowChompXOffsets[61];
+s16 shadowChompZOffsets[61];
+
+void bhv_shadow_chomp_tail_init(void) {
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
+    Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+    for (int i = 0; i < 14; i++) {
+            int curVtx = tailVerts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+        }
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
-    extern Vtx grapple_line_Plane_002_mesh_layer_1_vtx_0[12];
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
 
-        Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+    o->oFaceAngleYaw += 0x100;
 
-        //s16 max = new[0].v.ob[0];
-        //for (int i = 0; i < 61; i++) {
-        //    if (new[i].v.ob[0] > max - 1) {
-        //        print_text_fmt_int(100, i*4, "%d", i);
-        //        max = new[i].v.ob[0];
-        //    }
-        //}
+    Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
 
-        new[0].v.ob[0] = gGlobalTimer;
-        new[2].v.ob[0] = gGlobalTimer;
-        new[6].v.ob[0] = gGlobalTimer;
-        new[9].v.ob[0] = gGlobalTimer;
-        new[10].v.ob[0] = gGlobalTimer;
-        new[12].v.ob[0] = gGlobalTimer;
-        new[22].v.ob[0] = gGlobalTimer;
-        new[24].v.ob[0] = gGlobalTimer;
-        new[26].v.ob[0] = gGlobalTimer;
+    Vec3f shadowPos = {gMarioState->pos[0], gMarioState->floorHeight, gMarioState->pos[2]};
 
-        //Head group: 0, 2, 6, 9, 10, 12, 22, 24, 26
+    f32 dist;
+    vec3f_get_dist(&o->oPosVec, shadowPos, &dist);
+
+    f32 bendFactor = dist / 300.0f;
+
+        new[0].v.ob[0] = 0;
+        new[2].v.ob[0] = 0;
+        new[6].v.ob[0] = 0;
+        new[9].v.ob[0] = 0;
+        new[10].v.ob[0] = 0;
+        new[12].v.ob[0] = 0;
+        new[22].v.ob[0] = 0;
+        new[24].v.ob[0] = 0;
+        new[26].v.ob[0] = 0;
+
+    f32 marioShadowHeight = gMarioState->floorHeight;
+
+    //tail vtx calculation
+    for (int i = 0; i < 14; i++) {
+        int curVtx = tailVerts[i];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight;
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*(-o->oPosX + gMarioState->pos[0] + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*(-o->oPosZ + gMarioState->pos[2] + shadowChompZOffsets[curVtx]);
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*(-o->oPosZ + gMarioState->pos[2] + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*(-o->oPosX + gMarioState->pos[0] + shadowChompXOffsets[curVtx]);
+    }
+
+    //Head group: 0, 2, 6, 9, 10, 12, 22, 24, 26
+
+    //Tail group: 20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60
 }
 
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {

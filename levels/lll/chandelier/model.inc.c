@@ -1,6 +1,3 @@
-Lights1 chandelier_f3dlite_material_002_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Vtx chandelier_chand_mesh_layer_1_vtx_cull[8] = {
 	{{ {-289, -855, 290}, 0, {0, 0}, {0, 0, 0, 0} }},
@@ -397,7 +394,8 @@ Gfx mat_chandelier_f3dlite_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(chandelier_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
