@@ -401,4 +401,12 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "menu_patch_marine/header.h"
 
+#include "menu_patch_shadowchomp/header.h"
+
+#include "shadow_chomp/geo_header.h"
+
+#include "shadow_chomp_tail/geo_header.h"
+
+
+#include "shadow_chomp/anim_header.h"
 #endif

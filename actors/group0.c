@@ -66,3 +66,8 @@
 #include "grabbable_puzzle_box/model.inc.c"
 #include "grabbable_puzzle_box/collision.inc.c"
 #include "menu_patch_marine/model.inc.c"
+#include "menu_patch_shadowchomp/model.inc.c"
+#include "shadow_chomp/model.inc.c"
+#include "shadow_chomp_tail/model.inc.c"
+#include "shadow_chomp/anims/data.inc.c"
+#include "shadow_chomp/anims/table.inc.c"

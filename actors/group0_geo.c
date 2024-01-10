@@ -31,3 +31,5 @@
 #include "fire_smoke/geo.inc.c"
 #include "portal/geo.inc.c"
 #include "grabbable_puzzle_box/geo.inc.c"
+#include "shadow_chomp/geo.inc.c"
+#include "shadow_chomp_tail/geo.inc.c"

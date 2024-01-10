@@ -2061,7 +2061,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
     if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        initiate_warp(LEVEL_HMC, 3, 0x0A, 0, 0);
+        spawn_object_relative(0, 0, 400, 0, o, MODEL_SHADOW_CHOMP_TAIL, bhvShadowChompTail);
     }
 
     //TODO: put these in a more permanent spot

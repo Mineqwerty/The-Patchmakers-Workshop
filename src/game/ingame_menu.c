@@ -2640,6 +2640,9 @@ void render_patch_selection() {
     if (patchFlags & (1 << PATCH_MARINE)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_marine_patch_chillstep_001_mesh);
     }
+    if (patchFlags & (1 << PATCH_SHADOWCHOMP)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_shadowchomp_patch_stone_002_mesh);
+    }
     if (patchFlags & (1 << PATCH_PORTAL)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
     }

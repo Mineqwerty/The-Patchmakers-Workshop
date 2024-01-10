@@ -865,6 +865,44 @@ void bhv_portal_loop(void) {
     }
 }
 
+void bhv_shadow_chomp_head_init(void) {
+
+}
+
+void bhv_shadow_chomp_head_loop(void) {
+
+}
+
+void bhv_shadow_chomp_tail_init(void) {
+
+}
+
+void bhv_shadow_chomp_tail_loop(void) {
+    extern Vtx grapple_line_Plane_002_mesh_layer_1_vtx_0[12];
+
+        Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+
+        //s16 max = new[0].v.ob[0];
+        //for (int i = 0; i < 61; i++) {
+        //    if (new[i].v.ob[0] > max - 1) {
+        //        print_text_fmt_int(100, i*4, "%d", i);
+        //        max = new[i].v.ob[0];
+        //    }
+        //}
+
+        new[0].v.ob[0] = gGlobalTimer;
+        new[2].v.ob[0] = gGlobalTimer;
+        new[6].v.ob[0] = gGlobalTimer;
+        new[9].v.ob[0] = gGlobalTimer;
+        new[10].v.ob[0] = gGlobalTimer;
+        new[12].v.ob[0] = gGlobalTimer;
+        new[22].v.ob[0] = gGlobalTimer;
+        new[24].v.ob[0] = gGlobalTimer;
+        new[26].v.ob[0] = gGlobalTimer;
+
+        //Head group: 0, 2, 6, 9, 10, 12, 22, 24, 26
+}
+
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
     if (callContext == GEO_CONTEXT_RENDER) {
         struct Object *obj = (struct Object *) gCurGraphNodeObject;

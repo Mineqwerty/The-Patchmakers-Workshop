@@ -97,5 +97,7 @@ extern Gfx menu_patch_grapple_patch_grapple_mesh[];
 extern Gfx menu_patch_halo_patch_halo_mesh[];
 extern Gfx menu_patch_portal_patch_stone_001_mesh[];
 extern Gfx menu_patch_marine_patch_chillstep_001_mesh[];
+extern Gfx menu_patch_shadowchomp_patch_stone_002_mesh[];
+
 
 #endif // SEGMENT2_H

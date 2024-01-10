@@ -16,8 +16,10 @@ ALIGNED8 const u8 patch_textures_dma[] = {
     ,
     #include "actors/amp/marine_patch.rgba16.inc.c"
     ,
+    #include "actors/amp/shadowchomp_patch.rgba16.inc.c"
+    ,
     #include "actors/amp/portal_patch.rgba16.inc.c"
-    
+
 };
 
 ALIGNED8 static const Texture texture_menu_stone_patch[] = {
