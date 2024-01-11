@@ -877,18 +877,45 @@ void bhv_shadow_chomp_head_loop(void) {
 #define SHADOW_TAIL_Z_AVERAGE 0
 
 short headVerts[9] = {0, 2, 6, 9, 10, 12, 22, 24, 26};
+short segment1Verts[13] = {1, 3, 7, 8, 11, 13, 23, 25, 27, 40, 41, 48, 50};
+short segment2Verts[14] = {4, 5, 14, 15, 16, 18, 28, 29, 38, 39, 42, 44, 49, 51};
+short segment3Verts[11] = {17, 19, 30, 31, 32, 34, 37, 43, 45, 52, 53};
 short tailVerts[14] = {20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60};
 s16 shadowChompXOffsets[61];
+s16 shadowChompYOffsets[61];
 s16 shadowChompZOffsets[61];
 
 void bhv_shadow_chomp_tail_init(void) {
     extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
     Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+    for (int i = 0; i < 9; i++) {
+        int curVtx = headVerts[i];
+        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0];
+        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+    }
+    for (int i = 0; i < 13; i++) {
+        int curVtx = segment1Verts[i];
+        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 172;
+        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] - 2;
+        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+    }
     for (int i = 0; i < 14; i++) {
-            int curVtx = tailVerts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
-        }
+        int curVtx = segment2Verts[i];
+        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 262;
+        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 92;
+        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+    }
+    for (int i = 0; i < 11; i++) {
+        int curVtx = segment3Verts[i];
+        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 317;
+        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 273;
+        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+    }
+    for (int i = 0; i < 14; i++) {
+        int curVtx = tailVerts[i];
+        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
+        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+    }
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
@@ -905,17 +932,33 @@ void bhv_shadow_chomp_tail_loop(void) {
 
     f32 bendFactor = dist / 300.0f;
 
-        new[0].v.ob[0] = 0;
-        new[2].v.ob[0] = 0;
-        new[6].v.ob[0] = 0;
-        new[9].v.ob[0] = 0;
-        new[10].v.ob[0] = 0;
-        new[12].v.ob[0] = 0;
-        new[22].v.ob[0] = 0;
-        new[24].v.ob[0] = 0;
-        new[26].v.ob[0] = 0;
+    //head vtx calculation
+    for (int i = 0; i < 9; i++) {
+        int curVtx = headVerts[i];
+        new[curVtx].v.ob[0] = 0;
+    }
 
     f32 marioShadowHeight = gMarioState->floorHeight;
+    f32 yDifference = o->oPosY - marioShadowHeight;
+
+    #define SEGMENT1_YFACTOR 0.3f
+    #define SEGMENT2_YFACTOR 0.6f
+    #define SEGMENT3_YFACTOR 0.9f
+
+    for (int i = 0; i < 13; i++) {
+        int curVtx = segment1Verts[i];
+        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT1_YFACTOR) + shadowChompYOffsets[curVtx];
+    }
+    for (int i = 0; i < 14; i++) {
+        int curVtx = segment2Verts[i];
+        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        
+    }
+    for (int i = 0; i < 11; i++) {
+        int curVtx = segment3Verts[i];
+        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        
+    }
 
     //tail vtx calculation
     for (int i = 0; i < 14; i++) {
@@ -926,7 +969,9 @@ void bhv_shadow_chomp_tail_loop(void) {
     }
 
     //Head group: 0, 2, 6, 9, 10, 12, 22, 24, 26
-
+    //Segment 1: 1, 3, 7, 8, 11, 13, 23, 25, 27, 40, 41, 48, 50
+    //Segment 2: 4, 5, 14, 15, 16, 18, 28, 29, 38, 39, 42, 44, 49, 51
+    //Segment 3: 17, 19, 30, 31, 32, 34, 37, 43, 45, 52, 53
     //Tail group: 20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60
 }
 
