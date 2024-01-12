@@ -866,10 +866,13 @@ void bhv_portal_loop(void) {
 }
 
 void bhv_shadow_chomp_head_init(void) {
-
+    spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_TAIL, bhvShadowChompTail);
 }
 
 void bhv_shadow_chomp_head_loop(void) {
+    approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 300 * sins((o->oBehParams2ndByte * 0x6000) + 0x200*(gGlobalTimer)), 0.07f);
+            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 300 * coss((o->oBehParams2ndByte * 0x6000) + 0x200*(gGlobalTimer)), 0.07f);
+            approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 200 + (100 * sins(o->oTimer * 0x400)), 0.2f);
 
 }
 
@@ -888,40 +891,46 @@ s16 shadowChompZOffsets[61];
 void bhv_shadow_chomp_tail_init(void) {
     extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
     Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
-    for (int i = 0; i < 9; i++) {
-        int curVtx = headVerts[i];
-        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0];
-        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
-    }
-    for (int i = 0; i < 13; i++) {
-        int curVtx = segment1Verts[i];
-        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 172;
-        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] - 2;
-        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
-    }
-    for (int i = 0; i < 14; i++) {
-        int curVtx = segment2Verts[i];
-        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 262;
-        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 92;
-        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
-    }
-    for (int i = 0; i < 11; i++) {
-        int curVtx = segment3Verts[i];
-        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 317;
-        shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 273;
-        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
-    }
-    for (int i = 0; i < 14; i++) {
-        int curVtx = tailVerts[i];
-        shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
-        shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+    if (shadowChompYOffsets[0] == 0) {
+        for (int i = 0; i < 9; i++) {
+            int curVtx = headVerts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0];
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 13; i++) {
+            int curVtx = segment1Verts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 172;
+            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] - 2;
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 14; i++) {
+            int curVtx = segment2Verts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 262;
+            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 92;
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 11; i++) {
+            int curVtx = segment3Verts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 317;
+            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 273;
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 14; i++) {
+            int curVtx = tailVerts[i];
+            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
+            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+        }
     }
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
-    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
 
-    o->oFaceAngleYaw += 0x100;
+    o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
+    o->oPosX = o->parentObj->oPosX;
+    o->oPosY = o->parentObj->oPosY;
+    o->oPosZ = o->parentObj->oPosZ;
+
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
 
     Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
 
@@ -930,7 +939,7 @@ void bhv_shadow_chomp_tail_loop(void) {
     f32 dist;
     vec3f_get_dist(&o->oPosVec, shadowPos, &dist);
 
-    f32 bendFactor = dist / 300.0f;
+    f32 bendFactor = dist / 6.0f;
 
     //head vtx calculation
     for (int i = 0; i < 9; i++) {
@@ -940,23 +949,32 @@ void bhv_shadow_chomp_tail_loop(void) {
 
     f32 marioShadowHeight = gMarioState->floorHeight;
     f32 yDifference = o->oPosY - marioShadowHeight;
+    s16 anglePitch, angleYaw;
+    vec3f_get_angle(&o->oPosVec, shadowPos, &anglePitch, &angleYaw);
+    s16 angleDiff = o->oFaceAngleYaw - angleYaw - 0x4000;
 
-    #define SEGMENT1_YFACTOR 0.3f
+    #define SEGMENT3_YFACTOR 0.3f
     #define SEGMENT2_YFACTOR 0.6f
-    #define SEGMENT3_YFACTOR 0.9f
+    #define SEGMENT1_YFACTOR 0.9f
 
     for (int i = 0; i < 13; i++) {
         int curVtx = segment1Verts[i];
-        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT1_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT1_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.5f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.3f + shadowChompZOffsets[curVtx]) + bendFactor*1.2f*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.5f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.3f + shadowChompXOffsets[curVtx]) + bendFactor*1.2f*sins(-abss(0.5f*angleDiff));
     }
     for (int i = 0; i < 14; i++) {
         int curVtx = segment2Verts[i];
-        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.75f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.5f + shadowChompZOffsets[curVtx]) + bendFactor*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.75f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.5f + shadowChompXOffsets[curVtx]) + bendFactor*sins(-abss(0.5f*angleDiff));
         
     }
     for (int i = 0; i < 11; i++) {
         int curVtx = segment3Verts[i];
-        new[curVtx].v.ob[1] = marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT3_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.9f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.75f + shadowChompZOffsets[curVtx]) + bendFactor*0.5f*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.9f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.75f + shadowChompXOffsets[curVtx]) + bendFactor*0.5f*sins(-abss(0.5f*angleDiff));
         
     }
 
