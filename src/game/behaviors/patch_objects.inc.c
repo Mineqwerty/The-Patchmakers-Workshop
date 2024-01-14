@@ -865,14 +865,47 @@ void bhv_portal_loop(void) {
     }
 }
 
+enum ShadowChompHeadActions {
+    SHADOW_CHOMP_ACT_IDLE,
+    SHADOW_CHOMP_ACT_LUNGE,
+    SHADOW_CHOMP_ACT_RETRACT
+};
+
 void bhv_shadow_chomp_head_init(void) {
     spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_TAIL, bhvShadowChompTail);
 }
 
 void bhv_shadow_chomp_head_loop(void) {
-    approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 300 * sins((o->oBehParams2ndByte * 0x6000) + 0x200*(gGlobalTimer)), 0.07f);
-            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 300 * coss((o->oBehParams2ndByte * 0x6000) + 0x200*(gGlobalTimer)), 0.07f);
-            approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 200 + (100 * sins(o->oTimer * 0x400)), 0.2f);
+
+    if (o->oDistanceToMario > 1100) {
+        o->oShadowChompApproachMario = 1;
+    }
+    else if (o->oDistanceToMario < 400) {
+        o->oShadowChompApproachMario = 0;
+    }
+
+    switch (o->oAction) {
+        case SHADOW_CHOMP_ACT_IDLE:
+
+            if (o->oShadowChompApproachMario == 1) {
+                approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.04f);
+                approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.04f);
+                approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.04f);
+                obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x200);
+                o->oForwardVel = 30.0f;
+            }
+            else {
+                obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x200);
+                o->oForwardVel = approach_f32_symmetric(o->oForwardVel, 13.0f, 1.0f);
+                cur_obj_move_xz_using_fvel_and_yaw();
+                approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.008f);
+                approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.008f);
+                approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.08f);
+            }
+        break;
+    }
+
+    
 
 }
 
@@ -921,6 +954,7 @@ void bhv_shadow_chomp_tail_init(void) {
             shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
         }
     }
+    o->oShadowTailHeight = gMarioState->floorHeight;
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
@@ -934,7 +968,22 @@ void bhv_shadow_chomp_tail_loop(void) {
 
     Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
 
-    Vec3f shadowPos = {gMarioState->pos[0], gMarioState->floorHeight, gMarioState->pos[2]};
+    o->oShadowTailHeight = approach_f32_symmetric(o->oShadowTailHeight, gMarioState->floorHeight, 30.0f);
+
+    f32 marioShadowHeight = o->oShadowTailHeight;
+
+    if (gMarioState->pos[1] - gMarioState->floorHeight > 1000) {
+        o->oShadowTailAttachToMario = 1;
+    }
+
+    if (o->oShadowTailAttachToMario == 1) {
+        marioShadowHeight = gMarioState->pos[1];
+        if (gMarioState->pos[1] - gMarioState->floorHeight < 100) {
+            o->oShadowTailAttachToMario = 0;
+        }
+    }
+
+    Vec3f shadowPos = {gMarioState->pos[0], marioShadowHeight, gMarioState->pos[2]};
 
     f32 dist;
     vec3f_get_dist(&o->oPosVec, shadowPos, &dist);
@@ -947,7 +996,8 @@ void bhv_shadow_chomp_tail_loop(void) {
         new[curVtx].v.ob[0] = 0;
     }
 
-    f32 marioShadowHeight = gMarioState->floorHeight;
+    
+
     f32 yDifference = o->oPosY - marioShadowHeight;
     s16 anglePitch, angleYaw;
     vec3f_get_angle(&o->oPosVec, shadowPos, &anglePitch, &angleYaw);

@@ -1738,10 +1738,10 @@ void process_level_music_dynamics(void) {
         return;
     }
 
-    u32 conditionBits = sLevelDynamics[gCurrLevelNum][1] & 0xfC00;
-    u8  musicDynIndex = (u8) sLevelDynamics[gCurrLevelNum][1] & 0x3FF;
+    u32 conditionBits = sLevelDynamics[gCurrLevelNum][1] & 0xFF00;
+    u8  musicDynIndex = (u8) sLevelDynamics[gCurrLevelNum][1] & 0xFF;
     i = 2;
-    while (conditionBits & 0xfC00) {
+    while (conditionBits & 0xff00) {
         j = 0;
         condIndex = 0;
         bit = 0x8000;
@@ -1826,8 +1826,8 @@ void process_level_music_dynamics(void) {
             // The area matches. Break out of the loop.
             tempBits = 0;
         } else {
-            tempBits      = sLevelDynamics[gCurrLevelNum][i] & 0xfC00;
-            musicDynIndex = sLevelDynamics[gCurrLevelNum][i] & 0x3ff;
+            tempBits      = sLevelDynamics[gCurrLevelNum][i] & 0xff00;
+            musicDynIndex = sLevelDynamics[gCurrLevelNum][i] & 0xff;
             i++;
         }
 

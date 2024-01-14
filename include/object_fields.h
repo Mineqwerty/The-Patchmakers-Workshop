@@ -1377,6 +1377,13 @@
 //glassfish
 #define oGlassfishMouthObj           OBJECT_FIELD_OBJ(0x1B)
 
+//shadow chomp head
+#define oShadowChompApproachMario           OBJECT_FIELD_S32(0x1B)
+
+//shadow chomp tail
+#define oShadowTailHeight           OBJECT_FIELD_S32(0x1B)
+#define oShadowTailAttachToMario           OBJECT_FIELD_S32(0x1C)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110
