@@ -644,6 +644,10 @@
 #define MODEL_CORAL_SPINNER                   0x103
 #define MODEL_GLASSFISH                   0x104
 
+//Candlelit Chamber
+#define MODEL_CHANDELIER                   0x100
+#define MODEL_FLOATING_TABLE                   0x101
+#define MODEL_SCALING_STAIRS                   0x102
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

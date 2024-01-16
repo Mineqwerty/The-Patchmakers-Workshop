@@ -17,7 +17,7 @@ const Collision chandelier_collision[] = {
 	COL_VERTEX(196, -772, 196),
 	COL_VERTEX(277, -772, 0),
 	COL_VERTEX(196, -772, -196),
-	COL_TRI_INIT(SURFACE_DEFAULT, 28),
+	COL_TRI_INIT(SURFACE_NOT_SLIPPERY, 28),
 	COL_TRI(0, 1, 2),
 	COL_TRI(2, 3, 4),
 	COL_TRI(4, 5, 6),

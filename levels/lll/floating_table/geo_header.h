@@ -1,0 +1,16 @@
+extern const GeoLayout floating_table_geo[];
+extern Lights1 floating_table_f3dlite_material_006_lights;
+extern Lights1 floating_table_f3dlite_material_005_lights;
+extern u8 floating_table_mahogwood_ci4[];
+extern u8 floating_table_mahogwood_pal_rgba16[];
+extern u8 floating_table_castiron_i8[];
+extern Vtx floating_table_Cube_001_mesh_layer_1_vtx_cull[8];
+extern Vtx floating_table_Cube_001_mesh_layer_1_vtx_0[56];
+extern Gfx floating_table_Cube_001_mesh_layer_1_tri_0[];
+extern Vtx floating_table_Cube_001_mesh_layer_1_vtx_1[135];
+extern Gfx floating_table_Cube_001_mesh_layer_1_tri_1[];
+extern Gfx mat_floating_table_f3dlite_material_006[];
+extern Gfx mat_revert_floating_table_f3dlite_material_006[];
+extern Gfx mat_floating_table_f3dlite_material_005[];
+extern Gfx floating_table_Cube_001_mesh_layer_1[];
+extern Gfx floating_table_material_revert_render_settings[];

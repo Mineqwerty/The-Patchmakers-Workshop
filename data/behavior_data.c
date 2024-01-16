@@ -7231,3 +7231,38 @@ const BehaviorScript bhvShadowChompTail[] = {
         CALL_NATIVE(bhv_shadow_chomp_tail_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSwingingChandelier[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(chandelier_collision),
+    CALL_NATIVE(bhv_swinging_chandelier_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_swinging_chandelier_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFloatingTable[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(floating_table_collision),
+    SET_HOME(),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_floating_table_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_table_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvScalingStairs[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(scaling_stairs_collision),
+    CALL_NATIVE(bhv_scaling_stairs_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_scaling_stairs_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

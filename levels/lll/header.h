@@ -135,4 +135,12 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/chandelier/collision_header.h"
 
+#include "levels/lll/floating_table/geo_header.h"
+
+#include "levels/lll/floating_table/collision_header.h"
+
+#include "levels/lll/scaling_stairs/collision_header.h"
+
+#include "levels/lll/scaling_stairs/geo_header.h"
+
 #endif

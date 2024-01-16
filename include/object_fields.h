@@ -1384,6 +1384,12 @@
 #define oShadowTailHeight           OBJECT_FIELD_S32(0x1B)
 #define oShadowTailAttachToMario           OBJECT_FIELD_S32(0x1C)
 
+//floating table
+#define oFloatingTableInitYaw           OBJECT_FIELD_S32(0x1B)
+
+//scaling stairs
+#define oScalingStairsScale           OBJECT_FIELD_F32(0x1B)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

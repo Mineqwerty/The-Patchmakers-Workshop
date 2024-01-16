@@ -651,3 +651,6 @@ extern const BehaviorScript bhvGlassfish[];
 extern const BehaviorScript bhvGlassfishStar[];
 extern const BehaviorScript bhvShadowChompHead[];
 extern const BehaviorScript bhvShadowChompTail[];
+extern const BehaviorScript bhvSwingingChandelier[];
+extern const BehaviorScript bhvFloatingTable[];
+extern const BehaviorScript bhvScalingStairs[];

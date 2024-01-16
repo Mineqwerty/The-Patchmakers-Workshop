@@ -71,3 +71,7 @@
 
 #include "levels/lll/chandelier/model.inc.c"
 #include "levels/lll/chandelier/collision.inc.c"
+#include "levels/lll/floating_table/model.inc.c"
+#include "levels/lll/floating_table/collision.inc.c"
+#include "levels/lll/scaling_stairs/collision.inc.c"
+#include "levels/lll/scaling_stairs/model.inc.c"

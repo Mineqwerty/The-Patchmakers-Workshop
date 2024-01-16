@@ -46,3 +46,5 @@
 #include "levels/lll/geo.inc.c"
 
 #include "levels/lll/chandelier/geo.inc.c"
+#include "levels/lll/floating_table/geo.inc.c"
+#include "levels/lll/scaling_stairs/geo.inc.c"
