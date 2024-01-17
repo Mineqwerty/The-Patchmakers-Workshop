@@ -1984,6 +1984,13 @@ void spawn_initial_patch_object(struct MarioState *m ) {
             m->patchChildObj = spawn_object_relative(0, 0, 200, 0, gMarioObject, MODEL_HALO, bhvHalo);
         break;
 
+        case PATCH_SHADOWCHOMP:
+            if (m->patchChildObj) {
+                obj_mark_for_deletion(m->patchChildObj);
+            }
+            m->patchChildObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
+        break;
+
     }
 }
 
@@ -2060,10 +2067,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
-    if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        spawn_object_relative(0, 0, 400, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
-    }
-
     //TODO: put these in a more permanent spot
 
     if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
@@ -2083,6 +2086,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     update_mario_equipped_patch();
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
+
+    if (gMarioState->boostTimer > 0) {
+        gMarioState->boostTimer--;
+    }
 
     // Updates once per frame:
     vec3f_get_dist_and_lateral_dist_and_angle(gMarioState->prevPos, gMarioState->pos, &gMarioState->moveSpeed, &gMarioState->lateralSpeed, &gMarioState->movePitch, &gMarioState->moveYaw);
@@ -2303,6 +2310,9 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 8));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 9));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 10));
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];

@@ -438,13 +438,24 @@ void update_walking_speed(struct MarioState *m) {
     f32 maxTargetSpeed;
     f32 targetSpeed;
 
-    if (m->floor != NULL && m->floor->type == SURFACE_SLOW || m->floor != NULL && m->curPatch == PATCH_STONE) {
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW) {
         maxTargetSpeed = 24.0f;
     } else {
         maxTargetSpeed = 32.0f;
     }
 
+    
+
     targetSpeed = m->intendedMag < maxTargetSpeed ? m->intendedMag : maxTargetSpeed;
+
+    if (m->boostTimer > 0) {
+        if (m->boostTimer < 30) {
+            targetSpeed = 32.0f + 3*m->boostTimer;
+        }
+        else {
+            targetSpeed = 128.0f;
+        }
+    }
 
     if (m->quicksandDepth > 10.0f) {
         targetSpeed *= 6.25f / m->quicksandDepth;
@@ -459,8 +470,12 @@ void update_walking_speed(struct MarioState *m) {
     } else if (m->floor->normal.y >= 0.95f) {
         m->forwardVel -= 1.0f;
     }
-
-    if (m->forwardVel > 48.0f) {
+    if (m->boostTimer > 0) {
+        if (m->forwardVel > 128.0f) {
+            m->forwardVel = 128.0f;
+        }
+    }
+    else if (m->forwardVel > 48.0f) {
         m->forwardVel = 48.0f;
     }
 

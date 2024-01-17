@@ -868,6 +868,7 @@ void bhv_portal_loop(void) {
 enum ShadowChompHeadActions {
     SHADOW_CHOMP_ACT_IDLE,
     SHADOW_CHOMP_ACT_LUNGE,
+    SHADOW_CHOMP_ACT_BOOST,
     SHADOW_CHOMP_ACT_RETRACT
 };
 
@@ -886,7 +887,8 @@ void bhv_shadow_chomp_head_loop(void) {
 
     switch (o->oAction) {
         case SHADOW_CHOMP_ACT_IDLE:
-
+            cur_obj_init_animation(0);
+            cur_obj_scale(1.0f);
             if (o->oShadowChompApproachMario == 1) {
                 approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.04f);
                 approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.04f);
@@ -902,10 +904,88 @@ void bhv_shadow_chomp_head_loop(void) {
                 approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.008f);
                 approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.08f);
             }
+
+            o->oFaceAnglePitch = approach_s16_symmetric(o->oFaceAnglePitch, 0, 0x400);
+            o->oSubAction = 0;
+
+            o->oShadowChompTarget = shadow_chomp_find_target(500.0f);
+            if (o->oShadowChompTarget != NULL) {
+                o->oHomeX = o->oPosX;
+                o->oHomeY = o->oPosY;
+                o->oHomeZ = o->oPosZ;
+                o->oAction = SHADOW_CHOMP_ACT_LUNGE;
+                
+                
+            }
+        break;
+        case SHADOW_CHOMP_ACT_LUNGE:
+            if (o->oShadowChompTarget) {
+                f32 timeToEnemy = 20;
+                f32 t = ((f32) o->oTimer) / ((f32) timeToEnemy);
+                o->oPosX = o->oHomeX + t * (o->oShadowChompTarget->oPosX - o->oHomeX);
+                o->oPosY = o->oHomeY + t * (o->oShadowChompTarget->oPosY - o->oHomeY + 100);
+                o->oPosZ = o->oHomeZ + t * (o->oShadowChompTarget->oPosZ - o->oHomeZ);
+
+                obj_turn_toward_object(o, o->oShadowChompTarget, O_FACE_ANGLE_YAW_INDEX, 0x400);
+                obj_turn_toward_object(o, o->oShadowChompTarget, O_FACE_ANGLE_PITCH_INDEX, 0x400);
+                o->oForwardVel = 0.0f;
+
+                f32 objDist = lateral_dist_between_objects(o, o->oShadowChompTarget);
+
+                if (objDist < 50) {
+                    o->oAction = SHADOW_CHOMP_ACT_BOOST;
+                }
+
+                if (o->oTimer >= 30) {
+                    o->oAction = SHADOW_CHOMP_ACT_IDLE;
+                }
+            }
+            else {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
+
+            if (o->oSubAction == 0 && o->oTimer > 12) {
+                if (cur_obj_init_animation_and_check_if_near_end(1)) {
+                    o->oSubAction++;
+                }
+            }
+            else if (o->oSubAction == 1) {
+                cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
+            }
+
+            if (o->oTimer > 10) {
+            cur_obj_scale(1.0f + (f32)(o->oTimer-10) / 10.0f);
+            }
+
+        break;
+        case SHADOW_CHOMP_ACT_BOOST:
+            if (gMarioState->action & ACT_GROUP_MOVING) {
+                freeze_game_frames(6);
+                gMarioState->boostTimer = 60;
+                gMarioState->forwardVel = 128.0f;
+                obj_mark_for_deletion(o->oShadowChompTarget);
+                o->oShadowChompTarget = NULL;
+                o->oAction = SHADOW_CHOMP_ACT_RETRACT;
+            }
+            if (o->oTimer >= 45) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
+        break;
+        case SHADOW_CHOMP_ACT_RETRACT:
+            if (o->oTimer < 5) {
+                cur_obj_scale(2.0f - (f32)o->oTimer / 5.0f);
+            }
+            else {
+                cur_obj_scale(1.0f);
+            }
+            approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.02f);
+            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.02f);
+            approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.08f);
+            if (o->oTimer >= 30) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
         break;
     }
-
-    
 
 }
 

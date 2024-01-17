@@ -1379,6 +1379,7 @@
 
 //shadow chomp head
 #define oShadowChompApproachMario           OBJECT_FIELD_S32(0x1B)
+#define oShadowChompTarget           OBJECT_FIELD_OBJ(0x1C)
 
 //shadow chomp tail
 #define oShadowTailHeight           OBJECT_FIELD_S32(0x1B)

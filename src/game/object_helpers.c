@@ -824,6 +824,36 @@ struct Object *obj_find_nearest_object_with_behavior(struct Object *sourceObj, c
     return closestObj;
 }
 
+u8 object_behavior_is_chompable(struct Object *obj) {
+    return (obj->behavior == segmented_to_virtual(bhvGoomba)
+        || obj->behavior == segmented_to_virtual(bhvPodogoo)
+    );
+}
+
+struct Object *shadow_chomp_find_target(/*const BehaviorScript *behavior,*/ f32 dist) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(bhvGoomba);
+    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    struct Object *obj = (struct Object *) listHead->next;
+    struct Object *closestObj = NULL;
+
+    while (obj != (struct Object *) listHead) {
+        if (object_behavior_is_chompable(obj)
+            && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+            && obj != o
+        ) {
+            f32 objDist = dist_between_objects(gMarioObject, obj);
+            if (objDist < 1000.0f) {
+                closestObj = obj;
+                return closestObj;
+            }
+        }
+
+        obj = (struct Object *) obj->header.next;
+    }
+
+    return NULL;
+}
+
 void check_for_max_ice_and_break_oldest() {
     uintptr_t *behaviorAddr = segmented_to_virtual(bhvIceCube);
     struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];

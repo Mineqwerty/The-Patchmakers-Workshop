@@ -112,6 +112,8 @@ struct DemoInput *gCurrDemoInput = NULL;
 u16 gDemoInputListID = 0;
 struct DemoInput gRecordedDemoInput = { 0 };
 
+s32 gFreezeFrames = 0;
+
 // Display
 // ----------------------------------------------------------------------------------------------------
 
@@ -440,6 +442,29 @@ void select_gfx_pool(void) {
     gGfxPoolEnd = (u8 *) (gGfxPool->buffer + GFX_POOL_SIZE);
 }
 
+s32 handle_wait_vblank(OSMesgQueue *mq) {
+    // returns true if it lasts longer than 3 seconds (3 * 1000us * 1000ms)
+    OSMesg msg;
+    OSTimer timer;
+    osSetTimer(&timer, OS_USEC_TO_CYCLES(3000000), 0, mq, (OSMesg)666);
+    osRecvMesg(mq, &msg, OS_MESG_BLOCK);
+    osStopTimer(&timer);
+
+    return msg == (OSMesg)666;
+}
+
+
+void freeze_game_frames(s32 frames) {
+    gFreezeFrames = MAX(gFreezeFrames, frames);
+}
+
+void handle_freeze_state(void) {
+    while (gFreezeFrames > 0) {
+        gFreezeFrames--;
+        handle_wait_vblank(&gGameVblankQueue);
+    }
+}
+
 /**
  * This function:
  * - Sends the current master display list out to be rendered.
@@ -465,6 +490,8 @@ void display_and_vsync(void) {
     for (int i = 0; i < gSlowdownCount; i++) {
         osRecvMesg(&gGameVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
     }
+
+    handle_freeze_state();
 
     // Skip swapping buffers on inaccurate emulators other than VC so that they display immediately as the Gfx task finishes
     if (gEmulator & INSTANT_INPUT_BLACKLIST) {

@@ -520,6 +520,7 @@ struct MarioState {
     Vec3f lastFrameObjPosition;
     s16 marioScreenX;
     s16 marioScreenY;
+    s16 boostTimer;
 
     Vec3f waterCurrentVel;
 
