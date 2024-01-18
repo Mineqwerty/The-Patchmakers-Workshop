@@ -143,4 +143,6 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/scaling_stairs/geo_header.h"
 
+#include "levels/lll/butlergeist/geo_header.h"
+
 #endif

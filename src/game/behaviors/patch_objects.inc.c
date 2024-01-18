@@ -878,6 +878,13 @@ void bhv_shadow_chomp_head_init(void) {
 
 void bhv_shadow_chomp_head_loop(void) {
 
+    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP) {
+        if (gMarioState->patchChildObj == o) {
+            gMarioState->patchChildObj = NULL;
+        }
+        obj_mark_for_deletion(o);
+    }
+
     if (o->oDistanceToMario > 1100) {
         o->oShadowChompApproachMario = 1;
     }
@@ -1038,6 +1045,10 @@ void bhv_shadow_chomp_tail_init(void) {
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
+
+    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP) {
+        obj_mark_for_deletion(o);
+    }
 
     o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
     o->oPosX = o->parentObj->oPosX;

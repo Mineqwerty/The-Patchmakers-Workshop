@@ -1985,10 +1985,13 @@ void spawn_initial_patch_object(struct MarioState *m ) {
         break;
 
         case PATCH_SHADOWCHOMP:
-            if (m->patchChildObj) {
+            if (m->patchChildObj && !obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
                 obj_mark_for_deletion(m->patchChildObj);
+                m->patchChildObj = NULL;
             }
-            m->patchChildObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
+            if (!m->patchChildObj) {
+                m->patchChildObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
+            }
         break;
 
     }
