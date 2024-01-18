@@ -934,6 +934,9 @@ void bhv_shadow_chomp_head_loop(void) {
 
                 if (objDist < 50) {
                     o->oAction = SHADOW_CHOMP_ACT_BOOST;
+                    gMarioState->curPatch = PATCH_SHADOWCHOMP;
+                    obj_mark_for_deletion(o->oShadowChompTarget);
+                    o->oShadowChompTarget = NULL;
                 }
 
                 if (o->oTimer >= 30) {
@@ -959,12 +962,7 @@ void bhv_shadow_chomp_head_loop(void) {
 
         break;
         case SHADOW_CHOMP_ACT_BOOST:
-            if (gMarioState->action & ACT_GROUP_MOVING) {
-                freeze_game_frames(6);
-                gMarioState->boostTimer = 60;
-                gMarioState->forwardVel = 128.0f;
-                obj_mark_for_deletion(o->oShadowChompTarget);
-                o->oShadowChompTarget = NULL;
+            if (gMarioState->curPatch != PATCH_SHADOWCHOMP) {
                 o->oAction = SHADOW_CHOMP_ACT_RETRACT;
             }
             if (o->oTimer >= 45) {

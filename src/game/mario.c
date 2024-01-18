@@ -829,6 +829,8 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         m->actionArg = actionArg;
     }
 
+    u8 jumpStart = 1;
+
     switch (action) {
         case ACT_DOUBLE_JUMP:
             set_mario_y_vel_based_on_fspeed(m, 52.0f, 0.25f);
@@ -933,6 +935,15 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         case ACT_JUMP_KICK:
             m->vel[1] = 20.0f;
             break;
+
+        default:
+            jumpStart = 0;
+        break;
+    }
+
+    if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
+        m->vel[1] *= 2;
+        m->curPatch = 0;
     }
 
     m->peakHeight = m->pos[1];
