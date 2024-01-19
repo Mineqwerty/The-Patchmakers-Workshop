@@ -654,3 +654,4 @@ extern const BehaviorScript bhvShadowChompTail[];
 extern const BehaviorScript bhvSwingingChandelier[];
 extern const BehaviorScript bhvFloatingTable[];
 extern const BehaviorScript bhvScalingStairs[];
+extern const BehaviorScript bhvSpinningTable[];

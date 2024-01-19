@@ -63,6 +63,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_FLOATING_TABLE, 9943, 2342, 1224, 0, -180, 0, 0x00000000, bhvFloatingTable),
 		OBJECT(MODEL_FLOATING_TABLE, 13502, 3619, 3279, 0, -180, 0, 0x00000000, bhvFloatingTable),
 		OBJECT(MODEL_FLOATING_TABLE, 13502, 3619, 4330, 0, -90, 0, 0x00000000, bhvFloatingTable),
+		OBJECT(MODEL_FLOATING_TABLE, 7636, 1451, 1600, 0, -180, 0, 0x00000000, bhvSpinningTable),
 		OBJECT(MODEL_NONE, 0, 620, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 0, 620, 0),
 		TERRAIN(lll_area_1_collision),
