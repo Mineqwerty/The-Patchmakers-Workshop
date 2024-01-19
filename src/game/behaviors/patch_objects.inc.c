@@ -969,12 +969,12 @@ void bhv_shadow_chomp_head_loop(void) {
 
         break;
         case SHADOW_CHOMP_ACT_BOOST:
-            if (gMarioState->curPatch != PATCH_SHADOWCHOMP) {
+            //if (gMarioState->curPatch == PATCH_SHADOWCHOMP) {
                 o->oAction = SHADOW_CHOMP_ACT_RETRACT;
-            }
-            if (o->oTimer >= 45) {
-                o->oAction = SHADOW_CHOMP_ACT_IDLE;
-            }
+            //}
+            //if (o->oTimer >= 45) {
+           //     o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            //}
         break;
         case SHADOW_CHOMP_ACT_RETRACT:
             if (o->oTimer < 5) {

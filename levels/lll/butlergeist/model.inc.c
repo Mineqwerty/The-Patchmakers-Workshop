@@ -1,6 +1,3 @@
-Lights1 butlergeist_f3dlite_material_002_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
 Gfx butlergeist_tuxedo_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 butlergeist_tuxedo_ci8[] = {
@@ -1096,7 +1093,8 @@ Gfx mat_butlergeist_f3dlite_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(butlergeist_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 
