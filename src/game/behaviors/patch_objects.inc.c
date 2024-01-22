@@ -1008,35 +1008,37 @@ s16 shadowChompZOffsets[61];
 
 void bhv_shadow_chomp_tail_init(void) {
     extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_copy[61];
     Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+    Vtx *copy = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_copy);
     if (shadowChompYOffsets[0] == 0) {
         for (int i = 0; i < 9; i++) {
             int curVtx = headVerts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0];
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0];
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
         }
         for (int i = 0; i < 13; i++) {
             int curVtx = segment1Verts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 172;
-            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] - 2;
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 172;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] - 2;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
         }
         for (int i = 0; i < 14; i++) {
             int curVtx = segment2Verts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 262;
-            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 92;
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 262;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] + 92;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
         }
         for (int i = 0; i < 11; i++) {
             int curVtx = segment3Verts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + 317;
-            shadowChompYOffsets[curVtx] = new[curVtx].v.ob[1] + 273;
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 317;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] + 273;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
         }
         for (int i = 0; i < 14; i++) {
             int curVtx = tailVerts[i];
-            shadowChompXOffsets[curVtx] = new[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
-            shadowChompZOffsets[curVtx] = new[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
         }
     }
     o->oShadowTailHeight = gMarioState->floorHeight;

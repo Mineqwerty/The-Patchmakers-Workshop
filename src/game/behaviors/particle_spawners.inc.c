@@ -169,3 +169,28 @@ void bhv_ring_fragment_particle_loop(void) {
    }
 }
 
+void bhv_shadowchomp_particle_init(void) {
+    o->oBehParams2ndByte = random_u16() % 4 + 1;
+    o->oGravity = 0;
+    o->oFireSmokeScale = 1.0f - 0.002f * (random_u16() / 512);
+}
+
+void bhv_shadowchomp_particle_loop(void) {
+    if (o->oTimer < 2) {
+        cur_obj_scale(o->oFireSmokeScale * ((f32)(o->oTimer)/2.0f));
+    }
+    else {
+        cur_obj_scale(o->oFireSmokeScale * ((f32)(47 - o->oTimer)/45.0f));
+    }
+
+    if (o->oTimer == 45) {
+        obj_mark_for_deletion(o);
+    }
+
+    
+    o->oForwardVel *= 0.98f;
+    o->oVelY *= 1.1f;
+
+    object_step();
+}
+

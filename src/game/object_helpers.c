@@ -94,66 +94,76 @@ Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUS
 }
 
 Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context) {
-   Gfx *dlStart, *dlHead;
+    Gfx *dlStart, *dlHead;
     struct Object *objectGraphNode;
     struct GraphNodeGenerated *currentGraphNode;
 
     dlStart = NULL;
 
     if (callContext == GEO_CONTEXT_RENDER) {
-        
+
         objectGraphNode = (struct Object *) gCurGraphNodeObject;
         currentGraphNode = (struct GraphNodeGenerated *) node;
-        
 
         u8 red = 230;
         u8 green = 0;
         u8 blue = 30;
 
+        //spekturr particles
         if (GET_BPARAM1(objectGraphNode->oBehParams) == 1) {
             if (objectGraphNode->oTimer <= 4) {
                 red = 75;
-            green = 130;
-            blue = 155;
+                green = 130;
+                blue = 155;
+            } else if (objectGraphNode->oTimer < 15) {
+                green = 130 - ((u8) (5 * (objectGraphNode->oTimer - 4)));
+                red = 75 + ((u8) (5 * (objectGraphNode->oTimer - 4)));
+                blue = 155;
+            } else if (objectGraphNode->oTimer < 30) {
+                red = 130 + (o->oTimer - 15);
+                green = 75 + (objectGraphNode->oTimer - 15) * 6;
+                blue = 155;
+            } else {
+                red = 155;
+                green = 155;
+                blue = 155;
+            }
         }
-        else if (objectGraphNode->oTimer < 15) {
-            green = 130 - ((u8) (5 * (objectGraphNode->oTimer - 4)));
-            red = 75 + ((u8) (5 * (objectGraphNode->oTimer - 4)));
-            blue = 155;
+        //shadowchomp particles
+        else if (GET_BPARAM1(objectGraphNode->oBehParams) == 2) {
+            if (objectGraphNode->oTimer <= 4) {
+                red = 16;
+                green = 0;
+                blue = 28;
+            } else if (objectGraphNode->oTimer < 20) {
+                red = 16 + ((u8) (3 * (objectGraphNode->oTimer - 4)));
+                green = 0 + ((u8) (4.6f * (objectGraphNode->oTimer - 4)));
+                blue = 28 + ((u8) (2.8f * (objectGraphNode->oTimer - 4)));
+            } else {
+                red = 70;
+                green = 70;
+                blue = 70;
+            }
         }
-        else if (objectGraphNode->oTimer < 30) {
-            red = 130 + (o->oTimer-15);
-            green = 75 + (objectGraphNode->oTimer - 15)*6;
-            blue = 155;
-        }
+        //fire
         else {
-            red = 155;
-            green = 155;
-            blue = 155;
-        }
-        }
-        else {
-        
-        if (objectGraphNode->oTimer <= 4) {
-            green = 205;
-        }
-        else if (objectGraphNode->oTimer < 15) {
-            green = 205 - ((u8) (14.09f * (objectGraphNode->oTimer - 4)));
-            blue = 30 - (2 * (objectGraphNode->oTimer-4));
-        }
-        else if (objectGraphNode->oTimer < 30) {
-            red = 230 - (o->oTimer-15) - ((objectGraphNode->oTimer - 15)*6);
-            green = 50 + (objectGraphNode->oTimer - 15)*4;
-            blue = -(objectGraphNode->oTimer - 15) + (objectGraphNode->oTimer - 15)*8;
-        }
-        else {
-            red = 115;
-            green = 115;
-            blue = 115;
+
+            if (objectGraphNode->oTimer <= 4) {
+                green = 205;
+            } else if (objectGraphNode->oTimer < 15) {
+                green = 205 - ((u8) (14.09f * (objectGraphNode->oTimer - 4)));
+                blue = 30 - (2 * (objectGraphNode->oTimer - 4));
+            } else if (objectGraphNode->oTimer < 30) {
+                red = 230 - (o->oTimer - 15) - ((objectGraphNode->oTimer - 15) * 6);
+                green = 50 + (objectGraphNode->oTimer - 15) * 4;
+                blue = -(objectGraphNode->oTimer - 15) + (objectGraphNode->oTimer - 15) * 8;
+            } else {
+                red = 115;
+                green = 115;
+                blue = 115;
+            }
         }
 
-        }
-        
         dlStart = alloc_display_list(sizeof(Gfx) * 2);
 
         dlHead = dlStart;

@@ -76,3 +76,5 @@
 #include "levels/lll/scaling_stairs/collision.inc.c"
 #include "levels/lll/scaling_stairs/model.inc.c"
 #include "levels/lll/butlergeist/model.inc.c"
+#include "levels/lll/butlergeist/anims/data.inc.c"
+#include "levels/lll/butlergeist/anims/table.inc.c"

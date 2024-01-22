@@ -944,6 +944,16 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
     if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
         m->vel[1] *= 2;
         m->curPatch = 0;
+        //freeze_game_frames(m->vel[1] / 12.0f);
+        for (int i = 0; i < 10; i++) {
+                struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
+                    m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                
+                SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                shadowSmoke->oVelY = ((random_u16() % 3) + 10);
+                shadowSmoke->oMoveAngleYaw = random_u16();
+                shadowSmoke->oForwardVel = (random_u16() % 4) + 5.5f;
+            }
     }
 
     m->peakHeight = m->pos[1];
@@ -1937,6 +1947,18 @@ void patch_update(struct MarioState *m ) {
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                 cur_obj_spawn_particles(&StoneBreak);
                 play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+            }
+        break;
+
+        case PATCH_SHADOWCHOMP:
+            if (gGlobalTimer % 3 == 0) {
+                struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, -10, random_u16()%200 - 100, 
+                    m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                
+                SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                shadowSmoke->oVelY = ((random_u16() % 8) + 5) / 2.9f;
+                shadowSmoke->oMoveAngleYaw = random_u16();
+                shadowSmoke->oForwardVel = (random_u16() % 4) / 1.5f;
             }
         break;
 
