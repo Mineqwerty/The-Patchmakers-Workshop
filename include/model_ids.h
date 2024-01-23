@@ -647,7 +647,10 @@
 //Candlelit Chamber
 #define MODEL_CHANDELIER                   0x100
 #define MODEL_FLOATING_TABLE                   0x101
-#define MODEL_SCALING_STAIRS                   0x102
+#define MODEL_BUTLERGEIST                   0x102
+#define MODEL_PHANTASMAID                   0x103
+#define MODEL_SCALING_STAIRS                   0x104
+
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

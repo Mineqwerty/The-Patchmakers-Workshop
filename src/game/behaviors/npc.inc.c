@@ -1,5 +1,6 @@
 #include "levels/bob/rosedrift/anim_header.h"
 #include "levels/wf/talotak/anim_header.h"
+#include "levels/lll/butlergeist/anim_header.h"
 
 void bhv_generic_npc_init(void) {
     o->oGravity  = 5.5f;
@@ -13,6 +14,10 @@ void bhv_generic_npc_init(void) {
     }
     if (cur_obj_has_model(MODEL_TALOTAK)) {
         o->oAnimations = (struct Animation **) talotak_anims;
+        cur_obj_init_animation(0);
+    }
+    if (cur_obj_has_model(MODEL_BUTLERGEIST)) {
+        o->oAnimations = (struct Animation **) butlergeist_anims;
         cur_obj_init_animation(0);
     }
 

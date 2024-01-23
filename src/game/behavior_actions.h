@@ -831,3 +831,5 @@ void bhv_scaling_stairs_init(void);
 void bhv_scaling_stairs_loop(void);
 void bhv_spinning_table_init(void);
 void bhv_spinning_table_loop(void);
+void bhv_shadowchomp_particle_init(void);
+void bhv_shadowchomp_particle_loop(void);
