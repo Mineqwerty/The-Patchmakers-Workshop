@@ -147,4 +147,22 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/butlergeist/anim_header.h"
 
+#include "levels/lll/clc_puzzle_eye/geo_header.h"
+
+#include "levels/lll/clc_puzzle_eye/collision_header.h"
+
+#include "levels/lll/clc_puzzle_switch/geo_header.h"
+
+#include "levels/lll/clc_puzzle_switch/collision_header.h"
+
+#include "levels/lll/clc_puzzle_wall/geo_header.h"
+
+#include "levels/lll/clc_puzzle_wall/collision_header.h"
+
+#include "levels/lll/clc_door/geo_header.h"
+
+#include "levels/lll/clc_door/collision_header.h"
+
+#include "levels/lll/clc_door/anim_header.h"
+
 #endif

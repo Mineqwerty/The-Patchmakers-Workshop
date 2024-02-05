@@ -49,3 +49,7 @@
 #include "levels/lll/floating_table/geo.inc.c"
 #include "levels/lll/scaling_stairs/geo.inc.c"
 #include "levels/lll/butlergeist/geo.inc.c"
+#include "levels/lll/clc_puzzle_eye/geo.inc.c"
+#include "levels/lll/clc_puzzle_switch/geo.inc.c"
+#include "levels/lll/clc_puzzle_wall/geo.inc.c"
+#include "levels/lll/clc_door/geo.inc.c"

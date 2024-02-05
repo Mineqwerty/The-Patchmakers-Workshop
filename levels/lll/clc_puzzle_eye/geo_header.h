@@ -1,0 +1,10 @@
+extern const GeoLayout clc_puzzle_eye_geo[];
+extern Lights1 clc_puzzle_eye_f3dlite_material_012_layer1_lights;
+extern u8 clc_puzzle_eye_eyeoatterb_i8[];
+extern Vtx clc_puzzle_eye_Cube_004_mesh_layer_1_vtx_cull[8];
+extern Vtx clc_puzzle_eye_Cube_004_mesh_layer_1_vtx_0[40];
+extern Gfx clc_puzzle_eye_Cube_004_mesh_layer_1_tri_0[];
+extern Gfx mat_clc_puzzle_eye_f3dlite_material_012_layer1[];
+extern Gfx mat_revert_clc_puzzle_eye_f3dlite_material_012_layer1[];
+extern Gfx clc_puzzle_eye_Cube_004_mesh_layer_1[];
+extern Gfx clc_puzzle_eye_material_revert_render_settings[];

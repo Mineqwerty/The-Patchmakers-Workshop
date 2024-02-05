@@ -656,3 +656,7 @@ extern const BehaviorScript bhvFloatingTable[];
 extern const BehaviorScript bhvScalingStairs[];
 extern const BehaviorScript bhvSpinningTable[];
 extern const BehaviorScript bhvShadowchompParticle[];
+extern const BehaviorScript bhvClcPuzzleSwitch[];
+extern const BehaviorScript bhvClcPuzzleEye[];
+extern const BehaviorScript bhvClcPuzzleWall[];
+extern const BehaviorScript bhvClcDoor[];

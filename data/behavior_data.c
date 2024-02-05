@@ -7288,3 +7288,55 @@ const BehaviorScript bhvShadowchompParticle[] = {
         CALL_NATIVE(bhv_shadowchomp_particle_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvClcPuzzleSwitch[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(clc_puzzle_switch_collision),
+    CALL_NATIVE(bhv_clc_puzzle_switch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_clc_puzzle_switch_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvClcPuzzleEye[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(clc_puzzle_eye_collision),
+    CALL_NATIVE(bhv_clc_puzzle_eye_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_clc_puzzle_eye_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvClcPuzzleWall[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    LOAD_COLLISION_DATA(clc_puzzle_wall_collision),
+    SET_FLOAT(oCollisionDistance, 20000),
+    CALL_NATIVE(bhv_clc_puzzle_wall_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_clc_puzzle_wall_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvClcDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    SET_INT(oInteractType, INTERACT_DOOR),
+    // Door - common:
+    OR_INT(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, clc_door_anims),
+    ANIMATE(DOOR_ANIM_CLOSED),
+    LOAD_COLLISION_DATA(clc_door_collision),
+    SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
+    SET_INT(oIntangibleTimer, 0),
+    SET_FLOAT(oCollisionDistance, 1000),
+    SET_HOME(),
+    CALL_NATIVE(bhv_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_door_loop),
+    END_LOOP(),
+};

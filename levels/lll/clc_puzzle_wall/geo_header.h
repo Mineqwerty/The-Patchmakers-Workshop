@@ -1,0 +1,10 @@
+extern const GeoLayout clc_puzzle_wall_geo[];
+extern Lights1 clc_puzzle_wall_f3dlite_material_015_layer1_lights;
+extern u8 clc_puzzle_wall_wall_paper_i8[];
+extern Vtx clc_puzzle_wall_Cube_006_mesh_layer_1_vtx_cull[8];
+extern Vtx clc_puzzle_wall_Cube_006_mesh_layer_1_vtx_0[24];
+extern Gfx clc_puzzle_wall_Cube_006_mesh_layer_1_tri_0[];
+extern Gfx mat_clc_puzzle_wall_f3dlite_material_015_layer1[];
+extern Gfx mat_revert_clc_puzzle_wall_f3dlite_material_015_layer1[];
+extern Gfx clc_puzzle_wall_Cube_006_mesh_layer_1[];
+extern Gfx clc_puzzle_wall_material_revert_render_settings[];

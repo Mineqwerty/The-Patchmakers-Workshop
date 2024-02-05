@@ -650,6 +650,10 @@
 #define MODEL_BUTLERGEIST                   0x102
 #define MODEL_PHANTASMAID                   0x103
 #define MODEL_SCALING_STAIRS                   0x104
+#define MODEL_CLC_PUZZLE_EYE                   0x105
+#define MODEL_CLC_PUZZLE_SWITCH                   0x106
+#define MODEL_CLC_PUZZLE_WALL                0x107
+#define MODEL_CLC_DOOR                0x108
 
 
 //Workshop Recesses

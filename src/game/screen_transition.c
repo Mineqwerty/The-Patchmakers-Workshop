@@ -228,7 +228,7 @@ s32 render_gss_cloud_transition(s8 fadeTimer, s8 transTime, struct WarpTransitio
     }
     */
    ALIGNED8 static const Texture texture_gss_transition[] = {
-        #include "levels/ccm/cloudtransition.rgba16.inc.c"  
+        //#include "levels/ccm/cloudtransition.rgba16.inc.c"  
     };
 
         gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
