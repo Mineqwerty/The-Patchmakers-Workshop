@@ -88,3 +88,6 @@
 #include "levels/lll/clc_door/collision.inc.c"
 #include "levels/lll/clc_door/anims/data.inc.c"
 #include "levels/lll/clc_door/anims/table.inc.c"
+#include "levels/lll/phantasmaid/model.inc.c"
+#include "levels/lll/phantasmaid/anims/data.inc.c"
+#include "levels/lll/phantasmaid/anims/table.inc.c"

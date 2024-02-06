@@ -165,4 +165,8 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/clc_door/anim_header.h"
 
+#include "levels/lll/phantasmaid/geo_header.h"
+
+#include "levels/lll/phantasmaid/anim_header.h"
+
 #endif

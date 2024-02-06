@@ -46,6 +46,8 @@ const LevelScript level_lll_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CLC_PUZZLE_SWITCH, clc_puzzle_switch_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CLC_PUZZLE_WALL, clc_puzzle_wall_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CLC_DOOR, clc_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_BUTLERGEIST, butlergeist_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PHANTASMAID, phantasmaid_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -55,6 +57,8 @@ const LevelScript level_lll_entry[] = {
 		WARP_NODE(0x0B, LEVEL_LLL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_BUTLERGEIST, 594, 476, -413, 0, -59, 0, (35 << 16), bhvGenericNPC),
+		OBJECT(MODEL_BUTLERGEIST, -2294, 1815, 9949, 0, -175, 0, (33 << 16), bhvGenericNPC),
 		OBJECT(MODEL_CHANDELIER, 8868, 1920, -1779, 0, 28, 0, 0x00000000, bhvSwingingChandelier),
 		OBJECT(MODEL_CHANDELIER, 11497, 2705, -2407, 0, 90, 0, 0x00000000, bhvSwingingChandelier),
 		OBJECT(MODEL_CHANDELIER, 13496, 2970, 4345, 0, 90, 0, 0x00000000, bhvSwingingChandelier),
@@ -78,7 +82,8 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_CLC_DOOR, 3719, 2148, 2168, 0, 90, 0, 0x00000000, bhvClcDoor),
 		OBJECT(MODEL_YARN_GOOMBA, 4153, 981, 50, 0, 28, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_YARN_GOOMBA, 4153, 981, -2418, 0, 28, 0, 0x00000000, bhvGoomba),
-		OBJECT(MODEL_YARN_GOOMBA, 4682, 981, -3699, 0, 28, 0, 0x00000000, bhvGoomba),
+		OBJECT(MODEL_PHANTASMAID, 4397, 981, -4125, 0, -51, 0, (36 << 16), bhvGenericNPC),
+		OBJECT(MODEL_PHANTASMAID, 5923, 981, -2982, 0, -92, 0, (37 << 16), bhvGenericNPC),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -9149, 5272, 398, 0, -180, 0, 0x00000000, bhvClcPuzzleEye),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -8266, 5272, 2323, 0, -90, 0, (1 << 16), bhvClcPuzzleEye),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -10203, 5272, 1137, 0, -180, 0, (2 << 16), bhvClcPuzzleEye),

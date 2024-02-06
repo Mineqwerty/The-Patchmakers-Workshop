@@ -205,7 +205,7 @@ Well, you are alive so I suppose there is no\n\
 reason to doubt you. Alright, I released the\n\
 lock. I apologize deeply for any trouble it caused."))
 
-DEFINE_DIALOG(DIALOG_033, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_033, 1, 3, 30, 200, _("\
 Even though the Master and Mistress\n\
 do not roam the manor these days,\n\
 I must still keep the fireplace warm...\n\
@@ -256,12 +256,11 @@ Beyond this door is the Master's\n\
 chamber. Unfortunately, he is not\n\
 seeing guests at this time.\n\
 ...Maybe if the Mistress was healthy\n\
-again he would...\n\
-"))
+again he would..."))
 
 DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
 I won't stop you from entering here, but\n\
-be warned; it is horribly dangerous.\n\
+be warned: it is horribly dangerous.\n\
 The rogue spirits will attempt to attack you.\n\
 Just know that they are not in their right minds...\n\
 Unfortunate circumstances have led them to become\n\
