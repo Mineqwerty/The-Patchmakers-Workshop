@@ -100,7 +100,7 @@ DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
 GSS"))
 
 DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
-TFP"))
+SS"))
 
 DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
 CLC"))
@@ -119,13 +119,13 @@ Activate the Obelisk? \n\
 //Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
-DDD"))
+HVH"))
 
 DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
-SS"))
+VTF"))
 
 DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
-VTF"))
+TFP"))
 
 DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
 C10"))
@@ -192,113 +192,83 @@ the winner of the race.\n\
 Congrats, Mario!"))
 
 DEFINE_DIALOG(DIALOG_032, 1, 5, 30, 200, _("\
-If you get the Wing Cap,\n\
-you can fly! Put the cap\n\
-on, then do a Triple\n\
-Jump--jump three times\n\
-in a row--to take off.\n\
-You can fly even higher\n\
-if you blast out of a\n\
-cannon wearing the\n\
-Wing Cap!\n\
+A... A guest! H-How did you...?\n\
 \n\
-Use the [C] Buttons to look\n\
-around while flying, and\n\
-press [Z] to land."))
+\n\
+This door? I... I locked it.\n\
+I was scared that those awful diseased\n\
+spirits were in the main chamber...\n\
+...what? You say it's safe? Are you sure?\n\
+\n\
+\n\
+Well, you are alive so I suppose there is no\n\
+reason to doubt you. Alright, I released the\n\
+lock. I apologize deeply for any trouble it caused."))
 
 DEFINE_DIALOG(DIALOG_033, 1, 6, 30, 200, _("\
-Ciao! You've reached\n\
-Princess Toadstool's\n\
-castle via a warp pipe.\n\
-Using the controller is a\n\
-piece of cake. Press [A] to\n\
-jump and [B] to attack.\n\
-Press [B] to read signs,\n\
-too. Use the Control Stick\n\
-in the center of the\n\
-controller to move Mario\n\
-around. Now, head for\n\
-the castle."))
+Even though the Master and Mistress\n\
+do not roam the manor these days,\n\
+I must still keep the fireplace warm...\n\
+The flame is as bright as it will ever be,\n\
+and there's even a lounging area.\n\
+So just sit back and enjoy the fire.\n\
+If you do decide to leave again, I suppose\n\
+there is no point in keeping it secret...\n\
+This manor has many hidden rooms.\n\
+One even resides in here. But you will have\n\
+to go back into that haunted room you came\n\
+from to reach it.\n\
+Many of the secrets these chambers hold\n\
+are up in the rafters. Looking upward\n\
+is never a bad idea."))
 
-DEFINE_DIALOG(DIALOG_034, 1, 6, 30, 200, _("\
-Good afternoon. The\n\
-Lakitu Bros., here,\n\
-reporting live from just\n\
-outside the Princess's\n\
-castle.\n\
-\n\
-Mario has just arrived\n\
-on the scene, and we'll\n\
-be filming the action live\n\
-as he enters the castle\n\
-and pursues the missing\n\
-Power Stars.\n\
-As seasoned cameramen,\n\
-we'll be shooting from the\n\
-recommended angle, but\n\
-you can change the\n\
-camera angle by pressing\n\
-the [C] Buttons.\n\
-If we can't adjust the\n\
-view any further, we'll\n\
-buzz. To take a look at\n\
-the surroundings, stop\n\
-and press [C]^.\n\
-\n\
-Press [A] to resume play.\n\
-Switch camera modes with\n\
-the [R] Button. Signs along\n\
-the way will review these\n\
-instructions.\n\
-\n\
-For now, reporting live,\n\
-this has been the\n\
-Lakitu Bros."))
+DEFINE_DIALOG(DIALOG_034, 1, 3, 30, 200, _("\
+Ah! It seems we have a guest. \n\
+Manor guests are rare these days...\n\
+Tell me sir, what might your name be?\n\
+...Mario? Well then, welcome to\n\
+the Master's manor, Mario.\n\
+I do feel as though I must warn you...\n\
+You would find it in your best interests\n\
+to remain in this chamber.\n\
+The rooms around here are fine, but...\n\
+I would refrain from entering the rooms\n\
+down the hall. Let us just say, we have\n\
+been dealing with issues beyond there.\n\
+Enjoy your visit, Mr. Mario."))
 
-DEFINE_DIALOG(DIALOG_035, 1, 5, 30, 200, _("\
-There are four camera, or\n\
-『[C],』 Buttons. Press [C]^\n\
-to look around using the\n\
-Control Stick.\n\
+DEFINE_DIALOG(DIALOG_035, 1, 3, 30, 200, _("\
+The issues we've been dealing with?\n\
 \n\
-You'll usually see Mario\n\
-through Lakitu's camera.\n\
-It is the camera\n\
-recommended for normal\n\
-play.\n\
-You can change angles by\n\
-pressing [C]>. If you press\n\
-[R], the view switches to\n\
-Mario's camera, which\n\
-is directly behind him.\n\
-Press [R] again to return\n\
-to Lakitu's camera. Press\n\
-[C]| to see Mario from\n\
-afar, using either\n\
-Lakitu's or Mario's view."))
-
-DEFINE_DIALOG(DIALOG_036, 1, 5, 30, 200, _("\
-OBSERVATION PLATFORM\n\
-Press [C]^ to take a look\n\
-around. Don't miss\n\
-anything!\n\
 \n\
-Press [R] to switch to\n\
-Mario's camera. It\n\
-always follows Mario.\n\
-Press [R] again to switch\n\
-to Lakitu's camera.\n\
-Pause the game and\n\
-switch the mode to 『fix』\n\
-the camera in place while\n\
-holding [R]. Give it a try!"))
+It is not an easy subject. The manor has\n\
+been reduced to nothing but a haunted wreck.\n\
+And not by us servants' hands mind you.\n\
+We are benevolent spirits, but there have.\n\
+been other ghosts about, ones that have\n\
+lost their way and will.\n\
+It's best you simply avoid them.\n\
+I implore you try not to fight something\n\
+that cannot be touched."))
 
-DEFINE_DIALOG(DIALOG_037, 1, 2, 30, 200, _("\
-I win! You lose!\n\
-Ha ha ha ha!\n\
-You're no slouch, but I'm\n\
-a better sledder!\n\
-Better luck next time!"))
+DEFINE_DIALOG(DIALOG_036, 1, 3, 30, 200, _("\
+Beyond this door is the Master's\n\
+chamber. Unfortunately, he is not\n\
+seeing guests at this time.\n\
+...Maybe if the Mistress was healthy\n\
+again he would...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
+I won't stop you from entering here, but\n\
+be warned; it is horribly dangerous.\n\
+The rogue spirits will attempt to attack you.\n\
+Just know that they are not in their right minds...\n\
+Unfortunate circumstances have led them to become\n\
+this way.\n\
+And your hands won't be able to attack them.\n\
+If they approach you, I recommend crouching down\n\
+to the ground to try and hide."))
 
 DEFINE_DIALOG(DIALOG_038, 1, 3, 95, 200, _("\
 Reacting to the Star\n\
