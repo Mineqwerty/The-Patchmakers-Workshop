@@ -654,6 +654,7 @@
 #define MODEL_CLC_PUZZLE_SWITCH                   0x106
 #define MODEL_CLC_PUZZLE_WALL                0x107
 #define MODEL_CLC_DOOR                0x108
+#define MODEL_BLIGHT                0x109
 
 
 //Workshop Recesses

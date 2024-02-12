@@ -6689,7 +6689,7 @@ const BehaviorScript bhvSeraphim[] = {
 };
 
 const BehaviorScript bhvFloatingPlane[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     CALL_NATIVE(bhv_floating_plane_init),
     SET_FLOAT(oDrawingDistance, 30000),
@@ -6713,10 +6713,11 @@ const BehaviorScript bhvFarPlaneCube[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(far_plane_cube_collision),
+    CALL_NATIVE(load_object_static_model),
     CALL_NATIVE(bhv_far_plane_cube_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_far_plane_cube_loop),
-        CALL_NATIVE(load_object_collision_model),
+        
     END_LOOP(),
 };
 
@@ -6863,7 +6864,7 @@ const BehaviorScript bhvRosedriftCutscene[] = {
 };
 
 const BehaviorScript bhvPodogoo[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 0, /*Gravity*/ 0, /*Bounciness*/ 0, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_podogoo_init),
@@ -7338,5 +7339,15 @@ const BehaviorScript bhvClcDoor[] = {
     CALL_NATIVE(bhv_door_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_door_loop),
+    END_LOOP(),
+};
+const BehaviorScript bhvBlight[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, blight_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_blight_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_blight_loop),
     END_LOOP(),
 };

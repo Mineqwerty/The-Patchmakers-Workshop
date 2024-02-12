@@ -449,7 +449,11 @@ void init_mario_after_warp(void) {
             play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0xFF, 0xFF, 0xFF);
             break;
         case MARIO_SPAWN_SPIN_AIRBORNE:
-            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x1A, 0xFF, 0xFF, 0xFF);
+            //don't fade colors when panning the camera for an in-area portal warp
+            if (sWarpDest.portalID == 0 || sWarpDest.type == WARP_TYPE_CHANGE_LEVEL 
+                || sWarpDest.type == WARP_TYPE_CHANGE_AREA ) {
+                    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x1A, 0xFF, 0xFF, 0xFF);
+            }
             break;
         case MARIO_SPAWN_SPIN_AIRBORNE_CIRCLE:
             play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00);

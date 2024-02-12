@@ -91,3 +91,6 @@
 #include "levels/lll/phantasmaid/model.inc.c"
 #include "levels/lll/phantasmaid/anims/data.inc.c"
 #include "levels/lll/phantasmaid/anims/table.inc.c"
+#include "levels/lll/blight/model.inc.c"
+#include "levels/lll/blight/anims/data.inc.c"
+#include "levels/lll/blight/anims/table.inc.c"

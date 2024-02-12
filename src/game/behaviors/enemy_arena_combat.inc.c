@@ -186,7 +186,7 @@ void bhv_falling_stone_block_loop(void) {
     }
 
     //if the bparam of the object is within 1 of the block number, load the col model
-    if (o->oBehParams2ndByte >= o->parentObj->oBlockNum - 2 && o->oBehParams2ndByte <= o->parentObj->oBlockNum ) {
+    if (o->oBehParams2ndByte == o->parentObj->oBlockNum) {
         load_object_collision_model();
         //cur_obj_unhide();
     }
@@ -201,6 +201,7 @@ void stone_block_fall(void) {
         o->oPosY = (o->parentObj->oHomeY + (o->oBehParams2ndByte * 500));
         o->parentObj->oBlockNum++;
         obj_mark_for_deletion(o->parentObj->oBlockShadow);
+        load_object_static_model();
         if (o->parentObj->oBlockNum != 7) {
         o->parentObj->oBlockShadow = spawn_object_abs_with_rot(o, 0, MODEL_FALLING_STONE_BLOCK_SHADOW, bhvFallingStoneBlockShadow, o->parentObj->oHomeX, o->parentObj->oHomeY + (o->parentObj->oBlockNum * 500), o->parentObj->oHomeZ, 0, 0, 0);
         o->parentObj->oBlockShadow->oBehParams2ndByte = o->parentObj->oBlockNum;

@@ -250,7 +250,7 @@ enum Cutscenes {
     CUTSCENE_NONE,
     CUTSCENE_DOOR_PULL = 130,
     CUTSCENE_DOOR_PUSH,
-    CUTSCENE_UNUSED_132,
+    CUTSCENE_PAN_TO_PORTAL,
     CUTSCENE_ENTER_CANNON,
     CUTSCENE_ENTER_PAINTING,
     CUTSCENE_DEATH_EXIT,
@@ -734,6 +734,7 @@ extern s32 gObjCutsceneDone;
 extern struct Camera *gCamera;
 extern struct Object *gCutsceneFocus;
 extern struct Object *gSecondCameraFocus;
+extern struct CutsceneVariable sCutsceneVars[10];
 extern u8 gRecentCutscene;
 extern s16 s8DirModeYawOffset;
 

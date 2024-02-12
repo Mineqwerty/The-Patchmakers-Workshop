@@ -10536,6 +10536,34 @@ void cutscene_door_loop(struct Camera *c) {
     }
 }
 
+void cutscene_pan_to_portal_loop(struct Camera *c) {
+    Vec3f goalPos;
+    Vec3f goalFoc;
+
+    vec3f_set(goalPos, sCutsceneVars[2].point[0] + 500, sCutsceneVars[2].point[1] + 500, sCutsceneVars[2].point[2]);
+    vec3f_set(goalFoc, sCutsceneVars[2].point[0], sCutsceneVars[2].point[1], sCutsceneVars[2].point[2]);
+
+    gCutsceneTimer++;
+    approach_vec3f_asymptotic(c->pos, goalPos, 0.09f, 0.09f, 0.09f);
+    approach_vec3f_asymptotic(c->focus, goalFoc, 0.1f, 0.1f, 0.1f);
+
+    vec3f_copy(gLakituState.pos, c->pos); 
+    vec3f_copy(gLakituState.goalPos, c->pos); 
+    vec3f_copy(gLakituState.curPos, c->pos); 
+
+    update_camera_yaw(c);
+
+    dbp(gCutsceneTimer);
+
+    if (gCutsceneTimer >= 120) {
+        gCutsceneTimer = CUTSCENE_STOP;
+        c->cutscene = 0;
+        disable_time_stop_including_mario();
+        gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+    }
+
+}
+
 /**
  * Warp the camera behind Mario.
  */
@@ -10692,6 +10720,10 @@ struct Cutscene sCutsceneDoorPush[] = {
     { cutscene_door_follow_mario, 50 },
 #endif
     { cutscene_door_end, 0 }
+};
+
+struct Cutscene sCutscenePanToPortal[] = {
+    { cutscene_pan_to_portal_loop, CUTSCENE_LOOP }
 };
 
 /**
@@ -11262,6 +11294,7 @@ void play_cutscene(struct Camera *c) {
         CUTSCENE(CUTSCENE_DOOR_WARP, sCutsceneDoorWarp)
         CUTSCENE(CUTSCENE_DOOR_PULL, sCutsceneDoorPull)
         CUTSCENE(CUTSCENE_DOOR_PUSH, sCutsceneDoorPush)
+        CUTSCENE(CUTSCENE_PAN_TO_PORTAL, sCutscenePanToPortal)
         CUTSCENE(CUTSCENE_DOOR_PULL_MODE, sCutsceneDoorPullMode)
         CUTSCENE(CUTSCENE_DOOR_PUSH_MODE, sCutsceneDoorPushMode)
         CUTSCENE(CUTSCENE_ENTER_CANNON, sCutsceneEnterCannon)

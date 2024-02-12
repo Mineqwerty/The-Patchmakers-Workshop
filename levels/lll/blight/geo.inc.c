@@ -1,0 +1,27 @@
+#include "src/game/envfx_snow.h"
+
+const GeoLayout blight_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, blight_root_mesh_layer_5),
+		GEO_OPEN_NODE(),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, blight_root_001_skinned_mesh_layer_5),
+			GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 0, -140, -93, -89, 0, 0),
+			GEO_OPEN_NODE(),
+				GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, blight_root_001_mesh_layer_5),
+			GEO_CLOSE_NODE(),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, blight_root_002_skinned_mesh_layer_5),
+			GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 98, -24, 74, -180, 0, 0),
+			GEO_OPEN_NODE(),
+				GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, blight_root_002_mesh_layer_5),
+			GEO_CLOSE_NODE(),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, blight_root_003_skinned_mesh_layer_5),
+			GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, -97, -24, 74, -180, 0, 0),
+			GEO_OPEN_NODE(),
+				GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, blight_root_003_mesh_layer_5),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, blight_material_revert_render_settings),
+	GEO_CLOSE_NODE(),
+	GEO_END(),
+};

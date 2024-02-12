@@ -632,7 +632,7 @@ u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
 
 u16 save_file_get_patch_flags(s32 fileIndex) {
     u16 patchFlags;
-    patchFlags = gSaveBuffer.files[fileIndex][0].patchFlags & 0x7F;
+    patchFlags = gSaveBuffer.files[fileIndex][0].patchFlags & 0xFF;
     patchFlags |= (1 << 0);
 
     return patchFlags;

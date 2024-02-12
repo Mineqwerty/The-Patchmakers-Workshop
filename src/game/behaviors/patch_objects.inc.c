@@ -3,6 +3,7 @@
 #include "src/game/game_init.h"
 #include "actors/group0.h"
 #include "src/game/level_update.h"
+#include "src/game/camera.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -822,8 +823,42 @@ void bhv_portal_loop(void) {
             return;
         }
 
-        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 55, 200, 18);
-        if (o->oTimer == 18) {
+        u8 sameLevel = 0;
+
+        //fade into color if the portals arent in the same level and area
+        if ((gMarioState->portal1Info[0] != gMarioState->portal2Info[0]) || (gMarioState->portal1Info[1] != gMarioState->portal2Info[1])) {
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 103, 146, 224);
+        }
+        else {
+            sameLevel = 1;
+            if (o->oTimer < 18) {
+                obj_scale_xyz(o, 1.0f - (((f32) o->oTimer) / 20.0f), 1.0f, 1.0f);
+            }
+        }
+
+        if (o->oTimer == 17) {
+            if (sameLevel) {
+                enable_time_stop_including_mario();
+                gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+                
+                gCamera->cutscene = CUTSCENE_PAN_TO_PORTAL;
+                gCutsceneTimer = 0;
+                
+                switch (o->oBehParams2ndByte) {
+                    case 0:
+                        sCutsceneVars[2].point[0] = gMarioState->portal2Position[0];
+                        sCutsceneVars[2].point[1] = gMarioState->portal2Position[1];
+                        sCutsceneVars[2].point[2] = gMarioState->portal2Position[2];
+                        break;
+                    case 1:
+                        sCutsceneVars[2].point[0] = gMarioState->portal1Position[0];
+                        sCutsceneVars[2].point[1] = gMarioState->portal1Position[1];
+                        sCutsceneVars[2].point[2] = gMarioState->portal1Position[2];
+                }
+            }
+        }
+
+        if (o->oTimer >= 18 && gCamera->cutscene == 0) {
 
             switch (o->oBehParams2ndByte) {
                 case 0:
@@ -848,6 +883,8 @@ void bhv_portal_loop(void) {
                 gMarioState->heldObj = NULL;
             }
             gMarioState->specialWarpTransitionOperation = 3;
+            o->oAction = 0;
+            
         }
 
         f32 x = o->oPosX - gMarioState->pos[0];
@@ -862,6 +899,8 @@ void bhv_portal_loop(void) {
         } else {
             gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
         }
+
+        
     }
 }
 

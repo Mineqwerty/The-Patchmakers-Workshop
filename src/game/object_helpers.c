@@ -837,6 +837,9 @@ struct Object *obj_find_nearest_object_with_behavior(struct Object *sourceObj, c
 u8 object_behavior_is_chompable(struct Object *obj) {
     return (obj->behavior == segmented_to_virtual(bhvGoomba)
         || obj->behavior == segmented_to_virtual(bhvPodogoo)
+        || obj->behavior == segmented_to_virtual(bhvBlight)
+        || obj->behavior == segmented_to_virtual(bhvBoo)
+        || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
     );
 }
 
