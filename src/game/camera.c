@@ -923,7 +923,7 @@ s32 update_8_directions_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     } else {
         gReonucamState.keepCliffCam = 0;
     }
-#endif
+#endif 
 
     sAreaYaw = camYaw;
     calc_y_to_curr_floor(&posY, 1.f, 200.f, &focusY, 0.9f, 200.f);
@@ -10540,11 +10540,13 @@ void cutscene_pan_to_portal_loop(struct Camera *c) {
     Vec3f goalPos;
     Vec3f goalFoc;
 
-    vec3f_set(goalPos, sCutsceneVars[2].point[0] + 500, sCutsceneVars[2].point[1] + 500, sCutsceneVars[2].point[2]);
+    vec3f_set(goalPos, sCutsceneVars[2].point[0] + sCutsceneVars[1].point[0], 
+            sCutsceneVars[2].point[1] + sCutsceneVars[1].point[1], 
+            sCutsceneVars[2].point[2] + sCutsceneVars[1].point[2]);
     vec3f_set(goalFoc, sCutsceneVars[2].point[0], sCutsceneVars[2].point[1], sCutsceneVars[2].point[2]);
 
-    gCutsceneTimer++;
-    approach_vec3f_asymptotic(c->pos, goalPos, 0.09f, 0.09f, 0.09f);
+    //gCutsceneTimer++;
+    approach_vec3f_asymptotic(c->pos, goalPos, 0.1f, 0.1f, 0.1f);
     approach_vec3f_asymptotic(c->focus, goalFoc, 0.1f, 0.1f, 0.1f);
 
     vec3f_copy(gLakituState.pos, c->pos); 
@@ -10553,15 +10555,28 @@ void cutscene_pan_to_portal_loop(struct Camera *c) {
 
     update_camera_yaw(c);
 
-    dbp(gCutsceneTimer);
+    if (gCutsceneTimer == 30) {
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 15, 103, 146, 224);
+    }
 
-    if (gCutsceneTimer >= 120) {
+    if (gCutsceneTimer >= 45) {
         gCutsceneTimer = CUTSCENE_STOP;
         c->cutscene = 0;
         disable_time_stop_including_mario();
         gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+        gMarioState->pos[0] = sCutsceneVars[2].point[0];
+        gMarioState->pos[1] = sCutsceneVars[2].point[1];
+        gMarioState->pos[2] = sCutsceneVars[2].point[2];
+        gMarioObject->oPosX = sCutsceneVars[2].point[0];
+        gMarioObject->oPosY = sCutsceneVars[2].point[1];
+        gMarioObject->oPosZ = sCutsceneVars[2].point[2];
+        play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 10, 103, 146, 224);
     }
 
+}
+
+void cutscene_portal_cancel(struct Camera *c) {
+    
 }
 
 /**
@@ -10725,6 +10740,11 @@ struct Cutscene sCutsceneDoorPush[] = {
 struct Cutscene sCutscenePanToPortal[] = {
     { cutscene_pan_to_portal_loop, CUTSCENE_LOOP }
 };
+
+struct Cutscene sCutscenePortalCancel[] = {
+    { cutscene_portal_cancel, 1 }
+};
+
 
 /**
  * Cutscene that plays when Mario pulls open a door that has some special mode requirement on the other
@@ -11295,6 +11315,7 @@ void play_cutscene(struct Camera *c) {
         CUTSCENE(CUTSCENE_DOOR_PULL, sCutsceneDoorPull)
         CUTSCENE(CUTSCENE_DOOR_PUSH, sCutsceneDoorPush)
         CUTSCENE(CUTSCENE_PAN_TO_PORTAL, sCutscenePanToPortal)
+        CUTSCENE(CUTSCENE_PORTAL_CANCEL, sCutscenePortalCancel)
         CUTSCENE(CUTSCENE_DOOR_PULL_MODE, sCutsceneDoorPullMode)
         CUTSCENE(CUTSCENE_DOOR_PUSH_MODE, sCutsceneDoorPushMode)
         CUTSCENE(CUTSCENE_ENTER_CANNON, sCutsceneEnterCannon)
