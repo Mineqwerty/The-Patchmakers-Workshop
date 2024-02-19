@@ -360,10 +360,27 @@ void update_flying(struct MarioState *m) {
     m->slideVelZ = m->vel[2];
 }
 
+u8 check_for_special_ceilings(struct MarioState *m) {
+
+    if (m->ceil && ((m->ceilHeight - m->pos[1]) < 200)) {
+            switch (m->ceil->type) {
+                case SURFACE_SPECTRAL_SAND:
+                    update_mario_sound_and_camera(m);
+                    return drop_and_set_mario_action(m, ACT_SINK_UPWARDS, 0);
+                    break;
+            }
+        }
+
+    return FALSE;
+}
+
 u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, u32 stepArg) {
     u32 stepResult;
 
     update_air_without_turn(m);
+    if (check_for_special_ceilings(m)) {
+        return AIR_STEP_NONE;
+    }
 
     stepResult = perform_air_step(m, stepArg);
     switch (stepResult) {

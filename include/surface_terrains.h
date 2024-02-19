@@ -237,6 +237,7 @@ enum SurfaceTypes {
     SURFACE_STC_WARP,
     SURFACE_GSS_WARP,
     SURFACE_WATER_WALL,
+    SURFACE_SPECTRAL_SAND,
 };
 
 // From Surface 0x1B to 0x1E

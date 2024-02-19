@@ -5595,6 +5595,7 @@ u8 get_cutscene_from_mario_status(struct Camera *c) {
             case ACT_QUICKSAND_DEATH:
             case ACT_RUSHING_WATER_DEATH:
             case ACT_SINK_MUD:
+            case ACT_SINK_UPWARDS:
                 cutscene = CUTSCENE_QUICKSAND_DEATH;
                 break;
             case ACT_ELECTROCUTION:

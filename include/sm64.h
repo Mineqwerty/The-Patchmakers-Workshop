@@ -538,7 +538,7 @@ enum MarioActionFlags {
 #define ACT_WARP_RDR                   0x0000131C // (0x11C)
 #define ACT_WARP_GSS                   0x0000131D // (0x11D)
 #define ACT_WARP_TTC                 0x0000131E // (0x11E)
-#define ACT_UNUSED_11F                 0x0000011F // (0x11F)
+#define ACT_SINK_UPWARDS                 0x0002131F // (0x11F)
 #define ACT_PULLING_DOOR               0x00001320 // (0x120 | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_PUSHING_DOOR               0x00001321 // (0x121 | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_WARP_DOOR_SPAWN            0x00001322 // (0x122 | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)

@@ -1021,6 +1021,39 @@ s32 act_sink_mud(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_sink_upwards(struct MarioState *m) {
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_INIT) {
+        set_mario_animation(m, MARIO_ANIM_DYING_IN_QUICKSAND);
+        set_anim_to_frame(m, 60);
+        m->actionState = ACT_STATE_QUICKSAND_DEATH_SINK;
+    }
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_SINK) {
+        //if (m->quicksandDepth <= -100.0f) {
+            //play_sound_if_no_flag(m, SOUND_MARIO_WAAAOOOW, MARIO_ACTION_SOUND_PLAYED);
+        //}
+        //if ((m->quicksandDepth -= 5.0f) <= 180.0f) {
+            //level_trigger_warp(m, WARP_OP_DEATH);
+        //    m->actionState = ACT_STATE_QUICKSAND_DEATH_DEAD;
+        //    m->actionTimer = 0;
+        //}
+        m->pos[1] += 5.0f + (m->actionTimer / 2);
+
+        if ((m->pos[1] >= m->floorHeight && (m->pos[1] - m->floorHeight < 100)) || m->actionTimer++ > 120) {
+            set_mario_action(m, ACT_FEET_STUCK_IN_GROUND, 0);
+            gCamera->cutscene = 0;
+            clear_cutscene_vars(gCamera);
+            gCutsceneTimer = 0;
+        }
+    }
+    
+
+    //stationary_ground_step(m);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    play_sound(SOUND_MOVING_QUICKSAND_DEATH, m->marioObj->header.gfx.cameraToObject);
+    return FALSE;
+}
+
 s32 act_eaten_by_bubba(struct MarioState *m) {
     play_sound_if_no_flag(m, SOUND_MARIO_DYING, MARIO_ACTION_SOUND_PLAYED);
     set_mario_animation(m, MARIO_ANIM_A_POSE);
@@ -1916,11 +1949,11 @@ void stuck_in_ground_handler(struct MarioState *m, s32 animation, s32 unstuckFra
     s32 animFrame = set_mario_animation(m, animation);
 
     if (m->input & INPUT_A_PRESSED) {
-        m->actionTimer++;
-        if (m->actionTimer >= 5 && animFrame < unstuckFrame - 1) {
+        //m->actionTimer++;
+        //if (m->actionTimer >= 5 && animFrame < unstuckFrame - 1) {
             animFrame = unstuckFrame - 1;
             set_anim_to_frame(m, animFrame);
-        }
+        //}
     }
 
     stop_and_set_height_to_floor(m);
@@ -3010,6 +3043,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_SINK_MUD:            cancel = act_sink_mud(m);            break;
         case ACT_RUSHING_WATER_DEATH:            cancel = act_rushing_water_death(m);            break;
+        case ACT_SINK_UPWARDS:            cancel = act_sink_upwards(m);            break;
         case ACT_ELECTROCUTION:              cancel = act_electrocution(m);              break;
         case ACT_SUFFOCATION:                cancel = act_suffocation(m);                break;
         case ACT_DEATH_ON_STOMACH:           cancel = act_death_on_stomach(m);           break;

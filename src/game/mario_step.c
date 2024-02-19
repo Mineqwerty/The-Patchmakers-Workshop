@@ -178,6 +178,7 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed) {
                 m->quicksandDepth = 0.0f;
                 break;
         }
+
     }
 
     return FALSE;
