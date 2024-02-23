@@ -661,3 +661,4 @@ extern const BehaviorScript bhvClcPuzzleEye[];
 extern const BehaviorScript bhvClcPuzzleWall[];
 extern const BehaviorScript bhvClcDoor[];
 extern const BehaviorScript bhvBlight[];
+extern const BehaviorScript bhvMovingSpectralOctagon[];

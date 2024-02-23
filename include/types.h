@@ -502,6 +502,10 @@ struct MarioState {
     /*0xC0*/ f32 quicksandDepth;
     /*0xC4*/ f32 windGravity;
     struct FloorCheckpoint floorCheckpoint;
+    struct Surface *ceilToFloor;
+    struct Object *movingCeilObject;
+
+    Vec3f marioSinkPos;
 
     s16 curPatch;
     s16 equippedPatch;

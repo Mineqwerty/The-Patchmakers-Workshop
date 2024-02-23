@@ -49,6 +49,7 @@ const LevelScript level_lll_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_BUTLERGEIST, butlergeist_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PHANTASMAID, phantasmaid_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BLIGHT, blight_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MOVING_SPECTRAL_OCTAGON, moving_spectral_octagon_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -88,6 +89,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_CLC_DOOR, 3719, 2148, 2168, 0, 90, 0, 0x00000000, bhvClcDoor),
 		OBJECT(MODEL_YARN_GOOMBA, 4153, 981, 50, 0, 28, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_YARN_GOOMBA, 4153, 981, -2418, 0, 28, 0, 0x00000000, bhvGoomba),
+		OBJECT(MODEL_MOVING_SPECTRAL_OCTAGON, 4944, 2606, -12528, 0, -90, 0, 0x00000000, bhvMovingSpectralOctagon),
 		OBJECT(MODEL_PHANTASMAID, 4397, 981, -4125, 0, -51, 0, (36 << 16), bhvGenericNPC),
 		OBJECT(MODEL_PHANTASMAID, 5923, 981, -2982, 0, -92, 0, (37 << 16), bhvGenericNPC),
 		OBJECT(MODEL_NONE, -4287, 228, -5724, 0, -180, 0, (50 << 16), bhvPoleGrabbing),

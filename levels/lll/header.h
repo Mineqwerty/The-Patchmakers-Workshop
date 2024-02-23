@@ -173,4 +173,8 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/blight/anim_header.h"
 
+#include "levels/lll/moving_spectral_octagon/geo_header.h"
+
+#include "levels/lll/moving_spectral_octagon/collision_header.h"
+
 #endif

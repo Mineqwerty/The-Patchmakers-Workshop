@@ -291,3 +291,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/scaling_stairs.inc.c"
 #include "behaviors/clc_puzzle_switch.inc.c"
 #include "behaviors/blight.inc.c"
+#include "behaviors/moving_spectral_octagon.inc.c"

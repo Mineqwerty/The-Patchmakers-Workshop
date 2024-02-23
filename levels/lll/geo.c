@@ -55,3 +55,4 @@
 #include "levels/lll/clc_door/geo.inc.c"
 #include "levels/lll/phantasmaid/geo.inc.c"
 #include "levels/lll/blight/geo.inc.c"
+#include "levels/lll/moving_spectral_octagon/geo.inc.c"

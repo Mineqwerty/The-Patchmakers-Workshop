@@ -1036,7 +1036,22 @@ s32 act_sink_upwards(struct MarioState *m) {
         //    m->actionState = ACT_STATE_QUICKSAND_DEATH_DEAD;
         //    m->actionTimer = 0;
         //}
+
         m->pos[1] += 5.0f + (m->actionTimer / 2);
+
+        if (m->movingCeilObject) {
+            m->pos[0] = approach_f32_symmetric(m->pos[0], m->movingCeilObject->oPosX, 20);
+            m->pos[2] = approach_f32_symmetric(m->pos[2], m->movingCeilObject->oPosZ, 20);
+        }
+        else {
+            m->pos[0] = m->marioSinkPos[0];
+            m->pos[2] = m->marioSinkPos[2];
+        }
+
+        
+
+            
+        
 
         if ((m->pos[1] >= m->floorHeight && (m->pos[1] - m->floorHeight < 100)) || m->actionTimer++ > 120) {
             set_mario_action(m, ACT_FEET_STUCK_IN_GROUND, 0);
@@ -1948,7 +1963,7 @@ void stuck_in_ground_handler(struct MarioState *m, s32 animation, s32 unstuckFra
                              s32 target3, s32 endAction) {
     s32 animFrame = set_mario_animation(m, animation);
 
-    if (m->input & INPUT_A_PRESSED) {
+    if (animFrame < unstuckFrame - 1) {
         //m->actionTimer++;
         //if (m->actionTimer >= 5 && animFrame < unstuckFrame - 1) {
             animFrame = unstuckFrame - 1;

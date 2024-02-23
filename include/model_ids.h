@@ -655,6 +655,7 @@
 #define MODEL_CLC_PUZZLE_WALL                0x107
 #define MODEL_CLC_DOOR                0x108
 #define MODEL_BLIGHT                0x109
+#define MODEL_MOVING_SPECTRAL_OCTAGON                0x10A
 
 
 //Workshop Recesses

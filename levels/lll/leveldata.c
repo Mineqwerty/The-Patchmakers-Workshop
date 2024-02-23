@@ -94,3 +94,5 @@
 #include "levels/lll/blight/model.inc.c"
 #include "levels/lll/blight/anims/data.inc.c"
 #include "levels/lll/blight/anims/table.inc.c"
+#include "levels/lll/moving_spectral_octagon/model.inc.c"
+#include "levels/lll/moving_spectral_octagon/collision.inc.c"

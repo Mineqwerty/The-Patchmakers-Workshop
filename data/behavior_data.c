@@ -7351,3 +7351,14 @@ const BehaviorScript bhvBlight[] = {
         CALL_NATIVE(bhv_blight_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMovingSpectralOctagon[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(moving_spectral_octagon_collision),
+    CALL_NATIVE(bhv_moving_spectral_octagon_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_moving_spectral_octagon_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

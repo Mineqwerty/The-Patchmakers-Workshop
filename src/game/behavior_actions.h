@@ -841,3 +841,5 @@ void bhv_clc_puzzle_wall_init(void);
 void bhv_clc_puzzle_wall_loop(void);
 void bhv_blight_init(void);
 void bhv_blight_loop(void);
+void bhv_moving_spectral_octagon_init(void);
+void bhv_moving_spectral_octagon_loop(void);

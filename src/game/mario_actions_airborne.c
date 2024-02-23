@@ -366,6 +366,14 @@ u8 check_for_special_ceilings(struct MarioState *m) {
             switch (m->ceil->type) {
                 case SURFACE_SPECTRAL_SAND:
                     update_mario_sound_and_camera(m);
+                    m->ceilToFloor = m->ceil;
+                    if (m->ceil->object) {
+                        m->movingCeilObject = m->ceil->object;
+                    }
+                    else {
+                        m->movingCeilObject = NULL;
+                    }
+                    vec3f_copy(m->marioSinkPos, m->pos);
                     return drop_and_set_mario_action(m, ACT_SINK_UPWARDS, 0);
                     break;
             }
