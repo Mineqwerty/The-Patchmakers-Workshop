@@ -944,6 +944,9 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
     if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
         m->vel[1] *= 2;
         m->curPatch = 0;
+        if (m->patchChildObj && obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
+            m->patchChildObj->oAction = 2;
+        }
         //freeze_game_frames(m->vel[1] / 12.0f);
         for (int i = 0; i < 10; i++) {
                 struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 

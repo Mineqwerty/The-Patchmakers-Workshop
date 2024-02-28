@@ -177,4 +177,6 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/moving_spectral_octagon/collision_header.h"
 
+#include "levels/lll/eyebulb/geo_header.h"
+
 #endif

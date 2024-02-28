@@ -978,7 +978,7 @@ void bhv_shadow_chomp_head_loop(void) {
             o->oSubAction = 0;
 
             o->oShadowChompTarget = shadow_chomp_find_target(500.0f);
-            if (o->oShadowChompTarget != NULL) {
+            if (o->oShadowChompTarget != NULL && gMarioState->curPatch != PATCH_SHADOWCHOMP) {
                 o->oHomeX = o->oPosX;
                 o->oHomeY = o->oPosY;
                 o->oHomeZ = o->oPosZ;
@@ -1002,8 +1002,9 @@ void bhv_shadow_chomp_head_loop(void) {
                 f32 objDist = lateral_dist_between_objects(o, o->oShadowChompTarget);
 
                 if (objDist < 50) {
-                    o->oAction = SHADOW_CHOMP_ACT_BOOST;
+                    o->oAction = SHADOW_CHOMP_ACT_RETRACT;
                     gMarioState->curPatch = PATCH_SHADOWCHOMP;
+                    cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
                     obj_mark_for_deletion(o->oShadowChompTarget);
                     o->oShadowChompTarget = NULL;
                 }
@@ -1031,15 +1032,14 @@ void bhv_shadow_chomp_head_loop(void) {
 
         break;
         case SHADOW_CHOMP_ACT_BOOST:
-            //if (gMarioState->curPatch == PATCH_SHADOWCHOMP) {
-                o->oAction = SHADOW_CHOMP_ACT_RETRACT;
-            //}
-            //if (o->oTimer >= 45) {
-           //     o->oAction = SHADOW_CHOMP_ACT_IDLE;
-            //}
+            o->oPosY += o->oTimer + 10; 
+            if (o->oTimer >= 45) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
         break;
         case SHADOW_CHOMP_ACT_RETRACT:
             if (o->oTimer < 5) {
+                cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
                 cur_obj_scale(2.0f - (f32)o->oTimer / 5.0f);
             }
             else {

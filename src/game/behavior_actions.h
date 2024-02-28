@@ -843,3 +843,5 @@ void bhv_blight_init(void);
 void bhv_blight_loop(void);
 void bhv_moving_spectral_octagon_init(void);
 void bhv_moving_spectral_octagon_loop(void);
+void bhv_eyebulb_init(void);
+void bhv_eyebulb_loop(void);

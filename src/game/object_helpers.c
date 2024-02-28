@@ -840,6 +840,7 @@ u8 object_behavior_is_chompable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvBlight)
         || obj->behavior == segmented_to_virtual(bhvBoo)
         || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
+        || obj->behavior == segmented_to_virtual(bhvMrI)
     );
 }
 

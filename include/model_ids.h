@@ -656,6 +656,7 @@
 #define MODEL_CLC_DOOR                0x108
 #define MODEL_BLIGHT                0x109
 #define MODEL_MOVING_SPECTRAL_OCTAGON                0x10A
+#define MODEL_EYEBULB                0x10B
 
 
 //Workshop Recesses

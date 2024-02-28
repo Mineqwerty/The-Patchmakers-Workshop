@@ -411,7 +411,7 @@ const BehaviorScript bhvStarDoor[] = {
 };
 
 const BehaviorScript bhvMrI[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_PUSHABLE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_HOME(),
     SPAWN_CHILD(/*Model*/ MODEL_MR_I_IRIS, /*Behavior*/ bhvMrIIris),
@@ -7360,5 +7360,16 @@ const BehaviorScript bhvMovingSpectralOctagon[] = {
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_moving_spectral_octagon_loop),
         CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvEyebulb[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    DROP_TO_FLOOR(),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_eyebulb_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_eyebulb_loop),
     END_LOOP(),
 };

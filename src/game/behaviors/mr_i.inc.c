@@ -133,7 +133,8 @@ void mr_i_body_act_spin_death(void) {
                 spawn_default_star(1370, 2000.0f, -320.0f);
                 obj_mark_for_deletion(o);
             } else {
-                cur_obj_spawn_loot_blue_coin();
+                //cur_obj_spawn_loot_blue_coin();
+                obj_mark_for_deletion(o);
             }
         }
 
@@ -293,6 +294,12 @@ struct ObjectHitbox sMrIHitbox = {
 void bhv_mr_i_body_loop(void) {
     obj_set_hitbox(o, &sMrIHitbox);
     cur_obj_call_action_function(sMrIBodyActions);
+
+    if (o->oMrIFirstScale < 30) {
+        o->oMrIScale =  ((f32)o->oMrIFirstScale / 30.0f);
+        cur_obj_scale(o->oMrIScale);
+        o->oMrIFirstScale += 1;
+    }
 
     if (
         o->oAction != MR_I_BODY_ACT_SPIN_DEATH

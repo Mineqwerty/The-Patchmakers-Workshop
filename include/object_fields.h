@@ -794,6 +794,7 @@
 #define /*0x108*/ oMrIParticleTimerTarget OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oMrIScale               OBJECT_FIELD_F32(0x21)
 #define /*0x110*/ oMrIBlinking            OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oMrIFirstScale         OBJECT_FIELD_S32(0x49)
 
 /* Object Respawner */
 #define /*0x0F4*/ oRespawnerModelToRespawn    OBJECT_FIELD_S32(0x1B)
@@ -1390,6 +1391,9 @@
 
 //scaling stairs
 #define oScalingStairsScale           OBJECT_FIELD_F32(0x1B)
+
+//eyebulb
+#define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
 
 /*Custom general defines:
 
