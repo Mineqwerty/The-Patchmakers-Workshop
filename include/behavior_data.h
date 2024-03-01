@@ -81,6 +81,7 @@ extern const BehaviorScript bhvWfTumblingBridge[];
 extern const BehaviorScript bhvBbhTumblingBridge[];
 extern const BehaviorScript bhvLllTumblingBridge[];
 extern const BehaviorScript bhvFlame[];
+extern const BehaviorScript bhvSmallFlame[];
 extern const BehaviorScript bhvAnotherElavator[];
 extern const BehaviorScript bhvRrElevatorPlatform[];
 extern const BehaviorScript bhvHmcElevatorPlatform[];
