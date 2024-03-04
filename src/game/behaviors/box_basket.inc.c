@@ -59,7 +59,7 @@ void bhv_box_counter_loop(void) {
     o->oPosZ = gMarioState->pos[2];
    if (o->oF4 == 0) {
         struct Object *star = spawn_star(o, gMarioState->pos[0], gMarioState->pos[1] + 1000.0f, gMarioState->pos[2]);
-        star->oBehParams = 0x05050000;
+        star->oBehParams = 0x04000000;
         star->oPosX = gMarioState->pos[0];
         star->oPosY = gMarioState->pos[1];
         star->oPosZ = gMarioState->pos[2];
