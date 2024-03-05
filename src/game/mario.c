@@ -1966,7 +1966,7 @@ void patch_update(struct MarioState *m ) {
         break;
 
         case PATCH_PORTAL:
-            if (gPlayer1Controller->buttonDown & L_TRIG) {
+            if ((gPlayer1Controller->buttonDown & L_TRIG) && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE) {
                 if (gMarioState->patchTimer >= 7) {
                     if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
                     m->patchChildSecondaryObj = spawn_object_relative(1, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
@@ -1974,7 +1974,7 @@ void patch_update(struct MarioState *m ) {
                     m->curPatch = PATCH_NONE;
                 }
             }
-            else if (gMarioState->patchTimer < 7) {
+            else if (gMarioState->patchTimer < 7 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE) {
                 if (m->patchChildPortalObj) obj_mark_for_deletion(m->patchChildPortalObj);
                 m->patchChildPortalObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
                 m->patchChildPortalObj->oPortalSpawnType = 1;
