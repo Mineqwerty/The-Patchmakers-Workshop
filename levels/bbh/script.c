@@ -57,7 +57,8 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_RING_MISSION_TARGET, ring_mission_target_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_RING_FRAGMENT, ring_fragment_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_CHECKER_PLATFORM, tfp_checker_platform_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR,           haunted_door_geo),
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
