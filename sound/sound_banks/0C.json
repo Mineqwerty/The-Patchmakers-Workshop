@@ -567,8 +567,8 @@
             "release_rate": 19,
             "normal_range_hi": 50,
             "envelope": "envelope0",
-            "sound": {"sample": "1B_organ_2", "tuning": 1.0},
-            "sound_hi": "1B_organ_2"
+            "sound":"49_organ_1",
+            "sound_hi": "4A_organ_1_lq"
         },
         "Bells": {
             "release_rate": 208,
@@ -644,6 +644,50 @@
             "release_rate": 208,
             "envelope": "envelope45",
             "sound": "59_rich_piano"
+        },
+        "Synth Voice 2": {
+            "release_rate": 19,
+            "normal_range_hi": 50,
+            "envelope": "envelope0",
+            "sound": {"sample": "1B_organ_2", "tuning": 1.0},
+            "sound_hi": "1B_organ_2"
+        },
+        "Sleigh Bells 2": {
+            "release_rate": 208,
+            "envelope": "envelope33",
+            "sound": "2F_sleigh_bells"
+        },
+        "Strings Ensemble": {
+            "release_rate": 24,
+            "normal_range_lo": 42,
+            "envelope": "envelope34",
+            "sound_lo": "14_strings_5",
+            "sound": "15_strings_4"
+        },
+        "Harpsichord": {
+            "release_rate": 255,
+            "envelope": "envelope36",
+            "sound": "27_harpsichord"
+        },
+        "Monk Choir": {
+            "release_rate": 10,
+            "envelope": "envelope37",
+            "sound": "3E_monk_choir"
+        },
+        "Low Bell": {
+            "release_rate": 10,
+            "envelope": "envelope38",
+            "sound": "3F"
+        },
+        "High Bell": {
+            "release_rate": 10,
+            "envelope": "envelope39",
+            "sound": "40_bell"
+        },
+        "Harmonica": {
+            "release_rate": 19,
+            "envelope": "envelope40",
+            "sound": "43_harmonica"
         },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope11", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
@@ -789,6 +833,17 @@
         "Angklung",
         "Maracas",
         "Cello",
-        "Rich Piano"
+        "Rich Piano",
+
+        "Synth Voice 2",
+        "Sleigh Bells 2",
+        "Strings Ensemble",
+        null,
+        "Harpsichord",
+
+        "Monk Choir",
+        "Low Bell",
+        "High Bell",
+        "Harmonica"
     ]
 }
