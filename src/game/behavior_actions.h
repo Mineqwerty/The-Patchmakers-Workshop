@@ -845,3 +845,7 @@ void bhv_moving_spectral_octagon_init(void);
 void bhv_moving_spectral_octagon_loop(void);
 void bhv_eyebulb_init(void);
 void bhv_eyebulb_loop(void);
+void bhv_awning_init(void);
+void bhv_awning_loop(void);
+void bhv_hidden_cannon_init(void);
+void bhv_hidden_cannon_loop(void);

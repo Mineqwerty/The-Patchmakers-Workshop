@@ -20,3 +20,5 @@
 #include "levels/ddd/areas/2/geo.inc.c"
 
 #include "levels/ddd/geo.inc.c"
+
+#include "levels/ddd/awning/geo.inc.c"

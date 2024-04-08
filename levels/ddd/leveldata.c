@@ -36,3 +36,6 @@
 #include "levels/ddd/areas/2/movtext.inc.c"
 
 #include "levels/ddd/leveldata.inc.c"
+
+#include "levels/ddd/awning/model.inc.c"
+#include "levels/ddd/awning/collision.inc.c"

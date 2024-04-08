@@ -206,11 +206,11 @@ s16 sDynLll[] = {
     DYN1(MARIO_IS_IN_ROOM, 4, 13),
     DYN1(MARIO_IS_IN_ROOM, 6, 13),
     DYN1(MARIO_IS_IN_ROOM, 7, 13),
-    DYN1(MARIO_IS_IN_ROOM, 8, 13),
     DYN1(MARIO_IS_IN_ROOM, 3, 14),
     DYN1(MARIO_IS_IN_ROOM, 2, 14),
     DYN1(MARIO_IS_IN_ROOM, 5, 14),
     DYN1(MARIO_IS_IN_ROOM, 9, 14),
+    DYN1(MARIO_IS_IN_ROOM, 8, 15),
 };
 s16 sDynUnk38[] = {
     SEQ_LEVEL_UNDERGROUND,
@@ -245,7 +245,7 @@ struct MusicDynamic {
     /*0xA*/ s16 dur2;
 }; // size = 0xC
 
-struct MusicDynamic sMusicDynamics[15] = {
+struct MusicDynamic sMusicDynamics[16] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0003, 127, 100, 0x0e40, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0e43, 127, 200, 0x0000, 0, 200 }, // SEQ_LEVEL_WATER
@@ -259,8 +259,9 @@ struct MusicDynamic sMusicDynamics[15] = {
     { 0x0377, 127, 50, 0x0000, 0, 50 }, // RDR A2
     { 0x029F, 127, 100, 0xE000, 0, 10 },  //SS Above Water
     { 0xE298, 127, 50, 0x0007, 0, 50 }, // SS Underwater 
-    { 0xFD3F, 127, 50, 0x02C0, 0, 50 }, // CLC Normal
-    { 0xFFFF, 127, 50, 0x0000, 0, 50 }, // CLC Haunted
+    { 0x013F, 127, 50, 0xFEC0, 0, 50 }, // CLC Normal
+    { 0x07FF, 127, 50, 0xF800, 0, 50 }, // CLC Haunted
+    { 0xF800, 127, 50, 0x07FF, 0, 50 }, // CLC Library
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },

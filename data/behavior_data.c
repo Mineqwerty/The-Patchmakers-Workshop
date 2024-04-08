@@ -7390,3 +7390,24 @@ const BehaviorScript bhvEyebulb[] = {
         CALL_NATIVE(bhv_eyebulb_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvAwning[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(awning_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_awning_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_awning_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvHiddenCannon[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_hidden_cannon_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_hidden_cannon_loop),
+    END_LOOP(),
+};
