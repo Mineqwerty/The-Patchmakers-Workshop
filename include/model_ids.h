@@ -657,6 +657,7 @@
 #define MODEL_BLIGHT                0x109
 #define MODEL_MOVING_SPECTRAL_OCTAGON                0x10A
 #define MODEL_EYEBULB                0x10B
+#define MODEL_MISTRESS                0x10C
 
 //Hidden Village Hold
 #define MODEL_AWNING                   0x100

@@ -78,10 +78,16 @@ void bhv_door_loop(void) {
         case DOOR_ACT_WARP_PULLED:
             door_animation_and_reset(DOOR_ANIM_WARP_PULLED);
             play_warp_door_open_noise();
+            if (obj_has_behavior(o, bhvClcDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
+                o->header.gfx.animInfo.animFrame = 30;
+            }
             break;
         case DOOR_ACT_WARP_PUSHED:
             door_animation_and_reset(DOOR_ANIM_WARP_PUSHED);
             play_warp_door_open_noise();
+            if (obj_has_behavior(o, bhvClcDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
+                o->header.gfx.animInfo.animFrame = 30;
+            }
             break;
     }
 

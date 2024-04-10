@@ -849,3 +849,5 @@ void bhv_awning_init(void);
 void bhv_awning_loop(void);
 void bhv_hidden_cannon_init(void);
 void bhv_hidden_cannon_loop(void);
+void bhv_mistress_init(void);
+void bhv_mistress_loop(void);
