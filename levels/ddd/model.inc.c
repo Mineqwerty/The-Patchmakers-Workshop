@@ -1,26 +1,8 @@
-Lights1 ddd_dl_f3dlite_material_017_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
-Lights1 ddd_dl_f3dlite_material_008_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 ddd_dl_f3dlite_material_019_lights = gdSPDefLights1(
-	0x7F, 0x70, 0x57,
-	0xFF, 0xE2, 0xB1, 0x28, 0x28, 0x28);
 
-Lights1 ddd_dl_f3dlite_material_016_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 ddd_dl_f3dlite_material_015_lights = gdSPDefLights1(
-	0x7F, 0x7B, 0x59,
-	0xFF, 0xF6, 0xB6, 0x28, 0x28, 0x28);
 
-Lights1 ddd_dl_f3dlite_material_018_lights = gdSPDefLights1(
-	0x2F, 0x60, 0x7F,
-	0x67, 0xC3, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx ddd_dl_gravegrass_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 ddd_dl_gravegrass_ci8[] = {
@@ -11355,7 +11337,8 @@ Gfx mat_ddd_dl_f3dlite_material_017[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_017_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 
@@ -11393,7 +11376,8 @@ Gfx mat_ddd_dl_f3dlite_material_008[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -11401,7 +11385,8 @@ Gfx mat_ddd_dl_f3dlite_material_019[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_019_lights),
+    gsSPLightColor(LIGHT_1, 0xffe2b1ff),
+    gsSPLightColor(LIGHT_2, 0x7f7057ff),
 	gsSPEndDisplayList(),
 };
 
@@ -11524,7 +11509,8 @@ Gfx mat_ddd_dl_f3dlite_material_016[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_016_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -11532,7 +11518,8 @@ Gfx mat_ddd_dl_f3dlite_material_015[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_015_lights),
+    gsSPLightColor(LIGHT_1, 0xfff6b6ff),
+    gsSPLightColor(LIGHT_2, 0x7f7b59ff),
 	gsSPEndDisplayList(),
 };
 
@@ -11540,7 +11527,8 @@ Gfx mat_ddd_dl_f3dlite_material_018[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ddd_dl_f3dlite_material_018_lights),
+    gsSPLightColor(LIGHT_1, 0x67c3ffff),
+    gsSPLightColor(LIGHT_2, 0x2f607fff),
 	gsSPEndDisplayList(),
 };
 

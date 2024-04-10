@@ -179,4 +179,8 @@ extern const LevelScript level_lll_entry[];
 
 #include "levels/lll/eyebulb/geo_header.h"
 
+#include "levels/lll/mistress/geo_header.h"
+
+#include "levels/lll/mistress/anim_header.h"
+
 #endif

@@ -97,3 +97,6 @@
 #include "levels/lll/moving_spectral_octagon/model.inc.c"
 #include "levels/lll/moving_spectral_octagon/collision.inc.c"
 #include "levels/lll/eyebulb/model.inc.c"
+#include "levels/lll/mistress/model.inc.c"
+#include "levels/lll/mistress/anims/data.inc.c"
+#include "levels/lll/mistress/anims/table.inc.c"
