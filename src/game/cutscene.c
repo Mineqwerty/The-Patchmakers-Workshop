@@ -16,9 +16,11 @@
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
 #include "levels/ccm/header.inc.h"
+#include "levels/lll/header.inc.h"
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
+u8 cExternalCutsceneTrigger;
 u32 cWaitTimer;
 u8 cWaiting;
 struct CutsceneSplinePoint *posSpline;
@@ -35,6 +37,7 @@ u8 cMarioFocusSpeed;
 s32 cRotateAroundMarioRadius;
 u32 cCutsceneTimer;
 s16 cCameraDownVel;
+
 
 extern s16 sCutsceneSplineSegment;
 //extern f32 sCutsceneSplineSegmentProgress;
@@ -73,6 +76,8 @@ enum cutscene_events {
     EVENT_SET_MARIO_EYE_STATE,
 
     EVENT_SPAWN_OBJECT,
+
+    EVENT_SET_EXTERNAL_TRIGGER,
 
     EVENT_SOUND,
     EVENT_SONG_PRIMARY,
@@ -332,6 +337,39 @@ s32 event_goddess_death[] = {
 
 };
 
+s32 event_mistress[] = {
+    EVENT_HUD_DISABLE,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_CAMERA_POSITION, 384, 690, 22,
+    EVENT_CAMERA_SET_MARIO_AS_FOCUS, 100,
+    EVENT_WAIT, 30,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_WAIT, 20,
+    EVENT_CAMERA_FOCUS, 712, 400, -1150,
+    EVENT_WAIT, 90,
+    EVENT_DIALOG_USER_ADVANCE, 49,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 24,
+    EVENT_CAMERA_FOCUS, 912, 500, -1350,
+    EVENT_WAIT, 60,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 30,
+    EVENT_SET_EXTERNAL_TRIGGER, 0,
+    EVENT_SONG_PRIMARY, SEQ_MISTRESS_THEME,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, 50,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_WAIT, 30,
+    EVENT_CAMERA_POSITION, 800, 900, -682,
+    EVENT_CAMERA_FOCUS, 233, 400, -1250,
+    EVENT_DIALOG_USER_ADVANCE, 51,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
+    
+
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -339,7 +377,8 @@ s32 *eventList[] = {
     event_rosedrift_cliff,
     event_find_stone_patch,
     //5
-    event_goddess_death
+    event_goddess_death,
+    event_mistress
 };
 
 s32 *splineList[] = {
@@ -370,7 +409,9 @@ s32 *splineList[] = {
     bob_area_2_spline_StonePatchCutscenePos2,
     bob_area_2_spline_StonePatchCutsceneFoc2,
     bob_area_2_spline_StonePatchCutscenePos3,
-    bob_area_2_spline_StonePatchCutsceneFoc3
+    bob_area_2_spline_StonePatchCutsceneFoc3,
+    lll_area_3_spline_MistressCutsceneApproachBed
+    //25
 };
 
 void begin_cutscene_event(s32 event) {
@@ -379,6 +420,8 @@ void begin_cutscene_event(s32 event) {
     cWaitTimer = 0;
     cWaiting = 0;
     cCutsceneTimer = 0;
+    cExternalCutsceneTrigger = 0;
+    gPlayerCameraState[0].cameraEvent = 0;
     cEventPointer = eventList[event];
 }
 
@@ -540,6 +583,7 @@ void event_handler(void) {
                     gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
                     cMarioFocusSpeed = 0;
                     cCutsceneActive = 0;
+                    cExternalCutsceneTrigger = 0;
                 break;
                 case EVENT_SHOW_BOSS_TITLE:
                     gHudDisplay.flags |= HUD_DISPLAY_BOSS_INTRO;
@@ -563,6 +607,10 @@ void event_handler(void) {
                         param1, param2, param3, cEventPointer[cCutsceneIndex + 4], cEventPointer[cCutsceneIndex + 5], cEventPointer[cCutsceneIndex + 6]);
                     SET_BPARAM2(eventObj->oBehParams, cEventPointer[cCutsceneIndex + 7]);
                     cCutsceneIndex += 10;
+                break;
+                case EVENT_SET_EXTERNAL_TRIGGER:
+                    cExternalCutsceneTrigger = param1;
+                    cCutsceneIndex += 2;
                 break;
                 case EVENT_SONG_PRIMARY:
                     play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, param1), 0);

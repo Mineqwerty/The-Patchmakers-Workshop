@@ -139,6 +139,12 @@ enum SaveProgressFlags {
     SAVE_FLAG_COLLECTED_MIPS_STAR_2  = (1 << 28), /* 0x10000000 */
 };
 
+enum SaveProgressFlagsNew {
+    N_SAVE_FLAG_FILE_EXISTS            = (1 <<  0), /* 0x00000001 */
+    N_SAVE_FLAG_CUTSCENE_STC_BRIDGE          = (1 <<  1), /* 0x00000002 */
+    N_SAVE_FLAG_CUTSCENE_MISTRESS         = (1 <<  2), /* 0x00000004 */
+};
+
 enum PatchCollectedFlags {
     PATCH_FLAG_HAVE_STONE            = (1 <<  0), /* 0x00000001 */
     PATCH_FLAG_HAVE_CHILLSTEP         = (1 <<  1), /* 0x00000002 */

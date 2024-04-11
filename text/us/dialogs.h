@@ -330,49 +330,26 @@ Aurumcael now resides alone in her airborne palace...\n\
 The victor of a battle turned fruitless because of\n\
 her..."))
 
-DEFINE_DIALOG(DIALOG_049, 1, 5, 30, 200, _("\
-Remember that tricky Wall\n\
-Kick jump? It's a\n\
-technique you'll have to\n\
-master in order to reach\n\
-high places.\n\
-Use it to jump from wall\n\
-to wall. Press the\n\
-Control Stick in the\n\
-direction you want to\n\
-bounce to gain momentum.\n\
-Practice makes perfect!"))
+DEFINE_DIALOG(DIALOG_049, 1, 3, 30, 200, _("\
+Mistress...\n\
+It would appear we have a guest...\n\
+Are you feeling well enough to greet him?"))
 
-DEFINE_DIALOG(DIALOG_050, 1, 4, 30, 200, _("\
-Hold [Z] to crouch and\n\
-slide down a slope.\n\
-Or press [Z] while in the\n\
-air to Pound the Ground!\n\
-If you stop, crouch, then\n\
-jump, you'll do a\n\
-Backward Somersault!\n\
-Got that?\n\
-There's more. Crouch and\n\
-then jump to do a\n\
-Long Jump! Or crouch and\n\
-walk to...never mind."))
+DEFINE_DIALOG(DIALOG_050, 0b10, 3, 30, 200, _("\
+C... Col... I...\n\
+Nghh... Cold...\n\
+Pl..."))
 
-DEFINE_DIALOG(DIALOG_051, 1, 6, 30, 200, _("\
-Climbing's easy! When you\n\
-jump at trees, poles or\n\
-pillars, you'll grab them\n\
-automatically. Press [A] to\n\
-jump off backward.\n\
-\n\
-To rotate around the\n\
-object, press Right or\n\
-Left on the Control Stick.\n\
-When you reach the top,\n\
-press Up to do a\n\
-handstand!\n\
-Jump off from the\n\
-handstand for a high,\n\
-stylin' dismount."))
+DEFINE_DIALOG(DIALOG_051, 1, 3, 30, 200, _("\
+I know you are cold, Mistress...\n\
+But you go into a panic when I put the covers\n\
+on you... I don't wish you to hurt yourself.\n\
+Now, our guest here has come a far way.\n\
+He might be able to help us with your affliction!\n\
+Or at least give us some information...\n\
+Mario, you have become the talk of the manor recently.\n\
+After all, you arrived in the same way that evil man did.\n\
+The one that did this to the poor Mistress..."))
 
 DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
 Stop and press [Z] to\n\

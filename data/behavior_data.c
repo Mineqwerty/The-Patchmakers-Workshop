@@ -7430,3 +7430,12 @@ const BehaviorScript bhvMistress[] = {
         CALL_NATIVE(bhv_mistress_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMistressRoomManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_mistress_room_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mistress_room_manager_loop),
+    END_LOOP(),
+};

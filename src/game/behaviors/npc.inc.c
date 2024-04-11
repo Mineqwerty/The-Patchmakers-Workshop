@@ -3,6 +3,8 @@
 #include "levels/lll/butlergeist/anim_header.h"
 #include "levels/lll/phantasmaid/anim_header.h"
 
+#include "src/game/cutscene.h"
+
 void bhv_generic_npc_init(void) {
     o->oGravity  = 5.5f;
     o->oFriction = 0.8f;
@@ -30,7 +32,16 @@ void bhv_generic_npc_init(void) {
 }
 
 void bhv_generic_npc_loop(void) {
-    
+    if (cur_obj_has_model(MODEL_PHANTASMAID)) {
+        //turn anim
+        if (cCutsceneActive && o->oTimer == 80) {
+            cur_obj_init_animation(1);
+        }
+        //back to default when the cam is panned away
+        if (cCutsceneActive && cExternalCutsceneTrigger == 1) {
+            cur_obj_init_animation(0);
+        }
+    }
 }
 
 void bhv_talotak_init(void) {

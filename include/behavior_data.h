@@ -668,3 +668,4 @@ extern const BehaviorScript bhvEyebulb[];
 extern const BehaviorScript bhvAwning[];
 extern const BehaviorScript bhvHiddenCannon[];
 extern const BehaviorScript bhvMistress[];
+extern const BehaviorScript bhvMistressRoomManager[];
