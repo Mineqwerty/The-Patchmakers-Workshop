@@ -25,6 +25,9 @@ void bhv_mistress_loop(void) {
     if (cCutsceneActive) {
         o->oAction = 1;
     }
+    else {
+        o->oAction = 0;
+    }
 }
 
 void bhv_mistress_room_manager_init(void) {

@@ -349,7 +349,22 @@ He might be able to help us with your affliction!\n\
 Or at least give us some information...\n\
 Mario, you have become the talk of the manor recently.\n\
 After all, you arrived in the same way that evil man did.\n\
-The one that did this to the poor Mistress..."))
+The one that did this to the poor Mistress...\n\
+We were hesitant to allow you to roam freely at first.\n\
+But after observing your actions, I don't believe you\n\
+are here to cause harm.\n\
+You have connections to that man though.\n\
+That, you cannot deny. You have met him before...\n\
+I can see it within your eyes... Which is why I ask this.\n\
+Please, Mario, find a way to reverse this curse! \n\
+Confront that man again if you must, I beg of you!\n\
+The Mistress lies with a clouded mind and soul, in agony!\n\
+The Master of the manor has not left his study since\n\
+the attack. But I have a feeling you should meet with\n\
+him soon... He has information about everything.\n\
+We will help you in any way we can. Here, take this as\n\
+proof of our trust and hope in you.\n\
+It was unable to help the Mistress anyways..."))
 
 DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
 Stop and press [Z] to\n\

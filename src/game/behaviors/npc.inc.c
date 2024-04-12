@@ -41,6 +41,15 @@ void bhv_generic_npc_loop(void) {
         if (cCutsceneActive && cExternalCutsceneTrigger == 1) {
             cur_obj_init_animation(0);
         }
+
+        if (cCutsceneActive && cExternalCutsceneTrigger == 3) {
+            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1000);
+        }
+        if (cCutsceneActive && cExternalCutsceneTrigger == 4) {
+            SET_BPARAM1(o->oBehParams, 4);
+            spawn_default_star(gMarioState->pos[0], gMarioState->pos[1] + 300, gMarioState->pos[2]);
+            cExternalCutsceneTrigger = 0;
+        }
     }
 }
 

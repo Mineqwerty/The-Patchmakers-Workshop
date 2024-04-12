@@ -981,6 +981,55 @@ s32 act_hold_walking(struct MarioState *m) {
     return FALSE;
 }
 
+Vec3f marioCutsceneGoalWalkPos;
+
+s32 act_move_in_cutscene(struct MarioState *m) {
+
+    
+
+    f32 intendedSpeed;
+    f32 dist;
+    vec3f_get_dist(gMarioState->pos, marioCutsceneGoalWalkPos, &dist);
+
+    if (dist < 300) {
+        intendedSpeed = 0;
+        if (m->actionState == 0 && gMarioState->forwardVel < 1.0f) {
+            set_mario_animation(m, MARIO_ANIM_STOP_SKID);
+            m->actionState++;
+        }
+        else if (m->actionState == 1 && is_anim_at_end(m)) {
+            set_mario_action(m, ACT_WAITING_FOR_DIALOG, 0);
+        }
+    }
+    else {
+        intendedSpeed = 24.0f;
+        anim_and_audio_for_walk(m);
+    }
+
+    m->forwardVel = approach_f32_symmetric(m->forwardVel, intendedSpeed, 1.0f);
+
+    m->faceAngle[1] = approach_s16_symmetric(m->faceAngle[1], atan2s(marioCutsceneGoalWalkPos[2] - m->pos[2], marioCutsceneGoalWalkPos[0] - m->pos[0]), 0x200);
+
+    
+
+    if (0.4f * m->intendedMag - m->forwardVel > 10.0f) {
+        m->particleFlags |= PARTICLE_DUST;
+    }
+
+    m->intendedMag = m->forwardVel;
+
+    
+
+    apply_slope_accel(m);
+
+    m->pos[0] += m->vel[0];
+    m->pos[2] += m->vel[2];
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+
+    return FALSE;
+}
+
 s32 act_hold_heavy_walking(struct MarioState *m) {
     if (m->input & INPUT_B_PRESSED) {
         return set_mario_action(m, ACT_HEAVY_THROW, 0);
@@ -2125,6 +2174,7 @@ s32 mario_execute_moving_action(struct MarioState *m) {
 
         case ACT_STONE_PATCH_AIR_LAND:           cancel = act_stone_patch_air_land(m);           break;
         case ACT_STONE_PATCH_GROUNDED:           cancel = act_stone_patch_grounded(m);           break;
+        case ACT_MOVE_IN_CUTSCENE:           cancel = act_move_in_cutscene(m);           break;
     }
     /* clang-format on */
 

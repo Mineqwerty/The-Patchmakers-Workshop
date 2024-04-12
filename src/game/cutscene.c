@@ -12,6 +12,7 @@
 #include "include/seq_ids.h"
 #include "src/game/fb_effects.h"
 #include "src/game/mario.h"
+#include "src/game/mario_actions_moving.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -74,6 +75,7 @@ enum cutscene_events {
     EVENT_SET_MARIO_ACTION,
     EVENT_SET_MARIO_ACTION_ARG,
     EVENT_SET_MARIO_EYE_STATE,
+    EVENT_MARIO_APPROACH_POINT,
 
     EVENT_SPAWN_OBJECT,
 
@@ -363,7 +365,18 @@ s32 event_mistress[] = {
     EVENT_CAMERA_POSITION, 800, 900, -682,
     EVENT_CAMERA_FOCUS, 233, 400, -1250,
     EVENT_DIALOG_USER_ADVANCE, 51,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION, 427, 700, -1316,
+    EVENT_CAMERA_FOCUS, -104, 422, 489,
+    EVENT_MARIO_APPROACH_POINT, 270, 422, -669,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CAMERA_POSITION, 104, 522, -489,
+    EVENT_CAMERA_FOCUS, 427, 550, -1316,
     EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_WAIT, 1,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_END_CUTSCENE
     
@@ -619,6 +632,13 @@ void event_handler(void) {
                 case EVENT_SET_MARIO_EYE_STATE:
                     cEyeStateOverride = param1;
                     cCutsceneIndex += 2;
+                break;
+                case EVENT_MARIO_APPROACH_POINT:
+                    marioCutsceneGoalWalkPos[0] = param1;
+                    marioCutsceneGoalWalkPos[1] = param2;
+                    marioCutsceneGoalWalkPos[2] = param3;
+                    set_mario_action(gMarioState, ACT_MOVE_IN_CUTSCENE, 0);
+                    cCutsceneIndex += 4;
                 break;
 
 
