@@ -1241,7 +1241,7 @@ void reonucam_collision_handler(struct Camera *c) {
         s16 yaw = atan2s(camToMario[2], camToMario[0]);
         vec3f_get_lateral_dist(hitpos,gMarioState->pos, &dist);
         #define REONUCAM_MIN_DISTANCE 300.0f
-        if (dist < REONUCAM_MIN_DISTANCE) {
+        if (dist < REONUCAM_MIN_DISTANCE && (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 4)) {
             distFromSurf += (dist - REONUCAM_MIN_DISTANCE);
             //yDist = REONUCAM_MIN_DISTANCE - CLAMP(dist, 0, REONUCAM_MIN_DISTANCE);
             
