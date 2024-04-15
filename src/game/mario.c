@@ -2095,9 +2095,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     gMarioState->patchTimer++;
 
     if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        gMarioState->pos[0] = 10480;
-        gMarioState->pos[1] = 9047;
-        gMarioState->pos[2] = -13223;
+        //gMarioState->pos[0] = 10480;
+        //gMarioState->pos[1] = 9047;
+        //gMarioState->pos[2] = -13223;
+        initiate_warp(LEVEL_BBH, 4, 0x0A, 0);
     }
 
     // TODO: put this in a geo asm for VTW 

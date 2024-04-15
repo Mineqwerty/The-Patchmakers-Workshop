@@ -43,8 +43,8 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FAR_PLANE_CUBE_HEAD, far_plane_cube_head_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, tfp_skybox_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_BUBBLES, tfp_skybox_bubbles_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_SQUARES, tfp_skybox_squares_geo),
-	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_WEB, tfp_skybox_web_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_SQUARES, tfp_skybox_squares_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TFP_SKYBOX_WEB, tfp_skybox_web_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PORTAL_BARRIER, portal_barrier_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_PUZZLE_BOX, puzzle_box_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_GROWING_BLOCK, tfp_growing_block_geo), 
@@ -57,14 +57,15 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_RING_MISSION_TARGET, ring_mission_target_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_RING_FRAGMENT, ring_fragment_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_CHECKER_PLATFORM, tfp_checker_platform_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo),
-	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR,           haunted_door_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR, haunted_door_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, bbh_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_BBH, 0x04, 0x0B, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
@@ -79,6 +80,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 1532, 841, -2907, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 2695, 841, -2216, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 2576, 841, -4055, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
+		OBJECT(MODEL_BBH_HAUNTED_DOOR, -13659, 1371, -1826, 0, -150, 0, (11 << 16), bhvDoorWarp),
 		OBJECT(MODEL_FAR_PLANE_CUBE_HEAD, 9782, 2793, -8812, 0, 0, 0, 0x00000000, bhvFarPlaneCubeHead),
 		OBJECT(MODEL_FLOATING_PLANE, 7404, 1551, -4742, 0, 0, 0, (63 << 24) | (12 << 16) | (114 << 8), bhvFloatingPlane),
 		OBJECT(MODEL_FLOATING_PLANE, 7014, 2097, 6344, 0, 0, 0, (63 << 24) | (12 << 16) | (114 << 8), bhvFloatingPlane),
@@ -203,6 +205,22 @@ const LevelScript level_bbh_entry[] = {
 		TERRAIN(bbh_area_3_collision),
 		MACRO_OBJECTS(bbh_area_3_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+
+	AREA(4, bbh_area_4),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_BBH, 0x01, 0x0B, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
+		OBJECT(MODEL_BBH_HAUNTED_DOOR, -1404, 1211, -370, 0, -90, 0, (11 << 16), bhvDoorWarp),
+		OBJECT(MODEL_NONE, -1074, 1211, -458, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		TERRAIN(bbh_area_4_collision),
+		MACRO_OBJECTS(bbh_area_4_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
