@@ -217,6 +217,7 @@ const LevelScript level_bbh_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
 		OBJECT(MODEL_BBH_HAUNTED_DOOR, -1404, 1211, -370, 0, -90, 0, (11 << 16), bhvDoorWarp),
+		OBJECT(MODEL_NONE, 2250, 1533, -5433, 0, 0, 0, 0x07500000, bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -1074, 1211, -458, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(bbh_area_4_collision),
 		MACRO_OBJECTS(bbh_area_4_macro_objs),
