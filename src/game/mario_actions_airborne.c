@@ -482,6 +482,11 @@ s32 act_jump(struct MarioState *m) {
     if (m->actionTimer < 1) {
         m->actionTimer++;
         if (m->input & INPUT_Z_PRESSED && m->forwardVel > 10.0f) {
+
+            //Reapply shadowchomp since it was just used.
+            if (m->patchTimer == 0 && m->equippedPatch == PATCH_SHADOWCHOMP) {
+                m->curPatch = PATCH_SHADOWCHOMP;
+            }
             return set_jumping_action(m, ACT_LONG_JUMP, 0);
         }
     }
@@ -937,9 +942,16 @@ s32 act_marine_patch_waterfall(struct MarioState *m) {
         mario_set_forward_vel(m, 15.0f);
     }
 
-    //play_mario_sound(m, SOUND_ACTION_WATER_JUMP, 0);
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_WHITE_PARTICLE, bhvQuickBubble);
+    spawn_object_relative(0, random_u16()%40 - 20, random_u16()%40 - 20, random_u16()%40 - 20, m->marioObj, MODEL_BUBBLE, bhvQuickBubble);
+
+    
+    if (gGlobalTimer % 3 == 0) {
+        play_sound(SOUND_ENV_WATERFALL1, gGlobalSoundSource);
+    }
+
     set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_MARINE_SPIN);
-    m->marioObj->header.gfx.angle[2] += 0x2000;
+    m->marioObj->header.gfx.angle[2] += 0x1700;
     //m->marioObj->header.gfx.angle[0] = -0x2000;
 
     m->forwardVel = 0;
