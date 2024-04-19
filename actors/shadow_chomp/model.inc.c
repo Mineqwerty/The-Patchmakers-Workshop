@@ -646,7 +646,7 @@ Gfx shadow_chomp_bottom_mesh_layer_5_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_bottom_skinned_mesh_layer_7_vtx_0[8] = {
+Vtx shadow_chomp_bottom_skinned_mesh_layer_7_vtx_0[13] = {
 	{{ {-8, 24, 64}, 0, {1829, 495}, {130, 1, 13, 214} }},
 	{{ {0, 26, 106}, 0, {68, 559}, {189, 0, 148, 214} }},
 	{{ {-8, 24, 64}, 0, {44, 495}, {130, 1, 13, 214} }},
@@ -655,50 +655,81 @@ Vtx shadow_chomp_bottom_skinned_mesh_layer_7_vtx_0[8] = {
 	{{ {-92, 8, -53}, 0, {1262, 209}, {110, 0, 63, 214} }},
 	{{ {-92, 8, 53}, 0, {1571, 356}, {110, 0, 193, 214} }},
 	{{ {-92, 8, 53}, 0, {-215, 356}, {110, 0, 193, 214} }},
+	{{ {-15, 24, 51}, 0, {1829, 495}, {126, 255, 241, 214} }},
+	{{ {-15, 24, 51}, 0, {44, 495}, {126, 255, 241, 214} }},
+	{{ {-7, 26, 86}, 0, {68, 559}, {124, 255, 230, 214} }},
+	{{ {-15, 24, -51}, 0, {956, 216}, {126, 255, 15, 214} }},
+	{{ {-7, 26, -86}, 0, {930, 280}, {124, 255, 26, 214} }},
 };
 
 Gfx shadow_chomp_bottom_skinned_mesh_layer_7_tri_0[] = {
-	gsSPVertex(shadow_chomp_bottom_skinned_mesh_layer_7_vtx_0 + 0, 8, 0),
+	gsSPVertex(shadow_chomp_bottom_skinned_mesh_layer_7_vtx_0 + 0, 13, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_bottom_mesh_layer_7_vtx_0[12] = {
+Vtx shadow_chomp_bottom_mesh_layer_7_vtx_0[24] = {
 	{{ {57, -6, 36}, 0, {1574, 1003}, {130, 244, 5, 214} }},
 	{{ {57, 12, 54}, 0, {1698, 867}, {130, 250, 12, 214} }},
 	{{ {57, 12, -54}, 0, {1059, 614}, {130, 250, 244, 214} }},
 	{{ {65, -8, -92}, 0, {1021, 631}, {191, 48, 98, 214} }},
+	{{ {57, 12, -54}, 0, {1059, 614}, {130, 250, 244, 214} }},
 	{{ {-15, -8, -46}, 0, {1264, 501}, {97, 58, 57, 214} }},
 	{{ {-15, -8, 46}, 0, {1507, 618}, {97, 58, 199, 214} }},
+	{{ {-15, -8, -46}, 0, {1264, 501}, {97, 58, 57, 214} }},
+	{{ {65, -8, -92}, 0, {1021, 631}, {191, 48, 98, 214} }},
 	{{ {105, 14, -69}, 0, {880, 693}, {196, 43, 103, 214} }},
+	{{ {51, 14, 44}, 0, {1698, 867}, {126, 6, 242, 214} }},
+	{{ {51, -3, 29}, 0, {1574, 1003}, {126, 12, 250, 214} }},
+	{{ {51, 14, -44}, 0, {1059, 614}, {126, 6, 14, 214} }},
+	{{ {51, 14, -44}, 0, {1059, 614}, {126, 6, 14, 214} }},
+	{{ {58, -5, -74}, 0, {1021, 631}, {125, 11, 22, 214} }},
 	{{ {57, 12, 54}, 0, {-87, 867}, {130, 250, 12, 214} }},
 	{{ {57, 12, 54}, 0, {-87, 867}, {130, 250, 12, 214} }},
 	{{ {65, -8, 92}, 0, {-43, 898}, {191, 48, 158, 214} }},
 	{{ {-15, -8, 46}, 0, {-279, 618}, {97, 58, 199, 214} }},
 	{{ {105, 14, 69}, 0, {144, 962}, {196, 43, 153, 214} }},
+	{{ {65, -8, 92}, 0, {-43, 898}, {191, 48, 158, 214} }},
+	{{ {51, 14, 44}, 0, {-87, 867}, {126, 6, 242, 214} }},
+	{{ {51, 14, 44}, 0, {-87, 867}, {126, 6, 242, 214} }},
+	{{ {58, -5, 74}, 0, {-43, 898}, {125, 11, 234, 214} }},
 };
 
 Gfx shadow_chomp_bottom_mesh_layer_7_tri_0[] = {
-	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 0, 8, 8),
-	gsSP1Triangle(8, 9, 0, 0),
-	gsSP1Triangle(8, 0, 10, 0),
-	gsSP1Triangle(0, 3, 10, 0),
-	gsSP1Triangle(3, 11, 10, 0),
-	gsSP1Triangle(3, 4, 11, 0),
-	gsSP1Triangle(4, 12, 11, 0),
-	gsSP1Triangle(4, 5, 12, 0),
-	gsSP1Triangle(5, 13, 12, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 0, 3, 13),
+	gsSP1Triangle(13, 14, 0, 0),
+	gsSP1Triangle(13, 0, 15, 0),
+	gsSP1Triangle(0, 3, 15, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 3, 3, 13),
+	gsSP1Triangle(3, 13, 14, 0),
+	gsSP1Triangle(3, 4, 13, 0),
+	gsSP1Triangle(4, 15, 13, 0),
+	gsSP1Triangle(4, 5, 15, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 6, 2, 13),
+	gsSP1Triangle(5, 13, 14, 0),
 	gsSP1Triangle(5, 6, 13, 0),
-	gsSP1Triangle(4, 11, 14, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 8, 2, 13),
+	gsSP1Triangle(4, 13, 14, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 10, 3, 13),
+	gsSP1Triangle(8, 13, 14, 0),
+	gsSP1Triangle(15, 8, 14, 0),
+	gsSP1Triangle(15, 11, 8, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 13, 3, 13),
+	gsSP1Triangle(11, 13, 14, 0),
+	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(15, 1, 2, 0),
-	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 8, 4, 8),
-	gsSP1Triangle(8, 9, 1, 0),
-	gsSP1Triangle(7, 1, 9, 0),
-	gsSP1Triangle(7, 9, 10, 0),
-	gsSP1Triangle(11, 9, 1, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 16, 3, 13),
+	gsSP1Triangle(13, 14, 1, 0),
+	gsSP1Triangle(7, 1, 14, 0),
+	gsSP1Triangle(7, 14, 15, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 19, 3, 13),
+	gsSP1Triangle(13, 14, 1, 0),
+	gsSP1Triangle(15, 9, 10, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_0 + 22, 2, 13),
+	gsSP1Triangle(13, 10, 14, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_bottom_mesh_layer_7_vtx_1[37] = {
+Vtx shadow_chomp_bottom_mesh_layer_7_vtx_1[47] = {
 	{{ {57, -6, 36}, 0, {-212, 1003}, {130, 244, 5, 214} }},
 	{{ {65, -8, 92}, 0, {-43, 898}, {191, 48, 158, 214} }},
 	{{ {57, 12, 54}, 0, {-87, 867}, {130, 250, 12, 214} }},
@@ -736,6 +767,16 @@ Vtx shadow_chomp_bottom_mesh_layer_7_vtx_1[37] = {
 	{{ {57, -6, -36}, 0, {1124, 801}, {130, 244, 251, 214} }},
 	{{ {65, -47, 53}, 0, {1565, 1089}, {201, 90, 186, 214} }},
 	{{ {57, -6, 36}, 0, {1574, 1003}, {130, 244, 5, 214} }},
+	{{ {51, -3, 29}, 0, {-212, 1003}, {126, 12, 250, 214} }},
+	{{ {58, -5, 74}, 0, {-43, 898}, {125, 11, 234, 214} }},
+	{{ {58, -42, 43}, 0, {-221, 1089}, {125, 20, 247, 214} }},
+	{{ {51, 14, 44}, 0, {-87, 867}, {126, 6, 242, 214} }},
+	{{ {51, 14, -44}, 0, {1059, 614}, {126, 6, 14, 214} }},
+	{{ {58, -42, -43}, 0, {1106, 882}, {125, 20, 9, 214} }},
+	{{ {58, -5, -74}, 0, {1021, 631}, {125, 11, 22, 214} }},
+	{{ {51, -3, -29}, 0, {1124, 801}, {126, 12, 6, 214} }},
+	{{ {51, -3, 29}, 0, {1574, 1003}, {126, 12, 250, 214} }},
+	{{ {58, -42, 43}, 0, {1565, 1089}, {125, 20, 247, 214} }},
 };
 
 Gfx shadow_chomp_bottom_mesh_layer_7_tri_1[] = {
@@ -769,11 +810,18 @@ Gfx shadow_chomp_bottom_mesh_layer_7_tri_1[] = {
 	gsSP1Triangle(13, 9, 12, 0),
 	gsSP1Triangle(13, 14, 9, 0),
 	gsSP1Triangle(15, 0, 2, 0),
-	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_1 + 32, 5, 0),
+	gsSPVertex(shadow_chomp_bottom_mesh_layer_7_vtx_1 + 32, 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(2, 3, 4, 0),
 	gsSP1Triangle(0, 2, 4, 0),
+	gsSP1Triangle(5, 6, 7, 0),
+	gsSP1Triangle(5, 8, 6, 0),
+	gsSP1Triangle(9, 10, 11, 0),
+	gsSP1Triangle(9, 12, 10, 0),
+	gsSP1Triangle(13, 12, 9, 0),
+	gsSP1Triangle(12, 13, 14, 0),
+	gsSP1Triangle(12, 14, 10, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -891,7 +939,7 @@ Gfx shadow_chomp_top_mesh_layer_5_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_top_skinned_mesh_layer_7_vtx_0[7] = {
+Vtx shadow_chomp_top_skinned_mesh_layer_7_vtx_0[11] = {
 	{{ {-8, 24, -64}, 0, {956, 216}, {130, 1, 243, 214} }},
 	{{ {-8, 24, 64}, 0, {44, 495}, {130, 1, 13, 214} }},
 	{{ {0, 26, -106}, 0, {930, 280}, {189, 0, 108, 214} }},
@@ -899,41 +947,63 @@ Vtx shadow_chomp_top_skinned_mesh_layer_7_vtx_0[7] = {
 	{{ {-92, 8, 53}, 0, {1571, 356}, {110, 0, 193, 214} }},
 	{{ {0, 26, 106}, 0, {68, 559}, {189, 0, 148, 214} }},
 	{{ {-92, 8, 53}, 0, {-215, 356}, {110, 0, 193, 214} }},
+	{{ {-15, 24, 51}, 0, {44, 495}, {126, 255, 241, 214} }},
+	{{ {-15, 24, -51}, 0, {956, 216}, {126, 255, 15, 214} }},
+	{{ {-7, 26, -86}, 0, {930, 280}, {124, 255, 26, 214} }},
+	{{ {-7, 26, 86}, 0, {68, 559}, {124, 255, 230, 214} }},
 };
 
 Gfx shadow_chomp_top_skinned_mesh_layer_7_tri_0[] = {
-	gsSPVertex(shadow_chomp_top_skinned_mesh_layer_7_vtx_0 + 0, 7, 0),
+	gsSPVertex(shadow_chomp_top_skinned_mesh_layer_7_vtx_0 + 0, 11, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_top_mesh_layer_7_vtx_0[7] = {
+Vtx shadow_chomp_top_mesh_layer_7_vtx_0[15] = {
 	{{ {-15, 24, 46}, 0, {-132, 99}, {98, 196, 203, 214} }},
 	{{ {65, 35, 92}, 0, {125, 334}, {191, 197, 164, 214} }},
 	{{ {57, 10, 57}, 0, {90, 314}, {130, 8, 11, 214} }},
 	{{ {57, 10, -57}, 0, {895, 38}, {130, 8, 245, 214} }},
 	{{ {65, 35, -92}, 0, {849, 66}, {191, 197, 92, 214} }},
+	{{ {65, 35, -92}, 0, {849, 66}, {191, 197, 92, 214} }},
 	{{ {-15, 24, -46}, 0, {1260, -85}, {98, 196, 53, 214} }},
 	{{ {-15, 24, 46}, 0, {1654, 99}, {98, 196, 203, 214} }},
+	{{ {58, 33, 74}, 0, {125, 334}, {125, 243, 236, 214} }},
+	{{ {51, 8, 46}, 0, {90, 314}, {126, 249, 243, 214} }},
+	{{ {51, 23, 28}, 0, {144, 108}, {126, 244, 249, 214} }},
+	{{ {51, 8, 46}, 0, {90, 314}, {126, 249, 243, 214} }},
+	{{ {51, 23, -28}, 0, {773, -145}, {126, 244, 7, 214} }},
+	{{ {51, 8, -46}, 0, {895, 38}, {126, 249, 13, 214} }},
+	{{ {58, 33, -74}, 0, {849, 66}, {125, 243, 20, 214} }},
 };
 
 Gfx shadow_chomp_top_mesh_layer_7_tri_0[] = {
-	gsSPVertex(shadow_chomp_top_mesh_layer_7_vtx_0 + 0, 7, 7),
-	gsSP1Triangle(7, 5, 6, 0),
-	gsSP1Triangle(7, 8, 5, 0),
-	gsSP1Triangle(1, 5, 8, 0),
-	gsSP1Triangle(1, 8, 9, 0),
-	gsSP1Triangle(0, 1, 9, 0),
-	gsSP1Triangle(10, 0, 9, 0),
-	gsSP1Triangle(10, 2, 0, 0),
-	gsSP1Triangle(10, 11, 2, 0),
-	gsSP1Triangle(11, 3, 2, 0),
+	gsSPVertex(shadow_chomp_top_mesh_layer_7_vtx_0 + 0, 5, 11),
+	gsSP1Triangle(11, 5, 6, 0),
+	gsSP1Triangle(11, 12, 5, 0),
+	gsSP1Triangle(1, 5, 12, 0),
+	gsSP1Triangle(1, 12, 13, 0),
+	gsSP1Triangle(0, 1, 13, 0),
+	gsSP1Triangle(14, 0, 13, 0),
+	gsSP1Triangle(14, 2, 0, 0),
+	gsSP1Triangle(14, 15, 2, 0),
+	gsSP1Triangle(15, 3, 2, 0),
+	gsSPVertex(shadow_chomp_top_mesh_layer_7_vtx_0 + 5, 5, 11),
 	gsSP1Triangle(11, 12, 3, 0),
 	gsSP1Triangle(12, 4, 3, 0),
 	gsSP1Triangle(12, 13, 4, 0),
+	gsSP1Triangle(7, 14, 10, 0),
+	gsSP1Triangle(7, 15, 14, 0),
+	gsSP1Triangle(15, 7, 8, 0),
+	gsSPVertex(shadow_chomp_top_mesh_layer_7_vtx_0 + 10, 5, 11),
+	gsSP1Triangle(11, 12, 8, 0),
+	gsSP1Triangle(8, 13, 11, 0),
+	gsSP1Triangle(8, 14, 13, 0),
+	gsSP1Triangle(14, 8, 9, 0),
+	gsSP1Triangle(14, 9, 15, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx shadow_chomp_top_mesh_layer_7_vtx_1[32] = {
+Vtx shadow_chomp_top_mesh_layer_7_vtx_1[42] = {
 	{{ {65, 35, 92}, 0, {125, 334}, {191, 197, 164, 214} }},
 	{{ {144, 9, 46}, 0, {365, 590}, {156, 197, 205, 214} }},
 	{{ {111, -38, 79}, 0, {191, 766}, {188, 231, 152, 214} }},
@@ -966,6 +1036,16 @@ Vtx shadow_chomp_top_mesh_layer_7_vtx_1[32] = {
 	{{ {65, 63, -53}, 0, {693, -104}, {192, 163, 59, 214} }},
 	{{ {57, 25, -35}, 0, {773, -145}, {130, 11, 251, 214} }},
 	{{ {57, 10, -57}, 0, {895, 38}, {130, 8, 245, 214} }},
+	{{ {51, 8, 46}, 0, {90, 314}, {126, 249, 243, 214} }},
+	{{ {58, 59, 43}, 0, {197, 115}, {125, 235, 245, 214} }},
+	{{ {58, 33, 74}, 0, {125, 334}, {125, 243, 236, 214} }},
+	{{ {51, 23, 28}, 0, {144, 108}, {126, 244, 249, 214} }},
+	{{ {58, 72, 0}, 0, {370, -100}, {125, 234, 0, 214} }},
+	{{ {51, 32, 0}, 0, {322, -165}, {126, 243, 0, 214} }},
+	{{ {51, 23, -28}, 0, {773, -145}, {126, 244, 7, 214} }},
+	{{ {58, 59, -43}, 0, {693, -104}, {125, 235, 11, 214} }},
+	{{ {58, 33, -74}, 0, {849, 66}, {125, 243, 20, 214} }},
+	{{ {51, 8, -46}, 0, {895, 38}, {126, 249, 13, 214} }},
 };
 
 Gfx shadow_chomp_top_mesh_layer_7_tri_1[] = {
@@ -1003,6 +1083,16 @@ Gfx shadow_chomp_top_mesh_layer_7_tri_1[] = {
 	gsSP1Triangle(12, 14, 15, 0),
 	gsSP1Triangle(8, 12, 15, 0),
 	gsSP1Triangle(8, 10, 12, 0),
+	gsSPVertex(shadow_chomp_top_mesh_layer_7_vtx_1 + 32, 10, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 3, 1, 0),
+	gsSP1Triangle(3, 4, 1, 0),
+	gsSP1Triangle(3, 5, 4, 0),
+	gsSP1Triangle(6, 5, 3, 0),
+	gsSP1Triangle(5, 6, 7, 0),
+	gsSP1Triangle(6, 8, 7, 0),
+	gsSP1Triangle(6, 9, 8, 0),
+	gsSP1Triangle(5, 7, 4, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -1088,6 +1178,13 @@ Gfx shadow_chomp_top_mesh_layer_5[] = {
 	gsSPDisplayList(shadow_chomp_top_mesh_layer_5_tri_0),
 	gsSPDisplayList(shadow_chomp_top_mesh_layer_5_tri_1),
 	gsSPDisplayList(mat_revert_shadow_chomp_shadowchomp_layer5),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -1101,10 +1198,6 @@ Gfx shadow_chomp_top_mesh_layer_7[] = {
 	gsSPDisplayList(mat_shadow_chomp_f3dlite_material_002),
 	gsSPDisplayList(shadow_chomp_top_mesh_layer_7_tri_0),
 	gsSPDisplayList(shadow_chomp_top_mesh_layer_7_tri_1),
-	gsSPEndDisplayList(),
-};
-
-Gfx shadow_chomp_material_revert_render_settings[] = {
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
