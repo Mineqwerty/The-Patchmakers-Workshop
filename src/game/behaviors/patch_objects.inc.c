@@ -1009,6 +1009,16 @@ void bhv_shadow_chomp_head_loop(void) {
                     obj_mark_for_deletion(o->oShadowChompTarget);
                     cur_obj_play_sound_1(SOUND_SHADOWCHOMP_CHOMP);
                     o->oShadowChompTarget = NULL;
+
+                    for (int i = 0; i < 10; i++) {
+                        struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
+                            o, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                        
+                        SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                        shadowSmoke->oVelY = ((random_u16() % 8));
+                        shadowSmoke->oMoveAngleYaw = random_u16();
+                        shadowSmoke->oForwardVel = (random_u16() % 8) + 5.0f;
+                    }
                 }
 
                 if (o->oTimer >= 30) {
@@ -1110,7 +1120,7 @@ void bhv_shadow_chomp_tail_init(void) {
 
 void bhv_shadow_chomp_tail_loop(void) {
 
-    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP) {
+    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP || gMarioState->action ==  ACT_FALL_AFTER_STAR_GRAB) {
         obj_mark_for_deletion(o);
     }
 

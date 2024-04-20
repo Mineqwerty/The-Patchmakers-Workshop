@@ -944,18 +944,20 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
     if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
         m->vel[1] *= 2;
         m->curPatch = 0;
+        m->patchTimer = 0;
         if (m->patchChildObj && obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
             m->patchChildObj->oAction = 2;
         }
+        play_sound(SOUND_OBJ_PIRANHA_PLANT_APPEAR, m->pos);
         //freeze_game_frames(m->vel[1] / 12.0f);
         for (int i = 0; i < 10; i++) {
                 struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
                     m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
                 
                 SET_BPARAM1(shadowSmoke->oBehParams, 2);
-                shadowSmoke->oVelY = ((random_u16() % 3) + 10);
-                shadowSmoke->oMoveAngleYaw = random_u16();
-                shadowSmoke->oForwardVel = (random_u16() % 4) + 5.5f;
+                shadowSmoke->oVelY = ((random_u16() % 8) - 3 + gMarioState->vel[1]);
+                shadowSmoke->oMoveAngleYaw = gMarioState->faceAngle[1] + (random_u16() % 200 - 100);
+                shadowSmoke->oForwardVel = (random_u16() % 8) - 3 + gMarioState->forwardVel;
             }
     }
 

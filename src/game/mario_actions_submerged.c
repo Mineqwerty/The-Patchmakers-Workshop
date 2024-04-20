@@ -18,6 +18,7 @@
 #include "behavior_data.h"
 #include "level_table.h"
 #include "rumble_init.h"
+#include "src/game/game_init.h"
 
 #define MIN_SWIM_STRENGTH 160
 #define MIN_SWIM_SPEED 16.0f
@@ -955,6 +956,10 @@ static s32 act_marine_patch_spin(struct MarioState *m) {
     update_swimming_speed(m, MIN_SWIM_SPEED);
     perform_water_step(m);
     update_water_pitch(m);
+
+    if (gGlobalTimer % 3 == 0) {
+        cur_obj_play_sound_1(m->marioObj, SOUND_ACTION_SWIM);
+    }
 
     m->marioObj->header.gfx.angle[2] += 0x2000 * m->actionTimer;
     m->actionTimer++;
