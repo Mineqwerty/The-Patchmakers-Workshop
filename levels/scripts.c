@@ -132,6 +132,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_PORTAL,            portal_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_HEAD,            shadow_chomp_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_TAIL,            shadow_chomp_tail_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_TRANSMUTATION_CONE,            transmutation_cone_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

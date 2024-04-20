@@ -18,7 +18,11 @@ ALIGNED8 const u8 patch_textures_dma[] = {
     ,
     #include "actors/amp/shadowchomp_patch.rgba16.inc.c"
     ,
+    #include "actors/amp/transmutation_patch.rgba16.inc.c"
+    ,
     #include "actors/amp/portal_patch.rgba16.inc.c"
+    
+
 
 };
 
@@ -40,6 +44,7 @@ ALIGNED8 static const Texture texture_menu_marine_patch[] = {
 ALIGNED8 static const Texture texture_menu_portal_patch[] = {
 #include "actors/amp/portal_patch.rgba16.inc.c"
 };
+
 
 // 0x030293E0
 const Texture *const patch_textures_lut[] = {

@@ -689,6 +689,7 @@
 #define MODEL_GROUND_PATCH           0x19C
 #define MODEL_SHADOW_CHOMP_HEAD           0x19D
 #define MODEL_SHADOW_CHOMP_TAIL           0x19E
+#define MODEL_TRANSMUTATION_CONE           0x19F
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

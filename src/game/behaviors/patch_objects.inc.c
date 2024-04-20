@@ -1207,3 +1207,19 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
     }
     return NULL;
 }
+
+void bhv_transmutation_cone_init(void) {
+    o->oOpacity = 255;
+}
+
+void bhv_transmutation_cone_loop(void) {
+    o->oOpacity -= 20;
+    if (o->oOpacity <= 25) {
+        
+        if (gMarioState->patchChildObj == o) {
+            gMarioState->patchChildObj = NULL;
+        }
+        obj_mark_for_deletion(o);
+    }
+}
+

@@ -20,6 +20,7 @@ enum patchNames {
     PATCH_HALO,
     PATCH_MARINE,
     PATCH_SHADOWCHOMP,
+    PATCH_TRANSMUTATION,
     PATCH_PORTAL,
     PATCH_8
 };

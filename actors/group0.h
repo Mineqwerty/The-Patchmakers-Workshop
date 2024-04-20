@@ -409,4 +409,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 
 #include "shadow_chomp/anim_header.h"
+#include "menu_patch_transmutation/header.h"
+
+#include "transmutation_cone/geo_header.h"
+
 #endif

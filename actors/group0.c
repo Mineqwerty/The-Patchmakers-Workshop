@@ -71,3 +71,5 @@
 #include "shadow_chomp_tail/model.inc.c"
 #include "shadow_chomp/anims/data.inc.c"
 #include "shadow_chomp/anims/table.inc.c"
+#include "menu_patch_transmutation/model.inc.c"
+#include "transmutation_cone/model.inc.c"

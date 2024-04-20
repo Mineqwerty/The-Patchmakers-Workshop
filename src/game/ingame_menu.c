@@ -2643,6 +2643,9 @@ void render_patch_selection() {
     if (patchFlags & (1 << PATCH_SHADOWCHOMP)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_shadowchomp_patch_stone_002_mesh);
     }
+    if (patchFlags & (1 << PATCH_TRANSMUTATION)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_transmutation_patch_transmutation_mesh);
+    }
     if (patchFlags & (1 << PATCH_PORTAL)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
     }

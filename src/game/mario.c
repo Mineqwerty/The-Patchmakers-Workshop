@@ -1905,6 +1905,15 @@ void perform_patch_action(struct MarioState *m) {
         break;
         //halo is handled in its own object
 
+        case PATCH_TRANSMUTATION:
+            if (!m->patchChildObj && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
+                m->curPatch = PATCH_TRANSMUTATION;
+                //m->grappleCooldownTimer = 40;
+                m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_TRANSMUTATION_CONE, bhvTransmutationCone);
+            }
+        break;
+
         case PATCH_PORTAL:
             m->curPatch = PATCH_PORTAL;
             m->patchTimer = 0;
