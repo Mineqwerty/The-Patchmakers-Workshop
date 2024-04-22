@@ -47,4 +47,14 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/awning/collision_header.h"
 
+#include "levels/ddd/transmutation_table/collision_header.h"
+
+#include "levels/ddd/regular_table/geo_header.h"
+
+#include "levels/ddd/mushroom_table/geo_header.h"
+
+#include "levels/ddd/red_flower/geo_header.h"
+
+#include "levels/ddd/red_flower/collision_header.h"
+
 #endif

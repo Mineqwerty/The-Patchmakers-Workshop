@@ -661,6 +661,9 @@
 
 //Hidden Village Hold
 #define MODEL_AWNING                   0x100
+#define MODEL_REGULAR_TABLE                   0x101
+#define MODEL_MUSHROOM_TABLE                   0x102
+#define MODEL_RED_FLOWER                   0x103
 
 
 //Workshop Recesses
@@ -671,8 +674,10 @@
 
 #define MODEL_PATCHMAKER                   0x130
 
+//Global
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181
+#define MODEL_TRANSMUTATION_STAR                    0x182
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

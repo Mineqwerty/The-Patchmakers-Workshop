@@ -22,3 +22,6 @@
 #include "levels/ddd/geo.inc.c"
 
 #include "levels/ddd/awning/geo.inc.c"
+#include "levels/ddd/regular_table/geo.inc.c"
+#include "levels/ddd/mushroom_table/geo.inc.c"
+#include "levels/ddd/red_flower/geo.inc.c"

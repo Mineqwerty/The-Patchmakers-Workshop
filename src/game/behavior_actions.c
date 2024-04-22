@@ -296,3 +296,6 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/awning.inc.c"
 #include "behaviors/hidden_cannon.inc.c"
 #include "behaviors/mistress.inc.c"
+#include "behaviors/transmutation_table.inc.c"
+#include "behaviors/transmutation_star.inc.c"
+#include "behaviors/red_flower.inc.c"

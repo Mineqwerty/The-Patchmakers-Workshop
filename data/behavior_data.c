@@ -7470,3 +7470,45 @@ const BehaviorScript bhvTransmutationCone[] = {
         CALL_NATIVE(bhv_transmutation_cone_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvTransmutationTable[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(transmutation_table_collision),
+    BEGIN_LOOP(),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMushroomTable[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(transmutation_table_collision),
+    CALL_NATIVE(bhv_transmutation_table_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_transmutation_table_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTransmutationStar[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(transmutation_star_collision),
+    CALL_NATIVE(bhv_transmutation_star_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_transmutation_star_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRedFlower[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(red_flower_collision),
+    CALL_NATIVE(bhv_red_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_red_flower_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

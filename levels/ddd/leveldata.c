@@ -39,3 +39,8 @@
 
 #include "levels/ddd/awning/model.inc.c"
 #include "levels/ddd/awning/collision.inc.c"
+#include "levels/ddd/transmutation_table/collision.inc.c"
+#include "levels/ddd/regular_table/model.inc.c"
+#include "levels/ddd/mushroom_table/model.inc.c"
+#include "levels/ddd/red_flower/model.inc.c"
+#include "levels/ddd/red_flower/collision.inc.c"

@@ -34,3 +34,4 @@
 #include "shadow_chomp/geo.inc.c"
 #include "shadow_chomp_tail/geo.inc.c"
 #include "transmutation_cone/geo.inc.c"
+#include "transmutation_star/geo.inc.c"

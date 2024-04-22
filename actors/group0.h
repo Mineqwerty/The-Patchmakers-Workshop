@@ -413,4 +413,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "transmutation_cone/geo_header.h"
 
+#include "transmutation_star/collision_header.h"
+
+#include "transmutation_star/geo_header.h"
+
 #endif

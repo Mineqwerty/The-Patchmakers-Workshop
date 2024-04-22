@@ -841,6 +841,9 @@ u8 object_behavior_is_transmutable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvSwampSkeeter)
         || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
         || obj->behavior == segmented_to_virtual(bhvBreakableBoxSmall)
+        || obj->behavior == segmented_to_virtual(bhvTransmutationTable)
+        || obj->behavior == segmented_to_virtual(bhvTransmutationStar)
+        || obj->behavior == segmented_to_virtual(bhvRedFlower)
     );
 }
 

@@ -672,3 +672,7 @@ extern const BehaviorScript bhvMistressRoomManager[];
 extern const BehaviorScript bhvTransmutationCone[];
 extern const BehaviorScript bhvMetalBoxSmall[];
 extern const BehaviorScript bhvRegularBreakableBox[];
+extern const BehaviorScript bhvTransmutationTable[];
+extern const BehaviorScript bhvMushroomTable[];
+extern const BehaviorScript bhvTransmutationStar[];
+extern const BehaviorScript bhvRedFlower[];

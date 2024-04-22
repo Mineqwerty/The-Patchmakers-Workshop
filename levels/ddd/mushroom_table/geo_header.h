@@ -1,0 +1,15 @@
+extern const GeoLayout mushroom_table_geo[];
+extern u8 mushroom_table_sewniaarmfelt_ci4[];
+extern u8 mushroom_table_sewniaarmfelt_pal_rgba16[];
+extern u8 mushroom_table_toad_head_rgba16_ci8[];
+extern u8 mushroom_table_toad_head_rgba16_pal_rgba16[];
+extern Vtx mushroom_table_Circle_004_mesh_layer_1_vtx_0[34];
+extern Gfx mushroom_table_Circle_004_mesh_layer_1_tri_0[];
+extern Vtx mushroom_table_Circle_004_mesh_layer_1_vtx_1[78];
+extern Gfx mushroom_table_Circle_004_mesh_layer_1_tri_1[];
+extern Gfx mat_mushroom_table_f3dlite_material_022[];
+extern Gfx mat_revert_mushroom_table_f3dlite_material_022[];
+extern Gfx mat_mushroom_table_f3dlite_material_021[];
+extern Gfx mat_revert_mushroom_table_f3dlite_material_021[];
+extern Gfx mushroom_table_Circle_004_mesh_layer_1[];
+extern Gfx mushroom_table_material_revert_render_settings[];

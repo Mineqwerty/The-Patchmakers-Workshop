@@ -73,3 +73,5 @@
 #include "shadow_chomp/anims/table.inc.c"
 #include "menu_patch_transmutation/model.inc.c"
 #include "transmutation_cone/model.inc.c"
+#include "transmutation_star/collision.inc.c"
+#include "transmutation_star/model.inc.c"

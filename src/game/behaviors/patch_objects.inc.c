@@ -1264,6 +1264,18 @@ void bhv_transmutation_cone_loop(void) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_BREAKABLE_BOX_SMALL, bhvRegularBreakableBox);
                         obj_mark_for_deletion(target);
                     }
+                    else if (obj_has_behavior(target, bhvTransmutationTable)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_MUSHROOM_TABLE, bhvMushroomTable);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvTransmutationStar)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_STAR, bhvStar);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvRedFlower)) {
+                        spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
+                        obj_mark_for_deletion(target);
+                    }
 
                     play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
                 }
