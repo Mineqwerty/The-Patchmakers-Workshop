@@ -92,6 +92,20 @@ void hidden_unbreakable_box_actions(void) {
     }
 }
 
+void bhv_regular_breakable_box_loop(void) {
+    obj_set_hitbox(o, &sBreakableBoxHitbox);
+    //cur_obj_set_model(MODEL_BREAKABLE_BOX);
+    load_object_collision_model();
+    if (cur_obj_was_attacked_or_ground_pounded()) {
+                spawn_mist_particles();
+                spawn_triangle_break_particles(30, MODEL_DIRT_ANIMATION, 3.0f, TINY_DIRT_PARTICLE_ANIM_STATE_YELLOW);
+                o->oAction = BREAKABLE_BOX_ACT_BROKEN;
+                cur_obj_play_sound_2(SOUND_GENERAL_BREAK_BOX);
+                obj_mark_for_deletion(o);
+                
+            }
+}
+
 void bhv_hidden_object_loop(void) {
     if (o->oBehParams2ndByte == BREAKABLE_BOX_BP_NO_COINS) {
         hidden_breakable_box_actions();

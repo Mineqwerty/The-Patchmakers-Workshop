@@ -834,6 +834,62 @@ struct Object *obj_find_nearest_object_with_behavior(struct Object *sourceObj, c
     return closestObj;
 }
 
+u8 object_behavior_is_transmutable(struct Object *obj) {
+    return (obj->behavior == segmented_to_virtual(bhvGoomba)
+        || obj->behavior == segmented_to_virtual(bhvPodogoo)
+        || obj->behavior == segmented_to_virtual(bhvPushableMetalBox)
+        || obj->behavior == segmented_to_virtual(bhvSwampSkeeter)
+        || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
+        || obj->behavior == segmented_to_virtual(bhvBreakableBoxSmall)
+    );
+}
+
+struct Object *obj_find_transmute_target(struct Object *sourceObj) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = {
+        OBJ_LIST_DESTRUCTIVE,
+        OBJ_LIST_GENACTOR,
+        OBJ_LIST_PUSHABLE,
+        OBJ_LIST_LEVEL,
+        OBJ_LIST_DEFAULT,
+        OBJ_LIST_SURFACE
+    };
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+            
+            if (object_behavior_is_transmutable(obj)
+                && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj
+            ) {
+                Vec3f pointA;
+                Vec3f pointB;
+                Vec3f pointC;
+                Vec3f pointD;
+                s16 laserLength = 600.0f;
+
+                vec3f_set(pointA, sourceObj->oPosX - (50 * sins(sourceObj->oFaceAngleYaw)), sourceObj->oPosY, sourceObj->oPosZ - (50 * coss(sourceObj->oFaceAngleYaw)));
+
+                vec3f_set(pointB, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw - 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw - 0x1000));
+                vec3f_set(pointC, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw + 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw + 0x1000));
+
+
+                if (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) && absf(obj->oPosY - sourceObj->oPosY - 100) < 300) {
+                    return obj;
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
 u8 object_behavior_is_chompable(struct Object *obj) {
     return (obj->behavior == segmented_to_virtual(bhvGoomba)
         || obj->behavior == segmented_to_virtual(bhvPodogoo)

@@ -1219,17 +1219,55 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
 }
 
 void bhv_transmutation_cone_init(void) {
-    o->oOpacity = 255;
+    o->oOpacity = 5;
+    play_sound(SOUND_TRANSMUTATION_SWISH, o->header.gfx.cameraToObject);
 }
 
 void bhv_transmutation_cone_loop(void) {
-    o->oOpacity -= 20;
-    if (o->oOpacity <= 25) {
-        
-        if (gMarioState->patchChildObj == o) {
-            gMarioState->patchChildObj = NULL;
-        }
-        obj_mark_for_deletion(o);
+
+    switch (o->oAction) {
+        case 0:
+            o->oOpacity += 50.0f;
+            cur_obj_scale((f32)(o->oTimer + 1) / 5.0f);
+            if (o->oTimer == 4) {
+                o->oAction = 1;
+            }
+        break;
+        case 1:
+            cur_obj_scale(1.0f);
+            o->oOpacity -= 15;
+            if (o->oOpacity <= 25) {
+                
+                if (gMarioState->patchChildObj == o) {
+                    gMarioState->patchChildObj = NULL;
+                }
+                obj_mark_for_deletion(o);
+            }
+
+            if (o->oTimer < 5) {
+                struct Object *target = obj_find_transmute_target(o);
+
+                if (target) {
+                    if (obj_has_behavior(target, bhvPodogoo)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BLUE_COIN, bhvMrIBlueCoin);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvPushableMetalBox)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_METAL_BOX, bhvMetalBoxSmall);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvBreakableBoxSmall)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BREAKABLE_BOX_SMALL, bhvRegularBreakableBox);
+                        obj_mark_for_deletion(target);
+                    }
+
+                    play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
+                }
+            }
+
+            
+        break;
     }
+    
 }
 

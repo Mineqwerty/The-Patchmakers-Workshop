@@ -1909,7 +1909,6 @@ void perform_patch_action(struct MarioState *m) {
 
         case PATCH_TRANSMUTATION:
             if (!m->patchChildObj && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
-                play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
                 m->curPatch = PATCH_TRANSMUTATION;
                 //m->grappleCooldownTimer = 40;
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_TRANSMUTATION_CONE, bhvTransmutationCone);
@@ -2370,6 +2369,9 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 8));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 9));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 10));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 11));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 12));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 13));
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];

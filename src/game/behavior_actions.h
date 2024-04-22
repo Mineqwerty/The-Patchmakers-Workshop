@@ -855,3 +855,4 @@ void bhv_mistress_room_manager_init(void);
 void bhv_mistress_room_manager_loop(void);
 void bhv_transmutation_cone_init(void);
 void bhv_transmutation_cone_loop(void);
+void bhv_regular_breakable_box_loop(void);

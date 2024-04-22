@@ -7946,6 +7946,8 @@ sound_ref .sound_portal_in
 sound_ref .sound_portal_out
 sound_ref .sound_shadowchomp_approach
 sound_ref .sound_shadowchomp_chomp
+sound_ref .sound_transmutation_cone
+sound_ref .sound_transmutation_swish
 
 .sound_stone_patch_break:
 chan_setbank 11
@@ -8022,6 +8024,18 @@ chan_end
 .sound_shadowchomp_chomp:
 chan_setbank 11
 chan_setinstr 12
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_transmutation_cone:
+chan_setbank 11
+chan_setinstr 13
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_transmutation_swish:
+chan_setbank 11
+chan_setinstr 14
 chan_setlayer 0, .layer_AAAA
 chan_end
 
