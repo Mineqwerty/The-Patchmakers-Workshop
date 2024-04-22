@@ -635,6 +635,8 @@ void bhv_halo_loop(void) {
                     gMarioState->haloCaptureType = 2;
                 }
                 o->oHaloCapturedObject->oHaloCoinValue += 1;
+                cur_obj_play_sound_1(SOUND_GENERAL_COIN_DROP);
+                spawn_object(nearCoin, MODEL_SPARKLES, bhvCoinSparklesSpawner);
                 if (nearCoin->parentObj)
                     nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
                 obj_mark_for_deletion(nearCoin);
@@ -643,6 +645,8 @@ void bhv_halo_loop(void) {
                     spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
                 gMarioState->haloCaptureType = 2;
                 o->oHaloCapturedObject->oHaloCoinValue += 1;
+                spawn_object(nearCoin, MODEL_SPARKLES, bhvCoinSparklesSpawner);
+                cur_obj_play_sound_1(SOUND_GENERAL_COIN_DROP);
                 if (nearCoin->parentObj)
                     nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
                 obj_mark_for_deletion(nearCoin);

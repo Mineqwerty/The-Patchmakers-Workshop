@@ -1,0 +1,12 @@
+void scroll_gfx_mat_ddd_dl_cavewater_001_layer6_area1() {
+	Gfx *mat = segmented_to_virtual(mat_ddd_dl_cavewater_001_layer6_area1);
+
+
+	shift_t(mat, 13, PACK_TILESIZE(0, 1));
+	shift_s(mat, 18, PACK_TILESIZE(0, 1));
+
+};
+
+void scroll_ddd() {
+	scroll_gfx_mat_ddd_dl_cavewater_001_layer6_area1();
+};

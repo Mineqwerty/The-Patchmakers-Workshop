@@ -5,6 +5,7 @@ const GeoLayout ddd_area_1_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ddd_dl_nocol_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ddd_dl_Plane_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, ddd_dl_Plane_mesh_layer_6),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, ddd_dl_Plane_001_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ddd_dl_Plane_001_mesh_layer_1),
 	GEO_CLOSE_NODE(),
