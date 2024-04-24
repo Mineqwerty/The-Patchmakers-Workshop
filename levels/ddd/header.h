@@ -57,4 +57,6 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/red_flower/collision_header.h"
 
+#include "levels/ddd/hvh_skybox/geo_header.h"
+
 #endif

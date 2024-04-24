@@ -44,3 +44,4 @@
 #include "levels/ddd/mushroom_table/model.inc.c"
 #include "levels/ddd/red_flower/model.inc.c"
 #include "levels/ddd/red_flower/collision.inc.c"
+#include "levels/ddd/hvh_skybox/model.inc.c"
