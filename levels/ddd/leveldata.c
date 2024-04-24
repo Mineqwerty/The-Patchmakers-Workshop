@@ -45,3 +45,7 @@
 #include "levels/ddd/red_flower/model.inc.c"
 #include "levels/ddd/red_flower/collision.inc.c"
 #include "levels/ddd/hvh_skybox/model.inc.c"
+#include "levels/ddd/windmill_fan/model.inc.c"
+#include "levels/ddd/windmill_fan/collision.inc.c"
+#include "levels/ddd/windmill_platform/model.inc.c"
+#include "levels/ddd/windmill_platform/collision.inc.c"

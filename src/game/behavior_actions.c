@@ -299,3 +299,6 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/transmutation_table.inc.c"
 #include "behaviors/transmutation_star.inc.c"
 #include "behaviors/red_flower.inc.c"
+#include "behaviors/windmill_fan.inc.c"
+#include "behaviors/windmill_platform.inc.c"
+#include "behaviors/goofy_warp.inc.c"

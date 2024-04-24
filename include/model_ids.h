@@ -664,7 +664,8 @@
 #define MODEL_REGULAR_TABLE                   0x101
 #define MODEL_MUSHROOM_TABLE                   0x102
 #define MODEL_RED_FLOWER                   0x103
-
+#define MODEL_WINDMILL_FAN                   0x104
+#define MODEL_WINDMILL_PLATFORM                   0x105
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

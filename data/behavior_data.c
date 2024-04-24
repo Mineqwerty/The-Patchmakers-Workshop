@@ -7512,3 +7512,45 @@ const BehaviorScript bhvRedFlower[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvWindmillFan[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE)),
+    //LOAD_COLLISION_DATA(windmill_fan_collision),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_windmill_fan_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_windmill_fan_loop),
+        //CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWindmillPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(windmill_platform_collision),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_windmill_platform_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_windmill_platform_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGoofyWarp[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_goofy_warp_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_goofy_warp_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGoofyWarpReciever[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_goofy_warp_reciever_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_goofy_warp_reciever_loop),
+    END_LOOP(),
+};

@@ -676,3 +676,7 @@ extern const BehaviorScript bhvTransmutationTable[];
 extern const BehaviorScript bhvMushroomTable[];
 extern const BehaviorScript bhvTransmutationStar[];
 extern const BehaviorScript bhvRedFlower[];
+extern const BehaviorScript bhvWindmillFan[];
+extern const BehaviorScript bhvWindmillPlatform[];
+extern const BehaviorScript bhvGoofyWarp[];
+extern const BehaviorScript bhvGoofyWarpReciever[];

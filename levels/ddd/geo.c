@@ -26,3 +26,5 @@
 #include "levels/ddd/mushroom_table/geo.inc.c"
 #include "levels/ddd/red_flower/geo.inc.c"
 #include "levels/ddd/hvh_skybox/geo.inc.c"
+#include "levels/ddd/windmill_fan/geo.inc.c"
+#include "levels/ddd/windmill_platform/geo.inc.c"

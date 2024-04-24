@@ -59,4 +59,12 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/hvh_skybox/geo_header.h"
 
+#include "levels/ddd/windmill_fan/geo_header.h"
+
+#include "levels/ddd/windmill_fan/collision_header.h"
+
+#include "levels/ddd/windmill_platform/geo_header.h"
+
+#include "levels/ddd/windmill_platform/collision_header.h"
+
 #endif
