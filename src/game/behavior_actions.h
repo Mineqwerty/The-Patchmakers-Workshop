@@ -870,3 +870,5 @@ void bhv_goofy_warp_init(void);
 void bhv_goofy_warp_loop(void);
 void bhv_goofy_warp_reciever_init(void);
 void bhv_goofy_warp_reciever_loop(void);
+void bhv_mimic_init(void);
+void bhv_mimic_loop(void);

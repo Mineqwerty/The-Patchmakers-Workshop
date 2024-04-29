@@ -287,6 +287,7 @@ void disable_time_stop_including_mario(void);
 s32 cur_obj_check_interacted(void);
 void cur_obj_spawn_loot_blue_coin(void);
 struct Object *obj_find_transmute_target(struct Object *sourceObj);
+void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel, const BehaviorScript *coinBehavior, s16 posJitter, ModelID16 model);
 
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY);
 

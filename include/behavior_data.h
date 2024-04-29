@@ -680,3 +680,4 @@ extern const BehaviorScript bhvWindmillFan[];
 extern const BehaviorScript bhvWindmillPlatform[];
 extern const BehaviorScript bhvGoofyWarp[];
 extern const BehaviorScript bhvGoofyWarpReciever[];
+extern const BehaviorScript bhvMimic[];

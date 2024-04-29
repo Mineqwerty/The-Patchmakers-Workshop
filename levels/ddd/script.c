@@ -46,6 +46,9 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_RED_FLOWER, red_flower_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WINDMILL_FAN, windmill_fan_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WINDMILL_PLATFORM, windmill_platform_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_BOTTOM, hvh_chest_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_TOP, hvh_chest_top_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MIMIC, mimic_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -54,6 +57,7 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_DDD, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_DDD, 0x04, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_AWNING, -2693, 729, -1014, 0, 0, 0, 0x00000000, bhvAwning),
@@ -87,6 +91,7 @@ const LevelScript level_ddd_entry[] = {
 		MARIO_POS(0x01, 0, 11397, 1743, -97),
 		OBJECT_WITH_ACTS(MODEL_NONE, -919, 493, -213, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6),
 		OBJECT(MODEL_NONE, -6898, 303, -14466, 0, -180, 0, (50 << 24) | (12 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -9470, 341, 15460, 0, -180, 0, (50 << 24) | (13 << 16), bhvWarp),
 		TERRAIN(ddd_area_1_collision),
 		MACRO_OBJECTS(ddd_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
@@ -144,6 +149,30 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_WINDMILL_FAN, -7899, 4424, -1093, 0, -10, 0, 0x00000000, bhvWindmillFan),
 		TERRAIN(ddd_area_3_collision),
 		MACRO_OBJECTS(ddd_area_3_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+
+	AREA(4, ddd_area_4),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9882, 3148, 2544, 0, 159, 0, (2 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9384, 3175, 3994, 0, 170, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10700, 3142, 3529, 0, -161, 0, (3 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10099, 3190, 5317, 0, -165, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -11003, 3137, 8299, 0, -172, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9259, 3170, 6393, 0, -172, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10406, 3162, 7096, 0, 176, 0, (4 << 24) | (6 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10994, 3143, 5653, 0, 169, 0, (4 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9404, 3071, 8402, 0, -170, 0, (5 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, -3254, 2727, 4544, 0, 52, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT_WITH_ACTS(MODEL_NONE, 6571, 1759, 10230, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_1),
+		TERRAIN(ddd_area_4_collision),
+		MACRO_OBJECTS(ddd_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

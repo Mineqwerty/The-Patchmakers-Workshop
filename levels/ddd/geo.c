@@ -28,3 +28,6 @@
 #include "levels/ddd/hvh_skybox/geo.inc.c"
 #include "levels/ddd/windmill_fan/geo.inc.c"
 #include "levels/ddd/windmill_platform/geo.inc.c"
+#include "levels/ddd/hvh_chest/geo.inc.c"
+#include "levels/ddd/hvh_chest_top/geo.inc.c"
+#include "levels/ddd/mimic/geo.inc.c"

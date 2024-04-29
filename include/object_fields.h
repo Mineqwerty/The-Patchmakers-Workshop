@@ -1124,6 +1124,8 @@
 #define /*0x0F4*/ oTreasureChestNumOpenedChests OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTreasureChestDoCloseChests   OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oTreasureChestAboveWater      OBJECT_FIELD_S32(0x1D)
+#define /*0x0FC*/ oTreasureChestLid      OBJECT_FIELD_OBJ(0x1E)
+#define /*0x0FC*/ oTreasureChestTreasureEmptied      OBJECT_FIELD_S32(0x1F)
 
 /* Tree Snow Or Leaf */
 #define /*0x0F4*/ oTreeSnowOrLeafSidewardAngle    OBJECT_FIELD_S32(0x1B)
@@ -1394,6 +1396,7 @@
 
 //eyebulb
 #define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
+
 
 /*Custom general defines:
 

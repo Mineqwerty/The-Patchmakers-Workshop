@@ -1,0 +1,23 @@
+{
+  "date": "1996-03-19",
+  "sample_bank": "sfx_new",
+  "envelopes": {
+    "envelope0": [
+      [
+        1,
+        32700
+      ],
+      "hang"
+    ]
+  },
+  "instruments": {
+    "inst_mimic_laugh": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "mimic_laugh"
+    }
+  },
+  "instrument_list": [
+    "inst_mimic_laugh"
+  ]
+}

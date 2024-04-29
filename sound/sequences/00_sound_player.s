@@ -12,7 +12,7 @@ seq_setmutescale 0
   seq_setvol 127
 #endif
 seq_settempo 120
-seq_initchannels 0x07ff
+seq_initchannels 0x1fff
 seq_startchannel 0, .channel0
 seq_startchannel 1, .channel1
 seq_startchannel 2, .channel2
@@ -24,6 +24,7 @@ seq_startchannel 7, .channel7
 seq_startchannel 8, .channel38
 seq_startchannel 9, .channel59
 seq_startchannel 10, .channelPatch
+seq_startchannel 11, .channel_NEW
 .seq_loop:
 seq_delay 20000
 seq_jump .seq_loop
@@ -8046,6 +8047,31 @@ chan_end
   .layer_AAAB:
   layer_note1 39, 0x20, 127
   layer_end
+
+
+.channel_NEW:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channel_NEW_table
+chan_jump .main_loop_023589
+
+.channel_NEW_table:
+sound_ref .sound_mimic_laugh
+
+.sound_mimic_laugh:
+chan_setbank 12
+chan_setinstr 0
+chan_setlayer 0, .layer_mimic_laugh
+chan_end
+
+.layer_mimic_laugh:
+layer_note1 39, 0x89, 127
+layer_end
 
 .align 2, 0
 .envelope_32C4:

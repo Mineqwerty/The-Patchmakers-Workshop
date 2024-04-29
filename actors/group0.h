@@ -417,4 +417,6 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "transmutation_star/geo_header.h"
 
+#include "patch_upgrade/geo_header.h"
+
 #endif

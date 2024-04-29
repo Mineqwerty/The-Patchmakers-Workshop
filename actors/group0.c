@@ -75,3 +75,4 @@
 #include "transmutation_cone/model.inc.c"
 #include "transmutation_star/collision.inc.c"
 #include "transmutation_star/model.inc.c"
+#include "patch_upgrade/model.inc.c"

@@ -666,6 +666,9 @@
 #define MODEL_RED_FLOWER                   0x103
 #define MODEL_WINDMILL_FAN                   0x104
 #define MODEL_WINDMILL_PLATFORM                   0x105
+#define MODEL_HVH_CHEST_BOTTOM                   0x106
+#define MODEL_HVH_CHEST_TOP                   0x107
+#define MODEL_MIMIC                   0x108
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
@@ -679,6 +682,7 @@
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181
 #define MODEL_TRANSMUTATION_STAR                    0x182
+#define MODEL_PATCH_UPGRADE                    0x183
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

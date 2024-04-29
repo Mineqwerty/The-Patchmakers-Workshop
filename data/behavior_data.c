@@ -7554,3 +7554,14 @@ const BehaviorScript bhvGoofyWarpReciever[] = {
         CALL_NATIVE(bhv_goofy_warp_reciever_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMimic[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    LOAD_ANIMATIONS(oAnimations, mimic_anims),
+    CALL_NATIVE(bhv_mimic_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mimic_loop),
+        SET_INT(oInteractStatus, INT_STATUS_NONE),
+    END_LOOP(),
+};

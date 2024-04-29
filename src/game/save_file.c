@@ -454,26 +454,6 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
 
     gLastCompletedCourseNum = courseIndex + 1;
     gLastCompletedStarNum = starIndex + 1;
-    sUnusedGotGlobalCoinHiScore = FALSE;
-    gGotFileCoinHiScore = FALSE;
-
-    if (courseIndex >= COURSE_NUM_TO_INDEX(COURSE_MIN)
-        && courseIndex <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)) {
-        //! Compares the coin score as a 16 bit value, but only writes the 8 bit
-        // truncation. This can allow a high score to decrease.
-
-        if (coinScore > ((u16) save_file_get_max_coin_score(courseIndex) & 0xFFFF)) {
-            sUnusedGotGlobalCoinHiScore = TRUE;
-        }
-
-        if (coinScore > save_file_get_course_coin_score(fileIndex, courseIndex)) {
-            gSaveBuffer.files[fileIndex][0].courseCoinScores[courseIndex] = coinScore;
-            touch_coin_score_age(fileIndex, courseIndex);
-
-            gGotFileCoinHiScore = TRUE;
-            gSaveFileModified = TRUE;
-        }
-    }
 
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:
@@ -675,15 +655,9 @@ void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, u32 starFlags) {
     gSaveFileModified = TRUE;
 }
 
-#ifdef COMPLETE_SAVE_FILE
 s32 save_file_get_course_coin_score(UNUSED s32 fileIndex, UNUSED s32 courseIndex) {
     return MAX_NUM_COINS;
 }
-#else
-s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex) {
-    return gSaveBuffer.files[fileIndex][0].courseCoinScores[courseIndex];
-}
-#endif
 
 /**
  * Return TRUE if the cannon is unlocked in the current course.

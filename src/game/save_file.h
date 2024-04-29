@@ -30,9 +30,8 @@ struct SaveFile {
     // cap can always be found in a fixed spot within the course
     u8 capLevel;
     u8 capArea;
-    // Note: the coordinates get set, but are never actually used, since the
-    // cap can always be found in a fixed spot within the course
-    //Vec3s capPos; // 48 bits
+
+    // 48 bits
     u16 patchFlags;
     u8 dpadPatchMap[4];
 
@@ -43,7 +42,7 @@ struct SaveFile {
     // cannon is open.
     u8 courseStars[COURSE_COUNT]; // 200 bits
 
-    u8 courseCoinScores[COURSE_STAGES_COUNT]; // 120 bits
+    u8 filler[15]; // 120 bits
 
     struct SaveBlockSignature signature; // 32 bits
 };

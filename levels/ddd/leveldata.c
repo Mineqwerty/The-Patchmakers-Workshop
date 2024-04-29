@@ -49,3 +49,8 @@
 #include "levels/ddd/windmill_fan/collision.inc.c"
 #include "levels/ddd/windmill_platform/model.inc.c"
 #include "levels/ddd/windmill_platform/collision.inc.c"
+#include "levels/ddd/hvh_chest/model.inc.c"
+#include "levels/ddd/hvh_chest_top/model.inc.c"
+#include "levels/ddd/mimic/model.inc.c"
+#include "levels/ddd/mimic/anims/data.inc.c"
+#include "levels/ddd/mimic/anims/table.inc.c"

@@ -1646,6 +1646,29 @@ void obj_spawn_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 baseYVel)
     obj_spawn_loot_coins(obj, numCoins, baseYVel, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
 
+void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel,
+                                    const BehaviorScript *coinBehavior,
+                                    s16 posJitter, ModelID16 model) {
+                                        s32 i;
+    struct Surface *floor;
+    struct Object *coin;
+
+    f32 spawnHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+    if (o->oPosY - spawnHeight > 100.0f) {
+        spawnHeight = o->oPosY;
+    }
+
+    for (i = 0; i < numCoins; i++) {
+
+        coin = spawn_object(o, model, coinBehavior);
+        obj_translate_xz_random(coin, posJitter);
+        coin->oPosY = spawnHeight;
+        coin->oCoinBaseYVel = baseYVel;
+        coin->oMoveAngleYaw = obj_angle_to_object(o, gMarioState->marioObj) + ((random_u16() % 800) - 400);
+        coin->oForwardVel = 5.0f;
+    }
+                                    }
+
 void cur_obj_spawn_loot_coin_at_mario_pos(void) {
     if (o->oNumLootCoins <= 0) {
         return;
