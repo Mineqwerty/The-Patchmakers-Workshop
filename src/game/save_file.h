@@ -42,7 +42,10 @@ struct SaveFile {
     // cannon is open.
     u8 courseStars[COURSE_COUNT]; // 200 bits
 
-    u8 filler[15]; // 120 bits
+    u32 collectedPatchUpgrades; // 32 bits
+    u32 upgradedPatches; // 32 bits
+
+    u8 filler[6]; // 56 bits
 
     struct SaveBlockSignature signature; // 32 bits
 };
@@ -213,6 +216,8 @@ void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, u32 starFlags);
 void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags);
 void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]);
 void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]);
+u32 save_file_get_collected_patch_upgrades(s32 fileIndex);
+void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades);
 s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex);
 s32 save_file_is_cannon_unlocked(void);
 void save_file_set_cannon_unlocked(void);

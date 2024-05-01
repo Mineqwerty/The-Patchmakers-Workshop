@@ -122,6 +122,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_GRABBABLE_PUZZLE_BOX,            grabbable_puzzle_box_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TRANSMUTATION_STAR,            transmutation_star_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_UPGRADE,            patch_upgrade_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER,            rocket_flower_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER_ROT,            rocket_flower_rotated_geo),
 
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_MARIO_STONE,            patch_mario_stone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_SPIKES,            ice_spikes_geo),

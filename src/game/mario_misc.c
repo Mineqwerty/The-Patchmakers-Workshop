@@ -433,6 +433,11 @@ Gfx *geo_mario_head_rotation(s32 callContext, struct GraphNode *node, UNUSED Mat
             vec3_zero(bodyState->headAngle);
             vec3_zero(rotNode->rotation);
         }
+
+        if (gCurGraphNodeObject == &gMarioObject->header.gfx) {
+            mtxf_copy(gMarioState->HeadMatrix, mtx);
+        }
+
     }
     return NULL;
 }

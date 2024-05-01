@@ -949,7 +949,7 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             m->patchChildObj->oAction = 2;
         }
         play_sound(SOUND_OBJ_PIRANHA_PLANT_APPEAR, m->pos);
-        //freeze_game_frames(m->vel[1] / 12.0f);
+        
         for (int i = 0; i < 10; i++) {
                 struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
                     m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);

@@ -614,6 +614,7 @@ void bhv_extending_stone_bridge_loop(void);
 
 void bhv_grapple_hook_init(void);
 void bhv_grapple_hook_loop(void);
+void bhv_grapple_line_init(void);
 void bhv_grapple_line_loop(void);
 
 void bhv_halo_init(void);
@@ -872,3 +873,9 @@ void bhv_goofy_warp_reciever_init(void);
 void bhv_goofy_warp_reciever_loop(void);
 void bhv_mimic_init(void);
 void bhv_mimic_loop(void);
+void bhv_patch_upgrade_init(void);
+void bhv_patch_upgrade_loop(void);
+void bhv_rocket_flower_init(void);
+void bhv_rocket_flower_loop(void);
+void bhv_rocket_flower_spawn_init(void);
+void bhv_rocket_flower_spawn_loop(void);

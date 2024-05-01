@@ -640,6 +640,17 @@ void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
     gSaveBuffer.files[fileIndex][0].dpadPatchMap[3] = dpadMap[3];
 }
 
+u32 save_file_get_collected_patch_upgrades(s32 fileIndex) {
+    u32 patchUpgrades;
+    patchUpgrades = gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades;
+
+    return patchUpgrades;
+}
+
+void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades) {
+    gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades = patchUpgrades;
+}
+
 /**
  * Add to the bitset of obtained stars in the specified course.
  * If course is COURSE_NONE, add to the bitset of obtained castle secret stars.

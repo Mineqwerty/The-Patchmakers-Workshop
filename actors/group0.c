@@ -76,3 +76,6 @@
 #include "transmutation_star/collision.inc.c"
 #include "transmutation_star/model.inc.c"
 #include "patch_upgrade/model.inc.c"
+#include "rocket_flower/model.inc.c"
+#include "rocket_flower_rotated/model.inc.c"
+#include "rocket_flower_fog/model.inc.c"

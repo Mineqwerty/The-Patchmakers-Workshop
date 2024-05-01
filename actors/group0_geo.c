@@ -36,3 +36,6 @@
 #include "transmutation_cone/geo.inc.c"
 #include "transmutation_star/geo.inc.c"
 #include "patch_upgrade/geo.inc.c"
+#include "rocket_flower/geo.inc.c"
+#include "rocket_flower_rotated/geo.inc.c"
+#include "rocket_flower_fog/geo.inc.c"

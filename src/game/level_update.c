@@ -876,6 +876,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 break;
 
             case WARP_OP_WARP_FLOOR:
+                fadeMusic = FALSE;
                 if ((m->floor) && (m->floor->force & 0xFF)) {
                     sSourceWarpNodeId = m->floor->force & 0xFF;
                 } else {

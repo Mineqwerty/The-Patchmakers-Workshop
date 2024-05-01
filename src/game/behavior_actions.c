@@ -303,3 +303,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/windmill_platform.inc.c"
 #include "behaviors/goofy_warp.inc.c"
 #include "behaviors/mimic.inc.c"
+#include "behaviors/patch_upgrade.inc.c"
+#include "behaviors/rocket_flower.inc.c"

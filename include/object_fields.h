@@ -1397,6 +1397,10 @@
 //eyebulb
 #define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
 
+//rocket flower spawner
+#define oRocketFlowerSpawned           OBJECT_FIELD_OBJ(0x1B)
+#define oLocalBoostTimer           OBJECT_FIELD_S32(0x1C)
+
 
 /*Custom general defines:
 

@@ -419,4 +419,10 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "patch_upgrade/geo_header.h"
 
+#include "rocket_flower/geo_header.h"
+
+#include "rocket_flower_rotated/geo_header.h"
+
+#include "rocket_flower_fog/geo_header.h"
+
 #endif

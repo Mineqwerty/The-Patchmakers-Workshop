@@ -343,6 +343,10 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
     }
 
+    if (m->wall && m->wall->type == SURFACE_INVISIBLE_WALL) {
+        return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
+    }
+
     vec3f_set(m->pos, nextPos[0], floorHeight, nextPos[2]);
 
     // H64 TODO: Add config opt & check if floor is slippery
@@ -489,6 +493,11 @@ s32 bonk_or_hit_lava_wall(struct MarioState *m, struct WallCollisionData *wallDa
             if (wallData->walls[i]->type == SURFACE_BURNING || wallData->walls[i]->type == SURFACE_THORN_WALL) {
                 set_mario_wall(m, wallData->walls[i]);
                 return AIR_STEP_HIT_LAVA_WALL;
+            }
+            
+            if (wallData->walls[i]->type == SURFACE_INVISIBLE_WALL) {
+                set_mario_wall(m, wallData->walls[i]);
+                return AIR_STEP_HIT_CEILING;
             }
 
             // Update wall reference (bonked wall) only if the new wall has a better facing angle

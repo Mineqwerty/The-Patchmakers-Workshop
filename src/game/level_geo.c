@@ -178,6 +178,8 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
         }
         gLoopCounter = 8;
 
+        //TFP theme transitions are scrapped for now
+        /*
         //TFP TILES
         s8 themeTransition = -1;
 
@@ -207,6 +209,7 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
             set_motion_blur(255);
             set_fb_effect_col(255, 255, 255);
         }
+        */
 
     }
     return 0;

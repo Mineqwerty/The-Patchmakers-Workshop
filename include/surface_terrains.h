@@ -30,7 +30,7 @@ enum SurfaceTypes {
     SURFACE_NOT_SLIPPERY,               // 0x0015 // Non-slippery, climbable
     SURFACE_TTM_VINES,                  // 0x0016 // TTM vines, has no action defined
     SURFACE_GSS_CLOUD_WARP,                       // 0x0017 // Unused
-    SURFACE_0018,                       // 0x0018 // Unused
+    SURFACE_INVISIBLE_WALL,                       // 0x0018
     SURFACE_0019,                       // 0x0019 // Unused
     SURFACE_MGR_MUSIC,                  // 0x001A // Plays the Merry go round music, see handle_merry_go_round_music in bbh_merry_go_round.inc.c for more details
     SURFACE_INSTANT_WARP_1B,            // 0x001B // Instant warp to another area, used to warp between areas in WDW and the endless stairs to warp back

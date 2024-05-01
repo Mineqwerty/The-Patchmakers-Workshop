@@ -18,6 +18,7 @@
 
 #include "make_const_nonconst.h"
 #include "levels/ccm/header.h"
+#include "actors/group0.h"
 
 /* Fast64 begin persistent block [scripts] */
 /* Fast64 end persistent block [scripts] */
@@ -59,6 +60,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_WING_SURFACE, wing_surface_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GODDESS_SPEAR, goddess_spear_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_halo_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER, rocket_flower_fog_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -181,6 +183,14 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_TORCH_HOLDER, -9994, -8842, 1720, 0, 0, 0, 0x00000000, bhvTorchHolder),
 		OBJECT(MODEL_TORCH_HOLDER, -8761, -9322, -9120, 0, 0, 0, 0x00000000, bhvTorchHolder),
 		OBJECT(MODEL_TORCH_HOLDER, 7571, -9242, -10747, 0, 0, 0, 0x00000000, bhvTorchHolder),
+		OBJECT(MODEL_NONE, -4059, -8949, -582, 0, 0, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, -1665, -9205, -4247, 0, -88, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, -10622, -9118, -4713, 0, -42, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, -9964, -9512, 6546, 0, -119, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, -2585, -9589, 9612, 0, 13, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, 7785, -9240, 8638, 0, -23, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, 5950, -8914, -1563, 0, 67, 0, 0x00000000, bhvRocketFlowerSpawner),
+		OBJECT(MODEL_NONE, 1985, -9457, -9630, 0, 13, 0, 0x00000000, bhvRocketFlowerSpawner),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2295, -8764, 493, 0, 0, 0, (1 << 16), bhvWillOWispSpawner, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2028, -8587, -345, 0, 0, 0, (4 << 24), bhvGSSHiddenStar, ACT_4),
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, -6342, -8511, -5384, 0, 0, 0, 0x00100000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),

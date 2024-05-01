@@ -282,6 +282,9 @@ void bhv_grapple_hook_loop(void) {
 
             find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
             if (surf != NULL) {
+                if (surf->type == SURFACE_INVISIBLE_WALL) {
+                    return o->oAction = 2;
+                }
                 o->oPosX = hitpos[0];
                 o->oPosY = hitpos[1];
                 o->oPosZ = hitpos[2];
@@ -375,6 +378,10 @@ void bhv_grapple_hook_loop(void) {
     }
 }
 
+void bhv_grapple_line_init(void) {
+    
+}
+
 void bhv_grapple_line_loop(void) {
 
     if (o->oTimer == 1) {
@@ -385,7 +392,7 @@ void bhv_grapple_line_loop(void) {
     o->oPosY = o->parentObj->oPosY;
     o->oPosZ = o->parentObj->oPosZ;
 
-    if (o->parentObj->oAction != 2) {
+    if (o->parentObj->oAction != 2 || o->oTimer < 2) {
 
         f32 dx = gMarioObject->header.gfx.pos[0] - o->oPosX;
         f32 dy = gMarioObject->header.gfx.pos[1] - o->oPosY + 90.0f;

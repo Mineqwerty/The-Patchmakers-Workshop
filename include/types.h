@@ -505,6 +505,9 @@ struct MarioState {
     struct Surface *ceilToFloor;
     struct Object *movingCeilObject;
 
+    //yeah i stole this from cursed mirror
+    Mat4 HeadMatrix;
+
     Vec3f marioSinkPos;
 
     s16 curPatch;

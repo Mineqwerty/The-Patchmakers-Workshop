@@ -683,6 +683,8 @@
 #define MODEL_FIRE_SMOKE                    0x181
 #define MODEL_TRANSMUTATION_STAR                    0x182
 #define MODEL_PATCH_UPGRADE                    0x183
+#define MODEL_ROCKET_FLOWER                    0x184
+#define MODEL_ROCKET_FLOWER_ROT                    0x185
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
