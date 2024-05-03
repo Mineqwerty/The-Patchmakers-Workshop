@@ -79,3 +79,6 @@
 #include "rocket_flower/model.inc.c"
 #include "rocket_flower_rotated/model.inc.c"
 #include "rocket_flower_fog/model.inc.c"
+#include "floating_petal/model.inc.c"
+#include "floating_petal/anims/data.inc.c"
+#include "floating_petal/anims/table.inc.c"

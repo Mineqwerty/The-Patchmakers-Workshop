@@ -684,3 +684,8 @@ extern const BehaviorScript bhvMimic[];
 extern const BehaviorScript bhvPatchUpgrade[];
 extern const BehaviorScript bhvRocketFlower[];
 extern const BehaviorScript bhvRocketFlowerSpawner[];
+extern const BehaviorScript bhvDiceBoss[];
+extern const BehaviorScript bhvD4[];
+extern const BehaviorScript bhvFoliageManager[];
+extern const BehaviorScript bhvFloatingPetal[];
+extern const BehaviorScript bhvRainSoundManager[];

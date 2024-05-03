@@ -8567,6 +8567,7 @@ void cutscene_star_spawn_end(struct Camera *c) {
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
     gCutsceneTimer = CUTSCENE_STOP;
     c->cutscene = 0;
+    sBackgroundMusicTargetVolume = 0;
 }
 
 void cutscene_exit_waterfall_warp(struct Camera *c) {

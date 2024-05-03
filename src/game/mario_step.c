@@ -721,6 +721,11 @@ void apply_gravity(struct MarioState *m) {
                 m->vel[1] = -37.5f;
             }
         }
+    } else if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+        m->vel[1] -= 2.0f;
+        if (m->vel[1] < -50.0f) {
+            m->vel[1] = -50.0f;
+        }
     } else {
         m->vel[1] -= 4.0f;
         if (m->vel[1] < -75.0f) {

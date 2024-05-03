@@ -305,3 +305,7 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/mimic.inc.c"
 #include "behaviors/patch_upgrade.inc.c"
 #include "behaviors/rocket_flower.inc.c"
+#include "behaviors/dice_boss.inc.c"
+#include "behaviors/foliage_manager.inc.c"
+#include "behaviors/floating_petal.inc.c"
+#include "behaviors/rain_sound_manager.inc.c"

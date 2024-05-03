@@ -835,103 +835,48 @@ void bhv_portal_loop(void) {
         }
 
         u8 sameLevel = 0;
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 103, 146, 224);
 
-        //fade into color if the portals arent in the same level and area
-        if ((gMarioState->portal1Info[0] != gMarioState->portal2Info[0]) || (gMarioState->portal1Info[1] != gMarioState->portal2Info[1])) {
-            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 103, 146, 224);
-        }
-        else {
-            sameLevel = 1;
-            if (o->oTimer < 18) {
-                obj_scale_xyz(o, 1.0f - (((f32) o->oTimer) / 20.0f), 1.0f, 1.0f);
+        if (o->oTimer == 18) {
+
+            switch (o->oBehParams2ndByte) {
+                case 0:
+
+                    initiate_warp(gMarioState->portal2Info[0], gMarioState->portal2Info[1], 0, 0, 2);
+                    o->oAction = 1;
+                    if (gMarioState->patchChildSecondaryObj) {
+                        gMarioState->patchChildSecondaryObj->oAction = 0;
+                    }
+                    break;
+                case 1:
+                    initiate_warp(gMarioState->portal1Info[0], gMarioState->portal1Info[1], 0, 0, 1);
+                    o->oAction = 1;
+                    if (gMarioState->patchChildPortalObj) {
+                        gMarioState->patchChildPortalObj->oAction = 0;
+                    }
+                    break;
             }
-        }
-
-        if (o->oTimer == 17) {
-            if (sameLevel) {
-                enable_time_stop_including_mario();
-                gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
-                
-                gCamera->cutscene = CUTSCENE_PAN_TO_PORTAL;
-                gCutsceneTimer = 0;
-
-                sCutsceneVars[1].point[0] = gCamera->pos[0] - gMarioState->pos[0];
-                sCutsceneVars[1].point[1] = gCamera->pos[1] - gMarioState->pos[1];
-                sCutsceneVars[1].point[2] = gCamera->pos[2] - gMarioState->pos[2];
-                
-                switch (o->oBehParams2ndByte) {
-                    case 0:
-                        sCutsceneVars[2].point[0] = gMarioState->portal2Position[0];
-                        sCutsceneVars[2].point[1] = gMarioState->portal2Position[1];
-                        sCutsceneVars[2].point[2] = gMarioState->portal2Position[2];
-                        break;
-                    case 1:
-                        sCutsceneVars[2].point[0] = gMarioState->portal1Position[0];
-                        sCutsceneVars[2].point[1] = gMarioState->portal1Position[1];
-                        sCutsceneVars[2].point[2] = gMarioState->portal1Position[2];
-                }
-            }
-        }
-
-        if (o->oTimer == 18 && gCamera->cutscene == 0) {
-            if (sameLevel) {
-                switch (o->oBehParams2ndByte) {
-                    case 0:
-
-                        gMarioState->pos[0] = gMarioState->portal2Position[0];
-                        gMarioState->pos[1] = gMarioState->portal2Position[1];
-                        gMarioState->pos[2] = gMarioState->portal2Position[2];
-                        break;
-                    case 1:
-                        gMarioState->pos[0] = gMarioState->portal1Position[0];
-                        gMarioState->pos[1] = gMarioState->portal1Position[1];
-                        gMarioState->pos[2] = gMarioState->portal1Position[2];
-                        break;
-                }
-                o->oAction = 0;
-            }
-            else {
-                switch (o->oBehParams2ndByte) {
-                    case 0:
-
-                        initiate_warp(gMarioState->portal2Info[0], gMarioState->portal2Info[1], 0, 0, 2);
-                        o->oAction = 1;
-                        if (gMarioState->patchChildSecondaryObj) {
-                            gMarioState->patchChildSecondaryObj->oAction = 0;
-                        }
-                        break;
-                    case 1:
-                        initiate_warp(gMarioState->portal1Info[0], gMarioState->portal1Info[1], 0, 0, 1);
-                        o->oAction = 1;
-                        if (gMarioState->patchChildPortalObj) {
-                            gMarioState->patchChildPortalObj->oAction = 0;
-                        }
-                        break;
-                }
-                if (gMarioState->heldObj) {
-
-                    obj_mark_for_deletion(gMarioState->heldObj);
-                    gMarioState->heldObj = NULL;
-                }
-                gMarioState->specialWarpTransitionOperation = 3;
-                o->oAction = 0;
-            }
-            
-        }
-        else if (o->oTimer < 18) {
-
-            f32 x = o->oPosX - gMarioState->pos[0];
-            f32 y = o->oPosY - gMarioState->pos[1];
-            f32 z = o->oPosZ - gMarioState->pos[2];
-
-            gMarioState->pos[0] += x / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
-            gMarioState->pos[1] += y / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
-            gMarioState->pos[2] += z / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
             if (gMarioState->heldObj) {
-                gMarioState->action = ACT_HOLD_CUTSCENE;
-            } else {
-                gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
+
+                obj_mark_for_deletion(gMarioState->heldObj);
+                gMarioState->heldObj = NULL;
             }
+            gMarioState->specialWarpTransitionOperation = 3;
+            //o->oAction = 0;
+
+        }
+
+        f32 x = o->oPosX - gMarioState->pos[0];
+        f32 y = o->oPosY - gMarioState->pos[1];
+        f32 z = o->oPosZ - gMarioState->pos[2];
+
+        gMarioState->pos[0] += x / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        gMarioState->pos[1] += y / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        gMarioState->pos[2] += z / (1.0f + 10.0f * (1.0f - (f32) (o->oTimer) / 15.0f));
+        if (gMarioState->heldObj) {
+            gMarioState->action = ACT_HOLD_CUTSCENE;
+        } else {
+            gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
         }
 
         

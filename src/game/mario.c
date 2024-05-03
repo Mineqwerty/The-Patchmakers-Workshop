@@ -936,6 +936,16 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             m->vel[1] = 20.0f;
             break;
 
+        case ACT_BREEZE_PATCH_BOUNCING:
+            if (m->actionArg == 3) {
+                m->vel[1] = 45.0f;
+            }
+            else {
+                m->vel[1] = 30.0f;
+            }
+            
+            break;
+
         default:
             jumpStart = 0;
         break;
@@ -1915,6 +1925,22 @@ void perform_patch_action(struct MarioState *m) {
             }
         break;
 
+        case PATCH_BREEZE:
+            if ((m->action & ACT_FLAG_MOVING || m->action & ACT_FLAG_STATIONARY) && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                drop_and_set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, 2);
+                m->curPatch = PATCH_BREEZE;
+                for (u8 i = 0; i < 6; i++) {
+                    spawn_object_relative(0, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+                for (u8 j = 0; j < 6; j++) {
+                    spawn_object_relative(1, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+
+                cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
+            }    
+
+        break;
+
         case PATCH_PORTAL:
             m->curPatch = PATCH_PORTAL;
             m->patchTimer = 0;
@@ -2111,26 +2137,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         initiate_warp(LEVEL_BBH, 4, 0x0A, 0);
     }
 
-    // TODO: put this in a geo asm for VTW 
-    /* if (gGlobalTimer > 90 ){
-    extern u8 ssl_dl_foliageshados_i8[];
-    calculate_foliage_scroll(segmented_to_virtual(ssl_dl_foliageshados_i8));
-    } */
-
+    
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
-
-    //TODO: put these in a more permanent spot
-
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
-        play_secondary_music(38, 255, 255, 10);
-    }
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex == 3) {
-        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SPIRAL_STAIRS, 1);
-    }
 
     if (check_able_to_use_patch()) {
         check_and_change_patch_dpad(U_JPAD);

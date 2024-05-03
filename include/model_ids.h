@@ -669,6 +669,7 @@
 #define MODEL_HVH_CHEST_BOTTOM                   0x106
 #define MODEL_HVH_CHEST_TOP                   0x107
 #define MODEL_MIMIC                   0x108
+#define MODEL_D4                   0x109
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
@@ -685,6 +686,7 @@
 #define MODEL_PATCH_UPGRADE                    0x183
 #define MODEL_ROCKET_FLOWER                    0x184
 #define MODEL_ROCKET_FLOWER_ROT                    0x185
+#define MODEL_FLOATING_PETAL                    0x186
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

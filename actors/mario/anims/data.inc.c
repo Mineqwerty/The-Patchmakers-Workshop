@@ -12,3 +12,6 @@
 #include "anim_spcReelBack.inc.c"
 #include "anim_scpStoneTransformation.inc.c"
 #include "anim_spcFallDown.inc.c"
+#include "anim_BreezeJump1.inc.c"
+#include "anim_BreezeJump2.inc.c"
+#include "anim_BreezeHighJump.inc.c"

@@ -425,4 +425,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "rocket_flower_fog/geo_header.h"
 
+#include "floating_petal/geo_header.h"
+
+
+#include "floating_petal/anim_header.h"
 #endif

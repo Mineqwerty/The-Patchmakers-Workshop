@@ -39,3 +39,4 @@
 #include "rocket_flower/geo.inc.c"
 #include "rocket_flower_rotated/geo.inc.c"
 #include "rocket_flower_fog/geo.inc.c"
+#include "floating_petal/geo.inc.c"

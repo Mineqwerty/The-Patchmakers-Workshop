@@ -49,6 +49,7 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_BOTTOM, hvh_chest_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_TOP, hvh_chest_top_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MIMIC, mimic_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -168,6 +169,7 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0D, LEVEL_DDD, 0x01, 0x0D, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0E, LEVEL_DDD, 0x05, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9882, 3148, 2544, 0, 159, 0, (2 << 16), bhvTreasureChestBottom),
@@ -179,10 +181,29 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10406, 3162, 7096, 0, 176, 0, (4 << 24) | (6 << 16), bhvTreasureChestBottom),
 		OBJECT(MODEL_HVH_CHEST_BOTTOM, -10994, 3143, 5653, 0, 169, 0, (4 << 16), bhvTreasureChestBottom),
 		OBJECT(MODEL_HVH_CHEST_BOTTOM, -9404, 3071, 8402, 0, -170, 0, (5 << 16), bhvTreasureChestBottom),
-		OBJECT(MODEL_HVH_CHEST_BOTTOM, -3254, 2727, 4544, 0, 52, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_HVH_CHEST_BOTTOM, 2185, 2168, 4976, 0, 149, 0, (1 << 16), bhvTreasureChestBottom),
+		OBJECT(MODEL_PODOGOO, 2231, 1665, 9605, 0, 52, 0, 0x00000000, bhvPodogoo),
+		OBJECT(MODEL_PODOGOO, 1088, 1942, 8682, 0, 131, 0, 0x00000000, bhvPodogoo),
+		OBJECT(MODEL_PODOGOO, -718, 2038, 9663, 0, 67, 0, 0x00000000, bhvPodogoo),
 		OBJECT_WITH_ACTS(MODEL_NONE, 4710, 1624, 10183, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
 		TERRAIN(ddd_area_4_collision),
 		MACRO_OBJECTS(ddd_area_4_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+
+	AREA(5, ddd_area_5),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_DDD, 0x01, 0x0D, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0E, LEVEL_DDD, 0x05, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT_WITH_ACTS(MODEL_NONE, 12, 9678, -10331, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
+		TERRAIN(ddd_area_5_collision),
+		MACRO_OBJECTS(ddd_area_5_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

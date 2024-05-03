@@ -7594,3 +7594,52 @@ const BehaviorScript bhvRocketFlowerSpawner[] = {
         CALL_NATIVE(bhv_rocket_flower_spawn_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDiceBoss[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_dice_boss_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_boss_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD4[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d4_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d4_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFoliageManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_foliage_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_foliage_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFloatingPetal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    LOAD_ANIMATIONS(oAnimations, floating_petal_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_floating_petal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_petal_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRainSoundManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_rain_sound_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rain_sound_manager_loop),
+    END_LOOP(),
+};

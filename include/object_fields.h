@@ -1401,6 +1401,9 @@
 #define oRocketFlowerSpawned           OBJECT_FIELD_OBJ(0x1B)
 #define oLocalBoostTimer           OBJECT_FIELD_S32(0x1C)
 
+//dice boss manager
+#define oDiceBossCurrentDie           OBJECT_FIELD_S32(0x1B)
+#define oDiceBossDieObj           OBJECT_FIELD_OBJ(0x1C)
 
 /*Custom general defines:
 
