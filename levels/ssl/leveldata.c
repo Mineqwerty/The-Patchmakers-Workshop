@@ -50,3 +50,9 @@
 #include "levels/ssl/areas/2/movtext.inc.c"
 
 #include "levels/ssl/leveldata.inc.c"
+
+#include "levels/ssl/purple_mushroom/model.inc.c"
+#include "levels/ssl/purple_mushroom/collision.inc.c"
+#include "levels/ssl/gray_mushroom/model.inc.c"
+#include "levels/ssl/lily_pad/model.inc.c"
+#include "levels/ssl/lily_pad/collision.inc.c"

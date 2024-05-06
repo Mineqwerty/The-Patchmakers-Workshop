@@ -671,6 +671,11 @@
 #define MODEL_MIMIC                   0x108
 #define MODEL_D4                   0x109
 
+//Violet Twilit Woods
+#define MODEL_PURPLE_MUSHROOM                   0x100
+#define MODEL_GRAY_MUSHROOM                   0x101
+#define MODEL_LILY_PAD                   0x102
+
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
 

@@ -3,8 +3,12 @@
 const GeoLayout ssl_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ssl_dl_Circle_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, ssl_dl_Circle_mesh_layer_4),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_004_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_006_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ssl_dl_Circle_008_mesh_layer_5),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -15,7 +19,7 @@ const GeoLayout ssl_area_1[] = {
 		GEO_OPEN_NODE(),
 			GEO_NODE_ORTHO(100.0000),
 			GEO_OPEN_NODE(),
-				GEO_BACKGROUND_COLOR(0x0001),
+				GEO_BACKGROUND_COLOR(0x20CB),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
 		GEO_ZBUFFER(1),

@@ -689,3 +689,5 @@ extern const BehaviorScript bhvD4[];
 extern const BehaviorScript bhvFoliageManager[];
 extern const BehaviorScript bhvFloatingPetal[];
 extern const BehaviorScript bhvRainSoundManager[];
+extern const BehaviorScript bhvVTWMushroom[];
+extern const BehaviorScript bhvLilyPad[];

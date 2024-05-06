@@ -88,4 +88,14 @@ extern const LevelScript level_ssl_entry[];
 
 #include "levels/ssl/header.inc.h"
 
+#include "levels/ssl/purple_mushroom/geo_header.h"
+
+#include "levels/ssl/purple_mushroom/collision_header.h"
+
+#include "levels/ssl/gray_mushroom/geo_header.h"
+
+#include "levels/ssl/lily_pad/geo_header.h"
+
+#include "levels/ssl/lily_pad/collision_header.h"
+
 #endif

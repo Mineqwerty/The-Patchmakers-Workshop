@@ -1073,7 +1073,18 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
         else {
             cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
         }
-        //cur_obj_play_sound_2(SOUND_ACTION_CLIMB_UP_TREE);
+        
+        
+        if (m->floor != NULL && m->floor->normal.y < 0.6f) {
+            m->faceAngle[1] = m->floorYaw - 0x8000;
+            m->forwardVel = -absf(m->forwardVel);
+            m->vel[1] *= m->floor->normal.y;
+        }
+        else if (m->floor != NULL && m->floor->normal.y < 0.8f) {
+            m->forwardVel *= m->floor->normal.y;
+            m->vel[1] *= 1.0f + (1.0f-m->floor->normal.y);
+            
+        }
     }
 
     //m->forwardVel = approach_f32(m->forwardVel, 90.0f, 6.0f, 20.35f);

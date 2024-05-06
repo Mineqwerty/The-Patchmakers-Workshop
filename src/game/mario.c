@@ -2017,6 +2017,11 @@ void patch_update(struct MarioState *m ) {
                 m->curPatch = PATCH_NONE;
             }
         break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
+            }
+        break;
     }
 }
 
@@ -2032,6 +2037,11 @@ void late_patch_update(struct MarioState *m ) {
                 m->patchChildObj->oHaloCapturedObject->oPosX = m->patchChildObj->oPosX;
                 m->patchChildObj->oHaloCapturedObject->oPosY = m->patchChildObj->oPosY + 40.0f;
                 m->patchChildObj->oHaloCapturedObject->oPosZ = m->patchChildObj->oPosZ;
+            }
+        break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
             }
         break;
     }

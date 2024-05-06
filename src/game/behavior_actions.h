@@ -889,3 +889,5 @@ void bhv_floating_petal_init(void);
 void bhv_floating_petal_loop(void);
 void bhv_rain_sound_manager_init(void);
 void bhv_rain_sound_manager_loop(void);
+void bhv_lily_pad_init(void);
+void bhv_lily_pad_loop(void);

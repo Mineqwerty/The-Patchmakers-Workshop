@@ -1,0 +1,13 @@
+extern const GeoLayout gray_mushroom_geo[];
+extern u8 gray_mushroom_kushroom_ci8[];
+extern u8 gray_mushroom_kushroom_pal_rgba16[];
+extern u8 gray_mushroom_purpshroom_ia8[];
+extern Vtx gray_mushroom_Circle_007_mesh_layer_1_vtx_0[7];
+extern Gfx gray_mushroom_Circle_007_mesh_layer_1_tri_0[];
+extern Vtx gray_mushroom_Circle_007_mesh_layer_1_vtx_1[15];
+extern Gfx gray_mushroom_Circle_007_mesh_layer_1_tri_1[];
+extern Gfx mat_gray_mushroom_f3dlite_material_009[];
+extern Gfx mat_revert_gray_mushroom_f3dlite_material_009[];
+extern Gfx mat_gray_mushroom_f3dlite_material_016[];
+extern Gfx mat_revert_gray_mushroom_f3dlite_material_016[];
+extern Gfx gray_mushroom_Circle_007_mesh_layer_1[];

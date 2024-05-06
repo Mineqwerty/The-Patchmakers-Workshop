@@ -26,3 +26,7 @@
 #include "levels/ssl/areas/3/geo.inc.c"
 
 #include "levels/ssl/geo.inc.c"
+
+#include "levels/ssl/purple_mushroom/geo.inc.c"
+#include "levels/ssl/gray_mushroom/geo.inc.c"
+#include "levels/ssl/lily_pad/geo.inc.c"
