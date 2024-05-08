@@ -177,6 +177,42 @@ const Texture *const effect_rain_textures[] = {
     effect_rain_10,
 };
 
+ALIGNED8 static const Texture effect_light_1[] = {
+#include "textures/effect/light1.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_light_2[] = {
+#include "textures/effect/light2.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_light_3[] = {
+#include "textures/effect/light3.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_light_4[] = {
+#include "textures/effect/light4.rgba16.inc.c"
+};
+
+ALIGNED8 static const Texture effect_light_5[] = {
+#include "textures/effect/light5.rgba16.inc.c"
+};
+
+const Texture *const effect_light_textures[] = {
+    effect_light_1,
+    effect_light_2,
+    effect_light_3,
+    effect_light_4,
+    effect_light_5,
+    effect_light_4,
+    effect_light_5,
+    effect_light_4,
+    effect_light_3,
+    effect_light_2,
+    effect_light_1,
+    effect_light_2,
+    effect_light_1
+};
+
 
 // Lava Bubble
 // 0x0B002020
@@ -326,5 +362,17 @@ const Gfx rain_env_dl[] = {
     gsDPSetRenderMode(G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2),
     gsDPSetEnvColor(255, 255, 255, 100),
     gsDPSetCombineLERP(0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
+    gsSPEndDisplayList(),
+};
+
+const Gfx fairy_light_dl[] = {
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
+    gsDPLoadSync(),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
+    gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
+    gsDPSetRenderMode(G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2),
+    gsDPSetEnvColor(255, 255, 255, 100),
+    gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, ENVIRONMENT, 0),
     gsSPEndDisplayList(),
 };

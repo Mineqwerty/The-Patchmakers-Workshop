@@ -691,3 +691,6 @@ extern const BehaviorScript bhvFloatingPetal[];
 extern const BehaviorScript bhvRainSoundManager[];
 extern const BehaviorScript bhvVTWMushroom[];
 extern const BehaviorScript bhvLilyPad[];
+extern const BehaviorScript bhvDangerPuff[];
+extern const BehaviorScript bhvMalvaFlower[];
+extern const BehaviorScript bhvMalvaFlowerManager[];

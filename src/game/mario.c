@@ -2269,6 +2269,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             play_sound(SOUND_ENV_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
         }
 
+        //VTW Windy Areas
+        if (gMarioState->floor->type == SURFACE_HURT_FLOOR && gMarioState->action == ACT_BREEZE_PATCH_BOUNCING && gCurrLevelNum == LEVEL_SSL) {
+            spawn_wind_particles(1, 0);
+            play_sound(SOUND_ENV_WIND1, gMarioState->marioObj->header.gfx.cameraToObject);
+        }
+
         play_infinite_stairs_music();
         gMarioState->marioObj->oInteractStatus = INT_STATUS_NONE;
 #if ENABLE_RUMBLE

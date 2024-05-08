@@ -675,6 +675,9 @@
 #define MODEL_PURPLE_MUSHROOM                   0x100
 #define MODEL_GRAY_MUSHROOM                   0x101
 #define MODEL_LILY_PAD                   0x102
+#define MODEL_DANGER_PUFF                   0x103
+#define MODEL_MALVA_BUD                   0x104
+#define MODEL_MALVA_FLOWER                   0x105
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

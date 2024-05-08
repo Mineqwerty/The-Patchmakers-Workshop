@@ -98,4 +98,12 @@ extern const LevelScript level_ssl_entry[];
 
 #include "levels/ssl/lily_pad/collision_header.h"
 
+#include "levels/ssl/danger_puff/geo_header.h"
+
+#include "levels/ssl/malva_bud/geo_header.h"
+
+#include "levels/ssl/malva_flower/geo_header.h"
+
+#include "levels/ssl/malva_bud/collision_header.h"
+
 #endif

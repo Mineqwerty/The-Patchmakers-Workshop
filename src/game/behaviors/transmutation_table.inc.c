@@ -7,6 +7,7 @@ void bhv_transmutation_table_loop(void) {
         if (obj_has_model(o, MODEL_GRAY_MUSHROOM)) {
             if (gMarioState->curPatch == PATCH_BREEZE) {
                 o->oAction = 1;
+                cur_obj_play_sound_1(SOUND_NEW_BREEZE_RESTORE);
             }
         }
         else {

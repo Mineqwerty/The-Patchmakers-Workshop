@@ -9,6 +9,8 @@ const GeoLayout ssl_area_1_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_004_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_006_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ssl_dl_Circle_008_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, ssl_dl_Circle_008_mesh_layer_4),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_008_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -30,7 +32,7 @@ const GeoLayout ssl_area_1[] = {
 				GEO_OPEN_NODE(),
 					GEO_BRANCH(1, ssl_area_1_geo),
 					GEO_RENDER_OBJ(),
-					GEO_ASM(ENVFX_MODE_NONE, geo_envfx_main),
+					GEO_ASM(ENVFX_FAIRY_LIGHTS, geo_envfx_main),
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),

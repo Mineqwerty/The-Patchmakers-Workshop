@@ -310,3 +310,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/floating_petal.inc.c"
 #include "behaviors/rain_sound_manager.inc.c"
 #include "behaviors/lily_pad.inc.c"
+#include "behaviors/danger_puff.inc.c"
+#include "behaviors/malva_flower.inc.c"

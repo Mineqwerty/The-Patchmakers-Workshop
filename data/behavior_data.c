@@ -7666,3 +7666,37 @@ const BehaviorScript bhvLilyPad[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDangerPuff[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_HOME(),
+    BILLBOARD(),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_danger_puff_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_danger_puff_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMalvaFlower[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(malva_bud_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_malva_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_malva_flower_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMalvaFlowerManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_malva_flower_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_malva_flower_manager_loop),
+    END_LOOP(),
+};

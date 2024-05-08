@@ -15,9 +15,15 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "mimic_laugh"
+    },
+    "inst_breeze_restore": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breeze_restore"
     }
   },
   "instrument_list": [
-    "inst_mimic_laugh"
+    "inst_mimic_laugh",
+    "inst_breeze_restore"
   ]
 }

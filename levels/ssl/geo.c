@@ -30,3 +30,6 @@
 #include "levels/ssl/purple_mushroom/geo.inc.c"
 #include "levels/ssl/gray_mushroom/geo.inc.c"
 #include "levels/ssl/lily_pad/geo.inc.c"
+#include "levels/ssl/danger_puff/geo.inc.c"
+#include "levels/ssl/malva_bud/geo.inc.c"
+#include "levels/ssl/malva_flower/geo.inc.c"

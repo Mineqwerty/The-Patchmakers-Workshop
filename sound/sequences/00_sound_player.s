@@ -8062,6 +8062,17 @@ chan_jump .main_loop_023589
 
 .channel_NEW_table:
 sound_ref .sound_mimic_laugh
+sound_ref .sound_breeze_restore
+
+.sound_breeze_restore:
+chan_setbank 12
+chan_setinstr 1
+chan_setlayer 0, .layer_breeze_restore
+chan_end
+
+.layer_breeze_restore:
+layer_note1 39, 0x99, 127
+layer_end
 
 .sound_mimic_laugh:
 chan_setbank 12

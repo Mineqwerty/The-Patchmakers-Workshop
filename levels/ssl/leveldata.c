@@ -56,3 +56,7 @@
 #include "levels/ssl/gray_mushroom/model.inc.c"
 #include "levels/ssl/lily_pad/model.inc.c"
 #include "levels/ssl/lily_pad/collision.inc.c"
+#include "levels/ssl/danger_puff/model.inc.c"
+#include "levels/ssl/malva_bud/model.inc.c"
+#include "levels/ssl/malva_flower/model.inc.c"
+#include "levels/ssl/malva_bud/collision.inc.c"
