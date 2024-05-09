@@ -60,3 +60,4 @@
 #include "levels/ssl/malva_bud/model.inc.c"
 #include "levels/ssl/malva_flower/model.inc.c"
 #include "levels/ssl/malva_bud/collision.inc.c"
+#include "levels/ssl/vtw_skybox/model.inc.c"

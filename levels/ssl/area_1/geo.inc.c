@@ -11,6 +11,7 @@ const GeoLayout ssl_area_1_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ssl_dl_Circle_008_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, ssl_dl_Circle_008_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_008_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ssl_dl_Circle_012_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

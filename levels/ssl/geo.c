@@ -33,3 +33,4 @@
 #include "levels/ssl/danger_puff/geo.inc.c"
 #include "levels/ssl/malva_bud/geo.inc.c"
 #include "levels/ssl/malva_flower/geo.inc.c"
+#include "levels/ssl/vtw_skybox/geo.inc.c"

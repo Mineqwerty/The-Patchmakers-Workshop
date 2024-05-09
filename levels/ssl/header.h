@@ -106,4 +106,6 @@ extern const LevelScript level_ssl_entry[];
 
 #include "levels/ssl/malva_bud/collision_header.h"
 
+#include "levels/ssl/vtw_skybox/geo_header.h"
+
 #endif

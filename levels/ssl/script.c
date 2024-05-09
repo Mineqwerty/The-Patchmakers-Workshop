@@ -42,6 +42,7 @@ const LevelScript level_ssl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_DANGER_PUFF, danger_puff_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MALVA_BUD, malva_bud_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MALVA_FLOWER, malva_flower_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, vtw_skybox_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -49,6 +50,7 @@ const LevelScript level_ssl_entry[] = {
 	AREA(1, ssl_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_DANGER_PUFF, 480, 1342, 4138, 0, 37, 0, 0x00000000, bhvDangerPuff),
@@ -96,6 +98,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_PURPLE_MUSHROOM, 7371, -163, 12571, 0, -44, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_PURPLE_MUSHROOM, 15332, 866, 8704, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_PURPLE_MUSHROOM, 14146, -41, 11660, 0, 0, 0, 0x00000000, bhvVTWMushroom),
+		OBJECT(MODEL_PURPLE_MUSHROOM, -1608, 4028, -902, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_PURPLE_MUSHROOM, 5787, 1776, -10407, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_RED_COIN, 13099, 2702, -10781, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 5128, 2932, -12990, 0, 0, 0, 0x00000000, bhvRedCoin),
@@ -111,6 +114,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, -10044, 87, -3591, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -10044, 87, -3591),
 		OBJECT(MODEL_NONE, 1571, 605, -6542, 0, 0, 0, (40 << 24) | (11 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -1616, 5584, -917, 0, 0, 0, (40 << 24) | (12 << 16), bhvWarp),
 		TERRAIN(ssl_area_1_collision),
 		MACRO_OBJECTS(ssl_area_1_macro_objs),
 		STOP_MUSIC(0),
@@ -129,6 +133,23 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 11841, 559, -5, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(ssl_area_2_collision),
 		MACRO_OBJECTS(ssl_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+
+	AREA(3, ssl_area_3),
+		WARP_NODE(0x0A, LEVEL_SSL, 0x01, 0x0C, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 102, 1253, -148, 0, 156, 0, (50 << 24) | (10 << 16), bhvWarp),
+		OBJECT(MODEL_SKYBOX_TEST, -1430, 2324, -3, 0, 156, 0, 0x00000000, bhvBackgroundObject),
+		OBJECT(MODEL_STAR, 2873, 4637, -414, 0, 156, 0, (5 << 24), bhvStar),
+		TERRAIN(ssl_area_3_collision),
+		MACRO_OBJECTS(ssl_area_3_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
