@@ -22,7 +22,8 @@ enum patchNames {
     PATCH_SHADOWCHOMP,
     PATCH_TRANSMUTATION,
     PATCH_BREEZE,
-    PATCH_PORTAL
+    PATCH_PORTAL,
+    PATCH_MIASMA
 };
 
 enum WarpOperation {

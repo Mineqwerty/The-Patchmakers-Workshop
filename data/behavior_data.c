@@ -7700,3 +7700,15 @@ const BehaviorScript bhvMalvaFlowerManager[] = {
         CALL_NATIVE(bhv_malva_flower_manager_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMiasmaRibbon[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    LOAD_ANIMATIONS(oAnimations, miasma_ribbon_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_miasma_ribbon_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_miasma_ribbon_loop),
+    END_LOOP(),
+};

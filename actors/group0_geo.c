@@ -40,3 +40,4 @@
 #include "rocket_flower_rotated/geo.inc.c"
 #include "rocket_flower_fog/geo.inc.c"
 #include "floating_petal/geo.inc.c"
+#include "miasma_ribbon/geo.inc.c"

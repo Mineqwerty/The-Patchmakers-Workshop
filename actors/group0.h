@@ -429,4 +429,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 
 #include "floating_petal/anim_header.h"
+#include "miasma_ribbon/geo_header.h"
+
+
+#include "miasma_ribbon/anim_header.h"
 #endif

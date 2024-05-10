@@ -82,3 +82,6 @@
 #include "floating_petal/model.inc.c"
 #include "floating_petal/anims/data.inc.c"
 #include "floating_petal/anims/table.inc.c"
+#include "miasma_ribbon/model.inc.c"
+#include "miasma_ribbon/anims/data.inc.c"
+#include "miasma_ribbon/anims/table.inc.c"

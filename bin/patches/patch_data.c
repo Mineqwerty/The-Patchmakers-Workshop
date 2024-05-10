@@ -23,7 +23,8 @@ ALIGNED8 const u8 patch_textures_dma[] = {
     #include "actors/amp/breeze_patch.rgba16.inc.c"
     ,
     #include "actors/amp/portal_patch.rgba16.inc.c"
-    
+    ,
+    #include "actors/amp/miasma_patch.rgba16.inc.c"
 
 
 };
