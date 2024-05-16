@@ -181,4 +181,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/gss_window_light/geo_header.h"
 
+#include "levels/castle_inside/screen_effect_eye_open/header.h"
+
 #endif

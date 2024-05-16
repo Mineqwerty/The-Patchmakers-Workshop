@@ -33,6 +33,7 @@ void bhv_background_object_loop(void) {
 
     cur_obj_scale(100.0f);
 
+    /*
     if (gCurrLevelNum == LEVEL_BBH) {
         if (gTatumCount == 4650) {
             cur_obj_set_model(MODEL_TFP_SKYBOX_BUBBLES);
@@ -47,4 +48,5 @@ void bhv_background_object_loop(void) {
             cur_obj_set_model(MODEL_SKYBOX_TEST);
         }
     }
+    */
 }

@@ -1948,9 +1948,11 @@ void perform_patch_action(struct MarioState *m) {
 
         case PATCH_MIASMA:
         for (u8 i = 0; i < 10; i++) {
-            struct Object *ribbon = spawn_object_relative(i*2, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+            struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
             ribbon->oFaceAngleRoll = random_u16();
             ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+
+            SET_BPARAM1(ribbon->oBehParams, 1);
         }
             
         break;

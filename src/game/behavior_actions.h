@@ -899,3 +899,7 @@ void bhv_malva_flower_manager_init(void);
 void bhv_malva_flower_manager_loop(void);
 void bhv_miasma_ribbon_init(void);
 void bhv_miasma_ribbon_loop(void);
+void bhv_story_cutscene_manager_init(void);
+void bhv_story_cutscene_manager_loop(void);
+void bhv_story_cutscene_manager_hub1_init(void);
+void bhv_story_cutscene_manager_hub1_loop(void);

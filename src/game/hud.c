@@ -18,6 +18,7 @@
 #include "puppycam2.h"
 #include "puppyprint.h"
 #include "levels/new_file_select/header.h"
+#include "levels/castle_inside/header.h"
 
 #include "config.h"
 
@@ -104,6 +105,9 @@ s32 sPowerMeterVisibleTimer = 0;
 
 u8 gSpecialHudRender = 0;
 u8 gSpecialHudElementAlpha = 255;
+s32 gSpecialHudElementTimer = 0;
+f32 gSpecialHudElementValue = 0;
+f32 gSpecialHudElementScale = 1.0f;
 
 #ifdef BREATH_METER
 static s16 sBreathMeterStoredValue;
@@ -290,6 +294,61 @@ void render_hud_power_meter(void) {
     sPowerMeterVisibleTimer++;
 }
 
+void render_hud_eye_effect(void) {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X, SCREEN_CENTER_Y, 0);
+    if (gSpecialHudElementTimer < 60) {
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 500, 0);
+        gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, -1000, 0);
+        gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 500, 0);
+    }
+    if (gSpecialHudElementTimer == 0) {
+        gSpecialHudElementScale = 0.2f;
+        gSpecialHudElementAlpha = 255;
+    }
+
+    if (gSpecialHudElementTimer < 35) {
+        gSpecialHudElementValue = 0.5f;
+    }
+    else if (gSpecialHudElementTimer < 58) {
+        gSpecialHudElementValue = 0.3f;
+    }
+    else if (gSpecialHudElementTimer < 75) {
+        gSpecialHudElementValue = 0.7f;
+    }
+    else if (gSpecialHudElementTimer < 96) {
+        gSpecialHudElementValue = 0.4f;
+    }
+    else {
+        gSpecialHudElementValue = 1.2f;
+        gSpecialHudElementAlpha = CLAMP(gSpecialHudElementAlpha - 5, 0, 255);
+    }
+
+
+
+    gSpecialHudElementScale = approach_f32_asymptotic(gSpecialHudElementScale, gSpecialHudElementValue, 0.02f);
+
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, gSpecialHudElementScale, 0);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gSpecialHudElementAlpha);
+    gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gSpecialHudElementTimer++;
+
+    if (gSpecialHudElementTimer == 180) {
+        gSpecialHudRender = 0;
+    }
+
+}
+
 void render_dl_dpad_patches(s16 numHealthWedges) {
     Mtx *mtx = alloc_display_list(sizeof(Mtx));
 
@@ -319,10 +378,10 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
         for (int i = 0; i < 4; i++) {
             if (animateBounce[i] % 2 == 1) {
                 if (animateBounce[i] > 20) {
-                    animateBounce[i]+=4;
+                    animateBounce[i] += 4;
                 }
                 else {
-                    animateBounce[i]+=2;
+                    animateBounce[i] += 2;
                 }
 
                 if (animateBounce[i] >= 50) {
@@ -331,10 +390,10 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
             }
             else if (animateBounce[i] != 0) {
                 if (animateBounce[i] > 20) {
-                    animateBounce[i]-=2;
+                    animateBounce[i] -= 2;
                 }
                 else {
-                    animateBounce[i]-=4;
+                    animateBounce[i] -= 4;
                 }
 
                 if (animateBounce[i] < 0) {
@@ -779,8 +838,15 @@ void render_hud(void) {
 #endif
     }
 
-    if (gSpecialHudRender == 1) {
+    if (gSpecialHudRender > 0) {
         create_dl_ortho_matrix();
-            render_dl_title_screen();
+        switch (gSpecialHudRender) {
+            case 1:
+                render_dl_title_screen();
+            break;
+            case 2:
+                render_hud_eye_effect();
+            break;
         }
+    }
 }

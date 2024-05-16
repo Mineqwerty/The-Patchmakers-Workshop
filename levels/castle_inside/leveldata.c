@@ -98,3 +98,4 @@
 #include "levels/castle_inside/gss_window_lit/model.inc.c"
 #include "levels/castle_inside/gss_window_unlit/model.inc.c"
 #include "levels/castle_inside/gss_window_light/model.inc.c"
+#include "levels/castle_inside/screen_effect_eye_open/model.inc.c"

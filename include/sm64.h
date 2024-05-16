@@ -521,7 +521,7 @@ enum MarioActionFlags {
 #define ACT_SINK_MUD                 0x0002130B // (0x10B)
 #define ACT_HOLD_CUTSCENE                 0x0000190C // (0x10C)
 #define ACT_COLLECTING_PATCH                 0x0000110D // (0x10D)
-#define ACT_UNUSED_10E                 0x0000010E // (0x10E)
+#define ACT_STORY_CUTSCENE                 0x0000010E // (0x10E)
 #define ACT_DEBUG_FREE_MOVE            0x0000130F // (0x10F | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE)
 #define ACT_RUSHING_WATER_DEATH                 0x00021310 // (0x110)
 #define ACT_STANDING_DEATH             0x00021311 // (0x111 | ACT_FLAG_STATIONARY | ACT_FLAG_INTANGIBLE | ACT_FLAG_INVULNERABLE)

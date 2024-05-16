@@ -13,11 +13,16 @@
 #include "src/game/fb_effects.h"
 #include "src/game/mario.h"
 #include "src/game/mario_actions_moving.h"
+#include "src/game/hud.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
 #include "levels/ccm/header.inc.h"
 #include "levels/lll/header.inc.h"
+
+#include "levels/castle_inside/header.inc.h"
+
+s16 gCurCutscene = -1;
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
@@ -75,6 +80,7 @@ enum cutscene_events {
     EVENT_SET_MARIO_ACTION,
     EVENT_SET_MARIO_ACTION_ARG,
     EVENT_SET_MARIO_EYE_STATE,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION,
     EVENT_MARIO_APPROACH_POINT,
 
     EVENT_SPAWN_OBJECT,
@@ -88,6 +94,7 @@ enum cutscene_events {
     EVENT_HUD_DISABLE,
     EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
+    EVENT_HUD_SET_EFFECT,
 
     EVENT_SET_FB_EFFECT,
     EVENT_CLEAR_FB_EFFECT,
@@ -379,8 +386,48 @@ s32 event_mistress[] = {
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_END_CUTSCENE
-    
+};
 
+s32 event_meet_sewnia[] = {
+    EVENT_HUD_DISABLE,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_SET_MARIO_POSITION, 0, 228, 1236,
+    EVENT_SET_MARIO_YAW, -0x4000,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 25,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 26,
+    EVENT_HUD_SET_EFFECT, 2,
+    EVENT_WAIT, 180,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_SCUFFLE_BACK,
+    EVENT_CAMERA_POSITION, 300, 250, 1120,
+    EVENT_CAMERA_FOCUS, 0, 230, 1150,
+    EVENT_WAIT, 40,
+    EVENT_CAMERA_POSITION, 0, 250, 1200,
+    EVENT_CAMERA_FOCUS, 0, 230, 1250,
+    EVENT_WAIT, 80,
+    EVENT_CAMERA_POSITION, 0, 250, 1450,
+    EVENT_CAMERA_FOCUS, 0, 230, 1230,
+    EVENT_SET_EXTERNAL_TRIGGER, 1, //sewnia fall back
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_WAIT, 80,
+    EVENT_CAMERA_POSITION, 600, 250, 1200,
+    EVENT_CAMERA_FOCUS, 0, 230, 1200,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 120,
+    EVENT_CAMERA_POSITION, 0, 250, 1450,
+    EVENT_CAMERA_FOCUS, 0, 230, 1230,
+    EVENT_SET_EXTERNAL_TRIGGER, 3, //sewnia stand up
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_WAIT, 90,
+    EVENT_DIALOG_USER_ADVANCE, 22,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
 };
 
 s32 *eventList[] = {
@@ -391,7 +438,8 @@ s32 *eventList[] = {
     event_find_stone_patch,
     //5
     event_goddess_death,
-    event_mistress
+    event_mistress,
+    event_meet_sewnia
 };
 
 s32 *splineList[] = {
@@ -423,11 +471,14 @@ s32 *splineList[] = {
     bob_area_2_spline_StonePatchCutsceneFoc2,
     bob_area_2_spline_StonePatchCutscenePos3,
     bob_area_2_spline_StonePatchCutsceneFoc3,
-    lll_area_3_spline_MistressCutsceneApproachBed
+    lll_area_3_spline_MistressCutsceneApproachBed,
     //25
+    castle_inside_area_1_spline_MeetSewniaPos1,
+    castle_inside_area_1_spline_MeetSewniaFoc1
 };
 
 void begin_cutscene_event(s32 event) {
+    gCurCutscene = event;
     cCutsceneActive = 1;
     cCutsceneIndex = 0;
     cWaitTimer = 0;
@@ -580,6 +631,10 @@ void event_handler(void) {
                     gMarioState->actionTimer = 0;
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_SET_MARIO_CUSTOM_ANIMATION:
+                    set_custom_mario_animation(gMarioState, param1);
+                     cCutsceneIndex += 2;
+                break;
                 case EVENT_DIALOG_USER_ADVANCE:
                     create_dialog_box(param1);
                     cCutsceneIndex += 2;
@@ -592,8 +647,13 @@ void event_handler(void) {
                     gHudDisplay.flags = HUD_DISPLAY_NONE;
                     cCutsceneIndex += 1;
                 break;
+                case EVENT_HUD_SET_EFFECT:
+                    gSpecialHudRender = param1;
+                    cCutsceneIndex += 2;
+                break;
                 case EVENT_END_CUTSCENE:
                     gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
+                    gCurCutscene = -1;
                     cMarioFocusSpeed = 0;
                     cCutsceneActive = 0;
                     cExternalCutsceneTrigger = 0;

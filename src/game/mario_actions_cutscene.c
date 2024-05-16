@@ -565,6 +565,12 @@ s32 act_collecting_patch(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_story_cutscene(struct MarioState *m) {
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    return FALSE;
+}
+
 // makes Mario disappear and triggers warp
 s32 act_disappeared(struct MarioState *m) {
     set_mario_animation(m, MARIO_ANIM_A_POSE);
@@ -3100,6 +3106,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_PUTTING_ON_CAP:             cancel = act_putting_on_cap(m);             break;
         case ACT_FLOOR_CHECKPOINT_WARP_OUT:  cancel = act_floor_checkpoint_warp_out(m);  break;
         case ACT_FLOOR_CHECKPOINT_WARP_IN:   cancel = act_floor_checkpoint_warp_in(m);   break;
+        case ACT_STORY_CUTSCENE:             cancel = act_story_cutscene(m);             break;
     }
     /* clang-format on */
 

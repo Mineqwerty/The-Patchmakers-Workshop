@@ -7712,3 +7712,21 @@ const BehaviorScript bhvMiasmaRibbon[] = {
         CALL_NATIVE(bhv_miasma_ribbon_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvStoryCutsceneManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_story_cutscene_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_story_cutscene_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStoryCutsceneManagerHub1[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_story_cutscene_manager_hub1_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_story_cutscene_manager_hub1_loop),
+    END_LOOP(),
+};

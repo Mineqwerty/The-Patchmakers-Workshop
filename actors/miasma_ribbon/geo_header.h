@@ -1,5 +1,7 @@
 extern const GeoLayout miasma_ribbon_geo[];
 extern Lights1 miasma_ribbon_f3dlite_material_lights;
+extern u8 miasma_ribbon_miasma_ci4[];
+extern u8 miasma_ribbon_miasma_pal_rgba16[];
 extern Vtx miasma_ribbon_Bone_mesh_layer_1_vtx_0[6];
 extern Gfx miasma_ribbon_Bone_mesh_layer_1_tri_0[];
 extern Vtx miasma_ribbon_Bone_001_skinned_mesh_layer_1_vtx_0[3];

@@ -1,9 +1,34 @@
 #include "levels/castle_inside/header.h"
+#include "src/game/cutscene.h"
 
-#define SEWNIA_ACT_IDLE 0
-#define SEWNIA_ACT_FOLLOW_MARIO 1
-#define SEWNIA_ACT_TALKING_TO_MARIO 2
-#define SEWNIA_ACT_CUTSCENE 3
+enum SewniaActions {
+    SEWNIA_ACT_IDLE,
+    SEWNIA_ACT_FOLLOW_MARIO,
+    SEWNIA_ACT_TALKING_TO_MARIO,
+    SEWNIA_ACT_EMOTE,
+    SEWNIA_ACT_INTRO_CUTSCENE,
+
+};
+
+enum SewniaAnims {
+    SEWNIA_ANIM_OLD_IDLE,
+    SEWNIA_ANIM_WALK,
+    SEWNIA_ANIM_STARING,
+    SEWNIA_ANIM_SURPRISED_FALL_BACK,
+    SEWNIA_ANIM_STAND_UP_GREET_MARIO,
+    SEWNIA_ANIM_CUTSCENE_IDLE_1
+};
+
+enum SewniaFaceStates {
+    SEWNIA_FACE_STATE_DEFAULT,
+    SEWNIA_FACE_STATE_DEFAULT_BLINK,
+    SEWNIA_FACE_STATE_SURPRISED,
+    SEWNIA_FACE_STATE_SMILE,
+    SEWNIA_FACE_STATE_BLINK_HAPPY,
+    SEWNIA_FACE_STATE_FROWN,
+    SEWNIA_FACE_STATE_FROWN_BLINK,
+    SEWNIA_FACE_STATE_SURPRISED_BLINK
+};
 
 static struct ObjectHitbox sSewniaHitbox = {
     /* interactType:      */ INTERACT_TEXT,
@@ -63,7 +88,7 @@ struct Waypoint *find_mario_nearest_waypoint() {
 
 void sewnia_act_idle(void) {
     o->oInteractStatus = 0;
-    cur_obj_init_animation(0);
+    cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
 
     o->oForwardVel = 0.0f;
     
@@ -138,7 +163,7 @@ void follow_mario_directly(void) {
 
     }
     else {
-        cur_obj_init_animation(0);
+        cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
         if (o->oForwardVel > 0.0f) {
         o->oForwardVel -= 4.0f;
     } else {
@@ -279,6 +304,96 @@ void sewnia_act_cutscene(void) {
 
 }
 
+void sewnia_act_intro_cutscene(void) {
+    o->oForwardVel = 0;
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = 0;
+            o->oPosY = 100;
+            o->oPosZ = 1152;
+            cur_obj_init_animation(SEWNIA_ANIM_STARING);
+
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 1){
+                cur_obj_init_animation(SEWNIA_ANIM_SURPRISED_FALL_BACK);
+                o->oSubAction = 1;
+                o->oTimer = 0;
+            }
+        break;
+        case 1:
+            o->oSewniaFaceState = 0;
+            if (o->oTimer < 10) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT_BLINK;
+            }
+            else if (o->oTimer < 40) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+            }
+            else {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 2){
+                o->oSubAction = 2;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 3){
+                cur_obj_init_animation(SEWNIA_ANIM_STAND_UP_GREET_MARIO);
+                o->oSubAction = 3;
+                o->oTimer = 0;
+            }
+        break;
+        case 3:
+            
+            if (o->oTimer < 12) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+            else if (o->oTimer < 17) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            }
+            else if (o->oTimer < 23) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+            else if (o->oTimer < 27) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            }
+            else if (o->oTimer < 57) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+            else {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            }
+            if (cur_obj_check_if_at_animation_end()) {
+                o->oSubAction = 4;
+                cur_obj_init_animation(SEWNIA_ANIM_CUTSCENE_IDLE_1);
+            }
+        break;
+        case 4:
+
+        break;
+    }
+}
+
 void bhv_sewnia_init(void) {
     obj_set_hitbox(o, &sSewniaHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_NPC;
@@ -291,28 +406,46 @@ void bhv_sewnia_init(void) {
 
 void bhv_sewnia_loop(void) {
 
-    cur_obj_update_floor_and_walls();
-    cur_obj_move_standard(-60);
-
     switch (o->oAction) {
-        case 0:
+        case SEWNIA_ACT_IDLE:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
             sewnia_act_idle();
         break;
-        case 1:
+        case SEWNIA_ACT_FOLLOW_MARIO:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
             sewnia_act_follow_mario();
         break;
-        case 2:
+        case SEWNIA_ACT_TALKING_TO_MARIO:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
             sewnia_act_talking_to_mario();
         break;
-        case 3:
+        case SEWNIA_ACT_EMOTE:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
             sewnia_act_cutscene();
         break;
+        case SEWNIA_ACT_INTRO_CUTSCENE:
+            sewnia_act_intro_cutscene();
+        break;
+    }
+
+    if (gCurCutscene != -1) {
+        if (gCurCutscene == CUTSCENE_EVENT_MEET_SEWNIA) {
+            o->oAction = SEWNIA_ACT_INTRO_CUTSCENE;
+        }
     }
 }
 
 Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
-        
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+
+
+        switchCase->selectedCase = obj->oSewniaFaceState;
     }
 
     return NULL;

@@ -313,3 +313,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/danger_puff.inc.c"
 #include "behaviors/malva_flower.inc.c"
 #include "behaviors/miasma_ribbon.inc.c"
+#include "behaviors/story_cutscene_manager.inc.c"
