@@ -393,7 +393,7 @@ s32 event_meet_sewnia[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_DISABLE_MARIO_RENDER,
-    EVENT_SET_MARIO_POSITION, 0, 228, 1236,
+    EVENT_SET_MARIO_POSITION, 0, 166, 1164,
     EVENT_SET_MARIO_YAW, -0x4000,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 25,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 26,
@@ -405,7 +405,9 @@ s32 event_meet_sewnia[] = {
     EVENT_CAMERA_POSITION, 300, 250, 1120,
     EVENT_CAMERA_FOCUS, 0, 230, 1150,
     EVENT_WAIT, 40,
-    EVENT_CAMERA_POSITION, 0, 250, 1200,
+    EVENT_SET_EXTERNAL_TRIGGER, 100, //sewnia disable render
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION, 0, 250, 1100,
     EVENT_CAMERA_FOCUS, 0, 230, 1250,
     EVENT_WAIT, 80,
     EVENT_CAMERA_POSITION, 0, 250, 1450,
@@ -418,12 +420,20 @@ s32 event_meet_sewnia[] = {
     EVENT_ENABLE_MARIO_RENDER,
     EVENT_SET_EXTERNAL_TRIGGER, 2,
     EVENT_WAIT, 120,
+    EVENT_SET_EXTERNAL_TRIGGER, 3, //sewnia stand up
+    EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION, 0, 250, 1450,
     EVENT_CAMERA_FOCUS, 0, 230, 1230,
-    EVENT_SET_EXTERNAL_TRIGGER, 3, //sewnia stand up
     EVENT_DISABLE_MARIO_RENDER,
-    EVENT_WAIT, 90,
+    EVENT_WAIT, 70,
     EVENT_DIALOG_USER_ADVANCE, 22,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 27,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 28,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, 200, 250, 1450,
+    EVENT_CAMERA_FOCUS, 0, 230, 1230,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
@@ -474,7 +484,9 @@ s32 *splineList[] = {
     lll_area_3_spline_MistressCutsceneApproachBed,
     //25
     castle_inside_area_1_spline_MeetSewniaPos1,
-    castle_inside_area_1_spline_MeetSewniaFoc1
+    castle_inside_area_1_spline_MeetSewniaFoc1,
+    castle_inside_area_1_spline_MeetSewniaPos2,
+    castle_inside_area_1_spline_MeetSewniaFoc2
 };
 
 void begin_cutscene_event(s32 event) {

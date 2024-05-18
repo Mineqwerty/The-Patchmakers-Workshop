@@ -161,7 +161,7 @@ Don't worry, we can fix this! It's not too late!\n\
 Ah... But it might be tough with what we have...\n\
 The Patchmaker probably has their threads...\n\
 There is another issue too.\n\
-Um... Just follow me...
+Um... Just follow me...\n\
 ...?\n\
 What did you say? My name?\n\
 Oh my gosh! I completely forgot!\n\

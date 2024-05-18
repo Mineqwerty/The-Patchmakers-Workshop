@@ -171,6 +171,7 @@ typedef s32 CameraTransitionAngle;
 typedef s16 Movtex;
 typedef s16 MacroObject;
 typedef s16 Trajectory;
+typedef s16 PathfindData;
 typedef u8  CutsceneID;
 
 typedef u8 uchar;
@@ -383,6 +384,20 @@ struct ObjectHitbox {
 struct Waypoint {
     s16 flags;
     Vec3s pos;
+};
+
+struct PathfindNeighbor {
+    s16 id;
+    s16 weight;
+};
+
+struct PathfindNode {
+    s16 nodeID;
+    Vec3s pos;
+    struct PathfindNeighbor neighbor1;
+    struct PathfindNeighbor neighbor2;
+    struct PathfindNeighbor neighbor3;
+    struct PathfindNeighbor neighbor4;
 };
 
 struct Normal {

@@ -10822,7 +10822,7 @@ Gfx castle_inside_dl_Plane_012_mesh_layer_5_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx castle_inside_dl_Plane_016_mesh_layer_5_vtx_cull[8] = {
+Vtx castle_inside_dl_Plane_016_mesh_layer_6_vtx_cull[8] = {
 	{{ {4677, 554, 3789}, 0, {0, 0}, {0, 0, 0, 0} }},
 	{{ {4677, 554, 3789}, 0, {0, 0}, {0, 0, 0, 0} }},
 	{{ {4677, 554, 3377}, 0, {0, 0}, {0, 0, 0, 0} }},
@@ -10833,15 +10833,15 @@ Vtx castle_inside_dl_Plane_016_mesh_layer_5_vtx_cull[8] = {
 	{{ {5103, 554, 3377}, 0, {0, 0}, {0, 0, 0, 0} }},
 };
 
-Vtx castle_inside_dl_Plane_016_mesh_layer_5_vtx_0[4] = {
+Vtx castle_inside_dl_Plane_016_mesh_layer_6_vtx_0[4] = {
 	{{ {5103, 554, 3377}, 0, {4082, 4080}, {177, 177, 177, 255} }},
 	{{ {4677, 554, 3377}, 0, {4082, -16}, {177, 177, 177, 255} }},
 	{{ {4677, 554, 3789}, 0, {-16, -16}, {177, 177, 177, 255} }},
 	{{ {5103, 554, 3789}, 0, {-16, 4080}, {177, 177, 177, 255} }},
 };
 
-Gfx castle_inside_dl_Plane_016_mesh_layer_5_tri_0[] = {
-	gsSPVertex(castle_inside_dl_Plane_016_mesh_layer_5_vtx_0 + 0, 4, 0),
+Gfx castle_inside_dl_Plane_016_mesh_layer_6_tri_0[] = {
+	gsSPVertex(castle_inside_dl_Plane_016_mesh_layer_6_vtx_0 + 0, 4, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
@@ -11932,16 +11932,23 @@ Gfx castle_inside_dl_Plane_012_mesh_layer_5[] = {
 	gsSPDisplayList(mat_castle_inside_dl_f3dlite_material_028),
 	gsSPDisplayList(castle_inside_dl_Plane_012_mesh_layer_5_tri_0),
 	gsSPDisplayList(mat_revert_castle_inside_dl_f3dlite_material_028),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
-Gfx castle_inside_dl_Plane_016_mesh_layer_5[] = {
+Gfx castle_inside_dl_Plane_016_mesh_layer_6[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(castle_inside_dl_Plane_016_mesh_layer_5_vtx_cull + 0, 8, 0),
+	gsSPVertex(castle_inside_dl_Plane_016_mesh_layer_6_vtx_cull + 0, 8, 0),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_castle_inside_dl_f3dlite_material_033),
-	gsSPDisplayList(castle_inside_dl_Plane_016_mesh_layer_5_tri_0),
+	gsSPDisplayList(castle_inside_dl_Plane_016_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_castle_inside_dl_f3dlite_material_033),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),

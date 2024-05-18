@@ -1346,6 +1346,8 @@
 #define oSewniaLastWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
 #define oSewniaNextWaypoint          OBJECT_FIELD_WAYPOINT(0x1C)
 #define oSewniaFaceState        OBJECT_FIELD_S32(0x1D)
+#define oSewniaSourceNode          OBJECT_FIELD_S32(0x1E)
+#define oMarioNearestNode          OBJECT_FIELD_S32(0x1F)
 
 //podogoo
 #define oPotogooApproachXZ        OBJECT_FIELD_F32(0x1B)
