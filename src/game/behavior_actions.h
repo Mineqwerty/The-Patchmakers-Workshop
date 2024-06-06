@@ -903,3 +903,7 @@ void bhv_story_cutscene_manager_init(void);
 void bhv_story_cutscene_manager_loop(void);
 void bhv_story_cutscene_manager_hub1_init(void);
 void bhv_story_cutscene_manager_hub1_loop(void);
+void bhv_floating_tilting_gem_init(void);
+void bhv_floating_tilting_gem_loop(void);
+void bhv_abyss_swimmer_init(void);
+void bhv_abyss_swimmer_loop(void);

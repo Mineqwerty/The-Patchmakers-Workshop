@@ -37,4 +37,17 @@ extern const struct MovtexQuadCollection sl_movtex_water[];
 // script
 extern const LevelScript level_sl_entry[];
 
+#include "levels/sl/abyss_swimmer/geo_header.h"
+
+#include "levels/sl/abyss_swimmer/collision_header.h"
+
+#include "levels/sl/floating_tilting_gem/geo_header.h"
+
+#include "levels/sl/floating_tilting_gem/collision_header.h"
+
+
+#include "levels/sl/header.inc.h"
+
+#include "levels/sl/abyss_swimmer/anim_header.h"
+
 #endif

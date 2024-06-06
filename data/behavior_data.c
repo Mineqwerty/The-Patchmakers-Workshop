@@ -7730,3 +7730,30 @@ const BehaviorScript bhvStoryCutsceneManagerHub1[] = {
         CALL_NATIVE(bhv_story_cutscene_manager_hub1_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFloatingTiltingGem[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(floating_tilting_gem_collision),
+    SET_HOME(),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_floating_tilting_gem_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_tilting_gem_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvAbyssSwimmer[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, abyss_swimmer_anims),
+    ANIMATE(0),
+    LOAD_COLLISION_DATA(abyss_swimmer_collision),
+    SET_FLOAT(oDrawingDistance, 10000),
+    CALL_NATIVE(bhv_abyss_swimmer_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_abyss_swimmer_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

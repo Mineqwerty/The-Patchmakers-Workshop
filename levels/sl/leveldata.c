@@ -31,3 +31,12 @@
 #include "levels/sl/areas/2/collision.inc.c"
 #include "levels/sl/areas/2/macro.inc.c"
 #include "levels/sl/areas/1/movtext.inc.c"
+
+#include "levels/sl/abyss_swimmer/model.inc.c"
+#include "levels/sl/abyss_swimmer/collision.inc.c"
+#include "levels/sl/floating_tilting_gem/model.inc.c"
+#include "levels/sl/floating_tilting_gem/collision.inc.c"
+#include "levels/sl/leveldata.inc.c"
+
+#include "levels/sl/abyss_swimmer/anims/data.inc.c"
+#include "levels/sl/abyss_swimmer/anims/table.inc.c"

@@ -17,3 +17,4 @@
 #include "anim_BreezeHighJump.inc.c"
 #include "anim_sewniaIntroSittingSurprised.inc.c"
 #include "anim_testanim.inc.c"
+#include "anim_sitSurprisedScuttleBack.inc.c"

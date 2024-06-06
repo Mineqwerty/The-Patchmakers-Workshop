@@ -679,6 +679,10 @@
 #define MODEL_MALVA_BUD                   0x104
 #define MODEL_MALVA_FLOWER                   0x105
 
+//Empyrean Abyss
+#define MODEL_FLOATING_TILTING_GEM                   0x100
+#define MODEL_ABYSS_SWIMMER                   0x101
+
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
 

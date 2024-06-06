@@ -697,3 +697,5 @@ extern const BehaviorScript bhvMalvaFlowerManager[];
 extern const BehaviorScript bhvMiasmaRibbon[];
 extern const BehaviorScript bhvStoryCutsceneManager[];
 extern const BehaviorScript bhvStoryCutsceneManagerHub1[];
+extern const BehaviorScript bhvFloatingTiltingGem[];
+extern const BehaviorScript bhvAbyssSwimmer[];

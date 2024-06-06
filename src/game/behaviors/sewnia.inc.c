@@ -77,9 +77,6 @@ void sewnia_init_area_waypoints() {
 void find_best_path() {
 
     //this is a fake recursive algorithm, specifically non-recursive to avoid funny stack stuff
-
-    dbp(8);
-
     
     u16 pathDistances[50];
     for (u8 i = 0; i < 50; i++) {
@@ -417,36 +414,7 @@ struct PathfindNode *find_mario_nearest_waypoint() {
 
 }
 
-void sewnia_act_idle(void) {
-    o->oInteractStatus = 0;
-    cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
 
-    o->oForwardVel = 0.0f;
-    
-}
-
-void sewnia_act_follow_mario(void) {
-    switch (o->oSubAction) {
-        case 0:
-            follow_mario_directly();
-        break;
-        case 1:
-            follow_along_waypoints();
-        break;
-        case 2:
-            stay_near_course_entrance();
-        break;
-    }
-    
-
-    if (o->oInteractStatus == INT_STATUS_INTERACTED) {
-        o->oInteractStatus = 0;
-        create_sewnia_dialog_box(3);
-        o->oAction = SEWNIA_ACT_TALKING_TO_MARIO;
-    }
-    
-
-}
 
 u8 check_ray_to_mario() {
     struct Surface *surf;
@@ -512,35 +480,58 @@ void follow_mario_directly(void) {
 }
 
 void follow_along_waypoints(void) {
+
+    sewnia_init_area_waypoints();
+    struct PathfindNode *sewniaNode = sewnia_find_nearest_waypoint();
+    o->oSewniaSourceNode = sewniaNode->nodeID;
+    struct PathfindNode *marioNode = find_mario_nearest_waypoint();
+    if (o->oMarioNearestNode != marioNode->nodeID) {
+        o->oMarioNearestNode = marioNode->nodeID;
+        o->oSewniaCurrentNodeIndex = 0;
+        find_best_path();
+    }
+
     struct Waypoint *prevWaypoint = o->oSewniaLastWaypoint;
     struct Waypoint *nextWaypoint = o->oSewniaNextWaypoint;
     struct Waypoint *marioWaypoint;
 
+    struct PathfindNode nextNode = waypointPath[shortestPath[o->oSewniaCurrentNodeIndex]];
 
-   obj_turn_toward_position(o, (f32) nextWaypoint->pos[0], (f32) nextWaypoint->pos[1], (f32) nextWaypoint->pos[2], O_MOVE_ANGLE_YAW_INDEX, 0x1000);
-    o->oForwardVel = 30.0f;
+    if (shortestPath[o->oSewniaCurrentNodeIndex] != -1) {
 
-    f32 dist = 1000;
-    Vec3f waypointPos;
-    waypointPos[0] = nextWaypoint->pos[0];
-    waypointPos[1] = nextWaypoint->pos[1];
-    waypointPos[2] = nextWaypoint->pos[2];
-    vec3f_get_dist(&o->oPosVec, waypointPos, &dist);
+        obj_turn_toward_position(o, (f32) nextNode.pos[0], (f32) nextNode.pos[1], (f32) nextNode.pos[2], O_MOVE_ANGLE_YAW_INDEX, 0x1000);
+        o->oForwardVel = 30.0f;
 
-    if (dist < 100) {
-        prevWaypoint = nextWaypoint;
-        marioWaypoint = find_mario_nearest_waypoint();
-        if (marioWaypoint->flags < prevWaypoint->flags) {
-            nextWaypoint = nextWaypoint - 1;
+        cur_obj_update_floor_and_walls();
+
+        if (o->oFlags & OBJ_MOVE_HIT_WALL) {
+            s16 chosenAngle = abss(o->oMoveAngleYaw - (o->oWallAngle + 0x4000));
+            if (abss(o->oMoveAngleYaw - (o->oWallAngle - 0x4000)) < chosenAngle) {
+                chosenAngle = o->oWallAngle - 0x4000;
+            }
+            else {
+                chosenAngle = o->oWallAngle + 0x4000;
+            }
+            o->oMoveAngleYaw = chosenAngle;
+            o->oFlags &= ~OBJ_MOVE_HIT_WALL;
         }
-        else {
-            nextWaypoint = nextWaypoint + 1;
+
+        cur_obj_move_standard(-60);
+
+        f32 dist = 1000;
+        Vec3f waypointPos;
+        waypointPos[0] = nextNode.pos[0];
+        waypointPos[1] = nextNode.pos[1];
+        waypointPos[2] = nextNode.pos[2];
+        vec3f_get_dist(&o->oPosVec, waypointPos, &dist);
+
+        if (dist < 100) {
+            o->oSewniaCurrentNodeIndex += 1;
         }
-        
+
+        o->oSewniaNextWaypoint = nextWaypoint;
+        o->oSewniaLastWaypoint = prevWaypoint;
     }
-
-    o->oSewniaNextWaypoint = nextWaypoint;
-    o->oSewniaLastWaypoint = prevWaypoint;
 
     u8 approachMode = 0;
         approachMode = check_ray_to_mario();
@@ -744,36 +735,61 @@ void bhv_sewnia_init(void) {
     //sewnia_init_area_waypoints();
 }
 
+void sewnia_act_idle(void) {
+    o->oInteractStatus = 0;
+    cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+
+    o->oForwardVel = 0.0f;
+    
+}
+
+void sewnia_act_follow_mario(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
+            follow_mario_directly();
+            o->oMarioNearestNode = -1;
+        break;
+        case 1:
+            follow_along_waypoints();
+        break;
+        case 2:
+            cur_obj_update_floor_and_walls();
+            cur_obj_move_standard(-60);
+            stay_near_course_entrance();
+            o->oMarioNearestNode = -1;
+        break;
+    }
+    
+
+    if (o->oInteractStatus == INT_STATUS_INTERACTED) {
+        o->oInteractStatus = 0;
+        create_sewnia_dialog_box(3);
+        o->oAction = SEWNIA_ACT_TALKING_TO_MARIO;
+    }
+    
+
+}
+
+void sewnia_update_movement(void) {
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(-60);
+    
+}
+
 void bhv_sewnia_loop(void) {
-    sewnia_init_area_waypoints();
-    if (o->oTimer >= 30 && o->oTimer % 30 == 0) {
-        struct PathfindNode *sewniaNode = sewnia_find_nearest_waypoint();
-        o->oSewniaSourceNode = sewniaNode->nodeID;
-        struct PathfindNode *marioNode = find_mario_nearest_waypoint();
-        o->oMarioNearestNode = marioNode->nodeID;
-        find_best_path();
-    }
-    if (o->oTimer > 30) {
-        int poop = 0;
-        while (shortestPath[poop] != -1) {
-            print_text_fmt_int(20 + poop*50, 200, "%d", shortestPath[poop]);
-            poop +=1;
-        }
-        
-    }
 
     print_text_fmt_int(200, 80, "sewnia %d", o->oSewniaSourceNode);
     print_text_fmt_int(200, 60, "mario %d", o->oMarioNearestNode);
 
     switch (o->oAction) {
         case SEWNIA_ACT_IDLE:
-            cur_obj_update_floor_and_walls();
-            cur_obj_move_standard(-60);
+            sewnia_update_movement();
             sewnia_act_idle();
         break;
         case SEWNIA_ACT_FOLLOW_MARIO:
-            cur_obj_update_floor_and_walls();
-            cur_obj_move_standard(-60);
+            
             sewnia_act_follow_mario();
         break;
         case SEWNIA_ACT_TALKING_TO_MARIO:

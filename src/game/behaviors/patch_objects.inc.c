@@ -271,9 +271,9 @@ void bhv_grapple_hook_loop(void) {
             Vec3f hitpos;
             Vec3f raydir;
 
-            raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
+            raydir[0] = sins(o->oMoveAngleYaw) * (100.0f + o->oForwardVel);
             raydir[1] = 0.0f;
-            raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
+            raydir[2] = coss(o->oMoveAngleYaw) * (100.0f + o->oForwardVel);
 
             vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
 

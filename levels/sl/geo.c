@@ -17,3 +17,7 @@
 #include "levels/sl/snow_mound/geo.inc.c"
 #include "levels/sl/areas/1/geo.inc.c"
 #include "levels/sl/areas/2/geo.inc.c"
+
+#include "levels/sl/abyss_swimmer/geo.inc.c"
+#include "levels/sl/floating_tilting_gem/geo.inc.c"
+#include "levels/sl/geo.inc.c"
