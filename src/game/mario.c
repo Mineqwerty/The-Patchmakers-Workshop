@@ -1947,13 +1947,32 @@ void perform_patch_action(struct MarioState *m) {
         break;
 
         case PATCH_MIASMA:
-        for (u8 i = 0; i < 10; i++) {
-            struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
-            ribbon->oFaceAngleRoll = random_u16();
-            ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
 
-            SET_BPARAM1(ribbon->oBehParams, 1);
+        if (gMarioState->miasmaSoulCount > 0) {
+            if (gMarioState->miasmaSoulCount < 5) {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                }
+            }
+            else {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                    cur_obj_play_sound_1(SOUND_NEW_MIASMA_STORM_L);
+                    cur_obj_play_sound_2(SOUND_NEW_2_MIASMA_STORM_R);
+                    
+                    if (i == 0) {
+                        SET_BPARAM3(ribbon->oBehParams, 1);   
+                    }
+
+                    SET_BPARAM1(ribbon->oBehParams, 1);
+                }
+            }
         }
+        
             
         break;
         }
@@ -2147,6 +2166,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     if (gPlayer1Controller->buttonPressed & L_TRIG && check_able_to_use_patch()) {
         perform_patch_action(gMarioState);
     }
+
+    //obj_attack_in_radius(gMarioObject, 500.0f, 2, 2);
 
     patch_update(gMarioState);
     gMarioState->patchTimer++;
@@ -2416,6 +2437,7 @@ void init_mario(void) {
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
     //gMarioState->patchChildObj = NULL;
     gMarioState->invincTimer = 0;
+    gMarioState->miasmaSoulCount = 0;
     update_dl_dpad_patches();
 
     

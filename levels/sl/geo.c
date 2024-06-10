@@ -21,3 +21,8 @@
 #include "levels/sl/abyss_swimmer/geo.inc.c"
 #include "levels/sl/floating_tilting_gem/geo.inc.c"
 #include "levels/sl/geo.inc.c"
+
+#include "levels/sl/ea_skybox/geo.inc.c"
+#include "levels/sl/abyss_urchin/geo.inc.c"
+#include "levels/sl/tentacle_cage/geo.inc.c"
+#include "levels/sl/cage_eye/geo.inc.c"

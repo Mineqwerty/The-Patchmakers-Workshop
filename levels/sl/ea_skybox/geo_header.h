@@ -1,0 +1,16 @@
+extern const GeoLayout ea_skybox_geo[];
+extern u8 ea_skybox_empyrean_sky_rgba16[];
+extern u8 ea_skybox_seafloor_ci8[];
+extern u8 ea_skybox_seafloor_pal_rgba16[];
+extern Vtx ea_skybox_Sphere_006_mesh_layer_3_vtx_0[248];
+extern Gfx ea_skybox_Sphere_006_mesh_layer_3_tri_0[];
+extern Vtx ea_skybox_Sphere_006_mesh_layer_1_vtx_0[32];
+extern Gfx ea_skybox_Sphere_006_mesh_layer_1_tri_0[];
+extern Vtx ea_skybox_Sphere_006_mesh_layer_1_vtx_1[36];
+extern Gfx ea_skybox_Sphere_006_mesh_layer_1_tri_1[];
+extern Gfx mat_ea_skybox_sky_002_v4_009[];
+extern Gfx mat_ea_skybox_f3dlite_material_012[];
+extern Gfx mat_revert_ea_skybox_f3dlite_material_012[];
+extern Gfx mat_ea_skybox_f3dlite_material_010[];
+extern Gfx ea_skybox_Sphere_006_mesh_layer_3[];
+extern Gfx ea_skybox_Sphere_006_mesh_layer_1[];

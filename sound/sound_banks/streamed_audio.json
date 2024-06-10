@@ -18,7 +18,10 @@
             "hang"
         ],
         "envelope1": [
-            [1, 32700],
+            [
+                1,
+                32700
+            ],
             "hang"
         ]
     },
@@ -52,6 +55,16 @@
             "release_rate": 10,
             "envelope": "envelope1",
             "sound": "title_R"
+        },
+        "inst6": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "crickets_L"
+        },
+        "inst7": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "crickets_L"
         }
     },
     "instrument_list": [
@@ -60,6 +73,8 @@
         "inst2",
         "inst3",
         "inst4",
-        "inst5"
+        "inst5",
+        "inst6",
+        "inst7"
     ]
 }

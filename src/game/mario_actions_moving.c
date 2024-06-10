@@ -907,6 +907,12 @@ s32 act_move_punching(struct MarioState *m) {
     }
 
     if (m->actionState == ACT_STATE_MOVE_PUNCHING_CAN_JUMP_KICK && (m->input & INPUT_A_DOWN)) {
+        if (m->equippedPatch == PATCH_MIASMA) {
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 20, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbonn->oFaceAngleRoll = 0x4000;
+                    ribbonn->oFaceAnglePitch = -0x2000;
+                    SET_BPARAM1(ribbonn->oBehParams, 2);
+                }
         return set_mario_action(m, ACT_JUMP_KICK, 0);
     }
 

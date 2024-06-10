@@ -9,6 +9,8 @@
 #include "interaction.h"
 #include "engine/math_util.h"
 #include "rumble_init.h"
+#include "src/game/level_update.h"
+#include "include/behavior_data.h"
 
 /**
  * Used by act_punching() to determine Mario's forward velocity during each
@@ -37,6 +39,13 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
     switch (m->actionArg) {
         case ACT_ARG_PUNCH_SEQUENCE_YAH:
             play_sound(SOUND_MARIO_PUNCH_YAH, m->marioObj->header.gfx.cameraToObject);
+            if (m->equippedPatch == PATCH_MIASMA) {
+                    struct Object *ribbon = spawn_object_relative(0, 0, 50, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = 0;
+                    ribbon->oFaceAnglePitch = -0x500;
+                    SET_BPARAM1(ribbon->oBehParams, 2);
+                    ribbon = NULL;
+                }
             FALL_THROUGH;
         case ACT_ARG_PUNCH_SEQUENCE_FIRST_PUNCH:
             set_mario_animation(m, MARIO_ANIM_FIRST_PUNCH);
@@ -68,6 +77,12 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
 
             if (m->input & INPUT_B_PRESSED) {
                 m->actionArg = ACT_ARG_PUNCH_SEQUENCE_WAH;
+                if (m->equippedPatch == PATCH_MIASMA) {
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 40, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbonn->oFaceAngleRoll = -0x7000;
+                    ribbonn->oFaceAnglePitch = -0x500;
+                    SET_BPARAM1(ribbonn->oBehParams, 2);
+                }
             }
 
             if (is_anim_at_end(m)) {
@@ -103,6 +118,12 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
 
             if (m->input & INPUT_B_PRESSED) {
                 m->actionArg = ACT_ARG_PUNCH_SEQUENCE_GROUND_KICK;
+                if (m->equippedPatch == PATCH_MIASMA) {
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 20, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbonn->oFaceAngleRoll = 0x4000;
+                    ribbonn->oFaceAnglePitch = -0x2000;
+                    SET_BPARAM1(ribbonn->oBehParams, 2);
+                }
             }
 
             if (is_anim_at_end(m)) {

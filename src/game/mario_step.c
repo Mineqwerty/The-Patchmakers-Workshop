@@ -191,8 +191,10 @@ u32 mario_update_water_death_floor(struct MarioState *m, f32 sinkingSpeed) {
 
         switch (m->floor->type) {
             case SURFACE_WATER_DEATH:
-                update_mario_sound_and_camera(m);
-                return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                if (m->equippedPatch != PATCH_MARINE) {
+                    update_mario_sound_and_camera(m);
+                    return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                }
                 break;
             break;
 

@@ -40,3 +40,8 @@
 
 #include "levels/sl/abyss_swimmer/anims/data.inc.c"
 #include "levels/sl/abyss_swimmer/anims/table.inc.c"
+#include "levels/sl/ea_skybox/model.inc.c"
+#include "levels/sl/abyss_urchin/model.inc.c"
+#include "levels/sl/tentacle_cage/model.inc.c"
+#include "levels/sl/tentacle_cage/collision.inc.c"
+#include "levels/sl/cage_eye/model.inc.c"

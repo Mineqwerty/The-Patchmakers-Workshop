@@ -844,6 +844,7 @@ u8 object_behavior_is_transmutable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvTransmutationTable)
         || obj->behavior == segmented_to_virtual(bhvTransmutationStar)
         || obj->behavior == segmented_to_virtual(bhvRedFlower)
+        || obj->behavior == segmented_to_virtual(bhvTorchHolder)
     );
 }
 
@@ -883,6 +884,78 @@ struct Object *obj_find_transmute_target(struct Object *sourceObj) {
 
                 if (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) && absf(obj->oPosY - sourceObj->oPosY - 100) < 300) {
                     return obj;
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
+struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
+                                  u8 damage, s32 interaction) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = { OBJ_LIST_DESTRUCTIVE, OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE,
+                          OBJ_LIST_LEVEL,       OBJ_LIST_DEFAULT,  OBJ_LIST_SURFACE };
+
+    Vec3f pointA;
+    Vec3f pointB;
+    Vec3f pointC;
+    Vec3f pointD;
+
+    vec3f_set(pointA, o->oPosX + closeWidth * coss(o->oFaceAngleYaw), o->oPosY,
+              o->oPosZ + closeWidth * sins(o->oFaceAngleYaw));
+    vec3f_set(pointB, o->oPosX + closeWidth * -coss(o->oFaceAngleYaw), o->oPosY,
+              o->oPosZ + closeWidth * -sins(o->oFaceAngleYaw));
+    vec3f_set(pointC, (o->oPosX + farWidth * coss(o->oFaceAngleYaw)) + length * sins(o->oFaceAngleYaw),
+              o->oPosY,
+              (o->oPosZ + farWidth * sins(o->oFaceAngleYaw)) + length * coss(o->oFaceAngleYaw));
+    vec3f_set(pointD, (o->oPosX + farWidth * -coss(o->oFaceAngleYaw)) + length * sins(o->oFaceAngleYaw),
+              o->oPosY,
+              (o->oPosZ + farWidth * -sins(o->oFaceAngleYaw)) + length * coss(o->oFaceAngleYaw));
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj) {
+
+                if ((point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) || point_inside_xz_tri(&obj->oPosVec, pointB, pointC, pointD))
+                    && absf(obj->oPosY - sourceObj->oPosY - (height/2)) < height) {
+                    attack_object(obj, interaction, damage);
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
+struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 damage, s32 interaction) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = { OBJ_LIST_DESTRUCTIVE, OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE,
+                          OBJ_LIST_LEVEL,       OBJ_LIST_DEFAULT,  OBJ_LIST_SURFACE };
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj) {
+
+                if (dist_between_objects(sourceObj, obj) < radius) {
+                    attack_object(obj, interaction, damage);
                 }
             }
 

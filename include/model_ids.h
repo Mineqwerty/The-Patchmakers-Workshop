@@ -682,6 +682,9 @@
 //Empyrean Abyss
 #define MODEL_FLOATING_TILTING_GEM                   0x100
 #define MODEL_ABYSS_SWIMMER                   0x101
+#define MODEL_ABYSS_URCHIN                   0x102
+#define MODEL_TENTACLE_CAGE                   0x103
+#define MODEL_CAGE_EYE                   0x104
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

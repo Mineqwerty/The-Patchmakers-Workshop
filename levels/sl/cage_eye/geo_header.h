@@ -1,0 +1,15 @@
+extern const GeoLayout cage_eye_geo[];
+extern Lights1 cage_eye_f3dlite_material_015_lights;
+extern Lights1 cage_eye_f3dlite_material_016_lights;
+extern Lights1 cage_eye_f3dlite_material_lights;
+extern Vtx cage_eye_Sphere_001_mesh_layer_1_vtx_cull[8];
+extern Vtx cage_eye_Sphere_001_mesh_layer_1_vtx_0[40];
+extern Gfx cage_eye_Sphere_001_mesh_layer_1_tri_0[];
+extern Vtx cage_eye_Sphere_001_mesh_layer_1_vtx_1[12];
+extern Gfx cage_eye_Sphere_001_mesh_layer_1_tri_1[];
+extern Vtx cage_eye_Sphere_001_mesh_layer_1_vtx_2[6];
+extern Gfx cage_eye_Sphere_001_mesh_layer_1_tri_2[];
+extern Gfx mat_cage_eye_f3dlite_material_015[];
+extern Gfx mat_cage_eye_f3dlite_material_016[];
+extern Gfx mat_cage_eye_f3dlite_material[];
+extern Gfx cage_eye_Sphere_001_mesh_layer_1[];

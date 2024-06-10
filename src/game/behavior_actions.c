@@ -316,3 +316,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/story_cutscene_manager.inc.c"
 #include "behaviors/floating_tilting_gem.inc.c"
 #include "behaviors/abyss_swimmer.inc.c"
+#include "behaviors/cage_eye.inc.c"

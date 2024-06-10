@@ -699,3 +699,6 @@ extern const BehaviorScript bhvStoryCutsceneManager[];
 extern const BehaviorScript bhvStoryCutsceneManagerHub1[];
 extern const BehaviorScript bhvFloatingTiltingGem[];
 extern const BehaviorScript bhvAbyssSwimmer[];
+extern const BehaviorScript bhvAbyssUrchin[];
+extern const BehaviorScript bhvCageEye[];
+extern const BehaviorScript bhvTentacleCage[];

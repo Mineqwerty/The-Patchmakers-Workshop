@@ -150,7 +150,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_STAR, 2873, 4637, -414, 0, 156, 0, (5 << 24), bhvStar),
 		TERRAIN(ssl_area_3_collision),
 		MACRO_OBJECTS(ssl_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_STREAMED_CRICKETS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

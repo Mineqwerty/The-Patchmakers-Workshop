@@ -25,6 +25,7 @@ seq_startchannel 8, .channel38
 seq_startchannel 9, .channel59
 seq_startchannel 10, .channelPatch
 seq_startchannel 11, .channel_NEW
+seq_startchannel 12, .channel_NEW_2
 .seq_loop:
 seq_delay 20000
 seq_jump .seq_loop
@@ -8063,6 +8064,39 @@ chan_jump .main_loop_023589
 .channel_NEW_table:
 sound_ref .sound_mimic_laugh
 sound_ref .sound_breeze_restore
+sound_ref .sound_miasma_grow
+sound_ref .sound_miasma_slice
+sound_ref .sound_miasma_storm_l
+
+.sound_miasma_storm_l:
+chan_setbank 12
+chan_setinstr 4
+chan_setlayer 0, .layer_miasma_storm_l
+chan_end
+
+.layer_miasma_storm_l:
+layer_note1 39, 0x79, 127
+layer_end
+
+.sound_miasma_slice:
+chan_setbank 12
+chan_setinstr 3
+chan_setlayer 0, .layer_miasma_slice
+chan_end
+
+.layer_miasma_slice:
+layer_note1 39, 0x3c, 127
+layer_end
+
+.sound_miasma_grow:
+chan_setbank 12
+chan_setinstr 2
+chan_setlayer 0, .layer_miasma_grow
+chan_end
+
+.layer_miasma_grow:
+layer_note1 39, 0x79, 127
+layer_end
 
 .sound_breeze_restore:
 chan_setbank 12
@@ -8082,6 +8116,31 @@ chan_end
 
 .layer_mimic_laugh:
 layer_note1 39, 0x89, 127
+layer_end
+
+
+.channel_NEW_2:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channel_NEW_2_table
+chan_jump .main_loop_023589
+
+.channel_NEW_2_table:
+sound_ref .sound_miasma_storm_r
+
+.sound_miasma_storm_r:
+chan_setbank 13
+chan_setinstr 0
+chan_setlayer 0, .layer_miasma_storm_r
+chan_end
+
+.layer_miasma_storm_r:
+layer_note1 39, 0x79, 127
 layer_end
 
 .align 2, 0

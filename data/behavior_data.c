@@ -7757,3 +7757,34 @@ const BehaviorScript bhvAbyssSwimmer[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvAbyssUrchin[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    CALL_NATIVE(bhv_abyss_urchin_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_abyss_urchin_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCageEye[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_cage_eye_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_cage_eye_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTentacleCage[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    LOAD_COLLISION_DATA(tentacle_cage_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_tentacle_cage_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tentacle_cage_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

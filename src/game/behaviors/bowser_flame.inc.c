@@ -28,7 +28,7 @@ void bowser_flame_despawn(void) {
     obj_mark_for_deletion(o);
     spawn_object_with_scale(o, MODEL_NONE, bhvBlackSmokeUpward, 1.0f);
     if (random_float() < 0.1f) {
-        spawn_object(o, MODEL_YELLOW_COIN, bhvTemporaryYellowCoin);
+        //spawn_object(o, MODEL_YELLOW_COIN, bhvTemporaryYellowCoin);
     }
 }
 
@@ -62,7 +62,7 @@ void bhv_flame_large_burning_out_init(void) {
     o->oMoveAngleYaw = random_u16();
     o->oVelY = 10.0f;
     o->oForwardVel = 0.0f;
-    o->oFlameScale = 7.0f;
+    o->oFlameScale = 4.0f;
 }
 
 void bowser_flame_move(void) {
@@ -86,7 +86,7 @@ void bhv_flame_bowser_loop(void) {
         if (o->oMoveFlags & OBJ_MOVE_LANDED) {
             o->oAction++;
             if (cur_obj_has_behavior(bhvFlameLargeBurningOut)) {
-                o->oFlameScale = 8.0f;
+                o->oFlameScale = 4.0f;
             } else {
                 o->oFlameScale = random_float() * 2 + 6.0f;
             }

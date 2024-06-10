@@ -533,6 +533,7 @@ struct MarioState {
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
+    u8 miasmaSoulCount;
     u8 patchTimer;
     u8 dialogStoryNum;
     struct Object *patchChildObj;

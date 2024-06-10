@@ -50,4 +50,14 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/abyss_swimmer/anim_header.h"
 
+#include "levels/sl/ea_skybox/geo_header.h"
+
+#include "levels/sl/abyss_urchin/geo_header.h"
+
+#include "levels/sl/tentacle_cage/geo_header.h"
+
+#include "levels/sl/tentacle_cage/collision_header.h"
+
+#include "levels/sl/cage_eye/geo_header.h"
+
 #endif

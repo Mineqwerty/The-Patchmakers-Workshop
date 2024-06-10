@@ -1228,6 +1228,9 @@ void bhv_transmutation_cone_loop(void) {
                         spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
                         obj_mark_for_deletion(target);
                     }
+                    else if (obj_has_behavior(target, bhvTorchHolder)) {
+                        target->oF4 = 1;
+                    }
 
                     play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
                 }

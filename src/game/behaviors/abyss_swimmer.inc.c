@@ -2,7 +2,9 @@
 
 struct Trajectory *sAbyssSwimmerPaths[] = {
     sl_area_1_spline_SwimmerPath0,
-    sl_area_1_spline_SwimmerPath1
+    sl_area_1_spline_SwimmerPath1,
+    sl_area_1_spline_SwimmerPath2,
+    sl_area_1_spline_SwimmerPath3
 };
 
 void bhv_abyss_swimmer_init(void) {
@@ -30,6 +32,8 @@ void bhv_abyss_swimmer_loop(void) {
             
             cur_obj_move_xz_using_fvel_and_yaw();
             o->oFaceAngleYaw = approach_s16_asymptotic(o->oFaceAngleYaw, o->oMoveAngleYaw, 0.03f);
+
+            o->oPosY = approach_f32_asymptotic(o->oPosY, o->oPosY - (o->oPathedTargetPitch / 5), 0.03f);
             
         break;
     }
