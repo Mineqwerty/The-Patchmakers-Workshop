@@ -1,9 +1,19 @@
 void bhv_floating_tilting_gem_init(void) {
     vec3f_set(&o->oTiltingPyramidNormalVec, 0.0f, 1.0f, 0.0f);
     mtxf_align_terrain_normal(o->transform, &o->oTiltingPyramidNormalVec, &o->oPosVec, 0);
+    o->oHomeX = o->oPosX;
+    o->oHomeY = o->oPosY;
+    o->oHomeZ = o->oPosZ;
 }
 
 void bhv_floating_tilting_gem_loop(void) {
+
+
+    if (GET_BPARAM1(o->oBehParams) == 1) {
+        o->oPosX = o->oHomeX + o->oBehParams2ndByte * 10 * sins((GET_BPARAM3(o->oBehParams) * 10) * o->oTimer + o->oMoveAngleYaw);
+        o->oPosZ = o->oHomeZ + o->oBehParams2ndByte * 10 * coss((GET_BPARAM3(o->oBehParams) * 10) * o->oTimer + o->oMoveAngleYaw);
+    }
+
     Vec3f targetNormal;
     Mat4 *transform = &o->transform;
     s32 marioOnPlatform = (gMarioObject->platform == o);

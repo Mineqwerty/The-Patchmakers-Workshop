@@ -26,3 +26,5 @@
 #include "levels/sl/abyss_urchin/geo.inc.c"
 #include "levels/sl/tentacle_cage/geo.inc.c"
 #include "levels/sl/cage_eye/geo.inc.c"
+#include "levels/sl/floating_moving_gem/geo.inc.c"
+#include "levels/sl/sky_slug/geo.inc.c"

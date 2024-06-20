@@ -45,3 +45,6 @@
 #include "levels/sl/tentacle_cage/model.inc.c"
 #include "levels/sl/tentacle_cage/collision.inc.c"
 #include "levels/sl/cage_eye/model.inc.c"
+#include "levels/sl/floating_moving_gem/model.inc.c"
+#include "levels/sl/sky_slug/model.inc.c"
+#include "levels/sl/sky_slug/collision.inc.c"

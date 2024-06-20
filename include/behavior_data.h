@@ -702,3 +702,4 @@ extern const BehaviorScript bhvAbyssSwimmer[];
 extern const BehaviorScript bhvAbyssUrchin[];
 extern const BehaviorScript bhvCageEye[];
 extern const BehaviorScript bhvTentacleCage[];
+extern const BehaviorScript bhvSkySlug[];

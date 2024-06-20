@@ -60,4 +60,10 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/cage_eye/geo_header.h"
 
+#include "levels/sl/floating_moving_gem/geo_header.h"
+
+#include "levels/sl/sky_slug/geo_header.h"
+
+#include "levels/sl/sky_slug/collision_header.h"
+
 #endif

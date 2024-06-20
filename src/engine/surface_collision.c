@@ -707,6 +707,7 @@ s32 get_room_at_pos(f32 x, f32 y, f32 z) {
  */
 f32 find_water_floor(s32 xPos, s32 yPos, s32 zPos, struct Surface **pfloor) {
     f32 height = FLOOR_LOWER_LIMIT;
+    f32 dynamicHeight = FLOOR_LOWER_LIMIT;
 
     s32 x = xPos;
     s32 y = yPos;
@@ -718,9 +719,24 @@ f32 find_water_floor(s32 xPos, s32 yPos, s32 zPos, struct Surface **pfloor) {
     s32 cellX = GET_CELL_COORD(x);
     s32 cellZ = GET_CELL_COORD(z);
 
+    struct SurfaceNode *surfaceList;
+    struct Surface *dynamicFloor = NULL;
+    
+
+    surfaceList = gDynamicSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WATER].next;
+        dynamicFloor = find_water_floor_from_list(surfaceList, x, y, z, &dynamicHeight);
+
+        // In the next check, only check for floors higher than the previous check.
+        height = dynamicHeight;
+
     // Check for surfaces that are a part of level geometry.
-    struct SurfaceNode *surfaceList = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WATER].next;
+    surfaceList = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WATER].next;
     struct Surface     *floor       = find_water_floor_from_list(surfaceList, x, y, z, &height);
+
+    if (height <= dynamicHeight) {
+        floor  = dynamicFloor;
+        height = dynamicHeight;
+    }
 
     if (floor == NULL) {
         height = FLOOR_LOWER_LIMIT;

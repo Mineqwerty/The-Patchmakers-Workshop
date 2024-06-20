@@ -913,3 +913,5 @@ void bhv_cage_eye_init(void);
 void bhv_cage_eye_loop(void);
 void bhv_tentacle_cage_init(void);
 void bhv_tentacle_cage_loop(void);
+void bhv_sky_slug_init(void);
+void bhv_sky_slug_loop(void);

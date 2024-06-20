@@ -685,6 +685,8 @@
 #define MODEL_ABYSS_URCHIN                   0x102
 #define MODEL_TENTACLE_CAGE                   0x103
 #define MODEL_CAGE_EYE                   0x104
+#define MODEL_FLOATING_MOVING_GEM                   0x105
+#define MODEL_SKY_SLUG                   0x106
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
