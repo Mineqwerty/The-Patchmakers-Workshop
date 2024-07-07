@@ -7554,3 +7554,12 @@ const BehaviorScript bhvGoofyWarpReciever[] = {
         CALL_NATIVE(bhv_goofy_warp_reciever_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvTrailerCam[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_trailer_cam_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_trailer_cam_loop),
+    END_LOOP(),
+};

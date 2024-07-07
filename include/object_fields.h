@@ -1395,6 +1395,21 @@
 //eyebulb
 #define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
 
+//trailer camera
+#define /*0x0F4*/ oTCPos1X             OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oTCPos1Y           OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oTCPos1Z         OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oTCPos2X             OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oTCPos2Y         OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oTCPos2Z          OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oTCFoc1X      OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oTCFoc1Y      OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oTCFoc1Z     OBJECT_FIELD_S32(0x49) 
+#define /*0x1AC*/ oTCFoc2X     OBJECT_FIELD_S32(0x43)
+#define /*0x1AC*/ oTCFoc2Y     OBJECT_FIELD_S32(0x45)
+#define /*0x1AC*/ oTCFoc2Z     OBJECT_FIELD_S32(0x3A)
+#define /*0x1AC*/ oTCSplineTimer     OBJECT_FIELD_S32(0x30)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

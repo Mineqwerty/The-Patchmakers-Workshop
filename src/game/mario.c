@@ -2104,11 +2104,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        //gMarioState->pos[0] = 10480;
-        //gMarioState->pos[1] = 9047;
-        //gMarioState->pos[2] = -13223;
-        initiate_warp(LEVEL_BBH, 4, 0x0A, 0);
+    if (gPlayer1Controller->buttonPressed & D_JPAD && gMarioState->action != ACT_WAITING_FOR_DIALOG) {
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvTrailerCam);
     }
 
     // TODO: put this in a geo asm for VTW 

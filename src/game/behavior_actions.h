@@ -870,3 +870,5 @@ void bhv_goofy_warp_init(void);
 void bhv_goofy_warp_loop(void);
 void bhv_goofy_warp_reciever_init(void);
 void bhv_goofy_warp_reciever_loop(void);
+void bhv_trailer_cam_init(void);
+void bhv_trailer_cam_loop(void);
