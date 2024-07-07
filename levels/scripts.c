@@ -121,6 +121,10 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_FIRE_SMOKE,            fire_smoke_geo),
     LOAD_MODEL_FROM_GEO(MODEL_GRABBABLE_PUZZLE_BOX,            grabbable_puzzle_box_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TRANSMUTATION_STAR,            transmutation_star_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PATCH_UPGRADE,            patch_upgrade_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER,            rocket_flower_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER_ROT,            rocket_flower_rotated_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_FLOATING_PETAL,            floating_petal_geo),
 
     LOAD_MODEL_FROM_GEO(MODEL_PATCH_MARIO_STONE,            patch_mario_stone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ICE_SPIKES,            ice_spikes_geo),
@@ -134,6 +138,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_HEAD,            shadow_chomp_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SHADOW_CHOMP_TAIL,            shadow_chomp_tail_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TRANSMUTATION_CONE,            transmutation_cone_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_MIASMA_RIBBON,            miasma_ribbon_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

@@ -136,11 +136,39 @@ C11"))
 DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
 C12"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 2, 95, 200, _("\
-C13"))
+DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
+H... Hi...\n\
+\n\
+\n\
+Sorry... I didn't mean to scare you like that...\n\
+I got a little scared too, so it's okay...\n\
+\n\
+Oh... You look like you don't know what's going on...\n\
+Sorry about that... It's been a long while since I have\n\
+seen a person, I should explain everything to you...\n\
+I don't have the full story, but I do know this.\n\
+You were attacked and captured by a man known as\n\
+The Patchmaker...\n\
+He used a forbidden craft technique called\n\
+The Thread of Life to steal your soul away in a thread,\n\
+trapping it within an object. That insignia on your cap.\n\
+He then took you here, to this workshop...\n\
+And... Um... That's not all...\n\
+He got your friends too..."))
 
 DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
-C14"))
+Don't worry, we can fix this! It's not too late!\n\
+Ah... But it might be tough with what we have...\n\
+The Patchmaker probably has their threads...\n\
+There is another issue too.\n\
+Um... Just follow me...\n\
+...?\n\
+What did you say? My name?\n\
+Oh my gosh! I completely forgot!\n\
+My name is Sewnia.\n\
+And your name is?\n\
+...\n\
+Mario huh? Nice to meet you Mario!"))
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
 C15"))

@@ -1,0 +1,47 @@
+{
+  "date": "1996-03-19",
+  "sample_bank": "sfx_new",
+  "envelopes": {
+    "envelope0": [
+      [
+        1,
+        32700
+      ],
+      "hang"
+    ]
+  },
+  "instruments": {
+    "inst_mimic_laugh": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "mimic_laugh"
+    },
+    "inst_breeze_restore": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breeze_restore"
+    },
+    "inst_miasma_grow": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_grow"
+    },
+    "inst_miasma_slice": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_slice"
+    },
+    "inst_miasma_storm_l": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_storm_l"
+    }
+  },
+  "instrument_list": [
+    "inst_mimic_laugh",
+    "inst_breeze_restore",
+    "inst_miasma_grow",
+    "inst_miasma_slice",
+    "inst_miasma_storm_l"
+  ]
+}

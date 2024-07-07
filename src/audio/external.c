@@ -88,7 +88,7 @@ u8 sDialogSpeaker[] = {
     //       0      1      2      3      4      5      6      7      8      9
     /* 0*/ _,     _,  _,  _,  _,  _, _, _, _,     _,
     /* 1*/ _,     _,     _,     _,     _,     _,     _,     _, _,     _,
-    /* 2*/ _,     BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1,
+    /* 2*/ _,     _, _, _, _, _, _, _, _, _,
     /* 3*/ _,     _,     _,     _,     _,     _,     _,     TUXIE, _,     _,
     /* 4*/ _,     KOOPA, _,     _,     _,     _,     _,     BOMB,  _,     _,
     /* 5*/ _,     _,     _,     _,     _,     _, _, _, _, _,
@@ -354,6 +354,7 @@ u8 sBackgroundMusicDefaultVolume[] = {
     80,
     80,
     80,
+    127,
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,
@@ -1397,6 +1398,8 @@ static void update_game_sound(void) {
                         case SOUND_BANK_GENERAL2:
                         case SOUND_BANK_OBJ2:
                         case SOUND_BANK_PATCH_ABILITY:
+                        case SOUND_BANK_NEW:
+                        case SOUND_BANK_NEW_2:
 #if defined(VERSION_EU) || defined(VERSION_SH)
                             func_802ad770(0x05020000 | ((channelIndex & 0xff) << 8),
                                           get_sound_reverb(bank, soundIndex, channelIndex));
@@ -1564,6 +1567,8 @@ static void update_game_sound(void) {
                         case SOUND_BANK_GENERAL2:
                         case SOUND_BANK_OBJ2:
                         case SOUND_BANK_PATCH_ABILITY:
+                        case SOUND_BANK_NEW:
+                        case SOUND_BANK_NEW_2:
 #if defined(VERSION_EU) || defined(VERSION_SH)
                             func_802ad770(0x05020000 | ((channelIndex & 0xff) << 8),
                                           get_sound_reverb(bank, soundIndex, channelIndex));

@@ -1,2 +1,7 @@
 #include "anim_ArmatureAction_001.inc.c"
 #include "anim_walk.inc.c"
+#include "anim_ArmatureAction.inc.c"
+#include "anim_staring_001.inc.c"
+#include "anim_surprisedFallBack.inc.c"
+#include "anim_standUpGreetMario.inc.c"
+#include "anim_cutsceneIdle1.inc.c"

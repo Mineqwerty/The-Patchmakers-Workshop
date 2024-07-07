@@ -417,4 +417,20 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "transmutation_star/geo_header.h"
 
+#include "patch_upgrade/geo_header.h"
+
+#include "rocket_flower/geo_header.h"
+
+#include "rocket_flower_rotated/geo_header.h"
+
+#include "rocket_flower_fog/geo_header.h"
+
+#include "floating_petal/geo_header.h"
+
+
+#include "floating_petal/anim_header.h"
+#include "miasma_ribbon/geo_header.h"
+
+
+#include "miasma_ribbon/anim_header.h"
 #endif

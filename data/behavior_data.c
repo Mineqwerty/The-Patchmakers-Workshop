@@ -6421,6 +6421,7 @@ const BehaviorScript bhvGrappleLine[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     //SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 180, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 1200, /*Unused*/ 0, 0),
+    CALL_NATIVE(bhv_grapple_line_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_grapple_line_loop),
     END_LOOP(),
@@ -7561,5 +7562,250 @@ const BehaviorScript bhvTrailerCam[] = {
     CALL_NATIVE(bhv_trailer_cam_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_trailer_cam_loop),
+        END_LOOP(),
+}
+
+const BehaviorScript bhvMimic[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    LOAD_ANIMATIONS(oAnimations, mimic_anims),
+    CALL_NATIVE(bhv_mimic_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mimic_loop),
+        SET_INT(oInteractStatus, INT_STATUS_NONE),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPatchUpgrade[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_patch_upgrade_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_patch_upgrade_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRocketFlower[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+        SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_rocket_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rocket_flower_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRocketFlowerSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_rocket_flower_spawn_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rocket_flower_spawn_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDiceBoss[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_dice_boss_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_boss_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD4[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d4_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d4_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFoliageManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_foliage_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_foliage_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFloatingPetal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    LOAD_ANIMATIONS(oAnimations, floating_petal_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_floating_petal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_petal_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRainSoundManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_rain_sound_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rain_sound_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvVTWMushroom[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(purple_mushroom_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_transmutation_table_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_transmutation_table_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvLilyPad[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(lily_pad_collision),
+    CALL_NATIVE(bhv_lily_pad_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lily_pad_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDangerPuff[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_HOME(),
+    BILLBOARD(),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_danger_puff_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_danger_puff_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMalvaFlower[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(malva_bud_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_malva_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_malva_flower_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMalvaFlowerManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_malva_flower_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_malva_flower_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMiasmaRibbon[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    LOAD_ANIMATIONS(oAnimations, miasma_ribbon_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_miasma_ribbon_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_miasma_ribbon_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStoryCutsceneManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_story_cutscene_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_story_cutscene_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStoryCutsceneManagerHub1[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_story_cutscene_manager_hub1_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_story_cutscene_manager_hub1_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFloatingTiltingGem[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(floating_tilting_gem_collision),
+    SET_HOME(),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_floating_tilting_gem_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_floating_tilting_gem_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvAbyssSwimmer[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, abyss_swimmer_anims),
+    ANIMATE(0),
+    LOAD_COLLISION_DATA(abyss_swimmer_collision),
+    SET_FLOAT(oDrawingDistance, 10000),
+    CALL_NATIVE(bhv_abyss_swimmer_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_abyss_swimmer_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvAbyssUrchin[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    CALL_NATIVE(bhv_abyss_urchin_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_abyss_urchin_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCageEye[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_cage_eye_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_cage_eye_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTentacleCage[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    LOAD_COLLISION_DATA(tentacle_cage_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_tentacle_cage_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_tentacle_cage_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSkySlug[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(sky_slug_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_sky_slug_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sky_slug_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };

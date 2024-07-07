@@ -88,4 +88,24 @@ extern const LevelScript level_ssl_entry[];
 
 #include "levels/ssl/header.inc.h"
 
+#include "levels/ssl/purple_mushroom/geo_header.h"
+
+#include "levels/ssl/purple_mushroom/collision_header.h"
+
+#include "levels/ssl/gray_mushroom/geo_header.h"
+
+#include "levels/ssl/lily_pad/geo_header.h"
+
+#include "levels/ssl/lily_pad/collision_header.h"
+
+#include "levels/ssl/danger_puff/geo_header.h"
+
+#include "levels/ssl/malva_bud/geo_header.h"
+
+#include "levels/ssl/malva_flower/geo_header.h"
+
+#include "levels/ssl/malva_bud/collision_header.h"
+
+#include "levels/ssl/vtw_skybox/geo_header.h"
+
 #endif

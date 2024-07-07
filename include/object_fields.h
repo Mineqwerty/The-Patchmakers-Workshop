@@ -1124,6 +1124,8 @@
 #define /*0x0F4*/ oTreasureChestNumOpenedChests OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTreasureChestDoCloseChests   OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oTreasureChestAboveWater      OBJECT_FIELD_S32(0x1D)
+#define /*0x0FC*/ oTreasureChestLid      OBJECT_FIELD_OBJ(0x1E)
+#define /*0x0FC*/ oTreasureChestTreasureEmptied      OBJECT_FIELD_S32(0x1F)
 
 /* Tree Snow Or Leaf */
 #define /*0x0F4*/ oTreeSnowOrLeafSidewardAngle    OBJECT_FIELD_S32(0x1B)
@@ -1343,6 +1345,11 @@
 //sewnia
 #define oSewniaLastWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
 #define oSewniaNextWaypoint          OBJECT_FIELD_WAYPOINT(0x1C)
+#define oSewniaFaceState        OBJECT_FIELD_S32(0x1D)
+#define oSewniaSourceNode          OBJECT_FIELD_S32(0x1E)
+#define oMarioNearestNode          OBJECT_FIELD_S32(0x1F)
+#define oSewniaCurrentNodeIndex          OBJECT_FIELD_S32(0x20)
+#define oSewniaNextNode          OBJECT_FIELD_S32(0x21)
 
 //podogoo
 #define oPotogooApproachXZ        OBJECT_FIELD_F32(0x1B)
@@ -1409,6 +1416,17 @@
 #define /*0x1AC*/ oTCFoc2Y     OBJECT_FIELD_S32(0x45)
 #define /*0x1AC*/ oTCFoc2Z     OBJECT_FIELD_S32(0x3A)
 #define /*0x1AC*/ oTCSplineTimer     OBJECT_FIELD_S32(0x30)
+
+//rocket flower spawner
+#define oRocketFlowerSpawned           OBJECT_FIELD_OBJ(0x1B)
+#define oLocalBoostTimer           OBJECT_FIELD_S32(0x1C)
+
+//dice boss manager
+#define oDiceBossCurrentDie           OBJECT_FIELD_S32(0x1B)
+#define oDiceBossDieObj           OBJECT_FIELD_OBJ(0x1C)
+
+//tentacle cage
+#define oTentacleCageMaxHealth           OBJECT_FIELD_S32(0x1B)
 
 /*Custom general defines:
 

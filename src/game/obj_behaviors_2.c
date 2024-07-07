@@ -466,6 +466,11 @@ static s32 obj_resolve_collisions_and_turn(s16 targetYaw, s16 turnSpeed) {
 
 static void obj_die_if_health_non_positive(void) {
     if (o->oHealth <= 0) {
+
+        if (gMarioState->equippedPatch == PATCH_MIASMA) {
+            gMarioState->miasmaSoulCount++;
+        }
+
         if (o->oDeathSound == 0) {
             spawn_mist_particles_with_sound(SOUND_OBJ_DEFAULT_DEATH);
         } else if (o->oDeathSound > 0) {
@@ -789,6 +794,8 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/far_plane_cube.inc.c"
 #include "behaviors/podogoo.inc.c"
 #include "behaviors/glassfish.inc.c"
+#include "behaviors/abyss_urchin.inc.c"
+#include "behaviors/tentacle_cage.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.

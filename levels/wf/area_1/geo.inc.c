@@ -44,8 +44,8 @@ const GeoLayout wf_dl_3_Village_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Plane_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_Plane_mesh_layer_4),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_Plane_004_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_Plane_004_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_Plane_004_mesh_layer_4),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -83,10 +83,6 @@ const GeoLayout wf_area_1[] = {
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, wf_dl_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

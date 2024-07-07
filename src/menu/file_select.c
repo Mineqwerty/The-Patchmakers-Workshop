@@ -1871,9 +1871,7 @@ void print_score_file_course_coin_score(s8 fileIndex, s16 courseIndex, s16 x, s1
     if (sScoreFileCoinScoreMode == 0) {
         // Print "[coin] x"
         print_menu_generic_string(x + 25, y, textCoinX);
-        // Print coin score
-        int_to_str(save_file_get_course_coin_score(fileIndex, courseIndex), coinScoreText);
-        print_menu_generic_string(x + 41, y, coinScoreText);
+        // dont print coin score
         // If collected, print 100 coin star
         if (stars & STAR_FLAG_ACT_100_COINS) {
             print_menu_generic_string(x + 70, y, textStar);

@@ -6559,11 +6559,9 @@ void surface_type_modes_thi(struct Camera *c) {
  * This behavior is exploitable, since the ranges assume that Mario must pass through the latter on
  * exit. Using hyperspeed, the earlier area can be directly exited from, keeping the changes it applies.
  */
-struct CameraTrigger sCamSL[] = { { 1, cam_sl_snowman_head_8dir, 1119, 3584, 1125, 1177, 358, 358,
-                                    -0x1D27 },
-                                  // This trigger surrounds the previous one
-                                  { 1, cam_sl_free_roam, 1119, 3584, 1125, 4096, 4096, 4096, -0x1D27 },
-                                  NULL_TRIGGER };
+struct CameraTrigger sCamSL[] = {
+	NULL_TRIGGER
+};
 
 /**
  * The THI triggers are specifically for the tunnel near the start of the Huge Island.
@@ -8567,6 +8565,7 @@ void cutscene_star_spawn_end(struct Camera *c) {
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
     gCutsceneTimer = CUTSCENE_STOP;
     c->cutscene = 0;
+    sBackgroundMusicTargetVolume = 0;
 }
 
 void cutscene_exit_waterfall_warp(struct Camera *c) {
@@ -11042,14 +11041,14 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(1, 1, 0, 1, 1, 1, 1, 1), // BBH            | CCM
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 1, 1, 0), // CASTLE_INSIDE  | HMC
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW
+	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 0, 0, 0), // SSL            | BOB
+	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 0, 0, 0), // SL             | WDW
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 1, 0, 0), // JRB            | THI
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // TTC            | RR
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_GROUNDS | BITDW
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // VCUTM          | BITFS
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // SA             | BITS
-	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 1, 1, 0), // LLL            | DDD
+	ZOOMOUT_AREA_MASK(1, 1, 1, 1, 1, 1, 1, 1), // LLL            | DDD
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 0, 0, 0, 0), // WF             | ENDING
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COURTYARD      | PSS
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COTMC          | TOTWC

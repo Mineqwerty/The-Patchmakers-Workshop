@@ -269,20 +269,6 @@ const GeoLayout mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt8[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, mario_000_displaylist_mesh_layer_1_mat_override_face_0___eye_wince_4),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
-const GeoLayout mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt9[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, mario_000_displaylist_mesh_layer_1_mat_override_face_9___eye_full_wince_5),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
 const GeoLayout mario_002_switch_opt0_001_switch_opt1[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
@@ -318,8 +304,6 @@ const GeoLayout mario_002_switch_opt0_001_switch_opt1[] = {
 											GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt5),
 											GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt6),
 											GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt7),
-											GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt8),
-											GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_000_switch_opt0_000_switch_001_opt9),
 										GEO_CLOSE_NODE(),
 									GEO_CLOSE_NODE(),
 									GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt1_jump_mario_armature_002_switch_option_002),
@@ -857,20 +841,6 @@ const GeoLayout mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt8[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, mario_000_displaylist_mesh_layer_1_mat_override_face_0___eye_wince_4),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
-const GeoLayout mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt9[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, mario_000_displaylist_mesh_layer_1_mat_override_face_9___eye_full_wince_5),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
 const GeoLayout mario_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
@@ -920,8 +890,6 @@ const GeoLayout mario_geo[] = {
 																	GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt5),
 																	GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt6),
 																	GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt7),
-																	GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt8),
-																	GEO_BRANCH(1, mario_002_switch_opt0_001_switch_opt0_000_switch_opt0_000_switch_001_opt9),
 																GEO_CLOSE_NODE(),
 															GEO_CLOSE_NODE(),
 															GEO_BRANCH(1, mario_armature_002_switch_option_002),
@@ -1037,9 +1005,6 @@ const GeoLayout mario_geo[] = {
 				GEO_ASM(1, geo_mirror_mario_backface_culling),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, mario_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, mario_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, mario_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

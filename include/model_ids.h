@@ -666,6 +666,27 @@
 #define MODEL_RED_FLOWER                   0x103
 #define MODEL_WINDMILL_FAN                   0x104
 #define MODEL_WINDMILL_PLATFORM                   0x105
+#define MODEL_HVH_CHEST_BOTTOM                   0x106
+#define MODEL_HVH_CHEST_TOP                   0x107
+#define MODEL_MIMIC                   0x108
+#define MODEL_D4                   0x109
+
+//Violet Twilit Woods
+#define MODEL_PURPLE_MUSHROOM                   0x100
+#define MODEL_GRAY_MUSHROOM                   0x101
+#define MODEL_LILY_PAD                   0x102
+#define MODEL_DANGER_PUFF                   0x103
+#define MODEL_MALVA_BUD                   0x104
+#define MODEL_MALVA_FLOWER                   0x105
+
+//Empyrean Abyss
+#define MODEL_FLOATING_TILTING_GEM                   0x100
+#define MODEL_ABYSS_SWIMMER                   0x101
+#define MODEL_ABYSS_URCHIN                   0x102
+#define MODEL_TENTACLE_CAGE                   0x103
+#define MODEL_CAGE_EYE                   0x104
+#define MODEL_FLOATING_MOVING_GEM                   0x105
+#define MODEL_SKY_SLUG                   0x106
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
@@ -679,6 +700,10 @@
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181
 #define MODEL_TRANSMUTATION_STAR                    0x182
+#define MODEL_PATCH_UPGRADE                    0x183
+#define MODEL_ROCKET_FLOWER                    0x184
+#define MODEL_ROCKET_FLOWER_ROT                    0x185
+#define MODEL_FLOATING_PETAL                    0x186
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
@@ -696,6 +721,7 @@
 #define MODEL_SHADOW_CHOMP_HEAD           0x19D
 #define MODEL_SHADOW_CHOMP_TAIL           0x19E
 #define MODEL_TRANSMUTATION_CONE           0x19F
+#define MODEL_MIASMA_RIBBON           0x1A0
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

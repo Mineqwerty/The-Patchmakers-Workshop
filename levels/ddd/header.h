@@ -67,4 +67,26 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/windmill_platform/collision_header.h"
 
+#include "levels/ddd/hvh_chest/geo_header.h"
+
+#include "levels/ddd/hvh_chest_top/geo_header.h"
+
+#include "levels/ddd/mimic/geo_header.h"
+
+#include "levels/ddd/mimic/anim_header.h"
+
+#include "levels/ddd/d4/geo_header.h"
+
+#include "levels/ddd/d6/geo_header.h"
+
+#include "levels/ddd/d8/geo_header.h"
+
+#include "levels/ddd/d10/geo_header.h"
+
+#include "levels/ddd/d100/geo_header.h"
+
+#include "levels/ddd/d12/geo_header.h"
+
+#include "levels/ddd/d20/geo_header.h"
+
 #endif

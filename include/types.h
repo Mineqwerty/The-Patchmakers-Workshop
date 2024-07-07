@@ -171,6 +171,7 @@ typedef s32 CameraTransitionAngle;
 typedef s16 Movtex;
 typedef s16 MacroObject;
 typedef s16 Trajectory;
+typedef s16 PathfindData;
 typedef u8  CutsceneID;
 
 typedef u8 uchar;
@@ -385,6 +386,20 @@ struct Waypoint {
     Vec3s pos;
 };
 
+struct PathfindNeighbor {
+    s16 id;
+    s16 weight;
+};
+
+struct PathfindNode {
+    s16 nodeID;
+    Vec3s pos;
+    struct PathfindNeighbor neighbor1;
+    struct PathfindNeighbor neighbor2;
+    struct PathfindNeighbor neighbor3;
+    struct PathfindNeighbor neighbor4;
+};
+
 struct Normal {
     /*0x00*/ f32 x;
     /*0x04*/ f32 y;
@@ -505,6 +520,9 @@ struct MarioState {
     struct Surface *ceilToFloor;
     struct Object *movingCeilObject;
 
+    //yeah i stole this from cursed mirror
+    Mat4 HeadMatrix;
+
     Vec3f marioSinkPos;
 
     s16 curPatch;
@@ -515,6 +533,7 @@ struct MarioState {
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
+    u8 miasmaSoulCount;
     u8 patchTimer;
     u8 dialogStoryNum;
     struct Object *patchChildObj;

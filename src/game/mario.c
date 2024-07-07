@@ -936,6 +936,16 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             m->vel[1] = 20.0f;
             break;
 
+        case ACT_BREEZE_PATCH_BOUNCING:
+            if (m->actionArg == 3) {
+                m->vel[1] = 45.0f;
+            }
+            else {
+                m->vel[1] = 30.0f;
+            }
+            
+            break;
+
         default:
             jumpStart = 0;
         break;
@@ -949,7 +959,7 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             m->patchChildObj->oAction = 2;
         }
         play_sound(SOUND_OBJ_PIRANHA_PLANT_APPEAR, m->pos);
-        //freeze_game_frames(m->vel[1] / 12.0f);
+        
         for (int i = 0; i < 10; i++) {
                 struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
                     m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
@@ -1915,9 +1925,55 @@ void perform_patch_action(struct MarioState *m) {
             }
         break;
 
+        case PATCH_BREEZE:
+            if ((m->action & ACT_FLAG_MOVING || m->action & ACT_FLAG_STATIONARY) && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                drop_and_set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, 2);
+                m->curPatch = PATCH_BREEZE;
+                for (u8 i = 0; i < 6; i++) {
+                    spawn_object_relative(0, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+                for (u8 j = 0; j < 6; j++) {
+                    spawn_object_relative(1, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+
+                cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
+            }    
+
+        break;
+
         case PATCH_PORTAL:
             m->curPatch = PATCH_PORTAL;
             m->patchTimer = 0;
+        break;
+
+        case PATCH_MIASMA:
+
+        if (gMarioState->miasmaSoulCount > 0) {
+            if (gMarioState->miasmaSoulCount < 5) {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                }
+            }
+            else {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                    cur_obj_play_sound_1(SOUND_NEW_MIASMA_STORM_L);
+                    cur_obj_play_sound_2(SOUND_NEW_2_MIASMA_STORM_R);
+                    
+                    if (i == 0) {
+                        SET_BPARAM3(ribbon->oBehParams, 1);   
+                    }
+
+                    SET_BPARAM1(ribbon->oBehParams, 1);
+                }
+            }
+        }
+        
+            
         break;
         }
 }
@@ -1991,6 +2047,11 @@ void patch_update(struct MarioState *m ) {
                 m->curPatch = PATCH_NONE;
             }
         break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
+            }
+        break;
     }
 }
 
@@ -2006,6 +2067,11 @@ void late_patch_update(struct MarioState *m ) {
                 m->patchChildObj->oHaloCapturedObject->oPosX = m->patchChildObj->oPosX;
                 m->patchChildObj->oHaloCapturedObject->oPosY = m->patchChildObj->oPosY + 40.0f;
                 m->patchChildObj->oHaloCapturedObject->oPosZ = m->patchChildObj->oPosZ;
+            }
+        break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
             }
         break;
     }
@@ -2101,6 +2167,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         perform_patch_action(gMarioState);
     }
 
+    //obj_attack_in_radius(gMarioObject, 500.0f, 2, 2);
+
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
@@ -2108,26 +2176,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvTrailerCam);
     }
 
-    // TODO: put this in a geo asm for VTW 
-    /* if (gGlobalTimer > 90 ){
-    extern u8 ssl_dl_foliageshados_i8[];
-    calculate_foliage_scroll(segmented_to_virtual(ssl_dl_foliageshados_i8));
-    } */
-
+    
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
-
-    //TODO: put these in a more permanent spot
-
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
-        play_secondary_music(38, 255, 255, 10);
-    }
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex == 3) {
-        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SPIRAL_STAIRS, 1);
-    }
 
     if (check_able_to_use_patch()) {
         check_and_change_patch_dpad(U_JPAD);
@@ -2242,6 +2296,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         if (gMarioState->floor->type == SURFACE_VERTICAL_WIND) {
             spawn_wind_particles(1, 0);
             play_sound(SOUND_ENV_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
+        }
+
+        //VTW Windy Areas
+        if (gMarioState->floor->type == SURFACE_HURT_FLOOR && gMarioState->action == ACT_BREEZE_PATCH_BOUNCING && gCurrLevelNum == LEVEL_SSL && gCurrAreaIndex == 1) {
+            spawn_wind_particles(1, 0);
+            play_sound(SOUND_ENV_WIND1, gMarioState->marioObj->header.gfx.cameraToObject);
         }
 
         play_infinite_stairs_music();
@@ -2374,6 +2434,7 @@ void init_mario(void) {
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
     //gMarioState->patchChildObj = NULL;
     gMarioState->invincTimer = 0;
+    gMarioState->miasmaSoulCount = 0;
     update_dl_dpad_patches();
 
     

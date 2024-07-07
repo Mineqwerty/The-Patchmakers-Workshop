@@ -1,0 +1,16 @@
+extern void scroll_miasma_ribbon_Bone_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_001_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_001_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_001_mesh_layer_1_vtx_1();
+extern void scroll_miasma_ribbon_Bone_002_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_002_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_003_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_003_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_004_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_004_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_005_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_005_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_006_skinned_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_006_mesh_layer_1_vtx_0();
+extern void scroll_miasma_ribbon_Bone_006_mesh_layer_1_vtx_1();
+extern void scroll_actor_geo_miasma_ribbon();

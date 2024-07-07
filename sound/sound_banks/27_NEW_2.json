@@ -1,0 +1,23 @@
+{
+  "date": "1996-03-19",
+  "sample_bank": "sfx_new_2",
+  "envelopes": {
+    "envelope0": [
+      [
+        1,
+        32700
+      ],
+      "hang"
+    ]
+  },
+  "instruments": {
+    "inst_miasma_storm_r": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_storm_r"
+    }
+  },
+  "instrument_list": [
+    "inst_miasma_storm_r"
+  ]
+}

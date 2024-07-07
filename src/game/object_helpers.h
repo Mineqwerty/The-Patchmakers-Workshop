@@ -210,6 +210,9 @@ struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *be
 void check_for_max_ice_and_break_oldest();
 struct Object *obj_find_nearest_object_with_behavior(struct Object *obj, const BehaviorScript *behavior, f32 *dist);
 struct Object *cur_obj_find_object_with_bparam_1st_byte(const BehaviorScript *behavior, int bparam);
+struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
+                                  u8 damage, s32 interaction);
+struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 damage, s32 interaction);
 
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_NONE 0
@@ -287,6 +290,7 @@ void disable_time_stop_including_mario(void);
 s32 cur_obj_check_interacted(void);
 void cur_obj_spawn_loot_blue_coin(void);
 struct Object *obj_find_transmute_target(struct Object *sourceObj);
+void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel, const BehaviorScript *coinBehavior, s16 posJitter, ModelID16 model);
 
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY);
 

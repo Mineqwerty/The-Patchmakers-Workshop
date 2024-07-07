@@ -191,8 +191,10 @@ u32 mario_update_water_death_floor(struct MarioState *m, f32 sinkingSpeed) {
 
         switch (m->floor->type) {
             case SURFACE_WATER_DEATH:
-                update_mario_sound_and_camera(m);
-                return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                if (m->equippedPatch != PATCH_MARINE) {
+                    update_mario_sound_and_camera(m);
+                    return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                }
                 break;
             break;
 
@@ -343,6 +345,10 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
     }
 
+    if (m->wall && m->wall->type == SURFACE_INVISIBLE_WALL) {
+        return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
+    }
+
     vec3f_set(m->pos, nextPos[0], floorHeight, nextPos[2]);
 
     // H64 TODO: Add config opt & check if floor is slippery
@@ -489,6 +495,11 @@ s32 bonk_or_hit_lava_wall(struct MarioState *m, struct WallCollisionData *wallDa
             if (wallData->walls[i]->type == SURFACE_BURNING || wallData->walls[i]->type == SURFACE_THORN_WALL) {
                 set_mario_wall(m, wallData->walls[i]);
                 return AIR_STEP_HIT_LAVA_WALL;
+            }
+            
+            if (wallData->walls[i]->type == SURFACE_INVISIBLE_WALL) {
+                set_mario_wall(m, wallData->walls[i]);
+                return AIR_STEP_HIT_CEILING;
             }
 
             // Update wall reference (bonked wall) only if the new wall has a better facing angle
@@ -711,6 +722,14 @@ void apply_gravity(struct MarioState *m) {
             if ((m->vel[1] += 4.0f) > -37.5f) {
                 m->vel[1] = -37.5f;
             }
+        }
+    } else if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+        m->vel[1] -= 2.0f;
+        if (m->floor && m->floor->type == SURFACE_HURT_FLOOR && m->vel[1] < -20.0f && gCurrLevelNum == LEVEL_SSL && gCurrAreaIndex == 1) {
+            m->vel[1] = -20.0f;
+        }
+        else if (m->vel[1] < -50.0f) {
+            m->vel[1] = -50.0f;
         }
     } else {
         m->vel[1] -= 4.0f;

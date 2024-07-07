@@ -12,7 +12,8 @@ enum CutsceneTitles {
     CUTSCENE_EVENT_ROSEDRIFT_CLIFF,
     CUTSCENE_EVENT_STONE_PATCH,
     CUTSCENE_EVENT_GODDESS_DEATH,
-    CUTSCENE_EVENT_MISTRESS
+    CUTSCENE_EVENT_MISTRESS,
+    CUTSCENE_EVENT_MEET_SEWNIA
 };
 
 extern u8 cCutsceneActive;
@@ -21,6 +22,7 @@ extern u32 cWaitTimer;
 extern u8 cWaiting;
 extern s32 *cEventPointer;
 extern u8 cExternalCutsceneTrigger;
+extern s16 gCurCutscene;
 
 void begin_cutscene_event(s32 event);
 void event_handler(void);
