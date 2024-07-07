@@ -7563,7 +7563,7 @@ const BehaviorScript bhvTrailerCam[] = {
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_trailer_cam_loop),
         END_LOOP(),
-}
+};
 
 const BehaviorScript bhvMimic[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
