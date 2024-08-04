@@ -2748,7 +2748,7 @@ void render_pause_screen_felt() {
     }
 
     create_dl_translation_matrix(MENU_MTX_PUSH, gFeltPosX, gFeltPosY, 0);
-    create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    //create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 0.9f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 

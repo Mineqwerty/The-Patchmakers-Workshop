@@ -704,3 +704,9 @@ extern const BehaviorScript bhvAbyssUrchin[];
 extern const BehaviorScript bhvCageEye[];
 extern const BehaviorScript bhvTentacleCage[];
 extern const BehaviorScript bhvSkySlug[];
+
+extern const BehaviorScript bhvWaterLauncher[];
+extern const BehaviorScript bhvJellyfish[];
+extern const BehaviorScript bhvEnemyArenaCombatWalls[];
+extern const BehaviorScript bhvYarnBlooper[];
+extern const BehaviorScript bhvActualEnemyObelisk[];

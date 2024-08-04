@@ -1332,6 +1332,7 @@
 #define oBlockNum        OBJECT_FIELD_S32(0x1B)
 #define oBlockShadow          OBJECT_FIELD_OBJ(0x1C)
 #define oDialogTrigger        OBJECT_FIELD_S32(0x1D)
+#define oNumWaveEnemiesLeft        OBJECT_FIELD_S32(0x1E)
 
 //floating plane
 #define oNextPlaneRotation        OBJECT_FIELD_S32(0x1B)

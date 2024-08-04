@@ -1,0 +1,10 @@
+extern const GeoLayout abyss_obelisk_geo[];
+extern u8 abyss_obelisk_smoothfloor_ci8[];
+extern u8 abyss_obelisk_smoothfloor_x_porous_stone_pal_rgba16[];
+extern u8 abyss_obelisk_porous_stone_ci8[];
+extern Vtx abyss_obelisk_Circle_013_mesh_layer_1_vtx_cull[8];
+extern Vtx abyss_obelisk_Circle_013_mesh_layer_1_vtx_0[122];
+extern Gfx abyss_obelisk_Circle_013_mesh_layer_1_tri_0[];
+extern Gfx mat_abyss_obelisk_additive_poropus_001_layer1[];
+extern Gfx mat_revert_abyss_obelisk_additive_poropus_001_layer1[];
+extern Gfx abyss_obelisk_Circle_013_mesh_layer_1[];

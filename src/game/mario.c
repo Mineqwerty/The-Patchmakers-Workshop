@@ -1415,6 +1415,7 @@ void update_mario_geometry_inputs(struct MarioState *m) {
 
     m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
     m->waterLevel = find_water_level_and_floor(m->pos[0], m->pos[1], m->pos[2], &waterFloor);
+    m->waterFloor = waterFloor;
 
     if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor) {
         m->floorHeight = m->waterLevel;
@@ -2246,7 +2247,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         
     }
 
-    if (gMarioWaterwalk && !(gMarioState->action & ACT_FLAG_AIR)) {
+    if (gMarioWaterwalk && (((gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_MOVING) || ((gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_STATIONARY))) {
         float dist;
         if (!gMarioState->patchChildObj && !(gMarioState->actionTimer == 0 && gMarioState->action == ACT_GROUND_POUND_LAND)) {
             gMarioState->patchChildObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
@@ -2415,6 +2416,8 @@ void init_mario(void) {
             gMarioState->patchChildSecondaryObj->oBehParams2ndByte = 1;
         }
 
+    #ifdef UNLOCK_ALL
+
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
@@ -2429,12 +2432,15 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 11));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 12));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 13));
+
+    #endif
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
     //gMarioState->patchChildObj = NULL;
     gMarioState->invincTimer = 0;
     gMarioState->miasmaSoulCount = 0;
+    gMarioWaterwalk = FALSE;
     update_dl_dpad_patches();
 
     

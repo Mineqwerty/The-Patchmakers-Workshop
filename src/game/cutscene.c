@@ -440,6 +440,19 @@ s32 event_meet_sewnia[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_sewnia_revive_mario[] = {
+    EVENT_HUD_DISABLE,
+    //EVENT_CAMERA_ENABLE_CUTSCENE,
+    //EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    //EVENT_DISABLE_MARIO_RENDER,
+    EVENT_WAIT, 70,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 5000,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -449,7 +462,8 @@ s32 *eventList[] = {
     //5
     event_goddess_death,
     event_mistress,
-    event_meet_sewnia
+    event_meet_sewnia,
+    event_sewnia_revive_mario
 };
 
 s32 *splineList[] = {

@@ -1,0 +1,12 @@
+extern const GeoLayout wdw_area_1_geo[];
+extern const GeoLayout wdw_area_1[];
+extern const Collision wdw_area_1_collision[];
+extern const MacroObject wdw_area_1_macro_objs[];
+extern u8 wdw_dl_snow_ci4[];
+extern u8 wdw_dl_snow_pal_rgba16[];
+extern Vtx wdw_dl_Plane_mesh_layer_1_vtx_cull[8];
+extern Vtx wdw_dl_Plane_mesh_layer_1_vtx_0[537];
+extern Gfx wdw_dl_Plane_mesh_layer_1_tri_0[];
+extern Gfx mat_wdw_dl_f3dlite_material_layer1_area1[];
+extern Gfx mat_revert_wdw_dl_f3dlite_material_layer1_area1[];
+extern Gfx wdw_dl_Plane_mesh_layer_1[];

@@ -61,5 +61,6 @@ const Trajectory sl_area_1_spline_SwimmerPath3[] = {
 	TRAJECTORY_POS( 16, -1353, 3092, 6582),
 	TRAJECTORY_POS( 17, -1964, 2317, 5188),
 	TRAJECTORY_POS( 18, -1901, 2145, 4304),
+	TRAJECTORY_POS( 19, -799, 2243, 4072),
 	TRAJECTORY_END(),
 };

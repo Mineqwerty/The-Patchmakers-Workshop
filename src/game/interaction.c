@@ -652,6 +652,39 @@ void push_mario_out_of_object(struct MarioState *m, struct Object *obj, f32 padd
     }
 }
 
+void push_object_out_of_mario(struct MarioState *m, struct Object *obj, f32 padding) {
+    f32 minDistance = obj->hitboxRadius + m->marioObj->hitboxRadius + padding;
+
+    f32 offsetX = obj->oPosX - m->pos[0];
+    f32 offsetZ = obj->oPosZ - m->pos[2];
+    f32 distanceSquared = (sqr(offsetX) + sqr(offsetZ));
+
+    if (distanceSquared < sqr(minDistance)) {
+        struct Surface *floor;
+        s16 pushAngle;
+        f32 newObjectX;
+        f32 newObjectZ;
+
+        if (distanceSquared == 0.0f) {
+            pushAngle = obj->oMoveAngleYaw;
+        } else {
+            pushAngle = atan2s(offsetZ, offsetX);
+        }
+
+        newObjectX = m->pos[0] + minDistance * sins(pushAngle);
+        newObjectZ = m->pos[2] + minDistance * coss(pushAngle);
+
+        f32_find_wall_collision(&newObjectX, &obj->oPosY, &newObjectZ, 60.0f, 50.0f);
+
+        f32 floorHeight = find_floor(newObjectX, obj->oPosY, newObjectZ, &floor);
+        if (floor != NULL) {
+            obj->oPosX = newObjectX;
+            obj->oPosZ = newObjectZ;
+            //set_mario_floor(m, floor, floorHeight); // Prevent oob death
+        }
+    }
+}
+
 struct SpawnParticlesInfo MistIce2 = {
     2, 15, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
 };
@@ -2020,9 +2053,12 @@ void mario_process_interactions(struct MarioState *m) {
 
                 if (!(object->oInteractStatus & INT_STATUS_INTERACTED)) {
                     if (sInvulnerable) {
-                        if (gMarioState->curPatch == PATCH_STONE) {
+                        if (gMarioState->curPatch == PATCH_STONE && !(object->oFlags & OBJ_FLAG_IS_ENEMY)) {
                         push_mario_out_of_object(m, object, -5.0f);
                         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+                        }
+                        else if (gMarioState->curPatch == PATCH_STONE && (object->oFlags & OBJ_FLAG_IS_ENEMY)) {
+                            push_object_out_of_mario(m, object, -5.0f);
                         }
 
                         if (object->oInteractionSubtype & INT_SUBTYPE_BULB && gMarioState->curPatch == PATCH_STONE) {

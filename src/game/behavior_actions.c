@@ -320,3 +320,7 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/cage_eye.inc.c"
 
 #include "behaviors/sky_slug.inc.c"
+
+#include "behaviors/water_launcher.inc.c"
+
+#include "behaviors/enemy_arena_combat_walls.inc.c"

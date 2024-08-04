@@ -66,4 +66,18 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/sky_slug/collision_header.h"
 
+#include "levels/sl/sky_slug/anim_header.h"
+
+#include "levels/sl/water_launcher/geo_header.h"
+
+#include "levels/sl/jellyfish/geo_header.h"
+
+#include "levels/sl/jellyfish/anim_header.h"
+
+#include "levels/sl/abyss_obelisk/geo_header.h"
+
+#include "levels/sl/enemy_arena_combat_walls/collision_header.h"
+
+#include "levels/sl/abyss_obelisk/collision_header.h"
+
 #endif

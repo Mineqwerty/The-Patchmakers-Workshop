@@ -403,6 +403,7 @@
 #define MODEL_CYAN_FISH                   0x67        // cyan_fish_geo
 #define MODEL_WATER_RING                  0x68        // water_ring_geo
 #define MODEL_SKEETER                     0x69        // skeeter_geo
+#define MODEL_YARN_BLOOPER                     0x6A        
 
 // group 14
 #define MODEL_PIRANHA_PLANT               0x64        // piranha_plant_geo
@@ -687,6 +688,12 @@
 #define MODEL_CAGE_EYE                   0x104
 #define MODEL_FLOATING_MOVING_GEM                   0x105
 #define MODEL_SKY_SLUG                   0x106
+#define MODEL_WATER_LAUNCHER                   0x107
+#define MODEL_JELLYFISH                   0x108
+#define MODEL_ABYSS_OBELISK                   0x109
+
+//City of Reconstructed Ruin
+#define MODEL_CORR1                   0x100
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

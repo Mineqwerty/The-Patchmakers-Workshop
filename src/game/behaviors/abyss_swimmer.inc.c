@@ -15,13 +15,14 @@ void bhv_abyss_swimmer_init(void) {
 void bhv_abyss_swimmer_loop(void) {
     switch (o->oAction) {
         case 0:
-            if (gMarioState->marioObj->platform == o) {
+            if (gMarioState->marioObj->platform && gMarioState->marioObj->platform == o) {
                 o->oAction = 1;
                 cur_obj_init_animation(1);
             }
         break;
-        case 1:
-            cur_obj_follow_path();
+        case 1:;
+            s32 followStatus;
+            followStatus = cur_obj_follow_path();
             cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, 0x400);
             if (cur_obj_check_anim_frame_in_range(21, 23)) {
                 o->oForwardVel += 3.6f;
@@ -34,6 +35,14 @@ void bhv_abyss_swimmer_loop(void) {
             o->oFaceAngleYaw = approach_s16_asymptotic(o->oFaceAngleYaw, o->oMoveAngleYaw, 0.03f);
 
             o->oPosY = approach_f32_asymptotic(o->oPosY, o->oPosY - (o->oPathedTargetPitch / 5), 0.03f);
+
+            if (o->oPathedPrevWaypoint == o->oPathedStartWaypoint) {
+                if (!gMarioState->marioObj->platform || gMarioState->marioObj->platform != o) {
+                    o->oAction = 0;
+                    cur_obj_init_animation(0);
+                    o->oForwardVel = 0;
+                }
+            }
             
         break;
     }

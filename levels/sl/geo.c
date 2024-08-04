@@ -28,3 +28,6 @@
 #include "levels/sl/cage_eye/geo.inc.c"
 #include "levels/sl/floating_moving_gem/geo.inc.c"
 #include "levels/sl/sky_slug/geo.inc.c"
+#include "levels/sl/water_launcher/geo.inc.c"
+#include "levels/sl/jellyfish/geo.inc.c"
+#include "levels/sl/abyss_obelisk/geo.inc.c"

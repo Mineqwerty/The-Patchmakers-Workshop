@@ -5,3 +5,5 @@
 #include "anim_surprisedFallBack.inc.c"
 #include "anim_standUpGreetMario.inc.c"
 #include "anim_cutsceneIdle1.inc.c"
+#include "anim_peek_walk_into_mario_room.inc.c"
+#include "anim_walking_forward_mario_room.inc.c"

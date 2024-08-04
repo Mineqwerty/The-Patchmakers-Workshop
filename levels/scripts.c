@@ -342,6 +342,7 @@ const LevelScript script_func_global_14[] = {
     LOAD_MODEL_FROM_GEO(MODEL_WATER_MINE,              water_mine_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SEAWEED,                 seaweed_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SKEETER,                 skeeter_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_YARN_BLOOPER,                 yarn_blooper_geo),
     RETURN(),
 };
 

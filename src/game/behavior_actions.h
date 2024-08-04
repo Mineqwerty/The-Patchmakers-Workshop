@@ -917,3 +917,12 @@ void bhv_tentacle_cage_init(void);
 void bhv_tentacle_cage_loop(void);
 void bhv_sky_slug_init(void);
 void bhv_sky_slug_loop(void);
+
+void bhv_water_launcher_init(void);
+void bhv_water_launcher_loop(void);
+void bhv_jellyfish_init(void);
+void bhv_jellyfish_loop(void);
+void bhv_enemy_arena_combat_walls_init(void);
+void bhv_enemy_arena_combat_walls_loop(void);
+void bhv_yarn_blooper_init(void);
+void bhv_yarn_blooper_loop(void);

@@ -471,6 +471,10 @@ static void obj_die_if_health_non_positive(void) {
             gMarioState->miasmaSoulCount++;
         }
 
+        if (o->parentObj && obj_has_behavior(o->parentObj, bhvActualEnemyObelisk)) {
+            o->parentObj->oNumWaveEnemiesLeft--;
+        }
+
         if (o->oDeathSound == 0) {
             spawn_mist_particles_with_sound(SOUND_OBJ_DEFAULT_DEATH);
         } else if (o->oDeathSound > 0) {
@@ -487,7 +491,7 @@ static void obj_die_if_health_non_positive(void) {
         // This doesn't do anything
         obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
 
-        if (o->oHealth < 0) {
+        if ((o->oHealth < 0) && !(o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM)) {
             cur_obj_hide();
             cur_obj_become_intangible();
         } else {
@@ -515,6 +519,11 @@ static void obj_set_knockback_action(s32 attackType) {
             o->oForwardVel = 50.0f;
             o->oVelY = 30.0f;
             break;
+    }
+
+    if (o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM && o->oHealth > 0) {
+        o->oVelY *= 0.5;
+        o->oForwardVel *= 0.5;
     }
 
     o->oFlags &= ~OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
@@ -627,6 +636,18 @@ static void obj_act_knockback(UNUSED f32 baseScale) {
     }
 
     cur_obj_move_standard(-78);
+
+    if ((o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) && o->oTimer > 45) {
+        if (o->oHealth > 0) {
+            o->oAction = 0;
+            cur_obj_become_tangible();
+            o->oInteractStatus = INT_STATUS_NONE;
+        }
+        else {
+            obj_die_if_health_non_positive();
+        }
+        
+    }
 }
 
 static void obj_act_squished(f32 baseScale) {
@@ -830,3 +851,5 @@ void obj_spit_fire(s16 relativePosX, s16 relativePosY, s16 relativePosZ, f32 sca
 #include "behaviors/reds_star_marker.inc.c"
 #include "behaviors/triplet_butterfly.inc.c"
 #include "behaviors/bubba.inc.c"
+#include "behaviors/yarn_blooper.inc.c"
+#include "behaviors/jellyfish.inc.c"

@@ -3070,7 +3070,7 @@ const BehaviorScript bhvMerryGoRoundBoo[] = {
 const BehaviorScript bhvGhostHuntBoo[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     // Boo - common:
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     SET_INT(oIntangibleTimer, 0),
     SET_HOME(),
     SET_INT(oDamageOrCoinValue, 2),
@@ -5202,7 +5202,7 @@ const BehaviorScript bhvFlyGuy[] = {
 
 const BehaviorScript bhvGoomba[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     DROP_TO_FLOOR(),
     LOAD_ANIMATIONS(oAnimations, yarn_goomba_anims),
     SET_HOME(),
@@ -6001,7 +6001,7 @@ const BehaviorScript bhvClamShell[] = {
 
 const BehaviorScript bhvSkeeter[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, skeeter_seg6_anims_06007DE0),
     SET_HOME(),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 180, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 1200, /*Unused*/ 0, 0),
@@ -6175,7 +6175,7 @@ const BehaviorScript bhvBounceRosedrift[] = {
 
 const BehaviorScript bhvPtooie[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, ptooie_anims),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 4000),
@@ -6347,7 +6347,7 @@ const BehaviorScript bhvIceCube[] = {
 
 const BehaviorScript bhvSwampSkeeter[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 180, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 1200, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_swamp_skeeter_init),
     BEGIN_LOOP(),
@@ -6487,6 +6487,16 @@ const BehaviorScript bhvEnemyObelisk[] = {
     SET_HOME(),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_falling_block_obelisk_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvActualEnemyObelisk[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
+    LOAD_COLLISION_DATA(abyss_obelisk_collision),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_enemy_obelisk_loop),
     END_LOOP(),
 };
 
@@ -6641,7 +6651,7 @@ const BehaviorScript bhvHaloSwitch[] = {
 
 const BehaviorScript bhvSpekturr[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_IS_ENEMY)),
     SET_INT(oIntangibleTimer, 0),
     DROP_TO_FLOOR(),
     BEGIN_LOOP(),
@@ -6905,7 +6915,7 @@ const BehaviorScript bhvRosedriftCutscene[] = {
 
 const BehaviorScript bhvPodogoo[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_IS_ENEMY)),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 0, /*Gravity*/ 0, /*Bounciness*/ 0, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_podogoo_init),
     BEGIN_LOOP(),
@@ -7201,7 +7211,7 @@ const BehaviorScript bhvTextVolume[] = {
 
 const BehaviorScript bhvDryBones[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, dry_bones_anims),
     ANIMATE(0),
     CALL_NATIVE(bhv_dry_bones_init),
@@ -7232,7 +7242,7 @@ const BehaviorScript bhvGeyserParticle[] = {
 
 const BehaviorScript bhvGlassfish[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, glassfish_anims),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 4000),
@@ -7390,7 +7400,7 @@ const BehaviorScript bhvClcDoor[] = {
 
 const BehaviorScript bhvBlight[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, blight_anims),
     ANIMATE(0),
     CALL_NATIVE(bhv_blight_init),
@@ -7567,7 +7577,7 @@ const BehaviorScript bhvTrailerCam[] = {
 
 const BehaviorScript bhvMimic[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_IS_ENEMY)),
     LOAD_ANIMATIONS(oAnimations, mimic_anims),
     CALL_NATIVE(bhv_mimic_init),
     BEGIN_LOOP(),
@@ -7678,7 +7688,7 @@ const BehaviorScript bhvLilyPad[] = {
 
 const BehaviorScript bhvDangerPuff[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
     SET_HOME(),
     BILLBOARD(),
     SET_FLOAT(oDrawingDistance, 20000),
@@ -7802,10 +7812,55 @@ const BehaviorScript bhvSkySlug[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     LOAD_COLLISION_DATA(sky_slug_collision),
+    LOAD_ANIMATIONS(oAnimations, sky_slug_anims),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_sky_slug_init),
+    ANIMATE(0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sky_slug_loop),
         CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWaterLauncher[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(sky_slug_collision),
+    CALL_NATIVE(bhv_water_launcher_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_water_launcher_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvJellyfish[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    LOAD_ANIMATIONS(oAnimations, jellyfish_anims),
+    CALL_NATIVE(bhv_jellyfish_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_jellyfish_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvEnemyArenaCombatWalls[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(enemy_arena_combat_walls_collision),
+    CALL_NATIVE(load_object_static_model),
+    CALL_NATIVE(bhv_enemy_arena_combat_walls_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_enemy_arena_combat_walls_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvYarnBlooper[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    LOAD_ANIMATIONS(oAnimations, yarn_blooper_anims),
+    SET_HOME(),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_yarn_blooper_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_yarn_blooper_loop),
     END_LOOP(),
 };
