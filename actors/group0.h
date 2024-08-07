@@ -433,4 +433,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 
 #include "miasma_ribbon/anim_header.h"
+#include "extension_block/geo_header.h"
+
+#include "extension_block/collision_header.h"
+
 #endif

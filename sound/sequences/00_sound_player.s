@@ -8067,6 +8067,17 @@ sound_ref .sound_breeze_restore
 sound_ref .sound_miasma_grow
 sound_ref .sound_miasma_slice
 sound_ref .sound_miasma_storm_l
+sound_ref .sound_indoor_winds
+
+.sound_indoor_winds:
+chan_setbank 12
+chan_setinstr 5
+chan_setlayer 0, .layer_indoor_winds
+chan_end
+
+.layer_indoor_winds:
+layer_note1 39, 0x6ee, 127
+layer_end
 
 .sound_miasma_storm_l:
 chan_setbank 12
@@ -8132,6 +8143,28 @@ chan_jump .main_loop_023589
 
 .channel_NEW_2_table:
 sound_ref .sound_miasma_storm_r
+sound_ref .sound_loud_winds
+sound_ref .sound_muffled_winds
+
+.sound_muffled_winds:
+chan_setbank 13
+chan_setinstr 2
+chan_setlayer 0, .layer_muffled_winds
+chan_end
+
+.layer_muffled_winds:
+layer_note1 39, 0x6ee, 127
+layer_end
+
+.sound_loud_winds:
+chan_setbank 13
+chan_setinstr 1
+chan_setlayer 0, .layer_loud_winds
+chan_end
+
+.layer_loud_winds:
+layer_note1 39, 0x6ee, 127
+layer_end
 
 .sound_miasma_storm_r:
 chan_setbank 13

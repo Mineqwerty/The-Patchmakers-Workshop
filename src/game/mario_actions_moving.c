@@ -716,6 +716,8 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
     //! (Speed Crash) If a wall is after moving 16384 distance, this crashes.
     s32 animSpeed = (s32)(movedDistance * 2.0f * 0x10000);
 
+    
+
     if (m->forwardVel > 6.0f) {
         mario_set_forward_vel(m, 6.0f);
     }
@@ -728,6 +730,9 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
         if (m->wall != NULL) {
             wallAngle = m->wallYaw;
             dWallAngle = wallAngle - m->faceAngle[1];
+            if (m->wall->type == SURFACE_CLIMBABLE_WALL) {
+                return set_mario_action(m, ACT_CLIMBING_WALL, 0);
+            }
         }
 
         if (m->wall == NULL || dWallAngle <= -DEGREES(160) || dWallAngle >= DEGREES(160)) {

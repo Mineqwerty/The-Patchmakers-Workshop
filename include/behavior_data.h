@@ -710,3 +710,5 @@ extern const BehaviorScript bhvJellyfish[];
 extern const BehaviorScript bhvEnemyArenaCombatWalls[];
 extern const BehaviorScript bhvYarnBlooper[];
 extern const BehaviorScript bhvActualEnemyObelisk[];
+extern const BehaviorScript bhvCorrWindController[];
+extern const BehaviorScript bhvExtensionBlock[];

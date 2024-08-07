@@ -926,3 +926,7 @@ void bhv_enemy_arena_combat_walls_init(void);
 void bhv_enemy_arena_combat_walls_loop(void);
 void bhv_yarn_blooper_init(void);
 void bhv_yarn_blooper_loop(void);
+void bhv_corr_wind_controller_init(void);
+void bhv_corr_wind_controller_loop(void);
+void bhv_extension_block_init(void);
+void bhv_extension_block_loop(void);

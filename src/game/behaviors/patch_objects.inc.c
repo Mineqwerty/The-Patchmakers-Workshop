@@ -1242,3 +1242,35 @@ void bhv_transmutation_cone_loop(void) {
     
 }
 
+enum ExtensionBlockActions {
+    EXT_BLOCK_ACT_EXTEND_UP,
+    EXT_BLOCK_ACT_EXTEND_SIDE,
+    EXT_BLOCK_ACT_STOPPED,
+    EXT_BLOCK_ACT_BREAKING
+};
+
+void bhv_extension_block_init(void) {
+
+}
+
+void bhv_extension_block_loop(void) {
+    switch (o->oAction) {
+        case EXT_BLOCK_ACT_EXTEND_UP:
+            obj_scale_xyz(o, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f), 1.0f);
+            if (o->oTimer == 30) {
+                o->oAction = EXT_BLOCK_ACT_STOPPED;
+            }
+        break;
+        case EXT_BLOCK_ACT_BREAKING:
+        o->oPosY += (-1 + 2*(o->oTimer % 2)) * 5.0f;
+            if (o->oTimer == 30) {
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
+
+    if (gMarioState->equippedPatch != PATCH_EXTENSION || gMarioState->patchChildObj != o) {
+        o->oAction = EXT_BLOCK_ACT_BREAKING;
+    }
+}
+

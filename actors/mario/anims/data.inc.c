@@ -18,3 +18,4 @@
 #include "anim_sewniaIntroSittingSurprised.inc.c"
 #include "anim_testanim.inc.c"
 #include "anim_sitSurprisedScuttleBack.inc.c"
+#include "anim_ClimbVertical.inc.c"

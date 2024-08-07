@@ -16,6 +16,7 @@ const GeoLayout jrb_area_1_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_ALPHA, jrb_dl_fences_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, jrb_dl_Plane_003_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, jrb_dl_Plane_003_mesh_layer_4),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, jrb_dl_Plane_003_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, jrb_dl_z_bgtowers_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),

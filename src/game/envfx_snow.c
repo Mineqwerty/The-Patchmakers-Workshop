@@ -13,6 +13,7 @@
 #include "audio/external.h"
 #include "obj_behaviors.h"
 #include "level_geo.h"
+#include "src/game/level_update.h"
 
 /**
  * This file contains the function that handles 'environment effects',
@@ -244,20 +245,51 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
     s32 deltaY = snowCylinderY - gSnowCylinderLastPos[1];
     s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
 
+    u8 isInside = gMarioState->floor->type == SURFACE_LESS_BLIZZARD;
+
     for (i = 0; i < gSnowParticleCount; i++) {
         (gEnvFxBuffer + i)->isAlive =
             envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
-        if (!(gEnvFxBuffer + i)->isAlive) {
+        if (!(gEnvFxBuffer + i)->isAlive && ((gMarioState->floor && !isInside) || (i < 10))) {
             (gEnvFxBuffer + i)->xPos =
                 400.0f * random_float() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
             (gEnvFxBuffer + i)->zPos =
                 400.0f * random_float() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
             (gEnvFxBuffer + i)->yPos = 400.0f * random_float() - 200.0f + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = TRUE;
-        } else {
-            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f;
-            (gEnvFxBuffer + i)->yPos -= 5 -(s16)(deltaY * 0.8);
+        } 
+        else if ((gMarioState->floor && isInside) && i >= 10) {
+            (gEnvFxBuffer + i)->growTimer = i;
+            (gEnvFxBuffer + i)->disappearDelay += 3;
+
+            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f - (10 * (isInside));
+            (gEnvFxBuffer + i)->yPos -= 5 -(s16)(deltaY * 0.8) + (isInside);
             (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+
+            if ((gEnvFxBuffer + i)->disappearDelay > (gEnvFxBuffer + i)->growTimer) {
+                (gEnvFxBuffer + i)->disappearDelay = (gEnvFxBuffer + i)->growTimer;
+            }
+        }
+        else if ((gEnvFxBuffer + i)->growTimer == 0 || ((gEnvFxBuffer + i)->disappearDelay != (gEnvFxBuffer + i)->growTimer)) {
+            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f - (10 * (isInside));
+            (gEnvFxBuffer + i)->yPos -= 5 -(s16)(deltaY * 0.8) + (isInside);
+            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+
+            (gEnvFxBuffer + i)->disappearDelay = (gEnvFxBuffer + i)->growTimer;
+        }
+        else {
+            (gEnvFxBuffer + i)->growTimer -= 2;
+            
+
+            (gEnvFxBuffer + i)->xPos = 0;
+            (gEnvFxBuffer + i)->zPos = 0;
+            (gEnvFxBuffer + i)->yPos = -11000;
+
+            if ((gEnvFxBuffer + i)->growTimer < 0) {
+                (gEnvFxBuffer + i)->growTimer = 0;
+            }
+
+            (gEnvFxBuffer + i)->disappearDelay = (gEnvFxBuffer + i)->growTimer;
         }
     }
 
@@ -444,7 +476,12 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
         gSPDisplayList(gfx++, &tiny_bubble_dl_0B006CD8); // snowflake with blue edge
     }
 
+
+
     for (i = 0; i < gSnowParticleCount; i += 5) {
+        if ((gEnvFxBuffer + i + 4)->growTimer != 0 && (gEnvFxBuffer + i + 4)->growTimer == (gEnvFxBuffer + i + 4)->disappearDelay) {
+            continue;
+        }
         append_snowflake_vertex_buffer(gfx++, i, (s16 *) &vertex1, (s16 *) &vertex2, (s16 *) &vertex3);
 
         gSP1Triangle(gfx++, 0, 1, 2, 0);

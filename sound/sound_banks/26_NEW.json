@@ -35,6 +35,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "miasma_storm_l"
+    },
+    "inst_indoor_winds": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "indoor_winds"
     }
   },
   "instrument_list": [
@@ -42,6 +47,7 @@
     "inst_breeze_restore",
     "inst_miasma_grow",
     "inst_miasma_slice",
-    "inst_miasma_storm_l"
+    "inst_miasma_storm_l",
+    "inst_indoor_winds"
   ]
 }

@@ -7864,3 +7864,23 @@ const BehaviorScript bhvYarnBlooper[] = {
         CALL_NATIVE(bhv_yarn_blooper_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvCorrWindController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_corr_wind_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_corr_wind_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvExtensionBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(extension_block_collision),
+    CALL_NATIVE(bhv_extension_block_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_extension_block_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};

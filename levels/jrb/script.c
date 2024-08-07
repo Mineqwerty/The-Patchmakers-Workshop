@@ -94,7 +94,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_ELEVATOR, 6764, 1276, -7702, 0, -180, 0, (11 << 16), bhvStoneElevator),
 		OBJECT(MODEL_NONE, -2091, -489, -7277, 0, 0, 0, (30 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_FORTOGOO, 2457, 1107, -7454, 0, 0, 0, 0x00000000, bhvFortogoo),
-		OBJECT(MODEL_FORTOGOO, -4805, 1997, 7414, 0, 0, 0, 0x00000000, bhvFortogoo),
+		OBJECT(MODEL_FORTOGOO, -3033, -461, 2427, 0, 0, 0, 0x00000000, bhvFortogoo),
 		OBJECT(MODEL_GEAR, 2847, 335, -490, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, 2847, 39, -2476, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, 2847, 335, 420, 0, -135, 0, (1 << 16), bhvStoneGear),

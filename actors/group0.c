@@ -85,3 +85,5 @@
 #include "miasma_ribbon/model.inc.c"
 #include "miasma_ribbon/anims/data.inc.c"
 #include "miasma_ribbon/anims/table.inc.c"
+#include "extension_block/model.inc.c"
+#include "extension_block/collision.inc.c"

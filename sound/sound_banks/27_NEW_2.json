@@ -15,9 +15,21 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "miasma_storm_r"
+    },
+    "inst_loud_winds": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "loud_winds"
+    },
+    "inst_muffled_winds": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "muffled_winds"
     }
   },
   "instrument_list": [
-    "inst_miasma_storm_r"
+    "inst_miasma_storm_r",
+    "inst_loud_winds",
+    "inst_muffled_winds"
   ]
 }

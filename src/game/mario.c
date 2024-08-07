@@ -124,7 +124,7 @@ s16 set_custom_mario_animation(struct MarioState *m, s32 targetAnimID) {
     return o->header.gfx.animInfo.animFrame;
 }
 
-s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel) {
+s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel, u8 reverse) {
     struct Object *o = m->marioObj;
 
     if (o->header.gfx.animInfo.animID != targetAnimID) {
@@ -139,7 +139,7 @@ s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID
         if (targetAnim->flags & ANIM_FLAG_NO_ACCEL) {
             o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10);
         } else {
-            if (targetAnim->flags & ANIM_FLAG_FORWARD) {
+            if (reverse) {
                 o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) + accel;
             } else {
                 o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) - accel;
@@ -539,6 +539,7 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
                 case SURFACE_NOT_SLIPPERY:
                 case SURFACE_HARD:
                 case SURFACE_HARD_NOT_SLIPPERY:
+                case SURFACE_LESS_BLIZZARD:
                 case SURFACE_SWITCH:
                     floorSoundType = 1;
                     break;

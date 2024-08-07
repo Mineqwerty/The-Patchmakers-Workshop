@@ -23,7 +23,8 @@ enum patchNames {
     PATCH_TRANSMUTATION,
     PATCH_BREEZE,
     PATCH_PORTAL,
-    PATCH_MIASMA
+    PATCH_MIASMA,
+    PATCH_EXTENSION
 };
 
 enum WarpOperation {

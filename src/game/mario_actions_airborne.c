@@ -17,6 +17,7 @@
 
 #include "include/behavior_data.h"
 #include "src/game/platform_displacement.h"
+#include "src/engine/surface_collision.h"
 
 #include "config.h"
 
@@ -1217,6 +1218,9 @@ s32 act_ground_pound(struct MarioState *m) {
                         cur_obj_spawn_particles(&SnowflakeFly);
                         cur_obj_spawn_particles(&MistIce);
                     }
+                    else if (m->equippedPatch == PATCH_EXTENSION) {
+                        gMarioState->patchChildObj = spawn_object_relative(0, 0, -10, 0, m->marioObj, MODEL_EXTENSION_BLOCK, bhvExtensionBlock);
+                    }
                     else {
                         m->particleFlags |= PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR;
                     }
@@ -2403,6 +2407,62 @@ s32 act_stone_patch_airborne(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_climbing_wall(struct MarioState *m) {
+
+    f32 climbSpeed = 0.1f;
+
+    m->vel[0] = 0;
+    m->vel[1] = 0;
+    m->vel[2] = 0;
+
+    struct Surface *ceil, *floor;
+    struct WallCollisionData wallCollisionData;
+
+    Vec3f wallPos;
+    vec3f_set(wallPos, m->pos[0] + 50 * sins(m->faceAngle[1]), m->pos[1], m->pos[2] + 50 * coss(m->faceAngle[1]));
+
+    s32 animSpeed = absf(gPlayer1Controller->rawStickY) * 1950 + 10; 
+
+    
+
+    set_custom_mario_animation_with_accel(m, MARIO_CUSTOM_ANIM_CLIMB_VERTICAL, animSpeed, gPlayer1Controller->rawStickY < 0);
+    
+
+    resolve_and_return_wall_collisions(wallPos, 10.0f, 10.0f, &wallCollisionData);
+    set_mario_wall(m, wallCollisionData.numWalls == 0 ? NULL : wallCollisionData.walls[0]);
+
+    if (m->wall == NULL || m->input & INPUT_Z_PRESSED) {
+        return set_mario_action(m, ACT_FREEFALL, 0);
+    }
+
+    if (m->input & INPUT_A_PRESSED) {
+        m->faceAngle[1] += 0x8000;
+        m->vel[1] = 24.0f;
+        m->forwardVel = 30.0f;
+        return set_mario_action(m, ACT_JUMP, 0);
+    }
+    
+
+    m->pos[1] += gPlayer1Controller->rawStickY * climbSpeed;
+        m->pos[0] += ((f32)gPlayer1Controller->rawStickX)*coss(atan2s(m->wall->normal.z, m->wall->normal.x)) * climbSpeed;
+        m->pos[2] -= ((f32)gPlayer1Controller->rawStickX)*sins(atan2s(m->wall->normal.z, m->wall->normal.x)) * climbSpeed;
+    //apply_landing_accel(m, 6.0f);
+
+    f32 floorHeight = find_floor(m->pos[0], m->pos[1] + 50, m->pos[2], &floor);
+    f32 ceilHeight = find_mario_ceil(m->pos, floorHeight, &ceil);
+
+    if (m->pos[1] < floorHeight) {
+        m->pos[1] = floorHeight;
+        return set_mario_action(m, ACT_FREEFALL_LAND, 0);
+    }
+
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    
+    m->faceAngle[1] = atan2s(m->wall->normal.z, m->wall->normal.x) + 0x8000;
+    m->marioObj->header.gfx.angle[1] = m->faceAngle[1];
+    return FALSE;
+}
+
 s32 act_bounced_on_rosedrift(struct MarioState *m) {
     s32 stepResult;
 
@@ -2525,6 +2585,7 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
         case ACT_VERTICAL_WIND:        cancel = act_vertical_wind(m);        break;
         case ACT_STONE_PATCH_AIRBORNE:        cancel = act_stone_patch_airborne(m);        break;
         case ACT_BOUNCED_ON_ROSEDRIFT:        cancel = act_bounced_on_rosedrift(m);        break;
+        case ACT_CLIMBING_WALL:        cancel = act_climbing_wall(m);        break;
     }
     /* clang-format on */
 

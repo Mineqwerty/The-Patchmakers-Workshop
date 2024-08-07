@@ -729,6 +729,7 @@
 #define MODEL_SHADOW_CHOMP_TAIL           0x19E
 #define MODEL_TRANSMUTATION_CONE           0x19F
 #define MODEL_MIASMA_RIBBON           0x1A0
+#define MODEL_EXTENSION_BLOCK           0x1A1
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
