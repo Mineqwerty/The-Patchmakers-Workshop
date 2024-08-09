@@ -1,4 +1,4 @@
-void scroll_bob_dl_Plane_mesh_layer_5_vtx_1() {
+void scroll_bob_dl_Plane_mesh_layer_5_vtx_0() {
 	int i = 0;
 	int count = 9;
 	int width = 32 * 0x20;
@@ -12,7 +12,7 @@ void scroll_bob_dl_Plane_mesh_layer_5_vtx_1() {
 	float offsetX = 0.0;
 	static int currentY = 0;
 	int deltaY;
-	Vtx *vertices = segmented_to_virtual(bob_dl_Plane_mesh_layer_5_vtx_1);
+	Vtx *vertices = segmented_to_virtual(bob_dl_Plane_mesh_layer_5_vtx_0);
 
 	deltaX = (int)(amplitudeX * frequencyX * coss((frequencyX * timeX + offsetX) * (1024 * 16 - 1) / 6.28318530718) * 0x20);
 	deltaY = (int)(0.1899999976158142 * 0x20) % height;
@@ -31,14 +31,14 @@ void scroll_bob_dl_Plane_mesh_layer_5_vtx_1() {
 	currentX += deltaX;	timeX += 1;	currentY += deltaY;
 }
 
-void scroll_bob_dl_Plane_005_mesh_layer_5_vtx_0() {
+void scroll_bob_dl_Plane_005_mesh_layer_5_vtx_1() {
 	int i = 0;
-	int count = 19;
+	int count = 24;
 	int width = 32 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
-	Vtx *vertices = segmented_to_virtual(bob_dl_Plane_005_mesh_layer_5_vtx_0);
+	Vtx *vertices = segmented_to_virtual(bob_dl_Plane_005_mesh_layer_5_vtx_1);
 
 	deltaX = (int)(0.10000002384185791 * 0x20) % width;
 
@@ -75,7 +75,7 @@ void scroll_bob_dl_Plane_006_mesh_layer_5_vtx_0() {
 
 void scroll_bob_dl_Plane_016_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 27;
+	int count = 32;
 	int width = 32 * 0x20;
 
 	static int currentX = 0;
@@ -95,8 +95,8 @@ void scroll_bob_dl_Plane_016_mesh_layer_5_vtx_0() {
 }
 
 void scroll_bob() {
-	scroll_bob_dl_Plane_mesh_layer_5_vtx_1();
-	scroll_bob_dl_Plane_005_mesh_layer_5_vtx_0();
+	scroll_bob_dl_Plane_mesh_layer_5_vtx_0();
+	scroll_bob_dl_Plane_005_mesh_layer_5_vtx_1();
 	scroll_bob_dl_Plane_006_mesh_layer_5_vtx_0();
 	scroll_bob_dl_Plane_016_mesh_layer_5_vtx_0();
 };

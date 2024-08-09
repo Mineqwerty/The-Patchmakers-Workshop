@@ -1429,6 +1429,12 @@
 //tentacle cage
 #define oTentacleCageMaxHealth           OBJECT_FIELD_S32(0x1B)
 
+//extension block
+#define oMaterialIndex           OBJECT_FIELD_S32(0x1B)
+#define oRevertIndex           OBJECT_FIELD_S32(0x1C)
+#define oMaterialLayer           OBJECT_FIELD_S32(0x1D)
+#define oExtendSetting           OBJECT_FIELD_S32(0x1E)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

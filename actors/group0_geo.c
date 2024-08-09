@@ -42,3 +42,4 @@
 #include "floating_petal/geo.inc.c"
 #include "miasma_ribbon/geo.inc.c"
 #include "extension_block/geo.inc.c"
+#include "extension_block_side/geo.inc.c"

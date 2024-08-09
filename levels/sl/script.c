@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/sl/header.h"
 
@@ -34,6 +30,7 @@ const LevelScript level_sl_entry[] = {
 	LOAD_RAW(0x0D, _group13_geoSegmentRomStart, _group13_geoSegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
+	LOAD_MIO0(0x7, _sl_segment_7SegmentRomStart, _sl_segment_7SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -49,8 +46,7 @@ const LevelScript level_sl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SKY_SLUG, sky_slug_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WATER_LAUNCHER, water_launcher_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_JELLYFISH, jellyfish_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -59,9 +55,16 @@ const LevelScript level_sl_entry[] = {
 		WARP_NODE(0x0B, LEVEL_SL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		MARIO_POS(0x01, 0, -8596, -2635, 6594),
+		OBJECT(MODEL_NONE, -4982, -1753, 5895, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_ABYSS_OBELISK, 10579, 4603, 2858, 0, 0, 0, 0x00000000, bhvActualEnemyObelisk),
 		OBJECT(MODEL_NONE, -4405, -968, 4515, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
-		OBJECT(MODEL_NONE, -5024, -722, 9713, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, -4105, -408, 9765, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, 2921, -3599, 15438, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, -1917, 1850, 4130, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, -7035, -1333, -6958, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, 7185, -1054, 617, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
+		OBJECT(MODEL_NONE, -2240, 10553, 3957, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12407, 4642, 5259, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12555, 4397, 4102, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12125, 4362, 2881, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),
@@ -129,7 +132,7 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_SKY_SLUG, 8497, -2405, -8454, 0, -106, 0, (15 << 24) | (45 << 16), bhvSkySlug),
 		OBJECT(MODEL_SKY_SLUG, 795, -2514, -11126, 0, -90, 0, (12 << 24) | (40 << 16), bhvSkySlug),
 		OBJECT(MODEL_SKY_SLUG, -8493, -2009, -11126, 0, 90, 0, (12 << 24) | (40 << 16), bhvSkySlug),
-		OBJECT(MODEL_SKY_SLUG, -10892, 968, -7416, 0, -180, 0, (7 << 24) | (60 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, -10892, 968, -7416, 0, -180, 0, (8 << 24) | (60 << 16), bhvSkySlug),
 		OBJECT(MODEL_SKY_SLUG, -12797, 1057, -6129, 0, 104, 0, (255 << 24) | (0 << 16), bhvSkySlug),
 		OBJECT(MODEL_SKYBOX_TEST, 239, 136, 215, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, -8679, 7060, -1312, 0, 0, 0, 0x00000000, bhvStar),
@@ -139,22 +142,21 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_ABYSS_SWIMMER, -855, 2309, 4118, 0, 85, 0, (3 << 16), bhvAbyssSwimmer),
 		OBJECT(MODEL_ABYSS_URCHIN, 6002, -4362, 9125, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
 		OBJECT(MODEL_NONE, 6965, -3288, 777, 0, 0, 0, (60 << 24) | (11 << 16), bhvWarp),
-		OBJECT(MODEL_NONE, -4982, -1753, 5895, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, -8596, -2635, 6594),
 		OBJECT(MODEL_WATER_LAUNCHER, 3444, -1247, 2267, 0, 0, 0, 0x00000000, bhvWaterLauncher),
 		OBJECT(MODEL_WATER_LAUNCHER, 429, 5005, 4454, 0, 0, 0, 0x00000000, bhvWaterLauncher),
 		TERRAIN(sl_area_1_collision),
+		TERRAIN_MAT_LUT(sl_area_1_collision_materials),
 		MACRO_OBJECTS(sl_area_1_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, sl_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -1452, 7172, -165, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_TENTACLE_CAGE, -213, 3244, 343, 0, 0, 0, (5 << 16), bhvTentacleCage),
 		OBJECT(MODEL_SKYBOX_TEST, -4128, 1433, 3923, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, -213, 3530, 343, 0, 0, 0, (1 << 24), bhvStar),
@@ -165,15 +167,14 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_ABYSS_URCHIN, 271, 3761, 5319, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
 		OBJECT(MODEL_ABYSS_URCHIN, -985, 3853, 5199, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
 		OBJECT(MODEL_ABYSS_URCHIN, -1175, 3461, -1886, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
-		OBJECT(MODEL_NONE, -1452, 7172, -165, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(sl_area_2_collision),
+		TERRAIN_MAT_LUT(sl_area_2_collision_materials),
 		MACRO_OBJECTS(sl_area_2_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, -8596, -2635, 6594),
 	CALL(0, lvl_init_or_update),

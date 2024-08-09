@@ -64,7 +64,6 @@ static ObjActionFunc sFishSpawnerActions[] = {
 
 void bhv_fish_spawner_loop(void) {
     cur_obj_call_action_function(sFishSpawnerActions);
-    dbp(o->oAction);
 }
 
 /**

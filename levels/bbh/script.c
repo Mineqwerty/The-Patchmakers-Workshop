@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/bbh/header.h"
 
@@ -33,6 +29,8 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_RAW(0x0D, _group17_geoSegmentRomStart, _group17_geoSegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
+	LOAD_MIO0(0x7, _bbh_segment_7SegmentRomStart, _bbh_segment_7SegmentRomEnd), 
+	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -58,8 +56,7 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_RING_FRAGMENT, ring_fragment_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TFP_CHECKER_PLATFORM, tfp_checker_platform_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR, haunted_door_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR, haunted_door_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -69,6 +66,9 @@ const LevelScript level_bbh_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
+		OBJECT(MODEL_FAR_PLANE_CUBE_HEAD, 9782, 2793, -8812, 0, 0, 0, 0x00000000, bhvFarPlaneCubeHead),
+		MARIO_POS(0x01, 0, 7, 910, -1750),
+		OBJECT(MODEL_NONE, 7, 910, -1750, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, 2969, 1491, -736, 0, 90, 0, 0x00000000, bhvFarPlaneBoostPanel),
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, -1050, 863, -4916, 0, 155, 0, 0x00000000, bhvFarPlaneBoostPanel),
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, 1009, 872, -12482, 0, -163, 0, 0x00000000, bhvFarPlaneBoostPanel),
@@ -81,7 +81,6 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 2695, 841, -2216, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 2576, 841, -4055, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_BBH_HAUNTED_DOOR, -13659, 1371, -1826, 0, -150, 0, (11 << 16), bhvDoorWarp),
-		OBJECT(MODEL_FAR_PLANE_CUBE_HEAD, 9782, 2793, -8812, 0, 0, 0, 0x00000000, bhvFarPlaneCubeHead),
 		OBJECT(MODEL_FLOATING_PLANE, 7404, 1551, -4742, 0, 0, 0, (63 << 24) | (12 << 16) | (114 << 8), bhvFloatingPlane),
 		OBJECT(MODEL_FLOATING_PLANE, 7014, 2097, 6344, 0, 0, 0, (63 << 24) | (12 << 16) | (114 << 8), bhvFloatingPlane),
 		OBJECT(MODEL_FLOATING_PLANE, -7340, 2411, 5507, 0, 0, 0, (63 << 24) | (12 << 16) | (114 << 8), bhvFloatingPlane),
@@ -159,27 +158,25 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_TFP_ROTARY_PLATFORM, -8926, 1866, -13223, 0, 0, 0, (7 << 16), bhvTfpRotaryPlatform),
 		OBJECT(MODEL_SKYBOX_TEST, -95, 1571, -240, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 15012, 6499, -7397, 0, 90, 0, 0x00000000, bhvStar),
-		OBJECT(MODEL_NONE, 7, 910, -1750, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, 7, 910, -1750),
 		TERRAIN(bbh_area_1_collision),
+		TERRAIN_MAT_LUT(bbh_area_1_collision_materials),
 		MACRO_OBJECTS(bbh_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, bbh_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, 0),
-		OBJECT(MODEL_BOX_SWITCH, -884, 1469, -2842, 0, 0, 0, (99 << 16), bhvBoxSwitch),
-		OBJECT(MODEL_BOX_SWITCH, -948, 2533, -5265, 0, 0, 0, (99 << 16), bhvBoxSwitch),
 		OBJECT(MODEL_PORTAL_BARRIER, 533, 826, 3062, 0, 0, 0, 0x00000000, bhvPortalPuzzleBarrier),
 		OBJECT(MODEL_PORTAL_BARRIER, 533, 826, 2715, 0, 0, 0, (1 << 16), bhvPortalPuzzleBarrier),
 		OBJECT(MODEL_PORTAL_BARRIER, -2028, 1469, -2358, 0, 90, 0, (2 << 16), bhvPortalPuzzleBarrier),
 		OBJECT(MODEL_PORTAL_BARRIER, 131, 1469, -2363, 0, 90, 0, (3 << 16), bhvPortalPuzzleBarrier),
+		OBJECT(MODEL_BOX_SWITCH, -884, 1469, -2842, 0, 0, 0, (99 << 16), bhvBoxSwitch),
+		OBJECT(MODEL_BOX_SWITCH, -948, 2533, -5265, 0, 0, 0, (99 << 16), bhvBoxSwitch),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 1271, -3719, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 2342, -5667, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
 		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (5 << 16), bhvGroundPatch),
@@ -190,13 +187,13 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_PURPLE_SWITCH, -2756, 1469, -2632, 0, 0, 0, (3 << 16), bhvFloorSwitchHardcodedModel),
 		OBJECT(MODEL_PURPLE_SWITCH, -2762, 1469, -2125, 0, 0, 0, (2 << 16), bhvFloorSwitchHardcodedModel),
 		TERRAIN(bbh_area_2_collision),
+		TERRAIN_MAT_LUT(bbh_area_2_collision_materials),
 		MACRO_OBJECTS(bbh_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(3, bbh_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
@@ -212,30 +209,30 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, -3510, 3390, 7405, 0, 0, 0, (1 << 16), bhvTfpPuzzleBox),
 		OBJECT(MODEL_NONE, -11442, 9235, 6610, 0, 0, 0, 0x00000000, bhvBoxCounter),
 		TERRAIN(bbh_area_3_collision),
+		TERRAIN_MAT_LUT(bbh_area_3_collision_materials),
 		MACRO_OBJECTS(bbh_area_3_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(4, bbh_area_4),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_BBH, 0x01, 0x0B, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
-		OBJECT(MODEL_BBH_HAUNTED_DOOR, -1404, 1211, -370, 0, -90, 0, (11 << 16), bhvDoorWarp),
 		OBJECT(MODEL_NONE, 2250, 1533, -5433, 0, 0, 0, 0x07500000, bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -1074, 1211, -458, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_BBH_HAUNTED_DOOR, -1404, 1211, -370, 0, -90, 0, (11 << 16), bhvDoorWarp),
 		TERRAIN(bbh_area_4_collision),
+		TERRAIN_MAT_LUT(bbh_area_4_collision_materials),
 		MACRO_OBJECTS(bbh_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 7, 910, -1750),
 	CALL(0, lvl_init_or_update),

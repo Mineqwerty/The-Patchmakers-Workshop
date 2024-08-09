@@ -1218,7 +1218,7 @@ s32 act_ground_pound(struct MarioState *m) {
                         cur_obj_spawn_particles(&SnowflakeFly);
                         cur_obj_spawn_particles(&MistIce);
                     }
-                    else if (m->equippedPatch == PATCH_EXTENSION) {
+                    else if (m->equippedPatch == PATCH_EXTENSION && m->floor && m->floor->object == NULL) {
                         gMarioState->patchChildObj = spawn_object_relative(0, 0, -10, 0, m->marioObj, MODEL_EXTENSION_BLOCK, bhvExtensionBlock);
                     }
                     else {

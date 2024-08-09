@@ -1,3 +1,6 @@
+const Gfx* extension_block_collision_materials[] = {
+};
+
 const Collision extension_block_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(8),

@@ -12,6 +12,8 @@
 #include "src/game/level_update.h"
 #include "levels/bbh/header.h"
 #include "src/game/fb_effects.h"
+#include "actors/extension_block/geo_header.h"
+#include "levels/wdw/header.inc.h"
 
 struct GraphNode *loopNode;
 struct GraphNode *originalContinueNode;
@@ -238,4 +240,44 @@ Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
         }
     }
     return 0;
+}
+
+Gfx *geo_get_area_material_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    Gfx *dl = NULL;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+        Gfx *dlHead = NULL;
+        dl = alloc_display_list(2 * sizeof(*dl));
+        dlHead = dl;
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE); 
+
+        Gfx *areaTable = gAreas[gCurrAreaIndex].materialTable;
+        gSPDisplayList(dlHead++, ((Gfx**)areaTable)[obj->oMaterialIndex]);
+        //gSPDisplayList(dlHead++, ((Gfx**)segmented_to_virtual(wdw_area_1_collision_materials))[0]);
+	    gSPEndDisplayList(dlHead);
+    }
+
+    
+    return dl;
+}
+
+Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    Gfx *dl = NULL;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+        Gfx *dlHead = NULL;
+        dl = alloc_display_list(2 * sizeof(*dl));
+        dlHead = dl;
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE); 
+
+        Gfx *areaTable = gAreas[gCurrAreaIndex].materialTable;
+        gSPDisplayList(dlHead++, ((Gfx**)areaTable)[obj->oRevertIndex]);
+        //gSPDisplayList(dlHead++, ((Gfx**)segmented_to_virtual(wdw_area_1_collision_materials))[0]);
+	    gSPEndDisplayList(dlHead);
+    }
+
+    
+    return dl;
 }

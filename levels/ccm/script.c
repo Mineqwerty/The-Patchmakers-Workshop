@@ -12,13 +12,9 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
+#include "actors/group0.h"
 #include "make_const_nonconst.h"
 #include "levels/ccm/header.h"
-#include "actors/group0.h"
 
 /* Fast64 begin persistent block [scripts] */
 /* Fast64 end persistent block [scripts] */
@@ -35,6 +31,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_RAW(0x0D, _group16_geoSegmentRomStart, _group16_geoSegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
+	LOAD_MIO0(0x7, _ccm_segment_7SegmentRomStart, _ccm_segment_7SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -60,8 +57,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_WING_SURFACE, wing_surface_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GODDESS_SPEAR, goddess_spear_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_halo_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER, rocket_flower_fog_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_ROCKET_FLOWER, rocket_flower_fog_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -72,6 +68,24 @@ const LevelScript level_ccm_entry[] = {
 		WARP_NODE(0x0B, LEVEL_CCM, 0x04, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x10, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x11, LEVEL_CCM, 0x01, 0x11, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_SKYBOX_TEST, -207, 264, 1112, 0, 0, 0, 0x00000000, bhvBackgroundObject),
+		OBJECT(MODEL_GOLD_CLOUD, 582, -1229, -6416, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -6282, -669, -9874, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -801, -330, -13011, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 137, 702, -11984, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -11313, -981, -8937, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -11313, -681, -7168, 0, -47, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -11313, -710, -5358, 0, -47, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 1522, 3731, -8953, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -5039, -805, -10110, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 7807, 1645, -1138, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 6752, 1214, -6419, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 1632, 4106, -10481, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 6336, 1150, -1900, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, 7376, 1947, -3043, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		OBJECT(MODEL_GOLD_CLOUD, -398, -2920, -3281, 0, 0, 0, 0x00000000, bhvGoldCloud),
+		MARIO_POS(0x01, 0, 0, 200, 1208),
+		OBJECT(MODEL_NONE, 0, 200, 1208, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BLUE_COIN, -1603, -96, -12253, 0, -28, 0, 0x00000000, bhvHiddenBlueCoin),
 		OBJECT(MODEL_BLUE_COIN_SWITCH, -1921, -520, -12408, 0, -28, 0, (20 << 16), bhvBlueCoinSwitch),
 		OBJECT(MODEL_BLUE_COIN, -773, -15, -12576, 0, -28, 0, 0x00000000, bhvHiddenBlueCoin),
@@ -96,33 +110,17 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_NONE, 5294, 2503, 3717, 0, 0, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 587, -3118, -6332, 0, 0, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 584, -1760, -4892, 0, 0, 0, (2 << 16), bhvCoinFormation),
-		OBJECT(MODEL_SKYBOX_TEST, -207, 264, 1112, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT_WITH_ACTS(MODEL_FLING_RING, -5490, 3238, -4979, 0, 76, 0, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_FLING_RING, -5932, 3308, -6232, 0, 146, 0, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_FLING_RING, 4758, 1560, -121, 0, -87, 0, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
-		OBJECT_WITH_ACTS(MODEL_FLING_RING, 5899, 1858, 958, -46, 28, -2, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
+		OBJECT_WITH_ACTS(MODEL_FLING_RING, 5899, 1858, 958, -45, 30, -3, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_FLING_RING, 4814, 2603, 3347, 0, -131, 0, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_FLING_RING, 2294, 3983, -1175, 0, -179, 0, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
-		OBJECT_WITH_ACTS(MODEL_FLING_RING, 627, -1704, -3342, -90, 0, -3, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
+		OBJECT_WITH_ACTS(MODEL_FLING_RING, 627, -1704, -3342, -87, 90, -90, 0x00000000, bhvFlingRing, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, 2439, 3325, 1117, 0, 112, 0, 0x00000000, bhvCloud, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, 3055, 3634, -554, 0, -63, 0, 0x00000000, bhvCloud, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, 2453, 4181, -6323, 0, -80, 0, 0x00000000, bhvCloud, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, 1820, 4068, -4723, 0, 85, 0, 0x00000000, bhvCloud, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
-		OBJECT(MODEL_GOLD_CLOUD, 582, -1229, -6416, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -6282, -669, -9874, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -801, -330, -13011, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 137, 702, -11984, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -11313, -981, -8937, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -11313, -681, -7168, 0, -47, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -11313, -710, -5358, 0, -47, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 1522, 3731, -8953, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -5039, -805, -10110, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 7807, 1645, -1138, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 6752, 1214, -6419, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 1632, 4106, -10481, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 6336, 1150, -1900, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, 7376, 1947, -3043, 0, 0, 0, 0x00000000, bhvGoldCloud),
-		OBJECT(MODEL_GOLD_CLOUD, -398, -2920, -3281, 0, 0, 0, 0x00000000, bhvGoldCloud),
 		OBJECT(MODEL_NONE, 9497, 2492, -4571, 0, 0, 0, (40 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7701, 694, -5940, 0, 0, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7342, 750, -6122, 0, 0, 0, (100 << 16), bhvPoleGrabbing),
@@ -153,10 +151,8 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_TORCH_HOLDER, -3188, -657, -11884, 0, 0, 0, (1 << 16), bhvTorchHolder),
 		OBJECT(MODEL_TORCH_HOLDER, 8959, 2863, -3552, 0, 0, 0, 0x00000000, bhvTorchHolder),
 		OBJECT(MODEL_TORCH_HOLDER, 8341, 2862, -3528, 0, 0, 0, (1 << 16), bhvTorchHolder),
-		OBJECT(MODEL_TORCH_HOLDER, 9249, 332, -8261, 105, -2, -4, (1 << 16), bhvTorchHolder),
+		OBJECT(MODEL_TORCH_HOLDER, 9249, 332, -8261, 106, 13, 16, (1 << 16), bhvTorchHolder),
 		OBJECT(MODEL_NONE, -201, 2791, 7299, 0, -47, 0, (11 << 16), bhvWarp),
-		OBJECT(MODEL_NONE, 0, 200, 1208, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, 0, 200, 1208),
 		OBJECT(MODEL_WIND_CLOUD, -5390, 81, -1818, 0, 0, 0, (100 << 16), bhvWindCloud),
 		OBJECT(MODEL_WIND_CLOUD, -5139, 1585, -3460, 0, 0, 0, (80 << 16), bhvWindCloud),
 		OBJECT(MODEL_WIND_CLOUD, -5444, 1842, -4151, 0, 0, 0, (130 << 16), bhvWindCloud),
@@ -165,13 +161,13 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_WIND_CLOUD, -12345, -215, 335, 0, 0, 0, (80 << 16), bhvWindCloud),
 		OBJECT_WITH_ACTS(MODEL_WING_SURFACE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvWingSurface, ACT_6),
 		TERRAIN(ccm_area_1_collision),
+		TERRAIN_MAT_LUT(ccm_area_1_collision_materials),
 		MACRO_OBJECTS(ccm_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_GOLD_SOAKED_SKY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, ccm_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x33, WARP_NO_CHECKPOINT),
@@ -197,13 +193,13 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_STAR_GATE, 5505, -8667, -82, 0, 0, 0, 0x00110000, bhvStarGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2573, -8601, -752, 0, 0, 0, 0x00000000, bhvWillOWispSpawner, ACT_2),
 		TERRAIN(ccm_area_2_collision),
+		TERRAIN_MAT_LUT(ccm_area_2_collision_materials),
 		MACRO_OBJECTS(ccm_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_GOLD_SOAKED_SKY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(3, ccm_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x33, WARP_NO_CHECKPOINT),
@@ -219,30 +215,30 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_GROUND_PATCH, -6268, -9875, 8137, -90, 0, 0, (3 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, -1873, -8971, -11516, 0, 0, 0, (1 << 24) | (1 << 16), bhvStar),
 		TERRAIN(ccm_area_3_collision),
+		TERRAIN_MAT_LUT(ccm_area_3_collision_materials),
 		MACRO_OBJECTS(ccm_area_3_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(4, ccm_area_4),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -651, -303, -2230, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_GODDESS, -100, 964, 2279, 0, -180, 0, 0x00000000, bhvGoddessBoss),
 		OBJECT(MODEL_GOLD_BLOB, 460, -400, -4878, 0, 0, 0, 0x00000000, bhvGoldBlob),
 		OBJECT(MODEL_GOLD_BLOB, -619, -400, -4878, 0, 0, 0, 0x00000000, bhvGoldBlob),
 		OBJECT(MODEL_GOLD_BLOB, 2026, -400, -4878, 0, 0, 0, 0x00000000, bhvGoldBlob),
-		OBJECT(MODEL_NONE, -651, -303, -2230, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(ccm_area_4_collision),
+		TERRAIN_MAT_LUT(ccm_area_4_collision_materials),
 		MACRO_OBJECTS(ccm_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STREAMED_CHAMBER),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 0, 200, 1208),
 	CALL(0, lvl_init_or_update),

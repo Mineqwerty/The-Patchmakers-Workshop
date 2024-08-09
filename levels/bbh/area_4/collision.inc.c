@@ -1,3 +1,73 @@
+Gfx bbh_area_4_collision_camrealitybreak_layer_0[] = {
+    gsSPLightColor(LIGHT_1, 0xbff30ff),
+    gsSPLightColor(LIGHT_2, 0x27f13ff),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, 1, 0, 0, 0, SHADE, 0, 0, 0, 1),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsDPSetRenderMode(GBL_c1(G_BL_CLR_BL, G_BL_0, G_BL_CLR_MEM, G_BL_1) | GBL_c2(G_BL_CLR_BL, G_BL_0, G_BL_CLR_MEM, G_BL_1), AA_EN | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsSPEndDisplayList(),
+};
+
+Gfx bbh_area_4_collision_mat_revert_bbh_dl_camrealitybreak_layer0[] = {
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsDPSetRenderMode(G_RM_ZB_OPA_SURF, G_RM_ZB_OPA_SURF2),
+	gsSPEndDisplayList(),
+};
+
+Gfx bbh_area_4_collision_f3dlite_material_layer_1[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, SHADE, ENVIRONMENT, 0, SHADE, 0, SHADE, 0, SHADE, COMBINED, ENVIRONMENT, 0, SHADE, 0),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsDPSetTextureFilter(G_TF_POINT),
+	gsDPSetCycleType(G_CYC_2CYCLE),
+	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 1, bbh_dl_tilee_i8),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 2047, 256),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 252),
+	gsSPEndDisplayList(),
+};
+
+Gfx bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_layer1[] = {
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsDPSetTextureFilter(G_TF_BILERP),
+	gsDPSetCycleType(G_CYC_1CYCLE),
+	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	gsSPEndDisplayList(),
+};
+
+Gfx bbh_area_4_collision_f3dlite_material_045_layer_1[] = {
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsSPEndDisplayList(),
+};
+
+Gfx bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_045[] = {
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
+const Gfx* bbh_area_4_collision_materials[] = {
+	&bbh_area_4_collision_camrealitybreak_layer_0,
+	&bbh_area_4_collision_mat_revert_bbh_dl_camrealitybreak_layer0,
+	&bbh_area_4_collision_f3dlite_material_layer_1,
+	&bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_layer1,
+	&bbh_area_4_collision_f3dlite_material_045_layer_1,
+	&bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_045,
+};
+
 const Collision bbh_area_4_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(1246),
@@ -1247,14 +1317,14 @@ const Collision bbh_area_4_collision[] = {
 	COL_VERTEX(2982, -1350, -4852),
 	COL_VERTEX(2982, -1350, -6042),
 	COL_VERTEX(-3242, -1350, -6042),
-	COL_TRI_INIT(SURFACE_CAMERA_BOUNDARY, 6),
+	COL_TRI_MAT_INIT(SURFACE_CAMERA_BOUNDARY, 0, 1, 0, 6),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
 	COL_TRI(4, 5, 6),
 	COL_TRI(4, 6, 7),
 	COL_TRI(7, 6, 8),
 	COL_TRI(7, 8, 9),
-	COL_TRI_INIT(SURFACE_DEFAULT, 2432),
+	COL_TRI_MAT_INIT(SURFACE_DEFAULT, 2, 3, 1, 2432),
 	COL_TRI(10, 11, 12),
 	COL_TRI(10, 12, 13),
 	COL_TRI(14, 15, 16),
@@ -3687,7 +3757,7 @@ const Collision bbh_area_4_collision[] = {
 	COL_TRI(1230, 1237, 1232),
 	COL_TRI(1193, 1205, 1210),
 	COL_TRI(1193, 1210, 1194),
-	COL_TRI_INIT(SURFACE_DEATH_PLANE, 4),
+	COL_TRI_MAT_INIT(SURFACE_DEATH_PLANE, 4, 5, 1, 4),
 	COL_TRI(1238, 1239, 1240),
 	COL_TRI(1238, 1240, 1241),
 	COL_TRI(1242, 1243, 1244),

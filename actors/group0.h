@@ -437,4 +437,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "extension_block/collision_header.h"
 
+#include "extension_block_side/collision_header.h"
+
+#include "extension_block_side/geo_header.h"
+
 #endif

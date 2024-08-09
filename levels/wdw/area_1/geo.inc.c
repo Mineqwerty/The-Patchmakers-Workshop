@@ -3,27 +3,10 @@
 const GeoLayout wdw_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_SWITCH_CASE(3, geo_switch_area),
-		GEO_OPEN_NODE(),
-			GEO_BRANCH(1, wdw_dl_Room_1_geo),
-			GEO_BRANCH(1, wdw_dl_Room_2_geo),
-		GEO_CLOSE_NODE(),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
-const GeoLayout wdw_dl_Room_1_geo[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, wdw_dl_Plane_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_002_mesh_layer_1),
-	GEO_CLOSE_NODE(),
-	GEO_RETURN(),
-};
-const GeoLayout wdw_dl_Room_2_geo[] = {
-	GEO_NODE_START(),
-	GEO_OPEN_NODE(),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

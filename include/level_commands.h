@@ -74,6 +74,7 @@ enum LevelCommands {
     /*0x3F*/ LEVEL_CMD_PUPPYLIGHT_ENVIRONMENT,
     /*0x40*/ LEVEL_CMD_PUPPYLIGHT_NODE,
     /*0x41*/ LEVEL_CMD_SET_ECHO,
+    LEVEL_CMD_UPDATE_MATERIAL_TABLE
 };
 
 enum LevelActs {
@@ -401,6 +402,10 @@ enum GoddardScene {
 #define ROOMS(surfaceRooms) \
     CMD_BBH(LEVEL_CMD_SET_ROOMS, 0x08, 0x0000), \
     CMD_PTR(surfaceRooms)
+
+#define TERRAIN_MAT_LUT(materialTable) \
+    CMD_BBH(LEVEL_CMD_UPDATE_MATERIAL_TABLE, 0x08, 0x0000), \
+    CMD_PTR(materialTable)
 
 #define SHOW_DIALOG(index, dialogId) \
     CMD_BBBB(LEVEL_CMD_SHOW_DIALOG, 0x04, index, dialogId)
