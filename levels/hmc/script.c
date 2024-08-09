@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/hmc/header.h"
 
@@ -34,6 +30,9 @@ const LevelScript level_hmc_entry[] = {
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
 	LOAD_YAY0(0xa, _water_skybox_yay0SegmentRomStart, _water_skybox_yay0SegmentRomEnd), 
 	LOAD_YAY0(0xb, _effect_yay0SegmentRomStart, _effect_yay0SegmentRomEnd), 
+	LOAD_MIO0(0x7, _hmc_segment_7SegmentRomStart, _hmc_segment_7SegmentRomEnd), 
+	LOAD_MIO0(0xb, _effect_mio0SegmentRomStart, _effect_mio0SegmentRomEnd), 
+	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -43,8 +42,7 @@ const LevelScript level_hmc_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_UNDERWATER_STONE_DOOR, underwater_stone_door_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_UNDERWATER_STONE_BUTTON, underwater_stone_button_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CORAL_SPINNER, coral_spinner_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GLASSFISH, glassfish_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_GLASSFISH, glassfish_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -54,6 +52,8 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0C, LEVEL_HMC, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		MARIO_POS(0x01, 0, -2677, 4922, 113),
+		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_CORAL_SPINNER, 645, -5487, -8892, 0, -90, 0, 0x00000000, bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -2180, -5487, -8892, 0, -90, 0, (40 << 16), bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -5310, -5487, -8892, 0, -90, 0, (78 << 16), bhvCoralSpinner),
@@ -83,29 +83,27 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_RED_COIN, -10783, 7082, 944, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_STAR, 6453, 7313, -2966, 0, 119, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),
-		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, -2677, 4922, 113),
 		OBJECT(MODEL_NONE, 7338, 2647, 9109, 0, 0, 0, (50 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
 		OBJECT(MODEL_WATER_RING, 8564, -8131, 836, 0, -148, 0, 0x00000000, bhvSubSeaWaterRing),
 		OBJECT(MODEL_NONE, 6542, -8799, -42, 0, 119, 0, 0x00000000, bhvSubSeaWaterRingManager),
 		OBJECT(MODEL_WATER_RING, 9775, -7798, 2067, 0, -165, 0, (1 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, 8907, -7285, 3955, 0, 136, 0, (2 << 16), bhvSubSeaWaterRing),
-		OBJECT(MODEL_WATER_RING, 6786, -5913, 5106, 75, 127, 16, (3 << 16), bhvSubSeaWaterRing),
+		OBJECT(MODEL_WATER_RING, 6786, -5913, 5106, 60, 108, -20, (3 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, 4805, -3004, 6009, 0, 149, 0, (4 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, 944, -4649, 9899, 0, -111, 0, (5 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, -2894, -4507, 5142, 0, -157, 0, (6 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, -138, -2202, -552, 0, 91, 0, (7 << 16), bhvSubSeaWaterRing),
 		OBJECT(MODEL_WATER_RING, 4957, -2310, -4150, 0, 105, 0, (8 << 16), bhvSubSeaWaterRing),
-		OBJECT(MODEL_WATER_RING, 11307, -2296, -5655, 0, 85, -23, (9 << 16), bhvSubSeaWaterRing),
+		OBJECT(MODEL_WATER_RING, 11307, -2296, -5655, 23, 85, -2, (9 << 16), bhvSubSeaWaterRing),
 		TERRAIN(hmc_area_1_collision),
+		TERRAIN_MAT_LUT(hmc_area_1_collision_materials),
 		MACRO_OBJECTS(hmc_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, hmc_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -119,17 +117,18 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -4225, 0, 0, 0, (2 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_NONE, 43, 2941, -7459, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_2_collision),
+		TERRAIN_MAT_LUT(hmc_area_2_collision_materials),
 		MACRO_OBJECTS(hmc_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(3, hmc_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -2243, 3726, -4263, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2253, 3998, -5447, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2248, 5289, -4816, 0, 119, 0, 0x00000000, bhvGeyser),
@@ -137,15 +136,14 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -2246, 5781, -3906, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2258, 2976, -4740, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_STAR, -4238, 7131, -4812, 0, 119, 0, (4 << 24), bhvStar),
-		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_3_collision),
+		TERRAIN_MAT_LUT(hmc_area_3_collision_materials),
 		MACRO_OBJECTS(hmc_area_3_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, -2677, 4922, 113),
 	CALL(0, lvl_init_or_update),

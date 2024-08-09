@@ -661,6 +661,13 @@ static void level_cmd_set_rooms(void) {
     sCurrentCmd = CMD_NEXT;
 }
 
+static void level_cmd_update_material_table(void) {
+    if (sCurrAreaIndex != -1) {
+        gAreas[sCurrAreaIndex].materialTable = segmented_to_virtual(CMD_GET(void *, 4));
+    }
+    sCurrentCmd = CMD_NEXT;
+}
+
 static void level_cmd_set_macro_objects(void) {
     if (sCurrAreaIndex != -1) {
 #ifndef NO_SEGMENTED_MEMORY
@@ -983,6 +990,7 @@ static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_PUPPYLIGHT_ENVIRONMENT      */ level_cmd_puppylight_environment,
     /*LEVEL_CMD_PUPPYLIGHT_NODE             */ level_cmd_puppylight_node,
     /*LEVEL_CMD_SET_ECHO                    */ level_cmd_set_echo,
+    level_cmd_update_material_table,
 };
 
 struct LevelCommand *level_script_execute(struct LevelCommand *cmd) {

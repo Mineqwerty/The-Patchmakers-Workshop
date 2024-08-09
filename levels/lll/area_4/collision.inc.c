@@ -1,3 +1,29 @@
+Gfx lll_area_4_collision_f3dlite_material_022_layer_1[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_16b, 1, lll_dl_wallpaperr_i4),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 2047, 512),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 7, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 508),
+	gsSPEndDisplayList(),
+};
+
+Gfx lll_area_4_collision_mat_revert_lll_dl_f3dlite_material_022[] = {
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
+const Gfx* lll_area_4_collision_materials[] = {
+	&lll_area_4_collision_f3dlite_material_022_layer_1,
+	&lll_area_4_collision_mat_revert_lll_dl_f3dlite_material_022,
+};
+
 const Collision lll_area_4_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(18),
@@ -19,7 +45,7 @@ const Collision lll_area_4_collision[] = {
 	COL_VERTEX(-682, 603, 609),
 	COL_VERTEX(-682, 603, -222),
 	COL_VERTEX(-682, 603, 1002),
-	COL_TRI_INIT(SURFACE_DEFAULT, 24),
+	COL_TRI_MAT_INIT(SURFACE_DEFAULT, 0, 1, 1, 24),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
 	COL_TRI(4, 0, 5),

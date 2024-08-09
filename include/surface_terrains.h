@@ -2,6 +2,7 @@
 #define SURFACE_TERRAINS_H
 
 #include "config.h"
+#include "include/command_macros_base.h"
 
 // Surface Types
 enum SurfaceTypes {
@@ -312,7 +313,14 @@ enum TerrainType {
 #define COL_VERTEX(x, y, z) x, y, z
 
 // Collision Tris Initiate
-#define COL_TRI_INIT(surfType, triNum) surfType, triNum
+#define COL_TRI_INIT(surfType, triNum) surfType, 0, 0, 0, triNum
+
+#define COL_TRI_MAT_INIT(surfType, materialIndex, revertIndex, materialLayer, triNum) \
+    surfType, \
+    materialIndex, \
+    revertIndex, \
+    materialLayer, \
+    triNum
 
 // Collision Tri
 #ifdef ALL_SURFACES_HAVE_FORCE

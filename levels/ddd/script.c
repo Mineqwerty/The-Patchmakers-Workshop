@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/ddd/header.h"
 
@@ -34,6 +30,7 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_RAW(0x0D, _group13_geoSegmentRomStart, _group13_geoSegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
+	LOAD_MIO0(0x7, _ddd_segment_7SegmentRomStart, _ddd_segment_7SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -49,8 +46,7 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_BOTTOM, hvh_chest_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_TOP, hvh_chest_top_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MIMIC, mimic_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -61,6 +57,9 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0x0D, LEVEL_DDD, 0x04, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		MARIO_POS(0x01, 0, 11397, 1743, -97),
+		OBJECT_WITH_ACTS(MODEL_NONE, 11397, 1743, -97, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_1),
+		OBJECT_WITH_ACTS(MODEL_NONE, -919, 493, -213, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6),
 		OBJECT(MODEL_AWNING, -2693, 729, -1014, 0, 0, 0, 0x00000000, bhvAwning),
 		OBJECT(MODEL_AWNING, -4803, 729, -1014, 0, 0, 0, 0x00000000, bhvAwning),
 		OBJECT(MODEL_AWNING, -4803, 729, 395, 0, -180, 0, 0x00000000, bhvAwning),
@@ -89,23 +88,22 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_STAR, -3228, 4854, -6392, 0, -180, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 1168, 552, 3974, 0, -180, 0, (2 << 24) | (8 << 16), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_NONE, -11016, -926, 8649, 0, -180, 0, (11 << 16), bhvWarp),
-		OBJECT_WITH_ACTS(MODEL_NONE, 11397, 1743, -97, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_1),
-		MARIO_POS(0x01, 0, 11397, 1743, -97),
-		OBJECT_WITH_ACTS(MODEL_NONE, -919, 493, -213, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6),
 		OBJECT(MODEL_NONE, -7945, 303, -12252, 0, 172, 0, (50 << 24) | (12 << 16), bhvInstantActiveWarp),
 		OBJECT(MODEL_NONE, -8419, 303, 14445, 0, 172, 0, (50 << 24) | (13 << 16), bhvInstantActiveWarp),
 		TERRAIN(ddd_area_1_collision),
+		TERRAIN_MAT_LUT(ddd_area_1_collision_materials),
 		MACRO_OBJECTS(ddd_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, ddd_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT_WITH_ACTS(MODEL_NONE, -2649, -802, -1030, 0, 69, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_1),
+		OBJECT(MODEL_METAL_BOX, 2098, 1883, 878, 0, -22, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_METAL_BOX, 3764, 1883, 1554, 0, -22, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_GROUND_PATCH, 692, -12, -1343, -90, 0, 0, (6 << 16), bhvGroundPatch),
 		OBJECT(MODEL_PODOGOO, 2301, 4269, 1167, 0, -180, 0, 0x00000000, bhvPodogoo),
@@ -114,24 +112,23 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_PODOGOO, -3178, 4269, -374, 0, -180, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_TRANSMUTATION_STAR, -5825, 5813, -782, 0, 90, 0, (1 << 24), bhvTransmutationStar),
 		OBJECT(MODEL_REGULAR_TABLE, 5195, 1883, 1699, 0, 0, 0, 0x00000000, bhvTransmutationTable),
-		OBJECT(MODEL_METAL_BOX, 2098, 1883, 878, 0, -22, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_REGULAR_TABLE, 3654, 3187, 1676, 0, 0, 0, 0x00000000, bhvTransmutationTable),
 		OBJECT(MODEL_REGULAR_TABLE, -3461, 4269, -852, 0, 0, 0, 0x00000000, bhvTransmutationTable),
-		OBJECT_WITH_ACTS(MODEL_NONE, -2649, -802, -1030, 0, 69, 0, 0x000A0000, bhvSpinAirborneWarp, ACT_1),
 		TERRAIN(ddd_area_2_collision),
+		TERRAIN_MAT_LUT(ddd_area_2_collision_materials),
 		MACRO_OBJECTS(ddd_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(3, ddd_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_DDD, 0x01, 0x0C, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT_WITH_ACTS(MODEL_NONE, -1952, 303, 7203, 0, -135, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
 		OBJECT(MODEL_NONE, -420, 4491, -5150, 0, -10, 0, (1 << 16), bhvGoofyWarp),
 		OBJECT(MODEL_NONE, 7576, 3604, -6964, 0, -80, 0, (1 << 16), bhvGoofyWarpReciever),
 		OBJECT(MODEL_NONE, 5087, 4334, -14322, 0, 1, 0, (2 << 16), bhvGoofyWarpReciever),
@@ -151,20 +148,19 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_NONE, -10339, 1229, -11115, 0, 10, 0, 0x00000000, bhvRocketFlowerSpawner),
 		OBJECT(MODEL_SKYBOX_TEST, 31, 378, 727, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, -9039, 5153, -2406, 0, -10, 0, (3 << 24), bhvStar),
-		OBJECT_WITH_ACTS(MODEL_NONE, -1952, 303, 7203, 0, -135, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
 		OBJECT(MODEL_WINDMILL_FAN, -610, 3785, -4044, 0, -10, 0, (1 << 16), bhvWindmillFan),
 		OBJECT(MODEL_WINDMILL_FAN, -2838, 3852, -9578, 0, -10, 0, 0x00000000, bhvWindmillFan),
 		OBJECT(MODEL_WINDMILL_FAN, 7883, 4474, -5965, 0, -10, 0, 0x00000000, bhvWindmillFan),
 		OBJECT(MODEL_WINDMILL_FAN, 4349, 4230, -13662, 0, -10, 0, 0x00000000, bhvWindmillFan),
 		OBJECT(MODEL_WINDMILL_FAN, -7899, 4424, -1093, 0, -10, 0, 0x00000000, bhvWindmillFan),
 		TERRAIN(ddd_area_3_collision),
+		TERRAIN_MAT_LUT(ddd_area_3_collision_materials),
 		MACRO_OBJECTS(ddd_area_3_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(4, ddd_area_4),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
@@ -187,13 +183,13 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_PODOGOO, -718, 2038, 9663, 0, 67, 0, 0x00000000, bhvPodogoo),
 		OBJECT_WITH_ACTS(MODEL_NONE, 4710, 1624, 10183, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
 		TERRAIN(ddd_area_4_collision),
+		TERRAIN_MAT_LUT(ddd_area_4_collision_materials),
 		MACRO_OBJECTS(ddd_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(5, ddd_area_5),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_DDD, 0x02, 0x0A, WARP_NO_CHECKPOINT),
@@ -203,13 +199,13 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT_WITH_ACTS(MODEL_NONE, 12, 9678, -10331, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
 		TERRAIN(ddd_area_5_collision),
+		TERRAIN_MAT_LUT(ddd_area_5_collision_materials),
 		MACRO_OBJECTS(ddd_area_5_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_HIDDEN_VILLAGE_HOLD),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 11397, 1743, -97),
 	CALL(0, lvl_init_or_update),

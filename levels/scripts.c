@@ -140,6 +140,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_TRANSMUTATION_CONE,            transmutation_cone_geo),
     LOAD_MODEL_FROM_GEO(MODEL_MIASMA_RIBBON,            miasma_ribbon_geo),
     LOAD_MODEL_FROM_GEO(MODEL_EXTENSION_BLOCK,            extension_block_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_EXTENSION_BLOCK_SIDE,            extension_block_side_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

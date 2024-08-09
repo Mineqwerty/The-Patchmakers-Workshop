@@ -226,8 +226,8 @@ void scroll_gfx_mat_ssl_dl_normalwater_layer5_area1() {
 	static int cur_interval_tex_ssl_dl_normalwater_layer5_area1 = 2;
 
 	if (--cur_interval_tex_ssl_dl_normalwater_layer5_area1 <= 0) {
-		shift_s_down(mat, 18, PACK_TILESIZE(0, 1));
-		shift_t_down(mat, 18, PACK_TILESIZE(0, 1));
+		shift_s_down(mat, 17, PACK_TILESIZE(0, 1));
+		shift_t_down(mat, 17, PACK_TILESIZE(0, 1));
 		cur_interval_tex_ssl_dl_normalwater_layer5_area1 = interval_tex_ssl_dl_normalwater_layer5_area1;
 	}
 
@@ -240,12 +240,12 @@ void scroll_gfx_mat_ssl_dl_decalwaterflow_layer5_area1() {
 
 
 	if (--cur_interval_tex_ssl_dl_decalwaterflow_layer5_area1 <= 0) {
-		shift_s_down(mat, 13, PACK_TILESIZE(0, 1));
-		shift_t_down(mat, 13, PACK_TILESIZE(0, 3));
+		shift_s_down(mat, 12, PACK_TILESIZE(0, 1));
+		shift_t_down(mat, 12, PACK_TILESIZE(0, 3));
 		cur_interval_tex_ssl_dl_decalwaterflow_layer5_area1 = interval_tex_ssl_dl_decalwaterflow_layer5_area1;
 	}
-	shift_s_down(mat, 18, PACK_TILESIZE(0, 1));
-	shift_t_down(mat, 18, PACK_TILESIZE(0, 2));
+	shift_s_down(mat, 17, PACK_TILESIZE(0, 1));
+	shift_t_down(mat, 17, PACK_TILESIZE(0, 2));
 
 };
 
@@ -256,12 +256,12 @@ void scroll_gfx_mat_ssl_dl_normalwaterflow_layer5_area1() {
 
 
 	if (--cur_interval_tex_ssl_dl_normalwaterflow_layer5_area1 <= 0) {
-		shift_s_down(mat, 13, PACK_TILESIZE(0, 1));
-		shift_t_down(mat, 13, PACK_TILESIZE(0, 3));
+		shift_s_down(mat, 12, PACK_TILESIZE(0, 1));
+		shift_t_down(mat, 12, PACK_TILESIZE(0, 3));
 		cur_interval_tex_ssl_dl_normalwaterflow_layer5_area1 = interval_tex_ssl_dl_normalwaterflow_layer5_area1;
 	}
-	shift_s_down(mat, 18, PACK_TILESIZE(0, 1));
-	shift_t_down(mat, 18, PACK_TILESIZE(0, 2));
+	shift_s_down(mat, 17, PACK_TILESIZE(0, 1));
+	shift_t_down(mat, 17, PACK_TILESIZE(0, 2));
 
 };
 

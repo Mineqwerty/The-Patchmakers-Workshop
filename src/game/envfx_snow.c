@@ -245,7 +245,7 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
     s32 deltaY = snowCylinderY - gSnowCylinderLastPos[1];
     s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
 
-    u8 isInside = gMarioState->floor->type == SURFACE_LESS_BLIZZARD;
+    u8 isInside = gMarioState->floor && (gMarioState->floor->type == SURFACE_LESS_BLIZZARD);
 
     for (i = 0; i < gSnowParticleCount; i++) {
         (gEnvFxBuffer + i)->isAlive =

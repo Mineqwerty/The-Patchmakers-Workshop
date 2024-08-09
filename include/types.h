@@ -419,6 +419,9 @@ struct Surface {
     /*0x1C*/ struct Normal normal;
     /*0x28*/ f32 originOffset;
     /*0x2C*/ struct Object *object;
+    s16 matPointer;
+    s16 matRevertPointer;
+    u32 materialIndex;
 };
 
 #define PUNCH_STATE_TIMER_MASK          0b00111111

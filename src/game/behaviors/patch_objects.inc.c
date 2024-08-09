@@ -1251,6 +1251,16 @@ enum ExtensionBlockActions {
 
 void bhv_extension_block_init(void) {
 
+    if (o->oBehParams2ndByte == 1) {
+        o->oAction = EXT_BLOCK_ACT_EXTEND_SIDE;
+        cur_obj_set_model(MODEL_EXTENSION_BLOCK_SIDE);
+        obj_set_collision_data(o, extension_block_side_collision);
+    }
+    else {
+        o->oMaterialIndex = gMarioState->floor->matPointer;
+        o->oRevertIndex = gMarioState->floor->matRevertPointer;
+        o->oMaterialLayer = gMarioState->floor->materialIndex;
+    }
 }
 
 void bhv_extension_block_loop(void) {
@@ -1261,6 +1271,20 @@ void bhv_extension_block_loop(void) {
                 o->oAction = EXT_BLOCK_ACT_STOPPED;
             }
         break;
+        case EXT_BLOCK_ACT_EXTEND_SIDE:
+            obj_scale_xyz(o, 1.0f, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f));
+            if (o->oTimer == 30) {
+                o->oAction = EXT_BLOCK_ACT_STOPPED;
+            }
+        break;
+        case EXT_BLOCK_ACT_STOPPED:
+            if (o->oBehParams2ndByte == 1) {
+                obj_scale_xyz(o, 1.0f, 1.0f, 3.0f);
+            }
+            else {
+                obj_scale_xyz(o, 1.0f, 3.0f, 1.0f);
+            }
+        break;
         case EXT_BLOCK_ACT_BREAKING:
         o->oPosY += (-1 + 2*(o->oTimer % 2)) * 5.0f;
             if (o->oTimer == 30) {
@@ -1268,6 +1292,8 @@ void bhv_extension_block_loop(void) {
             }
         break;
     }
+
+    
 
     if (gMarioState->equippedPatch != PATCH_EXTENSION || gMarioState->patchChildObj != o) {
         o->oAction = EXT_BLOCK_ACT_BREAKING;

@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/jrb/header.h"
 
@@ -34,6 +30,7 @@ const LevelScript level_jrb_entry[] = {
 	LOAD_RAW(0x0D, _group14_geoSegmentRomStart, _group14_geoSegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
+	LOAD_MIO0(0x7, _jrb_segment_7SegmentRomStart, _jrb_segment_7SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
@@ -58,8 +55,11 @@ const LevelScript level_jrb_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_7, falling_stone_7_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_SHADOW, falling_stone_shadow_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FORTOGOO, fortogoo_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -69,6 +69,9 @@ const LevelScript level_jrb_entry[] = {
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x42, WARP_NO_CHECKPOINT),
 		WARP_NODE(11, LEVEL_JRB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(12, LEVEL_JRB, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -2091, -489, -7277, 0, 0, 0, (30 << 24) | (11 << 16), bhvWarp),
+		MARIO_POS(0x01, 0, 0, 684, 0),
+		OBJECT(MODEL_NONE, 0, 684, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BLUE_COIN_SWITCH, 288, 1698, -7413, 0, -180, 0, 0x00000000, bhvBlueCoinSwitch),
 		OBJECT(MODEL_NONE, -202, 2355, -6701, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
 		OBJECT(MODEL_NONE, -500, 2604, -7798, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
@@ -92,7 +95,6 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_ELEVATOR, -3616, -229, 4711, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, -8417, 1148, 11465, 0, -180, 0, (11 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, 6764, 1276, -7702, 0, -180, 0, (11 << 16), bhvStoneElevator),
-		OBJECT(MODEL_NONE, -2091, -489, -7277, 0, 0, 0, (30 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_FORTOGOO, 2457, 1107, -7454, 0, 0, 0, 0x00000000, bhvFortogoo),
 		OBJECT(MODEL_FORTOGOO, -3033, -461, 2427, 0, 0, 0, 0x00000000, bhvFortogoo),
 		OBJECT(MODEL_GEAR, 2847, 335, -490, 0, -180, 0, 0x00000000, bhvStoneGear),
@@ -158,18 +160,16 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2218, 3082, -11254, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2218, 3082, -11254, 0, -90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -1999, 3082, -11942, 0, -90, 0, (2 << 16), bhvStoneTowerDoor),
-		OBJECT(MODEL_STONE_TOWER_DOOR, -2437, 3082, -11942, 1, 90, 1, (2 << 16), bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -2437, 3082, -11942, 0, 90, 0, (2 << 16), bhvStoneTowerDoor),
 		OBJECT(MODEL_NONE, 10816, 823, 11, 0, -180, 0, (12 << 16), bhvWarp),
-		OBJECT(MODEL_NONE, 0, 684, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, 0, 684, 0),
 		TERRAIN(jrb_area_1_collision),
+		TERRAIN_MAT_LUT(jrb_area_1_collision_materials),
 		MACRO_OBJECTS(jrb_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, jrb_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x32, WARP_NO_CHECKPOINT),
@@ -180,21 +180,23 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GRAPPLE_STONE, 781, 2721, 600, 0, 90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, -1336, 2901, 1741, 0, -180, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_STAR, -1795, 3112, 1741, 0, -180, 0, (1 << 24), bhvStar),
-		OBJECT(MODEL_GROUND_PATCH, -166, 589, -73, -90, 0, 0, (2 << 16), bhvGroundPatch),
 		OBJECT(MODEL_NONE, -2035, 4645, 1077, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_GROUND_PATCH, -166, 589, -73, -90, 0, 0, (2 << 16), bhvGroundPatch),
 		TERRAIN(jrb_area_2_collision),
+		TERRAIN_MAT_LUT(jrb_area_2_collision_materials),
 		MACRO_OBJECTS(jrb_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(3, jrb_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x32, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x42, WARP_NO_CHECKPOINT),
 		WARP_NODE(11, LEVEL_JRB, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_STAR, -5, 8644, 313, 0, 0, 0, (5 << 24) | (5 << 16), bhvStar),
+		OBJECT(MODEL_NONE, -81, 373, 3064, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 499, 2124, -729, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -357, 2744, 2771, 0, 0, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2358, 6175, 2175, 0, 0, 0, 0x00000000, bhvCoinFormation),
@@ -208,7 +210,6 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_ELEVATOR, -1053, 2900, 3110, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, -2819, 4817, 3116, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, 2771, 420, -2432, 0, -180, 0, (5 << 16), bhvStoneElevator),
-		OBJECT(MODEL_STAR, -5, 8644, 313, 0, 0, 0, (5 << 24) | (5 << 16), bhvStar),
 		OBJECT(MODEL_GEAR, 2924, 503, 2079, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, 2924, 1068, 2871, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, 2059, 1432, 3242, 0, -180, 0, 0x00000000, bhvStoneGear),
@@ -231,15 +232,14 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, 1434, 1603, -2396, 0, 0, 0, 0x00000000, bhvStoneTowerDoor),
-		OBJECT(MODEL_NONE, -81, 373, 3064, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(jrb_area_3_collision),
+		TERRAIN_MAT_LUT(jrb_area_3_collision_materials),
 		MACRO_OBJECTS(jrb_area_3_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 0, 684, 0),
 	CALL(0, lvl_init_or_update),

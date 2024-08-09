@@ -75,6 +75,7 @@ struct Area {
     /*0x38*/ u16 musicParam2;
     /*0x3A*/ u8 useEchoOverride; // Should area echo be overridden using echoOverride?
     /*0x3B*/ s8 echoOverride; // Value used to override the area echo values defined in level_defines.h
+    struct Gfx *materialTable;
 #ifdef BETTER_REVERB
     /*0x3C*/ u8 betterReverbPreset;
 #endif

@@ -362,6 +362,59 @@ static void load_static_surfaces(TerrainData **data, TerrainData *vertexData, s3
 #endif
     s32 flags = surf_has_no_cam_collision(surfaceType);
 
+    s16 material = *(*data)++;
+    s16 materialRevert = *(*data)++;
+    s16 materialIndex = *(*data)++;
+
+    s32 numSurfaces = *(*data)++;
+
+    for (i = 0; i < numSurfaces; i++) {
+        if (*surfaceRooms != NULL) {
+            room = *(*surfaceRooms)++;
+        }
+
+        surface = read_surface_data(vertexData, data, FALSE);
+        if (surface != NULL) {
+            surface->room = room;
+            surface->type = surfaceType;
+            surface->flags = flags;
+            surface->matPointer = material;
+            surface->matRevertPointer = materialRevert;
+            surface->materialIndex = materialIndex;
+
+#ifdef ALL_SURFACES_HAVE_FORCE
+            surface->force = *(*data + 3);
+#else
+            if (hasForce) {
+                surface->force = *(*data + 3);
+            } else {
+                surface->force = 0;
+            }
+#endif
+
+            add_surface(surface, FALSE);
+        }
+
+#ifdef ALL_SURFACES_HAVE_FORCE
+        *data += 4;
+#else
+        *data += 3;
+        if (hasForce) {
+            (*data)++;
+        }
+#endif
+    }
+}
+
+static void load_material_surfaces(TerrainData **data, TerrainData *vertexData, s32 surfaceType, RoomData **surfaceRooms) {
+    s32 i;
+    struct Surface *surface;
+    RoomData room = 0;
+#ifndef ALL_SURFACES_HAVE_FORCE
+    s16 hasForce = surface_has_force(surfaceType);
+#endif
+    s32 flags = surf_has_no_cam_collision(surfaceType);
+
     s32 numSurfaces = *(*data)++;
 
     for (i = 0; i < numSurfaces; i++) {
@@ -627,6 +680,11 @@ void load_object_surfaces(TerrainData **data, TerrainData *vertexData, u32 dynam
     s32 i;
 
     s32 surfaceType = *(*data)++;
+
+    s16 material = *(*data)++;
+    s16 materialRevert = *(*data)++;
+    s16 materialIndex = *(*data)++;
+
     s32 numSurfaces = *(*data)++;
 
 #ifndef ALL_SURFACES_HAVE_FORCE
@@ -658,6 +716,9 @@ void load_object_surfaces(TerrainData **data, TerrainData *vertexData, u32 dynam
 
             surface->flags |= flags;
             surface->room = room;
+            surface->matPointer = material;
+            surface->matRevertPointer = materialRevert;
+            surface->materialIndex = materialIndex;
             add_surface(surface, dynamic);
         }
 

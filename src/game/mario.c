@@ -1977,6 +1977,36 @@ void perform_patch_action(struct MarioState *m) {
         
             
         break;
+
+        case PATCH_EXTENSION:;
+            struct Surface *extendWall;
+            Vec3f originPos;
+            Vec3f hitpos;
+            Vec3f raydir;
+
+            raydir[0] = -sins(gMarioState->faceAngle[1]) * (600.0f);
+            raydir[1] = 0.0f;
+            raydir[2] = -(coss(gMarioState->faceAngle[1])) * (600.0f);
+
+            vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+
+            vec3f_set(originPos, gMarioState->pos[0] + (sins(gMarioState->faceAngle[1]) * 500.0f), gMarioState->pos[1] - 100,
+                      gMarioState->pos[2] + (coss(gMarioState->faceAngle[1]) * 500.0f));
+
+            find_surface_on_ray(originPos, raydir, &extendWall, hitpos, 2U, 1);
+            if (extendWall != NULL && extendWall->object == NULL) {
+                if (extendWall->type == SURFACE_INVISIBLE_WALL) {
+                    return;
+                }
+                play_sound(SOUND_GRAPPLE_HOOK_2, gMarioState->marioObj->header.gfx.cameraToObject);
+                gMarioState->patchChildObj = spawn_object_abs_with_rot(m->marioObj, 0, MODEL_EXTENSION_BLOCK_SIDE, bhvExtensionBlock, hitpos[0], hitpos[1] - 10, hitpos[2], 0, m->faceAngle[1], 0);
+                gMarioState->patchChildObj->oBehParams2ndByte = 1;
+                SET_BPARAM2(gMarioState->patchChildObj->oBehParams, 1);
+                gMarioState->patchChildObj->oMaterialIndex = extendWall->matPointer;
+                gMarioState->patchChildObj->oRevertIndex = extendWall->matRevertPointer;
+                gMarioState->patchChildObj->oMaterialLayer = extendWall->materialIndex;
+            }
+        break;
         }
 }
 

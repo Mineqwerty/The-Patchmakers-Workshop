@@ -28,6 +28,8 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
 Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_get_area_material_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H
