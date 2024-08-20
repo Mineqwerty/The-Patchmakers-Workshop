@@ -183,4 +183,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/screen_effect_eye_open/header.h"
 
+#include "levels/castle_inside/cartoon_clock_hand/geo_header.h"
+
 #endif

@@ -716,3 +716,4 @@ extern const BehaviorScript bhvRedConstructionLight[];
 extern const BehaviorScript bhvPowerBreaker[];
 extern const BehaviorScript bhvPowerBreakerController[];
 extern const BehaviorScript bhvBreakerSpark[];
+extern const BehaviorScript bhvCartoonHand[];

@@ -7925,3 +7925,12 @@ const BehaviorScript bhvBreakerSpark[] = {
         CALL_NATIVE(bhv_breaker_spark_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvCartoonHand[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_cartoon_hand_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_cartoon_hand_loop),
+    END_LOOP(),
+};

@@ -1,0 +1,16 @@
+extern const GeoLayout cartoon_clock_hand_geo[];
+extern Lights1 cartoon_clock_hand_f3dlite_material_082_lights;
+extern Lights1 cartoon_clock_hand_f3dlite_material_lights;
+extern u8 cartoon_clock_hand_woodprocessed_ia8[];
+extern u8 cartoon_clock_hand_cartoonhand_ci8[];
+extern u8 cartoon_clock_hand_cartoonhand_pal_rgba16[];
+extern Vtx cartoon_clock_hand_Cube_008_mesh_layer_1_vtx_0[88];
+extern Gfx cartoon_clock_hand_Cube_008_mesh_layer_1_tri_0[];
+extern Vtx cartoon_clock_hand_Cube_008_mesh_layer_5_vtx_0[42];
+extern Gfx cartoon_clock_hand_Cube_008_mesh_layer_5_tri_0[];
+extern Gfx mat_cartoon_clock_hand_f3dlite_material_082[];
+extern Gfx mat_revert_cartoon_clock_hand_f3dlite_material_082[];
+extern Gfx mat_cartoon_clock_hand_f3dlite_material[];
+extern Gfx mat_revert_cartoon_clock_hand_f3dlite_material[];
+extern Gfx cartoon_clock_hand_Cube_008_mesh_layer_1[];
+extern Gfx cartoon_clock_hand_Cube_008_mesh_layer_5[];
