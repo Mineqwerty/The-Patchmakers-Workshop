@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/castle_inside/header.h"
 
@@ -42,8 +38,7 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_STAR_UNLOCK_PLATFORM, star_unlock_platform_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIT, gss_window_lit_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_UNLIT, gss_window_unlit_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -65,7 +60,6 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x41, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_GSS_WINDOW_LIGHT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindowLight),
 		OBJECT(MODEL_GSS_WINDOW_LIT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindow),
 		OBJECT(MODEL_NONE, -2014, 100, -1225, 0, 0, 0, 0x051F0000, bhvPaintingDeathWarp),
@@ -73,6 +67,9 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 0, 0, 0x00000000, bhvStcDoor),
 		OBJECT(MODEL_STC_DOOR_LEFT, 3889, 554, 2906, 0, 0, 0, (1 << 16), bhvStcDoor),
 		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, 0, 0, 0x00000000, bhvGarageDoor),
+		MARIO_POS(0x01, 0, 0, 200, 0),
+		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -4853, 168, 1010, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, 4081, 688, 2692, 0, -90, 0, (0x42 << 16), bhvPaintingDeathWarp),
@@ -88,16 +85,14 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 510, 1699, 255, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, -4862, 0, 731, 0, 0, 0, (2 << 24) | (1 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4443, 554, 2697, 0, -90, 0, (4 << 24) | (2 << 16), bhvStarUnlockPlatform),
-		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, 0, 200, 0),
 		TERRAIN(castle_inside_area_1_collision),
+		TERRAIN_MAT_LUT(castle_inside_area_1_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_1_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	AREA(2, castle_inside_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -117,13 +112,13 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		TERRAIN(castle_inside_area_2_collision),
+		TERRAIN_MAT_LUT(castle_inside_area_2_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_2_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 0, 200, 0),
 	CALL(0, lvl_init_or_update),

@@ -51,4 +51,9 @@ extern const LevelScript level_wdw_entry[];
 
 #include "levels/wdw/header.inc.h"
 
+#include "levels/wdw/red_construction_light/geo_header.h"
+#include "levels/wdw/power_breaker/geo_header.h"
+
+#include "levels/wdw/breaker_spark/geo_header.h"
+
 #endif

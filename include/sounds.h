@@ -39,6 +39,7 @@ enum SoundBank {
     SOUND_BANK_PATCH_ABILITY,
     SOUND_BANK_NEW,
     SOUND_BANK_NEW_2,
+    SOUND_BANK_NEW_ENV,
     SOUND_BANK_COUNT
 };
 
@@ -616,7 +617,13 @@ enum SoundBank {
 #define SOUND_NEW_MIASMA_SLICE                                    SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x03, 0xE0, SOUND_DISCRETE)
 #define SOUND_NEW_MIASMA_STORM_L                                  SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x04, 0xF0, SOUND_DISCRETE)
 #define SOUND_NEW_INDOOR_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x05, 0xFF, 0)
+#define SOUND_NEW_BREAKER_SPARK_1                                 SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x06, 0xF0, SOUND_DISCRETE)
+#define SOUND_NEW_BREAKER_SPARK_2                                 SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x07, 0xF0, SOUND_DISCRETE)
+#define SOUND_NEW_BREAKER_SPARK_3                                 SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x08, 0xF0, SOUND_DISCRETE)
 #define SOUND_NEW_2_MIASMA_STORM_R                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)
+#define SOUND_NEW_ENV_SPARK1                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x00, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_ENV_SPARK2                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x01, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_ENV_SPARK3                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x02, 0xFF, SOUND_DISCRETE)
 #endif // SOUNDS_H

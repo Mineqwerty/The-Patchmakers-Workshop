@@ -7886,3 +7886,42 @@ const BehaviorScript bhvExtensionBlock[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvRedConstructionLight[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_red_construction_light_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_red_construction_light_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPowerBreaker[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_power_breaker_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_power_breaker_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPowerBreakerController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_power_breaker_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_power_breaker_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBreakerSpark[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_breaker_spark_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_breaker_spark_loop),
+    END_LOOP(),
+};

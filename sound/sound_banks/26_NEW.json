@@ -40,6 +40,21 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "indoor_winds"
+    },
+    "inst_breaker_spark_1": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_1"
+    },
+    "inst_breaker_spark_2": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_2"
+    },
+    "inst_breaker_spark_3": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_3"
     }
   },
   "instrument_list": [
@@ -48,6 +63,9 @@
     "inst_miasma_grow",
     "inst_miasma_slice",
     "inst_miasma_storm_l",
-    "inst_indoor_winds"
+    "inst_indoor_winds",
+    "inst_breaker_spark_1",
+    "inst_breaker_spark_2",
+    "inst_breaker_spark_3"
   ]
 }

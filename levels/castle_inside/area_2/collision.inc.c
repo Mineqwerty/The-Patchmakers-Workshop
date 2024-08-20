@@ -1,3 +1,43 @@
+Gfx castle_inside_area_2_collision_f3d_material_001_layer_1[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, TEXEL1, SHADE_ALPHA, TEXEL1, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, 0, 0, 0, 1),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsDPSetTextureLUT(G_TT_RGBA16),
+	gsDPSetCycleType(G_CYC_2CYCLE),
+	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_inside_dl_floorboards_x_floornoise_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 45),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, castle_inside_dl_floorboards_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 511, 512),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTileSize(0, 0, 0, 124, 124),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, castle_inside_dl_floornoise_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 128, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(6, 0, 0, 511, 512),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 128, 1, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTileSize(1, 32, 0, 124, 124),
+	gsSPEndDisplayList(),
+};
+
+Gfx castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3d_material_001_layer1[] = {
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsDPSetTextureLUT(G_TT_NONE),
+	gsDPSetCycleType(G_CYC_1CYCLE),
+	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	gsSPEndDisplayList(),
+};
+
+const Gfx* castle_inside_area_2_collision_materials[] = {
+	&castle_inside_area_2_collision_f3d_material_001_layer_1,
+	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3d_material_001_layer1,
+};
+
 const Collision castle_inside_area_2_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(36),
@@ -37,7 +77,7 @@ const Collision castle_inside_area_2_collision[] = {
 	COL_VERTEX(-1331, 2177, 1331),
 	COL_VERTEX(-4050, 2177, -521),
 	COL_VERTEX(-1973, 2177, 3393),
-	COL_TRI_INIT(SURFACE_DEFAULT, 42),
+	COL_TRI_MAT_INIT(SURFACE_DEFAULT, 0, 1, 1, 42),
 	COL_TRI(0, 1, 2),
 	COL_TRI(2, 3, 4),
 	COL_TRI(4, 5, 6),

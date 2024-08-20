@@ -241,6 +241,7 @@ enum SurfaceTypes {
     SURFACE_SPECTRAL_SAND,
     SURFACE_LESS_BLIZZARD,
     SURFACE_CLIMBABLE_WALL,
+    SURFACE_ROUGH_WALL
 };
 
 // From Surface 0x1B to 0x1E

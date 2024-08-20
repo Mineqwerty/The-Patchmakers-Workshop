@@ -107,6 +107,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_RED_FLAME_SHADOW,        red_flame_shadow_geo),
     LOAD_MODEL_FROM_GEO(MODEL_1UP,                     mushroom_1up_geo),
     LOAD_MODEL_FROM_GEO(MODEL_RED_COIN,                red_coin_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_FOG_RED_COIN,                fog_red_coin_geo),
     LOAD_MODEL_FROM_GEO(MODEL_RED_COIN_NO_SHADOW,      red_coin_no_shadow_geo),
     LOAD_MODEL_FROM_GEO(MODEL_NUMBER,                  number_geo),
     LOAD_MODEL_FROM_GEO(MODEL_EXPLOSION,               explosion_geo),

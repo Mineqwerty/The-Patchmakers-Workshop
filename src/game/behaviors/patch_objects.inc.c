@@ -282,7 +282,7 @@ void bhv_grapple_hook_loop(void) {
 
             find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
             if (surf != NULL) {
-                if (surf->type == SURFACE_INVISIBLE_WALL) {
+                if (surf->type == SURFACE_INVISIBLE_WALL || surf->type == SURFACE_ROUGH_WALL) {
                     return o->oAction = 2;
                 }
                 o->oPosX = hitpos[0];
@@ -1249,7 +1249,57 @@ enum ExtensionBlockActions {
     EXT_BLOCK_ACT_BREAKING
 };
 
+struct SpawnParticlesInfo sExtensionRubble = {
+    0, 30, MODEL_PEBBLE, 20.0f, 30, 20, 20, 10, 252, 30, 5.0f, 3.0f
+};
+struct SpawnParticlesInfo sExtensionDust = {
+    2, 25, MODEL_MIST, 20.0f, 30, 10, 5, 5, 252, 30, 15.0f, 0.0f
+};
+
+void check_extension_corners_and_push(void) {
+    struct Surface *floor;
+    Vec3f pushVec;
+    pushVec[0] = 0;
+    pushVec[2] = 0;
+    o->oOutOfBounds = 0;
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += -10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += 10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += -10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += 10;
+        o->oOutOfBounds = 1;
+    }
+
+    if (o->oOutOfBounds == 1) {
+        o->oPosX += pushVec[0];
+        o->oPosZ += pushVec[2];
+        o->parentObj->oPosX = o->oPosX;
+        o->parentObj->oPosY = o->oPosY;
+        o->parentObj->oPosZ = o->oPosZ;
+        gMarioState->pos[0] = o->oPosX;
+        gMarioState->pos[2] = o->oPosZ;
+    }
+
+    
+}
+
+
 void bhv_extension_block_init(void) {
+
+    check_extension_corners_and_push();
 
     if (o->oBehParams2ndByte == 1) {
         o->oAction = EXT_BLOCK_ACT_EXTEND_SIDE;
@@ -1261,19 +1311,41 @@ void bhv_extension_block_init(void) {
         o->oRevertIndex = gMarioState->floor->matRevertPointer;
         o->oMaterialLayer = gMarioState->floor->materialIndex;
     }
+
+    cur_obj_spawn_particles(&sExtensionRubble);
+    cur_obj_shake_screen(SHAKE_POS_SMALL);
 }
 
 void bhv_extension_block_loop(void) {
     switch (o->oAction) {
         case EXT_BLOCK_ACT_EXTEND_UP:
             obj_scale_xyz(o, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f), 1.0f);
+
+            check_extension_corners_and_push();
+            if (o->oTimer < 2 && gMarioState->pos[1] < o->oPosY) {
+                gMarioState->pos[1] = o->oPosY + 30;
+            }
+
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL2_SPINDEL_ROLL);
+                
+            }
             if (o->oTimer == 30) {
+                cur_obj_spawn_particles(&sExtensionDust);
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+                //cur_obj_shake_screen(SHAKE_POS_SMALL);
                 o->oAction = EXT_BLOCK_ACT_STOPPED;
             }
         break;
         case EXT_BLOCK_ACT_EXTEND_SIDE:
             obj_scale_xyz(o, 1.0f, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f));
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL2_SPINDEL_ROLL);
+            }
             if (o->oTimer == 30) {
+                cur_obj_spawn_particles(&sExtensionDust);
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+                //cur_obj_shake_screen(SHAKE_POS_SMALL);
                 o->oAction = EXT_BLOCK_ACT_STOPPED;
             }
         break;

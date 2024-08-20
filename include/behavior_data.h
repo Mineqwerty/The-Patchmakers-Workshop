@@ -712,3 +712,7 @@ extern const BehaviorScript bhvYarnBlooper[];
 extern const BehaviorScript bhvActualEnemyObelisk[];
 extern const BehaviorScript bhvCorrWindController[];
 extern const BehaviorScript bhvExtensionBlock[];
+extern const BehaviorScript bhvRedConstructionLight[];
+extern const BehaviorScript bhvPowerBreaker[];
+extern const BehaviorScript bhvPowerBreakerController[];
+extern const BehaviorScript bhvBreakerSpark[];

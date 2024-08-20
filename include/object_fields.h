@@ -1434,6 +1434,12 @@
 #define oRevertIndex           OBJECT_FIELD_S32(0x1C)
 #define oMaterialLayer           OBJECT_FIELD_S32(0x1D)
 #define oExtendSetting           OBJECT_FIELD_S32(0x1E)
+#define oOutOfBounds           OBJECT_FIELD_S32(0x1F)
+
+//power breaker controller
+#define oClosestMarioBreakerDistance           OBJECT_FIELD_F32(0x1B)
+#define oBreakerSpawnObject           OBJECT_FIELD_OBJ(0x1C)
+#define oNumBreakersLeft           OBJECT_FIELD_F32(0x1D)
 
 /*Custom general defines:
 

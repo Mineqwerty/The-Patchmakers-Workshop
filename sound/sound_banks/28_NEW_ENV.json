@@ -1,0 +1,35 @@
+{
+  "date": "1996-03-19",
+  "sample_bank": "sfx_new_env",
+  "envelopes": {
+    "envelope0": [
+      [
+        1,
+        32700
+      ],
+      "hang"
+    ]
+  },
+  "instruments": {
+    "inst_spark1": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "spark1"
+    },
+    "inst_spark2": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "spark2"
+    },
+    "inst_spark3": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "spark3"
+    }
+  },
+  "instrument_list": [
+    "inst_spark1",
+    "inst_spark2",
+    "inst_spark3"
+  ]
+}

@@ -14,7 +14,8 @@
         "0A_mario_peach",
         "0B_patch_abilities",
         "26_NEW",
-        "27_NEW_2"
+        "27_NEW_2",
+        "28_NEW_ENV"
     ],
     "01_cutscene_collect_star": [
         "0C"

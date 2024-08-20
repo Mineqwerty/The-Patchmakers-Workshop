@@ -30,6 +30,7 @@ extern const GeoLayout yellow_coin_no_shadow_geo[];
 extern const GeoLayout blue_coin_geo[];
 extern const GeoLayout blue_coin_no_shadow_geo[];
 extern const GeoLayout red_coin_geo[];
+extern const GeoLayout fog_red_coin_geo[];
 extern const GeoLayout red_coin_no_shadow_geo[];
 #ifdef IA8_30FPS_COINS
 extern const GeoLayout silver_coin_geo[];
@@ -61,6 +62,15 @@ extern const Gfx coin_seg3_dl_red_90[];
 extern const Gfx coin_seg3_dl_red_67_5_r[];
 extern const Gfx coin_seg3_dl_red_45_r[];
 extern const Gfx coin_seg3_dl_red_22_5_r[];
+
+extern const Gfx fog_coin_seg3_dl_red_0[];
+extern const Gfx fog_coin_seg3_dl_red_22_5[];
+extern const Gfx fog_coin_seg3_dl_red_45[];
+extern const Gfx fog_coin_seg3_dl_red_67_5[];
+extern const Gfx fog_coin_seg3_dl_red_90[];
+extern const Gfx fog_coin_seg3_dl_red_67_5_r[];
+extern const Gfx fog_coin_seg3_dl_red_45_r[];
+extern const Gfx fog_coin_seg3_dl_red_22_5_r[];
 
 extern const Gfx coin_seg3_dl_secret_0[];
 extern const Gfx coin_seg3_dl_secret_22_5[];

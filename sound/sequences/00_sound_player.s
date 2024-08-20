@@ -26,6 +26,7 @@ seq_startchannel 9, .channel59
 seq_startchannel 10, .channelPatch
 seq_startchannel 11, .channel_NEW
 seq_startchannel 12, .channel_NEW_2
+seq_startchannel 13, .channel_NEW_ENV
 .seq_loop:
 seq_delay 20000
 seq_jump .seq_loop
@@ -8068,6 +8069,39 @@ sound_ref .sound_miasma_grow
 sound_ref .sound_miasma_slice
 sound_ref .sound_miasma_storm_l
 sound_ref .sound_indoor_winds
+sound_ref .sound_breaker_spark_1
+sound_ref .sound_breaker_spark_2
+sound_ref .sound_breaker_spark_3
+
+.sound_breaker_spark_3:
+chan_setbank 12
+chan_setinstr 8
+chan_setlayer 0, .layer_breaker_spark_3
+chan_end
+
+.layer_breaker_spark_3:
+layer_note1 39, 0x20, 127
+layer_end
+
+.sound_breaker_spark_2:
+chan_setbank 12
+chan_setinstr 7
+chan_setlayer 0, .layer_breaker_spark_2
+chan_end
+
+.layer_breaker_spark_2:
+layer_note1 39, 0x33, 127
+layer_end
+
+.sound_breaker_spark_1:
+chan_setbank 12
+chan_setinstr 6
+chan_setlayer 0, .layer_breaker_spark_1
+chan_end
+
+.layer_breaker_spark_1:
+layer_note1 39, 0x36, 127
+layer_end
 
 .sound_indoor_winds:
 chan_setbank 12
@@ -8174,6 +8208,53 @@ chan_end
 
 .layer_miasma_storm_r:
 layer_note1 39, 0x79, 127
+layer_end
+
+
+.channel_NEW_ENV:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channel_NEW_ENV_table
+chan_jump .main_loop_023589
+
+.channel_NEW_ENV_table:
+sound_ref .sound_spark1
+sound_ref .sound_spark2
+sound_ref .sound_spark3
+
+.sound_spark3:
+chan_setbank 14
+chan_setinstr 2
+chan_setlayer 0, .layer_spark3
+chan_end
+
+.layer_spark3:
+layer_note1 39, 0x20, 127
+layer_end
+
+.sound_spark2:
+chan_setbank 14
+chan_setinstr 1
+chan_setlayer 0, .layer_spark2
+chan_end
+
+.layer_spark2:
+layer_note1 39, 0x33, 127
+layer_end
+
+.sound_spark1:
+chan_setbank 14
+chan_setinstr 0
+chan_setlayer 0, .layer_spark1
+chan_end
+
+.layer_spark1:
+layer_note1 39, 0x36, 127
 layer_end
 
 .align 2, 0

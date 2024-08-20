@@ -1998,7 +1998,6 @@ void perform_patch_action(struct MarioState *m) {
                 if (extendWall->type == SURFACE_INVISIBLE_WALL) {
                     return;
                 }
-                play_sound(SOUND_GRAPPLE_HOOK_2, gMarioState->marioObj->header.gfx.cameraToObject);
                 gMarioState->patchChildObj = spawn_object_abs_with_rot(m->marioObj, 0, MODEL_EXTENSION_BLOCK_SIDE, bhvExtensionBlock, hitpos[0], hitpos[1] - 10, hitpos[2], 0, m->faceAngle[1], 0);
                 gMarioState->patchChildObj->oBehParams2ndByte = 1;
                 SET_BPARAM2(gMarioState->patchChildObj->oBehParams, 1);
@@ -2119,10 +2118,13 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
         case PATCH_HALO:
             if (m->patchChildObj) {
-                if (m->patchChildObj->oHaloCapturedObject) {
+                if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
                     obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
                 }
-                obj_mark_for_deletion(m->patchChildObj);
+                if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
+                    obj_mark_for_deletion(m->patchChildObj);
+                }
+                m->patchChildObj = NULL;
             }
             m->curPatch = PATCH_HALO;
             m->patchChildObj = spawn_object_relative(0, 0, 200, 0, gMarioObject, MODEL_HALO, bhvHalo);
@@ -2130,7 +2132,9 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
         case PATCH_SHADOWCHOMP:
             if (m->patchChildObj && !obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
-                obj_mark_for_deletion(m->patchChildObj);
+                if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
+                    obj_mark_for_deletion(m->patchChildObj);
+                }
                 m->patchChildObj = NULL;
             }
             if (!m->patchChildObj) {

@@ -1,0 +1,7 @@
+extern const GeoLayout red_construction_light_geo[];
+extern u8 red_construction_light_red_light_ia8[];
+extern Vtx red_construction_light_Plane_004_mesh_layer_5_vtx_0[16];
+extern Gfx red_construction_light_Plane_004_mesh_layer_5_tri_0[];
+extern Gfx mat_red_construction_light_f3dlite_material_004_layer5[];
+extern Gfx mat_revert_red_construction_light_f3dlite_material_004_layer5[];
+extern Gfx red_construction_light_Plane_004_mesh_layer_5[];

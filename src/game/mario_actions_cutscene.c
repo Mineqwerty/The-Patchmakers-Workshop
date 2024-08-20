@@ -813,7 +813,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 s32 act_star_dance(struct MarioState *m) {
     common_patch_cancel(m);
     if (m->patchChildObj) {
-        if (m->patchChildObj->oHaloCapturedObject) {
+        if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
             obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
         }
         if (!obj_has_behavior(m->patchChildObj, bhvIceFloor)) {

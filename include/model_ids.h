@@ -693,7 +693,9 @@
 #define MODEL_ABYSS_OBELISK                   0x109
 
 //City of Reconstructed Ruin
-#define MODEL_CORR1                   0x100
+#define MODEL_RED_CONSTRUCTION_LIGHT                  0x100
+#define MODEL_POWER_BREAKER                  0x101
+#define MODEL_BREAKER_SPARK                  0x102
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
@@ -711,6 +713,7 @@
 #define MODEL_ROCKET_FLOWER                    0x184
 #define MODEL_ROCKET_FLOWER_ROT                    0x185
 #define MODEL_FLOATING_PETAL                    0x186
+#define MODEL_FOG_RED_COIN                    0x187
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
