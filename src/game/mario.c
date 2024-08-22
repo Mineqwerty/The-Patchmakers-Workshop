@@ -742,7 +742,7 @@ Bool32 set_mario_ceil(struct MarioState *m, struct Surface *ceil, f32 ceilHeight
 
 Bool32 set_mario_floor(struct MarioState *m, struct Surface *floor, f32 floorHeight) {
 
-    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == PATCH_CHILLSTEP) {
+    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == PATCH_CHILLSTEP && !((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         m->floor = &gWaterSurfacePseudoFloor;
         if (m->floor != NULL) m->floorYaw = SURFACE_YAW(floor);
         m->floorHeight = m->waterLevel;
@@ -1418,7 +1418,7 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     m->waterLevel = find_water_level_and_floor(m->pos[0], m->pos[1], m->pos[2], &waterFloor);
     m->waterFloor = waterFloor;
 
-    if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor) {
+    if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor && !((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         m->floorHeight = m->waterLevel;
         m->floor = waterFloor;
         gMarioWaterwalk = TRUE;

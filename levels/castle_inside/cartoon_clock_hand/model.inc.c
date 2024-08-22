@@ -1,10 +1,4 @@
-Lights1 cartoon_clock_hand_f3dlite_material_082_lights = gdSPDefLights1(
-	0x7F, 0x76, 0x68,
-	0xFF, 0xEC, 0xD2, 0x49, 0x49, 0x49);
 
-Lights1 cartoon_clock_hand_f3dlite_material_lights = gdSPDefLights1(
-	0x39, 0x2C, 0x1C,
-	0x79, 0x60, 0x41, 0x49, 0x49, 0x49);
 
 Gfx cartoon_clock_hand_woodprocessed_ia8_aligner[] = {gsSPEndDisplayList()};
 u8 cartoon_clock_hand_woodprocessed_ia8[] = {
@@ -1053,7 +1047,8 @@ Gfx cartoon_clock_hand_Cube_008_mesh_layer_5_tri_0[] = {
 
 
 Gfx mat_cartoon_clock_hand_f3dlite_material_082[] = {
-	gsSPSetLights1(cartoon_clock_hand_f3dlite_material_082_lights),
+    gsSPLightColor(LIGHT_1, 0xffecd2ff),
+    gsSPLightColor(LIGHT_2, 0x7f7668ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -1074,7 +1069,8 @@ Gfx mat_revert_cartoon_clock_hand_f3dlite_material_082[] = {
 
 Gfx mat_cartoon_clock_hand_f3dlite_material[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPSetLights1(cartoon_clock_hand_f3dlite_material_lights),
+    gsSPLightColor(LIGHT_1, 0x796041ff),
+    gsSPLightColor(LIGHT_2, 0x392c1cff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),

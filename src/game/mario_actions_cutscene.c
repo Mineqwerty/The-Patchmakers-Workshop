@@ -406,26 +406,56 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
     return FALSE;
 }
 
+
+//action args for these level warp actions essentially make it the next hub. for instance TTC warp with arg of 1 goes to SS
+
 s32 act_warp_ttc(struct MarioState *m) {
-    gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
-    m->actionTimer++;
+    f32 approachSpeed;
+        switch (m->actionArg) {
+        case 0:;
+            gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+            m->actionTimer++;
 
-    gCamera->cutscene = 1;
-    f32 approachSpeed = 0.05f;
-    gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
-        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], gMarioState->pos[1] + 500, approachSpeed);
-        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
-        gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
-        gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
-        gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
+            gCamera->cutscene = 1;
+            approachSpeed = 0.05f;
+            gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], gMarioState->pos[1] + 500, approachSpeed);
+                gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
+                gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
+                gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
 
-    if (m->actionTimer == 30) {
-        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
-    }
-    if (m->actionTimer == 59) {
-        initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
-    }
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
+            }
+        break;
+        case 1:;
+            gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+            m->actionTimer++;
+
+            gCamera->cutscene = 1;
+            approachSpeed = 0.05f;
+            gMarioState->pos[1] -= 20;
+            //gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalPos[1] += 10.0f;
+                //gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
+                gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
+                gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
+
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_HMC, 1, 0x0A, 0);
+            }
+        break;
+        }
     return FALSE;
 }
 
@@ -454,20 +484,28 @@ s32 act_warp_rdr(struct MarioState *m) {
     return FALSE;
 }
 
+
 s32 act_warp_stc(struct MarioState *m) {
-    set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
-                                              : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
-    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    switch (m->actionArg) {
+        case 0:;
+        set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+                                                : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
+        vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 
-    m->actionTimer++;
+        m->actionTimer++;
 
-    if (m->actionTimer == 30) {
-        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
-    }
-    if (m->actionTimer == 59) {
-        initiate_warp(LEVEL_JRB, 1, 0x0A, 0);
+        if (m->actionTimer == 30) {
+            play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+        }
+        if (m->actionTimer == 59) {
+            initiate_warp(LEVEL_JRB, 1, 0x0A, 0);
+        }
+        break;
+        case 1:;
+
+        break;
     }
     return FALSE;
 }

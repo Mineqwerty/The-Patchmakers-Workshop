@@ -1441,6 +1441,11 @@
 #define oBreakerSpawnObject           OBJECT_FIELD_OBJ(0x1C)
 #define oNumBreakersLeft           OBJECT_FIELD_F32(0x1D)
 
+//cartoon hand
+#define oCurrentHandSpeed           OBJECT_FIELD_S32(0x1B)
+#define oTargetHandSpeed           OBJECT_FIELD_S32(0x1C)
+#define oHandDirection           OBJECT_FIELD_S32(0x1D)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

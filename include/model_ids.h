@@ -546,6 +546,7 @@
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
+//Workshop HUB
 #define MODEL_SEWNIA                  0x100
 #define MODEL_RDR_GARAGE_DOOR                  0x101
 #define MODEL_STC_DOOR_RIGHT                  0x102
@@ -554,6 +555,7 @@
 #define MODEL_GSS_WINDOW_LIT                  0x105
 #define MODEL_GSS_WINDOW_UNLIT                  0x106
 #define MODEL_GSS_WINDOW_LIGHT                  0x107
+#define MODEL_CARTOON_HAND                  0x108
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

@@ -2249,6 +2249,11 @@ void mario_handle_special_floors(struct MarioState *m) {
                 }
             }
             break;
+            case SURFACE_SS_WARP:
+            if (m->pos[1] - m->floorHeight < 300) {
+                set_mario_action(m, ACT_WARP_TTC, 1);
+            }
+            break;
 
             default:
                 m->flags &= ~(MARIO_TRANSPARENT);
