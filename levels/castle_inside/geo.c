@@ -33,3 +33,4 @@
 #include "levels/castle_inside/gss_window_unlit/geo.inc.c"
 #include "levels/castle_inside/gss_window_light/geo.inc.c"
 #include "levels/castle_inside/cartoon_clock_hand/geo.inc.c"
+#include "levels/castle_inside/paper_spinner/geo.inc.c"

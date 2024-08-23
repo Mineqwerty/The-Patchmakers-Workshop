@@ -556,6 +556,7 @@
 #define MODEL_GSS_WINDOW_UNLIT                  0x106
 #define MODEL_GSS_WINDOW_LIGHT                  0x107
 #define MODEL_CARTOON_HAND                  0x108
+#define MODEL_PAPER_SPINNER                  0x109
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

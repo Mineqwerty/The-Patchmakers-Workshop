@@ -940,3 +940,5 @@ void bhv_breaker_spark_init(void);
 void bhv_breaker_spark_loop(void);
 void bhv_cartoon_hand_init(void);
 void bhv_cartoon_hand_loop(void);
+void bhv_paper_spinner_init(void);
+void bhv_paper_spinner_loop(void);

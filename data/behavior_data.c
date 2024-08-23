@@ -7934,3 +7934,13 @@ const BehaviorScript bhvCartoonHand[] = {
         CALL_NATIVE(bhv_cartoon_hand_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPaperSpinner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_paper_spinner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_spinner_loop),
+    END_LOOP(),
+};

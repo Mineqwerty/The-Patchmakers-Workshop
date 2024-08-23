@@ -100,3 +100,4 @@
 #include "levels/castle_inside/gss_window_light/model.inc.c"
 #include "levels/castle_inside/screen_effect_eye_open/model.inc.c"
 #include "levels/castle_inside/cartoon_clock_hand/model.inc.c"
+#include "levels/castle_inside/paper_spinner/model.inc.c"

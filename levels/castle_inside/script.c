@@ -40,36 +40,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIT, gss_window_lit_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_UNLIT, gss_window_unlit_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_CARTOON_HAND, cartoon_clock_hand_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_CARTOON_HAND, cartoon_clock_hand_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SPINNER, paper_spinner_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -145,6 +117,9 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
+		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),
 		TERRAIN(castle_inside_area_2_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_2_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_2_macro_objs),
