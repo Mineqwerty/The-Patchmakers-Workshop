@@ -8072,6 +8072,28 @@ sound_ref .sound_indoor_winds
 sound_ref .sound_breaker_spark_1
 sound_ref .sound_breaker_spark_2
 sound_ref .sound_breaker_spark_3
+sound_ref .sound_machine_lock
+sound_ref .sound_machine_click
+
+.sound_machine_click:
+chan_setbank 12
+chan_setinstr 10
+chan_setlayer 0, .layer_machine_click
+chan_end
+
+.layer_machine_click:
+layer_note1 39, 0x6, 127
+layer_end
+
+.sound_machine_lock:
+chan_setbank 12
+chan_setinstr 9
+chan_setlayer 0, .layer_machine_lock
+chan_end
+
+.layer_machine_lock:
+layer_note1 39, 0x1c, 127
+layer_end
 
 .sound_breaker_spark_3:
 chan_setbank 12

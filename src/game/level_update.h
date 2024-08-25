@@ -106,6 +106,7 @@ extern s16 sCurrPlayMode;
 extern s16 sTransitionTimer;
 extern void (*sTransitionUpdate)(s16 *);
 extern void load_language_text(void);
+extern void set_play_mode(s16 playMode);
 
 struct WarpDest {
     u8 type;

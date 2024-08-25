@@ -330,3 +330,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/power_breaker.inc.c"
 #include "behaviors/cartoon_hand.inc.c"
 #include "behaviors/paper_spinner.inc.c"
+#include "behaviors/automaton.inc.c"
+#include "behaviors/sound_menu.inc.c"

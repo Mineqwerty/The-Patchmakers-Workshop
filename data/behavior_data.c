@@ -7944,3 +7944,24 @@ const BehaviorScript bhvPaperSpinner[] = {
         CALL_NATIVE(bhv_paper_spinner_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvAutomaton[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, automaton_anims),
+    SET_FLOAT(oDrawingDistance, 10000),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_automaton_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_automaton_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSoundMenu[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_sound_menu_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sound_menu_loop),
+    END_LOOP(),
+};

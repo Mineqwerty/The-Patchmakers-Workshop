@@ -55,6 +55,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "breaker_spark_3"
+    },
+    "inst_machine_lock": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "machine_lock"
+    },
+    "inst_machine_click": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "machine_click"
     }
   },
   "instrument_list": [
@@ -66,6 +76,8 @@
     "inst_indoor_winds",
     "inst_breaker_spark_1",
     "inst_breaker_spark_2",
-    "inst_breaker_spark_3"
+    "inst_breaker_spark_3",
+    "inst_machine_lock",
+    "inst_machine_click"
   ]
 }

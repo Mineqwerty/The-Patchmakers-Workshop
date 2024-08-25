@@ -1,0 +1,11 @@
+extern u8 sound_menu_bg_musicmenubgembroider_rgba16[];
+extern u8 sound_menu_bg_musicembroude_rgba16[];
+extern Vtx sound_menu_bg_Plane_010_mesh_vtx_0[32];
+extern Gfx sound_menu_bg_Plane_010_mesh_tri_0[];
+extern Vtx sound_menu_bg_Plane_010_mesh_vtx_1[184];
+extern Gfx sound_menu_bg_Plane_010_mesh_tri_1[];
+extern Gfx mat_sound_menu_bg_f3dlite_material_002[];
+extern Gfx mat_revert_sound_menu_bg_f3dlite_material_002[];
+extern Gfx mat_sound_menu_bg_f3dlite_material[];
+extern Gfx mat_revert_sound_menu_bg_f3dlite_material[];
+extern Gfx sound_menu_bg_Plane_010_mesh[];

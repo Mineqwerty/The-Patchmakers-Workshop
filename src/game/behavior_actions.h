@@ -942,3 +942,7 @@ void bhv_cartoon_hand_init(void);
 void bhv_cartoon_hand_loop(void);
 void bhv_paper_spinner_init(void);
 void bhv_paper_spinner_loop(void);
+void bhv_automaton_init(void);
+void bhv_automaton_loop(void);
+void bhv_sound_menu_init(void);
+void bhv_sound_menu_loop(void);

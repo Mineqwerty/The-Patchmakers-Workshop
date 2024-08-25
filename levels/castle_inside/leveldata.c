@@ -101,3 +101,7 @@
 #include "levels/castle_inside/screen_effect_eye_open/model.inc.c"
 #include "levels/castle_inside/cartoon_clock_hand/model.inc.c"
 #include "levels/castle_inside/paper_spinner/model.inc.c"
+#include "levels/castle_inside/automaton/model.inc.c"
+#include "levels/castle_inside/automaton/anims/data.inc.c"
+#include "levels/castle_inside/automaton/anims/table.inc.c"
+#include "levels/castle_inside/sound_menu_bg/model.inc.c"

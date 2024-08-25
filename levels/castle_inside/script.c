@@ -42,6 +42,10 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CARTOON_HAND, cartoon_clock_hand_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SPINNER, paper_spinner_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_AUTOMATON, automaton_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -114,12 +118,14 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x41, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
 		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_NONE, 1690, 100, 3403, 0, -136, 0, 0x00000000, bhvSoundMenu),
 		TERRAIN(castle_inside_area_2_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_2_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_2_macro_objs),

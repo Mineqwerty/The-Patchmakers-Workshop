@@ -42,7 +42,8 @@ enum MenuMode {
     MENU_MODE_RENDER_PAUSE_SCREEN,
     MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN,
     MENU_MODE_NEW_STAR_COMPLETE_TEXT,
-    MENU_MODE_FELT_GOING_UP
+    MENU_MODE_FELT_GOING_UP,
+    MENU_MODE_SOUND_MENU
 };
 
 enum HUDFlashModes {
@@ -57,6 +58,7 @@ extern s8 gDialogBoxState;
 extern u8 gPageNum;
 extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
+extern s16 gMenuMode;
 
 struct DialogEntry {
     /*0x00*/ u32 flags;
@@ -161,6 +163,7 @@ extern s8  gRedCoinsCollected;
 extern s16 gDialogID;
 extern f32 gDialogBoxOpenTimer;
 extern u8 gNewStarCollected;
+extern s8 gCurrSoundMenuSong;
 
 void create_dl_identity_matrix(void);
 void create_dl_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);

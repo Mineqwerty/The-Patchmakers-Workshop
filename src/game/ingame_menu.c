@@ -27,6 +27,8 @@
 #include "puppycam2.h"
 #include "main.h"
 #include "src/game/geo_misc.h"
+#include "levels/castle_inside/header.h"
+#include "src/game/puppyprint.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
@@ -47,6 +49,7 @@ u8 gForceDialogLoad;
 u16 gDialogAdvanceTimer;
 u8 gDialogAuto;
 u8 gNewStarCollected;
+s8 gSongMenuIndex = 0;
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -2809,6 +2812,86 @@ void render_pause_screen_felt() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
+#define NUM_MENU_SONGS 10
+
+s16 songList[NUM_MENU_SONGS] = {
+    SEQ_LEVEL_GRASS,
+    SEQ_RAINY_DAY_ROADSIDE,
+    SEQ_STONE_TERRACE_CITY,
+    SEQ_GOLD_SOAKED_SKY,
+    SEQ_SUBTERRANEAN_SEAWAY,
+    SEQ_CANDLELIT_CHAMBER,
+    SEQ_HIDDEN_VILLAGE_HOLD,
+    SEQ_EVENT_PIRANHA_PLANT,
+    SEQ_RAINY_DAY_ROADSIDE_SELECT,
+    SEQ_STONE_TERRACE_CITY_SELECT
+};
+
+const char songNames[NUM_MENU_SONGS][48] = {
+    "Thorn Thicket Cliffs",
+    "Rainy Day Roadside",
+    "Stone Terrace City",
+    "Gold Soaked Sky",
+    "Subterranean Seaway",
+    "Candlelit Chamber",
+    "Hidden Village Hold",
+    "TTC Select",
+    "RDR Select",
+    "STC Select"
+};
+
+void print_song_name_list(s16 x, s16 y) {
+    s16 i;
+    for (i = -2; i < 3; i++) {
+        if (i == -2 || i == 2) {
+            print_set_envcolour(0, 0, 0, 80);
+        }
+        else if (i == 0) {
+            print_set_envcolour(0, 0, 0, 255);
+        }
+        else {
+            print_set_envcolour(0, 0, 0, 160);
+        }
+        if (((i + gSongMenuIndex) >= 0) && ((i + gSongMenuIndex) < (NUM_MENU_SONGS))) {
+            print_small_text(x, y + i*15, songNames[gSongMenuIndex + i], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        }
+    }
+}
+
+s8 gCurrSoundMenuSong = -1;
+
+void render_sound_menu() {
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_WIDTH - 120, SCREEN_CENTER_Y, 0);
+    //create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+
+    gSPDisplayList(gDisplayListHead++, sound_menu_bg_Plane_010_mesh);
+
+    
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gSongMenuIndex, 0, NUM_MENU_SONGS);
+        print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
+
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && (gSongMenuIndex != gCurrSoundMenuSong)) {
+            for (int i = 0; i < 6; i++) {
+                stop_background_music(sBackgroundMusicQueue[i].seqId);
+            }
+            
+            play_music(SEQ_PLAYER_LEVEL, songList[gSongMenuIndex], 1);
+            gCurrSoundMenuSong = gSongMenuIndex;
+        }
+        //create_dl_translation_matrix(MENU_MTX_PUSH, 0, 10 - (((gOptionsIndex - 1) * 20)), 0);
+
+        //gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        //gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+        //gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 s8 gCourseCompleteCoinsEqual = FALSE;
 s32 gCourseDoneMenuTimer = 0;
 s32 gCourseCompleteCoins = 0;
@@ -3450,6 +3533,9 @@ s32 render_menus_and_dialogs(void) {
             case MENU_MODE_FELT_GOING_UP:
                 render_pause_screen_felt();
                 break;
+            case MENU_MODE_SOUND_MENU:
+                render_sound_menu();
+            break;
         }
 
         gDialogColorFadeTimer = (s16) gDialogColorFadeTimer + 0x1000;

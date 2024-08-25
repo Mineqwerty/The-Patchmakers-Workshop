@@ -39,6 +39,7 @@ extern u32 gAudioRandom;
 
 extern s8 sLevelAreaReverbs[LEVEL_COUNT][3];
 extern u8 sBackgroundMusicTargetVolume;
+extern struct SequenceQueueItem sBackgroundMusicQueue[6];
 
 struct SPTask *create_next_audio_frame_task(void);
 void play_sound(s32 soundBits, f32 *pos);

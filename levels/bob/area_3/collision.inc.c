@@ -50,24 +50,36 @@ Gfx bob_area_3_collision_mat_revert_bob_dl_f3d_material_051[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_water_002_layer_5[] = {
+Gfx bob_area_3_collision_cavewater_001_layer_6[] = {
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
+	gsDPSetFogColor(0, 0, 0, 255),
+	gsSPFogPosition(985, 1000),
 	gsDPSetAlphaDither(G_AD_NOISE),
+	gsDPSetCycleType(G_CYC_2CYCLE),
+	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, bob_dl_IC_0x55D70_32x32_RGBA16_ia8),
-	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadBlock(7, 0, 0, 511, 512),
-	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
-	gsDPSetTileSize(0, 0, 0, 124, 124),
+	gsDPSetPrimColor(0, 0, 67, 115, 109, 92),
+	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_16b, 1, bob_dl_chompfog_i4),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 1023, 512),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 252),
+	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_16b, 1, bob_dl_cavewatta_i4),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_16b, 0, 256, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(6, 0, 0, 1023, 512),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_4b, 4, 256, 1, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
+	gsDPSetTileSize(1, 0, 0, 252, 252),
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_mat_revert_bob_dl_water_002[] = {
+Gfx bob_area_3_collision_mat_revert_bob_dl_cavewater_001_layer6_area3[] = {
 	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsDPSetCycleType(G_CYC_1CYCLE),
+	gsDPSetRenderMode(G_RM_AA_ZB_XLU_DECAL, G_RM_AA_ZB_XLU_DECAL2),
 	gsSPEndDisplayList(),
 };
 
@@ -308,8 +320,8 @@ const Gfx* bob_area_3_collision_materials[] = {
 	&bob_area_3_collision_mat_revert_bob_dl_ravinestone_001,
 	&bob_area_3_collision_f3d_material_051_layer_1,
 	&bob_area_3_collision_mat_revert_bob_dl_f3d_material_051,
-	&bob_area_3_collision_water_002_layer_5,
-	&bob_area_3_collision_mat_revert_bob_dl_water_002,
+	&bob_area_3_collision_cavewater_001_layer_6,
+	&bob_area_3_collision_mat_revert_bob_dl_cavewater_001_layer6_area3,
 	&bob_area_3_collision_waternonmoving_001_layer_5,
 	&bob_area_3_collision_mat_revert_bob_dl_waternonmoving_001,
 	&bob_area_3_collision_f3d_material_050_layer_4,
@@ -1322,7 +1334,7 @@ const Collision bob_area_3_collision[] = {
 	COL_TRI(84, 83, 133),
 	COL_TRI(136, 139, 84),
 	COL_TRI(84, 133, 136),
-	COL_TRI_MAT_INIT(SURFACE_NEW_WATER, 4, 5, 5, 23),
+	COL_TRI_MAT_INIT(SURFACE_NEW_WATER, 4, 5, 6, 23),
 	COL_TRI(154, 155, 156),
 	COL_TRI(155, 157, 156),
 	COL_TRI(158, 159, 155),

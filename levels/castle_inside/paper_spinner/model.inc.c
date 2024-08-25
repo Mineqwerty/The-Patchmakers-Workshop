@@ -1,6 +1,3 @@
-Lights1 paper_spinner_f3dlite_material_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx paper_spinner_paper_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 paper_spinner_paper_ci4[] = {
@@ -917,7 +914,8 @@ Gfx paper_spinner_Circle_005_mesh_layer_1_tri_0[] = {
 
 
 Gfx mat_paper_spinner_f3dlite_material[] = {
-	gsSPSetLights1(paper_spinner_f3dlite_material_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
