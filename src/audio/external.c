@@ -17,6 +17,7 @@
 #include "dialog_ids.h"
 
 #include "config/config_audio.h"
+#include "src/game/ingame_menu.h"
 
 // N.B. sound banks are different from the audio banks referred to in other
 // files. We should really fix our naming to be less ambiguous...
@@ -235,15 +236,6 @@ s16 *sLevelDynamics[LEVEL_COUNT] = {
 #undef _
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
-
-struct MusicDynamic {
-    /*0x0*/ s16 bits1;
-    /*0x2*/ u16 volScale1;
-    /*0x4*/ s16 dur1;
-    /*0x6*/ s16 bits2;
-    /*0x8*/ u16 volScale2;
-    /*0xA*/ s16 dur2;
-}; // size = 0xC
 
 struct MusicDynamic sMusicDynamics[16] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
@@ -1255,8 +1247,14 @@ static void update_game_sound(void) {
 #endif
 
     process_all_sound_requests();
-    process_level_music_dynamics();
 
+    if (gMenuMode == MENU_MODE_SOUND_MENU && gSoundMenuDynamicID >= 0) {
+        process_music_dynamics_sound_menu();
+    }
+    else {
+        process_level_music_dynamics();
+    }
+    
     if (gSequencePlayers[SEQ_PLAYER_SFX].channels[0] == &gSequenceChannelNone) {
         return;
     }
@@ -1621,7 +1619,7 @@ static void seq_player_play_sequence(u8 player, u8 seqId, u16 arg2) {
         sCurrentBackgroundMusicSeqId = seqId & SEQ_BASE_ID;
         sBackgroundMusicForDynamics = SEQUENCE_NONE;
         sCurrentMusicDynamic = 0xff;
-        sMusicDynamicDelay = 2;
+        sMusicDynamicDelay = 1;
     }
 
     for (i = 0; i < CHANNELS_MAX; i++) {
@@ -1878,6 +1876,54 @@ void process_level_music_dynamics(void) {
                                           dur2);
             }
             tempBits = conditionBits << 1;
+        }
+
+        sCurrentMusicDynamic = musicDynIndex;
+    }
+}
+
+void process_music_dynamics_sound_menu(void) {
+    u16 tempBits;
+    u8 i;
+    s16 dur1, dur2;
+    u16 bit;
+
+    func_8031F96C(0);
+    func_8031F96C(2);
+    func_80320ED8();
+
+    if (sMusicDynamicDelay != 0) {
+        sMusicDynamicDelay--;
+    } else {
+        sBackgroundMusicForDynamics = sCurrentBackgroundMusicSeqId;
+    }
+
+    if (sBackgroundMusicForDynamics != sCurrentBackgroundMusicSeqId) {
+        return;
+    }
+    
+    u8  musicDynIndex = gSoundMenuDynamicID;
+
+    if (sCurrentMusicDynamic != musicDynIndex) {
+        tempBits = 1;
+        if (sCurrentMusicDynamic == 0xff) {
+            dur1 = 1;
+            dur2 = 1;
+        } else {
+            dur1 = sMusicDynamics[musicDynIndex].dur1;
+            dur2 = sMusicDynamics[musicDynIndex].dur2;
+        }
+
+        for (i = 0; i < CHANNELS_MAX; i++) {
+            if (sMusicDynamics[musicDynIndex].bits1 & tempBits) {
+                fade_channel_volume_scale(SEQ_PLAYER_LEVEL, i, sMusicDynamics[musicDynIndex].volScale1,
+                                          1);
+            }
+            if (sMusicDynamics[musicDynIndex].bits2 & tempBits) {
+                fade_channel_volume_scale(SEQ_PLAYER_LEVEL, i, sMusicDynamics[musicDynIndex].volScale2,
+                                          1);
+            }
+            tempBits <<= 1;
         }
 
         sCurrentMusicDynamic = musicDynIndex;

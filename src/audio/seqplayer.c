@@ -8,6 +8,7 @@
 #include "seqplayer.h"
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
+#include "src/game/ingame_menu.h"
 
 #ifdef VERSION_SH
 void seq_channel_layer_process_script_part1(struct SequenceChannelLayer *layer);
@@ -210,6 +211,15 @@ void sequence_player_init_channels(struct SequencePlayer *seqPlayer, u16 channel
     s32 i;
 
     for (i = 0; i < CHANNELS_MAX; i++) {
+
+        
+        if (gMenuMode == MENU_MODE_SOUND_MENU &&
+        seqPlayer == &gSequencePlayers[SEQ_PLAYER_LEVEL] &&
+        (sMusicDynamics[gSoundMenuDynamicID].bits2 & (1 << i))) {
+            channelBits >>= 1;
+            continue;
+        }
+
         if (channelBits & 1) {
             seqChannel = seqPlayer->channels[i];
             if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == TRUE && seqChannel->seqPlayer == seqPlayer) {
@@ -264,6 +274,7 @@ void sequence_player_disable_channels(struct SequencePlayer *seqPlayer, u16 chan
 void sequence_channel_enable(struct SequencePlayer *seqPlayer, u8 channelIndex, void *script) {
     struct SequenceChannel *seqChannel = seqPlayer->channels[channelIndex];
     s32 i;
+
     if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == FALSE) {
 #ifdef VERSION_EU
         struct SequencePlayer *bgMusic = &gSequencePlayers[0];

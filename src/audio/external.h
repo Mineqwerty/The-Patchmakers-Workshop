@@ -11,6 +11,15 @@
 // bit which may be read by the sequence script.
 #define SEQUENCE_ARGS(priority, seqId) (((priority) << 8) | (seqId))
 
+struct MusicDynamic {
+    /*0x0*/ s16 bits1;
+    /*0x2*/ u16 volScale1;
+    /*0x4*/ s16 dur1;
+    /*0x6*/ s16 bits2;
+    /*0x8*/ u16 volScale2;
+    /*0xA*/ s16 dur2;
+}; // size = 0xC
+
 enum SoundModes {
     SOUND_MODE_STEREO,
     SOUND_MODE_MONO,
@@ -40,6 +49,7 @@ extern u32 gAudioRandom;
 extern s8 sLevelAreaReverbs[LEVEL_COUNT][3];
 extern u8 sBackgroundMusicTargetVolume;
 extern struct SequenceQueueItem sBackgroundMusicQueue[6];
+extern struct MusicDynamic sMusicDynamics[16];
 
 struct SPTask *create_next_audio_frame_task(void);
 void play_sound(s32 soundBits, f32 *pos);

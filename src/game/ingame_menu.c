@@ -50,6 +50,11 @@ u16 gDialogAdvanceTimer;
 u8 gDialogAuto;
 u8 gNewStarCollected;
 s8 gSongMenuIndex = 0;
+u8 gCurrentSongVersion = 1;
+s8 gScrollSongVersion = 1;
+s8 gCurrentDynamicScroll = -1;
+s16 gSoundMenuDynamicID = -1;
+
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -655,6 +660,15 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
         if (*currentIndex != maxIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)++;
+            if (gMenuMode == MENU_MODE_SOUND_MENU) {
+                if (gCurrSoundMenuSong == gSongMenuIndex) {
+                    gScrollSongVersion = gCurrentDynamicScroll;
+                }
+                else {
+                    gScrollSongVersion = 1;
+                }
+                
+            }
         }
     }
 
@@ -662,6 +676,14 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
         if (*currentIndex != minIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)--;
+            if (gMenuMode == MENU_MODE_SOUND_MENU) {
+                if (gCurrSoundMenuSong == gSongMenuIndex) {
+                    gScrollSongVersion = gCurrentDynamicScroll;
+                }
+                else {
+                    gScrollSongVersion = 1;
+                }
+            }
         }
     }
 
@@ -675,6 +697,54 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
 
     if ((index & 3) == 0) {
         gMenuHoldKeyTimer = 0;
+    }
+}
+
+u8 gSecondaryMenuHoldKeyTimer;
+u8 gSecondaryMenuHoldKeyIndex;
+
+void handle_menu_scrolling_secondary(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
+    u8 index = 0;
+
+    if (scrollDirection == MENU_SCROLL_VERTICAL) {
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        
+    } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+            index += 2;
+             gStarSelectDisturbed = 1;
+        }
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+            index++;
+            gStarSelectDisturbed = 1;
+        }
+    }
+
+    if (((index ^ gSecondaryMenuHoldKeyIndex) & index) == 2) {
+        if (*currentIndex != maxIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)++;
+        }
+    }
+
+    if (((index ^ gSecondaryMenuHoldKeyIndex) & index) == 1) {
+        if (*currentIndex != minIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)--;
+        }
+    }
+
+    if (gSecondaryMenuHoldKeyTimer == 10) {
+        gSecondaryMenuHoldKeyTimer = 8;
+        gSecondaryMenuHoldKeyIndex = 0;
+    } else {
+        gSecondaryMenuHoldKeyTimer++;
+        gSecondaryMenuHoldKeyIndex = index;
+    }
+
+    if ((index & 3) == 0) {
+        gSecondaryMenuHoldKeyTimer = 0;
     }
 }
 
@@ -2827,6 +2897,19 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_STONE_TERRACE_CITY_SELECT
 };
 
+s16 songVersions[NUM_MENU_SONGS] = {
+    0,
+    (1 <<  0) | (1 <<  1),
+    0,
+    (1 <<  0) | (1 <<  1),
+    (1 <<  0) | (1 <<  1),
+    (1 <<  0) | (1 <<  1) | (1 << 2),
+    0,
+    0,
+    0,
+    0
+};
+
 const char songNames[NUM_MENU_SONGS][48] = {
     "Thorn Thicket Cliffs",
     "Rainy Day Roadside",
@@ -2840,21 +2923,117 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "STC Select"
 };
 
+const char composerNames[NUM_MENU_SONGS][48] = {
+    "CowQuack\nornevelder",
+    "ornevelder",
+    "ornevelder",
+    "ornevelder",
+    "Tori Draws Stuff",
+    "ornevelder",
+    "CowQuack",
+    "CowQuack\nornevelder",
+    "ornevelder",
+    "ornevelder"
+};
+
 void print_song_name_list(s16 x, s16 y) {
     s16 i;
+    u8 color[4];
     for (i = -2; i < 3; i++) {
         if (i == -2 || i == 2) {
-            print_set_envcolour(0, 0, 0, 80);
+            color[3] = 80;
         }
         else if (i == 0) {
-            print_set_envcolour(0, 0, 0, 255);
+            color[3] = 255;
         }
         else {
-            print_set_envcolour(0, 0, 0, 160);
+            color[3] = 160;
         }
+
+        if (gCurrSoundMenuSong == (gSongMenuIndex + i)) {
+            color[2] = 150 + 50*sins(gGlobalTimer * 0x222);
+            color[0] = (150 + 50*sins(gGlobalTimer * 0x222))/2;
+            color[1] = 0;
+            
+        }
+        else {
+            color[0] = 0;
+            color[1] = 0;
+            color[2] = 0;
+        }
+
+        print_set_envcolour(color[0], color[1], color[2], color[3]);
+
         if (((i + gSongMenuIndex) >= 0) && ((i + gSongMenuIndex) < (NUM_MENU_SONGS))) {
             print_small_text(x, y + i*15, songNames[gSongMenuIndex + i], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
         }
+    }
+}
+
+u8 get_num_song_versions() {
+    u8 v = songVersions[gSongMenuIndex];
+    u8 r = 0;
+
+    while (v >>= 1) {
+        r++;
+    }
+
+    return r;
+}
+
+
+u8 cur_song_has_versions() {
+    return (songVersions[gSongMenuIndex] != 0);
+}
+
+void print_song_version_selector(void) {
+        char textBytes[80];
+        sprintf(textBytes, "%d", gScrollSongVersion);
+
+        if (gCurrSoundMenuSong == gSongMenuIndex && gScrollSongVersion == gCurrentDynamicScroll) {
+            print_set_envcolour((150 + 50*sins(gGlobalTimer * 0x222))/2, 0, 150 + 50*sins(gGlobalTimer * 0x222), 255);
+        }
+        else {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+        }
+        
+        print_small_text(SCREEN_WIDTH - 40, SCREEN_CENTER_Y - 10, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+
+        if (gScrollSongVersion > 1) {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+            print_small_text(SCREEN_WIDTH - 50, SCREEN_CENTER_Y - 10, "$", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        }
+
+        if (songVersions[gSongMenuIndex] & (1 << (gScrollSongVersion))) {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+            print_small_text(SCREEN_WIDTH - 38, SCREEN_CENTER_Y - 10, "#", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        }
+
+        handle_menu_scrolling_secondary(MENU_SCROLL_HORIZONTAL, &gScrollSongVersion, 1, gScrollSongVersion + (songVersions[gSongMenuIndex] & (1 << (gScrollSongVersion))));
+}
+
+void set_song_music_dynamics(s16 songID) {
+    if (cur_song_has_versions()) {
+        switch (songID) {
+            case SEQ_GOLD_SOAKED_SKY:
+                gSoundMenuDynamicID = 7 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_RAINY_DAY_ROADSIDE:
+                gSoundMenuDynamicID = 9 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_SUBTERRANEAN_SEAWAY:
+                gSoundMenuDynamicID = 11 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_CANDLELIT_CHAMBER:
+                gSoundMenuDynamicID = 13 + (gScrollSongVersion - 1);
+            break;
+        }
+
+        gCurrentDynamicScroll = gScrollSongVersion;
+    }
+    else {
+        gSoundMenuDynamicID = -1;
+        gCurrentDynamicScroll = -1;
     }
 }
 
@@ -2875,19 +3054,25 @@ void render_sound_menu() {
         handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gSongMenuIndex, 0, NUM_MENU_SONGS);
         print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
 
-        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && (gSongMenuIndex != gCurrSoundMenuSong)) {
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(SCREEN_WIDTH - 106 ,SCREEN_CENTER_Y + 67, composerNames[gSongMenuIndex], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+
+        if (cur_song_has_versions()) {
+            print_song_version_selector();
+        }
+
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
+
+            set_song_music_dynamics(songList[gSongMenuIndex]);
+
             for (int i = 0; i < 6; i++) {
-                stop_background_music(sBackgroundMusicQueue[i].seqId);
+                stop_background_music(sBackgroundMusicQueue[0].seqId);
             }
             
             play_music(SEQ_PLAYER_LEVEL, songList[gSongMenuIndex], 1);
             gCurrSoundMenuSong = gSongMenuIndex;
         }
-        //create_dl_translation_matrix(MENU_MTX_PUSH, 0, 10 - (((gOptionsIndex - 1) * 20)), 0);
-
-        //gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
-        //gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-        //gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        
     
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }

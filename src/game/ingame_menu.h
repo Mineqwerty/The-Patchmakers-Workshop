@@ -59,6 +59,7 @@ extern u8 gPageNum;
 extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
 extern s16 gMenuMode;
+extern s16 gSoundMenuDynamicID;
 
 struct DialogEntry {
     /*0x00*/ u32 flags;
