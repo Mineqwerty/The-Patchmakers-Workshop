@@ -3,6 +3,7 @@
 #include "src/game/game_init.h"
 #include "actors/group0.h"
 #include "src/game/level_update.h"
+#include "src/game/camera.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -57,7 +58,7 @@ void bhv_ice_spikes_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 8);
+            attack_object(other, 8, 8);
         }
     }
 
@@ -160,13 +161,13 @@ void bhv_ice_cube_loop(void) {
 
         switch (o->oBehParams2ndByte) {
             case 0:
-                obj_scale_xyz(o, 1, ((f32) o->oTimer) / 3.0f, 1);
+                obj_scale_xyz(o, 1, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 1);
                 break;
             case 1:
-                obj_scale_xyz(o, 2, ((f32) o->oTimer) / 3.0f, 2);
+                obj_scale_xyz(o, 2, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 2);
                 break;
             case 2:
-                obj_scale_xyz(o, 4, ((f32) o->oTimer) / 1.5f, 4);
+                obj_scale_xyz(o, 4, CLAMP(((f32) o->oTimer) / 1.5f, 0.1f, 2.0f), 4);
                 gMarioState->pos[1] += 50;
                 gMarioState->vel[1] = 0;
                 break;
@@ -270,9 +271,9 @@ void bhv_grapple_hook_loop(void) {
             Vec3f hitpos;
             Vec3f raydir;
 
-            raydir[0] = sins(o->oMoveAngleYaw) * 100.0f;
+            raydir[0] = sins(o->oMoveAngleYaw) * (100.0f + o->oForwardVel);
             raydir[1] = 0.0f;
-            raydir[2] = coss(o->oMoveAngleYaw) * 100.0f;
+            raydir[2] = coss(o->oMoveAngleYaw) * (100.0f + o->oForwardVel);
 
             vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
 
@@ -281,6 +282,9 @@ void bhv_grapple_hook_loop(void) {
 
             find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
             if (surf != NULL) {
+                if (surf->type == SURFACE_INVISIBLE_WALL || surf->type == SURFACE_ROUGH_WALL) {
+                    return o->oAction = 2;
+                }
                 o->oPosX = hitpos[0];
                 o->oPosY = hitpos[1];
                 o->oPosZ = hitpos[2];
@@ -291,7 +295,7 @@ void bhv_grapple_hook_loop(void) {
                 raydir[0] = 0.0f;
                 raydir[2] = 0.0f;
 
-                raydir[1] = -30.0f;
+                raydir[1] = -20.0f;
                 find_surface_on_ray(originPos, raydir, &surf, hitpos, 1U, 1);
                 if (surf != NULL) {
                     o->oAngleVelPitch = -0x800;
@@ -317,7 +321,7 @@ void bhv_grapple_hook_loop(void) {
 
                 if (other != gMarioObject) {
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
-                    attack_object(other, 2);
+                    attack_object(other, 2, 3);
 
                     if (!obj_has_behavior(other, bhvFortogoo)) {
                         o->oAngleVelPitch = -0x400;
@@ -374,6 +378,10 @@ void bhv_grapple_hook_loop(void) {
     }
 }
 
+void bhv_grapple_line_init(void) {
+    
+}
+
 void bhv_grapple_line_loop(void) {
 
     if (o->oTimer == 1) {
@@ -384,7 +392,7 @@ void bhv_grapple_line_loop(void) {
     o->oPosY = o->parentObj->oPosY;
     o->oPosZ = o->parentObj->oPosZ;
 
-    if (o->parentObj->oAction != 2) {
+    if (o->parentObj->oAction != 2 || o->oTimer < 2) {
 
         f32 dx = gMarioObject->header.gfx.pos[0] - o->oPosX;
         f32 dy = gMarioObject->header.gfx.pos[1] - o->oPosY + 90.0f;
@@ -475,9 +483,9 @@ void halo_perform_circle(void) {
 }
 
 void halo_calculate_and_move_towards_goal(void) {
-    o->oHomeX = gMarioState->pos[0] + 300 * sins(o->oMoveAngleYaw);
+    o->oHomeX = gMarioState->pos[0] + 300 * o->oHaloLengthMod * sins(o->oMoveAngleYaw);
     o->oHomeY = gMarioState->pos[1] + 70.0f;
-    o->oHomeZ = gMarioState->pos[2] + 300 * coss(o->oMoveAngleYaw);
+    o->oHomeZ = gMarioState->pos[2] + 300 * o->oHaloLengthMod * coss(o->oMoveAngleYaw);
 
     o->oHaloApproachSpeed = 0.5f;
 
@@ -510,6 +518,23 @@ void halo_calculate_and_move_back_to_mario(void) {
     } else {
         o->oAction = 0;
     }
+}
+
+void halo_apply_knockback(void) {
+    cur_obj_move_xz_using_fvel_and_yaw();
+    
+        o->oForwardVel += 15.0f;
+
+    o->oHaloKnockbackSpeed += 1;
+
+    if (o->oHaloKnockbackSpeed >= 10) {
+        o->oForwardVel = 0;
+        o->oHaloKnockbackSpeed = 0;
+    }
+}
+
+void bhv_halo_init(void) {
+    o->oHaloLengthMod = 1.0f;
 }
 
 void bhv_halo_loop(void) {
@@ -549,6 +574,9 @@ void bhv_halo_loop(void) {
         case 1:
             cur_obj_become_tangible();
             halo_calculate_and_move_towards_goal();
+            if (o->oHaloKnockbackSpeed > 0) {
+                halo_apply_knockback();
+            }
             if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & L_TRIG)) {
                 o->oAction = 2;
                 play_sound(SOUND_HALO_IN, gMarioState->marioObj->header.gfx.cameraToObject);
@@ -575,15 +603,15 @@ void bhv_halo_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 2);
+            attack_object(other, 1, 1);
+            
 
             if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {
                 o->oHaloCapturedObject =
                     spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
                 gMarioState->haloCaptureType = 1;
             }
-
-            if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
+            else if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
                 if (!o->oHaloCapturedObject) {
                     other->oIntangibleTimer = -1;
                     o->oHaloCapturedObject = other;
@@ -592,6 +620,10 @@ void bhv_halo_loop(void) {
                     o->oHaloCapturedObject->oGoldBlobCount += 1;
                     obj_mark_for_deletion(other);
                 }
+            }
+            else {
+                o->oForwardVel = -110.0f;
+                o->oHaloKnockbackSpeed = 1;
             }
         }
     }
@@ -610,6 +642,8 @@ void bhv_halo_loop(void) {
                     gMarioState->haloCaptureType = 2;
                 }
                 o->oHaloCapturedObject->oHaloCoinValue += 1;
+                cur_obj_play_sound_1(SOUND_GENERAL_COIN_DROP);
+                spawn_object(nearCoin, MODEL_SPARKLES, bhvCoinSparklesSpawner);
                 if (nearCoin->parentObj)
                     nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
                 obj_mark_for_deletion(nearCoin);
@@ -618,6 +652,8 @@ void bhv_halo_loop(void) {
                     spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
                 gMarioState->haloCaptureType = 2;
                 o->oHaloCapturedObject->oHaloCoinValue += 1;
+                spawn_object(nearCoin, MODEL_SPARKLES, bhvCoinSparklesSpawner);
+                cur_obj_play_sound_1(SOUND_GENERAL_COIN_DROP);
                 if (nearCoin->parentObj)
                     nearCoin->parentObj->oCoinRespawnBits |= (1 << nearCoin->oBehParams2ndByte);
                 obj_mark_for_deletion(nearCoin);
@@ -751,6 +787,7 @@ void bhv_portal_init(void) {
 
     if (o->oPortalSpawnType == 1) {
         portal_sample_fb();
+        play_sound(SOUND_GENERAL_PAINTING_EJECT, gMarioState->marioObj->header.gfx.cameraToObject);
     }
 
     if (gMarioState->specialWarpTransitionOperation == 3) {
@@ -788,9 +825,18 @@ void bhv_portal_loop(void) {
     if (o->oAction == 2 && o->oDistanceToMario < 200 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE
         && gMarioState->action != ACT_HOLD_CUTSCENE) {
         o->oAction = 3;
+        play_sound(SOUND_PORTAL_IN, gMarioState->marioObj->header.gfx.cameraToObject);
     }
     if (o->oAction == 3) {
-        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 55, 200, 18);
+
+        if (gMarioState->action == ACT_FALL_AFTER_STAR_GRAB || gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT || gMarioState->action == ACT_STAR_DANCE_WATER) {
+            o->oAction = 1;
+            return;
+        }
+
+        u8 sameLevel = 0;
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 103, 146, 224);
+
         if (o->oTimer == 18) {
 
             switch (o->oBehParams2ndByte) {
@@ -816,6 +862,8 @@ void bhv_portal_loop(void) {
                 gMarioState->heldObj = NULL;
             }
             gMarioState->specialWarpTransitionOperation = 3;
+            //o->oAction = 0;
+
         }
 
         f32 x = o->oPosX - gMarioState->pos[0];
@@ -830,7 +878,290 @@ void bhv_portal_loop(void) {
         } else {
             gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
         }
+
+        
     }
+}
+
+enum ShadowChompHeadActions {
+    SHADOW_CHOMP_ACT_IDLE,
+    SHADOW_CHOMP_ACT_LUNGE,
+    SHADOW_CHOMP_ACT_BOOST,
+    SHADOW_CHOMP_ACT_RETRACT
+};
+
+void bhv_shadow_chomp_head_init(void) {
+    spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_TAIL, bhvShadowChompTail);
+}
+
+void bhv_shadow_chomp_head_loop(void) {
+
+    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP) {
+        if (gMarioState->patchChildObj == o) {
+            gMarioState->patchChildObj = NULL;
+        }
+        obj_mark_for_deletion(o);
+    }
+
+    if (o->oDistanceToMario > 1100) {
+        o->oShadowChompApproachMario = 1;
+    }
+    else if (o->oDistanceToMario < 400) {
+        o->oShadowChompApproachMario = 0;
+    }
+
+    switch (o->oAction) {
+        case SHADOW_CHOMP_ACT_IDLE:
+            cur_obj_init_animation(0);
+            cur_obj_scale(1.0f);
+            if (o->oShadowChompApproachMario == 1) {
+                approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.04f);
+                approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.04f);
+                approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.04f);
+                obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x200);
+                o->oForwardVel = 30.0f;
+            }
+            else {
+                obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x200);
+                o->oForwardVel = approach_f32_symmetric(o->oForwardVel, 13.0f, 1.0f);
+                cur_obj_move_xz_using_fvel_and_yaw();
+                approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.008f);
+                approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.008f);
+                approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.08f);
+            }
+
+            o->oFaceAnglePitch = approach_s16_symmetric(o->oFaceAnglePitch, 0, 0x400);
+            o->oSubAction = 0;
+
+            o->oShadowChompTarget = shadow_chomp_find_target(500.0f);
+            if (o->oShadowChompTarget != NULL && gMarioState->curPatch != PATCH_SHADOWCHOMP) {
+                o->oHomeX = o->oPosX;
+                o->oHomeY = o->oPosY;
+                o->oHomeZ = o->oPosZ;
+                o->oAction = SHADOW_CHOMP_ACT_LUNGE;
+                cur_obj_play_sound_1(SOUND_SHADOWCHOMP_APPROACH);
+                
+                
+            }
+        break;
+        case SHADOW_CHOMP_ACT_LUNGE:
+            if (o->oShadowChompTarget) {
+                f32 timeToEnemy = 20;
+                f32 t = ((f32) o->oTimer) / ((f32) timeToEnemy);
+                o->oPosX = o->oHomeX + t * (o->oShadowChompTarget->oPosX - o->oHomeX);
+                o->oPosY = o->oHomeY + t * (o->oShadowChompTarget->oPosY - o->oHomeY + 100);
+                o->oPosZ = o->oHomeZ + t * (o->oShadowChompTarget->oPosZ - o->oHomeZ);
+
+                obj_turn_toward_object(o, o->oShadowChompTarget, O_FACE_ANGLE_YAW_INDEX, 0x400);
+                obj_turn_toward_object(o, o->oShadowChompTarget, O_FACE_ANGLE_PITCH_INDEX, 0x400);
+                o->oForwardVel = 0.0f;
+
+                f32 objDist = lateral_dist_between_objects(o, o->oShadowChompTarget);
+
+                if (objDist < 50) {
+                    o->oAction = SHADOW_CHOMP_ACT_RETRACT;
+                    gMarioState->curPatch = PATCH_SHADOWCHOMP;
+                    cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
+                    obj_mark_for_deletion(o->oShadowChompTarget);
+                    cur_obj_play_sound_1(SOUND_SHADOWCHOMP_CHOMP);
+                    o->oShadowChompTarget = NULL;
+
+                    for (int i = 0; i < 10; i++) {
+                        struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
+                            o, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                        
+                        SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                        shadowSmoke->oVelY = ((random_u16() % 8));
+                        shadowSmoke->oMoveAngleYaw = random_u16();
+                        shadowSmoke->oForwardVel = (random_u16() % 8) + 5.0f;
+                    }
+                }
+
+                if (o->oTimer >= 30) {
+                    o->oAction = SHADOW_CHOMP_ACT_IDLE;
+                }
+            }
+            else {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
+
+            if (o->oSubAction == 0 && o->oTimer > 12) {
+                if (cur_obj_init_animation_and_check_if_near_end(1)) {
+                    o->oSubAction++;
+                }
+            }
+            else if (o->oSubAction == 1) {
+                cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
+            }
+
+            if (o->oTimer > 10) {
+            cur_obj_scale(1.0f + (f32)(o->oTimer-10) / 10.0f);
+            }
+
+        break;
+        case SHADOW_CHOMP_ACT_BOOST:
+            o->oPosY += o->oTimer + 10; 
+            if (o->oTimer >= 45) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
+        break;
+        case SHADOW_CHOMP_ACT_RETRACT:
+            if (o->oTimer < 5) {
+                cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
+                cur_obj_scale(2.0f - (f32)o->oTimer / 5.0f);
+            }
+            else {
+                cur_obj_scale(1.0f);
+            }
+            approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0], 0.02f);
+            approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2], 0.02f);
+            approach_f32_asymptotic_bool(&o->oPosY, gMarioState->pos[1] + 400, 0.08f);
+            if (o->oTimer >= 30) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
+        break;
+    }
+
+}
+
+#define SHADOW_TAIL_X_AVERAGE 263
+#define SHADOW_TAIL_Z_AVERAGE 0
+
+short headVerts[9] = {0, 2, 6, 9, 10, 12, 22, 24, 26};
+short segment1Verts[13] = {1, 3, 7, 8, 11, 13, 23, 25, 27, 40, 41, 48, 50};
+short segment2Verts[14] = {4, 5, 14, 15, 16, 18, 28, 29, 38, 39, 42, 44, 49, 51};
+short segment3Verts[11] = {17, 19, 30, 31, 32, 34, 37, 43, 45, 52, 53};
+short tailVerts[14] = {20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60};
+s16 shadowChompXOffsets[61];
+s16 shadowChompYOffsets[61];
+s16 shadowChompZOffsets[61];
+
+void bhv_shadow_chomp_tail_init(void) {
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_copy[61];
+    Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+    Vtx *copy = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_copy);
+    if (shadowChompYOffsets[0] == 0) {
+        for (int i = 0; i < 9; i++) {
+            int curVtx = headVerts[i];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0];
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 13; i++) {
+            int curVtx = segment1Verts[i];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 172;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] - 2;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 14; i++) {
+            int curVtx = segment2Verts[i];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 262;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] + 92;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 11; i++) {
+            int curVtx = segment3Verts[i];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + 317;
+            shadowChompYOffsets[curVtx] = copy[curVtx].v.ob[1] + 273;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2];
+        }
+        for (int i = 0; i < 14; i++) {
+            int curVtx = tailVerts[i];
+            shadowChompXOffsets[curVtx] = copy[curVtx].v.ob[0] + SHADOW_TAIL_X_AVERAGE;
+            shadowChompZOffsets[curVtx] = copy[curVtx].v.ob[2] + SHADOW_TAIL_Z_AVERAGE;
+        }
+    }
+    o->oShadowTailHeight = gMarioState->floorHeight;
+}
+
+void bhv_shadow_chomp_tail_loop(void) {
+
+    if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP || gMarioState->action ==  ACT_FALL_AFTER_STAR_GRAB) {
+        obj_mark_for_deletion(o);
+    }
+
+    o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
+    o->oPosX = o->parentObj->oPosX;
+    o->oPosY = o->parentObj->oPosY;
+    o->oPosZ = o->parentObj->oPosZ;
+
+    extern Vtx shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0[61];
+
+    Vtx *new = segmented_to_virtual(shadow_chomp_tail_Sphere_001_mesh_layer_5_vtx_0);
+
+    o->oShadowTailHeight = approach_f32_symmetric(o->oShadowTailHeight, gMarioState->floorHeight, 30.0f);
+
+    f32 marioShadowHeight = o->oShadowTailHeight;
+
+    if (gMarioState->pos[1] - gMarioState->floorHeight > 1000) {
+        o->oShadowTailAttachToMario = 1;
+    }
+
+    if (o->oShadowTailAttachToMario == 1) {
+        marioShadowHeight = gMarioState->pos[1];
+        if (gMarioState->pos[1] - gMarioState->floorHeight < 100) {
+            o->oShadowTailAttachToMario = 0;
+        }
+    }
+
+    Vec3f shadowPos = {gMarioState->pos[0], marioShadowHeight, gMarioState->pos[2]};
+
+    f32 dist;
+    vec3f_get_dist(&o->oPosVec, shadowPos, &dist);
+
+    f32 bendFactor = dist / 6.0f;
+
+    //head vtx calculation
+    for (int i = 0; i < 9; i++) {
+        int curVtx = headVerts[i];
+        new[curVtx].v.ob[0] = 0;
+    }
+
+    
+
+    f32 yDifference = o->oPosY - marioShadowHeight;
+    s16 anglePitch, angleYaw;
+    vec3f_get_angle(&o->oPosVec, shadowPos, &anglePitch, &angleYaw);
+    s16 angleDiff = o->oFaceAngleYaw - angleYaw - 0x4000;
+
+    #define SEGMENT3_YFACTOR 0.3f
+    #define SEGMENT2_YFACTOR 0.6f
+    #define SEGMENT1_YFACTOR 0.9f
+
+    for (int i = 0; i < 13; i++) {
+        int curVtx = segment1Verts[i];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT1_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.5f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.3f + shadowChompZOffsets[curVtx]) + bendFactor*1.2f*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.5f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.3f + shadowChompXOffsets[curVtx]) + bendFactor*1.2f*sins(-abss(0.5f*angleDiff));
+    }
+    for (int i = 0; i < 14; i++) {
+        int curVtx = segment2Verts[i];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT2_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.75f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.5f + shadowChompZOffsets[curVtx]) + bendFactor*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.75f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.5f + shadowChompXOffsets[curVtx]) + bendFactor*sins(-abss(0.5f*angleDiff));
+        
+    }
+    for (int i = 0; i < 11; i++) {
+        int curVtx = segment3Verts[i];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight + (yDifference * SEGMENT3_YFACTOR) + shadowChompYOffsets[curVtx];
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.9f + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.75f + shadowChompZOffsets[curVtx]) + bendFactor*0.5f*sins(-abss(0.5f*angleDiff));
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*((-o->oPosZ + gMarioState->pos[2])*0.9f + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*((-o->oPosX + gMarioState->pos[0])*0.75f + shadowChompXOffsets[curVtx]) + bendFactor*0.5f*sins(-abss(0.5f*angleDiff));
+        
+    }
+
+    //tail vtx calculation
+    for (int i = 0; i < 14; i++) {
+        int curVtx = tailVerts[i];
+        new[curVtx].v.ob[1] = -o->oPosY + marioShadowHeight;
+        new[curVtx].v.ob[0] = coss(o->oFaceAngleYaw)*(-o->oPosX + gMarioState->pos[0] + shadowChompXOffsets[curVtx]) - sins(o->oFaceAngleYaw)*(-o->oPosZ + gMarioState->pos[2] + shadowChompZOffsets[curVtx]);
+        new[curVtx].v.ob[2] = coss(o->oFaceAngleYaw)*(-o->oPosZ + gMarioState->pos[2] + shadowChompZOffsets[curVtx]) + sins(o->oFaceAngleYaw)*(-o->oPosX + gMarioState->pos[0] + shadowChompXOffsets[curVtx]);
+    }
+
+    //Head group: 0, 2, 6, 9, 10, 12, 22, 24, 26
+    //Segment 1: 1, 3, 7, 8, 11, 13, 23, 25, 27, 40, 41, 48, 50
+    //Segment 2: 4, 5, 14, 15, 16, 18, 28, 29, 38, 39, 42, 44, 49, 51
+    //Segment 3: 17, 19, 30, 31, 32, 34, 37, 43, 45, 52, 53
+    //Tail group: 20, 21, 33, 35, 36, 46, 47, 54, 55, 56, 57, 58, 59, 60
 }
 
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
@@ -842,3 +1173,202 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
     }
     return NULL;
 }
+
+void bhv_transmutation_cone_init(void) {
+    o->oOpacity = 5;
+    play_sound(SOUND_TRANSMUTATION_SWISH, o->header.gfx.cameraToObject);
+}
+
+void bhv_transmutation_cone_loop(void) {
+
+    switch (o->oAction) {
+        case 0:
+            o->oOpacity += 50.0f;
+            cur_obj_scale((f32)(o->oTimer + 1) / 5.0f);
+            if (o->oTimer == 4) {
+                o->oAction = 1;
+            }
+        break;
+        case 1:
+            cur_obj_scale(1.0f);
+            o->oOpacity -= 15;
+            if (o->oOpacity <= 25) {
+                
+                if (gMarioState->patchChildObj == o) {
+                    gMarioState->patchChildObj = NULL;
+                }
+                obj_mark_for_deletion(o);
+            }
+
+            if (o->oTimer < 5) {
+                struct Object *target = obj_find_transmute_target(o);
+
+                if (target) {
+                    if (obj_has_behavior(target, bhvPodogoo)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BLUE_COIN, bhvMrIBlueCoin);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvPushableMetalBox)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_METAL_BOX, bhvMetalBoxSmall);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvBreakableBoxSmall)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BREAKABLE_BOX_SMALL, bhvRegularBreakableBox);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvTransmutationTable)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_MUSHROOM_TABLE, bhvMushroomTable);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvTransmutationStar)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_STAR, bhvStar);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvRedFlower)) {
+                        spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvTorchHolder)) {
+                        target->oF4 = 1;
+                    }
+
+                    play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
+                }
+            }
+
+            
+        break;
+    }
+    
+}
+
+enum ExtensionBlockActions {
+    EXT_BLOCK_ACT_EXTEND_UP,
+    EXT_BLOCK_ACT_EXTEND_SIDE,
+    EXT_BLOCK_ACT_STOPPED,
+    EXT_BLOCK_ACT_BREAKING
+};
+
+struct SpawnParticlesInfo sExtensionRubble = {
+    0, 30, MODEL_PEBBLE, 20.0f, 30, 20, 20, 10, 252, 30, 5.0f, 3.0f
+};
+struct SpawnParticlesInfo sExtensionDust = {
+    2, 25, MODEL_MIST, 20.0f, 30, 10, 5, 5, 252, 30, 15.0f, 0.0f
+};
+
+void check_extension_corners_and_push(void) {
+    struct Surface *floor;
+    Vec3f pushVec;
+    pushVec[0] = 0;
+    pushVec[2] = 0;
+    o->oOutOfBounds = 0;
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += -10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        pushVec[0] += -10;
+        pushVec[2] += 10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += -10;
+        o->oOutOfBounds = 1;
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        pushVec[0] += 10;
+        pushVec[2] += 10;
+        o->oOutOfBounds = 1;
+    }
+
+    if (o->oOutOfBounds == 1) {
+        o->oPosX += pushVec[0];
+        o->oPosZ += pushVec[2];
+        o->parentObj->oPosX = o->oPosX;
+        o->parentObj->oPosY = o->oPosY;
+        o->parentObj->oPosZ = o->oPosZ;
+        gMarioState->pos[0] = o->oPosX;
+        gMarioState->pos[2] = o->oPosZ;
+    }
+
+    
+}
+
+
+void bhv_extension_block_init(void) {
+
+    check_extension_corners_and_push();
+
+    if (o->oBehParams2ndByte == 1) {
+        o->oAction = EXT_BLOCK_ACT_EXTEND_SIDE;
+        cur_obj_set_model(MODEL_EXTENSION_BLOCK_SIDE);
+        obj_set_collision_data(o, extension_block_side_collision);
+    }
+    else {
+        o->oMaterialIndex = gMarioState->floor->matPointer;
+        o->oRevertIndex = gMarioState->floor->matRevertPointer;
+        o->oMaterialLayer = gMarioState->floor->materialIndex;
+    }
+
+    cur_obj_spawn_particles(&sExtensionRubble);
+    cur_obj_shake_screen(SHAKE_POS_SMALL);
+}
+
+void bhv_extension_block_loop(void) {
+    switch (o->oAction) {
+        case EXT_BLOCK_ACT_EXTEND_UP:
+            obj_scale_xyz(o, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f), 1.0f);
+
+            check_extension_corners_and_push();
+            if (o->oTimer < 2 && gMarioState->pos[1] < o->oPosY) {
+                gMarioState->pos[1] = o->oPosY + 30;
+            }
+
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL2_SPINDEL_ROLL);
+                
+            }
+            if (o->oTimer == 30) {
+                cur_obj_spawn_particles(&sExtensionDust);
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+                //cur_obj_shake_screen(SHAKE_POS_SMALL);
+                o->oAction = EXT_BLOCK_ACT_STOPPED;
+            }
+        break;
+        case EXT_BLOCK_ACT_EXTEND_SIDE:
+            obj_scale_xyz(o, 1.0f, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f));
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL2_SPINDEL_ROLL);
+            }
+            if (o->oTimer == 30) {
+                cur_obj_spawn_particles(&sExtensionDust);
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+                //cur_obj_shake_screen(SHAKE_POS_SMALL);
+                o->oAction = EXT_BLOCK_ACT_STOPPED;
+            }
+        break;
+        case EXT_BLOCK_ACT_STOPPED:
+            if (o->oBehParams2ndByte == 1) {
+                obj_scale_xyz(o, 1.0f, 1.0f, 3.0f);
+            }
+            else {
+                obj_scale_xyz(o, 1.0f, 3.0f, 1.0f);
+            }
+        break;
+        case EXT_BLOCK_ACT_BREAKING:
+        o->oPosY += (-1 + 2*(o->oTimer % 2)) * 5.0f;
+            if (o->oTimer == 30) {
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
+
+    
+
+    if (gMarioState->equippedPatch != PATCH_EXTENSION || gMarioState->patchChildObj != o) {
+        o->oAction = EXT_BLOCK_ACT_BREAKING;
+    }
+}
+

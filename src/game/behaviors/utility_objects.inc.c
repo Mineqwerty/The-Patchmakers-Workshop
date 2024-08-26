@@ -32,4 +32,21 @@ void bhv_background_object_loop(void) {
     o->oPosZ = gLakituState.goalPos[2];
 
     cur_obj_scale(100.0f);
+
+    /*
+    if (gCurrLevelNum == LEVEL_BBH) {
+        if (gTatumCount == 4650) {
+            cur_obj_set_model(MODEL_TFP_SKYBOX_BUBBLES);
+        }
+        if (gTatumCount == 7777) {
+            cur_obj_set_model(MODEL_TFP_SKYBOX_SQUARES);
+        }
+        if (gTatumCount == 10315) {
+            cur_obj_set_model(MODEL_TFP_SKYBOX_WEB);
+        }
+        if (gTatumCount == 16820) {
+            cur_obj_set_model(MODEL_SKYBOX_TEST);
+        }
+    }
+    */
 }

@@ -1,0 +1,23 @@
+static const s16 clc_door_anim_closed_values[] = {
+	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+	
+};
+
+static const u16 clc_door_anim_closed_indices[] = {
+	0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0003, 0x0001, 
+	0x0004, 0x0001, 0x0005, 0x0001, 0x0006, 0x0001, 0x0007, 0x0001, 0x0008, 
+	
+};
+
+static const struct Animation clc_door_anim_closed = {
+	1,
+	0,
+	0,
+	1,
+	1,
+	ANIMINDEX_NUMPARTS(clc_door_anim_closed_indices),
+	clc_door_anim_closed_values,
+	clc_door_anim_closed_indices,
+	0,
+};
+

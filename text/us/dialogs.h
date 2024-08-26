@@ -100,7 +100,7 @@ DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
 GSS"))
 
 DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
-TFP"))
+SS"))
 
 DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
 CLC"))
@@ -119,13 +119,13 @@ Activate the Obelisk? \n\
 //Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
-DDD"))
+HVH"))
 
 DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
-SS"))
+VTF"))
 
 DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
-VTF"))
+TFP"))
 
 DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
 C10"))
@@ -136,11 +136,39 @@ C11"))
 DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
 C12"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 2, 95, 200, _("\
-C13"))
+DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
+H... Hi...\n\
+\n\
+\n\
+Sorry... I didn't mean to scare you like that...\n\
+I got a little scared too, so it's okay...\n\
+\n\
+Oh... You look like you don't know what's going on...\n\
+Sorry about that... It's been a long while since I have\n\
+seen a person, I should explain everything to you...\n\
+I don't have the full story, but I do know this.\n\
+You were attacked and captured by a man known as\n\
+The Patchmaker...\n\
+He used a forbidden craft technique called\n\
+The Thread of Life to steal your soul away in a thread,\n\
+trapping it within an object. That insignia on your cap.\n\
+He then took you here, to this workshop...\n\
+And... Um... That's not all...\n\
+He got your friends too..."))
 
 DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
-C14"))
+Don't worry, we can fix this! It's not too late!\n\
+Ah... But it might be tough with what we have...\n\
+The Patchmaker probably has their threads...\n\
+There is another issue too.\n\
+Um... Just follow me...\n\
+...?\n\
+What did you say? My name?\n\
+Oh my gosh! I completely forgot!\n\
+My name is Sewnia.\n\
+And your name is?\n\
+...\n\
+Mario huh? Nice to meet you Mario!"))
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
 C15"))
@@ -176,30 +204,9 @@ stairs, you need 70\n\
 Stars.\n\
 Bwa ha ha!"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 6, 30, 200, _("\
-Hello! The Lakitu Bros.,\n\
-cutting in with a live\n\
-update on Mario's\n\
-progress. He's about to\n\
-learn a technique for\n\
-sneaking up on enemies.\n\
-The trick is this: He has\n\
-to walk very slowly in\n\
-order to walk quietly.\n\
-\n\
-\n\
-\n\
-And wrapping up filming\n\
-techniques reported on\n\
-earlier, you can take a\n\
-look around using [C]> and\n\
-[C]<. Press [C]| to view the\n\
-action from a distance.\n\
-When you can't move the\n\
-camera any farther, the\n\
-buzzer will sound. This is\n\
-the Lakitu Bros.,\n\
-signing off."))
+DEFINE_DIALOG(DIALOG_030, 1, 2, 30, 200, _("\
+If you find one of the Patchmaker's patches, put it on!\n\
+It'll give you a powerful ability..."))
 
 DEFINE_DIALOG(DIALOG_031, 1, 5, 30, 200, _("\
 No way! You beat me...\n\
@@ -213,285 +220,179 @@ the winner of the race.\n\
 Congrats, Mario!"))
 
 DEFINE_DIALOG(DIALOG_032, 1, 5, 30, 200, _("\
-If you get the Wing Cap,\n\
-you can fly! Put the cap\n\
-on, then do a Triple\n\
-Jump--jump three times\n\
-in a row--to take off.\n\
-You can fly even higher\n\
-if you blast out of a\n\
-cannon wearing the\n\
-Wing Cap!\n\
+A... A guest! H-How did you...?\n\
 \n\
-Use the [C] Buttons to look\n\
-around while flying, and\n\
-press [Z] to land."))
+\n\
+This door? I... I locked it.\n\
+I was scared that those awful diseased\n\
+spirits were in the main chamber...\n\
+...what? You say it's safe? Are you sure?\n\
+\n\
+\n\
+Well, you are alive so I suppose there is no\n\
+reason to doubt you. Alright, I released the\n\
+lock. I apologize deeply for any trouble it caused."))
 
-DEFINE_DIALOG(DIALOG_033, 1, 6, 30, 200, _("\
-Ciao! You've reached\n\
-Princess Toadstool's\n\
-castle via a warp pipe.\n\
-Using the controller is a\n\
-piece of cake. Press [A] to\n\
-jump and [B] to attack.\n\
-Press [B] to read signs,\n\
-too. Use the Control Stick\n\
-in the center of the\n\
-controller to move Mario\n\
-around. Now, head for\n\
-the castle."))
+DEFINE_DIALOG(DIALOG_033, 1, 3, 30, 200, _("\
+Even though the Master and Mistress\n\
+do not roam the manor these days,\n\
+I must still keep the fireplace warm...\n\
+The flame is as bright as it will ever be,\n\
+and there's even a lounging area.\n\
+So just sit back and enjoy the fire.\n\
+If you do decide to leave again, I suppose\n\
+there is no point in keeping it secret...\n\
+This manor has many hidden rooms.\n\
+One even resides in here. But you will have\n\
+to go back into that haunted room you came\n\
+from to reach it.\n\
+Many of the secrets these chambers hold\n\
+are up in the rafters. Looking upward\n\
+is never a bad idea."))
 
-DEFINE_DIALOG(DIALOG_034, 1, 6, 30, 200, _("\
-Good afternoon. The\n\
-Lakitu Bros., here,\n\
-reporting live from just\n\
-outside the Princess's\n\
-castle.\n\
-\n\
-Mario has just arrived\n\
-on the scene, and we'll\n\
-be filming the action live\n\
-as he enters the castle\n\
-and pursues the missing\n\
-Power Stars.\n\
-As seasoned cameramen,\n\
-we'll be shooting from the\n\
-recommended angle, but\n\
-you can change the\n\
-camera angle by pressing\n\
-the [C] Buttons.\n\
-If we can't adjust the\n\
-view any further, we'll\n\
-buzz. To take a look at\n\
-the surroundings, stop\n\
-and press [C]^.\n\
-\n\
-Press [A] to resume play.\n\
-Switch camera modes with\n\
-the [R] Button. Signs along\n\
-the way will review these\n\
-instructions.\n\
-\n\
-For now, reporting live,\n\
-this has been the\n\
-Lakitu Bros."))
+DEFINE_DIALOG(DIALOG_034, 1, 3, 30, 200, _("\
+Ah! It seems we have a guest. \n\
+Manor guests are rare these days...\n\
+Tell me sir, what might your name be?\n\
+...Mario? Well then, welcome to\n\
+the Master's manor, Mario.\n\
+I do feel as though I must warn you...\n\
+You would find it in your best interests\n\
+to remain in this chamber.\n\
+The rooms around here are fine, but...\n\
+I would refrain from entering the rooms\n\
+down the hall. Let us just say, we have\n\
+been dealing with issues beyond there.\n\
+Enjoy your visit, Mr. Mario."))
 
-DEFINE_DIALOG(DIALOG_035, 1, 5, 30, 200, _("\
-There are four camera, or\n\
-『[C],』 Buttons. Press [C]^\n\
-to look around using the\n\
-Control Stick.\n\
+DEFINE_DIALOG(DIALOG_035, 1, 3, 30, 200, _("\
+The issues we've been dealing with?\n\
 \n\
-You'll usually see Mario\n\
-through Lakitu's camera.\n\
-It is the camera\n\
-recommended for normal\n\
-play.\n\
-You can change angles by\n\
-pressing [C]>. If you press\n\
-[R], the view switches to\n\
-Mario's camera, which\n\
-is directly behind him.\n\
-Press [R] again to return\n\
-to Lakitu's camera. Press\n\
-[C]| to see Mario from\n\
-afar, using either\n\
-Lakitu's or Mario's view."))
-
-DEFINE_DIALOG(DIALOG_036, 1, 5, 30, 200, _("\
-OBSERVATION PLATFORM\n\
-Press [C]^ to take a look\n\
-around. Don't miss\n\
-anything!\n\
 \n\
-Press [R] to switch to\n\
-Mario's camera. It\n\
-always follows Mario.\n\
-Press [R] again to switch\n\
-to Lakitu's camera.\n\
-Pause the game and\n\
-switch the mode to 『fix』\n\
-the camera in place while\n\
-holding [R]. Give it a try!"))
+It is not an easy subject. The manor has\n\
+been reduced to nothing but a haunted wreck.\n\
+And not by us servants' hands mind you.\n\
+We are benevolent spirits, but there have.\n\
+been other ghosts about, ones that have\n\
+lost their way and will.\n\
+It's best you simply avoid them.\n\
+I implore you try not to fight something\n\
+that cannot be touched."))
 
-DEFINE_DIALOG(DIALOG_037, 1, 2, 30, 200, _("\
-I win! You lose!\n\
-Ha ha ha ha!\n\
-You're no slouch, but I'm\n\
-a better sledder!\n\
-Better luck next time!"))
+DEFINE_DIALOG(DIALOG_036, 1, 3, 30, 200, _("\
+Beyond this door is the Master's\n\
+chamber. Unfortunately, he is not\n\
+seeing guests at this time.\n\
+...Maybe if the Mistress was healthy\n\
+again he would..."))
+
+DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
+I won't stop you from entering here, but\n\
+be warned: it is horribly dangerous.\n\
+The rogue spirits will attempt to attack you.\n\
+Just know that they are not in their right minds...\n\
+Unfortunate circumstances have led them to become\n\
+this way.\n\
+And your hands won't be able to attack them.\n\
+If they approach you, I recommend crouching down\n\
+to the ground to try and hide."))
 
 DEFINE_DIALOG(DIALOG_038, 1, 3, 95, 200, _("\
 Reacting to the Star\n\
 power, the door slowly\n\
 opens."))
 
-DEFINE_DIALOG(DIALOG_039, 1, 4, 30, 200, _("\
-No visitors allowed,\n\
-by decree of\n\
-the Big Bob-omb\n\
-\n\
-I shall never surrender my\n\
-Stars, for they hold the\n\
-power of the castle in\n\
-their glow.\n\
-They were a gift from\n\
-Bowser, the Koopa King\n\
-himself, and they lie well\n\
-hidden within my realm.\n\
-Not a whisper of their\n\
-whereabouts shall leave\n\
-my lips. Oh, all right,\n\
-perhaps one hint:\n\
-Heed the Star names at\n\
-the beginning of the\n\
-course.\n\
-//--The Big Bob-omb"))
+DEFINE_DIALOG(DIALOG_039, 0b10, 3, 30, 200, _("\
+Another fallen to the wastes...\n\
+Please, share a sliver of your life...\n\
+Ours were taken in a long, long battle."))
 
-DEFINE_DIALOG(DIALOG_040, 1, 3, 30, 200, _("\
-Warning!\n\
-Cold, Cold Crevasse\n\
-Below!"))
+DEFINE_DIALOG(DIALOG_040, 0b10, 3, 30, 200, _("\
+It was centuries ago when we perished...\n\
+We remember it clearly. When the war began,\n\
+the realm was still a pristine blue..."))
 
-DEFINE_DIALOG(DIALOG_041, 1, 3, 30, 200, _("\
-I win! You lose!\n\
-Ha ha ha!\n\
-\n\
-That's what you get for\n\
-messin' with Koopa the\n\
-Quick.\n\
-Better luck next time!"))
+DEFINE_DIALOG(DIALOG_041, 0b10, 3, 30, 200, _("\
+Many say gods have no flaws, but\n\
+they often overlook the consuming greed\n\
+all powerful beings are taken by eventually..."))
 
-DEFINE_DIALOG(DIALOG_042, 1, 4, 30, 200, _("\
-Caution! Narrow Bridge!\n\
-Cross slowly!\n\
-\n\
-\n\
-You can jump to the edge\n\
-of the cliff and hang on,\n\
-and you can climb off the\n\
-edge if you move slowly.\n\
-When you want to let go,\n\
-either press [Z] or press\n\
-the Control Stick in the\n\
-direction of Mario's back.\n\
-To climb up, press Up on\n\
-the Control Stick. To\n\
-scurry up quickly, press\n\
-the [A] Button."))
+DEFINE_DIALOG(DIALOG_042, 0b10, 3, 30, 200, _("\
+This realm was sought after by many of the\n\
+gods. And when that greed set in, a bloody\n\
+war broke out..."))
 
-DEFINE_DIALOG(DIALOG_043, 1, 5, 30, 200, _("\
-If you jump and hold the\n\
-[A] Button, you can hang on\n\
-to some objects overhead.\n\
-It's the same as grabbing\n\
-a flying bird!"))
+DEFINE_DIALOG(DIALOG_043, 0b10, 3, 30, 200, _("\
+We lost our lives early on. Mere servants could\n\
+never stand up to gods. Our bodies fell to the\n\
+ground below and quickly polluted it in a fog..."))
 
-DEFINE_DIALOG(DIALOG_044, 1, 5, 95, 200, _("\
-Whooo's there? Whooo\n\
-woke me up? It's still\n\
-daylight--I should be\n\
-sleeping!\n\
-\n\
-Hey, as long as I'm\n\
-awake, why not take a\n\
-short flight with me?\n\
-Press and hold [A] to grab\n\
-on. Release [A] to let go.\n\
-I'll take you wherever\n\
-you want to go, as long\n\
-as my wings hold out.\n\
-Watch my shadow, and\n\
-grab on."))
+DEFINE_DIALOG(DIALOG_044, 0b10, 3, 95, 200, _("\
+Our spirits, however, got to witness the battles.\n\
+The gods were relentless in killing each other.\n\
+Their golden ichor was spread throughout the sky."))
 
-DEFINE_DIALOG(DIALOG_045, 1, 6, 95, 200, _("\
-Whew! I'm just about\n\
-flapped out. You should\n\
-lay off the pasta, Mario!\n\
-That's it for now. Press\n\
-[A] to let go. Okay,\n\
-bye byyyyyyeeee!"))
+DEFINE_DIALOG(DIALOG_045, 0b10, 3, 95, 200, _("\
+It became apparent that one goddess in particular\n\
+had her eyes set on this realm being her dominion.\n\
+Throughout the war, she inflicted many wounds."))
 
-DEFINE_DIALOG(DIALOG_046, 1, 5, 30, 200, _("\
-You have to master three\n\
-important jumping\n\
-techniques.\n\
-First try the Triple Jump.\n\
-\n\
-Run fast, then jump three\n\
-times, one, two, three.\n\
-If you time the jumps\n\
-right, you'll hop, skip,\n\
-then jump really high.\n\
-Next, go for distance\n\
-with the Long Jump. Run,\n\
-press [Z] to crouch then [A]\n\
-to jump really far.\n\
-\n\
-To do the Wall Kick, press\n\
-[A] to jump at a wall, then\n\
-jump again when you hit\n\
-the wall.\n\
-\n\
-Got that? Triple Jump,\n\
-Long Jump, Wall Kick.\n\
-Practice, practice,\n\
-practice. You don't stand\n\
-a chance without them."))
+DEFINE_DIALOG(DIALOG_046, 0b10, 3, 30, 200, _("\
+The goddess Aurumcael...\n\
+With her spear in hand, she had slain the final\n\
+gods, forever dyeing the realm a deep golden color.\n\
+She had won, but at the cost of the realm's\n\
+beauty. The realm was now an empty graveyard.\n\
+Aurumcael did not make it out unscathed though."))
 
-DEFINE_DIALOG(DIALOG_047, 1, 2, 95, 200, _("\
-Hi! I'll prepare the\n\
-cannon for you!"))
+DEFINE_DIALOG(DIALOG_047, 0b10, 3, 95, 200, _("\
+The last gods dying to her blade bestowed a final\n\
+curse upon her. One that prevented her from ever\n\
+leaving the realm she had ruined.\n\
+The curse also placed a shining halo on her head...\n\
+One that drips burning ichor that pierces her flesh,\n\
+weakening her so that even a mortal can harm her."))
 
-DEFINE_DIALOG(DIALOG_048, 1, 4, 30, 200, _("\
-Snow Mountain Summit\n\
-Watch for slippery\n\
-conditions! Please enter\n\
-the cottage first."))
+DEFINE_DIALOG(DIALOG_048, 0b10, 3, 30, 200, _("\
+Aurumcael now resides alone in her airborne palace...\n\
+The victor of a battle turned fruitless because of\n\
+her..."))
 
-DEFINE_DIALOG(DIALOG_049, 1, 5, 30, 200, _("\
-Remember that tricky Wall\n\
-Kick jump? It's a\n\
-technique you'll have to\n\
-master in order to reach\n\
-high places.\n\
-Use it to jump from wall\n\
-to wall. Press the\n\
-Control Stick in the\n\
-direction you want to\n\
-bounce to gain momentum.\n\
-Practice makes perfect!"))
+DEFINE_DIALOG(DIALOG_049, 1, 3, 30, 200, _("\
+Mistress...\n\
+It would appear we have a guest...\n\
+Are you feeling well enough to greet him?"))
 
-DEFINE_DIALOG(DIALOG_050, 1, 4, 30, 200, _("\
-Hold [Z] to crouch and\n\
-slide down a slope.\n\
-Or press [Z] while in the\n\
-air to Pound the Ground!\n\
-If you stop, crouch, then\n\
-jump, you'll do a\n\
-Backward Somersault!\n\
-Got that?\n\
-There's more. Crouch and\n\
-then jump to do a\n\
-Long Jump! Or crouch and\n\
-walk to...never mind."))
+DEFINE_DIALOG(DIALOG_050, 0b10, 3, 30, 200, _("\
+C... Col... I...\n\
+Nghh... Cold...\n\
+Pl..."))
 
-DEFINE_DIALOG(DIALOG_051, 1, 6, 30, 200, _("\
-Climbing's easy! When you\n\
-jump at trees, poles or\n\
-pillars, you'll grab them\n\
-automatically. Press [A] to\n\
-jump off backward.\n\
-\n\
-To rotate around the\n\
-object, press Right or\n\
-Left on the Control Stick.\n\
-When you reach the top,\n\
-press Up to do a\n\
-handstand!\n\
-Jump off from the\n\
-handstand for a high,\n\
-stylin' dismount."))
+DEFINE_DIALOG(DIALOG_051, 1, 3, 30, 200, _("\
+I know you are cold, Mistress...\n\
+But you go into a panic when I put the covers\n\
+on you... I don't wish you to hurt yourself.\n\
+Now, our guest here has come a far way.\n\
+He might be able to help us with your affliction!\n\
+Or at least give us some information...\n\
+Mario, you have become the talk of the manor recently.\n\
+After all, you arrived in the same way that evil man did.\n\
+The one that did this to the poor Mistress...\n\
+We were hesitant to allow you to roam freely at first.\n\
+But after observing your actions, I don't believe you\n\
+are here to cause harm.\n\
+You have connections to that man though.\n\
+That, you cannot deny. You have met him before...\n\
+I can see it within your eyes... Which is why I ask this.\n\
+Please, Mario, find a way to reverse this curse! \n\
+Confront that man again if you must, I beg of you!\n\
+The Mistress lies with a clouded mind and soul, in agony!\n\
+The Master of the manor has not left his study since\n\
+the attack. But I have a feeling you should meet with\n\
+him soon... He has information about everything.\n\
+We will help you in any way we can. Here, take this as\n\
+proof of our trust and hope in you.\n\
+It was unable to help the Mistress anyways..."))
 
 DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
 Stop and press [Z] to\n\
@@ -553,24 +454,24 @@ Her parents must be\n\
 worried sick!"))
 
 DEFINE_DIALOG(DIALOG_060, 1, 3, 30, 200, _("\
-Pathetic.\n\
+Why?\n\
 \n\
 \n\
-Why dost thou stand before me, foolish one?\n\
-Unaware of what this realm is, perhaps?\n\
-\n\
-You are akin to that foolish man\n\
-who entered these halls a few\n\
-years ago...\n\
+Why does another life show itself to me?\n\
+This place lost its luster long ago...\n\
+And yet, you come here seeking more.\n\
+You are akin to that foolish man who entered\n\
+these halls years ago, asking a ludicrous feat!\n\
+Something that, even to a goddess, is a miracle.\n\
 And now you stand before me, mocking\n\
-me by holding a fragment of my\n\
-divine strength upon your cap.\n\
+me by holding a fragment of my diminished\n\
+divine strength upon your cap...\n\
 ...The very same one that\n\
 man tried to overcome me with!\n\
 The impertinence of it is quite ironic, no?\n\
-That man was on a journey that would only\n\
-lead him to ruin. His pursuit of...\n\
-\n\
+Unfortunately, that man escaped with his\n\
+life. Such is the sorrow of a goddess that\n\
+is trapped within a burning curse...\n\
 Tch! What am I doing here telling you\n\
 this? You are invading upon my\n\
 realm! Leave at once!\n\
@@ -581,35 +482,53 @@ There SHOULD be nothing here!\n\
 That's the way it needs to be!\n\
 An empty heaven, my hell alone!"))
 
-DEFINE_DIALOG(DIALOG_061, 1, 4, 30, 200, _("\
-BRRR! Frostbite Danger!\n\
-Do not swim here.\n\
-I'm serious.\n\
-/--The Penguin"))
+DEFINE_DIALOG(DIALOG_061, 1, 3, 30, 200, _("\
+Enough!!!\n\
+\n\
+\n\
+What is it you want!?\n\
+Strength? Treasure?\n\
+Or is it simply my head?\n\
+How do you even know of me?\n\
+\n\
+"))
 
 DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
-Hidden inside the green\n\
-block is the amazing\n\
-Metal Cap.\n\
-Wearing it, you won't\n\
-catch fire or be hurt\n\
-by enemy attacks.\n\
-You don't even have to\n\
-breathe while wearing it.\n\
-\n\
-The only problem:\n\
-It is too heavy to\n\
-swim with."))
+I see... So, those restless souls that\n\
+remain in the abyss below told you of my\n\
+past. Were you trying to avenge them? Haha...\n\
+Perhaps those souls have not\n\
+moved on merely to witness my\n\
+gruesome demise one day...\n\
+It is regrettable in that case.\n\
+I cannot be killed. Not while my\n\
+curse remains, that is.\n\
+You can cause the searing pain of\n\
+thousands of blades to me, but I will\n\
+never perish. Your efforts are for naught."))
 
-DEFINE_DIALOG(DIALOG_063, 1, 5, 30, 200, _("\
-The Vanish Cap is inside\n\
-the blue block. Mr. I.\n\
-will be surprised, since\n\
-you'll be invisible when\n\
-you wear it!\n\
-Even the Big Boo will be\n\
-fooled--and you can walk\n\
-through secret walls, too."))
+DEFINE_DIALOG(DIALOG_063, 1, 3, 30, 200, _("\
+What did you say?\n\
+Star Power?\n\
+\n\
+Ha... HAHAHAHA!!!\n\
+\n\
+\n\
+You aren't some valiant mortal\n\
+avenging restless spirits!\n\
+You're just a shallow human!\n\
+Well... I suppose those tangents\n\
+I went on were in vain. Though, you are\n\
+a formidable foe for a lousy human.\n\
+Do note that I would have ended your\n\
+pitiful life on the spot were I at my true\n\
+power, unburdened by this burning ichor.\n\
+Very well. For your meaningless victory,\n\
+you may have some of this Star Power\n\
+that you seek.\n\
+Oh but do keep in mind, if you ever\n\
+enter this place again I will not\n\
+hesitate to impale you. Understood?"))
 
 DEFINE_DIALOG(DIALOG_064, 1, 5, 30, 200, _("\
 When you put on the Wing\n\

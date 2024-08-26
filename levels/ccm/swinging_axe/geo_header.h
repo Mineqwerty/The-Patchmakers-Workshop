@@ -1,0 +1,17 @@
+extern const GeoLayout swinging_axe_geo[];
+extern Lights1 swinging_axe_envmetal_001_layer1_lights;
+extern Lights1 swinging_axe_darkgold_001_layer1_lights;
+extern u8 swinging_axe_shinier_metal_ci8[];
+extern u8 swinging_axe_shinier_metal_pal_rgba16[];
+extern u8 swinging_axe_goldblob_ci8[];
+extern u8 swinging_axe_goldblob_pal_rgba16[];
+extern Vtx swinging_axe_Cube_014_mesh_layer_1_vtx_0[137];
+extern Gfx swinging_axe_Cube_014_mesh_layer_1_tri_0[];
+extern Vtx swinging_axe_Cube_014_mesh_layer_1_vtx_1[13];
+extern Gfx swinging_axe_Cube_014_mesh_layer_1_tri_1[];
+extern Gfx mat_swinging_axe_envmetal_001_layer1[];
+extern Gfx mat_revert_swinging_axe_envmetal_001_layer1[];
+extern Gfx mat_swinging_axe_darkgold_001_layer1[];
+extern Gfx mat_revert_swinging_axe_darkgold_001_layer1[];
+extern Gfx swinging_axe_Cube_014_mesh_layer_1[];
+extern Gfx swinging_axe_material_revert_render_settings[];

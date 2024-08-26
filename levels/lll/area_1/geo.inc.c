@@ -1,0 +1,123 @@
+#include "src/game/envfx_snow.h"
+
+const GeoLayout lll_area_1_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_SWITCH_CASE(10, geo_switch_area),
+		GEO_OPEN_NODE(),
+			GEO_BRANCH(1, lll_dl_A_Room_002_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_003_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_004_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_005_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_006_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_007_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_008_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_009_geo),
+			GEO_BRANCH(1, lll_dl_A_Room_010_geo),
+		GEO_CLOSE_NODE(),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_002_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_Col_Room2_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 832, 476, 352, lll_dl_Cube_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 832, 476, -348, lll_dl_Cube_007_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_003_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_Col_room3_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_Col_room3_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 11550, 2419, 14, 0, 38, 0, lll_dl_Cube_008_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 8190, 1106, -3597, 0, 38, 0, lll_dl_Cube_009_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_004_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room4_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_col_room4_mesh_layer_5),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_005_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room5_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_006_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room6_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -5188, 1815, 2037, 0, 38, 0, lll_dl_Cube_014_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_007_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room7_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1890, 474, -4893, 0, 38, 0, lll_dl_Cube_010_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1218, 474, -4893, 0, 38, 0, lll_dl_Cube_011_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -909, 524, -4893, 0, 38, 0, lll_dl_Cube_012_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -3262, 259, -4502, 0, 38, 0, lll_dl_Cube_013_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_Plane_010_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_008_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room8_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_009_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room9_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_col_room9_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_Plane_005_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_dl_A_Room_010_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_col_room10_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_col_room10_mesh_layer_5),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout lll_area_1[] = {
+	GEO_NODE_SCREEN_AREA(10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2),
+	GEO_OPEN_NODE(),
+		GEO_ZBUFFER(0),
+		GEO_OPEN_NODE(),
+			GEO_NODE_ORTHO(100.0000),
+			GEO_OPEN_NODE(),
+				GEO_BACKGROUND_COLOR(0x0001),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+		GEO_ZBUFFER(1),
+		GEO_OPEN_NODE(),
+			GEO_CAMERA_FRUSTUM_WITH_FUNC(45.0000, 100, 30000, geo_camera_fov),
+			GEO_OPEN_NODE(),
+				GEO_CAMERA(CAMERA_MODE_8_DIRECTIONS, 0, 0, 0, 0, -100, 0, geo_camera_main),
+				GEO_OPEN_NODE(),
+					GEO_BRANCH(1, lll_area_1_geo),
+					GEO_RENDER_OBJ(),
+					GEO_ASM(ENVFX_MODE_NONE, geo_envfx_main),
+				GEO_CLOSE_NODE(),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+	GEO_CLOSE_NODE(),
+	GEO_END(),
+};

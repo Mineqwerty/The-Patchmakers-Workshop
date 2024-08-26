@@ -42,3 +42,8 @@
 #include "levels/ccm/gold_spear/geo.inc.c"
 #include "levels/ccm/seraphim/geo.inc.c"
 #include "levels/ccm/gold_spike_ball/geo.inc.c"
+#include "levels/ccm/wind_cloud/geo.inc.c"
+#include "levels/ccm/swinging_axe/geo.inc.c"
+#include "levels/ccm/wing_surface/geo.inc.c"
+#include "levels/ccm/goddess_spear/geo.inc.c"
+#include "levels/ccm/grounded_patch_halo/geo.inc.c"

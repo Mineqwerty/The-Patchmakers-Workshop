@@ -28,17 +28,13 @@
 #include "spawn_sound.h"
 #include "puppylights.h"
 
-static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
-
 static s32 clear_move_flag(u32 *bitSet, s32 flag);
 
 Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
-        Mat4 mtx2;
         struct Object *projObj = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
         if (projObj->prevObj) {
-            create_transformation_from_matrices(mtx2, mtx, *gCurGraphNodeCamera->matrixPtr);
-            obj_update_pos_from_parent_transformation(mtx2, projObj->prevObj);
+            obj_update_pos_from_parent_transformation(mtx, projObj->prevObj);
             obj_set_gfx_pos_from_pos(projObj->prevObj);
         }
     }
@@ -98,66 +94,76 @@ Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUS
 }
 
 Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context) {
-   Gfx *dlStart, *dlHead;
+    Gfx *dlStart, *dlHead;
     struct Object *objectGraphNode;
     struct GraphNodeGenerated *currentGraphNode;
 
     dlStart = NULL;
 
     if (callContext == GEO_CONTEXT_RENDER) {
-        
+
         objectGraphNode = (struct Object *) gCurGraphNodeObject;
         currentGraphNode = (struct GraphNodeGenerated *) node;
-        
 
         u8 red = 230;
         u8 green = 0;
         u8 blue = 30;
 
+        //spekturr particles
         if (GET_BPARAM1(objectGraphNode->oBehParams) == 1) {
             if (objectGraphNode->oTimer <= 4) {
                 red = 75;
-            green = 130;
-            blue = 155;
+                green = 130;
+                blue = 155;
+            } else if (objectGraphNode->oTimer < 15) {
+                green = 130 - ((u8) (5 * (objectGraphNode->oTimer - 4)));
+                red = 75 + ((u8) (5 * (objectGraphNode->oTimer - 4)));
+                blue = 155;
+            } else if (objectGraphNode->oTimer < 30) {
+                red = 130 + (o->oTimer - 15);
+                green = 75 + (objectGraphNode->oTimer - 15) * 6;
+                blue = 155;
+            } else {
+                red = 155;
+                green = 155;
+                blue = 155;
+            }
         }
-        else if (objectGraphNode->oTimer < 15) {
-            green = 130 - ((u8) (5 * (objectGraphNode->oTimer - 4)));
-            red = 75 + ((u8) (5 * (objectGraphNode->oTimer - 4)));
-            blue = 155;
+        //shadowchomp particles
+        else if (GET_BPARAM1(objectGraphNode->oBehParams) == 2) {
+            if (objectGraphNode->oTimer <= 4) {
+                red = 16;
+                green = 0;
+                blue = 28;
+            } else if (objectGraphNode->oTimer < 20) {
+                red = 16 + ((u8) (3 * (objectGraphNode->oTimer - 4)));
+                green = 0 + ((u8) (4.6f * (objectGraphNode->oTimer - 4)));
+                blue = 28 + ((u8) (2.8f * (objectGraphNode->oTimer - 4)));
+            } else {
+                red = 70;
+                green = 70;
+                blue = 70;
+            }
         }
-        else if (objectGraphNode->oTimer < 30) {
-            red = 130 + (o->oTimer-15);
-            green = 75 + (objectGraphNode->oTimer - 15)*6;
-            blue = 155;
-        }
+        //fire
         else {
-            red = 155;
-            green = 155;
-            blue = 155;
-        }
-        }
-        else {
-        
-        if (objectGraphNode->oTimer <= 4) {
-            green = 205;
-        }
-        else if (objectGraphNode->oTimer < 15) {
-            green = 205 - ((u8) (14.09f * (objectGraphNode->oTimer - 4)));
-            blue = 30 - (2 * (objectGraphNode->oTimer-4));
-        }
-        else if (objectGraphNode->oTimer < 30) {
-            red = 230 - (o->oTimer-15) - ((objectGraphNode->oTimer - 15)*6);
-            green = 50 + (objectGraphNode->oTimer - 15)*4;
-            blue = -(objectGraphNode->oTimer - 15) + (objectGraphNode->oTimer - 15)*8;
-        }
-        else {
-            red = 115;
-            green = 115;
-            blue = 115;
+
+            if (objectGraphNode->oTimer <= 4) {
+                green = 205;
+            } else if (objectGraphNode->oTimer < 15) {
+                green = 205 - ((u8) (14.09f * (objectGraphNode->oTimer - 4)));
+                blue = 30 - (2 * (objectGraphNode->oTimer - 4));
+            } else if (objectGraphNode->oTimer < 30) {
+                red = 230 - (o->oTimer - 15) - ((objectGraphNode->oTimer - 15) * 6);
+                green = 50 + (objectGraphNode->oTimer - 15) * 4;
+                blue = -(objectGraphNode->oTimer - 15) + (objectGraphNode->oTimer - 15) * 8;
+            } else {
+                red = 115;
+                green = 115;
+                blue = 115;
+            }
         }
 
-        }
-        
         dlStart = alloc_display_list(sizeof(Gfx) * 2);
 
         dlHead = dlStart;
@@ -263,33 +269,21 @@ Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void 
 }
 
 Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context) {
-    struct Surface *floor;
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+    RoomData room;
 
-    if (callContext == GEO_CONTEXT_RENDER) {
-        if (gMarioObject == NULL) {
-            switchCase->selectedCase = 0;
-        } else {
-#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
-            if (gCurrLevelNum == LEVEL_BBH) {
-                // In BBH, check for a floor manually, since there is an intangible floor. In custom hacks this can be removed.
-                find_room_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &floor);
-            } else {
-                // Since no intangible floors are nearby, use Mario's floor instead.
-                floor = gMarioState->floor;
-            }
-#else
-            floor = gMarioState->floor;
-#endif
-            if (floor) {
-                gMarioCurrentRoom = floor->room;
-                s16 roomCase = floor->room - 1;
-                print_debug_top_down_objectinfo("areainfo %d", floor->room);
+    if (callContext == GEO_CONTEXT_RENDER && gMarioObject != NULL) {
+        room = get_room_at_pos(
+            gMarioObject->oPosX,
+            gMarioObject->oPosY,
+            gMarioObject->oPosZ
+        );
 
-                if (roomCase >= 0) {
-                    switchCase->selectedCase = roomCase;
-                }
-            }
+        print_debug_top_down_objectinfo("areainfo %d", room);
+
+        if (room > 0) {
+            gMarioCurrentRoom = room;
+            switchCase->selectedCase = (room - 1);
         }
     } else {
         switchCase->selectedCase = 0;
@@ -814,6 +808,198 @@ struct Object *cur_obj_find_nearest_object_with_behavior(const BehaviorScript *b
     return closestObj;
 }
 
+struct Object *obj_find_nearest_object_with_behavior(struct Object *sourceObj, const BehaviorScript *behavior, f32 *dist) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    struct Object *obj = (struct Object *) listHead->next;
+    struct Object *closestObj = NULL;
+    f32 minDist = 0x20000;
+
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr
+            && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+            && obj != sourceObj
+        ) {
+            f32 objDist = dist_between_objects(sourceObj, obj);
+            if (objDist < minDist) {
+                closestObj = obj;
+                minDist = objDist;
+            }
+        }
+
+        obj = (struct Object *) obj->header.next;
+    }
+
+    *dist = minDist;
+    return closestObj;
+}
+
+u8 object_behavior_is_transmutable(struct Object *obj) {
+    return (obj->behavior == segmented_to_virtual(bhvGoomba)
+        || obj->behavior == segmented_to_virtual(bhvPodogoo)
+        || obj->behavior == segmented_to_virtual(bhvPushableMetalBox)
+        || obj->behavior == segmented_to_virtual(bhvSwampSkeeter)
+        || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
+        || obj->behavior == segmented_to_virtual(bhvBreakableBoxSmall)
+        || obj->behavior == segmented_to_virtual(bhvTransmutationTable)
+        || obj->behavior == segmented_to_virtual(bhvTransmutationStar)
+        || obj->behavior == segmented_to_virtual(bhvRedFlower)
+        || obj->behavior == segmented_to_virtual(bhvTorchHolder)
+    );
+}
+
+struct Object *obj_find_transmute_target(struct Object *sourceObj) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = {
+        OBJ_LIST_DESTRUCTIVE,
+        OBJ_LIST_GENACTOR,
+        OBJ_LIST_PUSHABLE,
+        OBJ_LIST_LEVEL,
+        OBJ_LIST_DEFAULT,
+        OBJ_LIST_SURFACE
+    };
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+            
+            if (object_behavior_is_transmutable(obj)
+                && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj
+            ) {
+                Vec3f pointA;
+                Vec3f pointB;
+                Vec3f pointC;
+                Vec3f pointD;
+                s16 laserLength = 600.0f;
+
+                vec3f_set(pointA, sourceObj->oPosX - (50 * sins(sourceObj->oFaceAngleYaw)), sourceObj->oPosY, sourceObj->oPosZ - (50 * coss(sourceObj->oFaceAngleYaw)));
+
+                vec3f_set(pointB, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw - 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw - 0x1000));
+                vec3f_set(pointC, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw + 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw + 0x1000));
+
+
+                if (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) && absf(obj->oPosY - sourceObj->oPosY - 100) < 300) {
+                    return obj;
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
+struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
+                                  u8 damage, s32 interaction) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = { OBJ_LIST_DESTRUCTIVE, OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE,
+                          OBJ_LIST_LEVEL,       OBJ_LIST_DEFAULT,  OBJ_LIST_SURFACE };
+
+    Vec3f pointA;
+    Vec3f pointB;
+    Vec3f pointC;
+    Vec3f pointD;
+
+    vec3f_set(pointA, o->oPosX + closeWidth * coss(o->oFaceAngleYaw), o->oPosY,
+              o->oPosZ + closeWidth * sins(o->oFaceAngleYaw));
+    vec3f_set(pointB, o->oPosX + closeWidth * -coss(o->oFaceAngleYaw), o->oPosY,
+              o->oPosZ + closeWidth * -sins(o->oFaceAngleYaw));
+    vec3f_set(pointC, (o->oPosX + farWidth * coss(o->oFaceAngleYaw)) + length * sins(o->oFaceAngleYaw),
+              o->oPosY,
+              (o->oPosZ + farWidth * sins(o->oFaceAngleYaw)) + length * coss(o->oFaceAngleYaw));
+    vec3f_set(pointD, (o->oPosX + farWidth * -coss(o->oFaceAngleYaw)) + length * sins(o->oFaceAngleYaw),
+              o->oPosY,
+              (o->oPosZ + farWidth * -sins(o->oFaceAngleYaw)) + length * coss(o->oFaceAngleYaw));
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj) {
+
+                if ((point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) || point_inside_xz_tri(&obj->oPosVec, pointB, pointC, pointD))
+                    && absf(obj->oPosY - sourceObj->oPosY - (height/2)) < height) {
+                    attack_object(obj, interaction, damage);
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
+struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 damage, s32 interaction) {
+    struct ObjectNode *listHead;
+    struct Object *obj = (struct Object *) listHead->next;
+
+    u32 checkLists[6] = { OBJ_LIST_DESTRUCTIVE, OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE,
+                          OBJ_LIST_LEVEL,       OBJ_LIST_DEFAULT,  OBJ_LIST_SURFACE };
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
+        while (obj != (struct Object *) listHead) {
+
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+                && obj != sourceObj) {
+
+                if (dist_between_objects(sourceObj, obj) < radius) {
+                    attack_object(obj, interaction, damage);
+                }
+            }
+
+            obj = (struct Object *) obj->header.next;
+        }
+    }
+
+    return NULL;
+}
+
+u8 object_behavior_is_chompable(struct Object *obj) {
+    return (obj->behavior == segmented_to_virtual(bhvGoomba)
+        || obj->behavior == segmented_to_virtual(bhvPodogoo)
+        || obj->behavior == segmented_to_virtual(bhvBlight)
+        || obj->behavior == segmented_to_virtual(bhvBoo)
+        || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
+        || obj->behavior == segmented_to_virtual(bhvMrI)
+    );
+}
+
+struct Object *shadow_chomp_find_target(/*const BehaviorScript *behavior,*/ f32 dist) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(bhvGoomba);
+    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    struct Object *obj = (struct Object *) listHead->next;
+    struct Object *closestObj = NULL;
+
+    while (obj != (struct Object *) listHead) {
+        if (object_behavior_is_chompable(obj)
+            && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
+            && obj != o
+        ) {
+            f32 objDist = dist_between_objects(gMarioObject, obj);
+            if (objDist < 1000.0f) {
+                closestObj = obj;
+                return closestObj;
+            }
+        }
+
+        obj = (struct Object *) obj->header.next;
+    }
+
+    return NULL;
+}
+
 void check_for_max_ice_and_break_oldest() {
     uintptr_t *behaviorAddr = segmented_to_virtual(bhvIceCube);
     struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
@@ -1099,7 +1285,7 @@ s32 cur_obj_has_model(ModelID16 modelID) {
 
 // HackerSM64 function
 ModelID32 obj_get_model_id(struct Object *obj) {
-    if (obj && obj->header.gfx.sharedChild) {
+    if (obj && obj->header.gfx.sharedChild != NULL) {
         for (s32 i = MODEL_NONE; i < MODEL_ID_COUNT; i++) {
             if (obj->header.gfx.sharedChild == gLoadedGraphNodes[i]) {
                 return i;
@@ -1532,6 +1718,29 @@ void obj_spawn_loot_blue_coins(struct Object *obj, s32 numCoins, f32 baseYVel, s
 void obj_spawn_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 baseYVel) {
     obj_spawn_loot_coins(obj, numCoins, baseYVel, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
+
+void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel,
+                                    const BehaviorScript *coinBehavior,
+                                    s16 posJitter, ModelID16 model) {
+                                        s32 i;
+    struct Surface *floor;
+    struct Object *coin;
+
+    f32 spawnHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+    if (o->oPosY - spawnHeight > 100.0f) {
+        spawnHeight = o->oPosY;
+    }
+
+    for (i = 0; i < numCoins; i++) {
+
+        coin = spawn_object(o, model, coinBehavior);
+        obj_translate_xz_random(coin, posJitter);
+        coin->oPosY = spawnHeight;
+        coin->oCoinBaseYVel = baseYVel;
+        coin->oMoveAngleYaw = obj_angle_to_object(o, gMarioState->marioObj) + ((random_u16() % 800) - 400);
+        coin->oForwardVel = 5.0f;
+    }
+                                    }
 
 void cur_obj_spawn_loot_coin_at_mario_pos(void) {
     if (o->oNumLootCoins <= 0) {
@@ -2167,36 +2376,34 @@ s32 is_item_in_array(s8 item, s8 *array) {
 }
 
 void bhv_init_room(void) {
-    struct Surface *floor = NULL;
-    if (is_item_in_array(gCurrLevelNum, sLevelsWithRooms)) {
-        find_room_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
-
-        if (floor != NULL) {
-            o->oRoom = floor->room;
-            return;
-        }
-    }
-    o->oRoom = -1;
+    o->oRoom = get_room_at_pos(o->oPosX, o->oPosY, o->oPosZ);
 }
 
-void cur_obj_enable_rendering_if_mario_in_room(void) {
+s32 cur_obj_is_mario_in_room(void) {
     if (o->oRoom != -1 && gMarioCurrentRoom != 0) {
-        register s32 marioInRoom = (
-            gMarioCurrentRoom == o->oRoom
-            || gDoorAdjacentRooms[gMarioCurrentRoom][0] == o->oRoom
-            || gDoorAdjacentRooms[gMarioCurrentRoom][1] == o->oRoom
-        );
-
-        if (marioInRoom) {
-            cur_obj_enable_rendering();
-            o->activeFlags &= ~ACTIVE_FLAG_IN_DIFFERENT_ROOM;
-            gNumRoomedObjectsInMarioRoom++;
-        } else {
-            cur_obj_disable_rendering();
-            o->activeFlags |= ACTIVE_FLAG_IN_DIFFERENT_ROOM;
-            gNumRoomedObjectsNotInMarioRoom++;
+        if (gMarioCurrentRoom == o->oRoom // Object is in Mario's room.
+            || gDoorAdjacentRooms[gMarioCurrentRoom].forwardRoom  == o->oRoom // Object is in the transition room's forward  room.
+            || gDoorAdjacentRooms[gMarioCurrentRoom].backwardRoom == o->oRoom // Object is in the transition room's backward room.
+        ) {
+            return MARIO_INSIDE_ROOM;
         }
+
+        return MARIO_OUTSIDE_ROOM;
     }
+
+    return MARIO_ROOM_UNDEFINED;
+}
+
+void cur_obj_enable_rendering_in_room(void) {
+    cur_obj_enable_rendering();
+    o->activeFlags &= ~ACTIVE_FLAG_IN_DIFFERENT_ROOM;
+    gNumRoomedObjectsInMarioRoom++;
+}
+
+void cur_obj_disable_rendering_in_room(void) {
+    cur_obj_disable_rendering();
+    o->activeFlags |= ACTIVE_FLAG_IN_DIFFERENT_ROOM;
+    gNumRoomedObjectsNotInMarioRoom++;
 }
 
 s32 cur_obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deathSound, s32 noLootCoins) {
@@ -2669,6 +2876,33 @@ struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *be
             if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
                 f32 objDist = dist_between_objects(o, obj);
                 if (obj->oBehParams2ndByte == bparam) {
+                    returnObj = obj;
+                    
+                }
+            }
+        }
+        obj = (struct Object *) obj->header.next;
+    }
+
+    
+    return returnObj;
+}
+
+struct Object *cur_obj_find_object_with_bparam_1st_byte(const BehaviorScript *behavior, int bparam) {
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    struct Object *returnObj = NULL;
+    struct Object *obj;
+    struct ObjectNode *listHead;
+    
+
+    listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    obj = (struct Object *) listHead->next;
+
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr) {
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
+                f32 objDist = dist_between_objects(o, obj);
+                if (GET_BPARAM1(obj->oBehParams) == bparam) {
                     returnObj = obj;
                     
                 }

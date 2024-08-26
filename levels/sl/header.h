@@ -37,4 +37,47 @@ extern const struct MovtexQuadCollection sl_movtex_water[];
 // script
 extern const LevelScript level_sl_entry[];
 
+#include "levels/sl/abyss_swimmer/geo_header.h"
+
+#include "levels/sl/abyss_swimmer/collision_header.h"
+
+#include "levels/sl/floating_tilting_gem/geo_header.h"
+
+#include "levels/sl/floating_tilting_gem/collision_header.h"
+
+
+#include "levels/sl/header.inc.h"
+
+#include "levels/sl/abyss_swimmer/anim_header.h"
+
+#include "levels/sl/ea_skybox/geo_header.h"
+
+#include "levels/sl/abyss_urchin/geo_header.h"
+
+#include "levels/sl/tentacle_cage/geo_header.h"
+
+#include "levels/sl/tentacle_cage/collision_header.h"
+
+#include "levels/sl/cage_eye/geo_header.h"
+
+#include "levels/sl/floating_moving_gem/geo_header.h"
+
+#include "levels/sl/sky_slug/geo_header.h"
+
+#include "levels/sl/sky_slug/collision_header.h"
+
+#include "levels/sl/sky_slug/anim_header.h"
+
+#include "levels/sl/water_launcher/geo_header.h"
+
+#include "levels/sl/jellyfish/geo_header.h"
+
+#include "levels/sl/jellyfish/anim_header.h"
+
+#include "levels/sl/abyss_obelisk/geo_header.h"
+
+#include "levels/sl/enemy_arena_combat_walls/collision_header.h"
+
+#include "levels/sl/abyss_obelisk/collision_header.h"
+
 #endif

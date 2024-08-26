@@ -58,7 +58,7 @@ static void cloud_act_fwoosh_hidden(void) {
  * long enough, blow wind at him.
  */
 static void cloud_fwoosh_update(void) {
-    if (o->oDistanceToMario > 2500.0f) {
+    if (o->oDistanceToMario > 3500.0f) {
         o->oAction = CLOUD_ACT_UNLOAD;
     } else {
         if (o->oCloudBlowing) {
@@ -80,8 +80,8 @@ static void cloud_fwoosh_update(void) {
             o->oCloudFwooshMovementRadius += 0xC8;
 
             // If mario stays nearby for 100 frames, begin blowing
-            if (o->oDistanceToMario < 1000.0f) {
-                if (o->oTimer > 100) {
+            if (o->oDistanceToMario < 3000.0f) {
+                if (o->oTimer > 10) {
                     o->oCloudBlowing = TRUE;
                     o->oCloudGrowSpeed = 0.14f;
                 }

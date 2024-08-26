@@ -50,3 +50,7 @@
 #include "levels/bitdw/collapsing_stairs_5/collision.inc.c"
 
 #include "levels/bitdw/leveldata.inc.c"
+
+#include "levels/bitdw/dry_bones/model.inc.c"
+#include "levels/bitdw/dry_bones/anims/data.inc.c"
+#include "levels/bitdw/dry_bones/anims/table.inc.c"

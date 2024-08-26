@@ -78,6 +78,12 @@ void cur_obj_play_sound_2(s32 soundMagic) {
     }
 }
 
+void other_obj_play_sound_2(s32 soundMagic, struct Object *obj) {
+    if (obj->header.gfx.node.flags & GRAPH_RENDER_ACTIVE) {
+        play_sound(soundMagic, obj->header.gfx.cameraToObject);
+    }
+}
+
 /*
  * These 2 functions below are completely unreferenced in all versions
  * of Super Mario 64. They are likely functions which facilitated

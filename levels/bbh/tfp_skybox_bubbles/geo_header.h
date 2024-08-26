@@ -1,0 +1,14 @@
+extern const GeoLayout tfp_skybox_bubbles_geo[];
+extern u8 tfp_skybox_bubbles_bubles_ci8[];
+extern u8 tfp_skybox_bubbles_bubles_pal_rgba16[];
+extern Vtx tfp_skybox_bubbles_Cube_002_mesh_layer_1_vtx_0[14];
+extern Gfx tfp_skybox_bubbles_Cube_002_mesh_layer_1_tri_0[];
+extern Vtx tfp_skybox_bubbles_Cube_002_mesh_layer_5_vtx_0[150];
+extern Gfx tfp_skybox_bubbles_Cube_002_mesh_layer_5_tri_0[];
+extern Gfx mat_tfp_skybox_bubbles_sky_002_v4_005[];
+extern Gfx mat_revert_tfp_skybox_bubbles_sky_002_v4_005[];
+extern Gfx mat_tfp_skybox_bubbles_f3dlite_material_003[];
+extern Gfx mat_revert_tfp_skybox_bubbles_f3dlite_material_003[];
+extern Gfx tfp_skybox_bubbles_Cube_002_mesh_layer_1[];
+extern Gfx tfp_skybox_bubbles_Cube_002_mesh_layer_5[];
+extern Gfx tfp_skybox_bubbles_material_revert_render_settings[];

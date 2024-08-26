@@ -1,6 +1,3 @@
-Lights1 grapple_hook_f3d_material_003_lights = gdSPDefLights1(
-	0x50, 0x50, 0x50,
-	0xA0, 0xA0, 0xA0, 0x28, 0x28, 0x28);
 
 Vtx grapple_hook_Plane_001_mesh_layer_1_vtx_0[41] = {
 	{{{0, -6, -15},0, {-16, 1008},{0x0, 0xB8, 0x97, 0xFF}}},
@@ -104,7 +101,8 @@ Gfx mat_grapple_hook_f3d_material_003[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(grapple_hook_f3d_material_003_lights),
+    gsSPLightColor(LIGHT_1, 0xa0a0a0ff),
+    gsSPLightColor(LIGHT_2, 0x505050ff),
 	gsSPEndDisplayList(),
 };
 

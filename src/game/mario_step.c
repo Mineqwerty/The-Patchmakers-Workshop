@@ -178,6 +178,7 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed) {
                 m->quicksandDepth = 0.0f;
                 break;
         }
+
     }
 
     return FALSE;
@@ -190,8 +191,10 @@ u32 mario_update_water_death_floor(struct MarioState *m, f32 sinkingSpeed) {
 
         switch (m->floor->type) {
             case SURFACE_WATER_DEATH:
-                update_mario_sound_and_camera(m);
-                return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                if (m->equippedPatch != PATCH_MARINE) {
+                    update_mario_sound_and_camera(m);
+                    return drop_and_set_mario_action(m, ACT_RUSHING_WATER_DEATH, 0);
+                }
                 break;
             break;
 
@@ -271,8 +274,10 @@ void stop_and_set_height_to_floor(struct MarioState *m) {
     mario_set_forward_vel(m, 0.0f);
     m->vel[1] = 0.0f;
 
-    //! This is responsible for some downwarps.
-    m->pos[1] = m->floorHeight;
+    // HackerSM64 2.1: This check fixes the ledgegrab downwarp after being pushed off a ledge.
+    if (m->pos[1] <= m->floorHeight + 160.0f) {
+        m->pos[1] = m->floorHeight;
+    }
 
     vec3f_copy(marioObj->header.gfx.pos, m->pos);
     vec3s_set(marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -288,9 +293,10 @@ s32 stationary_ground_step(struct MarioState *m) {
     if (takeStep) {
         stepResult = perform_ground_step(m);
     } else {
-        //! TODO - This is responsible for many stationary downwarps but is
-        // important for stuff like catching Bowser in midair, figure out a good way to fix
-        m->pos[1] = m->floorHeight;
+        // HackerSM64 2.1: This check prevents the downwarps that plagued stationary actions.
+        if (m->pos[1] <= m->floorHeight + 160.0f) {
+            m->pos[1] = m->floorHeight;
+        }
 
         vec3f_copy(marioObj->header.gfx.pos, m->pos);
         vec3s_set(marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -336,6 +342,10 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
     }
 
     if (floorHeight + 160.0f >= ceilHeight) {
+        return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
+    }
+
+    if (m->wall && m->wall->type == SURFACE_INVISIBLE_WALL) {
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
     }
 
@@ -485,6 +495,11 @@ s32 bonk_or_hit_lava_wall(struct MarioState *m, struct WallCollisionData *wallDa
             if (wallData->walls[i]->type == SURFACE_BURNING || wallData->walls[i]->type == SURFACE_THORN_WALL) {
                 set_mario_wall(m, wallData->walls[i]);
                 return AIR_STEP_HIT_LAVA_WALL;
+            }
+            
+            if (wallData->walls[i]->type == SURFACE_INVISIBLE_WALL) {
+                set_mario_wall(m, wallData->walls[i]);
+                return AIR_STEP_HIT_CEILING;
             }
 
             // Update wall reference (bonked wall) only if the new wall has a better facing angle
@@ -708,6 +723,14 @@ void apply_gravity(struct MarioState *m) {
                 m->vel[1] = -37.5f;
             }
         }
+    } else if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+        m->vel[1] -= 2.0f;
+        if (m->floor && m->floor->type == SURFACE_HURT_FLOOR && m->vel[1] < -20.0f && gCurrLevelNum == LEVEL_SSL && gCurrAreaIndex == 1) {
+            m->vel[1] = -20.0f;
+        }
+        else if (m->vel[1] < -50.0f) {
+            m->vel[1] = -50.0f;
+        }
     } else {
         m->vel[1] -= 4.0f;
         if (m->vel[1] < -75.0f) {
@@ -781,7 +804,13 @@ s32 perform_air_step(struct MarioState *m, u32 stepArg) {
     apply_vertical_wind(m);
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    if (m->action == ACT_MARINE_PATCH_AIRBORNE || m->action == ACT_MARINE_PATCH_WATERFALL) {
+        m->marioObj->header.gfx.angle[1] = m->faceAngle[1];
+    }
+    else {
+        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    }
+    
 
     return stepResult;
 }

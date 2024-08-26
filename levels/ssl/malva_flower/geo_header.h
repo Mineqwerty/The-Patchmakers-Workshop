@@ -1,0 +1,14 @@
+extern const GeoLayout malva_flower_geo[];
+extern Lights1 malva_flower_f3dlite_material_026_lights;
+extern Lights1 malva_flower_f3dlite_material_lights;
+extern u8 malva_flower_malvabud_ia8[];
+extern u8 malva_flower_malvapetal_rgba16[];
+extern Vtx malva_flower_Circle_011_mesh_layer_1_vtx_0[46];
+extern Gfx malva_flower_Circle_011_mesh_layer_1_tri_0[];
+extern Vtx malva_flower_Circle_011_mesh_layer_4_vtx_0[28];
+extern Gfx malva_flower_Circle_011_mesh_layer_4_tri_0[];
+extern Gfx mat_malva_flower_f3dlite_material_026[];
+extern Gfx mat_malva_flower_f3dlite_material[];
+extern Gfx mat_revert_malva_flower_f3dlite_material[];
+extern Gfx malva_flower_Circle_011_mesh_layer_1[];
+extern Gfx malva_flower_Circle_011_mesh_layer_4[];

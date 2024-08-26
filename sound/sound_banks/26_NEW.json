@@ -1,0 +1,83 @@
+{
+  "date": "1996-03-19",
+  "sample_bank": "sfx_new",
+  "envelopes": {
+    "envelope0": [
+      [
+        1,
+        32700
+      ],
+      "hang"
+    ]
+  },
+  "instruments": {
+    "inst_mimic_laugh": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "mimic_laugh"
+    },
+    "inst_breeze_restore": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breeze_restore"
+    },
+    "inst_miasma_grow": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_grow"
+    },
+    "inst_miasma_slice": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_slice"
+    },
+    "inst_miasma_storm_l": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "miasma_storm_l"
+    },
+    "inst_indoor_winds": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "indoor_winds"
+    },
+    "inst_breaker_spark_1": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_1"
+    },
+    "inst_breaker_spark_2": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_2"
+    },
+    "inst_breaker_spark_3": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "breaker_spark_3"
+    },
+    "inst_machine_lock": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "machine_lock"
+    },
+    "inst_machine_click": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "machine_click"
+    }
+  },
+  "instrument_list": [
+    "inst_mimic_laugh",
+    "inst_breeze_restore",
+    "inst_miasma_grow",
+    "inst_miasma_slice",
+    "inst_miasma_storm_l",
+    "inst_indoor_winds",
+    "inst_breaker_spark_1",
+    "inst_breaker_spark_2",
+    "inst_breaker_spark_3",
+    "inst_machine_lock",
+    "inst_machine_click"
+  ]
+}

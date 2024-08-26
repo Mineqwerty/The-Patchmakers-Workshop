@@ -11,7 +11,11 @@
         "07",
         "08_mario",
         "09",
-        "0A_mario_peach"
+        "0A_mario_peach",
+        "0B_patch_abilities",
+        "26_NEW",
+        "27_NEW_2",
+        "28_NEW_ENV"
     ],
     "01_cutscene_collect_star": [
         "0C"
@@ -35,7 +39,7 @@
         "12"
     ],
     "08_level_snow": [
-        "0B"
+        "0C"
     ],
     "09_level_slide": [
         "0D"
@@ -161,5 +165,38 @@
     ],
     "2F_lady_intro": [
         "21"
+    ],
+    "30_the_far_plane": [
+        "streamed_audio"
+    ],
+    "31_stone_patch_cutscene": [
+        "0C"
+    ],
+    "32_title": [
+        "streamed_audio"
+    ],
+    "33_patch_get": [
+        "0C"
+    ],
+    "34_subterranean_seaway": [
+        "0C"
+    ],
+    "35_subterranean_seaway_select": [
+        "14_piranha_music_box"
+    ],
+    "36_candlelit_chamber": [
+        "0C"
+    ],
+    "37_candlelit_chamber_select": [
+        "14_piranha_music_box"
+    ],
+    "38_hidden_village_hold": [
+        "0C"
+    ],
+    "39_mistress_theme": [
+        "0C"
+    ],
+    "3A_custom_crickets": [
+        "streamed_audio"
     ]
 }

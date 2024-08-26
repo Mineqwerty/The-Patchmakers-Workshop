@@ -16,6 +16,13 @@
                 29430
             ],
             "hang"
+        ],
+        "envelope1": [
+            [
+                1,
+                32700
+            ],
+            "hang"
         ]
     },
     "instruments": {
@@ -28,10 +35,46 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "2E_custom_chamber"
+        },
+        "inst2": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "the_far_plane_L"
+        },
+        "inst3": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "the_far_plane_R"
+        },
+        "inst4": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "title_L"
+        },
+        "inst5": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": "title_R"
+        },
+        "inst6": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "crickets_L"
+        },
+        "inst7": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "crickets_L"
         }
     },
     "instrument_list": [
         "inst0",
-        "inst1"
+        "inst1",
+        "inst2",
+        "inst3",
+        "inst4",
+        "inst5",
+        "inst6",
+        "inst7"
     ]
 }

@@ -10,6 +10,7 @@
 #include "engine/behavior_script.h"
 #include "audio/external.h"
 #include "textures.h"
+#include "mario_actions_submerged.h"
 #include "level_geo.h"
 
 /**
@@ -54,7 +55,7 @@ Vtx_t gBubbleTempVtx[3] = {
  * laterally within distance of point (x, z). Used to
  * kill flower and bubble particles.
  */
-s32 particle_is_laterally_close(s32 index, s32 x, s32 z, s32 distance) {
+s32 particle_is_laterally_close(s32 index, s32 x, s32 z, u32 distance) {
     s32 xPos = (gEnvFxBuffer + index)->xPos;
     s32 zPos = (gEnvFxBuffer + index)->zPos;
 
@@ -188,6 +189,45 @@ void envfx_update_rain(Vec3s centerPos) {
                 (gEnvFxBuffer + i)->animFrame = 0;
                 (gEnvFxBuffer + i)->isAlive = 0;
             }
+        }
+    }
+}
+
+void envfx_update_fairy_lights(Vec3s centerPos) {
+    s32 i;
+    s32 globalTimer = gGlobalTimer;
+
+    s16 centerX = centerPos[0];
+    s16 centerZ = centerPos[2];
+
+    for (i = 0; i < sBubbleParticleMaxCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerX, centerZ, 4000);
+        if (!(gEnvFxBuffer + i)->isAlive) {
+            (gEnvFxBuffer + i)->xPos = random_flower_offset() + centerX;
+            (gEnvFxBuffer + i)->zPos = random_flower_offset() + centerZ;
+            (gEnvFxBuffer + i)->yPos = random_u16()%200 + find_floor_height((gEnvFxBuffer + i)->xPos, 10000.0f, (gEnvFxBuffer + i)->zPos);
+            (gEnvFxBuffer + i)->isAlive = TRUE;
+            (gEnvFxBuffer + i)->animFrame = random_u16() % 12;
+            (gEnvFxBuffer + i)->randParticleSpeed = 10*random_float() + 10.0f;
+            (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
+        } else if ((globalTimer % 2 == 0)) {
+            if ((gEnvFxBuffer + i)->animFrame <= 11) {
+            (gEnvFxBuffer + i)->animFrame++;
+            }
+            else {
+                (gEnvFxBuffer + i)->animFrame = 0;
+            }
+        }
+
+        if ((gEnvFxBuffer + i)->isAlive) {
+            (gEnvFxBuffer + i)->angleAndDist[1] = random_u16() % 500 - 200;
+            (gEnvFxBuffer + i)->angleAndDist[0] += (gEnvFxBuffer + i)->angleAndDist[1];
+
+            (gEnvFxBuffer + i)->xPos += (gEnvFxBuffer + i)->randParticleSpeed * sins((gEnvFxBuffer + i)->angleAndDist[0]);
+            (gEnvFxBuffer + i)->xPos += (gEnvFxBuffer + i)->randParticleSpeed * coss((gEnvFxBuffer + i)->angleAndDist[0]);
+
+            (gEnvFxBuffer + i)->yPos += 20.0f - (0.5f * (gEnvFxBuffer + i)->randParticleSpeed + random_float());
+
         }
     }
 }
@@ -393,6 +433,96 @@ void envfx_update_jetstream(void) {
     }
 }
 
+void envfx_update_force_floor_bubbles(Vec3s centerPos) {
+    s32 i;
+
+    for (i = 0; i < sBubbleParticleMaxCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerPos[0], centerPos[2], 4000);
+        if (!(gEnvFxBuffer + i)->isAlive) {
+            
+            
+            (gEnvFxBuffer + i)->xPos = centerPos[0] + ((random_float() - 0.5f) * 4000.0f);
+            (gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
+            struct Surface *floor = NULL;
+            struct Surface *waterFloor = NULL;
+            find_floor((gEnvFxBuffer + i)->xPos, centerPos[1] + 500, (gEnvFxBuffer + i)->zPos, &floor);
+            (gEnvFxBuffer + i)->yPos = find_floor_height((gEnvFxBuffer + i)->xPos, centerPos[1], (gEnvFxBuffer + i)->zPos) + ((random_float()) * 200.0f);
+            if (floor && (floor->type == SURFACE_FLOWING_WATER || floor->type == SURFACE_VERTICAL_FLOWING_WATER)) {
+                (gEnvFxBuffer + i)->floorHeight = find_water_level_and_floor((gEnvFxBuffer + i)->xPos, 10000, (gEnvFxBuffer + i)->zPos, &waterFloor);
+                (gEnvFxBuffer + i)->angleAndDist[0] = ((random_float() - 0.5f) * 0x100) + (floor->force << 8);
+                (gEnvFxBuffer + i)->angleAndDist[1] = (sWaterCurrentSpeeds[floor->force >> 8]);
+                (gEnvFxBuffer + i)->randParticleSpeed = ((floor->type == SURFACE_VERTICAL_FLOWING_WATER) ? sWaterVerticalCurrentSpeeds[(floor->force >> 8) - 5] : random_sign() * (random_u16() % 3));
+            }
+            else {
+                (gEnvFxBuffer + i)->angleAndDist[0] = 0;
+                (gEnvFxBuffer + i)->angleAndDist[1] = 100.0f;
+                (gEnvFxBuffer + i)->yPos = -11000;
+            }
+        } else {
+            if (((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > (gEnvFxBuffer + i)->floorHeight) {
+                //TODO: this is a shit solution for respawning bubbles
+                (gEnvFxBuffer + i)->zPos = -15000;
+                (gEnvFxBuffer + i)->xPos = -15000;
+                (gEnvFxBuffer + i)->yPos = -11000;
+                continue;
+            }
+            (gEnvFxBuffer + i)->xPos += sins((gEnvFxBuffer + i)->angleAndDist[0]) * (gEnvFxBuffer + i)->angleAndDist[1];
+            (gEnvFxBuffer + i)->zPos += coss((gEnvFxBuffer + i)->angleAndDist[0]) * (gEnvFxBuffer + i)->angleAndDist[1];
+            (gEnvFxBuffer + i)->yPos += (gEnvFxBuffer + i)->randParticleSpeed;
+
+        }
+    }
+}
+
+void envfx_update_column_bubbles(Vec3s centerPos) {
+    s32 i;
+
+    for (i = 0; i < sBubbleParticleMaxCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerPos[0], centerPos[2], 4000);
+        if (!(gEnvFxBuffer + i)->isAlive) {
+            
+            
+            (gEnvFxBuffer + i)->xPos = centerPos[0] + ((random_float() - 0.5f) * 4000.0f);
+            (gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
+            struct Surface *floor = NULL;
+            find_floor((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos, &floor);
+            (gEnvFxBuffer + i)->yPos = find_floor_height((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos);
+            if (floor && (floor->type == SURFACE_BUBBLE_COLUMN)) {
+                (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 350;
+                (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
+                (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
+                (gEnvFxBuffer + i)->randParticleSpeed = 5.0f;
+            }
+            else if (floor && (floor->type == SURFACE_SS_WARP)) {
+                (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 3050;
+                (gEnvFxBuffer + i)->yPos += 630;
+                (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
+                (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
+                (gEnvFxBuffer + i)->randParticleSpeed = -5.0f;
+            }
+            else {
+                (gEnvFxBuffer + i)->angleAndDist[0] = 0;
+                (gEnvFxBuffer + i)->angleAndDist[1] = 100.0f;
+                (gEnvFxBuffer + i)->zPos = -32000;
+                (gEnvFxBuffer + i)->xPos = -32000;
+                (gEnvFxBuffer + i)->yPos = -11000;
+            }
+        } else {
+            if ((((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > (gEnvFxBuffer + i)->floorHeight) || (gEnvFxBuffer + i)->yPos < 1300) {
+                //TODO: this is a shit solution for respawning bubbles
+                (gEnvFxBuffer + i)->zPos = -15000;
+                (gEnvFxBuffer + i)->xPos = -15000;
+                (gEnvFxBuffer + i)->yPos = -11000;
+                continue;
+            }
+            (gEnvFxBuffer + i)->yPos += (gEnvFxBuffer + i)->randParticleSpeed;
+            (gEnvFxBuffer + i)->xPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * sins((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
+            (gEnvFxBuffer + i)->zPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * coss((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
+
+        }
+    }
+}
+
 /**
  * Initialize bubble (or flower) effect by allocating a buffer to store
  * the state of each particle and setting the initial and max count.
@@ -406,11 +536,11 @@ s32 envfx_init_bubble(s32 mode) {
             return FALSE;
 
         case ENVFX_PETALS:
-            sBubbleParticleCount = 3;
+            sBubbleParticleCount = 10;
             sBubbleParticleMaxCount = 10;
             break;
         case ENVFX_RAIN:
-            sBubbleParticleCount = 5;
+            sBubbleParticleCount = 30;
             sBubbleParticleMaxCount = 30;
             break;
 
@@ -431,15 +561,26 @@ s32 envfx_init_bubble(s32 mode) {
         case ENVFX_JETSTREAM_BUBBLES:
             sBubbleParticleCount = 60;
             break;
+
+        case ENVFX_FORCE_FLOOR_BUBBLES:
+            sBubbleParticleCount = 60;
+            break;
+        case ENVFX_COLUMN_BUBBLES:
+            sBubbleParticleCount = 60;
+            break;
+        case ENVFX_FAIRY_LIGHTS:
+            sBubbleParticleCount = 40;
+            sBubbleParticleMaxCount = 40;
+        break;
     }
 
     gEnvFxBuffer = mem_pool_alloc(gEffectsMemoryPool,
-                                  sBubbleParticleMaxCount * sizeof(struct EnvFxParticle));
+                                  sBubbleParticleCount * sizeof(struct EnvFxParticle));
     if (gEnvFxBuffer == NULL) {
         return FALSE;
     }
 
-    bzero(gEnvFxBuffer, sBubbleParticleMaxCount * sizeof(struct EnvFxParticle));
+    bzero(gEnvFxBuffer, sBubbleParticleCount * sizeof(struct EnvFxParticle));
     bzero(gEnvFxBubbleConfig, sizeof(gEnvFxBubbleConfig));
 
     switch (mode) {
@@ -459,7 +600,7 @@ s32 envfx_init_bubble(s32 mode) {
  * Also sets the given vertices to the correct shape for each mode,
  * though they are not being rotated yet.
  */
-void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3) {
+void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3, Vec3s marioPos) {
 
     switch (mode) {
         case ENVFX_PETALS:
@@ -471,6 +612,12 @@ void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s ver
 
             case ENVFX_RAIN:
             envfx_update_rain(camTo);
+            vertex1[0] = 50;  vertex1[1] = 0;  vertex1[2] = 0;
+            vertex2[0] = 0;   vertex2[1] = 75; vertex2[2] = 0;
+            vertex3[0] = -50; vertex3[1] = 0;  vertex3[2] = 0;
+            break;
+        case ENVFX_FAIRY_LIGHTS:
+        envfx_update_fairy_lights(camTo);
             vertex1[0] = 50;  vertex1[1] = 0;  vertex1[2] = 0;
             vertex2[0] = 0;   vertex2[1] = 75; vertex2[2] = 0;
             vertex3[0] = -50; vertex3[1] = 0;  vertex3[2] = 0;
@@ -499,6 +646,20 @@ void envfx_bubbles_update_switch(s32 mode, Vec3s camTo, Vec3s vertex1, Vec3s ver
 
         case ENVFX_JETSTREAM_BUBBLES:
             envfx_update_jetstream();
+            vertex1[0] = 40;  vertex1[1] = 0;  vertex1[2] = 0;
+            vertex2[0] = 0;   vertex2[1] = 60; vertex2[2] = 0;
+            vertex3[0] = -40; vertex3[1] = 0;  vertex3[2] = 0;
+            break;
+
+        case ENVFX_FORCE_FLOOR_BUBBLES:
+            envfx_update_force_floor_bubbles(marioPos);
+            vertex1[0] = 40;  vertex1[1] = 0;  vertex1[2] = 0;
+            vertex2[0] = 0;   vertex2[1] = 60; vertex2[2] = 0;
+            vertex3[0] = -40; vertex3[1] = 0;  vertex3[2] = 0;
+            break;
+
+        case ENVFX_COLUMN_BUBBLES:
+            envfx_update_column_bubbles(marioPos);
             vertex1[0] = 40;  vertex1[1] = 0;  vertex1[2] = 0;
             vertex2[0] = 0;   vertex2[1] = 60; vertex2[2] = 0;
             vertex3[0] = -40; vertex3[1] = 0;  vertex3[2] = 0;
@@ -595,6 +756,11 @@ void envfx_set_bubble_texture(s32 mode, s16 index) {
             frame = (gEnvFxBuffer + index)->animFrame;
             break;
 
+        case ENVFX_FAIRY_LIGHTS:
+            imageArr = segmented_to_virtual(&effect_light_textures);
+            frame = (gEnvFxBuffer + index)->animFrame;
+        break;
+
         case ENVFX_FLOWERS:
             imageArr = segmented_to_virtual(&flower_bubbles_textures_ptr_0B002008);
             frame = (gEnvFxBuffer + index)->animFrame;
@@ -607,6 +773,8 @@ void envfx_set_bubble_texture(s32 mode, s16 index) {
 
         case ENVFX_WHIRLPOOL_BUBBLES:
         case ENVFX_JETSTREAM_BUBBLES:
+        case ENVFX_FORCE_FLOOR_BUBBLES:
+        case ENVFX_COLUMN_BUBBLES:
             imageArr = segmented_to_virtual(&bubble_ptr_0B006848);
             frame = 0;
             break;
@@ -616,6 +784,10 @@ void envfx_set_bubble_texture(s32 mode, s16 index) {
     if (mode == ENVFX_RAIN) {
        gDPSetTextureImage(sGfxCursor++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, *(imageArr + frame));
     gSPDisplayList(sGfxCursor++, &rain_env_dl);
+    }
+    else if (mode == ENVFX_FAIRY_LIGHTS) {
+    gDPSetTextureImage(sGfxCursor++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, *(imageArr + frame));
+    gSPDisplayList(sGfxCursor++, &fairy_light_dl);
     }
     else {
     gDPSetTextureImage(sGfxCursor++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, *(imageArr + frame));
@@ -627,7 +799,7 @@ void envfx_set_bubble_texture(s32 mode, s16 index) {
  * Updates the bubble particle positions, then generates and returns a display
  * list drawing them.
  */
-Gfx *envfx_update_bubble_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
+Gfx *envfx_update_bubble_particles(s32 mode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
     s32 i;
     s16 radius, pitch, yaw;
 
@@ -644,7 +816,7 @@ Gfx *envfx_update_bubble_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFro
     sGfxCursor = gfxStart;
 
     orbit_from_positions(camTo, camFrom, &radius, &pitch, &yaw);
-    envfx_bubbles_update_switch(mode, camTo, vertex1, vertex2, vertex3);
+    envfx_bubbles_update_switch(mode, camTo, vertex1, vertex2, vertex3, marioPos);
     rotate_triangle_vertices(vertex1, vertex2, vertex3, pitch, yaw);
 
     gSPDisplayList(sGfxCursor++, &tiny_bubble_dl_0B006D38);
@@ -666,7 +838,50 @@ Gfx *envfx_update_bubble_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFro
     return gfxStart;
 }
 
-Gfx *envfx_update_rain_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
+Gfx *envfx_update_fairy_light_particles(s32 mode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
+    s32 i;
+    s16 radius, pitch, yaw;
+
+    Vec3s vertex1;
+    Vec3s vertex2;
+    Vec3s vertex3;
+
+    Gfx *gfxStart = alloc_display_list(((sBubbleParticleMaxCount / 5) * 10 + sBubbleParticleMaxCount + 3)
+                                       * sizeof(Gfx));
+    if (gfxStart == NULL) {
+        return NULL;
+    }
+
+    sGfxCursor = gfxStart;
+
+    orbit_from_positions(camTo, camFrom, &radius, &pitch, &yaw);
+    envfx_bubbles_update_switch(mode, camTo, vertex1, vertex2, vertex3, marioPos);
+    rotate_triangle_vertices(vertex1, vertex2, vertex3, pitch, yaw);
+
+    gSPDisplayList(sGfxCursor++, &tiny_bubble_dl_0B006D38);
+    
+    for (i = 0; i < sBubbleParticleMaxCount; i += 5) {
+        gDPPipeSync(sGfxCursor++);
+        vertex1[0] += 2;
+        vertex2[1] -= 2;
+        vertex3[0] -= 2;
+        gDPSetPrimColor(sGfxCursor++, 0, 0, 212 + ((random_u16()%20)-10), 126 + ((random_u16()%20)-10), 205 + ((random_u16()%20)-10), 255);
+        envfx_set_bubble_texture(mode, i);
+        append_bubble_vertex_buffer(sGfxCursor++, i, vertex1, vertex2, vertex3, (Vtx *) gBubbleTempVtx);
+        gSP1Triangle(sGfxCursor++, 0, 1, 2, 0);
+        gSP1Triangle(sGfxCursor++, 3, 4, 5, 0);
+        gSP1Triangle(sGfxCursor++, 6, 7, 8, 0);
+        gSP1Triangle(sGfxCursor++, 9, 10, 11, 0);
+        gSP1Triangle(sGfxCursor++, 12, 13, 14, 0);
+    }
+
+    gSPDisplayList(sGfxCursor++, &tiny_bubble_dl_0B006AB0);
+    gSPEndDisplayList(sGfxCursor++);
+
+    return gfxStart;
+}
+
+Gfx *envfx_update_rain_particles(s32 mode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
     s32 i;
     s16 radius, pitch, yaw;
 
@@ -683,7 +898,7 @@ Gfx *envfx_update_rain_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFrom,
     sGfxCursor = gfxStart;
 
     orbit_from_positions(camTo, camFrom, &radius, &pitch, &yaw);
-    envfx_bubbles_update_switch(mode, camTo, vertex1, vertex2, vertex3);
+    envfx_bubbles_update_switch(mode, camTo, vertex1, vertex2, vertex3, marioPos);
     rotate_triangle_vertices(vertex1, vertex2, vertex3, pitch, yaw);
 
     gSPDisplayList(sGfxCursor++, &tiny_bubble_dl_0B006D38);
@@ -712,6 +927,12 @@ void envfx_set_max_bubble_particles(s32 mode) {
             break;
         case ENVFX_JETSTREAM_BUBBLES:
             sBubbleParticleMaxCount = gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT];
+            break;
+        case ENVFX_FORCE_FLOOR_BUBBLES:
+            sBubbleParticleMaxCount = 60;
+            break;
+        case ENVFX_COLUMN_BUBBLES:
+            sBubbleParticleMaxCount = 60;
             break;
     }
 }
@@ -742,6 +963,10 @@ Gfx *envfx_update_bubbles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) 
             gfx = envfx_update_rain_particles(ENVFX_RAIN, marioPos, camFrom, camTo);
             break;
 
+        case ENVFX_FAIRY_LIGHTS:
+            gfx = envfx_update_fairy_light_particles(ENVFX_FAIRY_LIGHTS, marioPos, camFrom, camTo);
+            break;
+
         case ENVFX_FLOWERS:
             gfx = envfx_update_bubble_particles(ENVFX_FLOWERS, marioPos, camFrom, camTo);
             break;
@@ -756,6 +981,13 @@ Gfx *envfx_update_bubbles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) 
 
         case ENVFX_JETSTREAM_BUBBLES:
             gfx = envfx_update_bubble_particles(ENVFX_JETSTREAM_BUBBLES, marioPos, camFrom, camTo);
+            break;
+
+        case ENVFX_FORCE_FLOOR_BUBBLES:
+            gfx = envfx_update_bubble_particles(ENVFX_FORCE_FLOOR_BUBBLES, marioPos, camFrom, camTo);
+            break;
+        case ENVFX_COLUMN_BUBBLES:
+            gfx = envfx_update_bubble_particles(ENVFX_COLUMN_BUBBLES, marioPos, camFrom, camTo);
             break;
 
         default:

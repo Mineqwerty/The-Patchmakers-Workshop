@@ -14,3 +14,4 @@
 #include "bub/geo.inc.c"
 #include "water_ring/geo.inc.c"
 #include "treasure_chest/geo.inc.c"
+#include "yarn_blooper/geo.inc.c"

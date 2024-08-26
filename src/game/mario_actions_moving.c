@@ -438,13 +438,24 @@ void update_walking_speed(struct MarioState *m) {
     f32 maxTargetSpeed;
     f32 targetSpeed;
 
-    if (m->floor != NULL && m->floor->type == SURFACE_SLOW || m->floor != NULL && m->curPatch == PATCH_STONE) {
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW) {
         maxTargetSpeed = 24.0f;
     } else {
         maxTargetSpeed = 32.0f;
     }
 
+    
+
     targetSpeed = m->intendedMag < maxTargetSpeed ? m->intendedMag : maxTargetSpeed;
+
+    if (m->boostTimer > 0) {
+        if (m->boostTimer < 30) {
+            targetSpeed = 32.0f + 3*m->boostTimer;
+        }
+        else {
+            targetSpeed = 128.0f;
+        }
+    }
 
     if (m->quicksandDepth > 10.0f) {
         targetSpeed *= 6.25f / m->quicksandDepth;
@@ -459,8 +470,10 @@ void update_walking_speed(struct MarioState *m) {
     } else if (m->floor->normal.y >= 0.95f) {
         m->forwardVel -= 1.0f;
     }
-
-    if (m->forwardVel > 48.0f) {
+    if (m->boostTimer > 0) {
+        m->forwardVel = targetSpeed;
+    }
+    else if (m->forwardVel > 48.0f) {
         m->forwardVel = 48.0f;
     }
 
@@ -489,10 +502,11 @@ void update_walking_speed(struct MarioState *m) {
 
 s32 should_begin_sliding(struct MarioState *m) {
     if (m->input & INPUT_ABOVE_SLIDE) {
+        s32 superSlippery = (m->floor != NULL) && (m->floor->type == SURFACE_SUPER_SLIPPERY);
         s32 slideLevel = (m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE;
         s32 movingBackward = m->forwardVel <= -1.0f;
 
-        if (slideLevel || movingBackward || mario_facing_downhill(m, FALSE)) {
+        if (superSlippery || slideLevel || movingBackward || mario_facing_downhill(m, FALSE)) {
             return TRUE;
         }
     }
@@ -605,11 +619,20 @@ void anim_and_audio_for_walk(struct MarioState *m) {
                     if (intendedSpeed < 18.0f) {
                         m->actionTimer = WALK_SPEED_WALKING;
                     } else {
-                        //! (Speed Crash) If Mario's speed is more than 2^17.
-                        animSpeed = (s32)(intendedSpeed / 4.0f * 0x10000);
-                        set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, animSpeed);
-                        play_step_sound(m, 9, 45);
-                        targetPitch = tilt_body_running(m);
+                        if (m->boostTimer > 10 && m->forwardVel > 60) {
+                            animSpeed = (s32)(intendedSpeed / 7.0f * 0x10000);
+                            m->marioBodyState->handState = MARIO_HAND_OPEN;
+                            set_mario_anim_with_accel(m, MARIO_ANIM_P_RUN, animSpeed);
+                            play_step_sound(m, 9, 45);
+                            targetPitch = tilt_body_running(m);
+                        }
+                        else {
+                            //! (Speed Crash) If Mario's speed is more than 2^17.
+                            animSpeed = (s32)(intendedSpeed / 4.0f * 0x10000);
+                            set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, animSpeed);
+                            play_step_sound(m, 9, 45);
+                            targetPitch = tilt_body_running(m);
+                        }
 
                         inLoop = FALSE;
                     }
@@ -693,6 +716,8 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
     //! (Speed Crash) If a wall is after moving 16384 distance, this crashes.
     s32 animSpeed = (s32)(movedDistance * 2.0f * 0x10000);
 
+    
+
     if (m->forwardVel > 6.0f) {
         mario_set_forward_vel(m, 6.0f);
     }
@@ -705,6 +730,9 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
         if (m->wall != NULL) {
             wallAngle = m->wallYaw;
             dWallAngle = wallAngle - m->faceAngle[1];
+            if (m->wall->type == SURFACE_CLIMBABLE_WALL) {
+                return set_mario_action(m, ACT_CLIMBING_WALL, 0);
+            }
         }
 
         if (m->wall == NULL || dWallAngle <= -DEGREES(160) || dWallAngle >= DEGREES(160)) {
@@ -793,7 +821,7 @@ s32 act_walking(struct MarioState *m) {
     
 
 
-    if (should_begin_sliding(m)) {
+    if (should_begin_sliding(m) && m->boostTimer == 0) {
         if (m->curPatch == PATCH_STONE) {
             return set_mario_action(m, ACT_STONE_PATCH_AIR_LAND, 0);
         }
@@ -859,10 +887,17 @@ if (m->curPatch != PATCH_STONE) {
             break;
 
         case GROUND_STEP_HIT_WALL:
-        if (m->curPatch != PATCH_STONE) {
+        if (m->curPatch != PATCH_STONE && m->wall && m->wall->type != SURFACE_INVISIBLE_WALL) {
             push_or_sidle_wall(m, startPos);
             m->actionTimer = 0;
         }
+        else {
+            anim_and_audio_for_walk(m);
+            if (m->intendedMag - m->forwardVel > 16.0f) {
+                m->particleFlags |= PARTICLE_DUST;
+            }
+        }
+            
             break;
     }
 
@@ -877,6 +912,12 @@ s32 act_move_punching(struct MarioState *m) {
     }
 
     if (m->actionState == ACT_STATE_MOVE_PUNCHING_CAN_JUMP_KICK && (m->input & INPUT_A_DOWN)) {
+        if (m->equippedPatch == PATCH_MIASMA) {
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 20, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbonn->oFaceAngleRoll = 0x4000;
+                    ribbonn->oFaceAnglePitch = -0x2000;
+                    SET_BPARAM1(ribbonn->oBehParams, 2);
+                }
         return set_mario_action(m, ACT_JUMP_KICK, 0);
     }
 
@@ -961,6 +1002,55 @@ s32 act_hold_walking(struct MarioState *m) {
     if (0.4f * m->intendedMag - m->forwardVel > 10.0f) {
         m->particleFlags |= PARTICLE_DUST;
     }
+
+    return FALSE;
+}
+
+Vec3f marioCutsceneGoalWalkPos;
+
+s32 act_move_in_cutscene(struct MarioState *m) {
+
+    
+
+    f32 intendedSpeed;
+    f32 dist;
+    vec3f_get_dist(gMarioState->pos, marioCutsceneGoalWalkPos, &dist);
+
+    if (dist < 300) {
+        intendedSpeed = 0;
+        if (m->actionState == 0 && gMarioState->forwardVel < 1.0f) {
+            set_mario_animation(m, MARIO_ANIM_STOP_SKID);
+            m->actionState++;
+        }
+        else if (m->actionState == 1 && is_anim_at_end(m)) {
+            set_mario_action(m, ACT_WAITING_FOR_DIALOG, 0);
+        }
+    }
+    else {
+        intendedSpeed = 24.0f;
+        anim_and_audio_for_walk(m);
+    }
+
+    m->forwardVel = approach_f32_symmetric(m->forwardVel, intendedSpeed, 1.0f);
+
+    m->faceAngle[1] = approach_s16_symmetric(m->faceAngle[1], atan2s(marioCutsceneGoalWalkPos[2] - m->pos[2], marioCutsceneGoalWalkPos[0] - m->pos[0]), 0x200);
+
+    
+
+    if (0.4f * m->intendedMag - m->forwardVel > 10.0f) {
+        m->particleFlags |= PARTICLE_DUST;
+    }
+
+    m->intendedMag = m->forwardVel;
+
+    
+
+    apply_slope_accel(m);
+
+    m->pos[0] += m->vel[0];
+    m->pos[2] += m->vel[2];
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 
     return FALSE;
 }
@@ -2109,6 +2199,7 @@ s32 mario_execute_moving_action(struct MarioState *m) {
 
         case ACT_STONE_PATCH_AIR_LAND:           cancel = act_stone_patch_air_land(m);           break;
         case ACT_STONE_PATCH_GROUNDED:           cancel = act_stone_patch_grounded(m);           break;
+        case ACT_MOVE_IN_CUTSCENE:           cancel = act_move_in_cutscene(m);           break;
     }
     /* clang-format on */
 

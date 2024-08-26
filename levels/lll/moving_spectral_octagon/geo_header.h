@@ -1,0 +1,10 @@
+extern const GeoLayout moving_spectral_octagon_geo[];
+extern u8 moving_spectral_octagon_spectralfog_ia8[];
+extern u8 moving_spectral_octagon_spectralbumps_ia8[];
+extern Vtx moving_spectral_octagon_Plane_007_mesh_layer_5_vtx_cull[8];
+extern Vtx moving_spectral_octagon_Plane_007_mesh_layer_5_vtx_0[43];
+extern Gfx moving_spectral_octagon_Plane_007_mesh_layer_5_tri_0[];
+extern Gfx mat_moving_spectral_octagon_spectral_sucky_layer5[];
+extern Gfx mat_revert_moving_spectral_octagon_spectral_sucky_layer5[];
+extern Gfx moving_spectral_octagon_Plane_007_mesh_layer_5[];
+extern Gfx moving_spectral_octagon_material_revert_render_settings[];

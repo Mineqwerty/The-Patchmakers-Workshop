@@ -10,6 +10,13 @@
 #include "level_geo.h"
 #include "src/game/game_init.h"
 #include "src/game/level_update.h"
+#include "levels/bbh/header.h"
+#include "src/game/fb_effects.h"
+#include "actors/extension_block/geo_header.h"
+#include "levels/wdw/header.inc.h"
+
+struct GraphNode *loopNode;
+struct GraphNode *originalContinueNode;
 
 /**
  * Geo function that generates a displaylist for environment effects such as
@@ -133,4 +140,144 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
         ((struct GraphNodeScale *) node->next)->scale = scale;
     }
     return 0;
+}
+
+s32 renderThreshold = -5000;
+
+Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        
+        //main level geo
+        gLoopCounter = 4;
+        geo_process_node_and_siblings(node->children);
+        gLoopCounter = 0;
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 1;
+        if (gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 2;
+        if (gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 3;
+        if (gMarioState->pos[0] < -renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 5;
+        if (gMarioState->pos[0] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 6;
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 7;
+        if (gMarioState->pos[2] > renderThreshold) {
+            geo_process_node_and_siblings(node->children);
+        }
+        gLoopCounter = 8;
+
+        //TFP theme transitions are scrapped for now
+        /*
+        //TFP TILES
+        s8 themeTransition = -1;
+
+        if (gTatumCount == 4650) {
+            themeTransition = 1;
+        }
+        if (gTatumCount == 7777) {
+            themeTransition = 2;
+        }
+        if (gTatumCount == 10315) {
+            themeTransition = 3;
+        }
+        if (gTatumCount == 16820) {
+            themeTransition = 0;
+            gTatumCount = 0;
+        }
+
+        if (themeTransition >= 0) {
+            extern const u8 tfp_tile_textures_dma[];
+            extern u8 bbh_dl_tiles_rgba16[];
+
+            u8 *tileTexture = segmented_to_virtual(&bbh_dl_tiles_rgba16);
+
+            dma_read(tileTexture, (themeTransition*2048) + tfp_tile_textures_dma, (themeTransition*2048) + tfp_tile_textures_dma + 2048);
+
+            set_fb_effect_type(FBE_EFFECT_MULT);
+            set_motion_blur(255);
+            set_fb_effect_col(255, 255, 255);
+        }
+        */
+
+    }
+    return 0;
+}
+
+Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+
+        if (gLoopCounter == 8) {
+            if (!(gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] > renderThreshold)) {
+                //((struct GraphNodeDisplayList *) node->next)->displayList = NULL; 
+            }
+        }
+
+        ((struct GraphNodeTranslation *) node->next)->translation[0] = ((gLoopCounter % 3) - 1) * 32762;
+        ((struct GraphNodeTranslation *) node->next)->translation[2] = ((gLoopCounter / 3) - 1) * 32762;
+    }
+    return 0;
+}
+
+Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+
+        if (gLoopCounter >= 8) {
+            gLoopCounter = 0;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_get_area_material_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    Gfx *dl = NULL;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+        Gfx *dlHead = NULL;
+        dl = alloc_display_list(2 * sizeof(*dl));
+        dlHead = dl;
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE); 
+
+        Gfx *areaTable = gAreas[gCurrAreaIndex].materialTable;
+        gSPDisplayList(dlHead++, ((Gfx**)areaTable)[obj->oMaterialIndex]);
+        //gSPDisplayList(dlHead++, ((Gfx**)segmented_to_virtual(wdw_area_1_collision_materials))[0]);
+	    gSPEndDisplayList(dlHead);
+    }
+
+    
+    return dl;
+}
+
+Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    Gfx *dl = NULL;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+        Gfx *dlHead = NULL;
+        dl = alloc_display_list(2 * sizeof(*dl));
+        dlHead = dl;
+        SET_GRAPH_NODE_LAYER(currentGraphNode->fnNode.node.flags, LAYER_OPAQUE); 
+
+        Gfx *areaTable = gAreas[gCurrAreaIndex].materialTable;
+        gSPDisplayList(dlHead++, ((Gfx**)areaTable)[obj->oRevertIndex]);
+        //gSPDisplayList(dlHead++, ((Gfx**)segmented_to_virtual(wdw_area_1_collision_materials))[0]);
+	    gSPEndDisplayList(dlHead);
+    }
+
+    
+    return dl;
 }

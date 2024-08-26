@@ -22,6 +22,9 @@
 #define TRAJECTORY_POS(trajId, x, y, z) \
     trajId, x, y, z
 
+#define PATHFIND_NODE(trajId, x, y, z, n1, n1w, n2, n2w, n3, n3w, n4, n4w) \
+    trajId, x, y, z, n1, n1w, n2, n2w, n3, n3w, n4, n4w
+
 #define TRAJECTORY_END() \
     -1
 

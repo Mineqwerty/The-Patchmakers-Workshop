@@ -1,0 +1,13 @@
+extern const GeoLayout corr_skybox_geo[];
+extern u8 corr_skybox_corr_sky_rgba16[];
+extern Vtx corr_skybox_Sphere_007_mesh_layer_3_vtx_0[172];
+extern Gfx corr_skybox_Sphere_007_mesh_layer_3_tri_0[];
+extern Vtx corr_skybox_Sphere_007_mesh_layer_1_vtx_0[30];
+extern Gfx corr_skybox_Sphere_007_mesh_layer_1_tri_0[];
+extern Vtx corr_skybox_Sphere_007_mesh_layer_1_vtx_1[36];
+extern Gfx corr_skybox_Sphere_007_mesh_layer_1_tri_1[];
+extern Gfx mat_corr_skybox_sky_002_v4_011[];
+extern Gfx mat_corr_skybox_f3dlite_material_013[];
+extern Gfx mat_corr_skybox_f3dlite_material_014[];
+extern Gfx corr_skybox_Sphere_007_mesh_layer_3[];
+extern Gfx corr_skybox_Sphere_007_mesh_layer_1[];

@@ -93,4 +93,26 @@ extern const LevelScript level_hmc_entry[];
 
 #include "levels/hmc/header.inc.h"
 
+#include "levels/hmc/tilting_stone_bridge/collision_header.h"
+
+#include "levels/hmc/tilting_stone_bridge/geo_header.h"
+
+#include "levels/hmc/underwater_stone_door/geo_header.h"
+
+#include "levels/hmc/underwater_stone_door/collision_header.h"
+
+#include "levels/hmc/underwater_stone_button/geo_header.h"
+
+#include "levels/hmc/underwater_stone_button_collision/collision_header.h"
+
+#include "levels/hmc/underwater_stone_button/collision_header.h"
+
+#include "levels/hmc/coral_spinner/geo_header.h"
+
+#include "levels/hmc/coral_spinner/collision_header.h"
+
+#include "levels/hmc/glassfish/geo_header.h"
+
+#include "levels/hmc/glassfish/anim_header.h"
+
 #endif

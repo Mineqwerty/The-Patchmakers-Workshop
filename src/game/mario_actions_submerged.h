@@ -36,4 +36,7 @@ enum WaterPlungeFlags { // act_water_plunge
 s32 mario_execute_submerged_action(struct MarioState *m);
 void apply_water_current(struct MarioState *m, Vec3f step);
 
+extern s16 sWaterCurrentSpeeds[];
+extern s16 sWaterVerticalCurrentSpeeds[];
+
 #endif // MARIO_ACTIONS_SUBMERGED_H

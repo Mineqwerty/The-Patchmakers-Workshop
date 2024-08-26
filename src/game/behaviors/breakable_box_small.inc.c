@@ -16,7 +16,14 @@ void bhv_breakable_box_small_init(void) {
     o->oGravity = 2.5f;
     o->oFriction = 0.99f;
     o->oBuoyancy = 1.4f;
-    //cur_obj_scale(0.4f);
+
+    if (cur_obj_has_model(MODEL_METAL_BOX)) {
+        cur_obj_scale(0.3f);
+    }
+    else if (cur_obj_has_model(MODEL_BREAKABLE_BOX_SMALL)) {
+        cur_obj_scale(0.4f);
+    }
+    
     obj_set_hitbox(o, &sBreakableBoxSmallHitbox);
     o->oAnimState = BREAKABLE_BOX_ANIM_STATE_CORK_BOX;
     o->activeFlags |= ACTIVE_FLAG_DESTRUCTIVE_OBJ_DONT_DESTROY;

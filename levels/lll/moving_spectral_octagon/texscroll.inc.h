@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_moving_spectral_octagon_spectral_sucky_layer5();
+extern void scroll_lll_level_geo_moving_spectral_octagon();

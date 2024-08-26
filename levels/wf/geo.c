@@ -52,3 +52,4 @@
 #include "levels/wf/taeber/geo.inc.c"
 #include "levels/wf/taeber_leaves/geo.inc.c"
 #include "levels/wf/blubol/geo.inc.c"
+#include "levels/wf/grounded_patch_chillstep/geo.inc.c"

@@ -108,6 +108,30 @@ void water_ring_act_collected(void) {
     water_ring_set_scale(avgScale);
 }
 
+void water_ring_sub_sea_act_collected(void) {
+    //f32 avgScale = (f32) o->oTimer * 0.2f + o->oWaterRingAvgScale;
+
+    if (o->oTimer == 0) {
+        for (int i = 0; i < 15; i++) {
+            spawn_object_relative(0, random_u16()%400 - 200, random_u16()%400 - 200, random_u16()%400 - 200, o, MODEL_WHITE_PARTICLE, bhvBubbleMaybe);
+            spawn_object_relative(0, random_u16()%400 - 200, random_u16()%400 - 200, random_u16()%400 - 200, o, MODEL_BUBBLE, bhvBubbleMaybe);
+        }
+        o->parentObj->oF4 += 1;
+        o->parentObj->oPosX = o->oPosX;
+        o->parentObj->oPosY = o->oPosY;
+        o->parentObj->oPosZ = o->oPosZ;
+        o->parentObj->oAction = 1;
+        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+    }
+
+    //o->oOpacity -= 10;
+    //if (o->oOpacity < 0) {
+        o->oOpacity = 0;
+    //}
+
+    //water_ring_set_scale(avgScale);
+}
+
 void water_ring_act_not_collected(void) {
     f32 avgScale = (f32) o->oTimer / 225.0f * 3.0f + 0.5f;
 
@@ -200,28 +224,32 @@ void bhv_manta_ray_water_ring_init(void) {
 
 void manta_water_ring_act_not_collected(void) {
     f32 avgScale = (f32) o->oTimer / 50.0f * 1.3f + 0.1f;
-    struct Object *ringSpawner = o->parentObj;
-    struct Object *ringManager = ringSpawner->parentObj;
+
+    if (o->oTimer < 30) {
+        avgScale = 0.1f + sins(o->oTimer * 0x222);
+    }
+    //struct Object *ringSpawner = o->parentObj;
+   // struct Object *ringManager = ringSpawner->parentObj;
 
     if (avgScale > 1.3f) {
         avgScale = 1.3f;
     }
 
-    if (o->oTimer > 150) {
-        o->oOpacity -= 2;
-        if (o->oOpacity < 3) {
-            obj_mark_for_deletion(o);
-        }
-    }
+    //if (o->oTimer > 150) {
+        //o->oOpacity -= 2;
+        //if (o->oOpacity < 3) {
+        //    obj_mark_for_deletion(o);
+        //}
+    //}
 
-    water_ring_check_collection(avgScale, ringManager);
+    //water_ring_check_collection(avgScale, ringManager);
     water_ring_set_scale(avgScale);
     set_object_visibility(o, 5000);
 
-    if (ringSpawner->oWaterRingSpawnerRingsCollected == 4
-        && o->oWaterRingIndex == ringManager->oWaterRingMgrLastRingCollected + 1) {
-        o->oOpacity = sins(o->oTimer * 0x1000) * 200.0f + 50.0f;
-    }
+    //if (ringSpawner->oWaterRingSpawnerRingsCollected == 4
+    //    && o->oWaterRingIndex == ringManager->oWaterRingMgrLastRingCollected + 1) {
+        //o->oOpacity = sins(o->oTimer * 0x1000) * 200.0f + 50.0f;
+    //}
 
     o->oWaterRingAvgScale = avgScale;
 }
@@ -237,3 +265,38 @@ void bhv_manta_ray_water_ring_loop(void) {
             break;
     }
 }
+
+void bhv_sub_sea_water_ring_init(void) {
+    water_ring_init();
+    o->oOpacity = 150;
+    f32 dist;
+    struct Object *controller = cur_obj_find_nearest_object_with_behavior(bhvSubSeaWaterRingManager, &dist);
+    if (controller) {
+        o->parentObj = controller;
+    }
+    o->oFaceAnglePitch = 0x4000;
+}
+
+void bhv_sub_sea_water_ring_loop(void) {
+   switch (o->oAction) {
+        case SS_RING_ACT_INVIS:
+            if (o->parentObj->oF4 == o->oBehParams2ndByte) {
+                o->oAction++;
+            }
+            cur_obj_hide();
+        break;
+        case SS_RING_ACT_NOT_COLLECTED:
+        cur_obj_unhide();
+            manta_water_ring_act_not_collected();
+            if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+
+                o->oAction = SS_RING_ACT_COLLECTED;
+    }
+            break;
+
+        case SS_RING_ACT_COLLECTED:
+            water_ring_sub_sea_act_collected();
+            break;
+    }
+}
+

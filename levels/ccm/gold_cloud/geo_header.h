@@ -1,10 +1,9 @@
 extern const GeoLayout gold_cloud_geo[];
-extern Lights1 gold_cloud_envcloud_layer1_lights;
-extern u8 gold_cloud_goldencloud_ci8[];
-extern u8 gold_cloud_goldencloud_ci8_pal_rgba16[];
+extern Lights1 gold_cloud_envcloud_002_layer1_lights;
+extern u8 gold_cloud_goldencloud_ia16[];
 extern Vtx gold_cloud_Cube_001_mesh_layer_1_vtx_0[169];
 extern Gfx gold_cloud_Cube_001_mesh_layer_1_tri_0[];
-extern Gfx mat_gold_cloud_envcloud_layer1[];
-extern Gfx mat_revert_gold_cloud_envcloud_layer1[];
+extern Gfx mat_gold_cloud_envcloud_002_layer1[];
+extern Gfx mat_revert_gold_cloud_envcloud_002_layer1[];
 extern Gfx gold_cloud_Cube_001_mesh_layer_1[];
 extern Gfx gold_cloud_material_revert_render_settings[];

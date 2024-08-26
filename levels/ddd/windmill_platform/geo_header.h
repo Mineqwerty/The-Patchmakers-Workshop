@@ -1,0 +1,8 @@
+extern const GeoLayout windmill_platform_geo[];
+extern Lights1 windmill_platform_f3dlite_material_002_v5_002_lights;
+extern u8 windmill_platform_cherrywood_rgba16[];
+extern Vtx windmill_platform_Cube_001_mesh_layer_1_vtx_0[180];
+extern Gfx windmill_platform_Cube_001_mesh_layer_1_tri_0[];
+extern Gfx mat_windmill_platform_f3dlite_material_002_v5_002[];
+extern Gfx windmill_platform_Cube_001_mesh_layer_1[];
+extern Gfx windmill_platform_material_revert_render_settings[];

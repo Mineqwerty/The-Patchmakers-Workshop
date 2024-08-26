@@ -26,6 +26,9 @@
 #include "config.h"
 #include "puppycam2.h"
 #include "main.h"
+#include "src/game/geo_misc.h"
+#include "levels/castle_inside/header.h"
+#include "src/game/puppyprint.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
@@ -45,6 +48,13 @@ u8 gPageNum;
 u8 gForceDialogLoad;
 u16 gDialogAdvanceTimer;
 u8 gDialogAuto;
+u8 gNewStarCollected;
+s8 gSongMenuIndex = 0;
+u8 gCurrentSongVersion = 1;
+s8 gScrollSongVersion = 1;
+s8 gCurrentDynamicScroll = -1;
+s16 gSoundMenuDynamicID = -1;
+
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -171,8 +181,18 @@ s8 gOptionsIndex = 0;
 s8 gPatchIndex = 0;
 s8 gPatchIndexX = 0;
 s8 gPatchIndexY = 0;
-u8 gPatchMenuTimer = 0;
+s16 gPatchMenuTimer = 0;
 
+u16 gShakeOffset;
+
+s16 gNewStarIconCoordsX;
+s16 gNewStarIconCoordsY;
+s16 gNewStarIconArcValues[2];
+s16 gNewStarIconApproachSpeedX;
+s16 gNewStarIconApproachSpeedY;
+s16 gMenuShakeX;
+s16 gMenuShakeY;
+s16 gNewStarIconTimer;
 
 void create_dl_identity_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
@@ -624,15 +644,15 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     u8 index = 0;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
-        if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
-        if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
         
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
-        if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
             index += 2;
              gStarSelectDisturbed = 1;
         }
-        if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
             index++;
             gStarSelectDisturbed = 1;
         }
@@ -642,6 +662,15 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
         if (*currentIndex != maxIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)++;
+            if (gMenuMode == MENU_MODE_SOUND_MENU) {
+                if (gCurrSoundMenuSong == gSongMenuIndex) {
+                    gScrollSongVersion = gCurrentDynamicScroll;
+                }
+                else {
+                    gScrollSongVersion = 1;
+                }
+                
+            }
         }
     }
 
@@ -649,6 +678,14 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
         if (*currentIndex != minIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)--;
+            if (gMenuMode == MENU_MODE_SOUND_MENU) {
+                if (gCurrSoundMenuSong == gSongMenuIndex) {
+                    gScrollSongVersion = gCurrentDynamicScroll;
+                }
+                else {
+                    gScrollSongVersion = 1;
+                }
+            }
         }
     }
 
@@ -665,13 +702,61 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     }
 }
 
+u8 gSecondaryMenuHoldKeyTimer;
+u8 gSecondaryMenuHoldKeyIndex;
+
+void handle_menu_scrolling_secondary(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
+    u8 index = 0;
+
+    if (scrollDirection == MENU_SCROLL_VERTICAL) {
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        
+    } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+            index += 2;
+             gStarSelectDisturbed = 1;
+        }
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+            index++;
+            gStarSelectDisturbed = 1;
+        }
+    }
+
+    if (((index ^ gSecondaryMenuHoldKeyIndex) & index) == 2) {
+        if (*currentIndex != maxIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)++;
+        }
+    }
+
+    if (((index ^ gSecondaryMenuHoldKeyIndex) & index) == 1) {
+        if (*currentIndex != minIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            (*currentIndex)--;
+        }
+    }
+
+    if (gSecondaryMenuHoldKeyTimer == 10) {
+        gSecondaryMenuHoldKeyTimer = 8;
+        gSecondaryMenuHoldKeyIndex = 0;
+    } else {
+        gSecondaryMenuHoldKeyTimer++;
+        gSecondaryMenuHoldKeyIndex = index;
+    }
+
+    if ((index & 3) == 0) {
+        gSecondaryMenuHoldKeyTimer = 0;
+    }
+}
+
 void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
     u8 index = 0;
 
-        if (gPlayer3Controller->buttonDown & R_TRIG) {
+        if (gPlayer1Controller->buttonDown & R_TRIG) {
             index += 2;
         }
-        else if (gPlayer3Controller->buttonDown & L_TRIG || gPlayer3Controller->buttonDown & Z_TRIG) {
+        else if (gPlayer1Controller->buttonDown & L_TRIG || gPlayer1Controller->buttonDown & Z_TRIG) {
             index++;
         }
         else {
@@ -712,27 +797,86 @@ void handle_pause_menu_submenu_scrolling(s8 scrollDirection, s8 *currentIndex, s
     }
 }
 
-void handle_patch_menu_scrolling(s8 *currentIndex) {
+s16 find_patch_menu_valid_scroll(s8 direction) {
+    s8 currentIndex = gPatchIndex;
+    u8 indexChanged = FALSE;
+
+        //jump a column if the input moves off the start or end of a row
+        if (currentIndex / 4 == 0 && direction == -4) {
+            u8 balls;
+        }
+        else if (currentIndex / 4 == 3 && direction == 4) {
+            u8 balls;
+        }
+        else {
+            currentIndex = CLAMP(currentIndex + direction, 0, 15);
+        }
+
+        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << currentIndex))) {
+            if (currentIndex / 4 == 0 && direction == -4) {
+                currentIndex = gPatchIndex;
+                break;
+            }
+            else if (currentIndex / 4 == 3 && direction == 4) {
+                currentIndex = gPatchIndex;
+                break;
+            } 
+            else if (currentIndex == 0 && direction == -1) {
+                currentIndex = 15;
+            }
+            else if (currentIndex == 15 && direction == 1) {
+                currentIndex = 0;
+            }
+            else {
+                currentIndex = CLAMP(currentIndex + direction, 0, 15);
+            }
+        }
+
+        indexChanged = !(gPatchIndex == currentIndex);
+        gPatchIndex = currentIndex;
+        return indexChanged;
+}
+
+void handle_patch_menu_scrolling(s8 *currentIndex, u16 patchFlags) {
     s8 index = 0;
-    if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS))) index -=4;
-    if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS))) index += 4;
-    if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS))) index +=1;
-    if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS))) index -=1;
+    u8 indexChanged = 0;
+    u8 direction = 0;
+
+    //patch menu timer will be positive for X and negative for Y
+
+    if (gPatchMenuTimer == 0) {
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS))) {
+            indexChanged = find_patch_menu_valid_scroll(-4);
+            direction = 1;
+        }
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS))) {
+            indexChanged = find_patch_menu_valid_scroll(4);
+            direction = 1;
+        }
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(1);
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(-1);
+    }
     
-    if (gPlayer3Controller->rawStickX < 60 && gPlayer3Controller->rawStickX > -60 &&
-        gPlayer3Controller->rawStickY < 60 && gPlayer3Controller->rawStickY > -60 && gPatchMenuTimer == 1) {
+    if (gPlayer1Controller->rawStickX < 60 && gPlayer1Controller->rawStickX > -60 && gPatchMenuTimer > 0) {
+        gPatchMenuTimer = 0;
+    }
+
+    if (gPlayer1Controller->rawStickY < 60 && gPlayer1Controller->rawStickY > -60 && gPatchMenuTimer < 0) {
             gPatchMenuTimer = 0;
     }
 
 
-    if (gPatchIndex + index < 16 && gPatchIndex + index >= 0 && gPatchMenuTimer == 0 && index != 0) {
-        gPatchIndex += index;
-        gPatchMenuTimer = 1;
+    if (indexChanged) {
+        //gPatchIndex += index;
+        gPatchMenuTimer = (direction == 0 ? 20 : -20);
         play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
     }
 
-    if (gPatchMenuTimer > 1) {
+    if (gPatchMenuTimer > 0) {
         gPatchMenuTimer--;
+    }
+    else if (gPatchMenuTimer < 0) {
+        gPatchMenuTimer++;
     }
 }
 
@@ -1195,6 +1339,13 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
             rgba[2] = 15;
         break;
 
+        case 30:
+            //faded gray
+            rgba[0] = 180;
+            rgba[1] = 180;
+            rgba[2] = 180;
+        break;
+
         default:
             rgba[0] = 255;
             rgba[1] = 255;
@@ -1203,7 +1354,18 @@ void get_colors_for_unique_speaker(s16 dialogID, ColorRGBA rgba) {
     }
 }
 
-void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound) {
+u16 shakeBitmasks[8] = {
+    0b0000000000000011,
+    0b0000000000001100,
+    0b0000000000110000,
+    0b0000000011000000,
+    0b0000001100000000,
+    0b0000110000000000,
+    0b0011000000000000,
+    0b1100000000000000
+};
+
+void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound, u32 flags) {
     u8 strChar;
     s16 colorLoop;
     ColorRGBA rgbaColors = { 0x00, 0x00, 0x00, 0xFF };
@@ -1313,12 +1475,24 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 break;
             default: // any other character
                 if ((lineNum >= lowerBound) && (lineNum <= (lowerBound + linesPerBox))) {
+                    f32 shakeOffsets[2] = {
+                            ((gShakeOffset >> ((linePos % 4) * 4)) & 0x3) - 1,
+                            ((gShakeOffset >> (((linePos % 4) * 4) + 2)) & 0x3) - 1
+                        };
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) {
+                        if (shakeOffsets[0] == 2) shakeOffsets[0] = 0;
+                        if (shakeOffsets[1] == 2) shakeOffsets[1] = 0;
+                        if (linePos % 4 == 0 && (gGlobalTimer % 2) == 1) {
+                            gShakeOffset = random_u16();
+                        }
+                    }
                     if (linePos || xMatrix != 1) {
                         create_dl_translation_matrix(
                             MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
                     }
-
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, shakeOffsets[0], shakeOffsets[1], 0);
                     render_generic_char(strChar);
+                    if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, -(shakeOffsets[0]), -(shakeOffsets[1]), 0);
                     create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0, 0);
                     xMatrix = 1;
                     linePos++;
@@ -1531,7 +1705,7 @@ void render_dialog_entries(void) {
         case DIALOG_STATE_VERTICAL:
             gDialogBoxOpenTimer = 0.0f;
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON)) {
                 if (gLastDialogPageStrPos == -1) {
                     handle_special_dialog_text(gDialogID);
                     gDialogBoxState = DIALOG_STATE_CLOSING;
@@ -1643,7 +1817,7 @@ void new_dialog_render_dialog_entries(void) {
         case DIALOG_STATE_VERTICAL:
             gDialogBoxOpenTimer = 0.0f;
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
                 
                 
                 if (gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) {
@@ -1713,7 +1887,7 @@ void new_dialog_render_dialog_entries(void) {
 #endif
                   ensure_nonnegative(240 + ((dialog->linesPerBox * 80) / DIAG_VAL4) - dialog->width));
                   */
-    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
+    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound, dialog->flags);
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
@@ -1814,7 +1988,7 @@ void new_dialog_render_automatic_dialog(void) {
     }
 
     new_dialog_render_dialog_box_type(dialog, dialog->linesPerBox);
-    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound);
+    new_dialog_handle_dialog_text_and_pages(1, dialog, lowerBound, dialog->flags);
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse >= 1) {
         render_dialog_triangle_choice();
@@ -1829,6 +2003,13 @@ void new_dialog_render_automatic_dialog(void) {
 void set_menu_mode(s16 mode) {
     if (gMenuMode == MENU_MODE_NONE || gMenuMode == MENU_MODE_FELT_GOING_UP) {
         gMenuMode = mode;
+        gNewStarIconCoordsX = -80.0f;
+        gNewStarIconCoordsY = 100.0f;
+        gNewStarIconArcValues[0] = 20.0f;
+        gNewStarIconArcValues[1] = 15.0f;
+        gNewStarIconApproachSpeedX = 12;
+        gNewStarIconApproachSpeedY = 12;
+        gNewStarIconTimer = 0;
     }
 }
 
@@ -2074,20 +2255,14 @@ void change_dialog_camera_angle(void) {
 }
 
 void shade_screen(void) {
-    create_dl_translation_matrix(MENU_MTX_PUSH, GFX_DIMENSIONS_FROM_LEFT_EDGE(0), SCREEN_HEIGHT, 0);
+    Gfx* dlHead = gDisplayListHead;
 
-    // This is a bit weird. It reuses the dialog text box (width 130, height -80),
-    // so scale to at least fit the screen.
-#ifdef WIDESCREEN
-    create_dl_scale_matrix(MENU_MTX_NOPUSH,
-                           GFX_DIMENSIONS_ASPECT_RATIO * SCREEN_HEIGHT / 130.0f, 3.0f, 1.0f);
-#else
-    create_dl_scale_matrix(MENU_MTX_NOPUSH, 2.6f, 3.4f, 1.0f);
-#endif
+    gSPDisplayList(dlHead++, dl_shade_screen_begin);
+    gDPFillRectangle(dlHead++, GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), gBorderHeight,
+        (GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1), ((SCREEN_HEIGHT - gBorderHeight) - 1));
+    gSPDisplayList(dlHead++, dl_shade_screen_end);
 
-    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 110);
-    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
-    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gDisplayListHead = dlHead;
 }
 
 void print_animated_red_coin(s16 x, s16 y) {
@@ -2124,8 +2299,36 @@ void print_animated_red_coin(s16 x, s16 y) {
 void render_pause_red_coins(void) {
     s8 x;
 
-    for (x = 0; x < gRedCoinsCollected; x++) {
-        print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(30) - x * 20, 16);
+    if (gRedCoinsCollected <= 9) {
+        for (x = 0; x < gRedCoinsCollected; x++) {
+            print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(30) - x * 20, 16);
+        }
+    }
+    else {
+        print_animated_red_coin(GFX_DIMENSIONS_FROM_RIGHT_EDGE(108), 16);
+        Mtx *mtx;
+
+        mtx = alloc_display_list(sizeof(*mtx));
+        if (mtx == NULL) {
+            return;
+        }
+        guOrtho(mtx, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -10.0f, 10.0f, 1.0f);
+        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH);
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
+
+        s8 redCoinCount = gRedCoinsCollected;
+        if (redCoinCount > 99) {
+            redCoinCount = 99;
+        }
+
+        add_glyph_texture(GLYPH_MULTIPLY);
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(100), 16, 0);
+        add_glyph_texture(char_to_glyph_index((char) (48 + (redCoinCount / 10))));
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(86), 16, 0);
+        add_glyph_texture(char_to_glyph_index((char) (48 + (redCoinCount % 10))));
+        render_textrect(GFX_DIMENSIONS_FROM_RIGHT_EDGE(86), 16, 1);
+
+        gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
     }
 }
 
@@ -2337,6 +2540,7 @@ void render_pause_castle_menu_box(s16 x, s16 y) {
 
     create_dl_translation_matrix(MENU_MTX_PUSH, x + 6, y - 28, 0);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, DEFAULT_DIALOG_BOX_ANGLE, 0, 0, 1.0f);
+    gDPPipeSync(gDisplayListHead++);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -2461,8 +2665,8 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
         courseName = segmented_to_virtual(courseNameTbl[gDialogLineNum]);
         render_pause_castle_course_stars(x, y, gCurrSaveFileNum - 1, gDialogLineNum);
         print_generic_string(x + 34, y - 5, textCoin);
-        int_to_str(save_file_get_course_coin_score(gCurrSaveFileNum - 1, gDialogLineNum), strVal);
-        print_generic_string(x + 54, y - 5, strVal);
+        //int_to_str(save_file_get_course_coin_score(gCurrSaveFileNum - 1, gDialogLineNum), strVal);
+        //print_generic_string(x + 54, y - 5, strVal);
     } else { // Castle secret stars
         u8 textStarX[] = { TEXT_STAR_X };
         courseName = segmented_to_virtual(courseNameTbl[COURSE_MAX]);
@@ -2496,25 +2700,34 @@ void render_patch_selection() {
     u16 patchFlags = save_file_get_patch_flags(gCurrSaveFileNum - 1);
     gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_mesh);
 
-    if (patchFlags & (1 << 0)) {
+    if (patchFlags & (1 << PATCH_STONE)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_stone_patch_stone_mesh);
     }
-    if (patchFlags & (1 << 1)) {
+    if (patchFlags & (1 << PATCH_CHILLSTEP)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_chillstep_patch_chillstep_mesh);
     }
-    if (patchFlags & (1 << 2)) {
+    if (patchFlags & (1 << PATCH_GRAPPLE)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_grapple_patch_grapple_mesh);
     }
-    if (patchFlags & (1 << 3)) {
+    if (patchFlags & (1 << PATCH_HALO)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_halo_patch_halo_mesh);
     }
-    //if (patchFlags & (1 << 4)) {
+    if (patchFlags & (1 << PATCH_MARINE)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_marine_patch_chillstep_001_mesh);
+    }
+    if (patchFlags & (1 << PATCH_SHADOWCHOMP)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_shadowchomp_patch_stone_002_mesh);
+    }
+    if (patchFlags & (1 << PATCH_TRANSMUTATION)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_transmutation_patch_transmutation_mesh);
+    }
+    if (patchFlags & (1 << PATCH_PORTAL)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
-    //}
+    }
 
     //selector
     if (gSubMenuIndex == 2) {
-    handle_patch_menu_scrolling(gPatchIndex);
+    handle_patch_menu_scrolling(gPatchIndex, patchFlags);
     gPatchIndexX = gPatchIndex % 4;
     gPatchIndexY = gPatchIndex / 4;
     }
@@ -2610,7 +2823,7 @@ void render_pause_screen_felt() {
     }
 
     create_dl_translation_matrix(MENU_MTX_PUSH, gFeltPosX, gFeltPosY, 0);
-    create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    //create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 0.9f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
@@ -2668,6 +2881,201 @@ void render_pause_screen_felt() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     render_submenu_toggle(-102, 82, &gSubMenuIndex, 66);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+#define NUM_MENU_SONGS 10
+
+s16 songList[NUM_MENU_SONGS] = {
+    SEQ_LEVEL_GRASS,
+    SEQ_RAINY_DAY_ROADSIDE,
+    SEQ_STONE_TERRACE_CITY,
+    SEQ_GOLD_SOAKED_SKY,
+    SEQ_SUBTERRANEAN_SEAWAY,
+    SEQ_CANDLELIT_CHAMBER,
+    SEQ_HIDDEN_VILLAGE_HOLD,
+    SEQ_EVENT_PIRANHA_PLANT,
+    SEQ_RAINY_DAY_ROADSIDE_SELECT,
+    SEQ_STONE_TERRACE_CITY_SELECT
+};
+
+s16 songVersions[NUM_MENU_SONGS] = {
+    0,
+    (1 <<  0) | (1 <<  1),
+    0,
+    (1 <<  0) | (1 <<  1),
+    (1 <<  0) | (1 <<  1),
+    (1 <<  0) | (1 <<  1) | (1 << 2),
+    0,
+    0,
+    0,
+    0
+};
+
+const char songNames[NUM_MENU_SONGS][48] = {
+    "Thorn Thicket Cliffs",
+    "Rainy Day Roadside",
+    "Stone Terrace City",
+    "Gold Soaked Sky",
+    "Subterranean Seaway",
+    "Candlelit Chamber",
+    "Hidden Village Hold",
+    "TTC Select",
+    "RDR Select",
+    "STC Select"
+};
+
+const char composerNames[NUM_MENU_SONGS][48] = {
+    "CowQuack\nornevelder",
+    "ornevelder",
+    "ornevelder",
+    "ornevelder",
+    "Tori Draws Stuff",
+    "ornevelder",
+    "CowQuack",
+    "CowQuack\nornevelder",
+    "ornevelder",
+    "ornevelder"
+};
+
+void print_song_name_list(s16 x, s16 y) {
+    s16 i;
+    u8 color[4];
+    for (i = -2; i < 3; i++) {
+        if (i == -2 || i == 2) {
+            color[3] = 80;
+        }
+        else if (i == 0) {
+            color[3] = 255;
+        }
+        else {
+            color[3] = 160;
+        }
+
+        if (gCurrSoundMenuSong == (gSongMenuIndex + i)) {
+            color[2] = 150 + 50*sins(gGlobalTimer * 0x222);
+            color[0] = (150 + 50*sins(gGlobalTimer * 0x222))/2;
+            color[1] = 0;
+            
+        }
+        else {
+            color[0] = 0;
+            color[1] = 0;
+            color[2] = 0;
+        }
+
+        print_set_envcolour(color[0], color[1], color[2], color[3]);
+
+        if (((i + gSongMenuIndex) >= 0) && ((i + gSongMenuIndex) < (NUM_MENU_SONGS))) {
+            print_small_text(x, y + i*15, songNames[gSongMenuIndex + i], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        }
+    }
+}
+
+u8 get_num_song_versions() {
+    u8 v = songVersions[gSongMenuIndex];
+    u8 r = 0;
+
+    while (v >>= 1) {
+        r++;
+    }
+
+    return r;
+}
+
+
+u8 cur_song_has_versions() {
+    return (songVersions[gSongMenuIndex] != 0);
+}
+
+void print_song_version_selector(void) {
+        char textBytes[80];
+        sprintf(textBytes, "%d", gScrollSongVersion);
+
+        if (gCurrSoundMenuSong == gSongMenuIndex && gScrollSongVersion == gCurrentDynamicScroll) {
+            print_set_envcolour((150 + 50*sins(gGlobalTimer * 0x222))/2, 0, 150 + 50*sins(gGlobalTimer * 0x222), 255);
+        }
+        else {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+        }
+        
+        print_small_text(SCREEN_WIDTH - 40, SCREEN_CENTER_Y - 10, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+
+        if (gScrollSongVersion > 1) {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+            print_small_text(SCREEN_WIDTH - 50, SCREEN_CENTER_Y - 10, "$", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        }
+
+        if (songVersions[gSongMenuIndex] & (1 << (gScrollSongVersion))) {
+            print_set_envcolour(0, 0, 0, 200 + 50*sins(gGlobalTimer * 0x222));
+            print_small_text(SCREEN_WIDTH - 38, SCREEN_CENTER_Y - 10, "#", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        }
+
+        handle_menu_scrolling_secondary(MENU_SCROLL_HORIZONTAL, &gScrollSongVersion, 1, gScrollSongVersion + (songVersions[gSongMenuIndex] & (1 << (gScrollSongVersion))));
+}
+
+void set_song_music_dynamics(s16 songID) {
+    if (cur_song_has_versions()) {
+        switch (songID) {
+            case SEQ_GOLD_SOAKED_SKY:
+                gSoundMenuDynamicID = 7 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_RAINY_DAY_ROADSIDE:
+                gSoundMenuDynamicID = 9 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_SUBTERRANEAN_SEAWAY:
+                gSoundMenuDynamicID = 11 + (gScrollSongVersion - 1);
+            break;
+            case SEQ_CANDLELIT_CHAMBER:
+                gSoundMenuDynamicID = 13 + (gScrollSongVersion - 1);
+            break;
+        }
+
+        gCurrentDynamicScroll = gScrollSongVersion;
+    }
+    else {
+        gSoundMenuDynamicID = -1;
+        gCurrentDynamicScroll = -1;
+    }
+}
+
+s8 gCurrSoundMenuSong = -1;
+
+void render_sound_menu() {
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_WIDTH - 120, SCREEN_CENTER_Y, 0);
+    //create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+
+    gSPDisplayList(gDisplayListHead++, sound_menu_bg_Plane_010_mesh);
+
+    
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gSongMenuIndex, 0, NUM_MENU_SONGS);
+        print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
+
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(SCREEN_WIDTH - 106 ,SCREEN_CENTER_Y + 67, composerNames[gSongMenuIndex], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+
+        if (cur_song_has_versions()) {
+            print_song_version_selector();
+        }
+
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
+
+            set_song_music_dynamics(songList[gSongMenuIndex]);
+
+            for (int i = 0; i < 6; i++) {
+                stop_background_music(sBackgroundMusicQueue[0].seqId);
+            }
+            
+            play_music(SEQ_PLAYER_LEVEL, songList[gSongMenuIndex], 1);
+            gCurrSoundMenuSong = gSongMenuIndex;
+        }
+        
+    
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
@@ -2733,22 +3141,22 @@ s32 render_pause_courses_and_castle(void) {
             if (gSubMenuIndex == 2) {
                 u8 dpadMap[4]; 
                 save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-                if (gPlayer3Controller->buttonPressed & (U_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (U_JPAD)) {
                     dpadMap[0] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (R_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (R_JPAD)) {
                     dpadMap[1] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (D_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (D_JPAD)) {
                     dpadMap[2] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                 }
-                if (gPlayer3Controller->buttonPressed & (L_JPAD)) {
+                if (gPlayer1Controller->buttonPressed & (L_JPAD)) {
                     dpadMap[3] = gPatchIndex;
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
@@ -2756,7 +3164,7 @@ s32 render_pause_courses_and_castle(void) {
                 update_dl_dpad_patches();
             }
 
-            if (gPlayer3Controller->buttonPressed & (START_BUTTON)) {
+            if (gPlayer1Controller->buttonPressed & (START_BUTTON)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
@@ -2775,7 +3183,7 @@ s32 render_pause_courses_and_castle(void) {
                 return index;
             }
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON)) {
                 if (gSubMenuIndex == 1) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
@@ -2831,7 +3239,7 @@ s32 render_pause_courses_and_castle(void) {
             render_pause_castle_menu_box(160, 143);
             render_pause_castle_main_strings(104, 60);
 
-            if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON | Z_TRIG)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON | Z_TRIG)) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_NONE;
@@ -2911,7 +3319,7 @@ void print_hud_course_complete_coins(s16 x, s16 y) {
             gCourseCompleteCoins++;
             play_sound(SOUND_MENU_YOSHI_GAIN_LIVES, gGlobalSoundSource);
 
-#ifndef DISABLE_LIVES
+#ifdef ENABLE_LIVES
             if (gCourseCompleteCoins && ((gCourseCompleteCoins % 50) == 0)) {
                 play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
                 gMarioState->numLives++;
@@ -3020,6 +3428,150 @@ void render_course_complete_lvl_info_and_hud_str(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 }
 
+void render_new_course_complete_stars(s16 x, s16 y, s16 fileIndex, s16 courseIndex, s8 starIndex) {
+    s16 curStar = 0;
+
+    u8 str[COURSE_STAGES_COUNT * 2];
+
+    u8 textStar[] = { TEXT_STAR };
+
+    u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
+    u16 starCount = save_file_get_course_star_count(fileIndex, courseIndex);
+
+    u16 nextStar = 0;
+
+    if (starFlags & STAR_FLAG_ACT_100_COINS) {
+        print_generic_string(x + gMenuShakeX + 89, gMenuShakeY + y - 5, textStar);
+    }
+
+    while (curStar < 6) {
+        //Check to see if each star has been collected, skipping the last collected star if it
+        //was collected for the first time.
+        if ((starFlags & (1 << nextStar)) && ((gLastCompletedStarNum - 1) != curStar || !gNewStarCollected)) {
+            str[nextStar * 2] = DIALOG_CHAR_STAR_FILLED;
+        } else {
+            str[nextStar * 2] = DIALOG_CHAR_STAR_OPEN;
+        }
+
+        curStar++;
+
+        str[nextStar * 2 + 1] = DIALOG_CHAR_SPACE;
+        nextStar++;
+    }
+
+    if (starCount == nextStar && starCount != 6) {
+        str[nextStar * 2] = DIALOG_CHAR_STAR_OPEN;
+        str[nextStar * 2 + 1] = DIALOG_CHAR_SPACE;
+        nextStar++;
+    }
+
+    
+
+    str[nextStar * 2] = DIALOG_CHAR_TERMINATOR;
+
+    print_generic_string(x + gMenuShakeX + 14 , y + gMenuShakeY + 13, str);
+
+    if (gNewStarCollected) {
+        u8 growStar[2];
+        growStar[0] = DIALOG_CHAR_STAR_FILLED;
+        growStar[1] = DIALOG_CHAR_TERMINATOR;
+
+        gNewStarIconCoordsX = approach_s16_asymptotic(gNewStarIconCoordsX, 0, gNewStarIconApproachSpeedX);
+        gNewStarIconCoordsY = approach_s16_asymptotic(gNewStarIconCoordsY, 0, gNewStarIconApproachSpeedY);
+        gNewStarIconCoordsX = approach_s16_symmetric(gNewStarIconCoordsX, 0, 13 - gNewStarIconApproachSpeedX);
+        gNewStarIconCoordsY = approach_s16_symmetric(gNewStarIconCoordsY, 0, 13 - gNewStarIconApproachSpeedY);
+
+        if (gGlobalTimer % 4 == 0 && gNewStarIconApproachSpeedX > 1) {
+            gNewStarIconApproachSpeedX--;
+            gNewStarIconApproachSpeedY--;
+        }
+        gNewStarIconCoordsX += gNewStarIconArcValues[0];
+        gNewStarIconCoordsY += gNewStarIconArcValues[1];
+
+        if (gNewStarIconArcValues[0] > 0) gNewStarIconArcValues[0] -= 1;
+        if (gNewStarIconArcValues[1] > 0) gNewStarIconArcValues[1] -= 1;
+        create_dl_translation_matrix(MENU_MTX_PUSH, gNewStarIconCoordsX, gNewStarIconCoordsY, 1);
+        print_generic_string(x + 14 + gMenuShakeX + (gLastCompletedStarNum - 1)*15, y + 13 + gMenuShakeY, growStar);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        gNewStarIconTimer++;
+
+        if (gNewStarIconTimer == 21) {
+            play_sound(SOUND_GENERAL_LOUD_POUND, &gGlobalSoundSource);
+        }
+        if (gNewStarIconTimer >= 22 && gNewStarIconTimer < 40) {
+            gMenuShakeX = random_f32_around_zero(6) - 3;
+            gMenuShakeY = random_f32_around_zero(6) - 3;
+        }
+        else {
+            gMenuShakeX = 0;
+            gMenuShakeY = 0;
+        }
+    }
+}
+
+void render_new_course_complete_text(s16 alpha) {
+    u8 textCourse[] = { TEXT_COURSE };
+    u8 textClear[] = { TEXT_CLEAR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
+
+    u8 *actName;
+    u8 *courseName;
+
+    u8 strCourseNum[4];
+
+    void **actNameTbl    = segmented_to_virtual(languageTable[gInGameLanguage][2]);
+    void **courseNameTbl = segmented_to_virtual(languageTable[gInGameLanguage][1]);
+
+    if (gLastCompletedCourseNum <= COURSE_STAGES_MAX) { // Main courses
+        //print_hud_course_complete_coins(118, 103);
+        //play_star_fanfare_and_flash_hud(HUD_FLASH_STARS, (1 << (gLastCompletedStarNum - 1)));
+
+        if (gLastCompletedStarNum == 7) {
+            actName = segmented_to_virtual(actNameTbl[COURSE_STAGES_MAX * 6 + 1]);
+        } else {
+            actName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gLastCompletedCourseNum) * 6 + gLastCompletedStarNum - 1]);
+            courseName = segmented_to_virtual(courseNameTbl[gLastCompletedCourseNum-1]);
+        }
+
+        // Print course number
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+
+        int_to_str(gLastCompletedCourseNum, strCourseNum);
+
+        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+        print_generic_string(65 + gMenuShakeX, 65 + gMenuShakeY, courseName);
+        //print_generic_string(CRS_NUM_X2, 165, strCourseNum);
+
+        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        print_generic_string(63 + gMenuShakeX, 67 + gMenuShakeY, courseName);
+        //print_generic_string(CRS_NUM_X3, 167, strCourseNum);
+
+        render_new_course_complete_stars(100, 10, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gLastCompletedCourseNum), gLastCompletedStarNum - 1);
+
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    }
+
+    // Print star glyph
+    //gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+
+    //gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    //print_hud_lut_string(HUD_LUT_GLOBAL, 55, 77, textSymStar);
+
+    //gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+
+    // Print act name and catch text
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+    print_generic_string(76 + gMenuShakeX, 45 + gMenuShakeY, actName);
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    print_generic_string(74 + gMenuShakeX, 47 + gMenuShakeY, actName);
+
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+}
+
 #define X_VAL9 x
 #define TXT_SAVEOPTIONS_X x + 12
 #define TXT_SAVECONT_Y 0
@@ -3054,10 +3606,7 @@ s32 render_course_complete_screen(void) {
     switch (gDialogBoxState) {
         case DIALOG_STATE_OPENING:
             render_course_complete_lvl_info_and_hud_str();
-            if (gCourseDoneMenuTimer > 100 && gCourseCompleteCoinsEqual) {
-#ifdef SAVE_NUM_LIVES
-                save_file_set_num_lives(gMarioState->numLives);
-#endif
+            if (gCourseDoneMenuTimer > 100) {
                 gDialogBoxState = DIALOG_STATE_VERTICAL;
                 level_set_transition(-1, NULL);
                 gDialogTextAlpha = 0;
@@ -3070,7 +3619,7 @@ s32 render_course_complete_screen(void) {
             render_course_complete_lvl_info_and_hud_str();
             render_save_confirmation(100, 86, &gDialogLineNum, 20);
 
-            if (gCourseDoneMenuTimer > 110 && (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
+            if (gCourseDoneMenuTimer > 110 && (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
                 gDialogBoxState = DIALOG_STATE_OPENING;
@@ -3094,6 +3643,61 @@ s32 render_course_complete_screen(void) {
     return MENU_OPT_NONE;
 }
 
+s32 render_new_star_complete_text(void) {
+    switch (gDialogBoxState) {
+        case DIALOG_STATE_OPENING:
+            render_new_course_complete_text(255);
+            if (gCourseDoneMenuTimer > 100) {
+                gDialogBoxState = DIALOG_STATE_VERTICAL;
+                level_set_transition(-1, NULL);
+                gDialogTextAlpha = 255;
+                gDialogLineNum = MENU_OPT_DEFAULT;
+                gCourseDoneMenuTimer = 0;
+                level_set_transition(0, NULL);
+                set_mario_action(gMarioState, ACT_IDLE, 0);
+                gMarioState->faceAngle[1] += 0x8000;
+                s8DirModeYawOffset = -gMarioState->faceAngle[1];
+                gNewStarCollected = 0;
+                save_file_do_save(gCurrSaveFileNum - 1);
+            }
+            if (gDialogTextAlpha < 250) {
+                gDialogTextAlpha += 25;
+            }
+            break;
+
+        case DIALOG_STATE_VERTICAL:
+            //shade_screen();
+            render_new_course_complete_text(CLAMP_U8(255 - (gCourseDoneMenuTimer*2)));
+            //render_save_confirmation(100, 86, &gDialogLineNum, 20);
+
+            //if (gCourseDoneMenuTimer > 110 && (gPlayer1Controller->buttonPressed & (A_BUTTON | START_BUTTON))) {
+                
+            //    play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+            if (gCourseDoneMenuTimer > 50) {
+                gDialogBoxState = DIALOG_STATE_OPENING;
+                gMenuMode = MENU_MODE_NONE;
+                gCourseDoneMenuTimer = 0;
+                gCourseCompleteCoins = 0;
+                gCourseCompleteCoinsEqual = FALSE;
+                gHudFlash = HUD_FLASH_NONE;
+
+                return gDialogLineNum;
+            }
+
+            if (gDialogTextAlpha > 0) {
+                gDialogTextAlpha = CLAMP_U8(gDialogTextAlpha - 5);
+            }
+            //}
+            break;
+    }
+
+    
+
+    gCourseDoneMenuTimer++;
+
+    return MENU_OPT_NONE;
+}
+
 s32 render_menus_and_dialogs(void) {
     s32 mode = MENU_OPT_NONE;
 
@@ -3110,12 +3714,15 @@ s32 render_menus_and_dialogs(void) {
             case MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN:
                 mode = render_course_complete_screen();
                 break;
-            case MENU_MODE_UNUSED_3:
-                mode = render_course_complete_screen();
+            case MENU_MODE_NEW_STAR_COMPLETE_TEXT:
+                mode = render_new_star_complete_text();
                 break;
             case MENU_MODE_FELT_GOING_UP:
                 render_pause_screen_felt();
                 break;
+            case MENU_MODE_SOUND_MENU:
+                render_sound_menu();
+            break;
         }
 
         gDialogColorFadeTimer = (s16) gDialogColorFadeTimer + 0x1000;

@@ -12,7 +12,8 @@ enum MarioEyesGSCId {
     /*0x05*/ MARIO_EYES_LOOK_RIGHT, // unused
     /*0x06*/ MARIO_EYES_LOOK_UP,    // unused
     /*0x07*/ MARIO_EYES_LOOK_DOWN,  // unused
-    /*0x08*/ MARIO_EYES_DEAD
+    /*0x08*/ MARIO_EYES_DEAD,
+    MARIO_EYES_WINCE
 };
 
 enum MarioHandGSCId {
@@ -35,7 +36,8 @@ enum MarioGrabPosGSCId {
     /*0x00*/ GRAB_POS_NULL,
     /*0x01*/ GRAB_POS_LIGHT_OBJ,
     /*0x02*/ GRAB_POS_HEAVY_OBJ,
-    /*0x03*/ GRAB_POS_BOWSER
+    /*0x03*/ GRAB_POS_BOWSER,
+    GRAB_POS_CUTSCENE_STONE_PATCH,
 };
 
 #endif // MARIO_GEO_SWITCH_CASE_IDS_H

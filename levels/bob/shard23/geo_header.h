@@ -1,0 +1,10 @@
+extern const GeoLayout shard23_geo[];
+extern u8 shard23_RMGP01_9457e379_14_ci8[];
+extern u8 shard23_RMGP01_9457e379_14_pal_rgba16[];
+extern Vtx shard23_shard23_mesh_layer_1_vtx_cull[8];
+extern Vtx shard23_shard23_mesh_layer_1_vtx_0[4];
+extern Gfx shard23_shard23_mesh_layer_1_tri_0[];
+extern Gfx mat_shard23_cavesurround[];
+extern Gfx mat_revert_shard23_cavesurround[];
+extern Gfx shard23_shard23_mesh_layer_1[];
+extern Gfx shard23_material_revert_render_settings[];

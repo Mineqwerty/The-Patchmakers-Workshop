@@ -1,6 +1,3 @@
-Lights1 blubol_f3d_material_009_lights = gdSPDefLights1(
-	0x2D, 0x31, 0x7F,
-	0x5B, 0x62, 0xFE, 0x28, 0x28, 0x28);
 
 Gfx blubol_stalkleaffixed_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 blubol_stalkleaffixed_ci8[] = {
@@ -441,7 +438,8 @@ Gfx mat_blubol_f3d_material_009[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(blubol_f3d_material_009_lights),
+    gsSPLightColor(LIGHT_1, 0x5b62feff),
+    gsSPLightColor(LIGHT_2, 0x2d317fff),
 	gsSPEndDisplayList(),
 };
 

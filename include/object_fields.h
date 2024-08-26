@@ -153,7 +153,7 @@
 #define /*0x17C*/ oOpacity                                      OBJECT_FIELD_S32(0x3D)
 #define /*0x180*/ oDamageOrCoinValue                            OBJECT_FIELD_S32(0x3E)
 #define /*0x184*/ oHealth                                       OBJECT_FIELD_S32(0x3F)
-#define /*0x188*/ oBehParams                                    OBJECT_FIELD_S32(0x40)
+#define /*0x188*/ oBehParams                                    OBJECT_FIELD_U32(0x40)
 #define /*0x18C*/ oPrevAction                                   OBJECT_FIELD_S32(0x41)
 #define /*0x190*/ oInteractionSubtype                           OBJECT_FIELD_U32(0x42)
 #define /*0x194*/ oCollisionDistance                            OBJECT_FIELD_F32(0x43)
@@ -252,6 +252,7 @@
 
 /* Hidden Blue Coin */
 #define /*0x0F8*/ oHiddenBlueCoinSwitch OBJECT_FIELD_OBJ(0x1C)
+#define /*0x0F4*/ oHiddenBlueCoinTimer OBJECT_FIELD_S32(0x1D)
 
 /* Bob-omb */
 #define /*0x0F4*/ oBobombBlinkTimer OBJECT_FIELD_S32(0x1B)
@@ -608,7 +609,7 @@
 #define /*0x110*/ oIsFloomba OBJECT_FIELD_S32(0x22)
 
 #ifdef INTRO_FLOOMBAS
-#define /*0x1AC*/ oZoomCounter OBJECT_FIELD_S32(0x49)
+#define /*0x1AC*/ oZoomCounter OBJECT_FIELD_U32(0x49)
 #define /*0x1B0*/ oZoomPosZ    OBJECT_FIELD_F32(0x4A)
 #endif
 #endif
@@ -793,11 +794,15 @@
 #define /*0x108*/ oMrIParticleTimerTarget OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oMrIScale               OBJECT_FIELD_F32(0x21)
 #define /*0x110*/ oMrIBlinking            OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oMrIFirstScale         OBJECT_FIELD_S32(0x49)
 
 /* Object Respawner */
 #define /*0x0F4*/ oRespawnerModelToRespawn    OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oRespawnerMinSpawnDist      OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oRespawnerBehaviorToRespawn OBJECT_FIELD_CVPTR(0x1D)
+
+/* Orange Number */
+#define /*0x110*/ oOrangeNumberOffset OBJECT_FIELD_S32(0x22)
 
 /* Openable Grill */
 #define /*0x088*/ oOpenableGrillIsOpen         OBJECT_FIELD_S32(0x00)
@@ -1000,7 +1005,8 @@
 /* Hidden Star */
 // Secrets/Red Coins
 #define /*0x0F4*/ oHiddenStarTriggerCounter OBJECT_FIELD_S32(0x1B)
-#define oCurrentWillOWisp          OBJECT_FIELD_OBJ(0x1C)
+#define /*0x0F8*/ oHiddenStarTriggerTotal OBJECT_FIELD_S32(0x1C)
+#define oCurrentWillOWisp          OBJECT_FIELD_OBJ(0x1D)
 
 /* Sealed Door Star */
 #define /*0x108*/ oUnlockDoorStarState  OBJECT_FIELD_U32(0x20)
@@ -1118,6 +1124,8 @@
 #define /*0x0F4*/ oTreasureChestNumOpenedChests OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTreasureChestDoCloseChests   OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oTreasureChestAboveWater      OBJECT_FIELD_S32(0x1D)
+#define /*0x0FC*/ oTreasureChestLid      OBJECT_FIELD_OBJ(0x1E)
+#define /*0x0FC*/ oTreasureChestTreasureEmptied      OBJECT_FIELD_S32(0x1F)
 
 /* Tree Snow Or Leaf */
 #define /*0x0F4*/ oTreeSnowOrLeafSidewardAngle    OBJECT_FIELD_S32(0x1B)
@@ -1289,6 +1297,12 @@
 #define oHaloApproachSpeed        OBJECT_FIELD_F32(0x1B)
 #define oHaloWallColSpeed        OBJECT_FIELD_F32(0x1C)
 #define oHaloCapturedObject           OBJECT_FIELD_OBJ(0x1D)
+#define oHaloKnockbackSpeed        OBJECT_FIELD_S32(0x1E)
+#define oHaloLengthMod        OBJECT_FIELD_F32(0x1F)
+
+//goddess
+#define oGoddessInvulnerableTimer        OBJECT_FIELD_S32(0x1B)
+#define oGoddessSpearIsOut        OBJECT_FIELD_S32(0x1C)
 
 //torch holder
 #define oTorchFlame           OBJECT_FIELD_OBJ(0x1B)
@@ -1305,6 +1319,11 @@
 #define oGoldBlobDistY        OBJECT_FIELD_F32(0x1C)
 #define oGoldBlobDistZ        OBJECT_FIELD_F32(0x1D)
 #define oGoldBlobCount        OBJECT_FIELD_F32(0x1E)
+#define oGoldBlobDirection        OBJECT_FIELD_S32(0x1F)
+
+//goddess spear
+#define oGoddessSpearAttackAttempts        OBJECT_FIELD_S32(0x1B)
+#define oGoddessSpearApproachYaw        OBJECT_FIELD_S32(0x1C)
 
 //stc beat object
 #define oBeatNumber        OBJECT_FIELD_S32(0x1B)
@@ -1313,6 +1332,7 @@
 #define oBlockNum        OBJECT_FIELD_S32(0x1B)
 #define oBlockShadow          OBJECT_FIELD_OBJ(0x1C)
 #define oDialogTrigger        OBJECT_FIELD_S32(0x1D)
+#define oNumWaveEnemiesLeft        OBJECT_FIELD_S32(0x1E)
 
 //floating plane
 #define oNextPlaneRotation        OBJECT_FIELD_S32(0x1B)
@@ -1326,6 +1346,11 @@
 //sewnia
 #define oSewniaLastWaypoint          OBJECT_FIELD_WAYPOINT(0x1B)
 #define oSewniaNextWaypoint          OBJECT_FIELD_WAYPOINT(0x1C)
+#define oSewniaFaceState        OBJECT_FIELD_S32(0x1D)
+#define oSewniaSourceNode          OBJECT_FIELD_S32(0x1E)
+#define oMarioNearestNode          OBJECT_FIELD_S32(0x1F)
+#define oSewniaCurrentNodeIndex          OBJECT_FIELD_S32(0x20)
+#define oSewniaNextNode          OBJECT_FIELD_S32(0x21)
 
 //podogoo
 #define oPotogooApproachXZ        OBJECT_FIELD_F32(0x1B)
@@ -1335,6 +1360,91 @@
 
 //fortogoo
 #define oFortogooChildHitbox           OBJECT_FIELD_OBJ(0x1B)
+
+//ring mission controller
+#define oRingMissionCount           OBJECT_FIELD_S32(0x1B)
+
+//swinging axe
+#define oAxeHitbox1           OBJECT_FIELD_OBJ(0x1B)
+#define oAxeHitbox2           OBJECT_FIELD_OBJ(0x1C)
+
+//spekturr spawn
+#define oSpekturrSpawnOffsetValue        OBJECT_FIELD_S32(0x1B)
+#define oSpekturrSpawnBehParam        OBJECT_FIELD_S32(0x1C)
+#define oSpekturrCount        OBJECT_FIELD_S32(0x1D)
+
+//star unlock platform
+#define oStarCountHeight           OBJECT_FIELD_S32(0x1B)
+#define oStarCountNum1           OBJECT_FIELD_OBJ(0x1C)
+#define oStarCountNum2           OBJECT_FIELD_OBJ(0x1D)
+#define oStarCountNumStar           OBJECT_FIELD_OBJ(0x1E)
+
+//buble ring stuff
+#define oSSWaterRingCount           OBJECT_FIELD_S32(0x1B)
+#define oSSNextWaterRing           OBJECT_FIELD_OBJ(0x1C)
+
+//glassfish
+#define oGlassfishMouthObj           OBJECT_FIELD_OBJ(0x1B)
+
+//shadow chomp head
+#define oShadowChompApproachMario           OBJECT_FIELD_S32(0x1B)
+#define oShadowChompTarget           OBJECT_FIELD_OBJ(0x1C)
+
+//shadow chomp tail
+#define oShadowTailHeight           OBJECT_FIELD_S32(0x1B)
+#define oShadowTailAttachToMario           OBJECT_FIELD_S32(0x1C)
+
+//floating table
+#define oFloatingTableInitYaw           OBJECT_FIELD_S32(0x1B)
+
+//scaling stairs
+#define oScalingStairsScale           OBJECT_FIELD_F32(0x1B)
+
+//eyebulb
+#define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
+
+//trailer camera
+#define /*0x0F4*/ oTCPos1X             OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oTCPos1Y           OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oTCPos1Z         OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oTCPos2X             OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oTCPos2Y         OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oTCPos2Z          OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oTCFoc1X      OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oTCFoc1Y      OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oTCFoc1Z     OBJECT_FIELD_S32(0x49) 
+#define /*0x1AC*/ oTCFoc2X     OBJECT_FIELD_S32(0x43)
+#define /*0x1AC*/ oTCFoc2Y     OBJECT_FIELD_S32(0x45)
+#define /*0x1AC*/ oTCFoc2Z     OBJECT_FIELD_S32(0x3A)
+#define /*0x1AC*/ oTCSplineTimer     OBJECT_FIELD_S32(0x30)
+
+//rocket flower spawner
+#define oRocketFlowerSpawned           OBJECT_FIELD_OBJ(0x1B)
+#define oLocalBoostTimer           OBJECT_FIELD_S32(0x1C)
+
+//dice boss manager
+#define oDiceBossCurrentDie           OBJECT_FIELD_S32(0x1B)
+#define oDiceBossDieObj           OBJECT_FIELD_OBJ(0x1C)
+
+//tentacle cage
+#define oTentacleCageMaxHealth           OBJECT_FIELD_S32(0x1B)
+
+//extension block
+#define oMaterialIndex           OBJECT_FIELD_S32(0x1B)
+#define oRevertIndex           OBJECT_FIELD_S32(0x1C)
+#define oMaterialLayer           OBJECT_FIELD_S32(0x1D)
+#define oExtendSetting           OBJECT_FIELD_S32(0x1E)
+#define oOutOfBounds           OBJECT_FIELD_S32(0x1F)
+
+//power breaker controller
+#define oClosestMarioBreakerDistance           OBJECT_FIELD_F32(0x1B)
+#define oBreakerSpawnObject           OBJECT_FIELD_OBJ(0x1C)
+#define oNumBreakersLeft           OBJECT_FIELD_F32(0x1D)
+
+//cartoon hand
+#define oCurrentHandSpeed           OBJECT_FIELD_S32(0x1B)
+#define oTargetHandSpeed           OBJECT_FIELD_S32(0x1C)
+#define oHandDirection           OBJECT_FIELD_S32(0x1D)
 
 /*Custom general defines:
 

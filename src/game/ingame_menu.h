@@ -41,8 +41,9 @@ enum MenuMode {
     MENU_MODE_UNUSED_0,
     MENU_MODE_RENDER_PAUSE_SCREEN,
     MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN,
-    MENU_MODE_UNUSED_3,
-    MENU_MODE_FELT_GOING_UP
+    MENU_MODE_NEW_STAR_COMPLETE_TEXT,
+    MENU_MODE_FELT_GOING_UP,
+    MENU_MODE_SOUND_MENU
 };
 
 enum HUDFlashModes {
@@ -57,13 +58,22 @@ extern s8 gDialogBoxState;
 extern u8 gPageNum;
 extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
+extern s16 gMenuMode;
+extern s16 gSoundMenuDynamicID;
 
 struct DialogEntry {
-    /*0x00*/ u32 unused;
+    /*0x00*/ u32 flags;
     /*0x04*/ s8 linesPerBox;
     /*0x06*/ s16 leftOffset;
     /*0x08*/ s16 width;
     /*0x0C*/ const u8 *str;
+};
+
+enum NewDialogFlags {
+    NEWDIALOG_FLAG_NONE                 = /* 0x00000000 */ (0 <<  0),
+    NEWDIALOG_FLAG_VANILLA                 = /* 0x00000001 */ (1 <<  0),
+    NEWDIALOG_FLAG_SHAKE_TEXT            = /* 0x00000002 */ (1 <<  1)
+    
 };
 
 // EU only
@@ -153,6 +163,8 @@ extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 extern s16 gDialogID;
 extern f32 gDialogBoxOpenTimer;
+extern u8 gNewStarCollected;
+extern s8 gCurrSoundMenuSong;
 
 void create_dl_identity_matrix(void);
 void create_dl_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);

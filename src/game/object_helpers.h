@@ -208,6 +208,11 @@ void obj_spawn_particles(struct SpawnParticlesInfo *info, struct Object *obj);
 s32 cur_obj_reflect_move_angle_off_wall(void);
 struct Object *cur_obj_find_object_with_bparam_2nd_byte(const BehaviorScript *behavior, int bparam);
 void check_for_max_ice_and_break_oldest();
+struct Object *obj_find_nearest_object_with_behavior(struct Object *obj, const BehaviorScript *behavior, f32 *dist);
+struct Object *cur_obj_find_object_with_bparam_1st_byte(const BehaviorScript *behavior, int bparam);
+struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
+                                  u8 damage, s32 interaction);
+struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 damage, s32 interaction);
 
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_NONE 0
@@ -227,6 +232,12 @@ enum ObjScaleAxis {
     SCALE_AXIS_Z = (1 << 2), // 0x04
 };
 
+enum MarioRoomStates {
+    MARIO_ROOM_UNDEFINED = -1,
+    MARIO_OUTSIDE_ROOM,
+    MARIO_INSIDE_ROOM
+};
+
 void obj_set_hitbox(struct Object *obj, struct ObjectHitbox *hitbox);
 s32 cur_obj_wait_then_blink(s32 timeUntilBlinking, s32 numBlinks);
 s32 cur_obj_is_mario_ground_pounding_platform(void);
@@ -243,7 +254,9 @@ void cur_obj_call_action_function(ObjActionFunc actionFunctions[]);
 s32 cur_obj_mario_far_away(void);
 s32 is_mario_moving_fast_or_in_air(s32 speedThreshold);
 s32 is_item_in_array(s8 item, s8 *array);
-void cur_obj_enable_rendering_if_mario_in_room(void);
+s32 cur_obj_is_mario_in_room(void);
+void cur_obj_enable_rendering_in_room(void);
+void cur_obj_disable_rendering_in_room(void);
 s32 cur_obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deathSound, s32 noLootCoins);
 void obj_explode_and_spawn_coins(f32 mistSize, s32 coinType);
 void obj_set_collision_data(struct Object *obj, const void *segAddr);
@@ -276,6 +289,8 @@ void enable_time_stop_including_mario(void);
 void disable_time_stop_including_mario(void);
 s32 cur_obj_check_interacted(void);
 void cur_obj_spawn_loot_blue_coin(void);
+struct Object *obj_find_transmute_target(struct Object *sourceObj);
+void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel, const BehaviorScript *coinBehavior, s16 posJitter, ModelID16 model);
 
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY);
 

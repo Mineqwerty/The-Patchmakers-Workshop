@@ -7,6 +7,40 @@
 #include "levels/jrb/falling_stone_7/collision_header.h"
 #include "src/game/camera.h"
 
+void spawn_wave_enemy(BehaviorScript enemy, u32 model) {
+    u16 randomSpot = random_u16();
+    spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, model, enemy);
+}
+
+void spawn_waves(u8 wave) {
+    switch (wave) {
+        case 1:
+            spawn_wave_enemy(bhvGoomba, MODEL_YARN_GOOMBA);
+            spawn_wave_enemy(bhvGoomba, MODEL_YARN_GOOMBA);
+            spawn_wave_enemy(bhvGoomba, MODEL_YARN_GOOMBA);
+            spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
+            o->oNumWaveEnemiesLeft = 4;
+        break;
+        case 2:
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
+            spawn_wave_enemy(bhvGoomba, MODEL_YARN_GOOMBA);
+            o->oNumWaveEnemiesLeft = 5;
+        break;
+        case 3:
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
+            spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
+            spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
+            o->oNumWaveEnemiesLeft = 7;
+        break;
+    }
+}
+
 void bhv_enemy_obelisk_loop() {
 
     f32 *dist;
@@ -14,77 +48,85 @@ void bhv_enemy_obelisk_loop() {
     switch (o->oAction) {
         //forcefield spawning
         case 0:
-            if (o->oDistanceToMario < 500.0f) {
-                spawn_object(o, MODEL_FORCEFIELD, bhvEnemyForcefield);
-                o->oAction++;
+            if (o->oDistanceToMario < 500.0f && (gMarioState->action == ACT_WALKING || gMarioState->action == ACT_IDLE || gMarioState->action == ACT_WAITING_FOR_DIALOG)) {
+                if (o->oDialogTrigger == 0) {
+                    create_dialog_box_with_response(DIALOG_015);
+                    gMarioState->action = ACT_WAITING_FOR_DIALOG;
+                    o->oDialogTrigger = 1;
+                }
+                
             }
+            else {
+                o->oDialogTrigger = 0;
+            }
+
+            if (o->oDialogTrigger == 1 && gDialogResponse == DIALOG_RESPONSE_YES) {
+                spawn_object(o, MODEL_NONE, bhvEnemyArenaCombatWalls);
+                o->oAction = 10;
+                gMarioState->action = ACT_IDLE;
+            }
+            else if (gDialogResponse == DIALOG_RESPONSE_NO) {
+                gMarioState->action = ACT_IDLE;
+            }
+            load_object_collision_model();
         break;
         //wave 1 spawning
         case 1:
-            if (o->oTimer > 30) {
-                if (o->oTimer % 20 == 0) {
-                    u16 randomSpot = random_u16();
-                    spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, MODEL_YARN_GOOMBA, bhvGoomba);
-                }
-            if (o->oTimer >= 120) {
-                o->oAction++;
-            }
-            }
+            spawn_waves(1);
+            o->oAction++;
         break;
         //wave 1 happening
         case 2:
             //print_text(20, 20, "wave 1");
-            if (!cur_obj_find_nearest_object_with_behavior(bhvGoomba, &dist)) {
+            if (o->oNumWaveEnemiesLeft == 0) {
                 o->oAction++;
             }
         break; 
 
         case 3:
-            if (o->oTimer > 30) {
-                if (o->oTimer % 20 == 0) {
-                    u16 randomSpot = random_u16();
-                    spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, MODEL_CHUCKYA, bhvChuckya);
-                    
-                }
-            if (o->oTimer >= 120) {
-                o->oAction++;
-            }
-            }
+            spawn_waves(2);
+            o->oAction++;
 
         break;
 
         case 4:
             //print_text(20, 20, "wave 2");
-            if (!cur_obj_find_nearest_object_with_behavior(bhvChuckya, &dist)) {
+            if (o->oNumWaveEnemiesLeft == 0) {
                 o->oAction++;
             }
         break; 
 
         case 5:
-            if (o->oTimer > 30) {
-                if (o->oTimer % 20 == 0) {
-                    u16 randomSpot = random_u16();
-                    spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, MODEL_WHOMP, bhvSmallWhomp);
-                    
-                }
-            if (o->oTimer >= 120) {
-                o->oAction++;
-            }
-            }
+            spawn_waves(3);
+            o->oAction++;
 
         break;
 
         case 6:
             //print_text(20, 20, "wave 3");
-            if (!cur_obj_find_nearest_object_with_behavior(bhvSmallWhomp, &dist)) {
+            if (o->oNumWaveEnemiesLeft == 0) {
                 o->oAction++;
             }
         break; 
 
         case 7:
             
-            spawn_arena_star_stc(o->oPosX + 300, o->oPosY + 200, o->oPosZ + 300);
+            SET_BPARAM1(o->oBehParams, 4);
+            spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
             o->oAction++;
+        break;
+        case 10:
+            o->oPosY -= 15;
+            if (o->oTimer % 4 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+            }
+
+            if (o->oTimer == 85) {
+                o->oAction = 1;
+                cur_obj_hide();
+                cur_obj_become_intangible();
+                o->oPosY = o->oHomeY;
+            }
         break;
     }
 
@@ -186,7 +228,7 @@ void bhv_falling_stone_block_loop(void) {
     }
 
     //if the bparam of the object is within 1 of the block number, load the col model
-    if (o->oBehParams2ndByte >= o->parentObj->oBlockNum - 2 && o->oBehParams2ndByte <= o->parentObj->oBlockNum ) {
+    if (o->oBehParams2ndByte == o->parentObj->oBlockNum) {
         load_object_collision_model();
         //cur_obj_unhide();
     }
@@ -201,6 +243,7 @@ void stone_block_fall(void) {
         o->oPosY = (o->parentObj->oHomeY + (o->oBehParams2ndByte * 500));
         o->parentObj->oBlockNum++;
         obj_mark_for_deletion(o->parentObj->oBlockShadow);
+        load_object_static_model();
         if (o->parentObj->oBlockNum != 7) {
         o->parentObj->oBlockShadow = spawn_object_abs_with_rot(o, 0, MODEL_FALLING_STONE_BLOCK_SHADOW, bhvFallingStoneBlockShadow, o->parentObj->oHomeX, o->parentObj->oHomeY + (o->parentObj->oBlockNum * 500), o->parentObj->oHomeZ, 0, 0, 0);
         o->parentObj->oBlockShadow->oBehParams2ndByte = o->parentObj->oBlockNum;

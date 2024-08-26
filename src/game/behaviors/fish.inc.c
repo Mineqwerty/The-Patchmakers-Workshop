@@ -16,21 +16,18 @@ static void fish_spawner_act_spawn(void) {
     const struct Animation *const *fishAnimation;
 
     switch (o->oBehParams2ndByte) {
-        case FISH_SPAWNER_BP_MANY_BLUE: model = MODEL_FISH;      schoolQuantity = 20; minDistToMario = 1500.0f; fishAnimation = blue_fish_seg3_anims_0301C2B0; break;
-        case FISH_SPAWNER_BP_FEW_BLUE:  model = MODEL_FISH;      schoolQuantity =  5; minDistToMario = 1500.0f; fishAnimation = blue_fish_seg3_anims_0301C2B0; break;
-        case FISH_SPAWNER_BP_MANY_CYAN: model = MODEL_CYAN_FISH; schoolQuantity = 20; minDistToMario = 1500.0f; fishAnimation = cyan_fish_seg6_anims_0600E264; break;
-        case FISH_SPAWNER_BP_FEW_CYAN:  model = MODEL_CYAN_FISH; schoolQuantity =  5; minDistToMario = 1500.0f; fishAnimation = cyan_fish_seg6_anims_0600E264; break;
+        case FISH_SPAWNER_BP_MANY_BLUE: model = MODEL_FISH;      schoolQuantity = 20; minDistToMario = 5500.0f; fishAnimation = blue_fish_seg3_anims_0301C2B0; break;
+        case FISH_SPAWNER_BP_FEW_BLUE:  model = MODEL_FISH;      schoolQuantity =  5; minDistToMario = 5500.0f; fishAnimation = blue_fish_seg3_anims_0301C2B0; break;
+        case FISH_SPAWNER_BP_MANY_CYAN: model = MODEL_CYAN_FISH; schoolQuantity = 20; minDistToMario = 5500.0f; fishAnimation = cyan_fish_seg6_anims_0600E264; break;
+        case FISH_SPAWNER_BP_FEW_CYAN:  model = MODEL_CYAN_FISH; schoolQuantity =  5; minDistToMario = 5500.0f; fishAnimation = cyan_fish_seg6_anims_0600E264; break;
         default: return;
     }
 
     // Spawn and animate the schoolQuantity of fish if Mario enters render distance
     // or the stage is Secret Aquarium.
     // Fish moves randomly within a range of 700.0f.
-#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS //! TODO: Make this a param
-    if (o->oDistanceToMario < minDistToMario || gCurrLevelNum == LEVEL_SA) {
-#else
     if (o->oDistanceToMario < minDistToMario) {
-#endif
+
         struct Object *fishObject;
         for (i = 0; i < schoolQuantity; i++) {
             fishObject = spawn_object(o, model, bhvFish);
@@ -47,7 +44,7 @@ static void fish_spawner_act_spawn(void) {
  * Mario is more than 2000 units higher.
  */
 static void fish_spawner_act_idle(void) {
-    if ((gCurrLevelNum != LEVEL_SA) && (gMarioObject->oPosY - o->oPosY > 2000.0f)) {
+    if ((gCurrLevelNum != LEVEL_SL) && (gMarioObject->oPosY - o->oPosY > 2000.0f)) {
         o->oAction = FISH_SPAWNER_ACT_RESPAWN;
     }
 }
@@ -121,6 +118,7 @@ static void fish_act_roam(void) {
     // Rotate the fish towards Mario.
     cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
 
+    if (gCurrLevelNum != LEVEL_SL) {
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
         if (absf(fishY) < 500.0f) {
             fish_vertical_roam(2);
@@ -133,6 +131,14 @@ static void fish_act_roam(void) {
         o->oPosY = o->oFishWaterLevel - 50.0f;
         if (fishY > 300.0f) {
             o->oPosY = o->oPosY - 1.0f;
+        }
+    }
+    }
+    else {
+        if (absf(fishY) < 500.0f) {
+            fish_vertical_roam(2);
+        } else {
+            fish_vertical_roam(4);
         }
     }
 
@@ -156,7 +162,7 @@ static void fish_act_flee(void) {
         o->oFishYawVel = random_float() * 1024.0f + 1024.0f;
         o->oFishGoalVel = random_float() * 4.0f + 8.0f + 5.0f;
 
-        cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
+        //cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
     }
 
     // Speed the animation up over time.
@@ -174,7 +180,8 @@ static void fish_act_flee(void) {
 
     // Rotate fish away from Mario.
     cur_obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, o->oFishYawVel);
-
+    
+    if (gCurrLevelNum != LEVEL_SL) {
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
         if (absf(fishY) < 500.0f) {
             fish_vertical_roam(2);
@@ -184,10 +191,17 @@ static void fish_act_flee(void) {
 
     // Don't let the fish leave the water vertically.
     } else {
-        // Don't let the fish leave the water vertically.
         o->oPosY = o->oFishWaterLevel - 50.0f;
         if (fishY > 300.0f) {
-            o->oPosY -= 1.0f;
+            o->oPosY = o->oPosY - 1.0f;
+        }
+    }
+    }
+    else {
+        if (absf(fishY) < 500.0f) {
+            fish_vertical_roam(2);
+        } else {
+            fish_vertical_roam(4);
         }
     }
 
@@ -223,11 +237,9 @@ void bhv_fish_loop(void) {
     // oFishWaterLevel tracks if a fish has roamed out of water.
     // This can't happen in Secret Aquarium, so set it to 0.
     o->oFishWaterLevel = find_water_level(o->oPosX, o->oPosZ);
-#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS //! TODO: Make this a param
-    if (gCurrLevelNum == LEVEL_SA) {
-        o->oFishWaterLevel = 0.0f;
+    if (gCurrLevelNum == LEVEL_SL) {
+        o->oFishWaterLevel = 32000.0f;
     }
-#endif
 
     // Apply hitbox and resolve wall collisions
     o->oWallHitboxRadius = 30.0f;
@@ -239,7 +251,7 @@ void bhv_fish_loop(void) {
         return;
     }
 #else
-    if (o->oFishWaterLevel < FLOOR_LOWER_LIMIT_MISC) {
+    if ((o->oFishWaterLevel < FLOOR_LOWER_LIMIT_MISC) && gCurrLevelNum != LEVEL_SL) {
         obj_mark_for_deletion(o);
         return;
     }

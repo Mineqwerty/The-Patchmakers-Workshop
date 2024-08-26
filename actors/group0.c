@@ -27,7 +27,7 @@
 #include "sparkle_animation/model.inc.c"
 
 #ifdef S2DEX_TEXT_ENGINE
-#include "src/s2d_engine/config.h"
+#include "src/s2d_engine/s2d_config.h"
 #include FONT_C_FILE
 #endif
 
@@ -65,3 +65,27 @@
 #include "menu_patch_portal/model.inc.c"
 #include "grabbable_puzzle_box/model.inc.c"
 #include "grabbable_puzzle_box/collision.inc.c"
+#include "menu_patch_marine/model.inc.c"
+#include "menu_patch_shadowchomp/model.inc.c"
+#include "shadow_chomp/model.inc.c"
+#include "shadow_chomp_tail/model.inc.c"
+#include "shadow_chomp/anims/data.inc.c"
+#include "shadow_chomp/anims/table.inc.c"
+#include "menu_patch_transmutation/model.inc.c"
+#include "transmutation_cone/model.inc.c"
+#include "transmutation_star/collision.inc.c"
+#include "transmutation_star/model.inc.c"
+#include "patch_upgrade/model.inc.c"
+#include "rocket_flower/model.inc.c"
+#include "rocket_flower_rotated/model.inc.c"
+#include "rocket_flower_fog/model.inc.c"
+#include "floating_petal/model.inc.c"
+#include "floating_petal/anims/data.inc.c"
+#include "floating_petal/anims/table.inc.c"
+#include "miasma_ribbon/model.inc.c"
+#include "miasma_ribbon/anims/data.inc.c"
+#include "miasma_ribbon/anims/table.inc.c"
+#include "extension_block/model.inc.c"
+#include "extension_block/collision.inc.c"
+#include "extension_block_side/collision.inc.c"
+#include "extension_block_side/model.inc.c"

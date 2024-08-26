@@ -403,6 +403,7 @@
 #define MODEL_CYAN_FISH                   0x67        // cyan_fish_geo
 #define MODEL_WATER_RING                  0x68        // water_ring_geo
 #define MODEL_SKEETER                     0x69        // skeeter_geo
+#define MODEL_YARN_BLOOPER                     0x6A        
 
 // group 14
 #define MODEL_PIRANHA_PLANT               0x64        // piranha_plant_geo
@@ -545,8 +546,20 @@
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
+//Workshop HUB
 #define MODEL_SEWNIA                  0x100
+#define MODEL_RDR_GARAGE_DOOR                  0x101
+#define MODEL_STC_DOOR_RIGHT                  0x102
+#define MODEL_STC_DOOR_LEFT                  0x103
+#define MODEL_STAR_UNLOCK_PLATFORM                  0x104
+#define MODEL_GSS_WINDOW_LIT                  0x105
+#define MODEL_GSS_WINDOW_UNLIT                  0x106
+#define MODEL_GSS_WINDOW_LIGHT                  0x107
+#define MODEL_CARTOON_HAND                  0x108
+#define MODEL_PAPER_SPINNER                  0x109
+#define MODEL_AUTOMATON                  0x10A
 
+//Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100
 #define MODEL_BOUNCE_BULB_OPEN                   0x101
 #define MODEL_PTOOIE                   0x102
@@ -560,13 +573,16 @@
 #define MODEL_PUSHPIN_POKEY_SEGMENT_BODY           0x10A
 #define MODEL_FALLING_WIND           0x10B
 #define MODEL_IMPACT_HIT           0x10C
+#define MODEL_SHARD_START           0x10D
 
+//Rainy Day Roadside
 #define MODEL_SWAMP_SKEETER                   0x100
 #define MODEL_TALOTAK                   0x101
 #define MODEL_TAEBER                   0x102
 #define MODEL_TAEBER_LEAVES                   0x103
 #define MODEL_BLUBOL                    0x104
 
+//Stone Terrace City
 #define MODEL_STONE_TOWER_DOOR                   0x100
 #define MODEL_GEAR                   0x101
 #define MODEL_GRAPPLE_STONE                   0x102
@@ -586,6 +602,7 @@
 #define MODEL_FALLING_STONE_BLOCK_SHADOW                   0x110
 #define MODEL_FORTOGOO                   0x111
 
+//Gold Soaked Sky
 #define MODEL_GOLD_CLOUD                   0x100
 #define MODEL_GODDESS                   0x101
 #define MODEL_TORCH_HOLDER                   0x102
@@ -600,7 +617,12 @@
 #define MODEL_GOLD_FRAGMENT                 0x10B
 #define MODEL_SERAPHIM                 0x10C
 #define MODEL_GOLD_SPIKE_BALL                 0x10D
+#define MODEL_WIND_CLOUD                 0x10E
+#define MODEL_SWINGING_AXE                 0x10F
+#define MODEL_WING_SURFACE              0x110
+#define MODEL_GODDESS_SPEAR              0x111
 
+//The Far Plane
 #define MODEL_FLOATING_PLANE                   0x100
 #define MODEL_FAR_PLANE_CUBE                   0x101
 #define MODEL_FAR_PLANE_CUBE_HEAD                   0x102
@@ -611,11 +633,91 @@
 #define MODEL_TFP_ROTARY_ARM                  0x107
 #define MODEL_TFP_ROTARY_PLATFORM                   0x108
 #define MODEL_BOX_BASKET                   0x109
+#define MODEL_FAR_PLANE_BOOST_PANEL                   0x10A
+#define MODEL_RING_MISSION_RING                   0x10B
+#define MODEL_RING_MISSION_TARGET                   0x10C
+#define MODEL_RING_FRAGMENT                   0x10D
+#define MODEL_TFP_CHECKER_PLATFORM                   0x10E
+#define MODEL_TFP_SKYBOX_BUBBLES                   0x10F
+#define MODEL_TFP_SKYBOX_SQUARES                   0x110
+#define MODEL_TFP_SKYBOX_WEB                   0x111
 
-#define MODEL_PATCHMAKER                   0x110
+//Subterranean Seaway
+#define MODEL_TILTING_STONE_BRIDGE                   0x100
+#define MODEL_UNDERWATER_STONE_DOOR                   0x101
+#define MODEL_UNDERWATER_STONE_BUTTON                   0x102
+#define MODEL_CORAL_SPINNER                   0x103
+#define MODEL_GLASSFISH                   0x104
 
+//Candlelit Chamber
+#define MODEL_CHANDELIER                   0x100
+#define MODEL_FLOATING_TABLE                   0x101
+#define MODEL_BUTLERGEIST                   0x102
+#define MODEL_PHANTASMAID                   0x103
+#define MODEL_SCALING_STAIRS                   0x104
+#define MODEL_CLC_PUZZLE_EYE                   0x105
+#define MODEL_CLC_PUZZLE_SWITCH                   0x106
+#define MODEL_CLC_PUZZLE_WALL                0x107
+#define MODEL_CLC_DOOR                0x108
+#define MODEL_BLIGHT                0x109
+#define MODEL_MOVING_SPECTRAL_OCTAGON                0x10A
+#define MODEL_EYEBULB                0x10B
+#define MODEL_MISTRESS                0x10C
+
+//Hidden Village Hold
+#define MODEL_AWNING                   0x100
+#define MODEL_REGULAR_TABLE                   0x101
+#define MODEL_MUSHROOM_TABLE                   0x102
+#define MODEL_RED_FLOWER                   0x103
+#define MODEL_WINDMILL_FAN                   0x104
+#define MODEL_WINDMILL_PLATFORM                   0x105
+#define MODEL_HVH_CHEST_BOTTOM                   0x106
+#define MODEL_HVH_CHEST_TOP                   0x107
+#define MODEL_MIMIC                   0x108
+#define MODEL_D4                   0x109
+
+//Violet Twilit Woods
+#define MODEL_PURPLE_MUSHROOM                   0x100
+#define MODEL_GRAY_MUSHROOM                   0x101
+#define MODEL_LILY_PAD                   0x102
+#define MODEL_DANGER_PUFF                   0x103
+#define MODEL_MALVA_BUD                   0x104
+#define MODEL_MALVA_FLOWER                   0x105
+
+//Empyrean Abyss
+#define MODEL_FLOATING_TILTING_GEM                   0x100
+#define MODEL_ABYSS_SWIMMER                   0x101
+#define MODEL_ABYSS_URCHIN                   0x102
+#define MODEL_TENTACLE_CAGE                   0x103
+#define MODEL_CAGE_EYE                   0x104
+#define MODEL_FLOATING_MOVING_GEM                   0x105
+#define MODEL_SKY_SLUG                   0x106
+#define MODEL_WATER_LAUNCHER                   0x107
+#define MODEL_JELLYFISH                   0x108
+#define MODEL_ABYSS_OBELISK                   0x109
+
+//City of Reconstructed Ruin
+#define MODEL_RED_CONSTRUCTION_LIGHT                  0x100
+#define MODEL_POWER_BREAKER                  0x101
+#define MODEL_BREAKER_SPARK                  0x102
+
+//Workshop Recesses
+#define MODEL_DRY_BONES                   0x100
+
+//New File Select
+#define MODEL_PATCHMAKER_SHADOW                   0x100
+
+#define MODEL_PATCHMAKER                   0x130
+
+//Global
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181
+#define MODEL_TRANSMUTATION_STAR                    0x182
+#define MODEL_PATCH_UPGRADE                    0x183
+#define MODEL_ROCKET_FLOWER                    0x184
+#define MODEL_ROCKET_FLOWER_ROT                    0x185
+#define MODEL_FLOATING_PETAL                    0x186
+#define MODEL_FOG_RED_COIN                    0x187
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
@@ -630,12 +732,19 @@
 #define MODEL_PORTAL             0x19A
 #define MODEL_GRABBABLE_PUZZLE_BOX                   0x19B
 #define MODEL_GROUND_PATCH           0x19C
+#define MODEL_SHADOW_CHOMP_HEAD           0x19D
+#define MODEL_SHADOW_CHOMP_TAIL           0x19E
+#define MODEL_TRANSMUTATION_CONE           0x19F
+#define MODEL_MIASMA_RIBBON           0x1A0
+#define MODEL_EXTENSION_BLOCK           0x1A1
+#define MODEL_EXTENSION_BLOCK_SIDE           0x1A2
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
 #define MODEL_TTC_DIORAMA                      0x56
 #define MODEL_RDR_DIORAMA                      0x57
 #define MODEL_STC_DIORAMA                      0x58
+#define MODEL_GSS_DIORAMA                      0x59
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

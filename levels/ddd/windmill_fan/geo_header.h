@@ -1,0 +1,18 @@
+extern const GeoLayout windmill_fan_geo[];
+extern Lights1 windmill_fan_f3dlite_material_042_lights;
+extern Lights1 windmill_fan_f3dlite_material_044_lights;
+extern u8 windmill_fan_windmillsail_ci8[];
+extern u8 windmill_fan_windmillsail_pal_rgba16[];
+extern u8 windmill_fan_plankme_ci8[];
+extern u8 windmill_fan_plankme_pal_rgba16[];
+extern Vtx windmill_fan_Plane_004_mesh_layer_4_vtx_0[92];
+extern Gfx windmill_fan_Plane_004_mesh_layer_4_tri_0[];
+extern Vtx windmill_fan_Plane_004_mesh_layer_1_vtx_0[42];
+extern Gfx windmill_fan_Plane_004_mesh_layer_1_tri_0[];
+extern Gfx mat_windmill_fan_f3dlite_material_042[];
+extern Gfx mat_revert_windmill_fan_f3dlite_material_042[];
+extern Gfx mat_windmill_fan_f3dlite_material_044[];
+extern Gfx mat_revert_windmill_fan_f3dlite_material_044[];
+extern Gfx windmill_fan_Plane_004_mesh_layer_4[];
+extern Gfx windmill_fan_Plane_004_mesh_layer_1[];
+extern Gfx windmill_fan_material_revert_render_settings[];

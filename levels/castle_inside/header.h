@@ -157,4 +157,40 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/header.inc.h"
 
+#include "levels/castle_inside/garage_door/geo_header.h"
+
+#include "levels/castle_inside/garage_door/collision_header.h"
+
+#include "levels/castle_inside/stc_entrance_door/geo_header.h"
+
+#include "levels/castle_inside/stc_entrance_door2/geo_header.h"
+
+#include "levels/castle_inside/stc_entrance_door/collision_header.h"
+
+#include "levels/castle_inside/stc_entrance_door2/collision_header.h"
+
+#include "levels/castle_inside/star_unlock_platform/geo_header.h"
+
+#include "levels/castle_inside/star_unlock_platform/collision_header.h"
+
+#include "levels/castle_inside/gss_window_lit/collision_header.h"
+
+#include "levels/castle_inside/gss_window_lit/geo_header.h"
+
+#include "levels/castle_inside/gss_window_unlit/geo_header.h"
+
+#include "levels/castle_inside/gss_window_light/geo_header.h"
+
+#include "levels/castle_inside/screen_effect_eye_open/header.h"
+
+#include "levels/castle_inside/cartoon_clock_hand/geo_header.h"
+
+#include "levels/castle_inside/paper_spinner/geo_header.h"
+
+#include "levels/castle_inside/automaton/geo_header.h"
+
+#include "levels/castle_inside/automaton/anim_header.h"
+
+#include "levels/castle_inside/sound_menu_bg/header.h"
+
 #endif

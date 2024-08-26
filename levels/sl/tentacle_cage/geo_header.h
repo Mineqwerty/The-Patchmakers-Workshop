@@ -1,0 +1,10 @@
+extern const GeoLayout tentacle_cage_geo[];
+extern Lights1 tentacle_cage_f3dlite_material_014_lights;
+extern u8 tentacle_cage_tentacage_ci8[];
+extern u8 tentacle_cage_tentacage_pal_rgba16[];
+extern Vtx tentacle_cage_Circle_006_mesh_layer_4_vtx_cull[8];
+extern Vtx tentacle_cage_Circle_006_mesh_layer_4_vtx_0[28];
+extern Gfx tentacle_cage_Circle_006_mesh_layer_4_tri_0[];
+extern Gfx mat_tentacle_cage_f3dlite_material_014[];
+extern Gfx mat_revert_tentacle_cage_f3dlite_material_014[];
+extern Gfx tentacle_cage_Circle_006_mesh_layer_4[];

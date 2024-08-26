@@ -128,4 +128,59 @@ extern const Gfx lll_dl_lavafall_volcano[];
 // script
 extern const LevelScript level_lll_entry[];
 
+
+#include "levels/lll/header.inc.h"
+
+#include "levels/lll/chandelier/geo_header.h"
+
+#include "levels/lll/chandelier/collision_header.h"
+
+#include "levels/lll/floating_table/geo_header.h"
+
+#include "levels/lll/floating_table/collision_header.h"
+
+#include "levels/lll/scaling_stairs/collision_header.h"
+
+#include "levels/lll/scaling_stairs/geo_header.h"
+
+#include "levels/lll/butlergeist/geo_header.h"
+
+#include "levels/lll/butlergeist/anim_header.h"
+
+#include "levels/lll/clc_puzzle_eye/geo_header.h"
+
+#include "levels/lll/clc_puzzle_eye/collision_header.h"
+
+#include "levels/lll/clc_puzzle_switch/geo_header.h"
+
+#include "levels/lll/clc_puzzle_switch/collision_header.h"
+
+#include "levels/lll/clc_puzzle_wall/geo_header.h"
+
+#include "levels/lll/clc_puzzle_wall/collision_header.h"
+
+#include "levels/lll/clc_door/geo_header.h"
+
+#include "levels/lll/clc_door/collision_header.h"
+
+#include "levels/lll/clc_door/anim_header.h"
+
+#include "levels/lll/phantasmaid/geo_header.h"
+
+#include "levels/lll/phantasmaid/anim_header.h"
+
+#include "levels/lll/blight/geo_header.h"
+
+#include "levels/lll/blight/anim_header.h"
+
+#include "levels/lll/moving_spectral_octagon/geo_header.h"
+
+#include "levels/lll/moving_spectral_octagon/collision_header.h"
+
+#include "levels/lll/eyebulb/geo_header.h"
+
+#include "levels/lll/mistress/geo_header.h"
+
+#include "levels/lll/mistress/anim_header.h"
+
 #endif

@@ -1,22 +1,7 @@
-Lights1 yarn_goomba_f3d_material_lights = gdSPDefLights1(
-	0x51, 0x30, 0xC,
-	0xA3, 0x61, 0x18, 0x28, 0x28, 0x28);
 
-Lights1 yarn_goomba_f3d_material_002_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 yarn_goomba_kuribo_all_f3d_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 yarn_goomba_f3d_material_004_lights = gdSPDefLights1(
-	0x21, 0x21, 0x21,
-	0x42, 0x42, 0x42, 0x28, 0x28, 0x28);
 
-Lights1 yarn_goomba_f3d_material_001_lights = gdSPDefLights1(
-	0x21, 0x4, 0x0,
-	0x42, 0x8, 0x1, 0x28, 0x28, 0x28);
 
 Gfx yarn_goomba_goombayarn14_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 yarn_goomba_goombayarn14_ci4[] = {
@@ -1292,7 +1277,8 @@ Gfx mat_yarn_goomba_f3d_material[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(yarn_goomba_f3d_material_lights),
+    gsSPLightColor(LIGHT_1, 0xa36118ff),
+    gsSPLightColor(LIGHT_2, 0x51300cff),
 	gsSPEndDisplayList(),
 };
 
@@ -1321,7 +1307,8 @@ Gfx mat_yarn_goomba_f3d_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(yarn_goomba_f3d_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -1350,7 +1337,8 @@ Gfx mat_yarn_goomba_kuribo_all_f3d[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(yarn_goomba_kuribo_all_f3d_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -1372,7 +1360,8 @@ Gfx mat_yarn_goomba_f3d_material_004[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(yarn_goomba_f3d_material_004_lights),
+    gsSPLightColor(LIGHT_1, 0x424242ff),
+    gsSPLightColor(LIGHT_2, 0x212121ff),
 	gsSPEndDisplayList(),
 };
 
@@ -1395,7 +1384,8 @@ Gfx mat_yarn_goomba_f3d_material_001[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(yarn_goomba_f3d_material_001_lights),
+    gsSPLightColor(LIGHT_1, 0x420801ff),
+    gsSPLightColor(LIGHT_2, 0x210400ff),
 	gsSPEndDisplayList(),
 };
 

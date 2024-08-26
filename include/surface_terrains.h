@@ -2,6 +2,7 @@
 #define SURFACE_TERRAINS_H
 
 #include "config.h"
+#include "include/command_macros_base.h"
 
 // Surface Types
 enum SurfaceTypes {
@@ -13,16 +14,16 @@ enum SurfaceTypes {
     SURFACE_0004,                       // 0x0004 // Unused, has no function and has parameters
     SURFACE_HANGABLE,                   // 0x0005 // Ceiling that Mario can climb on
     SURFACE_0006,                       // 0x0006 // Unused
-    SURFACE_0007,                       // 0x0007 // Unused
+    SURFACE_SUPER_SLIPPERY,             // 0x0007 // Super slippery surface, good for delimiting your level
     SURFACE_0008,                       // 0x0008 // Unused
     SURFACE_SLOW,                       // 0x0009 // Slow down Mario, unused
-    SURFACE_DEATH_PLANE,                // 0x000A // Death floor
+    SURFACE_DEATH_PLANE,                // 0x000A // Death floor. Warps to ID of force parameter's second byte if set, otherwise warps to 0xF3 if it exists, otherwise defaults to ID 0xF1.
     SURFACE_CLOSE_CAMERA,               // 0x000B // Close camera
-    SURFACE_000C,                       // 0x000C // unused
+    SURFACE_SHADOW_OFFSET,              // 0x000C // param is shadow distance above floor, scales if floor is an object
     SURFACE_WATER,                      // 0x000D // Water, has no action, used on some waterboxes below
     SURFACE_FLOWING_WATER,              // 0x000E // Water (flowing), has parameters
-    SURFACE_HURT_FLOOR,                       // 0x000F // Unused
-    SURFACE_0010,                       // 0x0010 // Unused
+    SURFACE_HURT_FLOOR,                       // 0x000F
+    SURFACE_WING_FLOOR,                       // 0x0010 // Unused
     SURFACE_0011,                       // 0x0011 // Unused
     SURFACE_INTANGIBLE,                 // 0x0012 // Intangible (Separates BBH mansion from merry-go-round, for room usage)
     SURFACE_VERY_SLIPPERY,              // 0x0013 // Very slippery, mostly used for slides
@@ -30,7 +31,7 @@ enum SurfaceTypes {
     SURFACE_NOT_SLIPPERY,               // 0x0015 // Non-slippery, climbable
     SURFACE_TTM_VINES,                  // 0x0016 // TTM vines, has no action defined
     SURFACE_GSS_CLOUD_WARP,                       // 0x0017 // Unused
-    SURFACE_0018,                       // 0x0018 // Unused
+    SURFACE_INVISIBLE_WALL,                       // 0x0018
     SURFACE_0019,                       // 0x0019 // Unused
     SURFACE_MGR_MUSIC,                  // 0x001A // Plays the Merry go round music, see handle_merry_go_round_music in bbh_merry_go_round.inc.c for more details
     SURFACE_INSTANT_WARP_1B,            // 0x001B // Instant warp to another area, used to warp between areas in WDW and the endless stairs to warp back
@@ -56,13 +57,13 @@ enum SurfaceTypes {
     SURFACE_LOOK_UP_WARP,               // 0x002F // Look up and warp (Wing cap entrance)
     SURFACE_HARD,                       // 0x0030 // Hard floor (Always has fall damage)
     SURFACE_0031,                       // 0x0031 // Unused
-    SURFACE_WARP,                       // 0x0032 // Surface warp
+    SURFACE_WARP,                       // 0x0032 // Surface warp. Warps to ID of force parameter's second byte if set, otherwise defaults to ID 0xF3.
     SURFACE_TIMER_START,                // 0x0033 // Timer start (Peach's secret slide)
     SURFACE_TIMER_END,                  // 0x0034 // Timer stop (Peach's secret slide)
     SURFACE_HARD_SLIPPERY,              // 0x0035 // Hard and slippery (Always has fall damage)
     SURFACE_HARD_VERY_SLIPPERY,         // 0x0036 // Hard and very slippery (Always has fall damage)
     SURFACE_HARD_NOT_SLIPPERY,          // 0x0037 // Hard and Non-slippery (Always has fall damage)
-    SURFACE_VERTICAL_WIND,              // 0x0038 // Death at bottom with vertical wind
+    SURFACE_VERTICAL_WIND,              // 0x0038 // Death at bottom with vertical wind. Warps to ID of force parameter's second byte if set, otherwise warps to 0xF3 if it exists, otherwise defaults to ID 0xF1.
     SURFACE_0039,                       // 0x0039 // Unused
     SURFACE_003A,                       // 0x003A // Unused
     SURFACE_003B,                       // 0x003B // Unused
@@ -230,12 +231,28 @@ enum SurfaceTypes {
     SURFACE_THORN_BUSH,                     
     SURFACE_THORN_WALL,
     SURFACE_SINK_MUD,
-    SURFACE_WATER_DEATH,            
+    SURFACE_WATER_DEATH,
+    SURFACE_VERTICAL_FLOWING_WATER,
+    SURFACE_TTC_WARP,
+    SURFACE_RDR_WARP,
+    SURFACE_STC_WARP,
+    SURFACE_GSS_WARP,
+    SURFACE_WATER_WALL,
+    SURFACE_SPECTRAL_SAND,
+    SURFACE_LESS_BLIZZARD,
+    SURFACE_CLIMBABLE_WALL,
+    SURFACE_ROUGH_WALL,
+    SURFACE_BUBBLE_COLUMN,
+    SURFACE_SS_WARP
 };
+
+// From Surface 0x1B to 0x1E
+#define INSTANT_WARP_INDEX_START  0x00 // Equal and greater than Surface 0x1B
+#define INSTANT_WARP_INDEX_STOP   0x04 // Less than Surface 0x1F
 
 #define SURFACE_IS_NEW_WATER(cmd)               (((cmd) == SURFACE_NEW_WATER) || ((cmd) == SURFACE_NEW_WATER_BOTTOM))
 #define SURFACE_IS_QUICKSAND(cmd)               ((((cmd) >= SURFACE_SHALLOW_QUICKSAND) && ((cmd) <= SURFACE_MOVING_QUICKSAND)) || ((cmd) == SURFACE_INSTANT_MOVING_QUICKSAND))
-#define SURFACE_IS_NOT_HARD(cmd)                (((cmd) != SURFACE_HARD) && !((cmd) >= SURFACE_HARD_SLIPPERY && ((cmd) <= SURFACE_HARD_NOT_SLIPPERY)))
+#define SURFACE_IS_NOT_HARD(cmd)                (((cmd) != SURFACE_HARD) && ((cmd) != SURFACE_LESS_BLIZZARD) && !((cmd) >= SURFACE_HARD_SLIPPERY && ((cmd) <= SURFACE_HARD_NOT_SLIPPERY)))
 #define SURFACE_IS_PAINTING_WOBBLE(cmd)         (((cmd) >= SURFACE_PAINTING_WOBBLE_A6) && ((cmd) <= SURFACE_PAINTING_WOBBLE_D2))
 #define SURFACE_IS_PAINTING_WOBBLE_LEFT(cmd)    ((((cmd) - SURFACE_PAINTING_WOBBLE_A6) % 3) == 0)
 #define SURFACE_IS_PAINTING_WOBBLE_MIDDLE(cmd)  ((((cmd) - SURFACE_PAINTING_WOBBLE_A7) % 3) == 0)
@@ -244,7 +261,7 @@ enum SurfaceTypes {
 #define SURFACE_IS_PAINTING_WARP_LEFT(cmd)      ((((cmd) - SURFACE_PAINTING_WARP_D3  ) % 3) == 0)
 #define SURFACE_IS_PAINTING_WARP_MIDDLE(cmd)    ((((cmd) - SURFACE_PAINTING_WARP_D4  ) % 3) == 0)
 #define SURFACE_IS_PAINTING_WARP_RIGHT(cmd)     ((((cmd) - SURFACE_PAINTING_WARP_D5  ) % 3) == 0)
-#define SURFACE_IS_INSTANT_WARP(cmd)            (((cmd) >= SURFACE_INSTANT_WARP_1B) && ((cmd) <= SURFACE_INSTANT_WARP_1E))
+#define SURFACE_IS_INSTANT_WARP(cmd)            (((cmd) >= SURFACE_INSTANT_WARP_1B) && ((cmd) < SURFACE_INSTANT_WARP_1B + INSTANT_WARP_INDEX_STOP))
 #define SURFACE_IS_WARP(cmd)                    (((cmd) == SURFACE_LOOK_UP_WARP) || ((cmd) == SURFACE_WOBBLING_WARP) || SURFACE_IS_PAINTING_WARP(cmd) || SURFACE_IS_INSTANT_WARP(cmd))
 #define SURFACE_IS_UNSAFE(cmd)                  (((cmd) == SURFACE_BURNING) || SURFACE_IS_QUICKSAND(cmd) || SURFACE_IS_WARP(cmd))
 
@@ -299,7 +316,14 @@ enum TerrainType {
 #define COL_VERTEX(x, y, z) x, y, z
 
 // Collision Tris Initiate
-#define COL_TRI_INIT(surfType, triNum) surfType, triNum
+#define COL_TRI_INIT(surfType, triNum) surfType, 0, 0, 0, triNum
+
+#define COL_TRI_MAT_INIT(surfType, materialIndex, revertIndex, materialLayer, triNum) \
+    surfType, \
+    materialIndex, \
+    revertIndex, \
+    materialLayer, \
+    triNum
 
 // Collision Tri
 #ifdef ALL_SURFACES_HAVE_FORCE

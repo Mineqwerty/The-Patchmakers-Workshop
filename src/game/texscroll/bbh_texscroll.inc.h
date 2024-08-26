@@ -1,3 +1,10 @@
+#include "levels/bbh/tfp_skybox_web/texscroll.inc.h"
+#include "levels/bbh/tfp_skybox_squares/texscroll.inc.h"
+#include "levels/bbh/tfp_skybox_bubbles/texscroll.inc.h"
+#include "levels/bbh/tfp_skybox/texscroll.inc.h"
+#include "levels/bbh/ring_mission_target/texscroll.inc.h"
+#include "levels/bbh/ring_mission/texscroll.inc.h"
+#include "levels/bbh/boost_panel/texscroll.inc.h"
 #include "levels/bbh/far_plane_cube_head/texscroll.inc.h"
 #include "levels/bbh/texscroll.inc.h"
 extern void scroll_textures_bbh();

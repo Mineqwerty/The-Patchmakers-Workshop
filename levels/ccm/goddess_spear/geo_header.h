@@ -1,0 +1,11 @@
+extern const GeoLayout goddess_spear_geo[];
+extern Lights1 goddess_spear_spear_lights;
+extern u8 goddess_spear_gilded_ci8[];
+extern u8 goddess_spear_gilded_pal_rgba16[];
+extern Vtx goddess_spear_Cube_001_mesh_layer_1_vtx_cull[8];
+extern Vtx goddess_spear_Cube_001_mesh_layer_1_vtx_0[209];
+extern Gfx goddess_spear_Cube_001_mesh_layer_1_tri_0[];
+extern Gfx mat_goddess_spear_spear[];
+extern Gfx mat_revert_goddess_spear_spear[];
+extern Gfx goddess_spear_Cube_001_mesh_layer_1[];
+extern Gfx goddess_spear_material_revert_render_settings[];

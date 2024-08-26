@@ -1,30 +1,9 @@
-Lights1 rosedrift_f3d_material_006_lights = gdSPDefLights1(
-	0x0, 0x7F, 0xB,
-	0x0, 0xFF, 0x22, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_eyes_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_f3d_material_002_lights = gdSPDefLights1(
-	0x58, 0x3, 0x0,
-	0xB5, 0xF, 0x0, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_f3d_material_004_lights = gdSPDefLights1(
-	0x7F, 0x0, 0x4,
-	0xFF, 0x0, 0x11, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_eyes_worried_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_eyes_determined_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
-Lights1 rosedrift_eyes_determined_smile_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx rosedrift_rosedriftcloak_ia8_aligner[] = {gsSPEndDisplayList()};
 u8 rosedrift_rosedriftcloak_ia8[] = {
@@ -2515,7 +2494,8 @@ Gfx mat_rosedrift_f3d_material_006[] = {
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPGeometryMode(G_CULL_BACK, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_f3d_material_006_lights),
+    gsSPLightColor(LIGHT_1, 0xff22ff),
+    gsSPLightColor(LIGHT_2, 0x7f0bff),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, rosedrift_rosedriftcloak_ia8),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
 	gsDPLoadBlock(7, 0, 0, 2047, 256),
@@ -2534,7 +2514,8 @@ Gfx mat_rosedrift_eyes[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_eyes_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, rosedrift_rosedriftface_ci8_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -2559,7 +2540,8 @@ Gfx mat_rosedrift_f3d_material_002[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPGeometryMode(G_CULL_BACK, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_f3d_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xb50f00ff),
+    gsSPLightColor(LIGHT_2, 0x580300ff),
 	gsSPEndDisplayList(),
 };
 
@@ -2574,7 +2556,8 @@ Gfx mat_rosedrift_f3d_material_004[] = {
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPGeometryMode(G_CULL_BACK, 0),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_f3d_material_004_lights),
+    gsSPLightColor(LIGHT_1, 0xff0011ff),
+    gsSPLightColor(LIGHT_2, 0x7f0004ff),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, rosedrift_rosedrifttop_ia8),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadBlock(7, 0, 0, 2047, 256),
@@ -2593,7 +2576,8 @@ Gfx mat_rosedrift_eyes_worried[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_eyes_worried_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, rosedrift_rosedrifteyepanick_ci8_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -2617,7 +2601,8 @@ Gfx mat_rosedrift_eyes_determined[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_eyes_determined_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, rosedrift_rosedrifteyedetermined_ci8_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -2641,7 +2626,8 @@ Gfx mat_rosedrift_eyes_determined_smile[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(rosedrift_eyes_determined_smile_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, rosedrift_rosedrifteyedeterminedSMILE_ci8_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),

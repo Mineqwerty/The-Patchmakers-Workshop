@@ -158,4 +158,28 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/box_basket/geo_header.h"
 
+#include "levels/bbh/boost_panel/geo_header.h"
+
+#include "levels/bbh/boost_panel/collision_header.h"
+
+#include "levels/bbh/boost_panel/anim_header.h"
+
+#include "levels/bbh/ring_mission/geo_header.h"
+
+#include "levels/bbh/ring_mission_target/geo_header.h"
+
+#include "levels/bbh/ring_fragment/geo_header.h"
+
+#include "levels/bbh/tfp_checker_platform/geo_header.h"
+
+#include "levels/bbh/tfp_checker_platform/collision_header.h"
+
+#include "levels/bbh/ground_patch_portal/geo_header.h"
+
+#include "levels/bbh/tfp_skybox_bubbles/geo_header.h"
+
+#include "levels/bbh/tfp_skybox_squares/geo_header.h"
+
+#include "levels/bbh/tfp_skybox_web/geo_header.h"
+
 #endif

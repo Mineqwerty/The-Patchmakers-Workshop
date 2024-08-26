@@ -1,14 +1,5 @@
-Lights1 star_marker_f3d_material_018_lights = gdSPDefLights1(
-	0x61, 0x58, 0x3F,
-	0xC2, 0xB0, 0x7F, 0x28, 0x28, 0x28);
 
-Lights1 star_marker_f3d_material_020_lights = gdSPDefLights1(
-	0x61, 0xA, 0xA,
-	0xC2, 0x14, 0x15, 0x28, 0x28, 0x28);
 
-Lights1 star_marker_f3d_material_023_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x28, 0x28, 0x28);
 
 Gfx star_marker_pushpinenv_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 star_marker_pushpinenv_ci8[] = {
@@ -822,7 +813,8 @@ Gfx mat_star_marker_f3d_material_018[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(star_marker_f3d_material_018_lights),
+    gsSPLightColor(LIGHT_1, 0xc2b07fff),
+    gsSPLightColor(LIGHT_2, 0x61583fff),
 	gsSPEndDisplayList(),
 };
 
@@ -851,7 +843,8 @@ Gfx mat_star_marker_f3d_material_020[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(star_marker_f3d_material_020_lights),
+    gsSPLightColor(LIGHT_1, 0xc21415ff),
+    gsSPLightColor(LIGHT_2, 0x610a0aff),
 	gsSPEndDisplayList(),
 };
 
@@ -880,7 +873,8 @@ Gfx mat_star_marker_f3d_material_023[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(star_marker_f3d_material_023_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsSPEndDisplayList(),
 };
 

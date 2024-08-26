@@ -30,14 +30,8 @@ struct SaveFile {
     // cap can always be found in a fixed spot within the course
     u8 capLevel;
     u8 capArea;
-#ifdef SAVE_NUM_LIVES
-    s8 numLives;
-    u8 filler[5];
-#else
-    // Note: the coordinates get set, but are never actually used, since the
-    // cap can always be found in a fixed spot within the course
-    //Vec3s capPos; // 48 bits
-#endif
+
+    // 48 bits
     u16 patchFlags;
     u8 dpadPatchMap[4];
 
@@ -48,7 +42,10 @@ struct SaveFile {
     // cannon is open.
     u8 courseStars[COURSE_COUNT]; // 200 bits
 
-    u8 courseCoinScores[COURSE_STAGES_COUNT]; // 120 bits
+    u32 collectedPatchUpgrades; // 32 bits
+    u32 upgradedPatches; // 32 bits
+
+    u8 filler[6]; // 56 bits
 
     struct SaveBlockSignature signature; // 32 bits
 };
@@ -126,8 +123,8 @@ enum SaveProgressFlags {
     SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR = (1 <<  7), /* 0x00000080 */
     SAVE_FLAG_DDD_MOVED_BACK         = (1 <<  8), /* 0x00000100 */
     SAVE_FLAG_MOAT_DRAINED           = (1 <<  9), /* 0x00000200 */
-    SAVE_FLAG_UNLOCKED_PSS_DOOR      = (1 << 10), /* 0x00000400 */
-    SAVE_FLAG_UNLOCKED_WF_DOOR       = (1 << 11), /* 0x00000800 */
+    SAVE_FLAG_UNLOCKED_COURSE_RDR      = (1 << 10), /* 0x00000400 */
+    SAVE_FLAG_UNLOCKED_COURSE_STC       = (1 << 11), /* 0x00000800 */
     SAVE_FLAG_UNLOCKED_CCM_DOOR      = (1 << 12), /* 0x00001000 */
     SAVE_FLAG_UNLOCKED_JRB_DOOR      = (1 << 13), /* 0x00002000 */
     SAVE_FLAG_UNLOCKED_BITDW_DOOR    = (1 << 14), /* 0x00004000 */
@@ -142,6 +139,12 @@ enum SaveProgressFlags {
     SAVE_FLAG_COLLECTED_TOAD_STAR_3  = (1 << 26), /* 0x04000000 */
     SAVE_FLAG_COLLECTED_MIPS_STAR_1  = (1 << 27), /* 0x08000000 */
     SAVE_FLAG_COLLECTED_MIPS_STAR_2  = (1 << 28), /* 0x10000000 */
+};
+
+enum SaveProgressFlagsNew {
+    N_SAVE_FLAG_FILE_EXISTS            = (1 <<  0), /* 0x00000001 */
+    N_SAVE_FLAG_CUTSCENE_STC_BRIDGE          = (1 <<  1), /* 0x00000002 */
+    N_SAVE_FLAG_CUTSCENE_MISTRESS         = (1 <<  2), /* 0x00000004 */
 };
 
 enum PatchCollectedFlags {
@@ -213,15 +216,13 @@ void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, u32 starFlags);
 void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags);
 void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]);
 void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]);
+u32 save_file_get_collected_patch_upgrades(s32 fileIndex);
+void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades);
 s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex);
 s32 save_file_is_cannon_unlocked(void);
 void save_file_set_cannon_unlocked(void);
 void save_file_set_cap_pos(s16 x, s16 y, s16 z);
 s32 save_file_get_cap_pos(Vec3s capPos);
-#ifdef SAVE_NUM_LIVES
-s32 save_file_get_num_lives(void);
-void save_file_set_num_lives(s8 numLives);
-#endif
 void save_file_set_sound_mode(u16 mode);
 u32 save_file_get_sound_mode(void);
 #ifdef WIDE

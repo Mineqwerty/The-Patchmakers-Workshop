@@ -48,5 +48,7 @@ void update_dl_dpad_patches(void);
 
 extern const Texture *const patch_textures_lut[];
 extern const u8 patch_textures_dma[];
+extern u8 gSpecialHudRender;
+extern u8 gSpecialHudElementAlpha;
 
 #endif // HUD_H

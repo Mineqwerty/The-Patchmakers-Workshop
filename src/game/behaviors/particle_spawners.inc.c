@@ -1,4 +1,5 @@
 #include "src/game/game_init.h"
+#include "src/game/emutest.h"
 
 static struct SpawnParticlesInfo sCrashingWaterParticles = {
     /* behParam:        */ 5,
@@ -90,17 +91,24 @@ void bhv_willowisp_loop(void) {
 }
 
 void bhv_willowisp_spawner_loop(void) {
-    if (o->oBehParams2ndByte == 1) {
+    if (o->oBehParams2ndByte >= 1) {
         o->oPosX = gMarioState->pos[0];
                 o->oPosY = gMarioState->pos[1];
                 o->oPosZ = gMarioState->pos[2];
-                if (o->oF4 == 0) {
-                    o->oF4 = 90;
+                if (o->oSpekturrSpawnOffsetValue == 0) {
+                    o->oSpekturrSpawnOffsetValue = 120;
                 }
-                if (o->oTimer % o->oF4 == 0) {
-                    spawn_object_relative(0, (random_u16() % 512) - 256, 300.0f, (random_u16() % 512) - 256, o, MODEL_NONE, bhvSpekturr);
-                    o->oF4 = (random_u16() % 60) + 60;
+                if (o->oTimer % o->oSpekturrSpawnOffsetValue == 0 && o->oSpekturrCount < 3) {
+                    spawn_object_relative(o->oSpekturrSpawnBehParam++ % 4, (random_u16() % 512) - 256, 300.0f, (random_u16() % 512) - 256, o, MODEL_NONE, bhvSpekturr);
+                    o->oSpekturrSpawnOffsetValue = (random_u16() % 30) + 20;
+                    o->oSpekturrCount++;
                     o->oTimer = 0;
+                }
+
+                if (o->oSpekturrCount == 3) {
+                    if (o->oBehParams2ndByte == 2) {
+                        obj_mark_for_deletion(o);
+                    }
                 }
     }
     else {
@@ -129,5 +137,60 @@ Gfx *geo_switch_fire_smoke(s32 callContext, struct GraphNode *node, UNUSED Mat4 
     }
 
     return NULL;
+}
+
+void bhv_ring_fragment_particle_init(void) {
+    o->oFaceAngleYaw = random_u16();
+   o->oFaceAnglePitch = random_u16();
+   o->oFaceAngleRoll = random_u16();
+   o->oAngleVelYaw = random_u16() / 128 + 0x200 * random_sign();
+   o->oAngleVelPitch = random_u16() / 128 + 0x200 * random_sign();
+   o->oAngleVelRoll = random_u16() / 128 + 0x200 * random_sign();
+   o->oVelY = (random_float() * 15.0f) - 7.5f;
+   o->oForwardVel = (random_float() * 30.0f) - 15.0f;
+   o->oMoveAngleYaw = random_u16();
+}
+
+void bhv_ring_fragment_particle_loop(void) {
+
+
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+    o->oFaceAnglePitch += o->oAngleVelPitch;
+    o->oFaceAngleRoll += o->oAngleVelRoll;
+
+    o->oPosY += o->oVelY;
+
+   if (o->oTimer >= 15) {
+    cur_obj_scale(((f32)(30 - o->oTimer)) / 15.0f);
+   }
+
+   if (o->oTimer == 29) {
+    obj_mark_for_deletion(o);
+   }
+}
+
+void bhv_shadowchomp_particle_init(void) {
+    o->oBehParams2ndByte = random_u16() % 4 + 1;
+    o->oGravity = 0;
+    o->oFireSmokeScale = 1.0f - 0.002f * (random_u16() / 512);
+}
+
+void bhv_shadowchomp_particle_loop(void) {
+    if (o->oTimer < 2) {
+        cur_obj_scale(o->oFireSmokeScale * ((f32)(o->oTimer)/2.0f));
+    }
+    else {
+        cur_obj_scale(o->oFireSmokeScale * ((f32)(47 - o->oTimer)/45.0f));
+    }
+
+    if (o->oTimer == 45) {
+        obj_mark_for_deletion(o);
+    }
+
+    
+    o->oForwardVel *= 0.98f;
+    o->oVelY *= 1.1f;
+
+    object_step();
 }
 

@@ -10,10 +10,12 @@ void bhv_torch_holder_loop(void) {
     if (o->oBehParams2ndByte == 0) {
     f32 dist;
     cur_obj_find_nearest_object_with_behavior(bhvFireSmokeSpawner, &dist);
-    if (dist < 300.0f) {
+    if (o->oF4 == 1 || dist < 300.0f) {
         o->oBehParams2ndByte = 1;
         o->oTorchFlame = spawn_object_relative(1, 0, 250, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
         spawn_object_relative(0, 0, 250, 0, o, MODEL_NONE, bhvFlame);
+
+        if (gCurrAreaIndex == 2) spawn_object_relative(2, 0, 0, 0, o, MODEL_NONE, bhvWillOWispSpawner);
 
          struct Object *hiddenStar = cur_obj_nearest_object_with_behavior(bhvGSSHiddenStar);
 

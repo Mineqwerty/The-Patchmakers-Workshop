@@ -43,3 +43,4 @@
 #include "levels/jrb/forcefield_no_inside/geo.inc.c"
 #include "levels/jrb/falling_stone_shadow/geo.inc.c"
 #include "levels/jrb/fortogoo/geo.inc.c"
+#include "levels/jrb/grounded_patch_grapple/geo.inc.c"

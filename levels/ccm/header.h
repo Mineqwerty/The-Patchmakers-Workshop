@@ -102,4 +102,24 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/gold_spike_ball/geo_header.h"
 
+#include "levels/ccm/wind_cloud/collision_header.h"
+
+#include "levels/ccm/wind_cloud/geo_header.h"
+
+#include "levels/ccm/swinging_axe/geo_header.h"
+
+#include "levels/ccm/swinging_axe/collision_header.h"
+
+#include "levels/ccm/wing_surface/geo_header.h"
+
+#include "levels/ccm/wing_surface/collision_header.h"
+
+#include "levels/ccm/seraphim_anims/anim_header.h"
+
+#include "levels/ccm/seraphim/anim_header.h"
+
+#include "levels/ccm/goddess_spear/geo_header.h"
+
+#include "levels/ccm/grounded_patch_halo/geo_header.h"
+
 #endif

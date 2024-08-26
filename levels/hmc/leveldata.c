@@ -61,3 +61,16 @@
 #include "levels/hmc/areas/1/movtext.inc.c"
 
 #include "levels/hmc/leveldata.inc.c"
+
+#include "levels/hmc/tilting_stone_bridge/collision.inc.c"
+#include "levels/hmc/tilting_stone_bridge/model.inc.c"
+#include "levels/hmc/underwater_stone_door/model.inc.c"
+#include "levels/hmc/underwater_stone_door/collision.inc.c"
+#include "levels/hmc/underwater_stone_button/model.inc.c"
+#include "levels/hmc/underwater_stone_button_collision/collision.inc.c"
+#include "levels/hmc/underwater_stone_button/collision.inc.c"
+#include "levels/hmc/coral_spinner/model.inc.c"
+#include "levels/hmc/coral_spinner/collision.inc.c"
+#include "levels/hmc/glassfish/model.inc.c"
+#include "levels/hmc/glassfish/anims/data.inc.c"
+#include "levels/hmc/glassfish/anims/table.inc.c"

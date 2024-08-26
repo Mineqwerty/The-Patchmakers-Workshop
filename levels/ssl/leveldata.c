@@ -38,7 +38,6 @@
 #include "levels/ssl/spindel/model.inc.c"
 #include "levels/ssl/moving_pyramid_wall/model.inc.c"
 #include "levels/ssl/pyramid_elevator/model.inc.c"
-#include "levels/ssl/eyerok_col/model.inc.c" // Blank file
 #include "levels/ssl/areas/2/collision.inc.c"
 #include "levels/ssl/areas/3/collision.inc.c"
 #include "levels/ssl/areas/2/macro.inc.c"
@@ -51,3 +50,14 @@
 #include "levels/ssl/areas/2/movtext.inc.c"
 
 #include "levels/ssl/leveldata.inc.c"
+
+#include "levels/ssl/purple_mushroom/model.inc.c"
+#include "levels/ssl/purple_mushroom/collision.inc.c"
+#include "levels/ssl/gray_mushroom/model.inc.c"
+#include "levels/ssl/lily_pad/model.inc.c"
+#include "levels/ssl/lily_pad/collision.inc.c"
+#include "levels/ssl/danger_puff/model.inc.c"
+#include "levels/ssl/malva_bud/model.inc.c"
+#include "levels/ssl/malva_flower/model.inc.c"
+#include "levels/ssl/malva_bud/collision.inc.c"
+#include "levels/ssl/vtw_skybox/model.inc.c"

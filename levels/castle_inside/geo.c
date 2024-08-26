@@ -24,3 +24,14 @@
 #include "levels/castle_inside/areas/3/geo.inc.c"
 
 #include "levels/castle_inside/geo.inc.c"
+
+#include "levels/castle_inside/garage_door/geo.inc.c"
+#include "levels/castle_inside/stc_entrance_door/geo.inc.c"
+#include "levels/castle_inside/stc_entrance_door2/geo.inc.c"
+#include "levels/castle_inside/star_unlock_platform/geo.inc.c"
+#include "levels/castle_inside/gss_window_lit/geo.inc.c"
+#include "levels/castle_inside/gss_window_unlit/geo.inc.c"
+#include "levels/castle_inside/gss_window_light/geo.inc.c"
+#include "levels/castle_inside/cartoon_clock_hand/geo.inc.c"
+#include "levels/castle_inside/paper_spinner/geo.inc.c"
+#include "levels/castle_inside/automaton/geo.inc.c"

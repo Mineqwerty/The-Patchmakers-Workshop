@@ -35,6 +35,9 @@ static struct Object *sEndLeftToadObj;
 static struct Object *sEndJumboStarObj;
 static s16 sEndPeachAnimation;
 static s16 sEndToadAnims[2];
+static s16 marioCutsceneFaceAnglePitch;
+static s16 marioCutsceneFaceAngleRoll;
+ModelID32 gStarModelLastCollected = MODEL_STAR;
 
 Vp sEndCutsceneVp = {
     {
@@ -403,15 +406,206 @@ s32 act_waiting_for_dialog(struct MarioState *m) {
     return FALSE;
 }
 
-s32 act_collecting_patch(struct MarioState *m) {
-    if (m->actionArg == 0) {
-        set_custom_mario_animation(m, 2);
-    }
-    else {
-        set_custom_mario_animation(m, 1);
-    }
+
+//action args for these level warp actions essentially make it the next hub. for instance TTC warp with arg of 1 goes to SS
+
+s32 act_warp_ttc(struct MarioState *m) {
+    f32 approachSpeed;
+        switch (m->actionArg) {
+        case 0:;
+            gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+            m->actionTimer++;
+
+            gCamera->cutscene = 1;
+            approachSpeed = 0.05f;
+            gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], gMarioState->pos[1] + 500, approachSpeed);
+                gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
+                gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
+                gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
+
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
+            }
+        break;
+        case 1:;
+            gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+            m->actionTimer++;
+
+            gCamera->cutscene = 1;
+            approachSpeed = 0.05f;
+            gMarioState->pos[1] -= 20;
+            //gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalPos[1] += 10.0f;
+                //gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], gMarioState->pos[2] - 100, approachSpeed);
+                gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], gMarioState->pos[0], approachSpeed);
+                gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], gMarioState->pos[1], approachSpeed);
+                gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], gMarioState->pos[2], approachSpeed);
+
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_HMC, 1, 0x0A, 0);
+            }
+        break;
+        }
+    return FALSE;
+}
+
+s32 act_warp_rdr(struct MarioState *m) {
+    set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, 0x00028000);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    m->faceAngle[1] = approach_s16_symmetric(m->faceAngle[1], 0, 0x800);
+    m->actionTimer++;
+    m->pos[0] += 20 * sins(m->faceAngle[1]);
+    m->pos[2] += 20 * coss(m->faceAngle[1]);
+
+    gCamera->cutscene = 1;
+    gLakituState.goalPos[1] = gMarioState->pos[1] + 200;
+    gLakituState.goalFocus[0] = gMarioState->pos[0];
+    gLakituState.goalFocus[1] = gMarioState->pos[1] + 60;
+    gLakituState.goalFocus[2] = gMarioState->pos[2];
+
+    if (m->actionTimer == 30) {
+        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+    }
+    if (m->actionTimer == 59) {
+        initiate_warp(LEVEL_WF, 1, 0x0A, 0);
+    }
+    return FALSE;
+}
+
+
+s32 act_warp_stc(struct MarioState *m) {
+    switch (m->actionArg) {
+        case 0:;
+        set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+                                                : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
+        vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+
+        m->actionTimer++;
+
+        if (m->actionTimer == 30) {
+            play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+        }
+        if (m->actionTimer == 59) {
+            initiate_warp(LEVEL_JRB, 1, 0x0A, 0);
+        }
+        break;
+        case 1:;
+
+        break;
+    }
+    return FALSE;
+}
+
+s32 act_warp_gss(struct MarioState *m) {
+    gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+
+    m->actionTimer++;
+
+    gCamera->cutscene = 1;
+    Vec3f windowCoords = {-1225, 1998, 591};
+        Vec3f windowFocCoords = {-2000, 2000, 591};
+        f32 approachSpeed = 0.05f;
+        gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], windowCoords[0], approachSpeed);
+        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], windowCoords[1], approachSpeed);
+        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], windowCoords[2], approachSpeed);
+        gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], windowFocCoords[0], approachSpeed);
+        gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], windowFocCoords[1], approachSpeed);
+        gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], windowFocCoords[2], approachSpeed);
+
+    if (m->actionTimer == 1) {
+        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+    }
+    if (m->actionTimer == 30) {
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+    }
+    if (m->actionTimer == 59) {
+        initiate_warp(LEVEL_CCM, 1, 0x0A, 0);
+    }
+    return FALSE;
+}
+
+s32 act_collecting_patch(struct MarioState *m) {
+    switch (m->actionArg) {
+        case 0:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_WALK_TO_STONE_PATCH);
+        break;
+        case 1:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PATCH_GET);
+        break;
+        case 2:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_PICK_UP_STONE_PATCH);
+        break;
+        case 3:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_EQUIP_STONE_PATCH);
+        break;
+        case 4:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_REEL_BACK);
+        break;
+        case 5:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_STONE_TRANSFORMATION);
+            m->actionTimer = 0;
+        break;
+        case 6:
+            set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_SPC_FALL_BACK);
+            m->actionTimer++;
+            marioCutsceneFaceAnglePitch -= 0x200 + (m->actionTimer * m->actionTimer * m->actionTimer * 0.1f);
+            m->pos[0] += 3.0f;
+            m->pos[1] -= CLAMP(m->actionTimer / 5, 0, 2);
+        break;
+        case 7:
+            m->actionTimer++;
+            m->pos[1] -= CLAMP(4.0f + (m->actionTimer/2), 0, 40);
+            m->pos[0] += 1.0f;
+        break;
+        case 8:
+            m->pos[1] -= 35.0f;
+            marioCutsceneFaceAngleRoll += 0x100;
+            marioCutsceneFaceAnglePitch += 0x50;
+        break;
+        case 9:
+            m->pos[1] -= 35.0f;
+            marioCutsceneFaceAngleRoll = 0;
+            marioCutsceneFaceAnglePitch = 0x4000;
+        break;
+        case 10:
+            marioCutsceneFaceAnglePitch = 0;
+            marioCutsceneFaceAngleRoll = -0x4000;
+            set_mario_animation(m, MARIO_ANIM_HANG_ON_OWL);
+            if (m->actionTimer == 1) {
+                m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+            }
+            m->actionTimer++;
+        break;
+        case 11:
+            marioCutsceneFaceAnglePitch = 0;
+            set_mario_animation(m, MARIO_ANIM_HANG_ON_OWL);
+            m->marioObj->header.gfx.animInfo.curAnim->flags |= ANIM_FLAG_NO_ACCEL;
+            m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
+        break;
+    }
+
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+        vec3s_set(m->marioObj->header.gfx.angle, marioCutsceneFaceAngleRoll, m->faceAngle[1], marioCutsceneFaceAnglePitch);
+    return FALSE;
+}
+
+s32 act_story_cutscene(struct MarioState *m) {
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     return FALSE;
 }
 
@@ -601,10 +795,10 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
             case 1:
                 celebStar = spawn_object(m->marioObj, MODEL_STAR, bhvCelebrationStar);
 #ifdef STAR_DANCE_USES_STARS_MODEL
-                celebStar->header.gfx.sharedChild = m->interactObj->header.gfx.sharedChild;
+                obj_set_model(celebStar, gStarModelLastCollected);
 #else
-                if (obj_has_model(m->interactObj, MODEL_BOWSER_KEY)) {
-                    obj_set_model(celebStar, MODEL_BOWSER_KEY);
+                if (gStarModelLastCollected == MODEL_BOWSER_KEY) {
+                    obj_set_model(celebStar, gStarModelLastCollected);
                 }
 #endif
                 disable_background_sound();
@@ -657,10 +851,12 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 s32 act_star_dance(struct MarioState *m) {
     common_patch_cancel(m);
     if (m->patchChildObj) {
-        if (m->patchChildObj->oHaloCapturedObject) {
+        if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
             obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
         }
-        obj_mark_for_deletion(m->patchChildObj);
+        if (!obj_has_behavior(m->patchChildObj, bhvIceFloor)) {
+            obj_mark_for_deletion(m->patchChildObj);
+        }
     }
     m->faceAngle[1] = m->area->camera->yaw;
     set_mario_animation(m, m->actionState == ACT_STATE_STAR_DANCE_RETURN ? MARIO_ANIM_RETURN_FROM_STAR_DANCE
@@ -828,9 +1024,13 @@ s32 act_sink_mud(struct MarioState *m) {
         gCamera->cutscene = 1;
         Vec3f mudCoords = {5611, 764, -4398};
         Vec3f mudFocCoords = {6921, 106, -4398};
-        gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], mudCoords[0], 0.05f);
-        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], mudCoords[1], 0.05f);
-        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], 0.05f);
+        f32 approachSpeed = 0.05f + ((f32)m->actionTimer / 3000.0f);
+        gLakituState.goalPos[0] = approach_f32_asymptotic(gLakituState.goalPos[0], mudCoords[0], approachSpeed);
+        gLakituState.goalPos[1] = approach_f32_asymptotic(gLakituState.goalPos[1], mudCoords[1], approachSpeed);
+        gLakituState.goalPos[2] = approach_f32_asymptotic(gLakituState.goalPos[2], mudCoords[2], approachSpeed);
+        gLakituState.goalFocus[0] = approach_f32_asymptotic(gLakituState.goalFocus[0], mudFocCoords[0], approachSpeed);
+        gLakituState.goalFocus[1] = approach_f32_asymptotic(gLakituState.goalFocus[1], mudFocCoords[1], approachSpeed);
+        gLakituState.goalFocus[2] = approach_f32_asymptotic(gLakituState.goalFocus[2], mudFocCoords[2], approachSpeed);
 
         gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
         m->pos[0] = 6921.0f;
@@ -838,11 +1038,6 @@ s32 act_sink_mud(struct MarioState *m) {
             m->pos[2] = -4398.0f;
         
         m->actionTimer++;
-        if (m->actionTimer >= 10) {
-        gLakituState.goalFocus[0] = approach_s16_asymptotic(gLakituState.goalFocus[0], mudFocCoords[0], 20);
-        gLakituState.goalFocus[1] = approach_s16_asymptotic(gLakituState.goalFocus[1], mudFocCoords[1], 20);
-        gLakituState.goalFocus[2] = approach_s16_asymptotic(gLakituState.goalFocus[2], mudFocCoords[2], 20);
-        }
 
         if (m->actionTimer >= 50) {
             gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
@@ -854,6 +1049,7 @@ s32 act_sink_mud(struct MarioState *m) {
             m->vel[1] = 20.0f;
             m->action = ACT_FORWARD_AIR_KB;
             m->forwardVel = 20.0f;
+            m->particleFlags |= PARTICLE_MIST_CIRCLE;
             gCamera->cutscene = 0;
             clear_cutscene_vars(gCamera);
             gCutsceneTimer = 0;
@@ -865,6 +1061,54 @@ s32 act_sink_mud(struct MarioState *m) {
     }
 
     stationary_ground_step(m);
+    play_sound(SOUND_MOVING_QUICKSAND_DEATH, m->marioObj->header.gfx.cameraToObject);
+    return FALSE;
+}
+
+s32 act_sink_upwards(struct MarioState *m) {
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_INIT) {
+        set_mario_animation(m, MARIO_ANIM_DYING_IN_QUICKSAND);
+        set_anim_to_frame(m, 60);
+        m->actionState = ACT_STATE_QUICKSAND_DEATH_SINK;
+    }
+    if (m->actionState == ACT_STATE_QUICKSAND_DEATH_SINK) {
+        //if (m->quicksandDepth <= -100.0f) {
+            //play_sound_if_no_flag(m, SOUND_MARIO_WAAAOOOW, MARIO_ACTION_SOUND_PLAYED);
+        //}
+        //if ((m->quicksandDepth -= 5.0f) <= 180.0f) {
+            //level_trigger_warp(m, WARP_OP_DEATH);
+        //    m->actionState = ACT_STATE_QUICKSAND_DEATH_DEAD;
+        //    m->actionTimer = 0;
+        //}
+
+        m->pos[1] += 5.0f + (m->actionTimer / 2);
+
+        if (m->movingCeilObject) {
+            m->pos[0] = approach_f32_symmetric(m->pos[0], m->movingCeilObject->oPosX, 20);
+            m->pos[2] = approach_f32_symmetric(m->pos[2], m->movingCeilObject->oPosZ, 20);
+        }
+        else {
+            m->pos[0] = m->marioSinkPos[0];
+            m->pos[2] = m->marioSinkPos[2];
+        }
+
+        
+
+            
+        
+
+        if ((m->pos[1] >= m->floorHeight && (m->pos[1] - m->floorHeight < 100)) || m->actionTimer++ > 120) {
+            set_mario_action(m, ACT_FEET_STUCK_IN_GROUND, 0);
+            gCamera->cutscene = 0;
+            clear_cutscene_vars(gCamera);
+            gCutsceneTimer = 0;
+        }
+    }
+    
+
+    //stationary_ground_step(m);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     play_sound(SOUND_MOVING_QUICKSAND_DEATH, m->marioObj->header.gfx.cameraToObject);
     return FALSE;
 }
@@ -1206,8 +1450,8 @@ s32 act_exit_airborne(struct MarioState *m) {
 #ifdef BREATH_METER
     m->breath = 0x880;
 #endif
-    if (15 < m->actionTimer++
-        && launch_mario_until_land(m, ACT_EXIT_LAND_SAVE_DIALOG, MARIO_ANIM_GENERAL_FALL, -32.0f)) {
+    m->actionTimer++;
+    if (launch_mario_until_land(m, ACT_EXIT_LAND_SAVE_DIALOG, MARIO_ANIM_GENERAL_FALL, -32.0f)) {
         // heal Mario
         m->healCounter = 31;
     }
@@ -1240,12 +1484,9 @@ s32 act_exit_land_save_dialog(struct MarioState *m) {
             set_mario_animation(m, m->actionArg == 0 ? MARIO_ANIM_GENERAL_LAND
                                                      : MARIO_ANIM_LAND_FROM_SINGLE_JUMP);
             if (is_anim_past_end(m)) {
-                if (gLastCompletedCourseNum != COURSE_BITDW
-                    && gLastCompletedCourseNum != COURSE_BITFS) {
-                    enable_time_stop();
-                }
-
-                set_menu_mode(MENU_MODE_RENDER_COURSE_COMPLETE_SCREEN);
+                
+                
+                set_menu_mode(MENU_MODE_NEW_STAR_COMPLETE_TEXT);
                 gSaveOptSelectIndex = MENU_OPT_NONE;
 
                 m->actionState = ACT_STATE_EXIT_LAND_SAVE_DIALOG_WITH_CAP; // star exit with cap
@@ -1317,9 +1558,8 @@ s32 act_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1335,9 +1575,8 @@ s32 act_death_exit(struct MarioState *m) {
 s32 act_unused_death_exit(struct MarioState *m) {
     if (launch_mario_until_land(m, ACT_FREEFALL_LAND_STOP, MARIO_ANIM_GENERAL_FALL, 0.0f)) {
         play_sound(SOUND_MARIO_OOOF2, m->marioObj->header.gfx.cameraToObject);
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1356,9 +1595,8 @@ s32 act_falling_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         // restore 7.75 units of health
         m->healCounter = 31;
@@ -1412,9 +1650,8 @@ s32 act_special_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+#ifdef ENABLE_LIVES
         m->numLives--;
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(m->numLives);
 #endif
         m->healCounter = 31;
     }
@@ -1614,6 +1851,7 @@ s32 act_teleport_fade_in(struct MarioState *m) {
         }
     }
 
+    m->pos[1] = m->floorHeight;
     stop_and_set_height_to_floor(m);
 
     return FALSE;
@@ -1769,12 +2007,12 @@ void stuck_in_ground_handler(struct MarioState *m, s32 animation, s32 unstuckFra
                              s32 target3, s32 endAction) {
     s32 animFrame = set_mario_animation(m, animation);
 
-    if (m->input & INPUT_A_PRESSED) {
-        m->actionTimer++;
-        if (m->actionTimer >= 5 && animFrame < unstuckFrame - 1) {
+    if (animFrame < unstuckFrame - 1) {
+        //m->actionTimer++;
+        //if (m->actionTimer >= 5 && animFrame < unstuckFrame - 1) {
             animFrame = unstuckFrame - 1;
             set_anim_to_frame(m, animFrame);
-        }
+        //}
     }
 
     stop_and_set_height_to_floor(m);
@@ -2855,11 +3093,16 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_READING_SIGN:               cancel = act_reading_sign(m);               break;
         case ACT_JUMBO_STAR_CUTSCENE:        cancel = act_jumbo_star_cutscene(m);        break;
         case ACT_WAITING_FOR_DIALOG:         cancel = act_waiting_for_dialog(m);         break;
+        case ACT_WARP_STC:         cancel = act_warp_stc(m);         break;
+        case ACT_WARP_RDR:         cancel = act_warp_rdr(m);         break;
+        case ACT_WARP_TTC:         cancel = act_warp_ttc(m);         break;
+        case ACT_WARP_GSS:         cancel = act_warp_gss(m);         break;
         case ACT_COLLECTING_PATCH:         cancel = act_collecting_patch(m);         break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_SINK_MUD:            cancel = act_sink_mud(m);            break;
         case ACT_RUSHING_WATER_DEATH:            cancel = act_rushing_water_death(m);            break;
+        case ACT_SINK_UPWARDS:            cancel = act_sink_upwards(m);            break;
         case ACT_ELECTROCUTION:              cancel = act_electrocution(m);              break;
         case ACT_SUFFOCATION:                cancel = act_suffocation(m);                break;
         case ACT_DEATH_ON_STOMACH:           cancel = act_death_on_stomach(m);           break;
@@ -2901,6 +3144,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_PUTTING_ON_CAP:             cancel = act_putting_on_cap(m);             break;
         case ACT_FLOOR_CHECKPOINT_WARP_OUT:  cancel = act_floor_checkpoint_warp_out(m);  break;
         case ACT_FLOOR_CHECKPOINT_WARP_IN:   cancel = act_floor_checkpoint_warp_in(m);   break;
+        case ACT_STORY_CUTSCENE:             cancel = act_story_cutscene(m);             break;
     }
     /* clang-format on */
 

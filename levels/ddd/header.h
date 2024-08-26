@@ -40,4 +40,53 @@ extern const struct MovtexQuadCollection ddd_movtex_area2_water[];
 // script
 extern const LevelScript level_ddd_entry[];
 
+
+#include "levels/ddd/header.inc.h"
+
+#include "levels/ddd/awning/geo_header.h"
+
+#include "levels/ddd/awning/collision_header.h"
+
+#include "levels/ddd/transmutation_table/collision_header.h"
+
+#include "levels/ddd/regular_table/geo_header.h"
+
+#include "levels/ddd/mushroom_table/geo_header.h"
+
+#include "levels/ddd/red_flower/geo_header.h"
+
+#include "levels/ddd/red_flower/collision_header.h"
+
+#include "levels/ddd/hvh_skybox/geo_header.h"
+
+#include "levels/ddd/windmill_fan/geo_header.h"
+
+#include "levels/ddd/windmill_fan/collision_header.h"
+
+#include "levels/ddd/windmill_platform/geo_header.h"
+
+#include "levels/ddd/windmill_platform/collision_header.h"
+
+#include "levels/ddd/hvh_chest/geo_header.h"
+
+#include "levels/ddd/hvh_chest_top/geo_header.h"
+
+#include "levels/ddd/mimic/geo_header.h"
+
+#include "levels/ddd/mimic/anim_header.h"
+
+#include "levels/ddd/d4/geo_header.h"
+
+#include "levels/ddd/d6/geo_header.h"
+
+#include "levels/ddd/d8/geo_header.h"
+
+#include "levels/ddd/d10/geo_header.h"
+
+#include "levels/ddd/d100/geo_header.h"
+
+#include "levels/ddd/d12/geo_header.h"
+
+#include "levels/ddd/d20/geo_header.h"
+
 #endif

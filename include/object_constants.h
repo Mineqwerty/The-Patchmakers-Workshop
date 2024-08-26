@@ -44,7 +44,7 @@ enum ObjFlags {
     OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT      = (1 <<  9), // 0x00000200
     OBJ_FLAG_HOLDABLE                          = (1 << 10), // 0x00000400
     OBJ_FLAG_SET_THROW_MATRIX_FROM_TRANSFORM   = (1 << 11), // 0x00000800
-    OBJ_FLAG_1000                              = (1 << 12), // 0x00001000
+    OBJ_FLAG_IS_ENEMY                              = (1 << 12), // 0x00001000
     OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO            = (1 << 13), // 0x00002000
     OBJ_FLAG_PERSISTENT_RESPAWN                = (1 << 14), // 0x00004000
     OBJ_FLAG_VELOCITY_PLATFORM                 = (1 << 15), // 0x00008000
@@ -55,7 +55,10 @@ enum ObjFlags {
     OBJ_FLAG_OCCLUDE_SILHOUETTE                = (1 << 20), // 0x00100000
     OBJ_FLAG_OPACITY_FROM_CAMERA_DIST          = (1 << 21), // 0x00200000
     OBJ_FLAG_EMIT_LIGHT                        = (1 << 22), // 0x00400000
-    OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK                        = (1 << 22), // 0x00800000
+    OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM          = (1 << 23), // 0x00800000
+    OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK      = (1 << 24), // 0x01000000
+    OBJ_FLAG_NEW_DAMAGE_SYSTEM                 = (1 << 25), // 0x02000000
+    OBJ_FLAG_FILLER                 = (1 << 26), // 0x02000000
     OBJ_FLAG_HITBOX_WAS_SET                    = (1 << 30), // 0x40000000
 };
 
@@ -780,7 +783,6 @@ enum ExclamationBoxContentsList { // oBehParams2ndByte, ExclamationBoxContents->
     EXCLAMATION_BOX_BP_STAR_4,
     EXCLAMATION_BOX_BP_STAR_5,
     EXCLAMATION_BOX_BP_STAR_6,
-    EXCLAMATION_BOX_BP_NULL = 99
 };
 enum oBehParam1stByteExclamationBox {
     EXCLAMATION_BOX_BP1_NEEDS_SWITCH,
@@ -962,6 +964,10 @@ enum oActionsStarDoor {
     #define WATER_RING_ACT_COLLECTED                        0x1
     /* Animations */
     #define WATER_RING_ANIM_WOBBLE                          0x0
+
+    #define SS_RING_ACT_INVIS                    0x0
+    #define SS_RING_ACT_NOT_COLLECTED                    0x1
+    #define SS_RING_ACT_COLLECTED                        0x2
 
 /* Jet Stream Water Ring Spawner */
     /* oAction */

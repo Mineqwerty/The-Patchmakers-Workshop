@@ -1,5 +1,16 @@
 // treasure_chest.inc.c
 
+enum TreasureChestContents {
+    TREASURE_CONTENTS_NONE,
+    TREASURE_CONTENTS_MIMIC,
+    TREASURE_CONTENTS_ONE_COIN,
+    TREASURE_CONTENTS_THREE_COINS,
+    TREASURE_CONTENTS_FIVE_COINS,
+    TREASURE_CONTENTS_TEN_COINS,
+    TREASURE_CONTENTS_STAR
+    
+};
+
 /**
  * Hitbox for treasure chest bottom.
  */
@@ -39,13 +50,11 @@ void bhv_treasure_chest_top_loop(void) {
             if (o->oFaceAnglePitch < -0x4000) {
                 o->oFaceAnglePitch = -0x4000;
                 o->oAction = TREASURE_CHEST_TOP_ACT_OPENED;
-                if (o->parentObj->oBehParams2ndByte != TREASURE_CHEST_BP_4) {
-                    spawn_orange_number(o->parentObj->oBehParams2ndByte, 0, -40, 0);
-                }
             }
             break;
 
         case TREASURE_CHEST_TOP_ACT_OPENED:
+        o->parentObj->oAction = TREASURE_CHEST_BOTTOM_ACT_OPENED;
             if (o->parentObj->oAction == TREASURE_CHEST_BOTTOM_ACT_CLOSE) {
                 o->oAction = TREASURE_CHEST_TOP_ACT_CLOSING;
             }
@@ -56,45 +65,71 @@ void bhv_treasure_chest_top_loop(void) {
             if (o->oFaceAnglePitch > 0x0) {
                 o->oFaceAnglePitch = 0x0;
                 o->oAction = TREASURE_CHEST_TOP_ACT_CLOSED;
+                
             }
     }
 }
 
 void bhv_treasure_chest_bottom_init(void) {
-    spawn_object_relative(0, 0, 102, -77, o, MODEL_TREASURE_CHEST_LID, bhvTreasureChestTop);
+    o->oTreasureChestLid = spawn_object_relative(0, 0, 102, -77, o, MODEL_HVH_CHEST_TOP, bhvTreasureChestTop);
     obj_set_hitbox(o, &sTreasureChestBottomHitbox);
 }
 
 void bhv_treasure_chest_bottom_loop(void) {
     switch (o->oAction) {
         case TREASURE_CHEST_BOTTOM_ACT_CLOSE:
-            if ((!o->parentObj->oTreasureChestDoCloseChests)
-                && is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 150)
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 150)
                 && obj_check_if_facing_toward_angle(o->oMoveAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x3000)) {
-                if (o->parentObj->oTreasureChestNumOpenedChests == o->oBehParams2ndByte) {
-                    play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
-                    o->parentObj->oTreasureChestNumOpenedChests++;
                     o->oAction = TREASURE_CHEST_BOTTOM_ACT_OPENING;
-                } else {
-                    o->parentObj->oTreasureChestNumOpenedChests = 1;
-                    o->parentObj->oTreasureChestDoCloseChests = TRUE;
-                    o->oAction = TREASURE_CHEST_BOTTOM_ACT_OPENED;
-                    cur_obj_become_tangible();
-                    play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
-                }
             }
             break;
 
         case TREASURE_CHEST_BOTTOM_ACT_OPENING:
-            if (o->parentObj->oTreasureChestDoCloseChests) {
-                o->oAction = TREASURE_CHEST_BOTTOM_ACT_CLOSE;
-            }
+            //if (o->parentObj->oTreasureChestDoCloseChests) {
+            //    o->oAction = TREASURE_CHEST_BOTTOM_ACT_CLOSE;
+            //}
             break;
 
         case TREASURE_CHEST_BOTTOM_ACT_OPENED:
+
+            if (o->oTreasureChestTreasureEmptied == 0) {
+                switch (o->oBehParams2ndByte) {
+                        case TREASURE_CONTENTS_MIMIC:
+                            if (o->oTimer == 5) {
+                            spawn_object_relative(0, 0, 0, 0, o, MODEL_MIMIC, bhvMimic);
+                            play_sound(SOUND_GENERAL_PAINTING_EJECT, gGlobalSoundSource);
+                            spawn_mist_particles_variable(20, 10, 100.0f);
+                            }
+                            if (o->oTimer == 6) {
+                                o->oTreasureChestTreasureEmptied = 1;
+                                obj_mark_for_deletion(o->oTreasureChestLid);
+                                obj_mark_for_deletion(o);
+                            }
+                        break;
+                        case TREASURE_CONTENTS_ONE_COIN:
+                            cur_obj_spawn_loot_coins(1, 10.0f, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+                            o->oTreasureChestTreasureEmptied = 1;
+                        break;
+                        case TREASURE_CONTENTS_THREE_COINS:
+                            cur_obj_spawn_loot_coins(3, 10.0f, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+                            o->oTreasureChestTreasureEmptied = 1;
+                        break;
+                        case TREASURE_CONTENTS_FIVE_COINS:
+                            cur_obj_spawn_loot_coins(5, 10.0f, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+                            o->oTreasureChestTreasureEmptied = 1;
+                        break;
+                        case TREASURE_CONTENTS_TEN_COINS:
+                            cur_obj_spawn_loot_coins(10, 10.0f, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+                            o->oTreasureChestTreasureEmptied = 1;
+                        break;
+                        case TREASURE_CONTENTS_STAR:
+                            spawn_default_star(gMarioState->pos[0], o->oPosY + 200, gMarioState->pos[2]);
+                            o->oTreasureChestTreasureEmptied = 1;
+                        break;
+                    }
+            }
             cur_obj_become_intangible();
             if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
-                o->parentObj->oTreasureChestDoCloseChests = FALSE;
                 o->oAction = TREASURE_CHEST_BOTTOM_ACT_CLOSE;
             }
     }

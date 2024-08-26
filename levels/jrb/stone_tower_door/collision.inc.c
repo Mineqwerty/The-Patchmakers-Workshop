@@ -9,7 +9,7 @@ const Collision stone_tower_door_collision[] = {
 	COL_VERTEX(79, 1023, 0),
 	COL_VERTEX(79, 1023, -219),
 	COL_VERTEX(-79, 1023, -219),
-	COL_TRI_INIT(SURFACE_DEFAULT, 12),
+	COL_TRI_INIT(SURFACE_NO_CAM_COLLISION, 12),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
 	COL_TRI(4, 5, 6),

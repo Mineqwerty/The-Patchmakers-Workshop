@@ -30,9 +30,9 @@ enum ZBmodes {
     CLEAR_ZBUFFER = 1,
 };
 
-extern struct Controller gControllers[3];
-extern OSContStatus gControllerStatuses[4];
-extern OSContPad gControllerPads[4];
+extern struct Controller gControllers[MAXCONTROLLERS];
+extern OSContStatus gControllerStatuses[MAXCONTROLLERS];
+extern OSContPadEx gControllerPads[MAXCONTROLLERS];
 extern OSMesgQueue gGameVblankQueue;
 extern OSMesgQueue gGfxVblankQueue;
 extern OSMesg gGameMesgBuf[1];
@@ -47,7 +47,6 @@ extern Gfx *gDisplayListHead;
 extern u8 *gGfxPoolEnd;
 extern struct GfxPool *gGfxPool;
 extern u8 gControllerBits;
-extern u8 gIsConsole;
 extern Vec3f gSelectedStarCoords;
 extern u8 gStarSelectDisturbed;
 extern u8 gCacheEmulated;
@@ -71,9 +70,10 @@ extern s8 gSramProbe;
 #endif
 
 extern void (*gGoddardVblankCallback)(void);
-extern struct Controller *gPlayer1Controller;
-extern struct Controller *gPlayer2Controller;
-extern struct Controller *gPlayer3Controller;
+extern struct Controller* const gPlayer1Controller;
+extern struct Controller* const gPlayer2Controller;
+extern struct Controller* const gPlayer3Controller;
+extern struct Controller* const gPlayer4Controller;
 extern struct DemoInput *gCurrDemoInput;
 extern u16 gDemoInputListID;
 extern struct DemoInput gRecordedDemoInput;
@@ -86,6 +86,7 @@ extern struct DmaHandlerList gDemoInputsBuf;
 extern u8 gMarioAnims[];
 extern u8 gDemoInputs[];
 
+extern u16 sRenderedFramebuffer;
 extern u16 sRenderingFramebuffer;
 extern u32 gGlobalTimer;
 
@@ -99,5 +100,6 @@ void end_master_display_list(void);
 void render_init(void);
 void select_gfx_pool(void);
 void display_and_vsync(void);
+void freeze_game_frames(s32 frames);
 
 #endif // GAME_INIT_H

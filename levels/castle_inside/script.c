@@ -12,10 +12,6 @@
 #include "levels/scripts.h"
 
 #include "actors/common1.h"
-
-/* Fast64 begin persistent block [includes] */
-/* Fast64 end persistent block [includes] */
-
 #include "make_const_nonconst.h"
 #include "levels/castle_inside/header.h"
 
@@ -32,11 +28,24 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
 	LOAD_YAY0(0x06, _group15_yay0SegmentRomStart, _group15_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0D, _group15_geoSegmentRomStart, _group15_geoSegmentRomEnd), 
+	LOAD_MIO0(0xb, _effect_mio0SegmentRomStart, _effect_mio0SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_16), 
 	JUMP_LINK(script_func_global_1), 
-
+	LOAD_MODEL_FROM_GEO(MODEL_STC_DOOR_RIGHT, stc_entrance_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_STC_DOOR_LEFT, stc_entrance_door2_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_RDR_GARAGE_DOOR, garage_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_STAR_UNLOCK_PLATFORM, star_unlock_platform_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIT, gss_window_lit_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_UNLIT, gss_window_unlit_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_CARTOON_HAND, cartoon_clock_hand_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SPINNER, paper_spinner_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_AUTOMATON, automaton_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -50,27 +59,81 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x0D, LEVEL_JRB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0E, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0F, LEVEL_BITDW, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, -1905, 191, -31, 0, 0, 0, 0x050B0000, bhvWarp),
-		OBJECT(MODEL_NONE, -3127, 100, -1049, 0, 0, 0, 0x050C0000, bhvWarp),
-		OBJECT(MODEL_NONE, -3127, 100, -1599, 0, 0, 0, 0x050D0000, bhvWarp),
+		WARP_NODE(0x30, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x31, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x32, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x33, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x40, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x41, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_GSS_WINDOW_LIGHT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindowLight),
+		OBJECT(MODEL_GSS_WINDOW_LIT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindow),
 		OBJECT(MODEL_NONE, -2014, 100, -1225, 0, 0, 0, 0x051F0000, bhvPaintingDeathWarp),
-		OBJECT(MODEL_NONE, -1004, 1808, 590, 0, 0, 0, 0x050E0000, bhvWarp),
+		OBJECT(MODEL_NONE, 6545, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
+		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 0, 0, 0x00000000, bhvStcDoor),
+		OBJECT(MODEL_STC_DOOR_LEFT, 3889, 554, 2906, 0, 0, 0, (1 << 16), bhvStcDoor),
+		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, 0, 0, 0x00000000, bhvGarageDoor),
+		MARIO_POS(0x01, 0, 0, 200, 0),
+		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
+		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, -4853, 168, 1010, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, 4081, 688, 2692, 0, -90, 0, (0x42 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, -712, 1847, 628, 0, -90, 0, (0x43 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, -2972, 325, 2725, 0, 0, 0, (0x30 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, -4853, 206, 1010, 0, 0, 0, (0x31 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, 4081, 726, 2692, 0, -90, 0, (0x32 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, -712, 1886, 628, 0, -90, 0, (0x33 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_SEWNIA, -217, 100, -1359, 0, 0, 0, 0x00000000, bhvSewnia),
-		OBJECT(MODEL_NONE, 5373, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
 		OBJECT(MODEL_NONE, -2096, 100, -508, 0, 0, 0, 0x00000000, bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, -4134, 100, -1677, 0, 0, 0, (1 << 16), bhvSewniaStoppingPoint),
-		OBJECT(MODEL_NONE, 4862, 554, 357, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
+		OBJECT(MODEL_NONE, 4162, 554, 3058, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, 510, 1699, 255, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
-		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		MARIO_POS(0x01, 0, 0, 200, 0),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, -4862, 0, 731, 0, 0, 0, (2 << 24) | (1 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4443, 554, 2697, 0, -90, 0, (4 << 24) | (2 << 16), bhvStarUnlockPlatform),
 		TERRAIN(castle_inside_area_1_collision),
+		TERRAIN_MAT_LUT(castle_inside_area_1_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_1_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
-
+	AREA(2, castle_inside_area_2),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x1F, LEVEL_CASTLE, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_WF, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_JRB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0E, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0F, LEVEL_BITDW, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x30, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x31, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x32, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x33, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x40, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x41, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
+		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
+		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
+		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_NONE, 1690, 100, 3403, 0, -136, 0, 0x00000000, bhvSoundMenu),
+		TERRAIN(castle_inside_area_2_collision),
+		TERRAIN_MAT_LUT(castle_inside_area_2_collision_materials),
+		MACRO_OBJECTS(castle_inside_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_SPOOKY),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, 0, 200, 0),
 	CALL(0, lvl_init_or_update),

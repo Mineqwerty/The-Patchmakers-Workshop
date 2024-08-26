@@ -7,6 +7,7 @@
 #include "external.h"
 #include "playback.h"
 #include "synthesis.h"
+#include "game/debug.h"
 #include "game/main.h"
 #include "game/level_update.h"
 #include "game/object_list_processor.h"
@@ -14,6 +15,9 @@
 #include "engine/math_util.h"
 #include "seq_ids.h"
 #include "dialog_ids.h"
+
+#include "config/config_audio.h"
+#include "src/game/ingame_menu.h"
 
 // N.B. sound banks are different from the audio banks referred to in other
 // files. We should really fix our naming to be less ambiguous...
@@ -85,7 +89,7 @@ u8 sDialogSpeaker[] = {
     //       0      1      2      3      4      5      6      7      8      9
     /* 0*/ _,     _,  _,  _,  _,  _, _, _, _,     _,
     /* 1*/ _,     _,     _,     _,     _,     _,     _,     _, _,     _,
-    /* 2*/ _,     BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1,
+    /* 2*/ _,     _, _, _, _, _, _, _, _, _,
     /* 3*/ _,     _,     _,     _,     _,     _,     _,     TUXIE, _,     _,
     /* 4*/ _,     KOOPA, _,     _,     _,     _,     _,     BOMB,  _,     _,
     /* 5*/ _,     _,     _,     _,     _,     _, _, _, _, _,
@@ -142,10 +146,14 @@ enum MusicDynConditionTypes {
     MARIO_Y_GE,
     MARIO_Z_GE,
     MARIO_X_LT,
-    MARIO_Y_LT,
-    MARIO_Z_LT,
+    MARIO_IS_ABOVE_WATER,
+    MARIO_IS_UNDER_WATER,
     MARIO_IS_IN_AREA,
     MARIO_IS_IN_ROOM,
+    // TODO: If i need more level dynamics, everything past here doesnt work due to a hardcoded 8 limit
+    MARIO_Y_LT,
+    MARIO_Z_LT,
+    DYN_CONDITION_COUNT,
 };
 
 #define DYN1(cond1, val1, res) (s16)(1 << (15 - cond1) | res), val1
@@ -184,8 +192,26 @@ s16 sDynCcm[] = {
     DYN1(MARIO_IS_IN_AREA, 2, 8),
 };
 s16 sDynHmc[] = {
-    SEQ_LEVEL_UNDERGROUND, DYN2(MARIO_X_GE, 0, MARIO_Y_LT, -203, 4),
-    DYN2(MARIO_X_LT, 0, MARIO_Y_LT, -2400, 4), 3,
+    SEQ_SUBTERRANEAN_SEAWAY, 
+    DYN1(MARIO_IS_ABOVE_WATER, 1, 11),
+    DYN1(MARIO_IS_UNDER_WATER, 2, 12),
+};
+s16 sDynWf[] = {
+    SEQ_RAINY_DAY_ROADSIDE, 
+    DYN1(MARIO_IS_IN_AREA, 1, 9),
+    DYN1(MARIO_IS_IN_AREA, 3, 10),
+};
+s16 sDynLll[] = {
+    SEQ_CANDLELIT_CHAMBER, 
+    DYN1(MARIO_IS_IN_ROOM, 1, 13),
+    DYN1(MARIO_IS_IN_ROOM, 4, 13),
+    DYN1(MARIO_IS_IN_ROOM, 6, 13),
+    DYN1(MARIO_IS_IN_ROOM, 7, 13),
+    DYN1(MARIO_IS_IN_ROOM, 3, 14),
+    DYN1(MARIO_IS_IN_ROOM, 2, 14),
+    DYN1(MARIO_IS_IN_ROOM, 5, 14),
+    DYN1(MARIO_IS_IN_ROOM, 9, 14),
+    DYN1(MARIO_IS_IN_ROOM, 8, 15),
 };
 s16 sDynUnk38[] = {
     SEQ_LEVEL_UNDERGROUND,
@@ -211,32 +237,29 @@ s16 *sLevelDynamics[LEVEL_COUNT] = {
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
 
-struct MusicDynamic {
-    /*0x0*/ s16 bits1;
-    /*0x2*/ u16 volScale1;
-    /*0x4*/ s16 dur1;
-    /*0x6*/ s16 bits2;
-    /*0x8*/ u16 volScale2;
-    /*0xA*/ s16 dur2;
-}; // size = 0xC
-
-struct MusicDynamic sMusicDynamics[9] = {
+struct MusicDynamic sMusicDynamics[16] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0003, 127, 100, 0x0e40, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0e43, 127, 200, 0x0000, 0, 200 }, // SEQ_LEVEL_WATER
     { 0x02ff, 127, 100, 0x0100, 0, 100 }, // SEQ_LEVEL_UNDERGROUND
     { 0x03f7, 127, 100, 0x0008, 0, 100 }, // SEQ_LEVEL_UNDERGROUND
     { 0x0070, 127, 10, 0x0000, 0, 100 },  // SEQ_LEVEL_SPOOKY
-    { 0x0000, 127, 100, 0x0070, 0, 10 },  // SEQ_LEVEL_SPOOKY
-    { 0x0205, 127, 50, 0x0060, 0, 50 },
-    { 0x0060, 127, 50, 0x0205, 0, 50 }, // any (unused)
-    
+    { 0x0000, 127, 100, 0x0070, 0, 10 },  
+    { 0x0205, 127, 50, 0x0060, 0, 50 }, // GSS
+    { 0x0060, 127, 50, 0x0205, 0, 50 }, // GSS i think
+    { 0x0107, 127, 100, 0x0270, 0, 0 },  //RDR A1
+    { 0x0377, 127, 50, 0x0000, 0, 50 }, // RDR A2
+    { 0x029F, 127, 100, 0xE000, 0, 10 },  //SS Above Water
+    { 0xE298, 127, 50, 0x0007, 0, 50 }, // SS Underwater 
+    { 0x013F, 127, 50, 0xFEC0, 0, 50 }, // CLC Normal
+    { 0x07FF, 127, 50, 0xF800, 0, 50 }, // CLC Haunted
+    { 0xF800, 127, 50, 0x07FF, 0, 50 }, // CLC Library
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },
 #define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, echo1, echo2, echo3, _9, _10) { echo1, echo2, echo3 },
 
-u8 sLevelAreaReverbs[LEVEL_COUNT][3] = {
+s8 sLevelAreaReverbs[LEVEL_COUNT][3] = {
     { 0x00, 0x00, 0x00 }, // LEVEL_NONE
 #include "levels/level_defines.h"
 };
@@ -266,7 +289,12 @@ u16 sLevelAcousticReaches[LEVEL_COUNT] = {
 #define VOLUME_RANGE_UNK2 0.8f
 #endif
 
-// Default volume for background music sequences (playing on player 0).
+// sBackgroundMusicDefaultVolume represents the default volume for background music sequences using the level player (deprecated).
+// This code block is simply commented out for now as to not destroy compatibility with any streamed audio tools.
+// TODO: Delete this entirely once the unsupporting streamed tools or their builds are outdated.
+
+/*
+
 u8 sBackgroundMusicDefaultVolume[] = {
     127, // SEQ_SOUND_PLAYER
     80,  // SEQ_EVENT_CUTSCENE_COLLECT_STAR
@@ -316,17 +344,22 @@ u8 sBackgroundMusicDefaultVolume[] = {
     80,
     127,
     80,
+    80,
+    80,
+    127,
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,
               "change this array if you are adding sequences");
 
+*/
+
 u8 sCurrentBackgroundMusicSeqId = SEQUENCE_NONE;
 u8 sMusicDynamicDelay = 0;
-u8 sSoundBankUsedListBack[SOUND_BANK_COUNT] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-u8 sSoundBankFreeListFront[SOUND_BANK_COUNT] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-u8 sNumSoundsInBank[SOUND_BANK_COUNT] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // only used for debugging
-u8 sMaxChannelsForSoundBank[SOUND_BANK_COUNT] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+u8 sSoundBankUsedListBack[SOUND_BANK_COUNT];
+u8 sSoundBankFreeListFront[SOUND_BANK_COUNT];
+u8 sNumSoundsInBank[SOUND_BANK_COUNT]; // only used for debugging
+u8 sMaxChannelsForSoundBank[SOUND_BANK_COUNT];
 
 // sBackgroundMusicMaxTargetVolume and sBackgroundMusicTargetVolume use the 0x80
 // bit to indicate that they are set, and the rest of the bits for the actual value
@@ -336,7 +369,6 @@ u8 sMaxChannelsForSoundBank[SOUND_BANK_COUNT] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 
 f32 gGlobalSoundSource[3] = { 0.0f, 0.0f, 0.0f };
 u8 sSoundBankDisabled[16] = { 0 };
-u8 D_80332108 = 0;
 u8 sHasStartedFadeOut = FALSE;
 u16 sSoundBanksThatLowerBackgroundMusic = 0;
 u8 sBackgroundMusicMaxTargetVolume = TARGET_VOLUME_UNSET;
@@ -359,7 +391,7 @@ struct UnkStruct80343D00 D_SH_80343D00;
 
 struct Sound sSoundRequests[0x100];
 // Curiously, this has size 3, despite SEQUENCE_PLAYERS == 4 on EU
-struct ChannelVolumeScaleFade D_80360928[3][CHANNELS_MAX];
+struct ChannelVolumeScaleFade D_80360928[SEQUENCE_PLAYERS][CHANNELS_MAX];
 u8 sUsedChannelsForSoundBank[SOUND_BANK_COUNT];
 u8 sCurrentSound[SOUND_BANK_COUNT][MAX_CHANNELS_PER_SOUND_BANK]; // index into sSoundBanks
 
@@ -699,6 +731,7 @@ struct SPTask *create_next_audio_frame_task(void) {
     task->yield_data_size = 0;
 
     decrease_sample_dma_ttls();
+
     return gAudioTask;
 }
 #endif
@@ -707,6 +740,7 @@ struct SPTask *create_next_audio_frame_task(void) {
  * Called from threads: thread5_game_loop
  */
 void play_sound(s32 soundBits, f32 *pos) {
+    assert(((soundBits & SOUNDARGS_MASK_SOUNDID) >> SOUNDARGS_SHIFT_SOUNDID) != 0xff, "Sfx tables do not support a sound id of 0xff!");
     sSoundRequests[sSoundRequestCount].soundBits = soundBits;
     sSoundRequests[sSoundRequestCount].position = pos;
     sSoundRequestCount++;
@@ -1147,7 +1181,8 @@ static f32 get_sound_freq_scale(u8 bank, u8 item) {
 static u32 get_sound_reverb(UNUSED u8 bank, UNUSED u8 soundIndex, u8 channelIndex) {
     u8 area;
     u8 level;
-    u8 reverb;
+    s8 areaEcho;
+    s16 reverb;
 
     // Disable level reverb if NO_ECHO is set
     if (sSoundBanks[bank][soundIndex].soundBits & SOUND_NO_ECHO) {
@@ -1161,18 +1196,27 @@ static u32 get_sound_reverb(UNUSED u8 bank, UNUSED u8 soundIndex, u8 channelInde
         }
     }
 
-    // reverb = reverb adjustment + level reverb + a volume-dependent value
+    areaEcho = sLevelAreaReverbs[level][area];
+
+    if (gAreaData[gCurrAreaIndex].useEchoOverride && !(sSoundBanks[bank][soundIndex].soundBits & SOUND_NO_ECHO)) {
+        areaEcho = gAreaData[gCurrAreaIndex].echoOverride;
+    }
+
+    // reverb = reverb adjustment + level reverb (or level script override value) + a volume-dependent value
     // The volume-dependent value is 0 when volume is at maximum, and raises to
     // LOW_VOLUME_REVERB when the volume is 0
-    reverb = (u8)(u8) gSequencePlayers[SEQ_PLAYER_SFX].channels[channelIndex]->soundScriptIO[5]
-                  + sLevelAreaReverbs[level][area]
-                  + ((1.0f - gSequencePlayers[SEQ_PLAYER_SFX].channels[channelIndex]->volume)
-                        * LOW_VOLUME_REVERB);
+    reverb = (s16) ((u8) gSequencePlayers[SEQ_PLAYER_SFX].channels[channelIndex]->soundScriptIO[5]) + areaEcho;
 
-    if (reverb > 0x7f) {
+    // NOTE: In some cases, it may be better to apply this after ensuring reverb is non-negative so the result doesn't end up sounding way too dry.
+    // This has been left as-is however because in most cases where negative reverb is even used, this is probably desirable anyway.
+    reverb += (s16) ((1.0f - gSequencePlayers[SEQ_PLAYER_SFX].channels[channelIndex]->volume) * LOW_VOLUME_REVERB);
+
+    if (reverb < 0 || areaEcho <= -0x80) {
+        reverb = 0;
+    } else if (reverb > 0x7f) {
         reverb = 0x7f;
     }
-    return reverb;
+    return (u8) reverb;
 }
 
 /**
@@ -1203,8 +1247,14 @@ static void update_game_sound(void) {
 #endif
 
     process_all_sound_requests();
-    process_level_music_dynamics();
 
+    if (gMenuMode == MENU_MODE_SOUND_MENU && gSoundMenuDynamicID >= 0) {
+        process_music_dynamics_sound_menu();
+    }
+    else {
+        process_level_music_dynamics();
+    }
+    
     if (gSequencePlayers[SEQ_PLAYER_SFX].channels[0] == &gSequenceChannelNone) {
         return;
     }
@@ -1345,6 +1395,10 @@ static void update_game_sound(void) {
                         case SOUND_BANK_AIR:
                         case SOUND_BANK_GENERAL2:
                         case SOUND_BANK_OBJ2:
+                        case SOUND_BANK_PATCH_ABILITY:
+                        case SOUND_BANK_NEW:
+                        case SOUND_BANK_NEW_2:
+                        case SOUND_BANK_NEW_ENV:
 #if defined(VERSION_EU) || defined(VERSION_SH)
                             func_802ad770(0x05020000 | ((channelIndex & 0xff) << 8),
                                           get_sound_reverb(bank, soundIndex, channelIndex));
@@ -1511,6 +1565,10 @@ static void update_game_sound(void) {
                         case SOUND_BANK_AIR:
                         case SOUND_BANK_GENERAL2:
                         case SOUND_BANK_OBJ2:
+                        case SOUND_BANK_PATCH_ABILITY:
+                        case SOUND_BANK_NEW:
+                        case SOUND_BANK_NEW_2:
+                        case SOUND_BANK_NEW_ENV:
 #if defined(VERSION_EU) || defined(VERSION_SH)
                             func_802ad770(0x05020000 | ((channelIndex & 0xff) << 8),
                                           get_sound_reverb(bank, soundIndex, channelIndex));
@@ -1561,7 +1619,7 @@ static void seq_player_play_sequence(u8 player, u8 seqId, u16 arg2) {
         sCurrentBackgroundMusicSeqId = seqId & SEQ_BASE_ID;
         sBackgroundMusicForDynamics = SEQUENCE_NONE;
         sCurrentMusicDynamic = 0xff;
-        sMusicDynamicDelay = 2;
+        sMusicDynamicDelay = 1;
     }
 
     for (i = 0; i < CHANNELS_MAX; i++) {
@@ -1682,8 +1740,8 @@ void process_level_music_dynamics(void) {
     u16 tempBits;
     u8 condIndex;
     u8 i, j;
-    s16 conditionValues[8];
-    u8 conditionTypes[8];
+    s16 conditionValues[DYN_CONDITION_COUNT];
+    u8 conditionTypes[DYN_CONDITION_COUNT];
     s16 dur1, dur2;
     u16 bit;
 
@@ -1707,7 +1765,7 @@ void process_level_music_dynamics(void) {
         j = 0;
         condIndex = 0;
         bit = 0x8000;
-        while (j < 8) {
+        while (j < DYN_CONDITION_COUNT) {
             if (conditionBits & bit) {
                 conditionValues[condIndex] = sLevelDynamics[gCurrLevelNum][i++];
                 conditionTypes[condIndex] = j;
@@ -1768,6 +1826,19 @@ void process_level_music_dynamics(void) {
                     }
                     break;
                 }
+                case MARIO_IS_ABOVE_WATER: {
+                    if ((gMarioStates[0].action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED && gMarioStates[0].pos[1] < gMarioStates[0].waterLevel - 130) {
+                        j = condIndex + 1;
+                    }
+                    break;
+                }
+                
+                case MARIO_IS_UNDER_WATER: {
+                    if ((gMarioStates[0].action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED || gMarioStates[0].pos[1] >= gMarioStates[0].waterLevel - 130) {
+                        j = condIndex + 1;
+                    }
+                    break;
+                }
             }
         }
 
@@ -1805,6 +1876,54 @@ void process_level_music_dynamics(void) {
                                           dur2);
             }
             tempBits = conditionBits << 1;
+        }
+
+        sCurrentMusicDynamic = musicDynIndex;
+    }
+}
+
+void process_music_dynamics_sound_menu(void) {
+    u16 tempBits;
+    u8 i;
+    s16 dur1, dur2;
+    u16 bit;
+
+    func_8031F96C(0);
+    func_8031F96C(2);
+    func_80320ED8();
+
+    if (sMusicDynamicDelay != 0) {
+        sMusicDynamicDelay--;
+    } else {
+        sBackgroundMusicForDynamics = sCurrentBackgroundMusicSeqId;
+    }
+
+    if (sBackgroundMusicForDynamics != sCurrentBackgroundMusicSeqId) {
+        return;
+    }
+    
+    u8  musicDynIndex = gSoundMenuDynamicID;
+
+    if (sCurrentMusicDynamic != musicDynIndex) {
+        tempBits = 1;
+        if (sCurrentMusicDynamic == 0xff) {
+            dur1 = 1;
+            dur2 = 1;
+        } else {
+            dur1 = sMusicDynamics[musicDynIndex].dur1;
+            dur2 = sMusicDynamics[musicDynIndex].dur2;
+        }
+
+        for (i = 0; i < CHANNELS_MAX; i++) {
+            if (sMusicDynamics[musicDynIndex].bits1 & tempBits) {
+                fade_channel_volume_scale(SEQ_PLAYER_LEVEL, i, sMusicDynamics[musicDynIndex].volScale1,
+                                          1);
+            }
+            if (sMusicDynamics[musicDynIndex].bits2 & tempBits) {
+                fade_channel_volume_scale(SEQ_PLAYER_LEVEL, i, sMusicDynamics[musicDynIndex].volScale2,
+                                          1);
+            }
+            tempBits <<= 1;
         }
 
         sCurrentMusicDynamic = musicDynIndex;
@@ -1905,7 +2024,7 @@ static u8 begin_background_music_fade(u16 fadeDuration) {
         targetVolume = 40;
     }
 
-    if (sSoundBanksThatLowerBackgroundMusic != 0 && targetVolume > 20) {
+    if (sSoundBanksThatLowerBackgroundMusic && targetVolume > 20) {
         targetVolume = 20;
     }
 
@@ -1914,8 +2033,7 @@ static u8 begin_background_music_fade(u16 fadeDuration) {
             seq_player_fade_to_target_volume(SEQ_PLAYER_LEVEL, fadeDuration, targetVolume);
         } else {
 #if defined(VERSION_JP) || defined(VERSION_US)
-            gSequencePlayers[SEQ_PLAYER_LEVEL].volume =
-                sBackgroundMusicDefaultVolume[sCurrentBackgroundMusicSeqId] / 127.0f;
+            gSequencePlayers[SEQ_PLAYER_LEVEL].volume = gSequencePlayers[SEQ_PLAYER_LEVEL].volumeDefault;
 #endif
             seq_player_fade_to_normal_volume(SEQ_PLAYER_LEVEL, fadeDuration);
         }
@@ -1963,6 +2081,7 @@ void sound_init(void) {
         sSoundBankUsedListBack[i] = 0;
         sSoundBankFreeListFront[i] = 1;
         sNumSoundsInBank[i] = 0;
+        sMaxChannelsForSoundBank[i] = MAX_CHANNELS_PER_SOUND_BANK;
     }
 
     for (i = 0; i < SOUND_BANK_COUNT; i++) {
@@ -1979,7 +2098,7 @@ void sound_init(void) {
         sSoundBanks[i][j].next = 0xff;
     }
 
-    for (j = 0; j < 3; j++) {
+    for (j = 0; j < SEQUENCE_PLAYERS; j++) {
         for (i = 0; i < CHANNELS_MAX; i++) {
             D_80360928[j][i].remainingFrames = 0;
         }
@@ -1995,7 +2114,6 @@ void sound_init(void) {
     sLowerBackgroundMusicVolume = FALSE;
     sSoundBanksThatLowerBackgroundMusic = 0;
     sCurrentBackgroundMusicSeqId = 0xff;
-    gSoundMode = SOUND_MODE_STEREO;
     sBackgroundMusicQueueSize = 0;
     sBackgroundMusicMaxTargetVolume = TARGET_VOLUME_UNSET;
     D_80332120 = 0;
@@ -2197,9 +2315,7 @@ void play_music(u8 player, u16 seqArgs, u16 fadeTimer) {
 
     // Abort if the queue is already full.
     if (sBackgroundMusicQueueSize >= MAX_BACKGROUND_MUSIC_QUEUE_SIZE) {
-#if PUPPYPRINT_DEBUG
         append_puppyprint_log("Sequence queue full, aborting.");
-#endif
         return;
     }
 
@@ -2209,7 +2325,9 @@ void play_music(u8 player, u16 seqArgs, u16 fadeTimer) {
     for (i = 0; i < sBackgroundMusicQueueSize; i++) {
         if (sBackgroundMusicQueue[i].seqId == seqId) {
             if (i == 0) {
+#ifndef PERSISTENT_CAP_MUSIC
                 seq_player_play_sequence(SEQ_PLAYER_LEVEL, seqId, fadeTimer);
+#endif
             } else if (!gSequencePlayers[SEQ_PLAYER_LEVEL].enabled) {
                 stop_background_music(sBackgroundMusicQueue[0].seqId);
             }
@@ -2335,7 +2453,7 @@ void func_80320ED8(void) {
     begin_background_music_fade(50);
 
     if (sBackgroundMusicTargetVolume != TARGET_VOLUME_UNSET
-        && (D_80332120 == SEQ_EVENT_MERRY_GO_ROUND || D_80332120 == SEQ_EVENT_PIRANHA_PLANT)) {
+        && (D_80332120 == SEQ_EVENT_MERRY_GO_ROUND)) {
         seq_player_play_sequence(SEQ_PLAYER_ENV, D_80332120, 1);
         if (D_80332124 != 0xff) {
             seq_player_fade_to_target_volume(SEQ_PLAYER_ENV, 1, D_80332124);
@@ -2513,9 +2631,9 @@ void play_toads_jingle(void) {
 /**
  * Called from threads: thread5_game_loop
  */
-void sound_reset(u8 presetId) {
-    if (presetId >= 8) {
-        presetId = 0;
+void sound_reset(u8 reverbPresetId) {
+    if (reverbPresetId >= ARRAY_COUNT(gReverbSettings)) {
+        reverbPresetId = 0;
     }
     sGameLoopTicked = 0;
     disable_all_sequence_players();
@@ -2524,26 +2642,16 @@ void sound_reset(u8 presetId) {
     func_802ad74c(0xF2000000, 0);
 #endif
 #if defined(VERSION_JP) || defined(VERSION_US)
-    audio_reset_session(&gAudioSessionPresets[0], presetId);
+    audio_reset_session(reverbPresetId);
 #else
-    audio_reset_session_eu(presetId);
+    audio_reset_session_eu(reverbPresetId);
 #endif
     osWritebackDCacheAll();
-    if (presetId != 7) {
+    if (reverbPresetId != 7) {
         preload_sequence(SEQ_EVENT_SOLVE_PUZZLE, PRELOAD_BANKS | PRELOAD_SEQUENCE);
         preload_sequence(SEQ_EVENT_PEACH_MESSAGE, PRELOAD_BANKS | PRELOAD_SEQUENCE);
         preload_sequence(SEQ_EVENT_CUTSCENE_STAR_SPAWN, PRELOAD_BANKS | PRELOAD_SEQUENCE);
     }
     seq_player_play_sequence(SEQ_PLAYER_SFX, SEQ_SOUND_PLAYER, 0);
-    D_80332108 = (D_80332108 & 0xf0) + presetId;
-    gSoundMode = D_80332108 >> 4;
     sHasStartedFadeOut = FALSE;
-}
-
-/**
- * Called from threads: thread5_game_loop
- */
-void audio_set_sound_mode(u8 soundMode) {
-    D_80332108 = (D_80332108 & 0xf) + (soundMode << 4);
-    gSoundMode = soundMode;
 }

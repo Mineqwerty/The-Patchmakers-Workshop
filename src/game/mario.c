@@ -36,6 +36,9 @@
 #include "src/game/cutscene.h"
 #include "audio/load.h"
 #include "actors/group0.h"
+#include "src/game/fb_effects.h"
+#include "src/game/dma_scroll.h"
+#include "levels/ssl/header.h"
 
 
 /**************************************************
@@ -121,7 +124,7 @@ s16 set_custom_mario_animation(struct MarioState *m, s32 targetAnimID) {
     return o->header.gfx.animInfo.animFrame;
 }
 
-s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel) {
+s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel, u8 reverse) {
     struct Object *o = m->marioObj;
 
     if (o->header.gfx.animInfo.animID != targetAnimID) {
@@ -136,7 +139,7 @@ s16 set_custom_mario_animation_with_accel(struct MarioState *m, s32 targetAnimID
         if (targetAnim->flags & ANIM_FLAG_NO_ACCEL) {
             o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10);
         } else {
-            if (targetAnim->flags & ANIM_FLAG_FORWARD) {
+            if (reverse) {
                 o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) + accel;
             } else {
                 o->header.gfx.animInfo.animFrameAccelAssist = (targetAnim->startFrame << 0x10) - accel;
@@ -467,6 +470,7 @@ s32 mario_get_floor_class(struct MarioState *m) {
                 floorClass = SURFACE_CLASS_SLIPPERY;
                 break;
 
+            case SURFACE_SUPER_SLIPPERY:
             case SURFACE_VERY_SLIPPERY:
             case SURFACE_ICE:
             case SURFACE_HARD_VERY_SLIPPERY:
@@ -535,6 +539,7 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
                 case SURFACE_NOT_SLIPPERY:
                 case SURFACE_HARD:
                 case SURFACE_HARD_NOT_SLIPPERY:
+                case SURFACE_LESS_BLIZZARD:
                 case SURFACE_SWITCH:
                     floorSoundType = 1;
                     break;
@@ -545,6 +550,7 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
                     floorSoundType = 2;
                     break;
 
+                case SURFACE_SUPER_SLIPPERY:
                 case SURFACE_VERY_SLIPPERY:
                 case SURFACE_ICE:
                 case SURFACE_HARD_VERY_SLIPPERY:
@@ -575,6 +581,10 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
  * Determines if Mario is facing "downhill."
  */
 s32 mario_facing_downhill(struct MarioState *m, s32 turnYaw) {
+    // Forces Mario to do a belly slide rather than a butt slide when on a super slippery floor, no matter his angle, so that the player can't jump.
+    if (m->floor && m->floor->type == SURFACE_SUPER_SLIPPERY)
+        return FALSE;
+
     s16 faceAngleYaw = m->faceAngle[1];
 
     // This is never used in practice, as turnYaw is
@@ -594,7 +604,7 @@ s32 mario_facing_downhill(struct MarioState *m, s32 turnYaw) {
 u32 mario_floor_is_slippery(struct MarioState *m) {
     f32 normY;
 
-    if ((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE  && m->floor->normal.y < COS1) {
+    if (((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE  && m->floor->normal.y < COS1) || (m->floor->type == SURFACE_SUPER_SLIPPERY)) {
         return TRUE;
     }
 
@@ -614,8 +624,8 @@ u32 mario_floor_is_slippery(struct MarioState *m) {
 s32 mario_floor_is_slope(struct MarioState *m) {
     f32 normY;
 
-    if ((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE
-        && m->floor->normal.y < COS1) {
+    if (((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE
+        && m->floor->normal.y < COS1) || (m->floor->type == SURFACE_SUPER_SLIPPERY)) {
         return TRUE;
     }
 
@@ -634,6 +644,8 @@ s32 mario_floor_is_slope(struct MarioState *m) {
  */
 s32 mario_floor_is_steep(struct MarioState *m) {
     f32 normY;
+    if (m->floor->type == SURFACE_SUPER_SLIPPERY)
+        return TRUE;
 
 #ifdef JUMP_KICK_FIX
     if (m->floor->type == SURFACE_NOT_SLIPPERY) {
@@ -730,7 +742,7 @@ Bool32 set_mario_ceil(struct MarioState *m, struct Surface *ceil, f32 ceilHeight
 
 Bool32 set_mario_floor(struct MarioState *m, struct Surface *floor, f32 floorHeight) {
 
-    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == PATCH_CHILLSTEP) {
+    if (m->floor != &gWaterSurfacePseudoFloor && m->floorHeight < m->waterLevel && m->equippedPatch == PATCH_CHILLSTEP && !((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         m->floor = &gWaterSurfacePseudoFloor;
         if (m->floor != NULL) m->floorYaw = SURFACE_YAW(floor);
         m->floorHeight = m->waterLevel;
@@ -814,6 +826,12 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         action = ACT_JUMP;
     }
 
+    if (action == ACT_TWIRLING) {
+        m->actionArg = actionArg;
+    }
+
+    u8 jumpStart = 1;
+
     switch (action) {
         case ACT_DOUBLE_JUMP:
             set_mario_y_vel_based_on_fspeed(m, 52.0f, 0.25f);
@@ -841,6 +859,9 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
                 set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.0f);
             }
             break;
+        case ACT_MARINE_PATCH_SPIN:
+            set_mario_y_vel_based_on_fspeed(m, 60.0f, 0.0f);
+        break;
 
         case ACT_BURNING_JUMP:
             m->vel[1] = 31.5f;
@@ -915,6 +936,40 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         case ACT_JUMP_KICK:
             m->vel[1] = 20.0f;
             break;
+
+        case ACT_BREEZE_PATCH_BOUNCING:
+            if (m->actionArg == 3) {
+                m->vel[1] = 45.0f;
+            }
+            else {
+                m->vel[1] = 30.0f;
+            }
+            
+            break;
+
+        default:
+            jumpStart = 0;
+        break;
+    }
+
+    if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
+        m->vel[1] *= 2;
+        m->curPatch = 0;
+        m->patchTimer = 0;
+        if (m->patchChildObj && obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
+            m->patchChildObj->oAction = 2;
+        }
+        play_sound(SOUND_OBJ_PIRANHA_PLANT_APPEAR, m->pos);
+        
+        for (int i = 0; i < 10; i++) {
+                struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
+                    m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                
+                SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                shadowSmoke->oVelY = ((random_u16() % 8) - 3 + gMarioState->vel[1]);
+                shadowSmoke->oMoveAngleYaw = gMarioState->faceAngle[1] + (random_u16() % 200 - 100);
+                shadowSmoke->oForwardVel = (random_u16() % 8) - 3 + gMarioState->forwardVel;
+            }
     }
 
     m->peakHeight = m->pos[1];
@@ -1208,19 +1263,33 @@ s32 set_water_plunge_action(struct MarioState *m) {
     m->pos[1] = m->waterLevel - 100;
 #endif
 
-    m->faceAngle[2] = 0;
+    
 
     vec3_zero(m->angleVel);
 
-    if (!(m->action & ACT_FLAG_DIVING)) {
+    if (!(m->action & ACT_FLAG_DIVING) && m->action != ACT_MARINE_PATCH_AIRBORNE) {
         m->faceAngle[0] = 0;
     }
 
     if (m->area->camera->mode != WATER_SURFACE_CAMERA_MODE) {
         set_camera_mode(m->area->camera, WATER_SURFACE_CAMERA_MODE, 1);
     }
+    if (m->action == ACT_MARINE_PATCH_AIRBORNE) {
+        m->faceAngle[0] = -0x4000;
+        m->vel[1] *= 0.75f;
+        play_sound(SOUND_ACTION_WATER_PLUNGE, m->marioObj->header.gfx.cameraToObject);
 
-    return set_mario_action(m, ACT_WATER_PLUNGE, 0);
+        m->particleFlags |= PARTICLE_WATER_SPLASH;
+        m->particleFlags |= PARTICLE_PLUNGE_BUBBLE;
+        return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
+    }
+    else {
+        m->faceAngle[2] = 0;
+        return set_mario_action(m, ACT_WATER_PLUNGE, 0);
+    }
+
+    
+    
 }
 
 /**
@@ -1347,8 +1416,9 @@ void update_mario_geometry_inputs(struct MarioState *m) {
 
     m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
     m->waterLevel = find_water_level_and_floor(m->pos[0], m->pos[1], m->pos[2], &waterFloor);
+    m->waterFloor = waterFloor;
 
-    if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor) {
+    if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor && !((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         m->floorHeight = m->waterLevel;
         m->floor = waterFloor;
         gMarioWaterwalk = TRUE;
@@ -1548,7 +1618,7 @@ void update_mario_health(struct MarioState *m) {
                     // If using the debug level select, do not lose any HP to water.
                     if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow) {
                         m->health += 0x1A;
-                    } else if (!gDebugLevelSelect) {
+                    } else if (!gDebugLevelSelect && m->equippedPatch != PATCH_MARINE) {
                         m->health -= (terrainIsSnow ? 3 : 1);
                     }
 #endif
@@ -1724,7 +1794,7 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
     struct MarioBodyState *bodyState = m->marioBodyState;
     s32 flags = update_and_return_cap_flags(m);
 
-    if (flags & MARIO_VANISH_CAP) {
+    if (flags & (MARIO_VANISH_CAP | MARIO_TRANSPARENT)) {
         bodyState->modelState = MODEL_STATE_NOISE_ALPHA;
     }
 
@@ -1762,7 +1832,7 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
         m->marioObj->hitboxHeight = 160.0f;
     }
 
-    if ((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != MODEL_STATE_MASK)) {
+    if (((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != MODEL_STATE_MASK)) || m->flags & MARIO_TRANSPARENT) {
         bodyState->modelState &= ~MODEL_STATE_MASK;
         bodyState->modelState |= (MODEL_STATE_ALPHA | m->fadeWarpOpacity);
     }
@@ -1843,14 +1913,98 @@ void perform_patch_action(struct MarioState *m) {
                 drop_and_set_mario_action(m, ACT_SHOOT_GRAPPLE_HOOK, 0);
                 play_sound(SOUND_GRAPPLE_HOOK_1, gGlobalSoundSource);
                 m->curPatch = PATCH_GRAPPLE;
+                m->grappleCooldownTimer = 40;
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
             }
         break;
         //halo is handled in its own object
 
+        case PATCH_TRANSMUTATION:
+            if (!m->patchChildObj && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                m->curPatch = PATCH_TRANSMUTATION;
+                //m->grappleCooldownTimer = 40;
+                m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_TRANSMUTATION_CONE, bhvTransmutationCone);
+            }
+        break;
+
+        case PATCH_BREEZE:
+            if ((m->action & ACT_FLAG_MOVING || m->action & ACT_FLAG_STATIONARY) && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                drop_and_set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, 2);
+                m->curPatch = PATCH_BREEZE;
+                for (u8 i = 0; i < 6; i++) {
+                    spawn_object_relative(0, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+                for (u8 j = 0; j < 6; j++) {
+                    spawn_object_relative(1, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+                }
+
+                cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
+            }    
+
+        break;
+
         case PATCH_PORTAL:
             m->curPatch = PATCH_PORTAL;
             m->patchTimer = 0;
+        break;
+
+        case PATCH_MIASMA:
+
+        if (gMarioState->miasmaSoulCount > 0) {
+            if (gMarioState->miasmaSoulCount < 5) {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                }
+            }
+            else {
+                for (u8 i = 0; i < 10; i++) {
+                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    ribbon->oFaceAngleRoll = random_u16();
+                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                    cur_obj_play_sound_1(SOUND_NEW_MIASMA_STORM_L);
+                    cur_obj_play_sound_2(SOUND_NEW_2_MIASMA_STORM_R);
+                    
+                    if (i == 0) {
+                        SET_BPARAM3(ribbon->oBehParams, 1);   
+                    }
+
+                    SET_BPARAM1(ribbon->oBehParams, 1);
+                }
+            }
+        }
+        
+            
+        break;
+
+        case PATCH_EXTENSION:;
+            struct Surface *extendWall;
+            Vec3f originPos;
+            Vec3f hitpos;
+            Vec3f raydir;
+
+            raydir[0] = -sins(gMarioState->faceAngle[1]) * (600.0f);
+            raydir[1] = 0.0f;
+            raydir[2] = -(coss(gMarioState->faceAngle[1])) * (600.0f);
+
+            vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+
+            vec3f_set(originPos, gMarioState->pos[0] + (sins(gMarioState->faceAngle[1]) * 500.0f), gMarioState->pos[1] - 100,
+                      gMarioState->pos[2] + (coss(gMarioState->faceAngle[1]) * 500.0f));
+
+            find_surface_on_ray(originPos, raydir, &extendWall, hitpos, 2U, 1);
+            if (extendWall != NULL && extendWall->object == NULL) {
+                if (extendWall->type == SURFACE_INVISIBLE_WALL) {
+                    return;
+                }
+                gMarioState->patchChildObj = spawn_object_abs_with_rot(m->marioObj, 0, MODEL_EXTENSION_BLOCK_SIDE, bhvExtensionBlock, hitpos[0], hitpos[1] - 10, hitpos[2], 0, m->faceAngle[1], 0);
+                gMarioState->patchChildObj->oBehParams2ndByte = 1;
+                SET_BPARAM2(gMarioState->patchChildObj->oBehParams, 1);
+                gMarioState->patchChildObj->oMaterialIndex = extendWall->matPointer;
+                gMarioState->patchChildObj->oRevertIndex = extendWall->matRevertPointer;
+                gMarioState->patchChildObj->oMaterialLayer = extendWall->materialIndex;
+            }
         break;
         }
 }
@@ -1859,8 +2013,8 @@ void common_patch_cancel(struct MarioState *m) {
     switch (m->curPatch) {
         case PATCH_STONE:
             m->curPatch = PATCH_NONE;
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
-            cur_obj_spawn_particles(&StoneBreak);
+            m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            obj_spawn_particles(&StoneBreak, m->marioObj);
             play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
 
             if (gMarioState->action == ACT_STONE_PATCH_AIRBORNE || ACT_STONE_PATCH_AIR_LAND) {
@@ -1896,8 +2050,20 @@ void patch_update(struct MarioState *m ) {
             }
         break;
 
+        case PATCH_SHADOWCHOMP:
+            if (gGlobalTimer % 3 == 0) {
+                struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, -10, random_u16()%200 - 100, 
+                    m->marioObj, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                
+                SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                shadowSmoke->oVelY = ((random_u16() % 8) + 5) / 2.9f;
+                shadowSmoke->oMoveAngleYaw = random_u16();
+                shadowSmoke->oForwardVel = (random_u16() % 4) / 1.5f;
+            }
+        break;
+
         case PATCH_PORTAL:
-            if (gPlayer1Controller->buttonDown & L_TRIG) {
+            if ((gPlayer1Controller->buttonDown & L_TRIG) && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE) {
                 if (gMarioState->patchTimer >= 7) {
                     if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
                     m->patchChildSecondaryObj = spawn_object_relative(1, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
@@ -1905,11 +2071,16 @@ void patch_update(struct MarioState *m ) {
                     m->curPatch = PATCH_NONE;
                 }
             }
-            else if (gMarioState->patchTimer < 7) {
+            else if (gMarioState->patchTimer < 7 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE) {
                 if (m->patchChildPortalObj) obj_mark_for_deletion(m->patchChildPortalObj);
                 m->patchChildPortalObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
                 m->patchChildPortalObj->oPortalSpawnType = 1;
                 m->curPatch = PATCH_NONE;
+            }
+        break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
             }
         break;
     }
@@ -1929,6 +2100,11 @@ void late_patch_update(struct MarioState *m ) {
                 m->patchChildObj->oHaloCapturedObject->oPosZ = m->patchChildObj->oPosZ;
             }
         break;
+        case PATCH_BREEZE:
+            if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
+                gMarioState->curPatch = PATCH_NONE;
+            }
+        break;
     }
 }
 
@@ -1942,13 +2118,28 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
         case PATCH_HALO:
             if (m->patchChildObj) {
-                if (m->patchChildObj->oHaloCapturedObject) {
+                if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
                     obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
                 }
-                obj_mark_for_deletion(m->patchChildObj);
+                if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
+                    obj_mark_for_deletion(m->patchChildObj);
+                }
+                m->patchChildObj = NULL;
             }
             m->curPatch = PATCH_HALO;
             m->patchChildObj = spawn_object_relative(0, 0, 200, 0, gMarioObject, MODEL_HALO, bhvHalo);
+        break;
+
+        case PATCH_SHADOWCHOMP:
+            if (m->patchChildObj && !obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
+                if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
+                    obj_mark_for_deletion(m->patchChildObj);
+                }
+                m->patchChildObj = NULL;
+            }
+            if (!m->patchChildObj) {
+                m->patchChildObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
+            }
         break;
 
     }
@@ -1983,7 +2174,7 @@ u8 check_able_to_use_patch() {
 }
 
 void check_and_change_patch_dpad(u32 dir) {
-    if (gPlayer3Controller->buttonPressed & (dir)) {
+    if (gPlayer1Controller->buttonPressed & (dir)) {
 
         u8 mapID = 0;
         switch (dir) {
@@ -2012,27 +2203,21 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         perform_patch_action(gMarioState);
     }
 
+    //obj_attack_in_radius(gMarioObject, 500.0f, 2, 2);
+
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
-    //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
-
-    //print_text_fmt_int(100, 60, "%d", gHudDisplay.flags);
-
-    if (gPlayer3Controller->buttonPressed & D_JPAD) {
-        set_mario_action(gMarioState, ACT_COLLECTING_PATCH, 0);
+    if (gPlayer1Controller->buttonPressed & D_JPAD && gMarioState->action != ACT_WAITING_FOR_DIALOG) {
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvTrailerCam);
     }
+
+    
+    //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     
 
-    //TODO: put these in a more permanent spot
-
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex != 2) {
-        play_secondary_music(38, 255, 255, 10);
-    }
-    if (gCurrLevelNum == LEVEL_WF && gCurrAreaIndex == 3) {
-        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_SPIRAL_STAIRS, 1);
-    }
+    //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
+    //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
     if (check_able_to_use_patch()) {
         check_and_change_patch_dpad(U_JPAD);
@@ -2045,13 +2230,20 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
 
+    if (gMarioState->boostTimer > 0) {
+        gMarioState->boostTimer--;
+    }
+
     // Updates once per frame:
     vec3f_get_dist_and_lateral_dist_and_angle(gMarioState->prevPos, gMarioState->pos, &gMarioState->moveSpeed, &gMarioState->lateralSpeed, &gMarioState->movePitch, &gMarioState->moveYaw);
     vec3f_copy(gMarioState->prevPos, gMarioState->pos);
 
     if (gMarioState->action) {
 #ifdef ENABLE_DEBUG_FREE_MOVE
-        if (gPlayer1Controller->buttonDown & U_JPAD && !(gPlayer1Controller->buttonDown & L_TRIG)) {
+        if (
+            (gMarioState->controller->buttonDown & U_JPAD) &&
+            !(gMarioState->controller->buttonDown & L_TRIG)
+        ) {
             set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
             set_mario_action(gMarioState, ACT_DEBUG_FREE_MOVE, 0);
         }
@@ -2090,7 +2282,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         
     }
 
-    if (gMarioWaterwalk && !(gMarioState->action & ACT_FLAG_AIR)) {
+    if (gMarioWaterwalk && (((gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_MOVING) || ((gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_STATIONARY))) {
         float dist;
         if (!gMarioState->patchChildObj && !(gMarioState->actionTimer == 0 && gMarioState->action == ACT_GROUND_POUND_LAND)) {
             gMarioState->patchChildObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
@@ -2140,6 +2332,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         if (gMarioState->floor->type == SURFACE_VERTICAL_WIND) {
             spawn_wind_particles(1, 0);
             play_sound(SOUND_ENV_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
+        }
+
+        //VTW Windy Areas
+        if (gMarioState->floor->type == SURFACE_HURT_FLOOR && gMarioState->action == ACT_BREEZE_PATCH_BOUNCING && gCurrLevelNum == LEVEL_SSL && gCurrAreaIndex == 1) {
+            spawn_wind_particles(1, 0);
+            play_sound(SOUND_ENV_WIND1, gMarioState->marioObj->header.gfx.cameraToObject);
         }
 
         play_infinite_stairs_music();
@@ -2235,9 +2433,6 @@ void init_mario(void) {
     gMarioState->framesSinceA = 0xFF;
     gMarioState->framesSinceB = 0xFF;
 
-    //CHANGE THIS
-    //gMarioState->equippedPatch = 1;
-
     if (gCurrLevelNum != LEVEL_BBH && gCurrAreaIndex != 3) {
         gReonucamState.overhead = 0;
     }
@@ -2256,15 +2451,31 @@ void init_mario(void) {
             gMarioState->patchChildSecondaryObj->oBehParams2ndByte = 1;
         }
 
+    #ifdef UNLOCK_ALL
+
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 8));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 9));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 10));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 11));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 12));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 13));
+
+    #endif
     
     gMarioState->curPatch = PATCH_NONE;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
     //gMarioState->patchChildObj = NULL;
     gMarioState->invincTimer = 0;
+    gMarioState->miasmaSoulCount = 0;
+    gMarioWaterwalk = FALSE;
     update_dl_dpad_patches();
 
     
@@ -2355,12 +2566,10 @@ void init_mario_from_save_file(void) {
     gMarioState->numCoins = 0;
     gMarioState->numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
     gMarioState->numKeys = 0;
-
-#ifdef SAVE_NUM_LIVES
-    s8 savedLives = save_file_get_num_lives();
-    gMarioState->numLives = (savedLives > DEFAULT_NUM_LIVES) ? savedLives : DEFAULT_NUM_LIVES;
+#ifdef ENABLE_LIVES
+    gMarioState->numLives = ENABLE_LIVES;
 #else
-    gMarioState->numLives = DEFAULT_NUM_LIVES;
+    gMarioState->numLives = 0;
 #endif
     gMarioState->health = 0x880;
 #ifdef BREATH_METER

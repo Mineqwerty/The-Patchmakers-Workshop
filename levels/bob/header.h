@@ -72,4 +72,66 @@ extern const LevelScript level_bob_entry[];
 
 #include "levels/bob/grounded_patch_stone/geo_header.h"
 
+#include "levels/bob/shard1/geo_header.h"
+
+#include "levels/bob/shard2/geo_header.h"
+
+#include "levels/bob/shard3/geo_header.h"
+
+#include "levels/bob/shard4/geo_header.h"
+
+#include "levels/bob/shard5/geo_header.h"
+
+#include "levels/bob/shard6/geo_header.h"
+
+#include "levels/bob/shard7/geo_header.h"
+
+#include "levels/bob/shard8/geo_header.h"
+
+#include "levels/bob/shard9/geo_header.h"
+
+#include "levels/bob/shard10/geo_header.h"
+
+#include "levels/bob/shard11/geo_header.h"
+
+#include "levels/bob/shard12/geo_header.h"
+
+#include "levels/bob/shard13/geo_header.h"
+
+#include "levels/bob/shard14/geo_header.h"
+
+#include "levels/bob/shard15/geo_header.h"
+
+#include "levels/bob/shard16/geo_header.h"
+
+#include "levels/bob/shard17/geo_header.h"
+
+#include "levels/bob/shard18/geo_header.h"
+
+#include "levels/bob/shard19/geo_header.h"
+
+#include "levels/bob/shard20/geo_header.h"
+
+#include "levels/bob/shard21/geo_header.h"
+
+#include "levels/bob/shard22/geo_header.h"
+
+#include "levels/bob/shard23/geo_header.h"
+
+#include "levels/bob/shard24/geo_header.h"
+
+#include "levels/bob/shard25/geo_header.h"
+
+#include "levels/bob/shard26/geo_header.h"
+
+#include "levels/bob/shard27/geo_header.h"
+
+#include "levels/bob/shard28/geo_header.h"
+
+#include "levels/bob/shard29/geo_header.h"
+
+#include "levels/bob/shard30/geo_header.h"
+
+#include "levels/bob/shard31/geo_header.h"
+
 #endif

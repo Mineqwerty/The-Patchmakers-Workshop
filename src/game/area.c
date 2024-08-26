@@ -26,6 +26,10 @@
 #include "debug_box.h"
 #include "engine/colors.h"
 #include "profiling.h"
+#include "fb_effects.h"
+#ifdef S2DEX_TEXT_ENGINE
+#include "s2d_engine/init.h"
+#endif
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *gGraphNodePointers[MODEL_ID_COUNT];
@@ -34,7 +38,7 @@ struct Area gAreaData[AREA_COUNT];
 struct WarpTransition gWarpTransition;
 
 s16 gCurrCourseNum;
-s16 gCurrActNum;
+s16 gCurrActNum = 1;
 s16 gCurrAreaIndex;
 s16 gSavedCourseNum;
 s16 gMenuOptSelectIndex;
@@ -72,6 +76,7 @@ const BehaviorScript *sWarpBhvSpawnTable[] = {
     bhvHardAirKnockBackWarp,    bhvSpinAirborneCircleWarp, bhvDeathWarp,               bhvSpinAirborneWarp,
     bhvFlyingWarp,              bhvSwimmingWarp,           bhvPaintingStarCollectWarp, bhvPaintingDeathWarp,
     bhvAirborneStarCollectWarp, bhvAirborneDeathWarp,      bhvLaunchStarCollectWarp,   bhvLaunchDeathWarp,
+    bhvClcDoorWarp,
 };
 
 u8 sSpawnTypeFromWarpBhv[] = {
@@ -80,6 +85,7 @@ u8 sSpawnTypeFromWarpBhv[] = {
     MARIO_SPAWN_HARD_AIR_KNOCKBACK,    MARIO_SPAWN_SPIN_AIRBORNE_CIRCLE, MARIO_SPAWN_DEATH,                 MARIO_SPAWN_SPIN_AIRBORNE,
     MARIO_SPAWN_FLYING,                MARIO_SPAWN_SWIMMING,             MARIO_SPAWN_PAINTING_STAR_COLLECT, MARIO_SPAWN_PAINTING_DEATH,
     MARIO_SPAWN_AIRBORNE_STAR_COLLECT, MARIO_SPAWN_AIRBORNE_DEATH,       MARIO_SPAWN_LAUNCH_STAR_COLLECT,   MARIO_SPAWN_LAUNCH_DEATH,
+    MARIO_SPAWN_DOOR_WARP,
 };
 
 Vp gViewport = { {
@@ -138,7 +144,7 @@ u32 get_mario_spawn_type(struct Object *obj) {
     s32 i;
     const BehaviorScript *behavior = virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, obj->behavior);
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 21; i++) {
         if (sWarpBhvSpawnTable[i] == behavior) {
             return sSpawnTypeFromWarpBhv[i];
         }
@@ -179,7 +185,7 @@ void load_obj_warp_nodes(void) {
 }
 
 void clear_areas(void) {
-    s32 i;
+    s32 i, j;
 
     gCurrentArea = NULL;
     gWarpTransition.isActive = FALSE;
@@ -200,12 +206,18 @@ void clear_areas(void) {
         gAreaData[i].objectSpawnInfos = NULL;
         gAreaData[i].camera = NULL;
         gAreaData[i].unused = NULL;
-        gAreaData[i].whirlpools[0] = NULL;
-        gAreaData[i].whirlpools[1] = NULL;
+        for (j = 0; j < ARRAY_COUNT(gAreaData[i].whirlpools); j++) {
+            gAreaData[i].whirlpools[j] = NULL;
+        }
         gAreaData[i].dialog[0] = DIALOG_NONE;
         gAreaData[i].dialog[1] = DIALOG_NONE;
         gAreaData[i].musicParam = 0;
         gAreaData[i].musicParam2 = 0;
+        gAreaData[i].useEchoOverride = FALSE;
+        gAreaData[i].echoOverride = 0;
+#ifdef BETTER_REVERB
+        gAreaData[i].betterReverbPreset = 0;
+#endif
     }
 }
 
@@ -213,18 +225,14 @@ void clear_area_graph_nodes(void) {
     s32 i;
 
     if (gCurrentArea != NULL) {
-#ifndef DISABLE_GRAPH_NODE_TYPE_FUNCTIONAL
         geo_call_global_function_nodes(&gCurrentArea->graphNode->node, GEO_CONTEXT_AREA_UNLOAD);
-#endif
         gCurrentArea = NULL;
         gWarpTransition.isActive = FALSE;
     }
 
     for (i = 0; i < AREA_COUNT; i++) {
         if (gAreaData[i].graphNode != NULL) {
-#ifndef DISABLE_GRAPH_NODE_TYPE_FUNCTIONAL
             geo_call_global_function_nodes(&gAreaData[i].graphNode->node, GEO_CONTEXT_AREA_INIT);
-#endif
             gAreaData[i].graphNode = NULL;
         }
     }
@@ -234,6 +242,10 @@ void load_area(s32 index) {
     if (gCurrentArea == NULL && gAreaData[index].graphNode != NULL) {
         gCurrentArea = &gAreaData[index];
         gCurrAreaIndex = gCurrentArea->index;
+        main_pool_pop_state();
+        main_pool_push_state();
+
+        gMarioCurrentRoom = 0;
 
         gMarioState->patchChildObj = NULL;
         gMarioState->patchChildPortalObj = NULL;
@@ -250,18 +262,14 @@ void load_area(s32 index) {
 
         
         load_obj_warp_nodes();
-#ifndef DISABLE_GRAPH_NODE_TYPE_FUNCTIONAL
         geo_call_global_function_nodes(&gCurrentArea->graphNode->node, GEO_CONTEXT_AREA_LOAD);
-#endif
     }
 }
 
 void unload_area(void) {
     if (gCurrentArea != NULL) {
         unload_objects_from_area(0, gCurrentArea->index);
-#ifndef DISABLE_GRAPH_NODE_TYPE_FUNCTIONAL
         geo_call_global_function_nodes(&gCurrentArea->graphNode->node, GEO_CONTEXT_AREA_UNLOAD);
-#endif
 
         gCurrentArea->flags = AREA_FLAG_UNLOAD;
         gCurrentArea = NULL;
@@ -366,22 +374,34 @@ void play_transition(s16 transType, s16 time, Color red, Color green, Color blue
         gWarpTransition.data.endTexX = SCREEN_CENTER_X;
         gWarpTransition.data.endTexY = SCREEN_CENTER_Y;
 
-        gWarpTransition.data.texTimer = 0;
+        gWarpTransition.data.angleSpeed = DEGREES(0);
+
+        s16 fullRadius = GFX_DIMENSIONS_FULL_RADIUS;
+
+        // HackerSM64: this fixes the pop-in with texture transition, comment out this switch
+        // statement if you want to restore the original full radius.
+        switch (transType){
+            case WARP_TRANSITION_TYPE_BOWSER:
+            case WARP_TRANSITION_FADE_INTO_BOWSER:
+                fullRadius *= 4;
+            break;
+
+            case WARP_TRANSITION_FADE_FROM_MARIO:
+            case WARP_TRANSITION_FADE_INTO_MARIO:
+
+            case WARP_TRANSITION_FADE_FROM_STAR:
+            case WARP_TRANSITION_FADE_INTO_STAR:
+                fullRadius *= 1.5f;
+            break;
+        }
 
         if (transType & WARP_TRANSITION_FADE_INTO) { // Is the image fading in?
-            gWarpTransition.data.startTexRadius = GFX_DIMENSIONS_FULL_RADIUS;
-            if (transType >= WARP_TRANSITION_FADES_INTO_LARGE) {
-                gWarpTransition.data.endTexRadius = 16;
-            } else {
-                gWarpTransition.data.endTexRadius = 0;
-            }
+            gWarpTransition.data.startTexRadius = fullRadius;
+            gWarpTransition.data.endTexRadius = 0;
+
         } else { // The image is fading out. (Reverses start & end circles)
-            if (transType >= WARP_TRANSITION_FADES_FROM_LARGE) {
-                gWarpTransition.data.startTexRadius = 16;
-            } else {
-                gWarpTransition.data.startTexRadius = 0;
-            }
-            gWarpTransition.data.endTexRadius = GFX_DIMENSIONS_FULL_RADIUS;
+            gWarpTransition.data.startTexRadius = 0;
+            gWarpTransition.data.endTexRadius = fullRadius;
         }
     }
 #endif
@@ -398,10 +418,16 @@ void play_transition_after_delay(s16 transType, s16 time, u8 red, u8 green, u8 b
 }
 
 void render_game(void) {
+    PROFILER_GET_SNAPSHOT_TYPE(PROFILER_DELTA_COLLISION);
     if (gCurrentArea != NULL && !gWarpTransition.pauseRendering) {
         if (gCurrentArea->graphNode) {
             geo_process_root(gCurrentArea->graphNode, gViewportOverride, gViewportClip, gFBSetColor);
         }
+#ifdef PUPPYPRINT
+        bzero(gCurrEnvCol, sizeof(ColorRGBA));
+#endif
+
+        
 
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gViewport));
 
@@ -409,8 +435,13 @@ void render_game(void) {
                       SCREEN_HEIGHT - gBorderHeight);
         render_hud();
 
+        render_fb_effects();
+
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         render_text_labels();
+#ifdef PUPPYPRINT
+        puppyprint_print_deferred();
+#endif
         do_cutscene_handler();
         print_displaying_credits_entry();
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, gBorderHeight, SCREEN_WIDTH,
@@ -429,7 +460,7 @@ void render_game(void) {
 
         if (gWarpTransition.isActive) {
             if (gWarpTransDelay == 0) {
-                gWarpTransition.isActive = !render_screen_transition(0, gWarpTransition.type, gWarpTransition.time,
+                gWarpTransition.isActive = !render_screen_transition(gWarpTransition.type, gWarpTransition.time,
                                                                      &gWarpTransition.data);
                 if (!gWarpTransition.isActive) {
                     if (gWarpTransition.type & WARP_TRANSITION_FADE_INTO) {
@@ -442,8 +473,19 @@ void render_game(void) {
                 gWarpTransDelay--;
             }
         }
+#ifdef S2DEX_TEXT_ENGINE
+        s2d_init();
+
+        // place any custom text engine code here if not using deferred prints
+
+        s2d_handle_deferred();
+        s2d_stop();
+#endif
     } else {
         render_text_labels();
+#ifdef PUPPYPRINT
+        puppyprint_print_deferred();
+#endif
         if (gViewportClip != NULL) {
             clear_viewport(gViewportClip, gWarpTransFBSetColor);
         } else {
@@ -453,10 +495,10 @@ void render_game(void) {
 
     gViewportOverride = NULL;
     gViewportClip     = NULL;
-    
-    profiler_update(PROFILER_TIME_GFX);
+
+    profiler_update(PROFILER_TIME_GFX, profiler_get_delta(PROFILER_DELTA_COLLISION) - first);
     profiler_print_times();
-#if PUPPYPRINT_DEBUG
+#ifdef PUPPYPRINT_DEBUG
     puppyprint_render_profiler();
 #endif
 }

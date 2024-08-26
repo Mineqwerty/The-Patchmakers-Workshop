@@ -399,4 +399,46 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "grabbable_puzzle_box/collision_header.h"
 
+#include "menu_patch_marine/header.h"
+
+#include "menu_patch_shadowchomp/header.h"
+
+#include "shadow_chomp/geo_header.h"
+
+#include "shadow_chomp_tail/geo_header.h"
+
+
+#include "shadow_chomp/anim_header.h"
+#include "menu_patch_transmutation/header.h"
+
+#include "transmutation_cone/geo_header.h"
+
+#include "transmutation_star/collision_header.h"
+
+#include "transmutation_star/geo_header.h"
+
+#include "patch_upgrade/geo_header.h"
+
+#include "rocket_flower/geo_header.h"
+
+#include "rocket_flower_rotated/geo_header.h"
+
+#include "rocket_flower_fog/geo_header.h"
+
+#include "floating_petal/geo_header.h"
+
+
+#include "floating_petal/anim_header.h"
+#include "miasma_ribbon/geo_header.h"
+
+
+#include "miasma_ribbon/anim_header.h"
+#include "extension_block/geo_header.h"
+
+#include "extension_block/collision_header.h"
+
+#include "extension_block_side/collision_header.h"
+
+#include "extension_block_side/geo_header.h"
+
 #endif

@@ -13,7 +13,7 @@ static struct ObjectHitbox sCollectStarHitbox = {
 };
 
 void bhv_collect_star_init(void) {
-    s8 starId = GET_BPARAM1(o->oBehParams);
+    u8 starId = GET_BPARAM1(o->oBehParams);
 #ifdef GLOBAL_STAR_IDS
     u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(starId / 7));
     if (currentLevelStarFlags & (1 << (starId % 7))) {
@@ -140,19 +140,31 @@ void spawn_default_star(f32 x, f32 y, f32 z) {
 void spawn_pokey_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, -1530, 1500, -650);
-    starObj->oBehParams2ndByte = 0x05050000;
+    starObj->oBehParams = 0x05000000;
 }
 
 void spawn_bp3_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, 8861, -1406, -13869);
-    starObj->oBehParams2ndByte = 0x03030000;
+    starObj->oBehParams = 0x03000000;
 }
 
 void spawn_arena_star_stc(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, -12318, 7100, 9470);
-    starObj->oBehParams2ndByte = 0x03030000;
+    starObj->oBehParams = 0x03000000;
+}
+
+void spawn_ring_challenge_star(f32 x, f32 y, f32 z) {
+    struct Object *starObj = NULL;
+    starObj = spawn_star(starObj, 9490, 2070, 4620);
+    starObj->oBehParams = 0x03000000;
+}
+
+void spawn_water_ring_challenge_star(f32 x, f32 y, f32 z) {
+    struct Object *starObj = NULL;
+    starObj = spawn_star(starObj, 13964.0f, -3200.0f, -765.0f);
+    starObj->oBehParams = 0x02000000;
 }
 
 void spawn_red_coin_cutscene_star(f32 x, f32 y, f32 z) {
@@ -171,17 +183,35 @@ void spawn_no_exit_star(f32 x, f32 y, f32 z) {
 void bhv_hidden_red_coin_star_init(void) {
     struct Object *starObj = NULL;
 
-   
-    spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
-
-    s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
-    if (numRedCoinsRemaining == 0) {
-        starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
-        starObj->oBehParams = o->oBehParams;
-        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
+    if (gCurrCourseNum != COURSE_JRB) {
+        spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
     }
+#else
+    spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
+#endif
 
-    o->oHiddenStarTriggerCounter = 8 - numRedCoinsRemaining;
+    // check if bparam2 specifies a total number of coins that should spawn the star
+    if (o->oBehParams2ndByte != 0) {
+        o->oHiddenStarTriggerTotal = o->oBehParams2ndByte;
+        o->oHiddenStarTriggerCounter = gRedCoinsCollected;
+        if (o->oHiddenStarTriggerCounter >= o->oHiddenStarTriggerTotal) {
+            starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+            starObj->oBehParams = o->oBehParams;
+            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        }
+    }
+    else {
+        s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
+        if (numRedCoinsRemaining == 0) {
+            starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+            starObj->oBehParams = o->oBehParams;
+            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        }
+        o->oHiddenStarTriggerTotal = numRedCoinsRemaining + gRedCoinsCollected;
+        o->oHiddenStarTriggerCounter = o->oHiddenStarTriggerTotal - numRedCoinsRemaining;
+    }
+    
 }
 
 void bhv_hidden_red_coin_star_loop(void) {
@@ -189,7 +219,7 @@ void bhv_hidden_red_coin_star_loop(void) {
 
     switch (o->oAction) {
         case HIDDEN_STAR_ACT_INACTIVE:
-            if (o->oHiddenStarTriggerCounter == 8) {
+            if (o->oHiddenStarTriggerCounter == o->oHiddenStarTriggerTotal) {
                 o->oAction = HIDDEN_STAR_ACT_ACTIVE;
             }
             break;

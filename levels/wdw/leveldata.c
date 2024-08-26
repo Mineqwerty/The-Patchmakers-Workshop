@@ -36,3 +36,10 @@
 #include "levels/wdw/rotating_platform/collision.inc.c"
 #include "levels/wdw/areas/1/movtext.inc.c"
 #include "levels/wdw/areas/2/movtext.inc.c"
+
+#include "levels/wdw/corr_skybox/model.inc.c"
+#include "levels/wdw/leveldata.inc.c"
+
+#include "levels/wdw/red_construction_light/model.inc.c"
+#include "levels/wdw/power_breaker/model.inc.c"
+#include "levels/wdw/breaker_spark/model.inc.c"

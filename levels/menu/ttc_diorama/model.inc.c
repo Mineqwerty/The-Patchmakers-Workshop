@@ -1,38 +1,11 @@
-Lights1 ttc_diorama_f3d_material_059_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_060_lights = gdSPDefLights1(
-	0x76, 0x5F, 0x7F,
-	0xED, 0xBF, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_061_lights = gdSPDefLights1(
-	0x1A, 0x4E, 0x1A,
-	0x35, 0x9C, 0x34, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_012_lights = gdSPDefLights1(
-	0x69, 0x43, 0x62,
-	0xD3, 0x86, 0xC4, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_013_lights = gdSPDefLights1(
-	0x4E, 0x1A, 0x1E,
-	0x9C, 0x35, 0x3C, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_005_lights = gdSPDefLights1(
-	0x0, 0x1C, 0x0,
-	0x0, 0x39, 0x0, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_064_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_065_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 ttc_diorama_f3d_material_063_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
 Gfx ttc_diorama_grassfelt_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 ttc_diorama_grassfelt_ci8[] = {
@@ -5355,7 +5328,8 @@ Gfx mat_ttc_diorama_f3d_material_059[] = {
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
 	gsDPSetPrimColor(0, 0, 254, 254, 254, 255),
-	gsSPSetLights1(ttc_diorama_f3d_material_059_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -5378,7 +5352,8 @@ Gfx mat_ttc_diorama_f3d_material_060[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_060_lights),
+    gsSPLightColor(LIGHT_1, 0xedbffeff),
+    gsSPLightColor(LIGHT_2, 0x765f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -5394,7 +5369,8 @@ Gfx mat_ttc_diorama_f3d_material_061[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_061_lights),
+    gsSPLightColor(LIGHT_1, 0x359c34ff),
+    gsSPLightColor(LIGHT_2, 0x1a4e1aff),
 	gsSPEndDisplayList(),
 };
 
@@ -5410,7 +5386,8 @@ Gfx mat_ttc_diorama_f3d_material_012[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_012_lights),
+    gsSPLightColor(LIGHT_1, 0xd386c4ff),
+    gsSPLightColor(LIGHT_2, 0x694362ff),
 	gsSPEndDisplayList(),
 };
 
@@ -5426,7 +5403,8 @@ Gfx mat_ttc_diorama_f3d_material_013[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_013_lights),
+    gsSPLightColor(LIGHT_1, 0x9c353cff),
+    gsSPLightColor(LIGHT_2, 0x4e1a1eff),
 	gsSPEndDisplayList(),
 };
 
@@ -5435,7 +5413,8 @@ Gfx mat_ttc_diorama_f3d_material_005[] = {
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(ttc_diorama_f3d_material_005_lights),
+    gsSPLightColor(LIGHT_1, 0x3900ff),
+    gsSPLightColor(LIGHT_2, 0x1c00ff),
 	gsSPEndDisplayList(),
 };
 
@@ -5464,7 +5443,8 @@ Gfx mat_ttc_diorama_f3d_material_064[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_064_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -5493,7 +5473,8 @@ Gfx mat_ttc_diorama_f3d_material_065[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(ttc_diorama_f3d_material_065_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
@@ -5516,7 +5497,8 @@ Gfx mat_ttc_diorama_f3d_material_063[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 508),
-	gsSPSetLights1(ttc_diorama_f3d_material_063_lights),
+    gsSPLightColor(LIGHT_1, 0xfefefeff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 

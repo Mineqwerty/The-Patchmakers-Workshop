@@ -33,6 +33,8 @@ enum ActionStatesPushOrSidleWall { // push_or_sidle_wall
     ACT_STATE_PUSH_OR_SIDLE_WALL_SIDLING
 };
 
+extern Vec3f marioCutsceneGoalWalkPos;
+
 void play_step_sound(struct MarioState *m, s16 frame1, s16 frame2);
 s32 mario_execute_moving_action(struct MarioState *m);
 

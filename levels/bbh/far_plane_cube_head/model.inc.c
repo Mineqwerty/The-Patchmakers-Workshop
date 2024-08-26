@@ -1,6 +1,3 @@
-Lights1 far_plane_cube_head_f3dlite_material_008_lights = gdSPDefLights1(
-	0x34, 0x63, 0x7F,
-	0x6F, 0xC8, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx far_plane_cube_head_cubei4_i8_aligner[] = {gsSPEndDisplayList()};
 u8 far_plane_cube_head_cubei4_i8[] = {
@@ -371,7 +368,8 @@ Gfx mat_far_plane_cube_head_f3dlite_material_008[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(far_plane_cube_head_f3dlite_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0x6fc8ffff),
+    gsSPLightColor(LIGHT_2, 0x34637fff),
 	gsSPEndDisplayList(),
 };
 

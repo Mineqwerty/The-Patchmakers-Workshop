@@ -17,6 +17,8 @@
 #include "engine/math_util.h"
 #include "puppycam2.h"
 #include "puppyprint.h"
+#include "levels/new_file_select/header.h"
+#include "levels/castle_inside/header.h"
 
 #include "config.h"
 
@@ -27,15 +29,9 @@
  **/
 
 #ifdef BREATH_METER
-// #ifdef DISABLE_LIVES
-// #define HUD_BREATH_METER_X         64
-// #define HUD_BREATH_METER_Y        200
-// #define HUD_BREATH_METER_HIDDEN_Y 300
-// #else
 #define HUD_BREATH_METER_X         40
 #define HUD_BREATH_METER_Y         32
 #define HUD_BREATH_METER_HIDDEN_Y -20
-// #endif
 #endif
 
 // ------------- FPS COUNTER ---------------
@@ -106,6 +102,12 @@ static struct PowerMeterHUD sPowerMeterHUD = {
 // Gets reset when the health is filled and stops counting
 // when the power meter is hidden.
 s32 sPowerMeterVisibleTimer = 0;
+
+u8 gSpecialHudRender = 0;
+u8 gSpecialHudElementAlpha = 255;
+s32 gSpecialHudElementTimer = 0;
+f32 gSpecialHudElementValue = 0;
+f32 gSpecialHudElementScale = 1.0f;
 
 #ifdef BREATH_METER
 static s16 sBreathMeterStoredValue;
@@ -292,6 +294,61 @@ void render_hud_power_meter(void) {
     sPowerMeterVisibleTimer++;
 }
 
+void render_hud_eye_effect(void) {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X, SCREEN_CENTER_Y, 0);
+    if (gSpecialHudElementTimer < 60) {
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 500, 0);
+        gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, -1000, 0);
+        gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 500, 0);
+    }
+    if (gSpecialHudElementTimer == 0) {
+        gSpecialHudElementScale = 0.2f;
+        gSpecialHudElementAlpha = 255;
+    }
+
+    if (gSpecialHudElementTimer < 35) {
+        gSpecialHudElementValue = 0.5f;
+    }
+    else if (gSpecialHudElementTimer < 58) {
+        gSpecialHudElementValue = 0.3f;
+    }
+    else if (gSpecialHudElementTimer < 75) {
+        gSpecialHudElementValue = 0.7f;
+    }
+    else if (gSpecialHudElementTimer < 96) {
+        gSpecialHudElementValue = 0.4f;
+    }
+    else {
+        gSpecialHudElementValue = 1.2f;
+        gSpecialHudElementAlpha = CLAMP(gSpecialHudElementAlpha - 5, 0, 255);
+    }
+
+
+
+    gSpecialHudElementScale = approach_f32_asymptotic(gSpecialHudElementScale, gSpecialHudElementValue, 0.02f);
+
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, gSpecialHudElementScale, 0);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gSpecialHudElementAlpha);
+    gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gSpecialHudElementTimer++;
+
+    if (gSpecialHudElementTimer == 180) {
+        gSpecialHudRender = 0;
+    }
+
+}
+
 void render_dl_dpad_patches(s16 numHealthWedges) {
     Mtx *mtx = alloc_display_list(sizeof(Mtx));
 
@@ -313,18 +370,18 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
     gSPDisplayList(gDisplayListHead++, &menu_dpad_icon_Plane_004_mesh);
         s8 animateBounce[4] = {0, 0, 0, 0};
 
-        if (gPlayer3Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
-        if (gPlayer3Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
-        if (gPlayer3Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
-        if (gPlayer3Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
+        if (gPlayer1Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
+        if (gPlayer1Controller->buttonPressed & (R_JPAD)) {animateBounce[1] = 1;}
+        if (gPlayer1Controller->buttonPressed & (D_JPAD)) {animateBounce[2] = 1;}
+        if (gPlayer1Controller->buttonPressed & (L_JPAD)) {animateBounce[3] = 1;}
 
         for (int i = 0; i < 4; i++) {
             if (animateBounce[i] % 2 == 1) {
                 if (animateBounce[i] > 20) {
-                    animateBounce[i]+=4;
+                    animateBounce[i] += 4;
                 }
                 else {
-                    animateBounce[i]+=2;
+                    animateBounce[i] += 2;
                 }
 
                 if (animateBounce[i] >= 50) {
@@ -333,10 +390,10 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
             }
             else if (animateBounce[i] != 0) {
                 if (animateBounce[i] > 20) {
-                    animateBounce[i]-=2;
+                    animateBounce[i] -= 2;
                 }
                 else {
-                    animateBounce[i]-=4;
+                    animateBounce[i] -= 4;
                 }
 
                 if (animateBounce[i] < 0) {
@@ -483,6 +540,24 @@ void render_hud_breath_meter(void) {
     sBreathMeterVisibleTimer++;
 }
 #endif
+
+void render_dl_title_screen() {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+    
+    guTranslate(mtx, (f32) SCREEN_WIDTH/2, (f32) SCREEN_HEIGHT/2, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+              G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.6f, 0.6f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gSpecialHudElementAlpha);
+    gSPDisplayList(gDisplayListHead++, &tpw_logo_titlematMesh_mesh);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
 
 
 /**
@@ -716,7 +791,7 @@ void render_hud(void) {
             render_hud_cannon_reticle();
         }
 
-#ifndef DISABLE_LIVES
+#ifdef ENABLE_LIVES
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES) {
             render_hud_mario_lives();
         }
@@ -756,27 +831,22 @@ void render_hud(void) {
             render_hud_boss_intro();
         }
 
-        if (gSurfacePoolError & NOT_ENOUGH_ROOM_FOR_SURFACES) print_text(10, 40, "SURFACE POOL FULL");
-        if (gSurfacePoolError & NOT_ENOUGH_ROOM_FOR_NODES) print_text(10, 60, "SURFACE NODE POOL FULL");
-
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
         if (gCustomDebugMode) {
             render_debug_mode();
         }
 #endif
-#ifdef PUPPYPRINT
-        print_set_envcolour(255, 255, 255, 255);
-#endif
-
-
     }
-    /*
-    if (gMarioState->floor != NULL) {
-        if (gMarioState->floor->type == SURFACE_NEW_WATER) {
-            gMarioWaterwalk = TRUE;
-        } else {
-            gMarioWaterwalk = FALSE;
+
+    if (gSpecialHudRender > 0) {
+        create_dl_ortho_matrix();
+        switch (gSpecialHudRender) {
+            case 1:
+                render_dl_title_screen();
+            break;
+            case 2:
+                render_hud_eye_effect();
+            break;
         }
     }
-    */
 }

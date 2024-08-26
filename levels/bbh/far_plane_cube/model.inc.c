@@ -1,6 +1,3 @@
-Lights1 far_plane_cube_f3dlite_material_002_lights = gdSPDefLights1(
-	0x36, 0x6E, 0x7F,
-	0x74, 0xDE, 0xFF, 0x28, 0x28, 0x28);
 
 Vtx far_plane_cube_Cube_001_mesh_layer_1_vtx_0[24] = {
 	{{ {-100, -100, 100}, 0, {368, 1008}, {129, 0, 0, 255} }},
@@ -52,7 +49,8 @@ Gfx mat_far_plane_cube_f3dlite_material_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(far_plane_cube_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0x74deffff),
+    gsSPLightColor(LIGHT_2, 0x366e7fff),
 	gsSPEndDisplayList(),
 };
 

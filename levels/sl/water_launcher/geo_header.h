@@ -1,0 +1,17 @@
+extern const GeoLayout water_launcher_geo[];
+extern Lights1 water_launcher_f3dlite_material_lights;
+extern u8 water_launcher_fwater_i4[];
+extern u8 water_launcher_Frushedwater_i4[];
+extern u8 water_launcher_seafins_rgba16[];
+extern Vtx water_launcher_Circle_011_mesh_layer_5_vtx_cull[8];
+extern Vtx water_launcher_Circle_011_mesh_layer_5_vtx_0[52];
+extern Gfx water_launcher_Circle_011_mesh_layer_5_tri_0[];
+extern Vtx water_launcher_Circle_011_mesh_layer_4_vtx_cull[8];
+extern Vtx water_launcher_Circle_011_mesh_layer_4_vtx_0[32];
+extern Gfx water_launcher_Circle_011_mesh_layer_4_tri_0[];
+extern Gfx mat_water_launcher_cozieswater_001_layer5[];
+extern Gfx mat_revert_water_launcher_cozieswater_001_layer5[];
+extern Gfx mat_water_launcher_f3dlite_material[];
+extern Gfx mat_revert_water_launcher_f3dlite_material[];
+extern Gfx water_launcher_Circle_011_mesh_layer_5[];
+extern Gfx water_launcher_Circle_011_mesh_layer_4[];

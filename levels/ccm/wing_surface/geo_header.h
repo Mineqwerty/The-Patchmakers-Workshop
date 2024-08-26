@@ -1,0 +1,10 @@
+extern const GeoLayout wing_surface_geo[];
+extern Lights1 wing_surface_f3dlite_material_041_lights;
+extern u8 wing_surface_goldfelt_ci8[];
+extern u8 wing_surface_goldfelt_pal_rgba16[];
+extern Vtx wing_surface_Plane_014_mesh_layer_1_vtx_0[12];
+extern Gfx wing_surface_Plane_014_mesh_layer_1_tri_0[];
+extern Gfx mat_wing_surface_f3dlite_material_041[];
+extern Gfx mat_revert_wing_surface_f3dlite_material_041[];
+extern Gfx wing_surface_Plane_014_mesh_layer_1[];
+extern Gfx wing_surface_material_revert_render_settings[];

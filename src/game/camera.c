@@ -28,6 +28,7 @@
 #include "config.h"
 #include "puppyprint.h"
 #include "src/game/cutscene.h"
+#include "profiling.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -922,7 +923,7 @@ s32 update_8_directions_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     } else {
         gReonucamState.keepCliffCam = 0;
     }
-#endif
+#endif 
 
     sAreaYaw = camYaw;
     calc_y_to_curr_floor(&posY, 1.f, 200.f, &focusY, 0.9f, 200.f);
@@ -1240,7 +1241,7 @@ void reonucam_collision_handler(struct Camera *c) {
         s16 yaw = atan2s(camToMario[2], camToMario[0]);
         vec3f_get_lateral_dist(hitpos,gMarioState->pos, &dist);
         #define REONUCAM_MIN_DISTANCE 300.0f
-        if (dist < REONUCAM_MIN_DISTANCE) {
+        if (dist < REONUCAM_MIN_DISTANCE && (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 4)) {
             distFromSurf += (dist - REONUCAM_MIN_DISTANCE);
             //yDist = REONUCAM_MIN_DISTANCE - CLAMP(dist, 0, REONUCAM_MIN_DISTANCE);
             
@@ -1795,24 +1796,25 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     s16 angleDiff;
     vec3f_get_yaw(gMarioState->pos, &obj->oPosVec, &angleDiff);
 
-    /*
-    f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
-    if (xDiff > 600) xDiff = 600;
-    if (xDiff < -600) xDiff = -600;
-    f32 zDiff = secondFocus[2] - gMarioState->pos[2] / 3.0f;
-    if (zDiff > 600) zDiff = 600;
-    if (zDiff < -600) zDiff = -600;
+    if (gCurrLevelNum == LEVEL_BOB) {
+        f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
+        if (xDiff > 600) xDiff = 600;
+        if (xDiff < -600) xDiff = -600;
+        f32 zDiff = secondFocus[2] - gMarioState->pos[2] / 3.0f;
+        if (zDiff > 600) zDiff = 600;
+        if (zDiff < -600) zDiff = -600;
 
-    c->pos[0] = gMarioState->pos[0] - xDiff;
-    c->pos[2] = gMarioState->pos[2] - zDiff;
-    */
+        //c->pos[0] = gMarioState->pos[0] - xDiff;
+        //c->pos[2] = gMarioState->pos[2] - zDiff;
 
-   approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
-   approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
-
-   //c->pos[0] = gMarioState->pos[0] + (2000 * -sins(angleDiff));
-    //c->pos[2] = gMarioState->pos[2] + (2000 * -coss(angleDiff));
-    c->pos[1] += 300.0f;
+        c->pos[0] = gMarioState->pos[0] + (2000 * -sins(angleDiff));
+        c->pos[2] = gMarioState->pos[2] + (2000 * -coss(angleDiff));
+        c->pos[1] += 300.0f;
+    }
+    else if (gCurrLevelNum == LEVEL_CCM) {
+        approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
+        approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
+    }
 
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
     // Prevent the camera from going to the ground in the outside boss fight
@@ -3361,8 +3363,9 @@ void handle_course_volumes(struct Camera *c) {
         }
     }
     else if (sFOVState.fovFunc == CAM_FOV_APP_315 && gCurrLevelNum == LEVEL_BBH && sCameraDisturbed == 0) {
-        sFOVState.fovFunc = CAM_FOV_APP_45;
+        sFOVState.fovFunc = CAM_FOV_SET_45;
         gReonucamState.overhead = 0;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
     }
 }
 
@@ -3473,6 +3476,7 @@ void update_lakitu(struct Camera *c) {
  * Gets controller input, checks for cutscenes, handles mode changes, and moves the camera
  */
 void update_camera(struct Camera *c) {
+    PROFILER_GET_SNAPSHOT_TYPE(PROFILER_DELTA_COLLISION);
     gCamera = c;
     update_camera_hud_status(c);
     if (c->cutscene == CUTSCENE_NONE
@@ -3744,6 +3748,7 @@ void update_camera(struct Camera *c) {
     }
 #endif
     gLakituState.lastFrameAction = sMarioCamState->action;
+    profiler_update(PROFILER_TIME_CAMERA, profiler_get_delta(PROFILER_DELTA_COLLISION) - first);
 }
 
 void update_star_select_camera(struct Camera *c, Vec3f rotateCoords) {
@@ -5590,6 +5595,7 @@ u8 get_cutscene_from_mario_status(struct Camera *c) {
             case ACT_QUICKSAND_DEATH:
             case ACT_RUSHING_WATER_DEATH:
             case ACT_SINK_MUD:
+            case ACT_SINK_UPWARDS:
                 cutscene = CUTSCENE_QUICKSAND_DEATH;
                 break;
             case ACT_ELECTROCUTION:
@@ -6553,11 +6559,9 @@ void surface_type_modes_thi(struct Camera *c) {
  * This behavior is exploitable, since the ranges assume that Mario must pass through the latter on
  * exit. Using hyperspeed, the earlier area can be directly exited from, keeping the changes it applies.
  */
-struct CameraTrigger sCamSL[] = { { 1, cam_sl_snowman_head_8dir, 1119, 3584, 1125, 1177, 358, 358,
-                                    -0x1D27 },
-                                  // This trigger surrounds the previous one
-                                  { 1, cam_sl_free_roam, 1119, 3584, 1125, 4096, 4096, 4096, -0x1D27 },
-                                  NULL_TRIGGER };
+struct CameraTrigger sCamSL[] = {
+	NULL_TRIGGER
+};
 
 /**
  * The THI triggers are specifically for the tunnel near the start of the Huge Island.
@@ -6675,6 +6679,21 @@ struct CameraTrigger sCamBitDW[] = {
 	NULL_TRIGGER
 };
 struct CameraTrigger sCamBowser_1[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamFileSelect[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamNewFileSelect[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamLLL[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamDDD[] = {
+	NULL_TRIGGER
+};
+struct CameraTrigger sCamWDW[] = {
 	NULL_TRIGGER
 };
 struct CameraTrigger *sCameraTriggers[LEVEL_COUNT + 1] = {
@@ -8549,6 +8568,7 @@ void cutscene_star_spawn_end(struct Camera *c) {
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
     gCutsceneTimer = CUTSCENE_STOP;
     c->cutscene = 0;
+    sBackgroundMusicTargetVolume = 0;
 }
 
 void cutscene_exit_waterfall_warp(struct Camera *c) {
@@ -10295,7 +10315,7 @@ void cutscene_exit_painting_start(struct Camera *c) {
     f32 floorHeight;
 
     vec3f_set(sCutsceneVars[2].point, 258.f, -352.f, 1189.f);
-    vec3f_set(sCutsceneVars[1].point, 65.f, -155.f, 444.f);
+    vec3f_set(sCutsceneVars[1].point, 65.f, 155.f, 444.f);
 
     if (gPrevLevel == LEVEL_TTM) {
         sCutsceneVars[1].point[1] = 0.f;
@@ -10307,7 +10327,7 @@ void cutscene_exit_painting_start(struct Camera *c) {
     sCutsceneVars[0].angle[2] = 0;
     offset_rotated(c->focus, sCutsceneVars[0].point, sCutsceneVars[1].point, sCutsceneVars[0].angle);
     offset_rotated(c->pos, sCutsceneVars[0].point, sCutsceneVars[2].point, sCutsceneVars[0].angle);
-    floorHeight = find_floor(c->pos[0], c->pos[1] + 10.f, c->pos[2], &floor);
+    floorHeight = find_floor(c->pos[0], c->pos[1] + 100.f, c->pos[2], &floor);
 
     if (floorHeight != FLOOR_LOWER_LIMIT) {
         if (c->pos[1] < (floorHeight += 60.f)) {
@@ -10522,6 +10542,49 @@ void cutscene_door_loop(struct Camera *c) {
     }
 }
 
+void cutscene_pan_to_portal_loop(struct Camera *c) {
+    Vec3f goalPos;
+    Vec3f goalFoc;
+
+    vec3f_set(goalPos, sCutsceneVars[2].point[0] + sCutsceneVars[1].point[0], 
+            sCutsceneVars[2].point[1] + sCutsceneVars[1].point[1], 
+            sCutsceneVars[2].point[2] + sCutsceneVars[1].point[2]);
+    vec3f_set(goalFoc, sCutsceneVars[2].point[0], sCutsceneVars[2].point[1], sCutsceneVars[2].point[2]);
+
+    //gCutsceneTimer++;
+    approach_vec3f_asymptotic(c->pos, goalPos, 0.1f, 0.1f, 0.1f);
+    approach_vec3f_asymptotic(c->focus, goalFoc, 0.1f, 0.1f, 0.1f);
+
+    vec3f_copy(gLakituState.pos, c->pos); 
+    vec3f_copy(gLakituState.goalPos, c->pos); 
+    vec3f_copy(gLakituState.curPos, c->pos); 
+
+    update_camera_yaw(c);
+
+    if (gCutsceneTimer == 30) {
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 15, 103, 146, 224);
+    }
+
+    if (gCutsceneTimer >= 45) {
+        gCutsceneTimer = CUTSCENE_STOP;
+        c->cutscene = 0;
+        disable_time_stop_including_mario();
+        gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+        gMarioState->pos[0] = sCutsceneVars[2].point[0];
+        gMarioState->pos[1] = sCutsceneVars[2].point[1];
+        gMarioState->pos[2] = sCutsceneVars[2].point[2];
+        gMarioObject->oPosX = sCutsceneVars[2].point[0];
+        gMarioObject->oPosY = sCutsceneVars[2].point[1];
+        gMarioObject->oPosZ = sCutsceneVars[2].point[2];
+        play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 10, 103, 146, 224);
+    }
+
+}
+
+void cutscene_portal_cancel(struct Camera *c) {
+    
+}
+
 /**
  * Warp the camera behind Mario.
  */
@@ -10679,6 +10742,15 @@ struct Cutscene sCutsceneDoorPush[] = {
 #endif
     { cutscene_door_end, 0 }
 };
+
+struct Cutscene sCutscenePanToPortal[] = {
+    { cutscene_pan_to_portal_loop, CUTSCENE_LOOP }
+};
+
+struct Cutscene sCutscenePortalCancel[] = {
+    { cutscene_portal_cancel, 1 }
+};
+
 
 /**
  * Cutscene that plays when Mario pulls open a door that has some special mode requirement on the other
@@ -10970,16 +11042,16 @@ u8 sDanceCutsceneIndexTable[][4] = {
 u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
-	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 1), // BBH            | CCM
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_INSIDE  | HMC
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SSL            | BOB
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // SL             | WDW
+	ZOOMOUT_AREA_MASK(1, 1, 0, 1, 1, 1, 1, 1), // BBH            | CCM
+	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 0), // CASTLE_INSIDE  | HMC
+	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 0, 0, 0), // SSL            | BOB
+	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 0), // SL             | WDW
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 1, 0, 0), // JRB            | THI
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // TTC            | RR
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_GROUNDS | BITDW
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // VCUTM          | BITFS
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // SA             | BITS
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // LLL            | DDD
+	ZOOMOUT_AREA_MASK(1, 1, 1, 1, 1, 1, 1, 1), // LLL            | DDD
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 0, 0, 0, 0), // WF             | ENDING
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COURTYARD      | PSS
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COTMC          | TOTWC
@@ -10987,7 +11059,7 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // Unused         | BOWSER_2
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // BOWSER_3       | Unused
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // TTM            | Unused
-	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | Unused
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // Unused         | Unused
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sZoomOutAreaMasks) - 1 == LEVEL_MAX / 2,
@@ -11248,6 +11320,8 @@ void play_cutscene(struct Camera *c) {
         CUTSCENE(CUTSCENE_DOOR_WARP, sCutsceneDoorWarp)
         CUTSCENE(CUTSCENE_DOOR_PULL, sCutsceneDoorPull)
         CUTSCENE(CUTSCENE_DOOR_PUSH, sCutsceneDoorPush)
+        CUTSCENE(CUTSCENE_PAN_TO_PORTAL, sCutscenePanToPortal)
+        CUTSCENE(CUTSCENE_PORTAL_CANCEL, sCutscenePortalCancel)
         CUTSCENE(CUTSCENE_DOOR_PULL_MODE, sCutsceneDoorPullMode)
         CUTSCENE(CUTSCENE_DOOR_PUSH_MODE, sCutsceneDoorPushMode)
         CUTSCENE(CUTSCENE_ENTER_CANNON, sCutsceneEnterCannon)
@@ -11443,12 +11517,10 @@ void approach_fov_45(struct MarioState *m) {
 }
 
 void approach_fov_315(struct MarioState *m) {
-    f32 targetFoV = 315.f;
-
-    sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
-
-    if (sFOVState.fov > 180) {
+    if (gReonucamState.overhead != 2) {
+        sFOVState.fov = 315.f;
         gReonucamState.overhead = 2;
+        play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
     }
 }
 
@@ -11519,6 +11591,9 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
                 approach_fov_315(marioState);
                 break;
                 //! No default case
+            default:
+                set_fov_45(marioState);
+                break;
         }
     }
 

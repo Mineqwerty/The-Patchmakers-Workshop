@@ -22,8 +22,15 @@
 #include "levels/ssl/spindel/geo.inc.c"
 #include "levels/ssl/moving_pyramid_wall/geo.inc.c"
 #include "levels/ssl/pyramid_elevator/geo.inc.c"
-#include "levels/ssl/eyerok_col/geo.inc.c"
 #include "levels/ssl/areas/2/geo.inc.c"
 #include "levels/ssl/areas/3/geo.inc.c"
 
 #include "levels/ssl/geo.inc.c"
+
+#include "levels/ssl/purple_mushroom/geo.inc.c"
+#include "levels/ssl/gray_mushroom/geo.inc.c"
+#include "levels/ssl/lily_pad/geo.inc.c"
+#include "levels/ssl/danger_puff/geo.inc.c"
+#include "levels/ssl/malva_bud/geo.inc.c"
+#include "levels/ssl/malva_flower/geo.inc.c"
+#include "levels/ssl/vtw_skybox/geo.inc.c"

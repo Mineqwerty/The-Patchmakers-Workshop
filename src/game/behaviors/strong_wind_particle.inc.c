@@ -71,8 +71,16 @@ void bhv_weak_wind_particle_loop(void) {
     if (o->oTimer == 0) {
         obj_translate_xyz_random(o, 10.0f);
 
-        o->oForwardVel = sins(o->oMoveAnglePitch) * -30.0f;
-        o->oVelY = coss(o->oMoveAnglePitch) * 30.0f;
+        if (GET_BPARAM3(o->oBehParams) == 1) {
+            o->oVelY = 40.0f;
+            o->oMoveAngleYaw = random_u16();
+            o->oForwardVel = random_f32_around_zero(15.0f);
+        }
+        else {
+            o->oForwardVel = sins(o->oMoveAnglePitch) * -30.0f;
+            o->oVelY = coss(o->oMoveAnglePitch) * 30.0f;
+        }
+        
 
         o->oMoveAngleYaw += random_f32_around_zero(o->oBehParams2ndByte * 500); // Wind spread
         o->oOpacity = 100;

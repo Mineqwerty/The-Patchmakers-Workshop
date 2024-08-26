@@ -320,8 +320,32 @@ void coin_inside_boo_act_carried(void) {
     }
 }
 
+void coin_inside_glassfish_act_carried(void) {
+    struct Object *parent = o->parentObj;
+
+    cur_obj_become_intangible();
+    if (o->oTimer == 0) {
+        cur_obj_set_model(MODEL_BLUE_COIN);
+        cur_obj_scale(0.7f);
+    }
+
+    if (!parent) {
+        o->oAction = COIN_INSIDE_BOO_ACT_DROPPED;
+        s16 marioMoveYaw = gMarioObject->oMoveAngleYaw;
+        o->oVelX = sins(marioMoveYaw) * 3.0f;
+        o->oVelZ = coss(marioMoveYaw) * 3.0f;
+        o->oVelY = 35.0f;
+    }
+    else {
+        obj_copy_pos(o, parent);
+    }
+
+    
+
+}
+
 ObjActionFunc sCoinInsideBooActions[] = {
-    coin_inside_boo_act_carried,
+    coin_inside_glassfish_act_carried,
     coin_inside_boo_act_dropped
 };
 

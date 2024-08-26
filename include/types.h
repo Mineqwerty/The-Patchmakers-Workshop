@@ -32,20 +32,19 @@ struct Config {
     u8 tvType;
 };
 
-struct Controller {
-  /*0x00*/ s16 rawStickX;       //
-  /*0x02*/ s16 rawStickY;       //
-  /*0x04*/ f32 stickX;          // [-64, 64] positive is right
-  /*0x08*/ f32 stickY;          // [-64, 64] positive is up
-  /*0x0C*/ f32 stickMag;        // distance from center [0, 64]
-  /*0x10*/ u16 buttonDown;
-  /*0x12*/ u16 buttonPressed;
-  /*0x14*/ OSContStatus *statusData;
-  /*0x18*/ OSContPad *controllerData;
-#if ENABLE_RUMBLE
-  /*0x1C*/ s32 port;
-#endif
-};
+typedef struct Controller {
+    /*0x00*/ s16 rawStickX;               // Analog stick [-128, 128] positive is right. Used for menus.
+    /*0x02*/ s16 rawStickY;               // Analog stick [-128, 128] positive is up. Used for menus.
+    /*0x04*/ f32 stickX;                  // Analog stick [-64, 64] positive is right. Used for gameplay.
+    /*0x08*/ f32 stickY;                  // Analog stick [-64, 64] positive is up. Used for gameplay.
+    /*0x0C*/ f32 stickMag;                // Analog stick distance from center [0, 64]. Used for gameplay.
+    /*0x10*/ u16 buttonDown;              // Buttons held down on the current frame.
+    /*0x12*/ u16 buttonPressed;           // Buttons pressed on the current frame but not held on the previous frame.
+    /*0x14*/ u16 buttonReleased;          // Burrons released on the current frame and held on the previous frame.
+    /*0x18*/ OSContStatus* statusData;    // Pointer to the controller status data in gControllerStatuses.
+    /*0x1C*/ OSContPadEx* controllerData; // Pointer to the raw input data in gControllerPads.
+    /*0x20*/ s32 port;                    // The port index this controller is plugged into [0, 3].
+} Controller; /*0x24*/
 
 // -- Booleans --
 
@@ -172,9 +171,25 @@ typedef s32 CameraTransitionAngle;
 typedef s16 Movtex;
 typedef s16 MacroObject;
 typedef s16 Trajectory;
+typedef s16 PathfindData;
 typedef u8  CutsceneID;
 
 typedef u8 uchar;
+
+typedef uint8_t   qu08_t;
+typedef uint16_t  qu016_t;
+typedef int16_t   qs48_t;
+typedef int16_t   qs510_t;
+typedef uint16_t  qu510_t;
+typedef int16_t   qs102_t;
+typedef uint16_t  qu102_t;
+typedef int16_t   qs105_t;
+typedef uint16_t  qu105_t;
+typedef int16_t   qs132_t;
+typedef int16_t   qs142_t;
+typedef int32_t   qs1516_t;
+typedef int32_t   qs1616_t;
+typedef int32_t   qs205_t;
 
 enum SpTaskState {
     SPTASK_STATE_NOT_STARTED,
@@ -371,6 +386,20 @@ struct Waypoint {
     Vec3s pos;
 };
 
+struct PathfindNeighbor {
+    s16 id;
+    s16 weight;
+};
+
+struct PathfindNode {
+    s16 nodeID;
+    Vec3s pos;
+    struct PathfindNeighbor neighbor1;
+    struct PathfindNeighbor neighbor2;
+    struct PathfindNeighbor neighbor3;
+    struct PathfindNeighbor neighbor4;
+};
+
 struct Normal {
     /*0x00*/ f32 x;
     /*0x04*/ f32 y;
@@ -390,6 +419,9 @@ struct Surface {
     /*0x1C*/ struct Normal normal;
     /*0x28*/ f32 originOffset;
     /*0x2C*/ struct Object *object;
+    s16 matPointer;
+    s16 matRevertPointer;
+    u32 materialIndex;
 };
 
 #define PUNCH_STATE_TIMER_MASK          0b00111111
@@ -460,6 +492,7 @@ struct MarioState {
     /*0x74*/ s16 floorYaw;
     #define floorAngle floorYaw
     /*0x76*/ s16 waterLevel;
+    struct Surface *waterFloor;
     /*0x78*/ struct Object *interactObj;
     /*0x7C*/ struct Object *heldObj;
     /*0x80*/ struct Object *usedObj;
@@ -488,6 +521,13 @@ struct MarioState {
     /*0xC0*/ f32 quicksandDepth;
     /*0xC4*/ f32 windGravity;
     struct FloorCheckpoint floorCheckpoint;
+    struct Surface *ceilToFloor;
+    struct Object *movingCeilObject;
+
+    //yeah i stole this from cursed mirror
+    Mat4 HeadMatrix;
+
+    Vec3f marioSinkPos;
 
     s16 curPatch;
     s16 equippedPatch;
@@ -497,7 +537,9 @@ struct MarioState {
     u8 grappleCooldownTimer;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
+    u8 miasmaSoulCount;
     u8 patchTimer;
+    u8 dialogStoryNum;
     struct Object *patchChildObj;
     struct Object *patchChildPortalObj;
     struct Object *patchChildSecondaryObj;
@@ -505,6 +547,9 @@ struct MarioState {
     Vec3f lastFrameObjPosition;
     s16 marioScreenX;
     s16 marioScreenY;
+    s16 boostTimer;
+
+    Vec3f waterCurrentVel;
 
     Vec3f portal1Position;
     Vec3f portal2Position;

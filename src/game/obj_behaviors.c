@@ -188,8 +188,6 @@ s8 turn_obj_away_from_steep_floor(struct Surface *objFloor, f32 floorY, f32 objV
 void obj_orient_graph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ, s8 orient) {
     Vec3f objVisualPosition, surfaceNormals;
 
-    Mat4 *throwMatrix;
-
     // Passes on orienting certain objects that shouldn't be oriented, like boulders.
     if (!sOrientObjWithFloor && !orient) {
         return;
@@ -200,17 +198,11 @@ void obj_orient_graph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ,
         return;
     }
 
-    throwMatrix = alloc_display_list(sizeof(*throwMatrix));
-    // If out of memory, fail to try orienting the object.
-    if (throwMatrix == NULL) {
-        return;
-    }
-
     vec3f_copy_y_off(objVisualPosition, &obj->oPosVec, obj->oGraphYOffset);
     vec3f_set(surfaceNormals, normalX, normalY, normalZ);
 
-    mtxf_align_terrain_normal(*throwMatrix, surfaceNormals, objVisualPosition, obj->oFaceAngleYaw);
-    obj->header.gfx.throwMatrix = throwMatrix;
+    mtxf_align_terrain_normal(obj->transform, surfaceNormals, objVisualPosition, obj->oFaceAngleYaw);
+    obj->header.gfx.throwMatrix = &obj->transform;
 }
 
 /**
@@ -256,9 +248,7 @@ void calc_new_obj_vel_and_pos_y(struct Surface *objFloor, f32 objFloorY, f32 obj
         }
     }
 
-    //! (Obj Position Crash) If you got an object with height past 2^31, the game would crash.
-    if ((s32) o->oPosY >= (s32) objFloorY && (s32) o->oPosY < (s32) objFloorY + 37) {
-        obj_orient_graph(o, floor_nX, floor_nY, floor_nZ, 0);
+    if ((o->oPosY >= objFloorY) && (o->oPosY < objFloorY + 37)) {
 
         // Adds horizontal component of gravity for horizontal speed.
         f32 nxz = sqr(floor_nX) + sqr(floor_nZ);
@@ -422,6 +412,56 @@ s16 object_step(void) {
 
     // Generate a splash if in water.
     obj_splash((s32) waterY, (s32) o->oPosY);
+    return collisionFlags;
+}
+
+s16 object_step_no_water_particles(void) {
+    f32 objX = o->oPosX;
+    f32 objY = o->oPosY;
+    f32 objZ = o->oPosZ;
+
+    f32 floorY;
+    f32 waterY = FLOOR_LOWER_LIMIT_MISC;
+
+    f32 objVelX = o->oForwardVel * sins(o->oMoveAngleYaw);
+    f32 objVelZ = o->oForwardVel * coss(o->oMoveAngleYaw);
+
+    s16 collisionFlags = 0;
+
+    // Find any wall collisions, receive the push, and set the flag.
+    if (obj_find_wall(objX + objVelX, objY, objZ + objVelZ, objVelX, objVelZ) == 0) {
+        collisionFlags += OBJ_COL_FLAG_HIT_WALL;
+    }
+
+    floorY = find_floor(objX + objVelX, objY, objZ + objVelZ, &sObjFloor);
+
+    o->oFloor       = sObjFloor;
+    o->oFloorHeight = floorY;
+
+    if (turn_obj_away_from_steep_floor(sObjFloor, floorY, objVelX, objVelZ) == 1) {
+        waterY = find_water_level(objX + objVelX, objZ + objVelZ);
+        if (waterY > objY) {
+            calc_new_obj_vel_and_pos_y_underwater(sObjFloor, floorY, objVelX, objVelZ, waterY);
+            collisionFlags += OBJ_COL_FLAG_UNDERWATER;
+        } else {
+            o->oPosY = waterY;
+            calc_new_obj_vel_and_pos_y(sObjFloor, floorY, objVelX, objVelZ);
+        }
+    } else {
+        // Treat any awkward floors similar to a wall.
+        collisionFlags +=
+            ((collisionFlags & OBJ_COL_FLAG_HIT_WALL) ^ OBJ_COL_FLAG_HIT_WALL);
+    }
+
+    obj_update_pos_vel_xz();
+    if ((s32) o->oPosY == (s32) floorY) {
+        collisionFlags += OBJ_COL_FLAG_GROUNDED;
+    }
+
+    if ((s32) o->oVelY == 0) {
+        collisionFlags += OBJ_COL_FLAG_NO_Y_VEL;
+    }
+
     return collisionFlags;
 }
 
@@ -691,6 +731,23 @@ void spawn_orange_number(s8 behParam, s16 relX, s16 relY, s16 relZ) {
 
     struct Object *orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
     orangeNumber->oPosY += 25.0f;
+    orangeNumber->oOrangeNumberOffset = relX;
+    orangeNumber->oHomeX = o->oPosX;
+    orangeNumber->oHomeZ = o->oPosZ;
+}
+
+void spawn_orange_number_star_count(s8 behParam, s16 relX, s16 relY, s16 relZ) {
+#ifdef DIALOG_INDICATOR
+    if (behParam > ORANGE_NUMBER_F) return;
+#else
+    //if (behParam > ORANGE_NUMBER_9) return;
+#endif
+
+    struct Object *orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeStarCountNumber);
+    orangeNumber->oPosY += 25.0f;
+    orangeNumber->oOrangeNumberOffset = relX;
+    orangeNumber->oHomeX = o->oPosX;
+    orangeNumber->oHomeZ = o->oPosZ;
 }
 
 /**
@@ -709,12 +766,12 @@ UNUSED s32 debug_sequence_tracker(s16 debugInputSequence[]) {
         return TRUE;
     }
 
-    // If the third controller button pressed is next in sequence, reset timer and progress to next value.
-    if (debugInputSequence[sDebugSequenceTracker] & gPlayer3Controller->buttonPressed) {
+    // If the button pressed is next in sequence, reset timer and progress to next value.
+    if (debugInputSequence[sDebugSequenceTracker] & gPlayer1Controller->buttonPressed) {
         sDebugSequenceTracker++;
         sDebugTimer = 0;
     // If wrong input or timer reaches 10, reset sequence progress.
-    } else if (sDebugTimer == 10 || gPlayer3Controller->buttonPressed != 0) {
+    } else if (sDebugTimer == 10 || gPlayer1Controller->buttonPressed != 0) {
         sDebugSequenceTracker = 0;
         sDebugTimer = 0;
         return FALSE;

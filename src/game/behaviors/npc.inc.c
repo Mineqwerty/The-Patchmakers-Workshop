@@ -1,5 +1,9 @@
 #include "levels/bob/rosedrift/anim_header.h"
 #include "levels/wf/talotak/anim_header.h"
+#include "levels/lll/butlergeist/anim_header.h"
+#include "levels/lll/phantasmaid/anim_header.h"
+
+#include "src/game/cutscene.h"
 
 void bhv_generic_npc_init(void) {
     o->oGravity  = 5.5f;
@@ -15,11 +19,38 @@ void bhv_generic_npc_init(void) {
         o->oAnimations = (struct Animation **) talotak_anims;
         cur_obj_init_animation(0);
     }
+    if (cur_obj_has_model(MODEL_BUTLERGEIST)) {
+        o->oAnimations = (struct Animation **) butlergeist_anims;
+        cur_obj_init_animation(0);
+    }
+    if (cur_obj_has_model(MODEL_PHANTASMAID)) {
+        o->oAnimations = (struct Animation **) phantasmaid_anims;
+        cur_obj_init_animation(0);
+    }
+
 
 }
 
 void bhv_generic_npc_loop(void) {
-    
+    if (cur_obj_has_model(MODEL_PHANTASMAID)) {
+        //turn anim
+        if (cCutsceneActive && o->oTimer == 80) {
+            cur_obj_init_animation(1);
+        }
+        //back to default when the cam is panned away
+        if (cCutsceneActive && cExternalCutsceneTrigger == 1) {
+            cur_obj_init_animation(0);
+        }
+
+        if (cCutsceneActive && cExternalCutsceneTrigger == 3) {
+            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1000);
+        }
+        if (cCutsceneActive && cExternalCutsceneTrigger == 4) {
+            SET_BPARAM1(o->oBehParams, 4);
+            spawn_default_star(gMarioState->pos[0], gMarioState->pos[1] + 300, gMarioState->pos[2]);
+            cExternalCutsceneTrigger = 0;
+        }
+    }
 }
 
 void bhv_talotak_init(void) {

@@ -16,6 +16,7 @@ struct EnvFxParticle {
     u8 filler[24];
     f32 randParticleSpeed;
     s16 growTimer;
+    s16 disappearDelay;
     s32 floorHeight;
 };
 
