@@ -105,3 +105,4 @@
 #include "levels/castle_inside/automaton/anims/data.inc.c"
 #include "levels/castle_inside/automaton/anims/table.inc.c"
 #include "levels/castle_inside/sound_menu_bg/model.inc.c"
+#include "levels/castle_inside/clc_painting/model.inc.c"

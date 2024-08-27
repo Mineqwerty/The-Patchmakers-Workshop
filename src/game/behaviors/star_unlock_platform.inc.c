@@ -17,6 +17,9 @@ u32 star_unlock_get_course_flag(void) {
         case 2:
             courseFlag = SAVE_FLAG_UNLOCKED_COURSE_STC;
         break;
+        case 3:
+            courseFlag = SAVE_FLAG_UNLOCKED_COURSE_CLC;
+        break;
         default:
             courseFlag = SAVE_FLAG_FILE_EXISTS;
         break;

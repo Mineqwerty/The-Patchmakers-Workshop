@@ -7965,3 +7965,12 @@ const BehaviorScript bhvSoundMenu[] = {
         CALL_NATIVE(bhv_sound_menu_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvEntranceFlameSpawn[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_entrance_flame_spawn_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_entrance_flame_spawn_loop),
+    END_LOOP(),
+};

@@ -5,6 +5,7 @@ const GeoLayout castle_inside_area_2_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, castle_inside_dl_Circle_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, castle_inside_dl_Circle_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, castle_inside_dl_Circle_mesh_layer_6),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 640, 774, -1631, 0, -22, 0, castle_inside_dl_Circle_001_mesh_layer_1),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, castle_inside_dl_Circle_001_mesh_layer_6),

@@ -570,7 +570,7 @@ u32 save_file_get_flags(void) {
             SAVE_FLAG_MOAT_DRAINED           |
             SAVE_FLAG_UNLOCKED_COURSE_RDR      |
             SAVE_FLAG_UNLOCKED_COURSE_STC       |
-            SAVE_FLAG_UNLOCKED_CCM_DOOR      |
+            SAVE_FLAG_UNLOCKED_COURSE_CLC      |
             SAVE_FLAG_UNLOCKED_JRB_DOOR      |
             SAVE_FLAG_UNLOCKED_BITDW_DOOR    |
             SAVE_FLAG_UNLOCKED_BITFS_DOOR    |

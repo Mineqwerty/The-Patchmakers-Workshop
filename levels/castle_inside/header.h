@@ -193,4 +193,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/sound_menu_bg/header.h"
 
+#include "levels/castle_inside/clc_painting/geo_header.h"
+
 #endif

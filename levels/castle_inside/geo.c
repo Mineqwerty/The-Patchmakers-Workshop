@@ -35,3 +35,4 @@
 #include "levels/castle_inside/cartoon_clock_hand/geo.inc.c"
 #include "levels/castle_inside/paper_spinner/geo.inc.c"
 #include "levels/castle_inside/automaton/geo.inc.c"
+#include "levels/castle_inside/clc_painting/geo.inc.c"

@@ -1112,7 +1112,7 @@ u32 get_door_save_file_flag(struct Object *door) {
 
     switch (requiredNumStars) {
         case  1: saveFileFlag = (isPssDoor ? 1 : 1 ); break;
-        case  3: saveFileFlag = (isCcmDoor ? SAVE_FLAG_UNLOCKED_CCM_DOOR : SAVE_FLAG_UNLOCKED_JRB_DOOR); break;
+        case  3: saveFileFlag = (isCcmDoor ? SAVE_FLAG_UNLOCKED_COURSE_CLC : SAVE_FLAG_UNLOCKED_JRB_DOOR); break;
         case  8: saveFileFlag = SAVE_FLAG_UNLOCKED_BITDW_DOOR;                                           break;
         case 30: saveFileFlag = SAVE_FLAG_UNLOCKED_BITFS_DOOR;                                           break;
         case 50: saveFileFlag = SAVE_FLAG_UNLOCKED_50_STAR_DOOR;                                         break;

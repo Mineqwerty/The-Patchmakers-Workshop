@@ -720,3 +720,4 @@ extern const BehaviorScript bhvCartoonHand[];
 extern const BehaviorScript bhvPaperSpinner[];
 extern const BehaviorScript bhvAutomaton[];
 extern const BehaviorScript bhvSoundMenu[];
+extern const BehaviorScript bhvEntranceFlameSpawn[];

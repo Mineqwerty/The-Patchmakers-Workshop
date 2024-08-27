@@ -946,3 +946,5 @@ void bhv_automaton_init(void);
 void bhv_automaton_loop(void);
 void bhv_sound_menu_init(void);
 void bhv_sound_menu_loop(void);
+void bhv_entrance_flame_spawn_init(void);
+void bhv_entrance_flame_spawn_loop(void);

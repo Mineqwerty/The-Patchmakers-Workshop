@@ -125,7 +125,7 @@ enum SaveProgressFlags {
     SAVE_FLAG_MOAT_DRAINED           = (1 <<  9), /* 0x00000200 */
     SAVE_FLAG_UNLOCKED_COURSE_RDR      = (1 << 10), /* 0x00000400 */
     SAVE_FLAG_UNLOCKED_COURSE_STC       = (1 << 11), /* 0x00000800 */
-    SAVE_FLAG_UNLOCKED_CCM_DOOR      = (1 << 12), /* 0x00001000 */
+    SAVE_FLAG_UNLOCKED_COURSE_CLC      = (1 << 12), /* 0x00001000 */
     SAVE_FLAG_UNLOCKED_JRB_DOOR      = (1 << 13), /* 0x00002000 */
     SAVE_FLAG_UNLOCKED_BITDW_DOOR    = (1 << 14), /* 0x00004000 */
     SAVE_FLAG_UNLOCKED_BITFS_DOOR    = (1 << 15), /* 0x00008000 */

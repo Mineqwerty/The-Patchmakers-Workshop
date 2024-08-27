@@ -47,6 +47,12 @@ const LevelScript level_castle_inside_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, castle_inside_area_1),
@@ -120,6 +126,10 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
 		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4227, 290, 4148, 0, -180, 0, (16 << 24) | (3 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_NONE, 4057, 466, 4418, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
+		OBJECT(MODEL_NONE, 4227, 466, 4534, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
+		OBJECT(MODEL_NONE, 4398, 466, 4422, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
