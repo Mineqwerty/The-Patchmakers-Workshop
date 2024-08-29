@@ -39,9 +39,9 @@ void bhv_star_unlock_platform_loop(void) {
         case STAR_UNLOCK_ACTION_IDLE:
             if (gMarioObject->platform == o) {
                 if (GET_BPARAM1(o->oBehParams) >= 10) {
-                    if (!o->oStarCountNum1) o->oStarCountNum1 = spawn_orange_number_star_count(GET_BPARAM1(o->oBehParams) % 10, 56, 0, 0);
+                    if (!o->oStarCountNum1) o->oStarCountNum1 = spawn_orange_number_star_count(GET_BPARAM1(o->oBehParams) % 10, 68, 0, 0);
                     if (!o->oStarCountNum2) o->oStarCountNum2 = spawn_orange_number_star_count(GET_BPARAM1(o->oBehParams) / 10, 28, 0, 0);
-                    if (!o->oStarCountNumStar) o->oStarCountNumStar = spawn_orange_number_star_count(10, -28, 0, 0);
+                    if (!o->oStarCountNumStar) o->oStarCountNumStar = spawn_orange_number_star_count(10, -42, 0, 0);
                 }
                 else {
                     if (!o->oStarCountNum1) o->oStarCountNum1 = spawn_orange_number_star_count(GET_BPARAM1(o->oBehParams), 42, 0, 0);

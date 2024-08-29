@@ -558,6 +558,8 @@
 #define MODEL_CARTOON_HAND                  0x108
 #define MODEL_PAPER_SPINNER                  0x109
 #define MODEL_AUTOMATON                  0x10A
+#define MODEL_CLC_PAINTING                  0x10B
+#define MODEL_SHADOW_TRANSITION_SPHERE                  0x10C
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

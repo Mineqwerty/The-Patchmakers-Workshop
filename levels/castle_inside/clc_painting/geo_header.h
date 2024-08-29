@@ -4,7 +4,7 @@ extern u8 clc_painting_musicroomfloor_pal_rgba16[];
 extern u8 clc_painting_baroque_ci8[];
 extern u8 clc_painting_baroque_pal_rgba16[];
 extern Vtx clc_painting_Circle_004_mesh_layer_1_vtx_cull[8];
-extern Vtx clc_painting_Circle_004_mesh_layer_1_vtx_0[28];
+extern Vtx clc_painting_Circle_004_mesh_layer_1_vtx_0[32];
 extern Gfx clc_painting_Circle_004_mesh_layer_1_tri_0[];
 extern Vtx clc_painting_Circle_004_mesh_layer_1_vtx_1[44];
 extern Gfx clc_painting_Circle_004_mesh_layer_1_tri_1[];

@@ -333,3 +333,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/automaton.inc.c"
 #include "behaviors/sound_menu.inc.c"
 #include "behaviors/entrance_flame_spawn.inc.c"
+#include "behaviors/clc_painting.inc.c"
+#include "behaviors/shadow_transition_sphere.inc.c"

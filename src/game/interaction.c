@@ -2254,6 +2254,11 @@ void mario_handle_special_floors(struct MarioState *m) {
                 set_mario_action(m, ACT_WARP_TTC, 1);
             }
             break;
+            case SURFACE_CLC_WARP:
+                if (!(m->action & (ACT_FLAG_AIR))) {
+                    set_mario_action(m, ACT_WARP_RDR, 1);
+                }
+            break;
 
             default:
                 m->flags &= ~(MARIO_TRANSPARENT);

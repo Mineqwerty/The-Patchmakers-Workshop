@@ -460,26 +460,56 @@ s32 act_warp_ttc(struct MarioState *m) {
 }
 
 s32 act_warp_rdr(struct MarioState *m) {
-    set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, 0x00028000);
-    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
-    m->faceAngle[1] = approach_s16_symmetric(m->faceAngle[1], 0, 0x800);
-    m->actionTimer++;
-    m->pos[0] += 20 * sins(m->faceAngle[1]);
-    m->pos[2] += 20 * coss(m->faceAngle[1]);
+    switch (m->actionArg) {
+        case 0:;
+            set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, 0x00028000);
+            vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+            vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+            m->faceAngle[1] = approach_s16_symmetric(m->faceAngle[1], 0, 0x800);
+            m->actionTimer++;
+            m->pos[0] += 20 * sins(m->faceAngle[1]);
+            m->pos[2] += 20 * coss(m->faceAngle[1]);
 
-    gCamera->cutscene = 1;
-    gLakituState.goalPos[1] = gMarioState->pos[1] + 200;
-    gLakituState.goalFocus[0] = gMarioState->pos[0];
-    gLakituState.goalFocus[1] = gMarioState->pos[1] + 60;
-    gLakituState.goalFocus[2] = gMarioState->pos[2];
+            gCamera->cutscene = 1;
+            gLakituState.goalPos[1] = gMarioState->pos[1] + 200;
+            gLakituState.goalFocus[0] = gMarioState->pos[0];
+            gLakituState.goalFocus[1] = gMarioState->pos[1] + 60;
+            gLakituState.goalFocus[2] = gMarioState->pos[2];
 
-    if (m->actionTimer == 30) {
-        play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
-    }
-    if (m->actionTimer == 59) {
-        initiate_warp(LEVEL_WF, 1, 0x0A, 0);
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_WF, 1, 0x0A, 0);
+            }
+        break;
+        case 1:
+            set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+                                                : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
+            vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+            vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+
+            m->actionTimer++;
+
+            if (m->actionTimer == 1) {
+                spawn_object_relative(0, 0, 100, 0, gMarioObject, MODEL_SHADOW_TRANSITION_SPHERE, bhvShadowTransitionSphere);
+            }
+
+            if (m->actionTimer == 20) {
+                gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+            }
+
+            if (m->actionTimer == 30) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+                
+            }
+            if (m->actionTimer == 59) {
+                initiate_warp(LEVEL_LLL, 1, 0x0A, 0);
+            }
+        break;
+
     }
     return FALSE;
 }

@@ -1,0 +1,9 @@
+extern const GeoLayout shadow_transition_sphere_geo[];
+extern u8 shadow_transition_sphere_spectralfog_ia8[];
+extern u8 shadow_transition_sphere_spectralbumps_ia8[];
+extern Vtx shadow_transition_sphere_Sphere_001_mesh_layer_5_vtx_cull[8];
+extern Vtx shadow_transition_sphere_Sphere_001_mesh_layer_5_vtx_0[50];
+extern Gfx shadow_transition_sphere_Sphere_001_mesh_layer_5_tri_0[];
+extern Gfx mat_shadow_transition_sphere_spectral_sucky_layer5[];
+extern Gfx mat_revert_shadow_transition_sphere_spectral_sucky_layer5[];
+extern Gfx shadow_transition_sphere_Sphere_001_mesh_layer_5[];

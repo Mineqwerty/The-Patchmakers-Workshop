@@ -11,5 +11,16 @@ char *tutorialDialogs[] = {
     "Remember to switch patches for what the situation needs.\nSometimes, exploring an area is easier with the\naid of these abilities.",
 //9
     "The Grapple Patch hides a hook up Mario's sleeve.\nPressing L shoots it out, attaching to any wall it comes\ninto contact with.",
-    "In practice, this allows Mario to hold onto both\nstationary and moving walls. Beware though,\nthe walls must be flat to grapple onto."
+    "In practice, this allows Mario to hold onto both\nstationary and moving walls. Beware though,\nthe walls must be flat to grapple onto.",
+    "GRAPPLE FILLER",
+//12
+    "\"Ambition\"",
+    "\"Eyes of Night\"",
+    "\"Fifty Years Ago\"",
+    "\"Lily\"",
+    "\"Garden\"",
+    "\"Baroque\"",
+    "\"Swirling\"",
+    "\"Cursed Canvas\"",
+
 };

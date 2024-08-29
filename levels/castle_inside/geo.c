@@ -36,3 +36,4 @@
 #include "levels/castle_inside/paper_spinner/geo.inc.c"
 #include "levels/castle_inside/automaton/geo.inc.c"
 #include "levels/castle_inside/clc_painting/geo.inc.c"
+#include "levels/castle_inside/shadow_transition_sphere/geo.inc.c"

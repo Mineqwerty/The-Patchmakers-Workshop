@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_shadow_transition_sphere_spectral_sucky_layer5();
+extern void scroll_castle_inside_level_geo_shadow_transition_sphere();

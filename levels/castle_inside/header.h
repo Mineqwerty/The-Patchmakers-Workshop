@@ -195,4 +195,8 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/clc_painting/geo_header.h"
 
+#include "levels/castle_inside/clc_painting/collision_header.h"
+
+#include "levels/castle_inside/shadow_transition_sphere/geo_header.h"
+
 #endif

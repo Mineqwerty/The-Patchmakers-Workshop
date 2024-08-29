@@ -948,3 +948,7 @@ void bhv_sound_menu_init(void);
 void bhv_sound_menu_loop(void);
 void bhv_entrance_flame_spawn_init(void);
 void bhv_entrance_flame_spawn_loop(void);
+void bhv_clc_painting_init(void);
+void bhv_clc_painting_loop(void);
+void bhv_shadow_transition_sphere_init(void);
+void bhv_shadow_transition_sphere_loop(void);

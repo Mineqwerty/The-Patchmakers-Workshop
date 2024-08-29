@@ -42,13 +42,9 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_GSS_WINDOW_LIGHT, gss_window_light_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CARTOON_HAND, cartoon_clock_hand_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SPINNER, paper_spinner_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_AUTOMATON, automaton_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_AUTOMATON, automaton_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_CLC_PAINTING, clc_painting_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_TRANSITION_SPHERE, shadow_transition_sphere_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
@@ -126,6 +122,15 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
 		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_CLC_PAINTING, 4224, 282, 3444, 0, -180, 0, 0x00000000, bhvClcPainting),
+		OBJECT(MODEL_NONE, 3047, 100, 1287, 0, -180, 0, (12 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 3655, 100, 1287, 0, -180, 0, (13 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 4239, 100, 1287, 0, -180, 0, (14 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 4802, 100, 1287, 0, -180, 0, (15 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 4802, 100, 3440, 0, -180, 0, (16 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 4215, 100, 3440, 0, -180, 0, (17 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 3647, 100, 3440, 0, -180, 0, (18 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 3054, 100, 3440, 0, -180, 0, (19 << 24) | (3 << 16), bhvTextVolume),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4227, 290, 4148, 0, -180, 0, (16 << 24) | (3 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_NONE, 4057, 466, 4418, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_NONE, 4227, 466, 4534, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),

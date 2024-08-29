@@ -721,3 +721,5 @@ extern const BehaviorScript bhvPaperSpinner[];
 extern const BehaviorScript bhvAutomaton[];
 extern const BehaviorScript bhvSoundMenu[];
 extern const BehaviorScript bhvEntranceFlameSpawn[];
+extern const BehaviorScript bhvClcPainting[];
+extern const BehaviorScript bhvShadowTransitionSphere[];
