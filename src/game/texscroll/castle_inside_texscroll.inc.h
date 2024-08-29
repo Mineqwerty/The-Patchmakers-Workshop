@@ -1,3 +1,4 @@
+#include "levels/castle_inside/hvh_book_active/texscroll.inc.h"
 #include "levels/castle_inside/shadow_transition_sphere/texscroll.inc.h"
 #include "levels/castle_inside/texscroll.inc.h"
 

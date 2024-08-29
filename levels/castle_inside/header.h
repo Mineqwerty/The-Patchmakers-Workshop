@@ -199,4 +199,10 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/shadow_transition_sphere/geo_header.h"
 
+#include "levels/castle_inside/hvh_book_normal/geo_header.h"
+
+#include "levels/castle_inside/hvh_book_active/geo_header.h"
+
+#include "levels/castle_inside/music_note/geo_header.h"
+
 #endif

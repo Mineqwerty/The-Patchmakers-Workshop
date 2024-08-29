@@ -41,6 +41,9 @@ void bhv_automaton_loop(void) {
         break;
         case 3:
             o->oFaceAngleYaw += 0x200;
+            if (o->oTimer % 32 == 0) {
+                spawn_object_relative(0, 0, -100, 0, o, MODEL_MUSIC_NOTE, bhvMusicNote);
+            }
         break;
     }
 }

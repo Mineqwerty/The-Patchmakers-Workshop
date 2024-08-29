@@ -560,6 +560,9 @@
 #define MODEL_AUTOMATON                  0x10A
 #define MODEL_CLC_PAINTING                  0x10B
 #define MODEL_SHADOW_TRANSITION_SPHERE                  0x10C
+#define MODEL_HVH_BOOK_NORMAL                  0x10D
+#define MODEL_HVH_BOOK_ACTIVE                  0x10E
+#define MODEL_MUSIC_NOTE                  0x10F
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

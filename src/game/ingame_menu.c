@@ -3072,6 +3072,14 @@ void render_sound_menu() {
             play_music(SEQ_PLAYER_LEVEL, songList[gSongMenuIndex], 1);
             gCurrSoundMenuSong = gSongMenuIndex;
         }
+
+        if (gPlayer1Controller->buttonPressed & (B_BUTTON)) {
+            gMenuMode = MENU_MODE_NONE;
+            gMarioState->action = ACT_IDLE;
+            gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
+            gCamera->cutscene = 0;
+        }
         
     
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);

@@ -7995,3 +7995,22 @@ const BehaviorScript bhvShadowTransitionSphere[] = {
         CALL_NATIVE(bhv_shadow_transition_sphere_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvHvhBook[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_hvh_book_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_hvh_book_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMusicNote[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_music_note_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_music_note_loop),
+    END_LOOP(),
+};

@@ -952,3 +952,7 @@ void bhv_clc_painting_init(void);
 void bhv_clc_painting_loop(void);
 void bhv_shadow_transition_sphere_init(void);
 void bhv_shadow_transition_sphere_loop(void);
+void bhv_hvh_book_init(void);
+void bhv_hvh_book_loop(void);
+void bhv_music_note_init(void);
+void bhv_music_note_loop(void);

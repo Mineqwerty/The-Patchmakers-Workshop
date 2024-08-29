@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_hvh_book_active_f3dlite_material();
+extern void scroll_castle_inside_level_geo_hvh_book_active();

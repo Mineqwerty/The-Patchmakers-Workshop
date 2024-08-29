@@ -108,3 +108,6 @@
 #include "levels/castle_inside/clc_painting/model.inc.c"
 #include "levels/castle_inside/clc_painting/collision.inc.c"
 #include "levels/castle_inside/shadow_transition_sphere/model.inc.c"
+#include "levels/castle_inside/hvh_book_normal/model.inc.c"
+#include "levels/castle_inside/hvh_book_active/model.inc.c"
+#include "levels/castle_inside/music_note/model.inc.c"

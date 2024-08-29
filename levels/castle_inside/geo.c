@@ -37,3 +37,6 @@
 #include "levels/castle_inside/automaton/geo.inc.c"
 #include "levels/castle_inside/clc_painting/geo.inc.c"
 #include "levels/castle_inside/shadow_transition_sphere/geo.inc.c"
+#include "levels/castle_inside/hvh_book_normal/geo.inc.c"
+#include "levels/castle_inside/hvh_book_active/geo.inc.c"
+#include "levels/castle_inside/music_note/geo.inc.c"
