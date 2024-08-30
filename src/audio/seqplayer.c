@@ -2313,8 +2313,8 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
     seqPlayer->tempoAcc -= (u16) gTempoInternalToExternal;
 
     
-
-    if (sCurrPlayMode != PLAY_MODE_PAUSED) {
+    //don't count tatums for env music aka star spawn
+    if (sCurrPlayMode != PLAY_MODE_PAUSED && (seqPlayer != (gSequencePlayers + 1))) {
         if (gTatumCount % 690 == 0) {
             gTatumCount+= 2;
         }

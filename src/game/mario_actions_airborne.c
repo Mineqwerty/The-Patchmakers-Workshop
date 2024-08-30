@@ -445,22 +445,7 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                 m->faceAngle[1] += 0x8000;
 
                 if (m->wall != NULL) {
-                    /*
-                    if (m->equippedPatch == 3 && gPlayer1Controller->buttonDown & L_TRIG) {
-
-                        m->faceAngle[1] += 0x8000;
-
-                        if (m->wall->object && m->lastFrameObj == NULL) {
-                            m->lastFrameObj = m->wall->object;
-                        }
-                        
-                        set_mario_animation(m, MARIO_ANIM_START_WALLKICK);
-                        set_mario_action(m, ACT_GRAPPLE_WALL, 0);
-                    }
-                    else {
-                        */
-                        set_mario_action(m, ACT_AIR_HIT_WALL, 0);
-                    //}
+                    set_mario_action(m, ACT_AIR_HIT_WALL, 0);
                 } else {
                     if (m->vel[1] > 0.0f) {
                         m->vel[1] = 0.0f;
