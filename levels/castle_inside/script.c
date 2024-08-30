@@ -46,8 +46,11 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CLC_PAINTING, clc_painting_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_TRANSITION_SPHERE, shadow_transition_sphere_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_NORMAL, hvh_book_normal_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_ACTIVE, hvh_book_active_geo),
-	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_ACTIVE, hvh_book_active_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, castle_inside_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -110,6 +113,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x0D, LEVEL_JRB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0E, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0F, LEVEL_BITDW, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x20, LEVEL_DDD, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x30, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x31, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x32, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -129,14 +133,14 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 4215, 100, 3440, 0, -180, 0, (17 << 24) | (3 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 3647, 100, 3440, 0, -180, 0, (18 << 24) | (3 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 3054, 100, 3440, 0, -180, 0, (19 << 24) | (3 << 16), bhvTextVolume),
-		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4227, 290, 4148, 0, -180, 0, (1 << 24) | (3 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4227, 290, 4148, 0, -180, 0, (16 << 24) | (3 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_NONE, 4057, 466, 4418, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_NONE, 4227, 466, 4534, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_NONE, 4398, 466, 4422, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 5173, 2177, 1253, 0, -117, 0, (0 << 24) | (4 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
-		OBJECT(MODEL_HVH_BOOK_NORMAL, 6852, 2412, 1833, 0, 0, 0, 0x00000000, bhvHvhBook),
+		OBJECT(MODEL_HVH_BOOK_NORMAL, 6852, 2412, 1833, 0, 0, 0, 0x20200000, bhvHvhBook),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),
