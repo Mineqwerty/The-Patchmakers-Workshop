@@ -232,6 +232,9 @@ s32 update_sliding(struct MarioState *m, f32 stopSpeed) {
         if (m->curPatch == PATCH_STONE) {
             accel = 20.0f;
         }
+        else if (m->floor->type == SURFACE_ICE) {
+            accel = 30.0f;
+        }
         else {
             accel = 10.0f;
         }
@@ -440,6 +443,9 @@ void update_walking_speed(struct MarioState *m) {
 
     if (m->floor != NULL && m->floor->type == SURFACE_SLOW) {
         maxTargetSpeed = 24.0f;
+    } 
+    else if (m->floor != NULL && m->floor->type == SURFACE_ICE) {
+        maxTargetSpeed = 90.0f;
     } else {
         maxTargetSpeed = 32.0f;
     }
@@ -447,6 +453,10 @@ void update_walking_speed(struct MarioState *m) {
     
 
     targetSpeed = m->intendedMag < maxTargetSpeed ? m->intendedMag : maxTargetSpeed;
+
+    if (m->floor != NULL && m->floor->type == SURFACE_ICE) {
+        targetSpeed *= 2.0f;
+    } 
 
     if (m->boostTimer > 0) {
         if (m->boostTimer < 30) {
@@ -477,7 +487,7 @@ void update_walking_speed(struct MarioState *m) {
         m->forwardVel = 48.0f;
     }
 
-#ifdef VELOCITY_BASED_TURN_SPEED
+if (m->floor != NULL && m->floor->type == SURFACE_ICE) {
     if ((m->heldObj == NULL) && !(m->action & ACT_FLAG_SHORT_HITBOX)) {
         if (m->forwardVel >= 16.0f) {
             s16 turnRange = abs_angle_diff(m->faceAngle[1], m->intendedYaw);
@@ -492,11 +502,12 @@ void update_walking_speed(struct MarioState *m) {
     } else {
         m->faceAngle[1] = m->intendedYaw - approach_s32((s16)(m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
     }
-#else
+}
+else {
     // Vanilla
     m->faceAngle[1] =
         m->intendedYaw - approach_s32((s16)(m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
-#endif
+}
     apply_slope_accel(m);
 }
 

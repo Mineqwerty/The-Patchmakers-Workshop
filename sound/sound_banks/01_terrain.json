@@ -13,6 +13,17 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope2": [
+            [4, 32700],
+            [3, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope3": [
+            [0, 32700],
+            [32700, 32700],
+            "hang"
         ]
     },
     "instruments": {
@@ -55,6 +66,46 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "07_step_sand"
+        },
+        "inst8": {
+            "release_rate": 208,
+            "envelope": "envelope2",
+            "sound": "08_custom_step_dirt"
+        },
+        "inst9": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "09_custom_step_wood"
+        },
+        "inst10": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "0A_custom_step_steel"
+        },
+        "inst11": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "0B_custom_step_glass"
+        },
+        "inst12": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "0C_custom_step_leaf"
+        },
+        "inst13": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "0D_custom_step_mud"
+        },
+        "inst14": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": "0E_custom_step_squishy"
+        },
+        "inst15": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0F_custom_step_grate"
         }
     },
     "instrument_list": [
@@ -66,6 +117,14 @@
         "inst4",
         "inst5",
         "inst6",
-        "inst7"
+        "inst7",
+        "inst8",
+        "inst9",
+        "inst10",
+        "inst11",
+        "inst12",
+        "inst13",
+        "inst14",
+        "inst15"
     ]
 }

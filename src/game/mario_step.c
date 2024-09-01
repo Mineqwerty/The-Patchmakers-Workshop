@@ -11,6 +11,7 @@
 #include "mario_step.h"
 #include "src/game/area.h"
 #include "src/game/level_update.h"
+#include "game/object_list_processor.h"
 
 #include "include/behavior_data.h"
 
@@ -296,6 +297,7 @@ s32 stationary_ground_step(struct MarioState *m) {
         // HackerSM64 2.1: This check prevents the downwarps that plagued stationary actions.
         if (m->pos[1] <= m->floorHeight + 160.0f) {
             m->pos[1] = m->floorHeight;
+            m->lastStoodOnFloorHeight = m->floorHeight;
         }
 
         vec3f_copy(marioObj->header.gfx.pos, m->pos);
@@ -336,9 +338,36 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
             return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
         }
 
+        f32 oldFloorHeight = floorHeight;
+
         vec3f_copy(m->pos, nextPos);
-        set_mario_floor(m, floor, floorHeight);
-        return GROUND_STEP_LEFT_GROUND;
+        
+
+        if (m->equippedPatch == PATCH_SKYBRIDGE && gMarioState->patchChildObj->oAction != 2) {
+
+            m->patchChildObj->oPosY = m->lastStoodOnFloorHeight - 5;
+
+            struct Object *lastObject = gCurrentObject;
+            gCurrentObject = gMarioState->patchChildObj;
+            if (gMarioState->patchChildObj) {
+                load_object_collision_model();
+            }
+            gCurrentObject = lastObject;
+            
+            m->curPatch = PATCH_SKYBRIDGE;
+            floorHeight = find_floor(nextPos[0], nextPos[1] + 10, nextPos[2], &floor);
+            if (floor->object && floor->object == gMarioState->patchChildObj) {
+                set_mario_floor(m, floor, floorHeight);
+            }
+            else {
+                return GROUND_STEP_LEFT_GROUND;
+            }
+            
+        }
+        else {
+            set_mario_floor(m, floor, floorHeight);
+            return GROUND_STEP_LEFT_GROUND;
+        }
     }
 
     if (floorHeight + 160.0f >= ceilHeight) {
@@ -401,6 +430,9 @@ s32 perform_ground_step(struct MarioState *m) {
         stepResult = perform_ground_quarter_step(m, intendedPos);
         if (stepResult == GROUND_STEP_LEFT_GROUND || stepResult == GROUND_STEP_HIT_WALL_STOP_QSTEPS) {
             break;
+        }
+        else {
+            m->lastStoodOnFloorHeight = m->floorHeight;
         }
     }
 
@@ -802,6 +834,18 @@ s32 perform_air_step(struct MarioState *m, u32 stepArg) {
         apply_gravity(m);
     }
     apply_vertical_wind(m);
+
+    if (m->equippedPatch == PATCH_SKYBRIDGE && (m->lastStoodOnFloorHeight - m->floorHeight > 300.0f) && gMarioState->patchChildObj->oAction != 2) {
+        m->patchChildObj->oPosY = m->lastStoodOnFloorHeight - 5;
+            struct Object *lastObject = gCurrentObject;
+            gCurrentObject = gMarioState->patchChildObj;
+            if (gMarioState->patchChildObj->oTimer > 0) {
+                load_object_collision_model();
+            }
+            gCurrentObject = lastObject;
+            
+            m->curPatch = PATCH_SKYBRIDGE;
+        }
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     if (m->action == ACT_MARINE_PATCH_AIRBORNE || m->action == ACT_MARINE_PATCH_WATERFALL) {

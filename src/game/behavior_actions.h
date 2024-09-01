@@ -956,3 +956,5 @@ void bhv_hvh_book_init(void);
 void bhv_hvh_book_loop(void);
 void bhv_music_note_init(void);
 void bhv_music_note_loop(void);
+void bhv_skybridge_init(void);
+void bhv_skybridge_loop(void);

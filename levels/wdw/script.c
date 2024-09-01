@@ -48,6 +48,10 @@ const LevelScript level_wdw_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wdw_area_1),
@@ -149,6 +153,7 @@ const LevelScript level_wdw_entry[] = {
 		WARP_NODE(0x0B, LEVEL_WDW, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_WDW, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -4755, 5724, -5942, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_STAR, -6394, 245, -8020, 0, 0, 0, (5 << 24), bhvStar),
 		TERRAIN(wdw_area_3_collision),
 		TERRAIN_MAT_LUT(wdw_area_3_collision_materials),
 		MACRO_OBJECTS(wdw_area_3_macro_objs),

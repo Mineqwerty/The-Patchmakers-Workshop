@@ -1372,3 +1372,61 @@ void bhv_extension_block_loop(void) {
     }
 }
 
+void bhv_skybridge_init(void) {
+    cur_obj_hide();
+    o->oOpacity = 0;
+
+    if (gMarioState->pos[1] < gMarioState->lastStoodOnFloorHeight) {
+        gMarioState->lastStoodOnFloorHeight = gMarioState->pos[1];
+    }
+}
+
+void bhv_skybridge_loop(void) {
+
+    if (o->oAction == 1 && o->oTimer >= 90) {
+        gMarioState->curPatch = PATCH_NONE;
+        gMarioState->lastStoodOnFloorHeight = -11000;
+        o->oAction = 2;
+        o->oTimer = 0;
+    }
+    
+    if (gMarioState->curPatch == PATCH_SKYBRIDGE && gMarioState->equippedPatch == PATCH_SKYBRIDGE && o->oAction != 2) {
+        cur_obj_unhide();
+        load_object_collision_model();
+        o->oAction = 1;
+
+        if ((gMarioState->marioObj->platform != o) && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
+            gMarioState->curPatch = PATCH_NONE;
+            o->oAction = 0;
+            o->oTimer = 0;
+        }
+    }
+    else {
+        cur_obj_hide();
+    }
+
+    //o->oOpacity = CLAMP(255 - ((gMarioState->pos[1] - o->oPosY)/2), 0, 255);
+
+    if (gMarioState->marioObj->platform == o) {
+        o->oOpacity = 255;
+    }
+    else {
+        o->oOpacity = CLAMP(o->oOpacity - 30, 0, 255);
+    }
+
+    o->oOpacity = CLAMP(o->oOpacity - (o->oTimer * 2.7f), 0, 255);
+
+    if (gMarioState->equippedPatch != PATCH_SKYBRIDGE) {
+        if (gMarioState->patchChildObj == o) {
+            gMarioState->patchChildObj = NULL;
+        }
+        obj_mark_for_deletion(o);
+    }
+
+    if (o->oAction == 2 && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK)) && o->oTimer > 10) {
+        o->oAction = 0;
+    }
+
+    
+}
+

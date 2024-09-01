@@ -4,6 +4,9 @@ const GeoLayout wdw_area_3_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_008_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, wdw_dl_Plane_013_mesh_layer_6),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_014_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_015_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -25,7 +28,7 @@ const GeoLayout wdw_area_3[] = {
 				GEO_OPEN_NODE(),
 					GEO_BRANCH(1, wdw_area_3_geo),
 					GEO_RENDER_OBJ(),
-					GEO_ASM(ENVFX_SNOW_BLIZZARD, geo_envfx_main),
+					GEO_ASM(ENVFX_MODE_NONE, geo_envfx_main),
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),

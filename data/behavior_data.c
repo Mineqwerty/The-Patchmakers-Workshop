@@ -8014,3 +8014,13 @@ const BehaviorScript bhvMusicNote[] = {
         CALL_NATIVE(bhv_music_note_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSkybridge[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(skybridge_collision),
+    CALL_NATIVE(bhv_skybridge_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_skybridge_loop),
+    END_LOOP(),
+};

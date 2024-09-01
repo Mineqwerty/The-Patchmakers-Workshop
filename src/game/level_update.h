@@ -12,7 +12,7 @@ enum TimerControl {
     TIMER_CONTROL_HIDE
 };
 
-enum patchNames {
+enum PatchNames {
     PATCH_NONE,
     PATCH_STONE,
     PATCH_CHILLSTEP,
@@ -24,7 +24,8 @@ enum patchNames {
     PATCH_BREEZE,
     PATCH_PORTAL,
     PATCH_MIASMA,
-    PATCH_EXTENSION
+    PATCH_EXTENSION,
+    PATCH_SKYBRIDGE
 };
 
 enum WarpOperation {

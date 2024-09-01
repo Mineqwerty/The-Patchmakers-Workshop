@@ -441,4 +441,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "extension_block_side/geo_header.h"
 
+#include "skybridge/collision_header.h"
+
+#include "skybridge/geo_header.h"
+
 #endif

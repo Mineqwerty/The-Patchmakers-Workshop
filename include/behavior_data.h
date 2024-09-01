@@ -725,3 +725,4 @@ extern const BehaviorScript bhvClcPainting[];
 extern const BehaviorScript bhvShadowTransitionSphere[];
 extern const BehaviorScript bhvHvhBook[];
 extern const BehaviorScript bhvMusicNote[];
+extern const BehaviorScript bhvSkybridge[];

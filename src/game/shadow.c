@@ -278,7 +278,7 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
         }
     } else { // Normal surfaces:
         TerrainData type = floor->type;
-        if (type == SURFACE_ICE) {
+        if (FALSE) {
             // Ice floors are usually transparent.
             s->isDecal = FALSE;
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS

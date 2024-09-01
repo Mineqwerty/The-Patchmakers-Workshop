@@ -7,6 +7,11 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope1": [
+            [0, 32700],
+            [32700, 32700],
+            "hang"
         ]
     },
     "instruments": {
@@ -59,6 +64,16 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "09"
+        },
+        "inst10": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0A_custom_glass_slide"
+        },
+        "inst11": {
+            "release_rate": 208,
+            "envelope": "envelope1",
+            "sound": "0B_custom_mud_slide"
         }
     },
     "instrument_list": [
@@ -71,6 +86,8 @@
         "inst6",
         "inst7",
         "inst8",
-        "inst9"
+        "inst9",
+        "inst10",
+        "inst11"
     ]
 }

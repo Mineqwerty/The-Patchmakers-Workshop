@@ -212,7 +212,7 @@ void apply_mario_platform_displacement(void) {
 
     platform = gMarioPlatform;
     if (!(gTimeStopState & TIME_STOP_ACTIVE) && gMarioObject != NULL) {
-        if (platform != NULL) {
+        if (platform != NULL && platform->behavior != segmented_to_virtual(bhvSkybridge)) {
             apply_platform_displacement(&sMarioDisplacementInfo, gMarioState->pos, &gMarioState->faceAngle[1], platform);
             sShouldApplyInertia = TRUE;
             sInertiaFirstFrame = TRUE;

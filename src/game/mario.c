@@ -530,7 +530,9 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
             ret = SOUND_TERRAIN_WATER << 16;
         } else if (SURFACE_IS_QUICKSAND(floorType)) {
             ret = SOUND_TERRAIN_SAND << 16;
-        } else {
+        } else if (m->floor->object && m->floor->object->behavior == segmented_to_virtual(bhvSkybridge)) {
+            ret = SOUND_TERRAIN_GLASS << 16;
+        }else {
             switch (floorType) {
                 default:
                     floorSoundType = 0;
@@ -2031,7 +2033,12 @@ void common_patch_cancel(struct MarioState *m) {
             m->curPatch = PATCH_NONE;
             //gMarioState->patchChildObj = NULL;
         break;
+        case PATCH_SKYBRIDGE:
+            m->curPatch = PATCH_NONE;
+        break;
     }
+
+    m->patchTimer = 0;
 }
 
 void patch_update(struct MarioState *m ) {
@@ -2083,6 +2090,9 @@ void patch_update(struct MarioState *m ) {
                 gMarioState->curPatch = PATCH_NONE;
             }
         break;
+        case PATCH_SKYBRIDGE:
+            
+        break;
     }
 }
 
@@ -2105,6 +2115,16 @@ void late_patch_update(struct MarioState *m ) {
                 gMarioState->curPatch = PATCH_NONE;
             }
         break;
+        
+        break;
+    }
+
+    switch (m->equippedPatch) {
+        case PATCH_SKYBRIDGE:
+            if (m->patchChildObj) {
+                m->patchChildObj->oPosX = m->pos[0];
+                m->patchChildObj->oPosZ = m->pos[2];
+            }
     }
 }
 
@@ -2140,6 +2160,19 @@ void spawn_initial_patch_object(struct MarioState *m ) {
             if (!m->patchChildObj) {
                 m->patchChildObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_SHADOW_CHOMP_HEAD, bhvShadowChompHead);
             }
+        break;
+
+        case PATCH_SKYBRIDGE:
+            if (m->patchChildObj) {
+                if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
+                    obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
+                }
+                if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
+                    obj_mark_for_deletion(m->patchChildObj);
+                }
+                m->patchChildObj = NULL;
+            }
+            m->patchChildObj = spawn_object_relative(0, 0, 0, 0, gMarioObject, MODEL_SKYBRIDGE, bhvSkybridge);
         break;
 
     }

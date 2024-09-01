@@ -89,3 +89,5 @@
 #include "extension_block/collision.inc.c"
 #include "extension_block_side/collision.inc.c"
 #include "extension_block_side/model.inc.c"
+#include "skybridge/collision.inc.c"
+#include "skybridge/model.inc.c"

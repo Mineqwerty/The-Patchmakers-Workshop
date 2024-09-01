@@ -529,6 +529,8 @@ struct MarioState {
 
     Vec3f marioSinkPos;
 
+    f32 lastStoodOnFloorHeight;
+
     s16 curPatch;
     s16 equippedPatch;
     s8 updatePatch;

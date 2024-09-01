@@ -743,6 +743,7 @@
 #define MODEL_MIASMA_RIBBON           0x1A0
 #define MODEL_EXTENSION_BLOCK           0x1A1
 #define MODEL_EXTENSION_BLOCK_SIDE           0x1A2
+#define MODEL_SKYBRIDGE           0x1A3
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
