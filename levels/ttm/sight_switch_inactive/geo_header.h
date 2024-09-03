@@ -1,0 +1,11 @@
+extern const GeoLayout sight_switch_inactive_geo[];
+extern Vtx sight_switch_inactive_Plane_002_mesh_layer_1_vtx_cull[8];
+extern Vtx sight_switch_inactive_Plane_002_mesh_layer_1_vtx_0[12];
+extern Gfx sight_switch_inactive_Plane_002_mesh_layer_1_tri_0[];
+extern Vtx sight_switch_inactive_Plane_002_mesh_layer_1_vtx_1[4];
+extern Gfx sight_switch_inactive_Plane_002_mesh_layer_1_tri_1[];
+extern Gfx mat_sight_switch_inactive_primwhite_001[];
+extern Gfx mat_revert_sight_switch_inactive_primwhite_001[];
+extern Gfx mat_sight_switch_inactive_prim_sight[];
+extern Gfx mat_revert_sight_switch_inactive_prim_sight[];
+extern Gfx sight_switch_inactive_Plane_002_mesh_layer_1[];

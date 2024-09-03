@@ -708,6 +708,9 @@
 
 //Timeless Shrine
 #define MODEL_SIGHT_CUBE                  0x100
+#define MODEL_SIGHT_SWITCH_INACTIVE                  0x101
+#define MODEL_SIGHT_SWITCH_ACTIVE                  0x102
+#define MODEL_SIGHT_CRACKED_PLATFORM                  0x103
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

@@ -728,3 +728,6 @@ extern const BehaviorScript bhvMusicNote[];
 extern const BehaviorScript bhvSkybridge[];
 extern const BehaviorScript bhvSightCube[];
 extern const BehaviorScript bhvMovingSightCube[];
+extern const BehaviorScript bhvSightSwitch[];
+extern const BehaviorScript bhvSightCrackedPlatform[];
+extern const BehaviorScript bhvSightChamberController[];

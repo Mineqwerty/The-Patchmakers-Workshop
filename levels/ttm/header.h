@@ -117,4 +117,14 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/sight_cube/geo_header.h"
 
+#include "levels/ttm/sight_switch_inactive/collision_header.h"
+
+#include "levels/ttm/sight_switch_inactive/geo_header.h"
+
+#include "levels/ttm/sight_switch_active/geo_header.h"
+
+#include "levels/ttm/sight_cracked_platform/collision_header.h"
+
+#include "levels/ttm/sight_cracked_platform/geo_header.h"
+
 #endif

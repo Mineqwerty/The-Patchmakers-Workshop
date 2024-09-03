@@ -144,14 +144,14 @@ Sorry... I didn't mean to scare you like that...\n\
 I got a little scared too, so it's okay...\n\
 \n\
 Oh... You look like you don't know what's going on...\n\
-Sorry about that... It's been a long while since I have\n\
-seen a person, I should explain everything to you...\n\
-I don't have the full story, but I do know this.\n\
+Right, of course you wouldn't. Silly me...\n\
+I'll try to tell you as much as I know.\n\
+See, up until just now, you weren't exactly... alive?\n\
 You were attacked and captured by a man known as\n\
-The Patchmaker...\n\
+The Patchmaker, who transformed you into a lifeless doll.\n\
 He used a forbidden craft technique called\n\
 The Thread of Life to steal your soul away in a thread,\n\
-trapping it within an object. That insignia on your cap.\n\
+trapping it within an object. That letter on your cap.\n\
 He then took you here, to this workshop...\n\
 And... Um... That's not all...\n\
 He got your friends too..."))

@@ -248,6 +248,15 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
         shifted = FALSE;
     }
 
+    //shadow needs to go through the skybridge for depth perception
+    if (floor->type == SURFACE_SKYBRIDGE) {
+        floorHeight = find_floor(x, floorHeight - 300, z, &floor);
+        
+        if (floor == NULL) {
+            floorHeight = find_floor(x, y, z, &floor);
+        }
+    }
+
     // The shadow is a decal by default.
     s->isDecal = TRUE;
 

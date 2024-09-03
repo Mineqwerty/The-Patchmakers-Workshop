@@ -8019,6 +8019,7 @@ const BehaviorScript bhvSkybridge[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     LOAD_COLLISION_DATA(skybridge_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_skybridge_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_skybridge_loop),
@@ -8030,6 +8031,8 @@ const BehaviorScript bhvSightCube[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_HOME(),
     LOAD_COLLISION_DATA(sight_cube_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_FLOAT(oCollisionDistance, 20000),
     CALL_NATIVE(bhv_sight_cube_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sight_cube_loop),
@@ -8041,9 +8044,44 @@ const BehaviorScript bhvMovingSightCube[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL)),
     LOAD_COLLISION_DATA(sight_cube_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_FLOAT(oCollisionDistance, 20000),
     CALL_NATIVE(bhv_moving_sight_cube_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_moving_sight_cube_loop),
         CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSightSwitch[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(sight_switch_inactive_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_sight_switch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sight_switch_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSightCrackedPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(sight_cracked_platform_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(load_object_static_model)
+    CALL_NATIVE(bhv_sight_cracked_platform_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sight_cracked_platform_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSightChamberController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_sight_chamber_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sight_chamber_controller_loop),
     END_LOOP(),
 };

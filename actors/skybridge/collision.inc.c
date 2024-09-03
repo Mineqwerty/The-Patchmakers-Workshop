@@ -53,7 +53,7 @@ const Collision skybridge_collision[] = {
 	COL_VERTEX(69, 0, -69),
 	COL_VERTEX(37, 0, -90),
 	COL_VERTEX(0, 0, 0),
-	COL_TRI_INIT(SURFACE_DEFAULT, 80),
+	COL_TRI_INIT(SURFACE_SKYBRIDGE, 80),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
 	COL_TRI(4, 0, 3),
