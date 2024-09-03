@@ -297,7 +297,12 @@ s32 stationary_ground_step(struct MarioState *m) {
         // HackerSM64 2.1: This check prevents the downwarps that plagued stationary actions.
         if (m->pos[1] <= m->floorHeight + 160.0f) {
             m->pos[1] = m->floorHeight;
-            m->lastStoodOnFloorHeight = m->floorHeight;
+            if (m->equippedPatch == PATCH_SKYBRIDGE) {
+                m->lastStoodOnFloorHeight = m->floorHeight;
+            }
+            else {
+                m->lastStoodOnFloorHeight = -11000;
+            }
         }
 
         vec3f_copy(marioObj->header.gfx.pos, m->pos);
@@ -432,7 +437,12 @@ s32 perform_ground_step(struct MarioState *m) {
             break;
         }
         else {
-            m->lastStoodOnFloorHeight = m->floorHeight;
+            if (m->equippedPatch == PATCH_SKYBRIDGE) {
+                m->lastStoodOnFloorHeight = m->floorHeight;
+            }
+            else {
+                m->lastStoodOnFloorHeight = -11000;
+            }
         }
     }
 

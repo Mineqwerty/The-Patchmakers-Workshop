@@ -635,7 +635,7 @@ s32 act_collecting_patch(struct MarioState *m) {
 
 s32 act_story_cutscene(struct MarioState *m) {
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    vec3s_set(m->marioObj->header.gfx.angle, m->faceAngle[0], m->faceAngle[1], m->faceAngle[2]);
     return FALSE;
 }
 

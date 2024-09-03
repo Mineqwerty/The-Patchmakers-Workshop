@@ -91,3 +91,4 @@
 #include "extension_block_side/model.inc.c"
 #include "skybridge/collision.inc.c"
 #include "skybridge/model.inc.c"
+#include "skybridge_fragment/model.inc.c"

@@ -77,6 +77,7 @@ enum cutscene_events {
     EVENT_ENABLE_MARIO_RENDER,
     EVENT_SET_MARIO_POSITION,
     EVENT_SET_MARIO_YAW,
+    EVENT_SET_MARIO_ROLL,
     EVENT_SET_MARIO_ACTION,
     EVENT_SET_MARIO_ACTION_ARG,
     EVENT_SET_MARIO_EYE_STATE,
@@ -393,8 +394,9 @@ s32 event_meet_sewnia[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_DISABLE_MARIO_RENDER,
-    EVENT_SET_MARIO_POSITION, 0, 166, 1164,
+    EVENT_SET_MARIO_POSITION, 0, 166, 1154,
     EVENT_SET_MARIO_YAW, -0x4000,
+    EVENT_SET_MARIO_ROLL, 0x4000,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 25,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 26,
     EVENT_HUD_SET_EFFECT, 2,
@@ -402,6 +404,7 @@ s32 event_meet_sewnia[] = {
     EVENT_ENABLE_MARIO_RENDER,
     EVENT_CANCEL_SPLINE_DATA,
     EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_SCUFFLE_BACK,
+    
     EVENT_CAMERA_POSITION, 300, 250, 1120,
     EVENT_CAMERA_FOCUS, 0, 230, 1150,
     EVENT_WAIT, 40,
@@ -660,6 +663,10 @@ void event_handler(void) {
                 break;
                 case EVENT_SET_MARIO_YAW:
                     gMarioState->faceAngle[1] = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_SET_MARIO_ROLL:
+                    gMarioState->faceAngle[0] = param1;
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_SET_MARIO_ACTION:

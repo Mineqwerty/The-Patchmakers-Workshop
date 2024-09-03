@@ -531,7 +531,7 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
         } else if (SURFACE_IS_QUICKSAND(floorType)) {
             ret = SOUND_TERRAIN_SAND << 16;
         } else if (m->floor->object && m->floor->object->behavior == segmented_to_virtual(bhvSkybridge)) {
-            ret = SOUND_TERRAIN_GLASS << 16;
+            ret = SOUND_TERRAIN_SQUISHY << 16;
         }else {
             switch (floorType) {
                 default:

@@ -9,7 +9,7 @@ void bhv_story_cutscene_manager_loop(void) {
 }
 
 void bhv_story_cutscene_manager_hub1_init(void) {
-    //begin_cutscene_event(CUTSCENE_EVENT_MEET_SEWNIA);
+    begin_cutscene_event(CUTSCENE_EVENT_MEET_SEWNIA);
 }
 
 void bhv_story_cutscene_manager_hub1_loop(void) {

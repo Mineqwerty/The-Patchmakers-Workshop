@@ -1372,6 +1372,68 @@ void bhv_extension_block_loop(void) {
     }
 }
 
+u8 check_skybridge_oob(void) {
+    struct Surface *floor;
+    Vec3f pushVec;
+    pushVec[0] = 0;
+    pushVec[2] = 0;
+    u8 outOfBounds = 0;
+
+    struct Surface *surf;
+            Vec3f originPos;
+            Vec3f hitpos;
+            Vec3f raydir;
+
+            raydir[1] = 0.0f;
+
+            
+    //perform raycasts to find walls so it doesnt shatter when approaching a wall with OOB behind it
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+        vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+        vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
+        raydir[0] = 160;
+        raydir[2] = 160;
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
+            if (surf == NULL) {
+                outOfBounds = 1;
+            } 
+    }
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+        vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
+        raydir[0] = 160;
+        raydir[2] = -160;
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
+            if (surf == NULL) {
+                outOfBounds = 1;
+            } 
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+       vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+        vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
+        raydir[0] = -160;
+        raydir[2] = 160;
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
+            if (surf == NULL) {
+                outOfBounds = 1;
+            } 
+    }
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+        vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+        vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
+        raydir[0] = -160;
+        raydir[2] = -160;
+        find_surface_on_ray(originPos, raydir, &surf, hitpos, 2U, 1);
+            if (surf == NULL) {
+                outOfBounds = 1;
+            } 
+    }
+
+    return outOfBounds;
+
+    
+}
+
 void bhv_skybridge_init(void) {
     cur_obj_hide();
     o->oOpacity = 0;
@@ -1383,11 +1445,19 @@ void bhv_skybridge_init(void) {
 
 void bhv_skybridge_loop(void) {
 
-    if (o->oAction == 1 && o->oTimer >= 90) {
+    if (((o->oAction == 1 && o->oTimer >= 90) || (gMarioState->action == ACT_GROUND_POUND_LAND && gMarioState->marioObj->platform == o)) || (o->oAction == 1 && check_skybridge_oob())) {
         gMarioState->curPatch = PATCH_NONE;
         gMarioState->lastStoodOnFloorHeight = -11000;
+        cur_obj_play_sound_2(SOUND_SKYBRIDGE_BREAK);
         o->oAction = 2;
         o->oTimer = 0;
+
+        for (u8 i = 0; i < 4; i++) {
+            for (u8 j = 0; j < 3; j++) {
+                spawn_object_relative(0, 70 * sins((i * 0x4000) + (j * 0x800)), (j - 1) * 100, 70 * coss((i * 0x4000) + (j * 0x800)), o, MODEL_SKYBRIDGE_FRAGMENT, bhvRingFragmentParticle);
+            }
+        }
+
     }
     
     if (gMarioState->curPatch == PATCH_SKYBRIDGE && gMarioState->equippedPatch == PATCH_SKYBRIDGE && o->oAction != 2) {

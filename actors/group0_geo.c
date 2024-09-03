@@ -44,3 +44,4 @@
 #include "extension_block/geo.inc.c"
 #include "extension_block_side/geo.inc.c"
 #include "skybridge/geo.inc.c"
+#include "skybridge_fragment/geo.inc.c"

@@ -958,3 +958,7 @@ void bhv_music_note_init(void);
 void bhv_music_note_loop(void);
 void bhv_skybridge_init(void);
 void bhv_skybridge_loop(void);
+void bhv_sight_cube_init(void);
+void bhv_sight_cube_loop(void);
+void bhv_moving_sight_cube_init(void);
+void bhv_moving_sight_cube_loop(void);

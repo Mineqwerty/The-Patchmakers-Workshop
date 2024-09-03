@@ -84,6 +84,11 @@
             "release_rate": 208,
             "envelope": "envelope0",
             "sound": "0E_transmutation_swish"
+        },
+        "inst15": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "0F_skybridge_break"
         }
     },
     "instrument_list": [
@@ -101,6 +106,7 @@
         "inst11",
         "inst12",
         "inst13",
-        "inst14"
+        "inst14",
+        "inst15"
     ]
 }

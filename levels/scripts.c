@@ -143,6 +143,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_EXTENSION_BLOCK,            extension_block_geo),
     LOAD_MODEL_FROM_GEO(MODEL_EXTENSION_BLOCK_SIDE,            extension_block_side_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SKYBRIDGE,            skybridge_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SKYBRIDGE_FRAGMENT,            skybridge_fragment_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

@@ -69,3 +69,6 @@
 #include "levels/ttm/areas/3/macro.inc.c"
 #include "levels/ttm/areas/4/macro.inc.c"
 #include "levels/ttm/leveldata.inc.c"
+
+#include "levels/ttm/sight_cube/collision.inc.c"
+#include "levels/ttm/sight_cube/model.inc.c"
