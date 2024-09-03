@@ -253,6 +253,11 @@
 /* Hidden Blue Coin */
 #define /*0x0F8*/ oHiddenBlueCoinSwitch OBJECT_FIELD_OBJ(0x1C)
 #define /*0x0F4*/ oHiddenBlueCoinTimer OBJECT_FIELD_S32(0x1D)
+#define /*0x0F8*/ oLinkedBlueCoin OBJECT_FIELD_OBJ(0x1E)
+
+///BCS
+#define /*0x0F4*/ oNumBlueCoinsCollected OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oTotalNumBlueCoins OBJECT_FIELD_S32(0x1C)
 
 /* Bob-omb */
 #define /*0x0F4*/ oBobombBlinkTimer OBJECT_FIELD_S32(0x1B)

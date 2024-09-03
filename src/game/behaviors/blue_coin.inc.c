@@ -35,14 +35,6 @@ void bhv_hidden_blue_coin_loop(void) {
                 o->oHiddenBlueCoinTimer = blueCoinSwitch->oBehParams2ndByte * 30;
             }
 
-#ifdef BLUE_COIN_SWITCH_PREVIEW
-            if (gMarioObject->platform == blueCoinSwitch) {
-                cur_obj_enable_rendering();
-            } else {
-                cur_obj_disable_rendering();
-            }
-#endif
-
             break;
 
         case HIDDEN_BLUE_COIN_ACT_ACTIVE:
@@ -52,25 +44,61 @@ void bhv_hidden_blue_coin_loop(void) {
 
             // Delete the coin once collected
             if (o->oInteractStatus & INT_STATUS_INTERACTED) {
-                spawn_object(o, MODEL_SPARKLES, bhvCoinSparklesSpawner);
-                obj_mark_for_deletion(o);
+                //spawn_object(o, MODEL_SPARKLES, bhvCoinSparklesSpawner);
+                //obj_mark_for_deletion(o);
+                blueCoinSwitch->oNumBlueCoinsCollected++;
+                struct Object *bc = spawn_object_relative(0, 0, 10, 0, o, MODEL_BLUE_COIN_NO_SHADOW, bhvBlueCoinRotateAroundMario);
+                bc->oLinkedBlueCoin = o;
+                cur_obj_disable_rendering();
+                cur_obj_become_intangible();
+                o->oAction = 3;
             }
 
-            // After 200 frames of waiting and 20 2-frame blinks (for 240 frames total),
-            // delete the object.
             if (cur_obj_wait_then_blink(o->oHiddenBlueCoinTimer, o->oHiddenBlueCoinTimer + 20)) {
-#ifdef BLUE_COIN_SWITCH_RETRY
                 o->oAction = HIDDEN_BLUE_COIN_ACT_INACTIVE;
                 o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
-#else
-                obj_mark_for_deletion(o);
-#endif
             }
 
             break;
     }
 
     o->oInteractStatus = INT_STATUS_NONE;
+}
+
+void bhv_blue_coin_rotate_around_mario(void) {
+    struct Object *blueCoinSwitch;
+
+    switch (o->oAction) {
+        case 0:
+            o->oHiddenBlueCoinSwitch = cur_obj_nearest_object_with_behavior(bhvBlueCoinSwitch);
+
+            if (o->oHiddenBlueCoinSwitch != NULL) {
+                o->oAction = 1;
+            }
+
+            break;
+
+        case 1:
+            blueCoinSwitch = o->oHiddenBlueCoinSwitch;
+
+            f32 offsetAngle = o->oBehParams2ndByte * (0x8000 / CLAMP(blueCoinSwitch->oNumBlueCoinsCollected, 1, 256));
+
+            approach_f32_asymptotic(o->oPosX, gMarioState->pos[0] + 600.0f * sins(blueCoinSwitch->oTimer * 0x222 + offsetAngle), 0.08f);
+            approach_f32_asymptotic(o->oPosZ, gMarioState->pos[2] + 600.0f * coss(blueCoinSwitch->oTimer * 0x222 + offsetAngle), 0.08f);
+            approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + 100.0f, 0.08f);
+
+            if (o->oHiddenBlueCoinSwitch->oAction == 3) {
+                o->oLinkedBlueCoin->oAction = 0;
+                obj_mark_for_deletion(o);
+            }
+
+            break;
+
+        case 2:
+            //fly to mario
+
+            break;
+    }
 }
 
 /**
@@ -88,13 +116,7 @@ void bhv_blue_coin_switch_loop(void) {
                 if (gMarioStates[0].action == ACT_GROUND_POUND_LAND) {
                     // Set to BLUE_COIN_SWITCH_ACT_RECEDING
                     o->oAction = BLUE_COIN_SWITCH_ACT_RECEDING;
-#ifdef BLUE_COIN_SWITCH_RETRY
-                    // Recede at a rate of 16 units/frame.
                     o->oVelY = -16.0f;
-#else
-                    // Recede at a rate of 20 units/frame.
-                    o->oVelY = -20.0f;
-#endif
                     // Set gravity to 0 so it doesn't accelerate when receding.
                     o->oGravity = 0.0f;
 
@@ -111,22 +133,12 @@ void bhv_blue_coin_switch_loop(void) {
             // Recede for 6 frames before going invisible and ticking.
             // This is probably an off-by-one error, since the switch is 100 units tall
             // and recedes at 20 units/frame, which means it will fully recede after 5 frames.
-#ifdef BLUE_COIN_SWITCH_RETRY
             if (o->oTimer > 3) {
-#else
-            if (o->oTimer > 5) {
-                cur_obj_hide();
-#endif
                 // Set to BLUE_COIN_SWITCH_ACT_TICKING
                 o->oAction = BLUE_COIN_SWITCH_ACT_TICKING;
-#ifdef BLUE_COIN_SWITCH_RETRY
                 // ???
                 o->oVelY    = 0.0f;
                 o->oGravity = 0.0f;
-#else
-                o->oPosY = gMarioObject->oPosY - 40.0f;
-#endif
-
                 // Spawn particles. There's a function that calls this same function
                 // with the same arguments, spawn_mist_particles, why didn't they just call that?
                 spawn_mist_particles_variable(0, 0, 46.0f);
@@ -146,15 +158,17 @@ void bhv_blue_coin_switch_loop(void) {
             } else {
                 play_sound(SOUND_GENERAL2_SWITCH_TICK_SLOW, gGlobalSoundSource);
             }
-#ifdef BLUE_COIN_SWITCH_RETRY
+
             if (cur_obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL) {
                 spawn_mist_particles_variable(0, 0, 46.0f);
-                obj_mark_for_deletion(o);
+                //obj_mark_for_deletion(o);
+                o->oAction = 4;
             // Set to BLUE_COIN_SWITCH_ACT_EXTENDING after the coins unload after the 240-frame timer expires.
             } else if (o->oTimer > 240) {
                 o->oAction  = BLUE_COIN_SWITCH_ACT_EXTENDING;
                 o->oVelY    = 16.0f;
                 o->oGravity =  0.0f;
+                o->oNumBlueCoinsCollected = 0;
             }
             load_object_collision_model();
             break;
@@ -168,13 +182,9 @@ void bhv_blue_coin_switch_loop(void) {
                 // Extend
                 cur_obj_move_using_fvel_and_gravity();
             }
-#else
-            // Delete the switch (which stops the sound) after the last coin is collected,
-            // or after the coins unload after the 240-frame timer expires.
-            if ((cur_obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL) || (o->oTimer > (o->oBehParams2ndByte * 30) + 40)) {
-                obj_mark_for_deletion(o);
-            }
-#endif
+            break;
+            case 4:
+
             break;
     }
 }
