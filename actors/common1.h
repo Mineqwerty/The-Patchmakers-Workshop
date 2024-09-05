@@ -29,6 +29,7 @@ extern const GeoLayout yellow_coin_geo[];
 extern const GeoLayout yellow_coin_no_shadow_geo[];
 extern const GeoLayout blue_coin_geo[];
 extern const GeoLayout blue_coin_no_shadow_geo[];
+extern const GeoLayout transparent_blue_coin_geo[];
 extern const GeoLayout red_coin_geo[];
 extern const GeoLayout fog_red_coin_geo[];
 extern const GeoLayout red_coin_no_shadow_geo[];
@@ -53,6 +54,15 @@ extern const Gfx coin_seg3_dl_blue_90[];
 extern const Gfx coin_seg3_dl_blue_67_5_r[];
 extern const Gfx coin_seg3_dl_blue_45_r[];
 extern const Gfx coin_seg3_dl_blue_22_5_r[];
+
+extern const Gfx transparent_coin_seg3_dl_blue_0[];
+extern const Gfx transparent_coin_seg3_dl_blue_22_5[];
+extern const Gfx transparent_coin_seg3_dl_blue_45[];
+extern const Gfx transparent_coin_seg3_dl_blue_67_5[];
+extern const Gfx transparent_coin_seg3_dl_blue_90[];
+extern const Gfx transparent_coin_seg3_dl_blue_67_5_r[];
+extern const Gfx transparent_coin_seg3_dl_blue_45_r[];
+extern const Gfx transparent_coin_seg3_dl_blue_22_5_r[];
 
 extern const Gfx coin_seg3_dl_red_0[];
 extern const Gfx coin_seg3_dl_red_22_5[];

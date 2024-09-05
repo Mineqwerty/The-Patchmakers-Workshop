@@ -2910,8 +2910,9 @@ const BehaviorScript bhvHiddenBlueCoin[] = {
     SET_HITBOX(/*Radius*/ 100, /*Height*/ 64),
     //SET_INT(oDamageOrCoinValue, 5),
     SET_INT(oDamageOrCoinValue, 0),
-    SET_INT(oIntangibleTimer, 0),
+    SET_INT(oIntangibleTimer, 5),
     SET_INT(oAnimState, OBJ_ANIM_STATE_INIT_ANIM),
+    CALL_NATIVE(bhv_hidden_blue_coin_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_hidden_blue_coin_loop),
         ADD_INT(oAnimState, 1),
@@ -2920,11 +2921,15 @@ const BehaviorScript bhvHiddenBlueCoin[] = {
 
 const BehaviorScript bhvBlueCoinRotateAroundMario[] = {
     BEGIN(OBJ_LIST_LEVEL),
+    SET_INT(oInteractType, INTERACT_COIN),
     OR_INT(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     BILLBOARD(),
+    SET_HITBOX(/*Radius*/ 50, /*Height*/ 64),
+    SET_INT(oDamageOrCoinValue, 5),
+    SET_INT(oDamageOrCoinValue, 0),
     SET_INT(oAnimState, OBJ_ANIM_STATE_INIT_ANIM),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_blue_coin_rotate_around_mario),
+        CALL_NATIVE(bhv_blue_coin_rotate_around_mario_loop),
         ADD_INT(oAnimState, 1),
     END_LOOP(),
 };
@@ -8082,10 +8087,10 @@ const BehaviorScript bhvSightCrackedPlatform[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(sight_cracked_platform_collision),
     SET_FLOAT(oDrawingDistance, 20000),
-    CALL_NATIVE(load_object_static_model),
     CALL_NATIVE(bhv_sight_cracked_platform_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sight_cracked_platform_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 

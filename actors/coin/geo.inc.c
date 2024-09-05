@@ -75,6 +75,24 @@ const GeoLayout blue_coin_no_shadow_geo[] = {
    GEO_END(),
 };
 
+const GeoLayout transparent_blue_coin_geo[] = {
+   GEO_NODE_START(),
+   GEO_OPEN_NODE(),
+      GEO_SWITCH_CASE(8, geo_switch_anim_state),
+      GEO_OPEN_NODE(),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_0),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_22_5),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_45),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_67_5),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_90),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_67_5_r),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_45_r),
+         GEO_DISPLAY_LIST(LAYER_TRANSPARENT, transparent_coin_seg3_dl_blue_22_5_r),
+      GEO_CLOSE_NODE(),
+   GEO_CLOSE_NODE(),
+   GEO_END(),
+};
+
 // 0x160002C4
 const GeoLayout red_coin_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 80),
