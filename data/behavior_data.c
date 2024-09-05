@@ -8087,10 +8087,11 @@ const BehaviorScript bhvSightCrackedPlatform[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(sight_cracked_platform_collision),
     SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(load_object_static_model),
     CALL_NATIVE(bhv_sight_cracked_platform_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sight_cracked_platform_loop),
-        CALL_NATIVE(load_object_collision_model),
+        
     END_LOOP(),
 };
 
@@ -8100,5 +8101,16 @@ const BehaviorScript bhvSightChamberController[] = {
     CALL_NATIVE(bhv_sight_chamber_controller_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sight_chamber_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSightDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(sight_door_collision),
+    CALL_NATIVE(bhv_sight_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sight_door_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };

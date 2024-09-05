@@ -1,0 +1,12 @@
+extern const GeoLayout sight_door_geo[];
+extern u8 sight_door_sign_of_sight_ia4[];
+extern Vtx sight_door_Plane_004_mesh_layer_1_vtx_cull[8];
+extern Vtx sight_door_Plane_004_mesh_layer_1_vtx_0[4];
+extern Gfx sight_door_Plane_004_mesh_layer_1_tri_0[];
+extern Vtx sight_door_Plane_004_mesh_layer_1_vtx_1[8];
+extern Gfx sight_door_Plane_004_mesh_layer_1_tri_1[];
+extern Gfx mat_sight_door_sight_001[];
+extern Gfx mat_revert_sight_door_sight_001[];
+extern Gfx mat_sight_door_prim_sight[];
+extern Gfx mat_revert_sight_door_prim_sight[];
+extern Gfx sight_door_Plane_004_mesh_layer_1[];

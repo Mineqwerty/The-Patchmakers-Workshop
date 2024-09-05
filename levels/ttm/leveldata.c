@@ -77,3 +77,5 @@
 #include "levels/ttm/sight_switch_active/model.inc.c"
 #include "levels/ttm/sight_cracked_platform/collision.inc.c"
 #include "levels/ttm/sight_cracked_platform/model.inc.c"
+#include "levels/ttm/sight_door/collision.inc.c"
+#include "levels/ttm/sight_door/model.inc.c"

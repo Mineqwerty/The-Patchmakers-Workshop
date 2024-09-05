@@ -732,3 +732,4 @@ extern const BehaviorScript bhvMovingSightCube[];
 extern const BehaviorScript bhvSightSwitch[];
 extern const BehaviorScript bhvSightCrackedPlatform[];
 extern const BehaviorScript bhvSightChamberController[];
+extern const BehaviorScript bhvSightDoor[];

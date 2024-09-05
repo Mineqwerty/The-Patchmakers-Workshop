@@ -342,3 +342,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/sight_switch.inc.c"
 #include "behaviors/sight_cracked_platform.inc.c"
 #include "behaviors/sight_chamber_controller.inc.c"
+#include "behaviors/sight_door.inc.c"

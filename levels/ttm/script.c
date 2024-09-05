@@ -36,7 +36,9 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_CUBE, sight_cube_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_SWITCH_INACTIVE, sight_switch_inactive_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_SWITCH_ACTIVE, sight_switch_active_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_CRACKED_PLATFORM, sight_cracked_platform_geo), /* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_CRACKED_PLATFORM, sight_cracked_platform_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SIGHT_DOOR, sight_door_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -55,6 +57,8 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SIGHT_CUBE, 1203, -669, -6827, 0, 0, 0, (30 << 24) | (180 << 16) | (20 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 3033, 1083, -7926, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 911, 1415, -9269, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
+		OBJECT(MODEL_SIGHT_DOOR, 4153, 1679, -14937, 0, 0, 0, 0x00000000, bhvSightDoor),
+		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_SIGHT_CUBE, 2886, -827, -5908, 0, 0, 0, (60 << 24) | (5 << 16) | (0 << 8) | (20), bhvMovingSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 4417, 325, -9147, 0, 0, 0, (50 << 24) | (12 << 16) | (0 << 8) | (130), bhvMovingSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 339, -338, -6777, 0, 0, 0, (50 << 24) | (12 << 16) | (0 << 8) | (110), bhvMovingSightCube),

@@ -970,3 +970,5 @@ void bhv_sight_cracked_platform_init(void);
 void bhv_sight_cracked_platform_loop(void);
 void bhv_sight_chamber_controller_init(void);
 void bhv_sight_chamber_controller_loop(void);
+void bhv_sight_door_init(void);
+void bhv_sight_door_loop(void);

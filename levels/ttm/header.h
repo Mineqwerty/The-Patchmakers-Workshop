@@ -127,4 +127,8 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/sight_cracked_platform/geo_header.h"
 
+#include "levels/ttm/sight_door/collision_header.h"
+
+#include "levels/ttm/sight_door/geo_header.h"
+
 #endif

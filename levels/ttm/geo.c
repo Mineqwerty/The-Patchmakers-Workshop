@@ -49,3 +49,4 @@
 #include "levels/ttm/sight_switch_inactive/geo.inc.c"
 #include "levels/ttm/sight_switch_active/geo.inc.c"
 #include "levels/ttm/sight_cracked_platform/geo.inc.c"
+#include "levels/ttm/sight_door/geo.inc.c"
