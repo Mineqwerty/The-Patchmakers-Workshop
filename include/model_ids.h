@@ -731,6 +731,7 @@
 #define MODEL_FLOATING_PETAL                    0x186
 #define MODEL_FOG_RED_COIN                    0x187
 #define MODEL_TRANSPARENT_BLUE_COIN          0x188
+#define MODEL_IMPACT_GRAPPLE          0x189
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

@@ -281,3 +281,14 @@ Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNU
     
     return dl;
 }
+
+Gfx *geo_rotate_billboard(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+        Gfx *dl = NULL;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+
+    ((struct GraphNodeRotation *) node->next)->rotation[2] = obj->oTimer * 0x222;
+
+    }
+}

@@ -712,6 +712,8 @@ Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_goddess_spear(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_impact_particle(s32 callContext, struct GraphNode *node);
+
 Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node);
@@ -972,3 +974,5 @@ void bhv_sight_chamber_controller_init(void);
 void bhv_sight_chamber_controller_loop(void);
 void bhv_sight_door_init(void);
 void bhv_sight_door_loop(void);
+void bhv_attack_impact_particle_init(void);
+void bhv_attack_impact_particle_loop(void);

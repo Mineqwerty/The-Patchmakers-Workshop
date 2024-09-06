@@ -876,6 +876,15 @@ void cur_obj_update(void) {
         o->oTimer++;
     }
 
+    u8 blinkFrame = 0;
+
+    if (o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM && o->oEnemyInvincibilityTimer > 0) {
+        o->oEnemyInvincibilityTimer--;
+        if (gGlobalTimer % 3 == 1) {
+            blinkFrame = 1;
+        }
+    }
+
     // If the object's action has changed, reset the action timer.
     if (o->oAction != o->oPrevAction) {
         o->oTimer = 0;
@@ -938,36 +947,41 @@ void cur_obj_update(void) {
 #endif
 
     // Handle visibility of object
-    if (o->oRoom != -1) {
-        // If the object is in a room, only show it when Mario is in the room.
-        if (
-            (objFlags & OBJ_FLAG_ACTIVE_FROM_AFAR)
-            || distanceFromMario < o->oDrawingDistance
-        ) {
-            if (inRoom == MARIO_OUTSIDE_ROOM) {
-                cur_obj_disable_rendering_in_room();
-            } else if (inRoom == MARIO_INSIDE_ROOM) {
-                cur_obj_enable_rendering_in_room();
+    if (blinkFrame == 0) {
+        if (o->oRoom != -1) {
+            // If the object is in a room, only show it when Mario is in the room.
+            if (
+                (objFlags & OBJ_FLAG_ACTIVE_FROM_AFAR)
+                || distanceFromMario < o->oDrawingDistance
+            ) {
+                if (inRoom == MARIO_OUTSIDE_ROOM) {
+                    cur_obj_disable_rendering_in_room();
+                } else if (inRoom == MARIO_INSIDE_ROOM) {
+                    cur_obj_enable_rendering_in_room();
+                }
+                o->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
+            } else {
+                o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
+                o->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
             }
-            o->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
-        } else {
-            o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
-            o->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
+        } else if (
+            o->collisionData == NULL
+            &&  (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_MARIO)
+            && !(objFlags & OBJ_FLAG_ACTIVE_FROM_AFAR)
+        ) {
+            // If the object has a render distance, check if it should be shown.
+            if (distanceFromMario > o->oDrawingDistance) {
+                // Out of render distance, hide the object.
+                o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
+                o->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
+            } else if (o->oHeldState == HELD_FREE) {
+                // In render distance (and not being held), show the object.
+                o->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
+                o->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
+            }
         }
-    } else if (
-        o->collisionData == NULL
-        &&  (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_MARIO)
-        && !(objFlags & OBJ_FLAG_ACTIVE_FROM_AFAR)
-    ) {
-        // If the object has a render distance, check if it should be shown.
-        if (distanceFromMario > o->oDrawingDistance) {
-            // Out of render distance, hide the object.
-            o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
-            o->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
-        } else if (o->oHeldState == HELD_FREE) {
-            // In render distance (and not being held), show the object.
-            o->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
-            o->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
-        }
+    }
+    else {
+        o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     }
 }

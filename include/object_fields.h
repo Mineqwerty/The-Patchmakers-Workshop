@@ -162,6 +162,7 @@
 #define /*0x1A0*/ oRoom                                         OBJECT_FIELD_S32(0x46)
 #define /*0x1A8*/ oFreezeObject                            OBJECT_FIELD_S32(0x47)
 #define /*0x1A8*/ oDistanceProcessing                            OBJECT_FIELD_S32(0x48)
+#define /*0x1A8*/ oEnemyInvincibilityTimer                            OBJECT_FIELD_S32(0x50)
 
 
 // 0x1AC-0x1B2 (0x48-0x4A) are object specific and defined below the common fields.

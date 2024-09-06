@@ -176,7 +176,8 @@ Gfx ttm_area_1_collision_mat_revert_ttm_dl_touch[] = {
 };
 
 Gfx ttm_area_1_collision_hurtplane_layer_1[] = {
-	gsSPSetLights1(ttm_dl_hurtplane_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -230,7 +231,8 @@ Gfx ttm_area_1_collision_mat_revert_ttm_dl_f3dlite_material_001[] = {
 };
 
 Gfx ttm_area_1_collision_scrollma_layer_1[] = {
-	gsSPSetLights1(ttm_dl_scrollma_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

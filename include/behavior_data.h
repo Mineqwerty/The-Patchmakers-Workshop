@@ -733,3 +733,4 @@ extern const BehaviorScript bhvSightSwitch[];
 extern const BehaviorScript bhvSightCrackedPlatform[];
 extern const BehaviorScript bhvSightChamberController[];
 extern const BehaviorScript bhvSightDoor[];
+extern const BehaviorScript bhvAttackImpactParticle[];

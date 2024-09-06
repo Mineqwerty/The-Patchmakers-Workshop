@@ -2242,7 +2242,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     gMarioState->patchTimer++;
 
     if (gPlayer1Controller->buttonPressed & D_JPAD && gMarioState->action != ACT_WAITING_FOR_DIALOG) {
-        spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvTrailerCam);
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_IMPACT_GRAPPLE, bhvAttackImpactParticle);
     }
 
     

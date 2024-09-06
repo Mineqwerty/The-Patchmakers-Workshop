@@ -321,7 +321,12 @@ void bhv_grapple_hook_loop(void) {
 
                 if (other != gMarioObject) {
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
-                    attack_object(other, 2, 3);
+                    if (attack_object(other, 2, 3) != 0) {
+                        spawn_object_relative(0, o->oPosX - other->oPosX, 
+                        o->oPosY - other->oPosY - 40, 
+                        o->oPosZ - other->oPosZ, 
+                        o, MODEL_IMPACT_GRAPPLE, bhvAttackImpactParticle);
+                    }
 
                     if (!obj_has_behavior(other, bhvFortogoo)) {
                         o->oAngleVelPitch = -0x400;

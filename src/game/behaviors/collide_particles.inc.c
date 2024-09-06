@@ -71,7 +71,13 @@ void bhv_pound_tiny_star_particle_loop(void) {
     }
 
     cur_obj_move_using_fvel_and_gravity();
-    o->oAnimState = 4;
+    //checking a stupid high bp just to avoid messing with vanilla stuff
+    if (GET_BPARAM1(o->oBehParams) >= 100) {
+        o->oAnimState = GET_BPARAM1(o->oBehParams) - 100;
+    }
+    else {
+        o->oAnimState = 4;
+    }
     cur_obj_scale(o->oCollisionParticleScale);
     o->oCollisionParticleScale -= 0.015f;
 }

@@ -237,6 +237,10 @@ u32 determine_interaction(struct MarioState *m, struct Object *obj) {
 u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     u32 attackType = ATTACK_NONE;
 
+    if ((obj->oEnemyInvincibilityTimer > 0) && (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM)) {
+        return ATTACK_NONE;
+    }
+
     switch (interaction) {
         case INT_GROUND_POUND_OR_TWIRL:
             attackType = ATTACK_GROUND_POUND_OR_TWIRL;
@@ -264,6 +268,33 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) {
         
         obj->oHealth -= damage;
+        struct Object *particle;
+
+        if (damage < 10) {
+            for (int i = 0; i < damage; i++) {
+                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
+                particle->oMoveAngleYaw = random_u16();
+                particle->oBehParams = 0x03000000;
+                particle->oVelY = random_u16()%5;
+            }
+        }
+        else {
+            for (int i = 0; i < damage/2; i++) {
+                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
+                particle->oMoveAngleYaw = random_u16();
+                particle->oBehParams = 0x01000000;
+                particle->oVelY = random_u16()%5;
+            }
+            if (damage % 2 == 1) {
+                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
+                particle->oMoveAngleYaw = random_u16();
+                particle->oBehParams = 0x03000000;
+                particle->oVelY = random_u16()%5;
+            }
+        }
+
+        obj->oEnemyInvincibilityTimer = 15;
+        
     }
     return attackType;
 }
