@@ -51,6 +51,7 @@ s16 gMatStackIndex;
 ALIGNED16 Mat4 gMatStack[32];
 ALIGNED16 Mtx *gMatStackFixed[32];
 f32 sAspectRatio;
+f32 gFogScaler = 1.0f;
 
 /**
  * Animation nodes have state in global variables, so this struct captures
@@ -576,6 +577,13 @@ void geo_process_perspective(struct GraphNodePerspective *node) {
 #ifdef VERTICAL_CULLING
         node->halfFovVertical = tans(vHalfFov);
 #endif
+
+        if (gCurrLevelNum == LEVEL_TTM) {
+            gSPFogPosition(gDisplayListHead++, 960*gFogScaler, 1000*gFogScaler);
+            gDPSetFogColor(gDisplayListHead++, 56, 144, 230, 255);
+
+            gFogScaler = CLAMP(gFogScaler - 0.002f, 0.2f, 1.0f);
+        }
     
         guPerspective(mtx, &perspNorm, node->fov, sAspectRatio, node->near / WORLD_SCALE, node->far / WORLD_SCALE, 1.0f);
         gSPPerspNormalize(gDisplayListHead++, perspNorm);

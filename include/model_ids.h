@@ -717,6 +717,7 @@
 #define MODEL_SHADOW_SPIKE                 0x107
 #define MODEL_TOUCH_DOOR                 0x108
 #define MODEL_SHADOW_SPIKE_INDICATOR                 0x109
+#define MODEL_SCENT_FLOWER                 0x10A
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
@@ -737,6 +738,7 @@
 #define MODEL_FOG_RED_COIN                    0x187
 #define MODEL_TRANSPARENT_BLUE_COIN          0x188
 #define MODEL_IMPACT_GRAPPLE          0x189
+#define MODEL_IMPACT_HALO          0x18A
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

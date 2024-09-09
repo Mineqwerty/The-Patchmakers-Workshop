@@ -986,3 +986,5 @@ void bhv_touch_door_init(void);
 void bhv_touch_door_loop(void);
 void bhv_shadow_spike_spawner_init(void);
 void bhv_shadow_spike_spawner_loop(void);
+void bhv_scent_flower_init(void);
+void bhv_scent_flower_loop(void);

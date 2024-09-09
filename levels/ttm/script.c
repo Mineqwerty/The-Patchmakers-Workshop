@@ -42,7 +42,12 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_BALL, shadow_ball_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE, shadow_spike_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TOUCH_DOOR, touch_door_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE_INDICATOR, ground_shadow_spike_indicator_geo), /* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE_INDICATOR, ground_shadow_spike_indicator_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SCENT_FLOWER, scent_flower_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -55,6 +60,18 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_SIGHT_CUBE, 5521, 17, -5366, 0, -180, 0, (40 << 24) | (6 << 16) | (1 << 8) | (10), bhvMovingSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 4313, 1204, -6980, 0, -90, 0, (66 << 24) | (12 << 16) | (1 << 8) | (34), bhvMovingSightCube),
+		OBJECT(MODEL_NONE, 7425, 5881, 5933, 0, 0, 0, 0x00A00000, bhvPoleGrabbing),
+		OBJECT(MODEL_SCENT_FLOWER, 2941, 3517, 4901, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 4288, 3517, 7824, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 7522, 3517, 10054, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 7509, 4973, 11652, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 853, 4973, 11187, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 3964, 4973, 9691, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, -888, 5807, 8146, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 1584, 5881, 5110, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 6802, 5881, 5983, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 8518, 7685, 5957, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 9853, 8517, 12756, 0, 0, 0, 0x00000000, bhvScentFlower),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -14269, 2300, 2224, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -14125, 2977, 4779, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -11711, 4205, 5108, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
@@ -84,7 +101,8 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SIGHT_CUBE, 911, 1415, -9269, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_DOOR, 4153, 1679, -14937, 0, 0, 0, 0x00000000, bhvSightDoor),
 		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
-		OBJECT(MODEL_STAR, -11126, 7092, 5648, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -948, 9319, 12805, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -11126, 7092, 5648, 0, 0, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_TOUCH_DOOR, -13460, 2300, 1765, 0, 0, 0, 0x00000000, bhvTouchDoor),
 		OBJECT(MODEL_TOUCH_DOOR, -11081, 4381, -929, 0, -90, 0, (1 << 16), bhvTouchDoor),
 		OBJECT(MODEL_TOUCH_DOOR, -11138, 6747, 4623, 0, 90, 0, (2 << 16), bhvTouchDoor),

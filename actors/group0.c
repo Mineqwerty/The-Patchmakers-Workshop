@@ -93,3 +93,4 @@
 #include "skybridge/model.inc.c"
 #include "skybridge_fragment/model.inc.c"
 #include "impact_grapple/model.inc.c"
+#include "impact_halo/model.inc.c"

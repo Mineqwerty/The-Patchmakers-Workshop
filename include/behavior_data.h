@@ -739,3 +739,4 @@ extern const BehaviorScript bhvShadowBall[];
 extern const BehaviorScript bhvShadowSpike[];
 extern const BehaviorScript bhvTouchDoor[];
 extern const BehaviorScript bhvShadowSpikeSpawner[];
+extern const BehaviorScript bhvScentFlower[];

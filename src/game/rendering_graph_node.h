@@ -16,6 +16,7 @@ extern u16 gAreaUpdateCounter;
 extern s16 gMatStackIndex;
 extern Mat4 gMatStack[32];
 extern Vec3f globalLightDirection;
+extern f32 gFogScaler;
 
 enum AnimType {
     // after processing an object, the type is reset to this

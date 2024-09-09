@@ -346,3 +346,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/attack_impact_particle.inc.c"
 #include "behaviors/shadow_ball.inc.c"
 #include "behaviors/shadow_spike.inc.c"
+#include "behaviors/scent_flower.inc.c"

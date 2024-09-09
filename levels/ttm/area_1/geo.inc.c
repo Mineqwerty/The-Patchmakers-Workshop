@@ -5,6 +5,9 @@ const GeoLayout ttm_area_1_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_Plane_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_008_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_ALPHA, -12300, 4100, 5300, ttm_dl_Plane_009_mesh_layer_4),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_ALPHA, -12300, 4100, 5300, ttm_dl_Plane_010_mesh_layer_4),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

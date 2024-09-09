@@ -8177,3 +8177,13 @@ const BehaviorScript bhvShadowSpikeSpawner[] = {
         CALL_NATIVE(bhv_shadow_spike_spawner_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvScentFlower[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_scent_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_scent_flower_loop),
+    END_LOOP(),
+};

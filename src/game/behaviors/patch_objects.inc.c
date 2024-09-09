@@ -608,7 +608,12 @@ void bhv_halo_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 1, 1);
+            if (attack_object(other, 1, 1) != 0) {
+                spawn_object_relative(0, o->oPosX - other->oPosX, 
+                        o->oPosY - other->oPosY - 40, 
+                        o->oPosZ - other->oPosZ, 
+                        o, MODEL_IMPACT_HALO, bhvAttackImpactParticle);
+            }
             
 
             if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {

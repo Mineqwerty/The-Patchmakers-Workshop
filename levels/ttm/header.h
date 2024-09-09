@@ -145,4 +145,6 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/ground_shadow_spike_indicator/geo_header.h"
 
+#include "levels/ttm/scent_flower/geo_header.h"
+
 #endif

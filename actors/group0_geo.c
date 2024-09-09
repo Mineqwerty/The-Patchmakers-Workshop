@@ -46,3 +46,4 @@
 #include "skybridge/geo.inc.c"
 #include "skybridge_fragment/geo.inc.c"
 #include "impact_grapple/geo.inc.c"
+#include "impact_halo/geo.inc.c"
