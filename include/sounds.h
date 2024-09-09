@@ -635,6 +635,8 @@ enum SoundBank {
 #define SOUND_NEW_BREAKER_SPARK_3                                 SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x08, 0xF0, SOUND_DISCRETE)
 #define SOUND_NEW_MACHINE_LOCK                                    SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x09, 0xCF, SOUND_DISCRETE)
 #define SOUND_NEW_MACHINE_CLICK                                   SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x0A, 0xAF, SOUND_DISCRETE)
+#define SOUND_NEW_SHADOW_BALL_BOUNCE                              SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x0B, 0xAF, SOUND_DISCRETE)
+#define SOUND_NEW_SHADOW_SPIKE_EMERGE                             SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x0C, 0xAF, SOUND_DISCRETE)
 #define SOUND_NEW_2_MIASMA_STORM_R                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)

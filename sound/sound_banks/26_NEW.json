@@ -65,6 +65,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "machine_click"
+    },
+    "inst_shadow_ball_bounce": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "shadow_ball_bounce"
+    },
+    "inst_shadow_spike_emerge": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "shadow_spike_emerge"
     }
   },
   "instrument_list": [
@@ -78,6 +88,8 @@
     "inst_breaker_spark_2",
     "inst_breaker_spark_3",
     "inst_machine_lock",
-    "inst_machine_click"
+    "inst_machine_click",
+    "inst_shadow_ball_bounce",
+    "inst_shadow_spike_emerge"
   ]
 }

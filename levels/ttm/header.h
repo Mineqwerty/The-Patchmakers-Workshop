@@ -131,4 +131,18 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/sight_door/geo_header.h"
 
+#include "levels/ttm/shrine_shadow/geo_header.h"
+
+#include "levels/ttm/shrine_shadow/anim_header.h"
+
+#include "levels/ttm/shadow_ball/geo_header.h"
+
+#include "levels/ttm/shadow_spike/geo_header.h"
+
+#include "levels/ttm/touch_door/collision_header.h"
+
+#include "levels/ttm/touch_door/geo_header.h"
+
+#include "levels/ttm/ground_shadow_spike_indicator/geo_header.h"
+
 #endif

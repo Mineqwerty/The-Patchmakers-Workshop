@@ -1508,6 +1508,12 @@ u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType, struc
 
 u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 interaction;
+
+    if ((obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) && obj->oEnemyInvincibilityTimer > 0) {
+        push_mario_out_of_object(m, obj, -5.0f);
+        return FALSE;
+    }
+
     if (m->flags & MARIO_METAL_CAP) {
         interaction = INT_FAST_ATTACK_OR_SHELL;
     } else {

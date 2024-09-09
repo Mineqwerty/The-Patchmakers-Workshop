@@ -50,3 +50,8 @@
 #include "levels/ttm/sight_switch_active/geo.inc.c"
 #include "levels/ttm/sight_cracked_platform/geo.inc.c"
 #include "levels/ttm/sight_door/geo.inc.c"
+#include "levels/ttm/shrine_shadow/geo.inc.c"
+#include "levels/ttm/shadow_ball/geo.inc.c"
+#include "levels/ttm/shadow_spike/geo.inc.c"
+#include "levels/ttm/touch_door/geo.inc.c"
+#include "levels/ttm/ground_shadow_spike_indicator/geo.inc.c"

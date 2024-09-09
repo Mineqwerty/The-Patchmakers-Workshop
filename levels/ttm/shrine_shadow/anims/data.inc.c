@@ -1,0 +1,6 @@
+#include "anim_idle.inc.c"
+#include "anim_startMove.inc.c"
+#include "anim_moving.inc.c"
+#include "anim_stopMove.inc.c"
+#include "anim_fire.inc.c"
+#include "anim_summon_001.inc.c"

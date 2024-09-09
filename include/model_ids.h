@@ -712,6 +712,11 @@
 #define MODEL_SIGHT_SWITCH_ACTIVE                  0x102
 #define MODEL_SIGHT_CRACKED_PLATFORM                  0x103
 #define MODEL_SIGHT_DOOR                  0x104
+#define MODEL_SHRINE_SHADOW                  0x105
+#define MODEL_SHADOW_BALL                 0x106
+#define MODEL_SHADOW_SPIKE                 0x107
+#define MODEL_TOUCH_DOOR                 0x108
+#define MODEL_SHADOW_SPIKE_INDICATOR                 0x109
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

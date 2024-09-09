@@ -734,3 +734,8 @@ extern const BehaviorScript bhvSightCrackedPlatform[];
 extern const BehaviorScript bhvSightChamberController[];
 extern const BehaviorScript bhvSightDoor[];
 extern const BehaviorScript bhvAttackImpactParticle[];
+extern const BehaviorScript bhvShrineShadow[];
+extern const BehaviorScript bhvShadowBall[];
+extern const BehaviorScript bhvShadowSpike[];
+extern const BehaviorScript bhvTouchDoor[];
+extern const BehaviorScript bhvShadowSpikeSpawner[];

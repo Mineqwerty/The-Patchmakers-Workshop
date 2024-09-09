@@ -8106,8 +8106,10 @@ const BehaviorScript bhvSightChamberController[] = {
 
 const BehaviorScript bhvSightDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(sight_door_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_FLOAT(oCollisionDistance, 20000),
     CALL_NATIVE(bhv_sight_door_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sight_door_loop),
@@ -8121,5 +8123,57 @@ const BehaviorScript bhvAttackImpactParticle[] = {
     CALL_NATIVE(bhv_attack_impact_particle_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_attack_impact_particle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShrineShadow[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    LOAD_ANIMATIONS(oAnimations, shrine_shadow_anims),
+    SET_FLOAT(oDrawingDistance, 20000),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_shrine_shadow_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shrine_shadow_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShadowBall[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_shadow_ball_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shadow_ball_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShadowSpike[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_shadow_spike_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shadow_spike_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTouchDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    LOAD_COLLISION_DATA(touch_door_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_FLOAT(oCollisionDistance, 20000),
+    CALL_NATIVE(bhv_touch_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_touch_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShadowSpikeSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_shadow_spike_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shadow_spike_spawner_loop),
     END_LOOP(),
 };

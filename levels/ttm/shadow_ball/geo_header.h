@@ -1,0 +1,13 @@
+extern const GeoLayout shadow_ball_geo[];
+extern Lights1 shadow_ball_f3dlite_material_004_lights;
+extern Lights1 shadow_ball_f3dlite_material_lights;
+extern Vtx shadow_ball_Sphere_mesh_layer_1_vtx_cull[8];
+extern Vtx shadow_ball_Sphere_mesh_layer_1_vtx_0[45];
+extern Gfx shadow_ball_Sphere_mesh_layer_1_tri_0[];
+extern Vtx shadow_ball_Sphere_mesh_layer_1_vtx_1[90];
+extern Gfx shadow_ball_Sphere_mesh_layer_1_tri_1[];
+extern Gfx mat_shadow_ball_f3dlite_material_004[];
+extern Gfx mat_revert_shadow_ball_f3dlite_material_004[];
+extern Gfx mat_shadow_ball_f3dlite_material[];
+extern Gfx mat_revert_shadow_ball_f3dlite_material[];
+extern Gfx shadow_ball_Sphere_mesh_layer_1[];

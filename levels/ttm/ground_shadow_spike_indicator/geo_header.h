@@ -1,0 +1,7 @@
+extern const GeoLayout ground_shadow_spike_indicator_geo[];
+extern Vtx ground_shadow_spike_indicator_Plane_006_mesh_layer_1_vtx_cull[8];
+extern Vtx ground_shadow_spike_indicator_Plane_006_mesh_layer_1_vtx_0[48];
+extern Gfx ground_shadow_spike_indicator_Plane_006_mesh_layer_1_tri_0[];
+extern Gfx mat_ground_shadow_spike_indicator_f3dlite_material_005[];
+extern Gfx mat_revert_ground_shadow_spike_indicator_f3dlite_material_005[];
+extern Gfx ground_shadow_spike_indicator_Plane_006_mesh_layer_1[];

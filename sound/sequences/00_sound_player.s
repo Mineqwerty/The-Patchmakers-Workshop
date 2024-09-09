@@ -8904,6 +8904,28 @@ sound_ref .sound_breaker_spark_2
 sound_ref .sound_breaker_spark_3
 sound_ref .sound_machine_lock
 sound_ref .sound_machine_click
+sound_ref .sound_shadow_ball_bounce
+sound_ref .sound_shadow_spike_emerge
+
+.sound_shadow_spike_emerge:
+chan_setbank 12
+chan_setinstr 12
+chan_setlayer 0, .layer_shadow_spike_emerge
+chan_end
+
+.layer_shadow_spike_emerge:
+layer_note1 39, 0x90, 127
+layer_end
+
+.sound_shadow_ball_bounce:
+chan_setbank 12
+chan_setinstr 11
+chan_setlayer 0, .layer_shadow_ball_bounce
+chan_end
+
+.layer_shadow_ball_bounce:
+layer_note1 39, 0x63, 127
+layer_end
 
 .sound_machine_click:
 chan_setbank 12
