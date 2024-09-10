@@ -1,5 +1,7 @@
 // Parameters: dialog enum ID, (unused), lines per box, left offset, width
 
+#include "include/dialog_ids.h"
+
 #ifdef VERSION_EU
 #define COMRADES "friends"
 #define PLASTERED "splattered"
@@ -325,17 +327,17 @@ war broke out..."))
 DEFINE_DIALOG(DIALOG_043, 0b10, 3, 30, 200, _("\
 We lost our lives early on. Mere servants could\n\
 never stand up to gods. Our bodies fell to the\n\
-ground below and quickly polluted it in a fog..."))
+land below and quickly polluted it with a fog..."))
 
 DEFINE_DIALOG(DIALOG_044, 0b10, 3, 95, 200, _("\
 Our spirits, however, got to witness the battles.\n\
 The gods were relentless in killing each other.\n\
-Their golden ichor was spread throughout the sky."))
+Their golden blood was spread throughout the sky."))
 
 DEFINE_DIALOG(DIALOG_045, 0b10, 3, 95, 200, _("\
 It became apparent that one goddess in particular\n\
 had her eyes set on this realm being her dominion.\n\
-Throughout the war, she inflicted many wounds."))
+Throughout the war, she reigned on top."))
 
 DEFINE_DIALOG(DIALOG_046, 0b10, 3, 30, 200, _("\
 The goddess Aurumcael...\n\
@@ -350,7 +352,7 @@ The last gods dying to her blade bestowed a final\n\
 curse upon her. One that prevented her from ever\n\
 leaving the realm she had ruined.\n\
 The curse also placed a shining halo on her head...\n\
-One that drips burning ichor that pierces her flesh,\n\
+One that drips burning gold that pierces her flesh,\n\
 weakening her so that even a mortal can harm her."))
 
 DEFINE_DIALOG(DIALOG_048, 0b10, 3, 30, 200, _("\
@@ -371,10 +373,10 @@ Pl..."))
 DEFINE_DIALOG(DIALOG_051, 1, 3, 30, 200, _("\
 I know you are cold, Mistress...\n\
 But you go into a panic when I put the covers\n\
-on you... I don't wish you to hurt yourself.\n\
+on you. I don't wish you to harm yourself.\n\
 Now, our guest here has come a far way.\n\
 He might be able to help us with your affliction!\n\
-Or at least give us some information...\n\
+Or, at least, give us hope...\n\
 Mario, you have become the talk of the manor recently.\n\
 After all, you arrived in the same way that evil man did.\n\
 The one that did this to the poor Mistress...\n\
@@ -388,11 +390,11 @@ Please, Mario, find a way to reverse this curse! \n\
 Confront that man again if you must, I beg of you!\n\
 The Mistress lies with a clouded mind and soul, in agony!\n\
 The Master of the manor has not left his study since\n\
-the attack. But I have a feeling you should meet with\n\
+the attack. But I have a feeling you will meet with\n\
 him soon... He has information about everything.\n\
 We will help you in any way we can. Here, take this as\n\
 proof of our trust and hope in you.\n\
-It was unable to help the Mistress anyways..."))
+It seems even star power wasn't enough for her..."))
 
 DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
 Stop and press [Z] to\n\
@@ -417,7 +419,7 @@ numbers, a secret Star\n\
 will show up."))
 
 DEFINE_DIALOG(DIALOG_054, 1, 1, 30, 200, _("\
-IT'S BACK! EVERYBODY RUN!!!"))
+EVERYBODY, IT'S BACK! HIDE!!!"))
 
 DEFINE_DIALOG(DIALOG_055, 1, 3, 30, 200, _("\
 Mario! Watch out for its attacks!\n\
@@ -471,10 +473,10 @@ man tried to overcome me with!\n\
 The impertinence of it is quite ironic, no?\n\
 Unfortunately, that man escaped with his\n\
 life. Such is the sorrow of a goddess that\n\
-is trapped within a burning curse...\n\
+is trapped with this wretched curse...\n\
 Tch! What am I doing here telling you\n\
-this? You are invading upon my\n\
-realm! Leave at once!\n\
+this? Do you wish to join the spirits\n\
+below that badly to step into here?\n\
 What gain have you from visiting\n\
 such a broken, shattered realm anyways?\n\
 There is nothing here for you!\n\
@@ -489,22 +491,22 @@ Enough!!!\n\
 What is it you want!?\n\
 Strength? Treasure?\n\
 Or is it simply my head?\n\
-How do you even know of me?\n\
-\n\
+How does a mortal like you\n\
+even know of me!?\n\
 "))
 
 DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
-I see... So, those restless souls that\n\
+I see... So, those restless Spekturrs that\n\
 remain in the abyss below told you of my\n\
 past. Were you trying to avenge them? Haha...\n\
-Perhaps those souls have not\n\
-moved on merely to witness my\n\
+Perhaps those souls have\n\
+remained merely to witness my\n\
 gruesome demise one day...\n\
 It is regrettable in that case.\n\
 I cannot be killed. Not while my\n\
 curse remains, that is.\n\
-You can cause the searing pain of\n\
-thousands of blades to me, but I will\n\
+You can inflict the searing pain of\n\
+thousands of blades upon me, but I will\n\
 never perish. Your efforts are for naught."))
 
 DEFINE_DIALOG(DIALOG_063, 1, 3, 30, 200, _("\
@@ -514,15 +516,15 @@ Star Power?\n\
 Ha... HAHAHAHA!!!\n\
 \n\
 \n\
-You aren't some valiant mortal\n\
-avenging restless spirits!\n\
-You're just a shallow human!\n\
+Here I surmised you were some valiant\n\
+knight avenging restless spirits!\n\
+But you're just a shallow power-seeking mortal!\n\
 Well... I suppose those tangents\n\
 I went on were in vain. Though, you are\n\
-a formidable foe for a lousy human.\n\
+a formidable foe... For a lousy human.\n\
 Do note that I would have ended your\n\
 pitiful life on the spot were I at my true\n\
-power, unburdened by this burning ichor.\n\
+power, unburdened by this searing curse.\n\
 Very well. For your meaningless victory,\n\
 you may have some of this Star Power\n\
 that you seek.\n\
@@ -1829,3 +1831,43 @@ Arrgghh!\n\
 Anyone entering this cave\n\
 without permission will\n\
 meet certain disaster."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_1, 1, 3, 30, 200, _("\
+I never thought I would see somebody\n\
+else in here...\n\
+Umm... I hope it isn't too dusty..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_2, 1, 3, 30, 200, _("\
+Your clothes are kind of funny...\n\
+Why are they so bright?\n\
+I thought clothes were darker than that.\n\
+...Huh? Clothes can be any color?\n\
+That's odd. The only clothes I've\n\
+seen have been quite colorless."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_3, 1, 3, 30, 200, _("\
+You're from outside of here, right?\n\
+What's it like? I have only been in\n\
+the forest right outside before.\n\
+...The Mushroom Kingdom?\n\
+Haha, you're funny! I haven't\n\
+heard of a crazy place like that before!\n\
+Hey, if that's where you're truly from,\n\
+do you think it's far away from here?\n\
+It sounds really fun..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_1, 1, 3, 30, 200, _("\
+You look a little shaken...\n\
+Was using the stone patch for the first\n\
+time that scary?\n\
+The Patchmaker was actually really proud\n\
+of making that. It was how he got his\n\
+nickname after all.\n\
+He did tell me that the magic in it\n\
+does make the user hallucinate for a\n\
+short period of time."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_2, 1, 3, 30, 200, _("\
+Mario, Mario, Ma-ri-o!\n\
+Mario. Mario! Ma. Ri. O!!!\n\
+Hehe... your name is fun to say!"))
