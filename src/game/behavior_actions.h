@@ -988,3 +988,7 @@ void bhv_shadow_spike_spawner_init(void);
 void bhv_shadow_spike_spawner_loop(void);
 void bhv_scent_flower_init(void);
 void bhv_scent_flower_loop(void);
+void bhv_sound_drum_init(void);
+void bhv_sound_drum_loop(void);
+void bhv_sound_wave_init(void);
+void bhv_sound_wave_loop(void);

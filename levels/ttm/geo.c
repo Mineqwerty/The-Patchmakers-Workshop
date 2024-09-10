@@ -56,3 +56,5 @@
 #include "levels/ttm/touch_door/geo.inc.c"
 #include "levels/ttm/ground_shadow_spike_indicator/geo.inc.c"
 #include "levels/ttm/scent_flower/geo.inc.c"
+#include "levels/ttm/sound_drum/geo.inc.c"
+#include "levels/ttm/sound_wave/geo.inc.c"

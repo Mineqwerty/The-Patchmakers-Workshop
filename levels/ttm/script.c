@@ -43,12 +43,9 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE, shadow_spike_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TOUCH_DOOR, touch_door_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE_INDICATOR, ground_shadow_spike_indicator_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SCENT_FLOWER, scent_flower_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_SCENT_FLOWER, scent_flower_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SOUND_DRUM, sound_drum_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SOUND_WAVE, sound_wave_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -100,6 +97,7 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SIGHT_CUBE, 3033, 1083, -7926, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 911, 1415, -9269, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_DOOR, 4153, 1679, -14937, 0, 0, 0, 0x00000000, bhvSightDoor),
+		OBJECT(MODEL_SOUND_DRUM, -12317, 705, -5969, 0, 0, 0, 0x00000000, bhvSoundDrum),
 		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -948, 9319, 12805, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -11126, 7092, 5648, 0, 0, 0, (4 << 24), bhvStar),

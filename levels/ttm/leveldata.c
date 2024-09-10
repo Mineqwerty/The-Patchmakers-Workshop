@@ -88,3 +88,6 @@
 #include "levels/ttm/touch_door/model.inc.c"
 #include "levels/ttm/ground_shadow_spike_indicator/model.inc.c"
 #include "levels/ttm/scent_flower/model.inc.c"
+#include "levels/ttm/sound_drum/collision.inc.c"
+#include "levels/ttm/sound_drum/model.inc.c"
+#include "levels/ttm/sound_wave/model.inc.c"

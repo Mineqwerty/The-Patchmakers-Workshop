@@ -147,4 +147,10 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/scent_flower/geo_header.h"
 
+#include "levels/ttm/sound_drum/collision_header.h"
+
+#include "levels/ttm/sound_drum/geo_header.h"
+
+#include "levels/ttm/sound_wave/geo_header.h"
+
 #endif

@@ -8187,3 +8187,24 @@ const BehaviorScript bhvScentFlower[] = {
         CALL_NATIVE(bhv_scent_flower_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSoundDrum[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(sound_drum_collision),
+    CALL_NATIVE(bhv_sound_drum_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sound_drum_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSoundWave[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_sound_wave_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sound_wave_loop),
+        
+    END_LOOP(),
+};

@@ -580,7 +580,7 @@ void geo_process_perspective(struct GraphNodePerspective *node) {
 
         if (gCurrLevelNum == LEVEL_TTM) {
             gSPFogPosition(gDisplayListHead++, 960*gFogScaler, 1000*gFogScaler);
-            gDPSetFogColor(gDisplayListHead++, 56, 144, 230, 255);
+            gDPSetFogColor(gDisplayListHead++, 56, 194, 206, 189);
 
             gFogScaler = CLAMP(gFogScaler - 0.002f, 0.2f, 1.0f);
         }

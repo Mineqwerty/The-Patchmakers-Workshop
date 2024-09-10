@@ -718,6 +718,8 @@
 #define MODEL_TOUCH_DOOR                 0x108
 #define MODEL_SHADOW_SPIKE_INDICATOR                 0x109
 #define MODEL_SCENT_FLOWER                 0x10A
+#define MODEL_SOUND_DRUM                 0x10B
+#define MODEL_SOUND_WAVE                 0x10C
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
