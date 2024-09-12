@@ -8906,6 +8906,17 @@ sound_ref .sound_machine_lock
 sound_ref .sound_machine_click
 sound_ref .sound_shadow_ball_bounce
 sound_ref .sound_shadow_spike_emerge
+sound_ref .sound_bass_boom
+
+.sound_bass_boom:
+chan_setbank 12
+chan_setinstr 13
+chan_setlayer 0, .layer_bass_boom
+chan_end
+
+.layer_bass_boom:
+layer_note1 39, 0xa3, 127
+layer_end
 
 .sound_shadow_spike_emerge:
 chan_setbank 12

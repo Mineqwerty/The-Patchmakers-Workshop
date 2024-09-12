@@ -1451,6 +1451,10 @@ void bhv_skybridge_init(void) {
     if (gMarioState->pos[1] < gMarioState->lastStoodOnFloorHeight) {
         gMarioState->lastStoodOnFloorHeight = gMarioState->pos[1];
     }
+
+    o->oFaceAngleYaw = 0;
+    o->oFaceAngleRoll = 0;
+    o->oFaceAnglePitch = 0;
 }
 
 void bhv_skybridge_loop(void) {

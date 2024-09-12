@@ -2,6 +2,8 @@ void bhv_sound_drum_init(void) {
     SET_BPARAM1(o->oPrimColorParams, 0xC2);
     SET_BPARAM2(o->oPrimColorParams, 0xCE);
     SET_BPARAM3(o->oPrimColorParams, 0xBD);
+
+    o->oTimer += random_u16()%5;
 }
 
 void bhv_sound_drum_loop(void) {
@@ -15,6 +17,10 @@ void bhv_sound_drum_loop(void) {
         if (gMarioState->marioObj->platform == o) {
             gMarioState->vel[1] = 100;
             gMarioState->action = ACT_FREEFALL;
+        }
+
+        if (o->oDistanceToMario < 2500) {
+            cur_obj_play_sound_2(SOUND_NEW_BASS_BOOM);
         }
         SET_BPARAM1(o->oPrimColorParams, 0xC2);
     SET_BPARAM2(o->oPrimColorParams, 0xCE);

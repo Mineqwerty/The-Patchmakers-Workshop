@@ -75,6 +75,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "shadow_spike_emerge"
+    },
+    "inst_bass_boom": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "bass_boom"
     }
   },
   "instrument_list": [
@@ -90,6 +95,7 @@
     "inst_machine_lock",
     "inst_machine_click",
     "inst_shadow_ball_bounce",
-    "inst_shadow_spike_emerge"
+    "inst_shadow_spike_emerge",
+    "inst_bass_boom"
   ]
 }

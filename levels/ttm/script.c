@@ -45,7 +45,10 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE_INDICATOR, ground_shadow_spike_indicator_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SCENT_FLOWER, scent_flower_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SOUND_DRUM, sound_drum_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SOUND_WAVE, sound_wave_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SOUND_WAVE, sound_wave_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -98,8 +101,16 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SIGHT_CUBE, 911, 1415, -9269, 0, 0, 0, (33 << 24) | (180 << 16) | (25 << 8), bhvSightCube),
 		OBJECT(MODEL_SIGHT_DOOR, 4153, 1679, -14937, 0, 0, 0, 0x00000000, bhvSightDoor),
 		OBJECT(MODEL_SOUND_DRUM, -12317, 705, -5969, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -8500, 1717, -6156, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -9555, 2213, -8117, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -8236, -4388, -14008, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -10770, -3013, -7486, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -10770, -3013, -6069, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -10770, -3237, -4787, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_SOUND_DRUM, -12383, -2589, -1403, 0, 0, 0, 0x00000000, bhvSoundDrum),
 		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -948, 9319, 12805, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -9977, -1043, 6233, 0, 0, 0, (2 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -11126, 7092, 5648, 0, 0, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_TOUCH_DOOR, -13460, 2300, 1765, 0, 0, 0, 0x00000000, bhvTouchDoor),
 		OBJECT(MODEL_TOUCH_DOOR, -11081, 4381, -929, 0, -90, 0, (1 << 16), bhvTouchDoor),
