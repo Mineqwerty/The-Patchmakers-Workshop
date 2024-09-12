@@ -153,4 +153,14 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/sound_wave/geo_header.h"
 
+#include "levels/ttm/taste_switch_active/geo_header.h"
+
+#include "levels/ttm/taste_switch_inactive/geo_header.h"
+
+#include "levels/ttm/taste_switch_inactive/collision_header.h"
+
+#include "levels/ttm/taste_door/collision_header.h"
+
+#include "levels/ttm/taste_door/geo_header.h"
+
 #endif

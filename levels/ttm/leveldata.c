@@ -91,3 +91,8 @@
 #include "levels/ttm/sound_drum/collision.inc.c"
 #include "levels/ttm/sound_drum/model.inc.c"
 #include "levels/ttm/sound_wave/model.inc.c"
+#include "levels/ttm/taste_switch_active/model.inc.c"
+#include "levels/ttm/taste_switch_inactive/model.inc.c"
+#include "levels/ttm/taste_switch_inactive/collision.inc.c"
+#include "levels/ttm/taste_door/collision.inc.c"
+#include "levels/ttm/taste_door/model.inc.c"

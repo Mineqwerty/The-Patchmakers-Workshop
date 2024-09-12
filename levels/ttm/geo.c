@@ -58,3 +58,6 @@
 #include "levels/ttm/scent_flower/geo.inc.c"
 #include "levels/ttm/sound_drum/geo.inc.c"
 #include "levels/ttm/sound_wave/geo.inc.c"
+#include "levels/ttm/taste_switch_active/geo.inc.c"
+#include "levels/ttm/taste_switch_inactive/geo.inc.c"
+#include "levels/ttm/taste_door/geo.inc.c"

@@ -45,26 +45,10 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_SPIKE_INDICATOR, ground_shadow_spike_indicator_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SCENT_FLOWER, scent_flower_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SOUND_DRUM, sound_drum_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SOUND_WAVE, sound_wave_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_SOUND_WAVE, sound_wave_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TASTE_SWITCH_INACTIVE, taste_switch_inactive_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TASTE_SWITCH_ACTIVE, taste_switch_active_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TASTE_DOOR, taste_door_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -141,7 +125,13 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -948, 9319, 12805, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -9977, -1043, 6233, 0, 0, 0, (2 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -7186, -1530, 1490, 0, 0, 0, (3 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -11126, 7092, 5648, 0, 0, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_TASTE_DOOR, -6558, -1511, 1679, 0, 0, 0, 0x00000000, bhvTasteDoor),
+		OBJECT(MODEL_TASTE_SWITCH_INACTIVE, -9675, 586, 10792, 0, 0, 0, 0x00000000, bhvTasteSwitch),
+		OBJECT(MODEL_TASTE_SWITCH_INACTIVE, 2446, -2210, 12465, 0, 0, 0, 0x00000000, bhvTasteSwitch),
+		OBJECT(MODEL_TASTE_SWITCH_INACTIVE, 1155, -1990, 10594, 0, 0, 0, 0x00000000, bhvTasteSwitch),
+		OBJECT(MODEL_TASTE_SWITCH_INACTIVE, -15524, -8099, 13879, 0, 0, 0, 0x00000000, bhvTasteSwitch),
 		OBJECT(MODEL_TOUCH_DOOR, -13460, 2300, 1765, 0, 0, 0, 0x00000000, bhvTouchDoor),
 		OBJECT(MODEL_TOUCH_DOOR, -11081, 4381, -929, 0, -90, 0, (1 << 16), bhvTouchDoor),
 		OBJECT(MODEL_TOUCH_DOOR, -11138, 6747, 4623, 0, 90, 0, (2 << 16), bhvTouchDoor),

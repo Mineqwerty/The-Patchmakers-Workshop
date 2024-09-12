@@ -720,6 +720,9 @@
 #define MODEL_SCENT_FLOWER                 0x10A
 #define MODEL_SOUND_DRUM                 0x10B
 #define MODEL_SOUND_WAVE                 0x10C
+#define MODEL_TASTE_SWITCH_INACTIVE                  0x10D
+#define MODEL_TASTE_SWITCH_ACTIVE                  0x10E
+#define MODEL_TASTE_DOOR                  0x10F
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100

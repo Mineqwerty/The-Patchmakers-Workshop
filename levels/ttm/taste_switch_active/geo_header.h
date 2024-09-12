@@ -1,0 +1,17 @@
+extern const GeoLayout taste_switch_active_geo[];
+extern Vtx taste_switch_active_Plane_016_mesh_layer_1_vtx_cull[8];
+extern Vtx taste_switch_active_Plane_016_mesh_layer_1_vtx_0[12];
+extern Gfx taste_switch_active_Plane_016_mesh_layer_1_tri_0[];
+extern Vtx taste_switch_active_Plane_016_mesh_layer_1_vtx_1[4];
+extern Gfx taste_switch_active_Plane_016_mesh_layer_1_tri_1[];
+extern Vtx taste_switch_active_Plane_016_mesh_layer_5_vtx_cull[8];
+extern Vtx taste_switch_active_Plane_016_mesh_layer_5_vtx_0[24];
+extern Gfx taste_switch_active_Plane_016_mesh_layer_5_tri_0[];
+extern Gfx mat_taste_switch_active_primwhite_001[];
+extern Gfx mat_revert_taste_switch_active_primwhite_001[];
+extern Gfx mat_taste_switch_active_prim_sight[];
+extern Gfx mat_revert_taste_switch_active_prim_sight[];
+extern Gfx mat_taste_switch_active_glow_001[];
+extern Gfx mat_revert_taste_switch_active_glow_001[];
+extern Gfx taste_switch_active_Plane_016_mesh_layer_1[];
+extern Gfx taste_switch_active_Plane_016_mesh_layer_5[];

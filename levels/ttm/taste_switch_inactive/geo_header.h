@@ -1,0 +1,11 @@
+extern const GeoLayout taste_switch_inactive_geo[];
+extern Vtx taste_switch_inactive_Plane_017_mesh_layer_1_vtx_cull[8];
+extern Vtx taste_switch_inactive_Plane_017_mesh_layer_1_vtx_0[12];
+extern Gfx taste_switch_inactive_Plane_017_mesh_layer_1_tri_0[];
+extern Vtx taste_switch_inactive_Plane_017_mesh_layer_1_vtx_1[4];
+extern Gfx taste_switch_inactive_Plane_017_mesh_layer_1_tri_1[];
+extern Gfx mat_taste_switch_inactive_primwhite_001[];
+extern Gfx mat_revert_taste_switch_inactive_primwhite_001[];
+extern Gfx mat_taste_switch_inactive_prim_sight[];
+extern Gfx mat_revert_taste_switch_inactive_prim_sight[];
+extern Gfx taste_switch_inactive_Plane_017_mesh_layer_1[];

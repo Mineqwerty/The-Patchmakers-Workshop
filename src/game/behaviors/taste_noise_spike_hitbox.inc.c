@@ -1,6 +1,6 @@
 static struct ObjectHitbox sTasteNoiseSpikeHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
-    /* downOffset:        */ 0,
+    /* downOffset:        */ 100,
     /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,

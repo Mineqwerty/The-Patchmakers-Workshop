@@ -8218,3 +8218,27 @@ const BehaviorScript bhvTasteNoiseSpikeHitbox[] = {
         CALL_NATIVE(bhv_taste_noise_spike_hitbox_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvTasteSwitch[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(taste_switch_inactive_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_taste_switch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_taste_switch_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTasteDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(taste_door_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_taste_door_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_taste_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
