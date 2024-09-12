@@ -4,7 +4,7 @@ static struct ObjectHitbox sShadowSpikeHitbox = {
     /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 50,
+    /* radius:            */ 75,
     /* height:            */ 600,
     /* hurtboxRadius:     */ 0,
     /* hurtboxHeight:     */ 0,

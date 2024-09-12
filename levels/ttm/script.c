@@ -50,13 +50,29 @@ const LevelScript level_ttm_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ttm_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		MARIO_POS(0x01, 0, 0, 200, 0),
+		MARIO_POS(0x01, 0, 0, 257, 0),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_SIGHT_CUBE, 5521, 17, -5366, 0, -180, 0, (40 << 24) | (6 << 16) | (1 << 8) | (10), bhvMovingSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 4313, 1204, -6980, 0, -90, 0, (66 << 24) | (12 << 16) | (1 << 8) | (34), bhvMovingSightCube),
@@ -72,6 +88,8 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SCENT_FLOWER, 6802, 5881, 5983, 0, 0, 0, 0x00000000, bhvScentFlower),
 		OBJECT(MODEL_SCENT_FLOWER, 8518, 7685, 5957, 0, 0, 0, 0x00000000, bhvScentFlower),
 		OBJECT(MODEL_SCENT_FLOWER, 9853, 8517, 12756, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 6841, 8825, 12142, 0, 0, 0, 0x00000000, bhvScentFlower),
+		OBJECT(MODEL_SCENT_FLOWER, 3166, 8624, 11108, 0, 0, 0, 0x00000000, bhvScentFlower),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -14269, 2300, 2224, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -14125, 2977, 4779, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
 		OBJECT(MODEL_SHADOW_SPIKE_INDICATOR, -11711, 4205, 5108, 0, -90, 0, 0x00000000, bhvShadowSpikeSpawner),
@@ -108,6 +126,18 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SOUND_DRUM, -10770, -3013, -6069, 0, 0, 0, 0x00000000, bhvSoundDrum),
 		OBJECT(MODEL_SOUND_DRUM, -10770, -3237, -4787, 0, 0, 0, 0x00000000, bhvSoundDrum),
 		OBJECT(MODEL_SOUND_DRUM, -12383, -2589, -1403, 0, 0, 0, 0x00000000, bhvSoundDrum),
+		OBJECT(MODEL_NONE, -3639, -2098, 12622, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -3336, -2012, 12352, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -2814, -2151, 12538, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -2136, -2135, 12318, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -1621, -2201, 12631, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -1597, -2027, 12351, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -1138, -2144, 12301, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -1159, -2155, 12696, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, -499, -2163, 12509, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, 378, -2042, 12632, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, 333, -2036, 12445, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
+		OBJECT(MODEL_NONE, 1171, -2144, 12290, 0, 0, 0, 0x00000000, bhvTasteNoiseSpikeHitbox),
 		OBJECT(MODEL_STAR, 9898, 6037, -13815, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -948, 9319, 12805, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -9977, -1043, 6233, 0, 0, 0, (2 << 24), bhvStar),
@@ -134,6 +164,7 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_SIGHT_SWITCH_INACTIVE, 4118, 2258, -11183, 0, 0, 0, (1 << 24), bhvSightSwitch),
 		OBJECT(MODEL_SIGHT_SWITCH_INACTIVE, 5521, 115, -5366, 0, 0, 0, (1 << 24), bhvSightSwitch),
 		TERRAIN(ttm_area_1_collision),
+		ROOMS(ttm_area_1_collision_rooms),
 		TERRAIN_MAT_LUT(ttm_area_1_collision_materials),
 		MACRO_OBJECTS(ttm_area_1_macro_objs),
 		STOP_MUSIC(0),
@@ -142,7 +173,7 @@ const LevelScript level_ttm_entry[] = {
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, 0, 200, 0),
+	MARIO_POS(0x01, 0, 0, 257, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),

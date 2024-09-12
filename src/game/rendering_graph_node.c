@@ -18,6 +18,7 @@
 #include "string.h"
 #include "color_presets.h"
 #include "emutest.h"
+#include "src/game/object_list_processor.h"
 
 #include "config.h"
 #include "config/config_world.h"
@@ -578,7 +579,7 @@ void geo_process_perspective(struct GraphNodePerspective *node) {
         node->halfFovVertical = tans(vHalfFov);
 #endif
 
-        if (gCurrLevelNum == LEVEL_TTM) {
+        if (gCurrLevelNum == LEVEL_TTM && gMarioCurrentRoom == 3) {
             gSPFogPosition(gDisplayListHead++, 960*gFogScaler, 1000*gFogScaler);
             gDPSetFogColor(gDisplayListHead++, 56, 194, 206, 189);
 

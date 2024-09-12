@@ -992,3 +992,5 @@ void bhv_sound_drum_init(void);
 void bhv_sound_drum_loop(void);
 void bhv_sound_wave_init(void);
 void bhv_sound_wave_loop(void);
+void bhv_taste_noise_spike_hitbox_init(void);
+void bhv_taste_noise_spike_hitbox_loop(void);
