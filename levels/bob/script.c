@@ -92,6 +92,7 @@ const LevelScript level_bob_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, bob_area_1),
@@ -243,6 +244,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_NONE, -1217, 57, 1557, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -1217, 57, 1942, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -7029, 828, -178, 0, 90, 0, (10 << 16), bhvSpinAirborneWarp),
+		OBJECT(MODEL_PATCH_UPGRADE, -2114, 672, -4323, 0, 0, 0, (1 << 16), bhvPatchUpgrade),
 		TERRAIN(bob_area_3_collision),
 		TERRAIN_MAT_LUT(bob_area_3_collision_materials),
 		MACRO_OBJECTS(bob_area_3_macro_objs),
