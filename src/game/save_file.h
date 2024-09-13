@@ -40,7 +40,7 @@ struct SaveFile {
     // Star flags for each course.
     // The most significant bit of the byte *following* each course is set if the
     // cannon is open.
-    u8 courseStars[COURSE_COUNT]; // 200 bits
+    u8 courseStars[COURSE_COUNT-1]; // 200 bits
 
     u32 collectedPatchUpgrades; // 32 bits
     u32 upgradedPatches; // 32 bits

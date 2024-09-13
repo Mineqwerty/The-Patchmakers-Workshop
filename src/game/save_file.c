@@ -452,6 +452,12 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
     s32 starFlag = 1 << starIndex;
 #endif
 
+    //super secret stars are indexed beginning at cotmc based on their star index being greater than 8.
+    if (starIndex > 8) {
+        s32 starByte = COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7));
+        s32 starFlag = 1 << (starIndex % 7);
+    }
+
     gLastCompletedCourseNum = courseIndex + 1;
     gLastCompletedStarNum = starIndex + 1;
 
