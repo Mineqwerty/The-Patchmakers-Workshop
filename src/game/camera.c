@@ -3057,6 +3057,8 @@ void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {
 #define NUM_TTC_A1_VOLUMES 6
 #define NUM_TTC_A3_VOLUMES 2
 
+#define NUM_RDR_A1_VOLUMES 2
+
 #define NUM_TFP_A1_VOLUMES 5
 #define NUM_TFP_A3_VOLUMES 3
 
@@ -3103,6 +3105,19 @@ Vec3f ttcVolumes[(NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES) * 4] = {
     { 0, 500, 300 },
     { 0, 500, -257 }
 
+};
+
+Vec3f rdrVolumes[(NUM_RDR_A1_VOLUMES) * 4] = {
+    // entering village
+    { 2240, 0, -2710 },
+    { 1600, 0, -2965 },
+    { 2770, 2000, -5002 },
+    { 4300, 2000, -3200 },
+    // three rock cliff platforming section
+    { 10700, -2000, -10300 },
+    { 10700, -2000, -13300 },
+    { 8000, 2000, -13300 },
+    { 8000, 2000, -10300 }
 };
 
 Vec3f tfpVolumes[(NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES) * 4] = {
@@ -3165,6 +3180,28 @@ s8 point_inside_xz_tri(Vec3f marioPos, Vec3f a, Vec3f b, Vec3f c) {
     return TRUE;
 }
 
+s16 course_volume_loop_through(s16 initValue, s16 maxValue, Vec3f array[]) {
+
+    for (int i = initValue; i < maxValue; i++) {
+                        // check XZ coords of tris 012 and 023
+                        if (point_inside_xz_tri(gMarioState->pos, array[i * 4],
+                                                array[i * 4 + 1], array[i * 4 + 2])
+                                == TRUE
+                            || point_inside_xz_tri(gMarioState->pos, array[i * 4],
+                                                   array[i * 4 + 2], array[i * 4 + 3])
+                                   == TRUE) {
+                            // always check the Y of the first and last coords
+                            if (gMarioState->pos[1] > array[i * 4][1]
+                                && gMarioState->pos[1] < array[i * 4 + 3][1]) {
+
+                                
+                                return i + 1;
+                            }
+                        }
+                    }
+    return 0;
+}
+
 s16 check_mario_is_in_course_volume(void) {
     s16 volumeID = 0;
 
@@ -3172,96 +3209,27 @@ s16 check_mario_is_in_course_volume(void) {
         case LEVEL_BOB:
             switch (gCurrAreaIndex) {
                 case 1:
-                    for (int i = 0; i < NUM_TTC_A1_VOLUMES; i++) {
-                        // check XZ coords of tris 012 and 023
-                        if (point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4],
-                                                ttcVolumes[i * 4 + 1], ttcVolumes[i * 4 + 2])
-                                == TRUE
-                            || point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4],
-                                                   ttcVolumes[i * 4 + 2], ttcVolumes[i * 4 + 3])
-                                   == TRUE) {
-                            // always check the Y of the first and last coords
-                            if (gMarioState->pos[1] > ttcVolumes[i * 4][1]
-                                && gMarioState->pos[1] < ttcVolumes[i * 4 + 3][1]) {
-
-                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
-                                volumeID = i + 1;
-
-                                // since we're in a volume already, we can stop iterating
-                                i = NUM_TTC_A1_VOLUMES;
-                            }
-                        }
-                    }
+                    volumeID = course_volume_loop_through(0, NUM_TTC_A1_VOLUMES, ttcVolumes);
                     break;
                 case 3:
-                    for (int i = NUM_TTC_A1_VOLUMES; i < NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES; i++) {
-                        // check XZ coords of tris 012 and 023
-                        if (point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4],
-                                                ttcVolumes[i * 4 + 1], ttcVolumes[i * 4 + 2])
-                                == TRUE
-                            || point_inside_xz_tri(gMarioState->pos, ttcVolumes[i * 4],
-                                                   ttcVolumes[i * 4 + 2], ttcVolumes[i * 4 + 3])
-                                   == TRUE) {
-                            // always check the Y of the first and last coords
-                            if (gMarioState->pos[1] > ttcVolumes[i * 4][1]
-                                && gMarioState->pos[1] < ttcVolumes[i * 4 + 3][1]) {
-
-                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
-                                volumeID = i + 1;
-
-                                // since we're in a volume already, we can stop iterating
-                                i = NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES;
-                            }
-                        }
-                    }
+                    volumeID = course_volume_loop_through(NUM_TTC_A1_VOLUMES, NUM_TTC_A1_VOLUMES + NUM_TTC_A3_VOLUMES, ttcVolumes);
                     break;
+            }
+            break;
+            case LEVEL_WF:
+            switch (gCurrAreaIndex) {
+                case 1:
+                    volumeID = course_volume_loop_through(0, NUM_RDR_A1_VOLUMES, rdrVolumes);
+                break;
             }
             break;
             case LEVEL_BBH:
             switch (gCurrAreaIndex) {
                 case 1:
-                    for (int i = 0; i < NUM_TFP_A1_VOLUMES; i++) {
-                        // check XZ coords of tris 012 and 023
-                        if (point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
-                                                tfpVolumes[i * 4 + 1], tfpVolumes[i * 4 + 2])
-                                == TRUE
-                            || point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
-                                                   tfpVolumes[i * 4 + 2], tfpVolumes[i * 4 + 3])
-                                   == TRUE) {
-                            // always check the Y of the first and last coords
-                            if (gMarioState->pos[1] > tfpVolumes[i * 4][1]
-                                && gMarioState->pos[1] < tfpVolumes[i * 4 + 3][1]) {
-
-                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
-                                volumeID = i + 1;
-
-                                // since we're in a volume already, we can stop iterating
-                                i = NUM_TFP_A1_VOLUMES;
-                            }
-                        }
-                    }
+                    volumeID = course_volume_loop_through(0, NUM_TFP_A1_VOLUMES, tfpVolumes);
                     break;
-                    case 3:
-                    for (int i = NUM_TFP_A1_VOLUMES; i < NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES; i++) {
-                        // check XZ coords of tris 012 and 023
-                        if (point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
-                                                tfpVolumes[i * 4 + 1], tfpVolumes[i * 4 + 2])
-                                == TRUE
-                            || point_inside_xz_tri(gMarioState->pos, tfpVolumes[i * 4],
-                                                   tfpVolumes[i * 4 + 2], tfpVolumes[i * 4 + 3])
-                                   == TRUE) {
-                            // always check the Y of the first and last coords
-                            if (gMarioState->pos[1] > tfpVolumes[i * 4][1]
-                                && gMarioState->pos[1] < tfpVolumes[i * 4 + 3][1]) {
-
-                                // print_text_fmt_int(100, 100, "YAHOO%d", i);
-                                volumeID = i + 1;
-
-                                // since we're in a volume already, we can stop iterating
-                                i = NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES;
-                            }
-                        }
-                    }
+                case 3:
+                    volumeID = course_volume_loop_through(NUM_TFP_A1_VOLUMES, NUM_TFP_A1_VOLUMES + NUM_TFP_A3_VOLUMES, tfpVolumes);
                     break;
             }
             break;
@@ -3309,6 +3277,16 @@ void handle_course_volumes(struct Camera *c) {
                         s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -s8DirModeBaseYaw + 0xC000, 0x20);
                         break;
                 }
+                break;
+                case LEVEL_WF:
+                    switch (volumeID) {
+                        case 1:
+                            s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -s8DirModeBaseYaw + 0xC000, 0x20);
+                        break;
+                        case 2:
+                            s8DirModeYawOffset = approach_s16_asymptotic(s8DirModeYawOffset, -s8DirModeBaseYaw + 0x4800, 0x20);
+                        break;
+                    }   
                 break;
             case LEVEL_BBH:
                 switch (volumeID) {

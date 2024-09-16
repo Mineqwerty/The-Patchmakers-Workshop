@@ -2,10 +2,10 @@
 
 // 0x030172E0
 static const Vtx flame_seg3_vertex_030172E0[] = {
-    {{{   -25,    -25,      0}, 0, {     0,    992}, {0x00, 0x00, 0x00, 0x00}}},
-    {{{    25,    -25,      0}, 0, {   992,    992}, {0x00, 0x00, 0x00, 0x00}}},
-    {{{    25,     25,      0}, 0, {   992,      0}, {0x00, 0x00, 0x00, 0x00}}},
-    {{{   -25,     25,      0}, 0, {     0,      0}, {0x00, 0x00, 0x00, 0x00}}},
+    {{{   -25,    -25,      0}, 0, {     0,    992}, {0xFF, 0x00, 0x00, 0xFF}}},
+    {{{    25,    -25,      0}, 0, {   992,    992}, {0xFF, 0x00, 0x00, 0xFF}}},
+    {{{    25,     25,      0}, 0, {   992,      0}, {0xF0, 0xFF, 0x60, 0xFF}}},
+    {{{   -25,     25,      0}, 0, {     0,      0}, {0xF0, 0xFF, 0x60, 0xFF}}},
 };
 
 // 0x03017320
@@ -50,9 +50,9 @@ ALIGNED8 static const Texture flame_seg3_texture_0301AB20[] = {
 
 // 0x0301B320 - 0x0301B3B0
 const Gfx flame_seg3_dl_0301B320[] = {
-    gsSPClearGeometryMode(G_LIGHTING | G_SHADING_SMOOTH),
+    gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetEnvColor(255, 50, 0, 200),
-    gsDPSetCombineMode(G_CC_FADEA, G_CC_FADEA),
+    gsDPSetCombineMode(G_CC_MODULATEIA, G_CC_MODULATEIA),
     gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPLoadSync(),
     gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),

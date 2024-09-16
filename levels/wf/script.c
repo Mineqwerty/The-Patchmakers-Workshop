@@ -49,6 +49,15 @@ const LevelScript level_wf_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wf_area_1),
@@ -82,7 +91,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, 4821, 980, 8741, 0, 10, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 9264, 1961, 11450, 0, 120, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 10923, 1722, 8362, 0, -175, 0, 0x00000000, bhvCoinFormation),
-		MARIO_POS(0x01, 0, -2073, 100, 1819),
+		MARIO_POS(0x01, -90, -2073, 100, 1819),
 		OBJECT(MODEL_NONE, -2103, 100, 1816, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BLUBOL, 8419, 3252, -11973, 8, 2, 11, (1 << 16), bhvBlubol),
 		OBJECT(MODEL_BLUBOL, 8201, 3241, -11840, -16, -2, -18, 0x00000000, bhvBlubol),
@@ -120,6 +129,8 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_YELLOW_COIN, 10542, 1084, 5365, 0, 27, 0, 0x00000000, bhvOneCoin),
 		OBJECT(MODEL_YELLOW_COIN, 10170, -139, -2895, 0, 27, 0, 0x00000000, bhvOneCoin),
 		OBJECT(MODEL_YELLOW_COIN, 10979, -162, -2979, 0, 27, 0, 0x00000000, bhvOneCoin),
+		OBJECT(MODEL_STAR, 4859, -3260, 3200, 0, 27, 0, (11 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -9765, 319, -13134, 0, 27, 0, (12 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -8976, -664, 14147, 0, 0, 0, (4 << 24) | (4 << 16), bhvStar),
 		OBJECT(MODEL_TAEBER, 7507, -207, -13408, 0, 0, 0, 0x00000000, bhvTaeber),
 		OBJECT(MODEL_TAEBER, 6837, 988, -13950, 0, 0, 0, 0x00000000, bhvTaeber),
@@ -149,7 +160,7 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x41, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_YARN_GOOMBA, 1612, 237, -1682, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_YARN_GOOMBA, 3517, 237, -454, 0, 0, 0, 0x00000000, bhvGoomba),
-		OBJECT(MODEL_TAEBER, 3463, 2058, 11706, 0, 0, 0, 0x00000000, bhvTaeber),
+		OBJECT(MODEL_TAEBER, 3463, 2058, 11707, 0, 0, 0, 0x00000000, bhvTaeber),
 		OBJECT(MODEL_YARN_GOOMBA, 3739, 2518, 13486, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_STAR, 3212, 3507, 13369, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -5356, -18, -1325, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
@@ -172,6 +183,7 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x41, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, -357, -6875, 8116, 0, 0, 0, (5 << 24) | (5 << 16), bhvStar),
 		OBJECT(MODEL_NONE, -3678, 1722, -270, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, -3188, 1749, -257, 0, 83, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -125, 314, 121, 0, 27, 0, 0x00000000, bhvRainSoundManager),
 		TERRAIN(wf_area_3_collision),
 		TERRAIN_MAT_LUT(wf_area_3_collision_materials),
@@ -182,7 +194,7 @@ const LevelScript level_wf_entry[] = {
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, -2073, 100, 1819),
+	MARIO_POS(0x01, -90, -2073, 100, 1819),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),
