@@ -640,10 +640,14 @@ void pushpin_pokey_stunned(void) {
                   if (o->oFallingWind1->oOpacity > 250) {
                     o->oFallingWind1->oOpacity = 250;
                   }
+                  if (o->oFallingWind1->oOpacity > 125) {
+                    play_sound(SOUND_NEW_POKEY_HOWLING_WIND, gGlobalSoundSource);
+                  }
 
                   if (gSlowdownCount == 2 && o->oFallingWind1) {
                     obj_mark_for_deletion(o->oFallingWind1);
                     o->oSubAction++;
+                    play_sound(SOUND_NEW_POKEY_IMPACT, gGlobalSoundSource);
                   }
                   else if (gMarioState->action == ACT_STONE_PATCH_AIR_LAND) {
                     obj_mark_for_deletion(o->oFallingWind1);

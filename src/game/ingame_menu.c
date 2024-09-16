@@ -2882,9 +2882,10 @@ void render_pause_screen_felt() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
-#define NUM_MENU_SONGS 10
+#define NUM_MENU_SONGS 19
 
 s16 songList[NUM_MENU_SONGS] = {
+    SEQ_TITLE_SCREEN,
     SEQ_LEVEL_GRASS,
     SEQ_RAINY_DAY_ROADSIDE,
     SEQ_STONE_TERRACE_CITY,
@@ -2892,12 +2893,21 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_SUBTERRANEAN_SEAWAY,
     SEQ_CANDLELIT_CHAMBER,
     SEQ_HIDDEN_VILLAGE_HOLD,
+    SEQ_THE_FAR_PLANE,
+    SEQ_TIMELESS_SHRINE,
+    SEQ_PATCHMAKER_THEME,
     SEQ_EVENT_PIRANHA_PLANT,
     SEQ_RAINY_DAY_ROADSIDE_SELECT,
-    SEQ_STONE_TERRACE_CITY_SELECT
+    SEQ_STONE_TERRACE_CITY_SELECT,
+    SEQ_GOLD_SOAKED_SKY_SELECT,
+    SEQ_SUBTERRANEAN_SEAWAY_SELECT,
+    SEQ_CANDLELIT_CHAMBER_SELECT,
+    SEQ_EVENT_CUTSCENE_COLLECT_STAR,
+    SEQ_PATCH_GET
 };
 
 s16 songVersions[NUM_MENU_SONGS] = {
+    0,
     0,
     (1 <<  0) | (1 <<  1),
     0,
@@ -2907,10 +2917,19 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     0
 };
 
 const char songNames[NUM_MENU_SONGS][48] = {
+    "The Marching Waltz of Life",
     "Thorn Thicket Cliffs",
     "Rainy Day Roadside",
     "Stone Terrace City",
@@ -2918,12 +2937,21 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Subterranean Seaway",
     "Candlelit Chamber",
     "Hidden Village Hold",
-    "TTC Select",
-    "RDR Select",
-    "STC Select"
+    "The Far Plane",
+    "Timeless Shrine",
+    "Encounter - The Patchmaker",
+    "Map - Thorn Thicket Cliffs",
+    "Map - Rainy Day Roadside",
+    "Map - Stone Terrace City",
+    "Map - Gold Soaked Sky",
+    "Map - Subterranean Seaway",
+    "Map - Candlelit Chamber",
+    "Event - Star Get",
+    "Event - Patch Get"
 };
 
 const char composerNames[NUM_MENU_SONGS][48] = {
+    "CowQuack\nornevelder",
     "CowQuack\nornevelder",
     "ornevelder",
     "ornevelder",
@@ -2931,9 +2959,17 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "Tori Draws Stuff",
     "ornevelder",
     "CowQuack",
+    "ornevelder",
+    "CowQuack",
+    "ornevelder",
     "CowQuack\nornevelder",
     "ornevelder",
-    "ornevelder"
+    "ornevelder",
+    "ornevelder",
+    "Tori Draws Stuff",
+    "ornevelder",
+    "CowQuack",
+    "CowQuack"
 };
 
 void print_song_name_list(s16 x, s16 y) {
@@ -3051,7 +3087,7 @@ void render_sound_menu() {
     gSPDisplayList(gDisplayListHead++, sound_menu_bg_Plane_010_mesh);
 
     
-        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gSongMenuIndex, 0, NUM_MENU_SONGS);
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gSongMenuIndex, 0, NUM_MENU_SONGS-1);
         print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
 
         print_set_envcolour(0, 0, 0, 255);

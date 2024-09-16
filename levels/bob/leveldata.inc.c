@@ -6,5 +6,6 @@
 #include "levels/bob/area_3/spline.inc.c"
 #include "levels/bob/model.inc.c"
 #include "levels/bob/area_1/collision.inc.c"
+#include "levels/bob/area_1/room.inc.c"
 #include "levels/bob/area_2/collision.inc.c"
 #include "levels/bob/area_3/collision.inc.c"

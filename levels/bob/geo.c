@@ -66,3 +66,5 @@
 #include "levels/bob/shard29/geo.inc.c"
 #include "levels/bob/shard30/geo.inc.c"
 #include "levels/bob/shard31/geo.inc.c"
+#include "levels/bob/super_bounce_bulb/geo.inc.c"
+#include "levels/bob/super_bounce_bulb_open/geo.inc.c"

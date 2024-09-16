@@ -23,11 +23,11 @@ void bhv_bounce_bulb_loop(void) {
         case ACT_BULB_IDLE:
             if (o->oInteractStatus != INT_STATUS_NONE && o->collidedObjs[0] == gMarioObject) {
                 gMarioState->action = ACT_TRIPLE_JUMP;
-                gMarioState->vel[1] = 90.0f;
+                gMarioState->vel[1] = o->oBehParams2ndByte == 1 ? 130.0f : 90.0f;
                 o->oInteractStatus = INT_STATUS_NONE;
                 o->oTimer = 0;
                 o->oAction = ACT_BULB_BOUNCE;
-                o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_BOUNCE_BULB_OPEN];
+                cur_obj_set_model(o->oBehParams2ndByte == 1 ? MODEL_SUPER_BOUNCE_BULB_OPEN : MODEL_BOUNCE_BULB_OPEN);
             }
             break;
         case ACT_BULB_BOUNCE:
@@ -35,7 +35,7 @@ void bhv_bounce_bulb_loop(void) {
         if (o->oTimer == 24) {
             o->oAction = ACT_BULB_IDLE;
             obj_scale_xyz(o, 1, 1, 1);
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_BOUNCE_BULB];
+            cur_obj_set_model(o->oBehParams2ndByte == 1 ? MODEL_SUPER_BOUNCE_BULB : MODEL_BOUNCE_BULB);
         }
         
         break;

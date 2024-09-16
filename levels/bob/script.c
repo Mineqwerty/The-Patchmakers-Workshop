@@ -38,6 +38,8 @@ const LevelScript level_bob_entry[] = {
 	JUMP_LINK(script_func_global_15), 
 	LOAD_MODEL_FROM_GEO(MODEL_BOUNCE_BULB, bounce_bulb_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BOUNCE_BULB_OPEN, bounce_bulb_open_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SUPER_BOUNCE_BULB, super_bounce_bulb_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SUPER_BOUNCE_BULB_OPEN, super_bounce_bulb_open_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PTOOIE, ptooie_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SPIKE_BALL, spike_ball_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_ROSEDRIFT, rosedrift_geo), 
@@ -81,17 +83,7 @@ const LevelScript level_bob_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHARD_START+27, shard28_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHARD_START+28, shard29_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHARD_START+29, shard30_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SHARD_START+30, shard31_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_SHARD_START+30, shard31_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -111,6 +103,8 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_BOUNCE_BULB, 1652, 1684, -4276, 0, 0, 0, 0x00000000, bhvBounceBulb, ACT_4 | ACT_5),
 		OBJECT(MODEL_BOUNCE_BULB, 5326, 4720, 2953, 0, 28, 0, 0x00000000, bhvBounceBulb),
 		OBJECT(MODEL_BOUNCE_BULB, 1751, 3669, -10016, 90, 0, -161, 0x00000000, bhvBounceBulb),
+		OBJECT(MODEL_BOUNCE_BULB, -9913, 976, -1569, 0, -127, 0, 0x00000000, bhvBounceBulb),
+		OBJECT(MODEL_BOUNCE_BULB, -10604, 1871, -2521, 0, 178, 0, 0x00000000, bhvBounceBulb),
 		OBJECT(MODEL_NONE, 1336, 1995, -1326, 0, 157, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4476, 2979, -8011, 0, 151, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 830, 3138, 1364, 0, 104, 0, 0x00000000, bhvCoinFormation),
@@ -163,6 +157,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3807, 2817, -12997, 0, 0, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3164, 2704, -12378, 0, 0, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_YARN_GOOMBA, -3663, 2780, -12553, 0, -40, 0, 0x00000000, bhvGoomba, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
+		OBJECT(MODEL_METAL_BOX, -8989, 977, -257, 0, 30, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 730, 2689, 996, 0, 12, 0, 0x00000000, bhvPtooie, ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 3319, 3859, 1534, 0, 42, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 4983, 3859, 105, 0, 42, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
@@ -173,7 +168,9 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 730, 2689, 996, 0, 12, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, -862, 2469, -4682, 0, 24, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3),
 		OBJECT(MODEL_PTOOIE, 5191, 5792, 1732, 0, 42, 0, 0x00000000, bhvPtooie),
+		OBJECT(MODEL_TRANSMUTATION_STAR, -10618, 4461, -3327, 0, 0, 0, (9 << 24), bhvTransmutationStar),
 		TERRAIN(bob_area_1_collision),
+		ROOMS(bob_area_1_collision_rooms),
 		TERRAIN_MAT_LUT(bob_area_1_collision_materials),
 		MACRO_OBJECTS(bob_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_GRASS),
@@ -245,6 +242,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_NONE, -1217, 57, 1942, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -7029, 828, -178, 0, 90, 0, (10 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_PATCH_UPGRADE, -2114, 672, -4323, 0, 0, 0, (1 << 16), bhvPatchUpgrade),
+		OBJECT(MODEL_STAR, -13092, 434, 6963, 0, 0, 0, (10 << 24), bhvStar),
 		TERRAIN(bob_area_3_collision),
 		TERRAIN_MAT_LUT(bob_area_3_collision_materials),
 		MACRO_OBJECTS(bob_area_3_macro_objs),

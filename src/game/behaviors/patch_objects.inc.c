@@ -1231,7 +1231,8 @@ void bhv_transmutation_cone_loop(void) {
                         obj_mark_for_deletion(target);
                     }
                     else if (obj_has_behavior(target, bhvTransmutationStar)) {
-                        spawn_object_relative(0, 0, 0, 0, target, MODEL_STAR, bhvStar);
+                        struct Object *star = spawn_object_relative(0, 0, 0, 0, target, MODEL_STAR, bhvStar);
+                        star->oBehParams = target->oBehParams;
                         obj_mark_for_deletion(target);
                     }
                     else if (obj_has_behavior(target, bhvRedFlower)) {
@@ -1240,6 +1241,10 @@ void bhv_transmutation_cone_loop(void) {
                     }
                     else if (obj_has_behavior(target, bhvTorchHolder)) {
                         target->oF4 = 1;
+                    }
+                    else if (obj_has_behavior(target, bhvBounceBulb)) {
+                        target->oBehParams2ndByte = 1;
+                        obj_set_model(target, MODEL_SUPER_BOUNCE_BULB);
                     }
 
                     play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);

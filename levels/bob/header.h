@@ -134,4 +134,8 @@ extern const LevelScript level_bob_entry[];
 
 #include "levels/bob/shard31/geo_header.h"
 
+#include "levels/bob/super_bounce_bulb/geo_header.h"
+
+#include "levels/bob/super_bounce_bulb_open/geo_header.h"
+
 #endif

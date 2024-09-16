@@ -157,7 +157,7 @@ const LevelScript level_ttm_entry[] = {
 		ROOMS(ttm_area_1_collision_rooms),
 		TERRAIN_MAT_LUT(ttm_area_1_collision_materials),
 		MACRO_OBJECTS(ttm_area_1_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_TIMELESS_SHRINE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

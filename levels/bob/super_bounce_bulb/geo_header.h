@@ -1,0 +1,16 @@
+extern const GeoLayout super_bounce_bulb_geo[];
+extern Lights1 super_bounce_bulb_specialbulb_lights;
+extern Lights1 super_bounce_bulb_f3d_material_038_lights;
+extern u8 super_bounce_bulb_bulb_ci4[];
+extern u8 super_bounce_bulb_bulb_pal_rgba16[];
+extern u8 super_bounce_bulb_leafforplant_ia8[];
+extern Vtx super_bounce_bulb_Circle_019_mesh_layer_1_vtx_0[93];
+extern Gfx super_bounce_bulb_Circle_019_mesh_layer_1_tri_0[];
+extern Vtx super_bounce_bulb_Circle_019_mesh_layer_4_vtx_0[22];
+extern Gfx super_bounce_bulb_Circle_019_mesh_layer_4_tri_0[];
+extern Gfx mat_super_bounce_bulb_specialbulb[];
+extern Gfx mat_revert_super_bounce_bulb_specialbulb[];
+extern Gfx mat_super_bounce_bulb_f3d_material_038[];
+extern Gfx mat_revert_super_bounce_bulb_f3d_material_038[];
+extern Gfx super_bounce_bulb_Circle_019_mesh_layer_1[];
+extern Gfx super_bounce_bulb_Circle_019_mesh_layer_4[];

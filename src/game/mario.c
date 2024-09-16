@@ -532,7 +532,9 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
             ret = SOUND_TERRAIN_SAND << 16;
         } else if (m->floor->type == SURFACE_SKYBRIDGE) {
             ret = SOUND_TERRAIN_SQUISHY << 16;
-        }else {
+        }   else if (m->floor->type == SURFACE_LEAVES) {
+            ret = SOUND_TERRAIN_LEAF << 16;
+        }   else {
             switch (floorType) {
                 default:
                     floorSoundType = 0;

@@ -472,8 +472,10 @@
         },
         "Overdriven Guitar": {
             "release_rate": 208,
+            "normal_range_hi": 50,
             "envelope": "envelope1",
-            "sound": "31_rarefaction-convolution"
+            "sound": "31_rarefaction-convolution",
+            "sound_hi": "5E_overdriven_guitar_hi"
         },
         "Orchestra Hit": {
             "release_rate": 208,

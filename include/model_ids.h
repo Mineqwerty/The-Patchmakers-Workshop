@@ -578,7 +578,10 @@
 #define MODEL_PUSHPIN_POKEY_SEGMENT_BODY           0x10A
 #define MODEL_FALLING_WIND           0x10B
 #define MODEL_IMPACT_HIT           0x10C
-#define MODEL_SHARD_START           0x10D
+#define MODEL_SUPER_BOUNCE_BULB           0x10D
+#define MODEL_SUPER_BOUNCE_BULB_OPEN           0x10E
+
+#define MODEL_SHARD_START           0x10F
 
 //Rainy Day Roadside
 #define MODEL_SWAMP_SKEETER                   0x100

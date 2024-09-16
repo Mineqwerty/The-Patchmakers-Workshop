@@ -80,6 +80,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "bass_boom"
+    },
+    "inst_pokey_impact": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "pokey_impact"
+    },
+    "inst_pokey_howling_wind": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "pokey_howling_wind"
     }
   },
   "instrument_list": [
@@ -96,6 +106,8 @@
     "inst_machine_click",
     "inst_shadow_ball_bounce",
     "inst_shadow_spike_emerge",
-    "inst_bass_boom"
+    "inst_bass_boom",
+    "inst_pokey_impact",
+    "inst_pokey_howling_wind"
   ]
 }

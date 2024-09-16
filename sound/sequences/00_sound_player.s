@@ -8907,6 +8907,28 @@ sound_ref .sound_machine_click
 sound_ref .sound_shadow_ball_bounce
 sound_ref .sound_shadow_spike_emerge
 sound_ref .sound_bass_boom
+sound_ref .sound_pokey_impact
+sound_ref .sound_pokey_howling_wind
+
+.sound_pokey_howling_wind:
+chan_setbank 12
+chan_setinstr 15
+chan_setlayer 0, .layer_pokey_howling_wind
+chan_end
+
+.layer_pokey_howling_wind:
+layer_note1 39, 0x43, 127
+layer_end
+
+.sound_pokey_impact:
+chan_setbank 12
+chan_setinstr 14
+chan_setlayer 0, .layer_pokey_impact
+chan_end
+
+.layer_pokey_impact:
+layer_note1 39, 0xd3, 127
+layer_end
 
 .sound_bass_boom:
 chan_setbank 12

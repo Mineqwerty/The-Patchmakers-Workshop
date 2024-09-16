@@ -81,3 +81,5 @@
 #include "levels/bob/shard29/model.inc.c"
 #include "levels/bob/shard30/model.inc.c"
 #include "levels/bob/shard31/model.inc.c"
+#include "levels/bob/super_bounce_bulb/model.inc.c"
+#include "levels/bob/super_bounce_bulb_open/model.inc.c"
