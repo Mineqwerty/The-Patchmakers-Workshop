@@ -126,7 +126,7 @@ Gfx bob_area_3_collision_mat_revert_bob_dl_f3d_material_050[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_yellowareawalls_001_layer_1[] = {
+Gfx bob_area_3_collision_a_yellow_wall_layer_1[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -140,7 +140,7 @@ Gfx bob_area_3_collision_yellowareawalls_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_mat_revert_bob_dl_yellowareawalls_001[] = {
+Gfx bob_area_3_collision_mat_revert_bob_dl_a_yellow_wall[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -252,7 +252,7 @@ Gfx bob_area_3_collision_mat_revert_bob_dl_thornwall_001[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_cozieswater_001_layer_5[] = {
+Gfx bob_area_3_collision_y_water_layer_5[] = {
 	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
@@ -274,7 +274,7 @@ Gfx bob_area_3_collision_cozieswater_001_layer_5[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_3_collision_mat_revert_bob_dl_cozieswater_001_layer5_area1[] = {
+Gfx bob_area_3_collision_mat_revert_bob_dl_y_water_layer5_area1[] = {
 	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -409,8 +409,8 @@ const Gfx* bob_area_3_collision_materials[] = {
 	&bob_area_3_collision_mat_revert_bob_dl_waternonmoving_001,
 	&bob_area_3_collision_f3d_material_050_layer_4,
 	&bob_area_3_collision_mat_revert_bob_dl_f3d_material_050,
-	&bob_area_3_collision_yellowareawalls_001_layer_1,
-	&bob_area_3_collision_mat_revert_bob_dl_yellowareawalls_001,
+	&bob_area_3_collision_a_yellow_wall_layer_1,
+	&bob_area_3_collision_mat_revert_bob_dl_a_yellow_wall,
 	&bob_area_3_collision_forcestone_yplus_001_layer_1,
 	&bob_area_3_collision_mat_revert_bob_dl_forcestone_yplus_001,
 	&bob_area_3_collision_safe_layer_1,
@@ -421,8 +421,8 @@ const Gfx* bob_area_3_collision_materials[] = {
 	&bob_area_3_collision_mat_revert_bob_dl_wallsignorecam,
 	&bob_area_3_collision_thornwall_001_layer_4,
 	&bob_area_3_collision_mat_revert_bob_dl_thornwall_001,
-	&bob_area_3_collision_cozieswater_001_layer_5,
-	&bob_area_3_collision_mat_revert_bob_dl_cozieswater_001_layer5_area1,
+	&bob_area_3_collision_y_water_layer_5,
+	&bob_area_3_collision_mat_revert_bob_dl_y_water_layer5_area1,
 	&bob_area_3_collision_forcestone_xplus_001_layer_1,
 	&bob_area_3_collision_mat_revert_bob_dl_forcestone_xplus_001,
 	&bob_area_3_collision_forcestone_super_yplus_002_layer_1,

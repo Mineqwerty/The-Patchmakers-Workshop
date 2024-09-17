@@ -58,6 +58,7 @@ const LevelScript level_wf_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wf_area_1),
@@ -183,7 +184,16 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x41, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, -357, -6875, 8116, 0, 0, 0, (5 << 24) | (5 << 16), bhvStar),
 		OBJECT(MODEL_NONE, -3678, 1722, -270, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_NONE, -3188, 1749, -257, 0, 83, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2467, 1749, -244, 0, 83, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -581, 1009, -769, 0, 139, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5146, -682, -2766, 0, 174, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5605, -1719, -6445, 0, 166, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5429, -1839, -9167, 0, -137, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 291, -3460, -6064, 0, 14, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 168, -4363, -1551, 0, -35, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3132, -4064, 645, 0, -70, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3253, -3899, -2885, 0, 0, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 1658, -2311, -9067, 0, -73, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -125, 314, 121, 0, 27, 0, 0x00000000, bhvRainSoundManager),
 		TERRAIN(wf_area_3_collision),
 		TERRAIN_MAT_LUT(wf_area_3_collision_materials),

@@ -12,7 +12,6 @@ const GeoLayout yarn_goomba_geo[] = {
 			GEO_CLOSE_NODE(),
 			GEO_SHADOW(1, 148, 84),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, yarn_goomba_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

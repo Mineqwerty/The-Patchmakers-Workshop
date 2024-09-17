@@ -472,6 +472,7 @@ s32 mario_get_floor_class(struct MarioState *m) {
 
             case SURFACE_SUPER_SLIPPERY:
             case SURFACE_VERY_SLIPPERY:
+             case SURFACE_VERY_SLIPPERY_MUD:
             case SURFACE_ICE:
             case SURFACE_HARD_VERY_SLIPPERY:
             case SURFACE_NOISE_VERY_SLIPPERY_73:
@@ -534,7 +535,9 @@ u32 mario_get_terrain_sound_addend(struct MarioState *m) {
             ret = SOUND_TERRAIN_SQUISHY << 16;
         }   else if (m->floor->type == SURFACE_LEAVES) {
             ret = SOUND_TERRAIN_LEAF << 16;
-        }   else {
+        }   else if (m->floor->type == SURFACE_VERY_SLIPPERY_MUD || m->floor->type == SURFACE_MUD|| m->floor->type == SURFACE_STICKY_MUD) {
+            ret = SOUND_TERRAIN_MUD << 16;
+        }  else {
             switch (floorType) {
                 default:
                     floorSoundType = 0;

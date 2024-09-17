@@ -66,7 +66,7 @@ Gfx bob_area_2_collision_mat_revert_bob_dl_f3d_material_025[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_2_collision_slipperystone_001_layer_1[] = {
+Gfx bob_area_2_collision_a_cavestone_layer_1[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -84,7 +84,7 @@ Gfx bob_area_2_collision_slipperystone_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bob_area_2_collision_mat_revert_bob_dl_slipperystone_001[] = {
+Gfx bob_area_2_collision_mat_revert_bob_dl_a_cavestone[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -167,8 +167,8 @@ const Gfx* bob_area_2_collision_materials[] = {
 	&bob_area_2_collision_mat_revert_bob_dl_topstone_002,
 	&bob_area_2_collision_f3d_material_025_layer_1,
 	&bob_area_2_collision_mat_revert_bob_dl_f3d_material_025,
-	&bob_area_2_collision_slipperystone_001_layer_1,
-	&bob_area_2_collision_mat_revert_bob_dl_slipperystone_001,
+	&bob_area_2_collision_a_cavestone_layer_1,
+	&bob_area_2_collision_mat_revert_bob_dl_a_cavestone,
 	&bob_area_2_collision_f3d_material_028_layer_1,
 	&bob_area_2_collision_mat_revert_bob_dl_f3d_material_028,
 	&bob_area_2_collision_cavesurround_001_layer_1,

@@ -138,6 +138,7 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed) {
 
         switch (m->floor->type) {
             case SURFACE_SHALLOW_QUICKSAND:
+            case SURFACE_STICKY_MUD:
                 if ((m->quicksandDepth += sinkingSpeed) >= 10.0f) {
                     m->quicksandDepth = 10.0f;
                 }
