@@ -6542,9 +6542,10 @@ const BehaviorScript bhvEnemyForcefield[] = {
     OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW )),
     LOAD_COLLISION_DATA(forcefield_collision),
     SET_FLOAT(oCollisionDistance, 30000),
+    CALL_NATIVE(load_object_static_model),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_forcefield_loop),
-        CALL_NATIVE(load_object_collision_model),
+        
     END_LOOP(),
 };
 

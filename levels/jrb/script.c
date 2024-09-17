@@ -61,6 +61,20 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -72,12 +86,13 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, -2091, -489, -7277, 0, 0, 0, (30 << 24) | (11 << 16), bhvWarp),
 		MARIO_POS(0x01, 0, 0, 684, 0),
 		OBJECT(MODEL_NONE, 0, 684, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_BLUE_COIN_SWITCH, 288, 1698, -7413, 0, -180, 0, 0x00000000, bhvBlueCoinSwitch),
-		OBJECT(MODEL_NONE, -202, 2355, -6701, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -500, 2604, -7798, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -1386, 2701, -8440, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -2286, 2771, -9075, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -2224, 3074, -10099, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN_SWITCH, -1159, 1698, -7602, 0, -180, 0, 0x00000000, bhvBlueCoinSwitch),
+		OBJECT(MODEL_NONE, -390, 1698, -8287, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_NONE, -386, 1698, -9061, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_NONE, 486, 3116, -9066, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_NONE, -392, 2157, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_NONE, -20, 2665, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_NONE, 478, 3103, -8715, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
 		OBJECT(MODEL_NONE, 1495, 1316, -18, 0, 90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 3474, 1850, -1640, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4825, 2432, 7834, 0, -180, 0, 0x00000000, bhvCoinFormation),
@@ -88,10 +103,12 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, -1662, 194, 1309, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2904, -253, 3193, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4286, 1453, 4728, 0, -180, 0, (2 << 16), bhvCoinFormation),
-		OBJECT(MODEL_NONE, -3760, 832, 7787, 0, -180, 0, (2 << 16), bhvCoinFormation),
-		OBJECT(MODEL_NONE, 110, 1698, -9675, 0, -180, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -4439, 4070, -7932, 0, -180, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -655, 1698, -9718, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 797, 920, 3659, 0, -180, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 2365, 920, 3659, 0, -180, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -177, 2341, -6716, 0, -180, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3000, 1042, -7377, 0, -180, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_STONE_ELEVATOR, -3616, -229, 4711, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, -8417, 1148, 11465, 0, -180, 0, (11 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, 6764, 1276, -7702, 0, -180, 0, (11 << 16), bhvStoneElevator),
@@ -144,6 +161,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -9069, 318, 2004, 0, -180, 0, 0x00000000, bhvRotatingStoneCylinder),
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -9069, 318, 728, 0, -180, 0, (1 << 16), bhvRotatingStoneCylinder),
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -10136, 318, 728, 0, -180, 0, (0 << 16), bhvRotatingStoneCylinder),
+		OBJECT(MODEL_STAR, 11479, 4742, -1502, 0, -180, 0, (14 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -2220, 3482, -11636, 0, 90, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -11192, 959, -3144, 0, 90, 0, (4 << 24) | (4 << 16), bhvStar),
 		OBJECT_WITH_ACTS(MODEL_EXTENDING_STONE_BRIDGE, 2847, 515, 31, 0, -180, 0, 0x00000000, bhvExtendingStoneBridge, ACT_6),
@@ -161,7 +179,6 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2218, 3082, -11254, 0, -90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -1999, 3082, -11942, 0, -90, 0, (2 << 16), bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2437, 3082, -11942, 0, 90, 0, (2 << 16), bhvStoneTowerDoor),
-		OBJECT(MODEL_NONE, 10816, 823, 11, 0, -180, 0, (12 << 16), bhvWarp),
 		TERRAIN(jrb_area_1_collision),
 		TERRAIN_MAT_LUT(jrb_area_1_collision_materials),
 		MACRO_OBJECTS(jrb_area_1_macro_objs),
@@ -216,6 +233,8 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GEAR, -2933, 3576, 1071, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, -2933, 4169, 1621, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, -2933, 4546, 2537, 0, -180, 0, 0x00000000, bhvStoneGear),
+		OBJECT(MODEL_GEAR, -2873, 983, -2564, 0, -135, 0, 0x00000000, bhvStoneGear),
+		OBJECT(MODEL_GEAR, -1289, 983, -2564, 0, -135, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GRAPPLE_STONE, 1370, 1603, 2083, 0, -90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 1370, 1603, 800, 0, -90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, -2741, 3419, 2659, 0, -90, 0, (1 << 16), bhvGrappleStone),
@@ -227,11 +246,15 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GRAPPLE_STONE, -2933, 2043, -747, 0, -180, 0, (250 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, -2364, 2393, 3242, 0, -90, 0, (200 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 2924, 6798, -2468, 0, -180, 0, (150 << 8), bhvGrappleStone),
+		OBJECT(MODEL_GEAR, -2069, 493, -2564, 0, -180, 0, (1 << 24), bhvStoneGear),
+		OBJECT(MODEL_STAR, -643, 3985, -4832, 0, 0, 0, (12 << 24), bhvStar),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, 1434, 1603, -2396, 0, 0, 0, 0x00000000, bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -439, 524, -2833, 0, 90, 0, (1 << 8), bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -439, 524, -2833, 0, -90, 0, (1 << 8), bhvStoneTowerDoor),
 		TERRAIN(jrb_area_3_collision),
 		TERRAIN_MAT_LUT(jrb_area_3_collision_materials),
 		MACRO_OBJECTS(jrb_area_3_macro_objs),

@@ -10,6 +10,34 @@ void bhv_stone_gear_init(void) {
 
 void bhv_stone_gear_loop(void) {
 
+    if (GET_BPARAM1(o->oBehParams) == 1) {
+
+        if (gMarioState->equippedPatch == PATCH_EXTENSION && gMarioState->patchChildObj 
+        && obj_has_behavior(gMarioState->patchChildObj, bhvExtensionBlock) && o->oDistanceToMario < 200.0f
+        && gMarioState->marioObj->platform == gMarioState->patchChildObj) {
+            o->oPosY = gMarioState->pos[1];
+
+            
+        }
+
+        if (o->oPosY > 920) {
+                f32 dist;
+                struct Object *nearGear = cur_obj_find_nearest_object_with_behavior(bhvStoneGear, &dist);
+                if (nearGear && nearGear->oAction == 0  && (gTatumCount / 41) % 8 != 0) {
+                    o->oFaceAngleYaw = nearGear->oFaceAngleYaw + 0x2000;
+                    o->oMoveAngleYaw = o->oFaceAngleYaw;
+
+                    SET_BPARAM1(o->oBehParams, 0);
+                    SET_BPARAM2(o->oBehParams, 1);
+                    o->oBehParams2ndByte = 1;
+                    cur_obj_play_sound_2(SOUND_GENERAL2_ROTATING_BLOCK_CLICK);
+                }
+            }
+
+        return;
+    }
+
+
     u8 turnTimer = 16;
 
     if (gMarioState->action == ACT_GRAPPLE_WALL) {
@@ -50,6 +78,17 @@ void bhv_stone_tower_door_init(void) {
 }
 
 void bhv_stone_tower_door_loop(void) {
+
+    if (GET_BPARAM3(o->oBehParams) == 1) {
+        struct Object *gear = cur_obj_find_object_with_bparam_1st_byte(bhvStoneGear, 1);
+
+        if (!gear && o->oTimer > 5) {
+            SET_BPARAM3(o->oBehParams, 0);
+        }
+
+        return;
+    }
+
     switch (o->oAction) {
         case ACT_STONE_TOWER_DOOR_CLOSED:
         case ACT_STONE_TOWER_DOOR_OPEN:
