@@ -320,8 +320,9 @@ void bhv_grapple_hook_loop(void) {
                 struct Object *other = o->collidedObjs[i];
 
                 if (other != gMarioObject) {
+                    s16 health = other->oHealth;
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
-                    if (attack_object(other, 2, 3) != 0) {
+                    if ((attack_object(other, 2, 3) != 0) && (other->oHealth < health)) {
                         spawn_object_relative(0, o->oPosX - other->oPosX, 
                         o->oPosY - other->oPosY - 40, 
                         o->oPosZ - other->oPosZ, 
@@ -604,11 +605,11 @@ void bhv_halo_loop(void) {
     obj_set_hitbox(o, &sHaloHitbox);
     for (int i = 0; i < o->numCollidedObjs; i++) {
         struct Object *other = o->collidedObjs[i];
-
+        
         if (other != gMarioObject) {
-            // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
-            // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            if (attack_object(other, 1, 1) != 0) {
+            
+            s16 health = other->oHealth;
+            if ((attack_object(other, 1, 1) != 0) && (other->oHealth < health)) {
                 spawn_object_relative(0, o->oPosX - other->oPosX, 
                         o->oPosY - other->oPosY - 40, 
                         o->oPosZ - other->oPosZ, 

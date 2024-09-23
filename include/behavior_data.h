@@ -745,3 +745,5 @@ extern const BehaviorScript bhvSoundWave[];
 extern const BehaviorScript bhvTasteNoiseSpikeHitbox[];
 extern const BehaviorScript bhvTasteSwitch[];
 extern const BehaviorScript bhvTasteDoor[];
+extern const BehaviorScript bhvDrawbackCurtain[];
+extern const BehaviorScript bhvPatchChallengeMenu[];

@@ -700,6 +700,69 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     }
 }
 
+void get_next_available_patch_challenge(s8 *currentIndex, s8 direction) {
+    if (direction > 0) {
+        for (int i = *currentIndex; i <= 12; i++) {
+            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << *currentIndex))) {
+                *currentIndex = i;
+            }
+        }
+    }
+    else {
+        for (int i = *currentIndex; i > 0; i--) {
+            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << *currentIndex))) {
+                *currentIndex = i;
+            }
+        }
+    }
+}
+
+void handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
+    u8 index = 0;
+
+    if (scrollDirection == MENU_SCROLL_VERTICAL) {
+        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
+        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        
+    } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
+        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+            index += 2;
+             gStarSelectDisturbed = 1;
+        }
+        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+            index++;
+            gStarSelectDisturbed = 1;
+        }
+    }
+
+    if (((index ^ gMenuHoldKeyIndex) & index) == 2) {
+        if (*currentIndex != maxIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            get_next_available_patch_challenge(currentIndex, 1);
+        }
+    }
+
+    if (((index ^ gMenuHoldKeyIndex) & index) == 1) {
+        if (*currentIndex != minIndex) {
+            play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+            get_next_available_patch_challenge(currentIndex, -1);
+        }
+    }
+
+    if (gMenuHoldKeyTimer == 10) {
+        gMenuHoldKeyTimer = 8;
+        gMenuHoldKeyIndex = 0;
+    } else {
+        gMenuHoldKeyTimer++;
+        gMenuHoldKeyIndex = index;
+    }
+
+    if ((index & 3) == 0) {
+        gMenuHoldKeyTimer = 0;
+    }
+}
+
+
 u8 gSecondaryMenuHoldKeyTimer;
 u8 gSecondaryMenuHoldKeyIndex;
 
@@ -3121,6 +3184,58 @@ void render_sound_menu() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
+const char challengeNames[12][48] = {
+    "A stone's throw away",
+    "Frights to freeze for",
+    "Lots to grapple",
+    "A challenge divine",
+    "Making waves",
+    "Devoured in shadow",
+    "From one to another",
+    "Gone with the wind",
+    "Journey across space and... space",
+    "Ribbons of malice",
+    "Extending your abilities",
+    "Walking on thin air"
+};
+
+s16 gPatchChallengeIndex = 1;
+
+void render_patch_challenge_menu() {
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X, SCREEN_CENTER_Y, 0);
+    //create_dl_rotation_matrix(MENU_MTX_NOPUSH, gFeltRot, 0, 0, 1.0f);  
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+
+    gSPDisplayList(gDisplayListHead++, patch_challenge_menu_bg_Plane_011_mesh);
+
+    
+        handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12);
+        //print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
+
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(SCREEN_CENTER_X ,SCREEN_CENTER_Y - 67, challengeNames[gPatchChallengeIndex-1], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
+
+            
+        }
+
+        if (gPlayer1Controller->buttonPressed & (B_BUTTON)) {
+            gMenuMode = MENU_MODE_NONE;
+            gMarioState->action = ACT_IDLE;
+            gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
+            gCamera->cutscene = 0;
+        }
+        
+    
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 s8 gCourseCompleteCoinsEqual = FALSE;
 s32 gCourseDoneMenuTimer = 0;
 s32 gCourseCompleteCoins = 0;
@@ -3764,6 +3879,9 @@ s32 render_menus_and_dialogs(void) {
                 break;
             case MENU_MODE_SOUND_MENU:
                 render_sound_menu();
+            break;
+            case MENU_MODE_PATCH_CHALLENGE_MENU:
+                render_patch_challenge_menu();
             break;
         }
 

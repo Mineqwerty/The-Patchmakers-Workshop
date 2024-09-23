@@ -563,6 +563,7 @@
 #define MODEL_HVH_BOOK_NORMAL                  0x10D
 #define MODEL_HVH_BOOK_ACTIVE                  0x10E
 #define MODEL_MUSIC_NOTE                  0x10F
+#define MODEL_DRAWBACK_CURTAIN                  0x110
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

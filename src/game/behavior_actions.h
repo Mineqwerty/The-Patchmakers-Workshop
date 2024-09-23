@@ -998,3 +998,7 @@ void bhv_taste_switch_init(void);
 void bhv_taste_switch_loop(void);
 void bhv_taste_door_init(void);
 void bhv_taste_door_loop(void);
+void bhv_drawback_curtain_init(void);
+void bhv_drawback_curtain_loop(void);
+void bhv_patch_challenge_menu_init(void);
+void bhv_patch_challenge_menu_loop(void);

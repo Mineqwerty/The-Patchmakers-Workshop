@@ -205,4 +205,8 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/music_note/geo_header.h"
 
+#include "levels/castle_inside/drawback_curtain/geo_header.h"
+
+#include "levels/castle_inside/patch_challenge_menu_bg/header.h"
+
 #endif
