@@ -57,7 +57,7 @@ u8 gCacheEmulated = TRUE;
 u8 gBorderHeight;
 u8 gSlowdownCount;
 u8 gMarioWaterwalk = 0;
-u8 gBossHealth;
+s16 gBossHealth;
 u8 gBossMaxHealth;
 u32 gTatumCount;
 u8 gTatumStall;

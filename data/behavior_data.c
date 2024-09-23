@@ -8243,3 +8243,32 @@ const BehaviorScript bhvTasteDoor[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSpearHitbox[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_spear_hitbox_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_spear_hitbox_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGildedStar[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_HOLDABLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_gilded_star_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_gilded_star_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGildedStarReceiver[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_gilded_star_receiver_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_gilded_star_receiver_loop),
+    END_LOOP(),
+};

@@ -53,7 +53,7 @@ extern u8 gCacheEmulated;
 extern u8 gBorderHeight;
 extern u8 gSlowdownCount;
 extern u8 gMarioWaterwalk;
-extern u8 gBossHealth;
+extern s16 gBossHealth;
 extern u8 gBossMaxHealth;
 extern u32 gTatumCount;
 extern u8 gTatumStall;

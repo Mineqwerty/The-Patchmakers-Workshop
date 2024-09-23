@@ -59,6 +59,7 @@ enum cutscene_events {
     EVENT_WAIT_FOR_BUTTON_PRESS,
 
     EVENT_DIALOG_AUTO,
+    EVENT_FAST_DIALOG_AUTO,
     EVENT_DIALOG_USER_ADVANCE,
 
     EVENT_CAMERA_ENABLE_CUTSCENE,
@@ -93,7 +94,7 @@ enum cutscene_events {
     EVENT_SONG_SECONDARY,
 
     EVENT_HUD_DISABLE,
-    EVENT_HUD_ENABLE,
+    //EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
     EVENT_HUD_SET_EFFECT,
 
@@ -338,12 +339,43 @@ s32 event_find_stone_patch[] = {
 s32 event_goddess_death[] = {
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
-    EVENT_DIALOG_USER_ADVANCE, 61,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_CAMERA_POSITION, -1200, 1600, -5000,
+    EVENT_CAMERA_FOCUS, 0, 1800, -1600,
+    EVENT_FAST_DIALOG_AUTO, 61,
     EVENT_WAIT_FOR_DIALOG_END,
-    EVENT_SET_MARIO_POSITION, 0, -400, -1700,
-    EVENT_SET_MARIO_YAW, 0,
-    EVENT_CAMERA_POSITION_SPLINE_DATA, 2,
-    EVENT_CAMERA_FOCUS_SPLINE_DATA, 3,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION, -200, 0, -2400,
+    EVENT_CAMERA_FOCUS, 0, -400, -1600,
+    EVENT_SET_MARIO_POSITION, 0, -380, -2300,
+    EVENT_MARIO_APPROACH_POINT, 0, -400, -1900,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_WAIT, 10,
+    EVENT_DIALOG_USER_ADVANCE, 62,
+    EVENT_WAIT, 50,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 29,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 30,
+    EVENT_WAIT_FOR_DIALOG_END, 
+    EVENT_WAIT, 10,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_WAIT, 1,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, 0, -320, -2400,
+    EVENT_CAMERA_FOCUS, 0, -300, -1600,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_DIALOG_USER_ADVANCE, 63,
+    EVENT_WAIT, 10,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_WAIT, 4,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_WAIT, 4,
+    
+    EVENT_END_CUTSCENE
 
 };
 
@@ -519,7 +551,10 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_MeetSewniaPos1,
     castle_inside_area_1_spline_MeetSewniaFoc1,
     castle_inside_area_1_spline_MeetSewniaPos2,
-    castle_inside_area_1_spline_MeetSewniaFoc2
+    castle_inside_area_1_spline_MeetSewniaFoc2,
+    ccm_area_4_spline_GoddessIntroCutscene6Pos,
+    //30
+    ccm_area_4_spline_GoddessIntroCutscene6Foc,
 };
 
 void begin_cutscene_event(s32 event) {
@@ -588,6 +623,10 @@ void event_handler(void) {
                 break;
                 case EVENT_DIALOG_AUTO:
                     create_automatic_dialog_box(param1);
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_FAST_DIALOG_AUTO:
+                    create_fast_automatic_dialog_box(param1);
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_CAMERA_ENABLE_CUTSCENE:

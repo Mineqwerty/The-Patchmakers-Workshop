@@ -629,6 +629,7 @@
 #define MODEL_SWINGING_AXE                 0x10F
 #define MODEL_WING_SURFACE              0x110
 #define MODEL_GODDESS_SPEAR              0x111
+#define MODEL_GILDED_STAR              0x112
 
 //The Far Plane
 #define MODEL_FLOATING_PLANE                   0x100
@@ -747,6 +748,7 @@
 #define MODEL_TRANSPARENT_BLUE_COIN          0x188
 #define MODEL_IMPACT_GRAPPLE          0x189
 #define MODEL_IMPACT_HALO          0x18A
+#define MODEL_GILDED_STAR_G     0x18B
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

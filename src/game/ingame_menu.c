@@ -987,6 +987,14 @@ void create_automatic_dialog_box(s16 dialog) {
     }
 }
 
+void create_fast_automatic_dialog_box(s16 dialog) {
+    if (gDialogID == DIALOG_NONE) {
+        gDialogID = dialog;
+        gDialogBoxType = DIALOG_TYPE_ROTATE;
+        gDialogAuto = 2;
+    }
+}
+
 void create_dialog_box_with_var(s16 dialog, s32 dialogVar) {
     if (gDialogID == DIALOG_NONE) {
         gDialogID = dialog;
@@ -1929,7 +1937,7 @@ void new_dialog_render_automatic_dialog(void) {
                 gForceDialogLoad = 0;
             }
             lowerBound = 1;
-            gDialogAdvanceTimer = 60;
+            gDialogAdvanceTimer = gDialogAuto == 2 ? 15 : 60;
             gDialogCharNum = -1;
             break;
 
@@ -1950,7 +1958,7 @@ void new_dialog_render_automatic_dialog(void) {
                         gDialogCharNum--;
                     }
 
-                    gDialogAdvanceTimer = 60;
+                    gDialogAdvanceTimer = gDialogAuto == 2 ? 15 : 60;
             }
             lowerBound = 1;
             break;
@@ -1980,7 +1988,7 @@ void new_dialog_render_automatic_dialog(void) {
                 gDialogResponse = DIALOG_RESPONSE_NONE;
             }
             gDialogCharNum = -1;
-            gDialogAdvanceTimer = 60;
+            gDialogAdvanceTimer = gDialogAuto == 2 ? 15 : 60;
             lowerBound = 1;
             break;
     }
@@ -3775,7 +3783,7 @@ s32 render_menus_and_dialogs(void) {
             return mode;
         }
 
-        if (gDialogAuto == 1) {
+        if (gDialogAuto >= 1) {
             new_dialog_render_automatic_dialog();
         }
         else {

@@ -602,6 +602,12 @@ void bhv_halo_loop(void) {
     }
 
     obj_set_hitbox(o, &sHaloHitbox);
+
+    if (gCurrLevelNum == LEVEL_CCM && gCurrAreaIndex == 4) {
+        o->hitboxRadius = 100;
+        o->hurtboxRadius = 20;
+    }
+
     for (int i = 0; i < o->numCollidedObjs; i++) {
         struct Object *other = o->collidedObjs[i];
 

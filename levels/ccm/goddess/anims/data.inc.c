@@ -10,3 +10,7 @@
 #include "anim_SpearDiveEnd.inc.c"
 #include "anim_CloseCombat.inc.c"
 #include "anim_FlyUp.inc.c"
+#include "anim_Death.inc.c"
+#include "anim_OnGroundLookUp.inc.c"
+#include "anim_OnGroundLaugh.inc.c"
+#include "anim_OnGroundIdle.inc.c"

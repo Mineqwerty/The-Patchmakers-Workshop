@@ -23,5 +23,9 @@ const struct Animation *const goddess_anims[] = {
 
 	&goddess_anim_FlyUp,
 
+	&goddess_anim_Death,
+	&goddess_anim_OnGroundLookUp,
+	&goddess_anim_OnGroundLaugh,
+	&goddess_anim_OnGroundIdle,
 	NULL,
 };

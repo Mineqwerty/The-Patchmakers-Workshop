@@ -1309,6 +1309,7 @@
 //goddess
 #define oGoddessInvulnerableTimer        OBJECT_FIELD_S32(0x1B)
 #define oGoddessSpearIsOut        OBJECT_FIELD_S32(0x1C)
+#define oGoddessSpearHitbox           OBJECT_FIELD_OBJ(0x1D)
 
 //torch holder
 #define oTorchFlame           OBJECT_FIELD_OBJ(0x1B)

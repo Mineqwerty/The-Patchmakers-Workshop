@@ -484,18 +484,27 @@ There SHOULD be nothing here!\n\
 That's the way it needs to be!\n\
 An empty heaven, my hell alone!"))
 
-DEFINE_DIALOG(DIALOG_061, 1, 3, 30, 200, _("\
-Enough!!!\n\
+DEFINE_DIALOG(DIALOG_061, 0b10, 3, 30, 200, _("\
+Hrk......\n\
 \n\
 \n\
+IT... IT BURNS!!!\n\
+I CAN'T...\n\
+AAUUUGHHHH!!!\n\
+Enough...\n\
+ENOUGH!!!\n\
+..."))
+
+DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
 What is it you want!?\n\
-Strength? Treasure?\n\
+Power? Treasure?\n\
 Or is it simply my head?\n\
 How does a mortal like you\n\
 even know of me!?\n\
-"))
-
-DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
+\n\
+...\n\
+\n\
+\n\
 I see... So, those restless Spekturrs that\n\
 remain in the abyss below told you of my\n\
 past. Were you trying to avenge them? Haha...\n\

@@ -75,3 +75,18 @@ struct CutsceneSplinePoint ccm_area_4_spline_GoddessIntroCutscene5Pos[] = {
 	{ 5, 132, { -119, 2048, -1817 }},
 	{ -1, 200, { -54, 1992, -2452 }},
 };
+struct CutsceneSplinePoint ccm_area_4_spline_GoddessIntroCutscene6Foc[] = {
+	{ 0, 200, { -20, -352, -2243 }},
+	{ 1, 200, { -52, -374, -1921 }},
+	{ 2, 200, { -87, -350, -1298 }},
+	{ -1, 200, { -112, -385, -885 }},
+};
+struct CutsceneSplinePoint ccm_area_4_spline_GoddessIntroCutscene6Pos[] = {
+	{ 0, 200, { 1330, 389, -1202 }},
+	{ 1, 200, { 1341, 367, -1525 }},
+	{ 2, 90, { 1338, 391, -2149 }},
+	{ 3, 90, { 1335, 356, -2562 }},
+	{ 4, 90, { 1343, 329, -3040 }},
+	{ 5, 132, { 1416, 282, -3701 }},
+	{ -1, 200, { 1481, 227, -4336 }},
+};

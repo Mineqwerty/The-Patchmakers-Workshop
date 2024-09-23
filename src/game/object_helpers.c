@@ -974,6 +974,7 @@ u8 object_behavior_is_chompable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvBoo)
         || obj->behavior == segmented_to_virtual(bhvFloatingPlane)
         || obj->behavior == segmented_to_virtual(bhvMrI)
+        || obj->behavior == segmented_to_virtual(bhvSpekturr)
     );
 }
 
@@ -983,6 +984,12 @@ struct Object *shadow_chomp_find_target(/*const BehaviorScript *behavior,*/ f32 
     struct Object *obj = (struct Object *) listHead->next;
     struct Object *closestObj = NULL;
 
+    u32 checkLists[6] = { OBJ_LIST_DESTRUCTIVE, OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE,
+                          OBJ_LIST_LEVEL,       OBJ_LIST_DEFAULT,  OBJ_LIST_SURFACE };
+
+    for (u8 i = 0; i < 6; i++) {
+        listHead = &gObjectLists[checkLists[i]];
+        obj = (struct Object *) listHead->next;
     while (obj != (struct Object *) listHead) {
         if (object_behavior_is_chompable(obj)
             && obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
@@ -996,6 +1003,7 @@ struct Object *shadow_chomp_find_target(/*const BehaviorScript *behavior,*/ f32 
         }
 
         obj = (struct Object *) obj->header.next;
+    }
     }
 
     return NULL;

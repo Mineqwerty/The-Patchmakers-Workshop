@@ -16,7 +16,7 @@
 static struct ObjectHitbox sGoddessHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 0,
-    /* damageOrCoinValue: */ 4,
+    /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
     /* radius:            */ 600,
@@ -79,7 +79,7 @@ void goddess_act_gold_barrage(void) {
     }
 
     if (o->oTimer % 8 == 0) {
-        struct Object *bullet = spawn_object_relative(0, 0, 2000, 0, o, MODEL_GOLD_BLOB, bhvGoldBlob);
+        struct Object *bullet = spawn_object_relative(0, 0, 2000, 0, o, MODEL_GOLD_SPIKE_BALL, bhvGoldBlob);
         bullet->oGoldBlobDirection = random_u16() % 2;
         bullet->oAction = 2;
         bullet->oHomeX = gMarioState->pos[0];
@@ -88,26 +88,41 @@ void goddess_act_gold_barrage(void) {
     }
 }
 
+Vec3f goddessDivePos;
+Vec3f goddessTargetPos;
+
 void goddess_act_spear_dive(void) {
 
     gCamera->controlBossCameraYaw = 1;
 
     switch (o->oSubAction) {
         case 0:
-            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
+            o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x440);
             if (cur_obj_init_animation_and_check_if_near_end(7)) {
                 o->oSubAction++;
                 o->oTimer = 0;
+
+                vec3f_copy(goddessDivePos, &o->oPosVec);
+                vec3f_copy(goddessTargetPos, gMarioState->pos);
+
+                o->oGoddessSpearHitbox = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvSpearHitbox);
+                
             }
             break;
         case 1:
             cur_obj_init_animation(8);
-            f32 floorHeight = find_floor_height(o->oPosX, o->oPosY - 100, o->oPosZ);
+            //f32 floorHeight = find_floor_height(o->oPosX, o->oPosY - 100, o->oPosZ);
 
-            o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + (500 * (1 + coss(o->oTimer * 0x5B0))), 0.2f);
+            //o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + (500 * (1 + coss(o->oTimer * 0x5B0))), 0.2f);
 
             if (o->oTimer >= 15) {
-                o->oForwardVel = 140.0f;
+                f32 dist;
+                vec3f_get_lateral_dist(goddessTargetPos, goddessDivePos, &dist);
+                f32 height = goddessDivePos[1] - goddessTargetPos[1];
+                s16 diveTime = o->oTimer - 15;
+                o->oForwardVel = dist/25;
+                o->oPosY = goddessDivePos[1] - height * sins(diveTime * 0x444);
+            
             }
             cur_obj_move_xz_using_fvel_and_yaw();
 
@@ -120,7 +135,13 @@ void goddess_act_spear_dive(void) {
             if (cur_obj_init_animation_and_check_if_near_end(9)) {
                 o->oAction = GODDESS_ACT_IDLE_FLIGHT;
                 o->oForwardVel = 0.0f;
-                spawn_object_relative(0, 0, -1000, 0, o, MODEL_GODDESS_SPEAR, bhvGoddessSpear);
+                struct object *spear = spawn_object_relative(0, 0, 1000, 0, o, MODEL_GODDESS_SPEAR, bhvGoddessSpear);
+                for (int i = 0; i < 4; i++) {
+                        spawn_object_relative(0, 0, i*200, 0, spear, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    }
+                if (o->oGoddessSpearHitbox) {
+                    obj_mark_for_deletion(o->oGoddessSpearHitbox);
+                }
             }
             break;
     }
@@ -159,12 +180,17 @@ void goddess_act_close_combat(void) {
 }
 
 void goddess_act_hurt(void) {
+
+    o->oInteractType = INTERACT_PUSH_OUT;
+
     if (cur_obj_init_animation_and_check_if_near_end(10)) {
         o->oAction = GODDESS_ACT_FLY_UP;
         if (gMarioState->equippedPatch == PATCH_HALO && gMarioState->patchChildObj) {
             gMarioState->patchChildObj->oHaloLengthMod = 1.0f;
         }
         o->hitboxRadius = 600;
+        o->hurtboxRadius = 500;
+        o->oInteractType = INTERACT_DAMAGE;
         return;
     }
 
@@ -182,6 +208,7 @@ void goddess_act_hurt(void) {
         }
     }
     o->hitboxRadius = 1200;
+    o->hurtboxRadius = 1100;
     f32 fHeight = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
     if (o->oTimer < 60) {
         object_step_without_floor_orient();
@@ -228,6 +255,7 @@ void goddess_act_fly_up(void) {
 }
 
 void goddess_act_banish(void) {
+    o->oHealth = 2;
     switch (o->oSubAction) {
         case 0:
             if (cur_obj_init_animation_and_check_if_near_end(3)) {
@@ -259,11 +287,103 @@ void goddess_act_banish(void) {
 }
 
 void goddess_act_death(void) {
+
+    o->oInteractStatus = 1;
+
     switch (o->oSubAction) {
         case 0:
             o->oSubAction = 1;
             begin_cutscene_event(CUTSCENE_EVENT_GODDESS_DEATH);
-            break;
+        break;
+        case 1:
+            o->oPosX = 0;
+            o->oPosY = 960;
+            o->oPosZ = -1620;
+            o->oFaceAngleYaw = 0x8000;
+            o->oMoveAngleYaw = 0x8000;
+            cur_obj_init_animation(12);
+
+            if (o->oTimer > 50) {
+                if (o->oTimer % 2 == 0) {
+                    struct Object *flameParticle = spawn_object_relative(0, random_u16()%500 - 250, random_u16()%1000, random_u16()%500 - 250, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    flameParticle->oVelY = (random_u16() % 8 + 5) / 1.8f;
+                    flameParticle->oMoveAngleYaw = random_u16();
+                    flameParticle->oForwardVel = (random_u16() % 4) / 1.2f;
+                }
+            }
+
+            if (o->oTimer > 80) {
+                cur_obj_scale(1.0f - (f32)(o->oTimer - 80) / 150);
+            }
+
+            if (cExternalCutsceneTrigger == 1) {
+                o->oSubAction++;
+                o->oTimer = 0;
+                cur_obj_init_animation(10);
+                o->header.gfx.animInfo.animFrame = 30;
+                o->oPosX = 0;
+                o->oPosY = -350;
+                o->oPosZ = -1620;
+                cur_obj_scale(0.2f);
+            }
+        break;
+        case 2:
+            cur_obj_scale(0.2f);
+            if (o->header.gfx.animInfo.animFrame >= 180) {
+                o->header.gfx.animInfo.animFrame = 78;
+            }
+
+            if (o->oPosY > -400) {
+                o->oPosY -= 4.0f + o->oTimer;
+            }
+            else {
+                o->oPosY = -400;
+            }
+            if (cExternalCutsceneTrigger == 2) {
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 3:
+            cur_obj_init_animation(13);
+            if (gPageNum > 1 && o->oTimer > 30) {
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+
+            if (cur_obj_init_animation_and_check_if_near_end(14)) {
+                o->oSubAction++;
+            }
+        break;
+        case 5:
+            cur_obj_init_animation(15);
+            o->oInteractType = INTERACT_NONE;
+            if (gCurCutscene == -1) {
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 6:
+        SET_BPARAM1(o->oBehParams, 5);
+        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
+            if (o->oTimer == 30) {
+                for (int i = 0; i < 30; i++) {
+                    struct Object *flameParticle = spawn_object_relative(0, random_u16()%50 - 25, random_u16()%100, random_u16()%50 - 25, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    flameParticle->oVelY = (random_u16() % 8 + 5) / 1.8f;
+                    flameParticle->oMoveAngleYaw = random_u16();
+                    flameParticle->oForwardVel = (random_u16() % 4) / 1.2f;
+                    
+                }
+                cur_obj_hide();
+            }
+
+            if (o->oTimer == 45) {
+                spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
+                obj_mark_for_deletion(o);
+                
+            }
+        break;
     }
 }
 
@@ -271,10 +391,9 @@ void goddess_act_cutscene(void) {
 
     switch (o->oSubAction) {
         case 0:
-            //gSecondCameraFocus = o;
-            //set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
-            o->oSubAction = 1;
-            begin_cutscene_event(CUTSCENE_EVENT_GODDESS_INTRO);
+            o->oSubAction = 3;
+            //o->oSubAction = 1;
+            //begin_cutscene_event(CUTSCENE_EVENT_GODDESS_INTRO);
             break;
         case 1:
         /*
@@ -363,6 +482,13 @@ void goddess_check_interactions(void) {
                 for (int i = 0; i < 8; i++) {
                     struct Object *fragment =
                         spawn_object_relative(0, 0, 1000, 0, o, MODEL_GOLD_FRAGMENT, bhvGoldFragment);
+                }
+
+                if (o->oHealth < 75) {
+                    struct object *spear = spawn_object_relative(0, 0, 1000, 0, o, MODEL_GODDESS_SPEAR, bhvGoddessSpear);
+                    for (int i = 0; i < 4; i++) {
+                            spawn_object_relative(0, 0, i*200, 0, spear, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                        }
                 }
             }
         }
@@ -481,6 +607,8 @@ void bhv_gold_blob_loop(void) {
             switch (random_u16() % 3) {
                 case 0:
                     o->oAction = 3;
+                    spawn_object_relative(0, 0, 20, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    cur_obj_set_model(MODEL_GOLD_BLOB);
                     break;
                 default:
                     spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
@@ -669,6 +797,12 @@ void bhv_goddess_loop(void) {
         keep_goddess_in_range();
     }
     gBossHealth = o->oHealth;
+
+    if (o->oHealth <= 0 && o->oAction != GODDESS_ACT_CUTSCENE) {
+        gBossHealth = 0;
+        gBossMaxHealth = 0;
+        o->oAction = GODDESS_ACT_DEATH;
+    }
 }
 
 Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node) {
@@ -682,6 +816,21 @@ Gfx *geo_switch_goddess_eyes(s32 callContext, struct GraphNode *node) {
                 switchCase->selectedCase = 3;
             } else {
                 switchCase->selectedCase = 1;
+            }
+
+            if (obj->oAction == GODDESS_ACT_HURT) {
+                switchCase->selectedCase = 4;
+            }
+
+            if (obj->oAction == GODDESS_ACT_DEATH) {
+                switchCase->selectedCase = 4;
+
+                if (obj->oSubAction == 3) {
+                    switchCase->selectedCase = 1;
+                }
+                if (obj->oSubAction >= 4) {
+                    switchCase->selectedCase = 2;
+                }
             }
     }
     return NULL;
@@ -726,7 +875,7 @@ void bhv_goddess_spear_loop(void) {
             o->oFaceAnglePitch = approach_s32_symmetric(o->oFaceAnglePitch, -0x2000, 0x200);
             o->oPosY += 12.0f;
             if (o->oTimer == 60) {
-                o->oAction = 1; //(random_u16() % 3) + 1;
+                o->oAction = (random_u16() % 2) + 1;
             }
         break;
         case 1:
@@ -764,21 +913,22 @@ void bhv_goddess_spear_loop(void) {
                 break;
                 case 3:
                     o->oForwardVel = 135.0f * coss(o->oFaceAnglePitch);
-                    o->oVelY = -135.0f * sins(o->oFaceAnglePitch);;
+                    o->oVelY = -135.0f * sins(o->oFaceAnglePitch);
                     o->oDragStrength = 0.0f;
                     o->oGravity = 0.0f;
 
-                    if (object_step_without_floor_orient() & OBJ_COL_FLAG_GROUNDED) {
+                    if ((object_step_without_floor_orient() & OBJ_COL_FLAG_GROUNDED) || o->oTimer > 330) {
                         o->oVelY = 0;
                         o->oForwardVel = 0;
-                    }
-
-                    if (o->oTimer == 110) {
+                        spawn_object_relative(0, 0, 20, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
                         if (o->oGoddessSpearAttackAttempts++ < 2) {
                             o->oTimer = 0;
                             o->oSubAction = 0;
                         }
                         else {
+                            for (int i = 0; i < 4; i++) {
+                                spawn_object_relative(0, 0, i*200, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                            }
                             obj_mark_for_deletion(o);
                         }
                     }
@@ -786,11 +936,89 @@ void bhv_goddess_spear_loop(void) {
             }
         break;
         case 2:
-            //drawing fire on the ground
+            switch (o->oSubAction) {
+                case 0:
+                    o->oFaceAnglePitch = approach_f32_asymptotic(o->oFaceAnglePitch, 0x4000, 0.08f);
+
+                    if (o->oTimer == 30) {
+                        o->oSubAction = 1;
+                        o->oGravity = -5.0f;
+                    }
+                break;
+                case 1:;
+
+                    f32 fHeight = find_floor_height(o->oPosX, o->oPosY + 100, o->oPosZ);
+
+                    o->oVelY -= o->oGravity;
+                    o->oPosY -= o->oVelY;
+
+                    if (o->oPosY < fHeight) {
+                        o->oPosY = fHeight;
+                        o->oSubAction = 2;
+                        o->oTimer = 0;
+                        spawn_object_relative(0, 0, 20, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    }
+
+
+                break;
+                case 2:
+                    if (o->oTimer == 20) {
+                        o->oSubAction = 3;
+                        o->oTimer = 0;
+                    }
+                break;
+                case 3:
+                if (o->oTimer == 1) {
+                    o->oMoveAngleYaw = o->oAngleToMario + 0x4000 * random_sign();
+                }
+
+                o->oForwardVel = 30.0f + o->oTimer;
+                obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+
+                if (o->oTimer % 5 == 0) {
+                    spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_FLAME, bhvFlameLargeBurningOut);
+                }
+
+                cur_obj_move_xz_using_fvel_and_yaw();
+
+                if (o->oTimer == 90) {
+                    o->oSubAction = 4;
+                    o->oTimer = 0;
+                }
+
+                break;
+                case 4:
+                    o->oFaceAnglePitch -= 0x200;
+                cur_obj_move_xz_using_fvel_and_yaw();
+                o->oPosY += 20;
+
+                if (o->oTimer == 15) {
+                    for (int i = 0; i < 4; i++) {
+                        spawn_object_relative(0, 0, i*200, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    }
+                    obj_mark_for_deletion(o);
+                }
+                break;
+            }
         break;
         case 3:
             //laser of fire spinning
         break;
+    }
+}
+
+void bhv_spear_hitbox_init(void) {
+    obj_set_hitbox(o, &sGoddessSpearHitbox);
+}
+
+void bhv_spear_hitbox_loop(void) {
+    if (o->parentObj) {
+        o->oPosX = o->parentObj->oPosX + 880 * sins(o->parentObj->oMoveAngleYaw);
+        o->oPosZ = o->parentObj->oPosZ + 880 * coss(o->parentObj->oMoveAngleYaw);
+
+        o->oPosY = o->parentObj->oPosY;
+
+        o->oInteractStatus = 0;
     }
 }
 

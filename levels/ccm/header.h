@@ -122,4 +122,6 @@ extern const LevelScript level_ccm_entry[];
 
 #include "levels/ccm/grounded_patch_halo/geo_header.h"
 
+#include "levels/ccm/gilded_star/geo_header.h"
+
 #endif
