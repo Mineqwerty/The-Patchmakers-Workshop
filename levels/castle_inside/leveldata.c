@@ -111,3 +111,5 @@
 #include "levels/castle_inside/hvh_book_normal/model.inc.c"
 #include "levels/castle_inside/hvh_book_active/model.inc.c"
 #include "levels/castle_inside/music_note/model.inc.c"
+#include "levels/castle_inside/drawback_curtain/model.inc.c"
+#include "levels/castle_inside/patch_challenge_menu_bg/model.inc.c"

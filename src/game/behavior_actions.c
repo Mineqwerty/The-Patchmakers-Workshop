@@ -351,4 +351,6 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/taste_noise_spike_hitbox.inc.c"
 #include "behaviors/taste_switch.inc.c"
 #include "behaviors/taste_door.inc.c"
+#include "behaviors/drawback_curtain.inc.c"
+#include "behaviors/patch_challenge_menu.inc.c"
 #include "behaviors/gilded_star.inc.c"

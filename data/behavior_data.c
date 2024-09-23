@@ -8244,6 +8244,24 @@ const BehaviorScript bhvTasteDoor[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvDrawbackCurtain[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_drawback_curtain_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_drawback_curtain_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPatchChallengeMenu[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_patch_challenge_menu_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_patch_challenge_menu_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvSpearHitbox[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),

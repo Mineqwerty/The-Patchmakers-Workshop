@@ -47,8 +47,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SHADOW_TRANSITION_SPHERE, shadow_transition_sphere_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_NORMAL, hvh_book_normal_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_ACTIVE, hvh_book_active_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -114,6 +114,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x0E, LEVEL_CCM, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0F, LEVEL_BITDW, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x20, LEVEL_DDD, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x21, LEVEL_SSL, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x30, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x31, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x32, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -138,13 +139,17 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 4227, 466, 4534, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_NONE, 4398, 466, 4422, 0, -180, 0, 0x00000000, bhvEntranceFlameSpawn),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 5173, 2177, 1253, 0, -117, 0, (0 << 24) | (4 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_DRAWBACK_CURTAIN, -3069, 1433, -4521, 0, -180, 0, 0x00000000, bhvDrawbackCurtain),
+		OBJECT(MODEL_DRAWBACK_CURTAIN, -3630, 1433, -4521, 0, 0, 0, 0x00000000, bhvDrawbackCurtain),
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_HVH_BOOK_NORMAL, 6852, 2412, 1833, 0, 0, 0, 0x20200000, bhvHvhBook),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),
+		OBJECT(MODEL_NONE, -3349, 1322, -4577, 0, 0, 0, 0x00000000, bhvPatchChallengeMenu),
 		OBJECT(MODEL_NONE, 1690, 100, 3403, 0, -136, 0, 0x00000000, bhvSoundMenu),
+		OBJECT(MODEL_NONE, -1475, 2394, 4453, 0, 0, 0, 0x21210000, bhvFadingWarp),
 		TERRAIN(castle_inside_area_2_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_2_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_2_macro_objs),
