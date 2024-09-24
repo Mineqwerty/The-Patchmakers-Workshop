@@ -491,6 +491,15 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
     }
 }
 
+u32 save_file_get_patch_challenge_time(s32 fileIndex, s8 patchChallenge) {
+    return gSaveBuffer.files[fileIndex][0].patchChallengeFrames[patchChallenge-1];
+}
+
+void save_file_set_patch_challenge_time(s32 fileIndex, s8 patchChallenge, u32 frames) {
+    gSaveBuffer.files[fileIndex][0].patchChallengeFrames[patchChallenge-1] = frames;
+    gSaveFileModified = TRUE;
+}
+
 s32 save_file_exists(s32 fileIndex) {
     return (gSaveBuffer.files[fileIndex][0].flags & SAVE_FLAG_FILE_EXISTS) != 0;
 }

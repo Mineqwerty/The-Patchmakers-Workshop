@@ -47,7 +47,9 @@ struct SaveFile {
 
     u8 filler[6]; // 56 bits
 
-    struct SaveBlockSignature signature; // 32 bits
+    u32 patchChallengeFrames[12]; // 384 bits
+
+    struct SaveBlockSignature signature; // 32 bits 
 };
 
 enum SaveFileIndex {
@@ -238,6 +240,8 @@ void save_file_move_cap_to_default_location(void);
 void disable_warp_checkpoint(void);
 void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode);
 s32 check_warp_checkpoint(struct WarpNode *warpNode);
+void save_file_set_patch_challenge_time(s32 fileIndex, s8 patchChallenge, u32 frames);
+u32 save_file_get_patch_challenge_time(s32 fileIndex, s8 patchChallenge);
 
 #if MULTILANG
 enum EuLanguages {

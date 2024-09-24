@@ -1554,3 +1554,9 @@ OPTIMIZE_OS void mtxf_to_mtx_fast(s16* dst, float* src) {
     //  to set the top half.
     dst[15] = 1;
 }
+
+void mm_ss_ms_from_frames(u32 frames, u32 time[3]) {
+    time[0] = frames / 1800;
+    time[1] = (frames/30) % 60;
+    time[2] = (frames % 30)*2;
+}

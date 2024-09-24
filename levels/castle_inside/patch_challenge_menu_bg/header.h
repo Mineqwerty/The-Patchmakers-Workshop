@@ -1,8 +1,7 @@
 extern u8 patch_challenge_menu_bg_challengemenufelt_ci8[];
 extern u8 patch_challenge_menu_bg_challengemenufelt_pal_rgba16[];
 extern u8 patch_challenge_menu_bg_patch_challenge_ia4[];
-extern u8 patch_challenge_menu_bg_mario_cap_rgba16_ci8[];
-extern u8 patch_challenge_menu_bg_mario_cap_rgba16_pal_rgba16[];
+extern u8 patch_challenge_menu_bg_mario_cap_rgba16_rgba16[];
 extern Vtx patch_challenge_menu_bg_Plane_011_mesh_vtx_0[53];
 extern Gfx patch_challenge_menu_bg_Plane_011_mesh_tri_0[];
 extern Vtx patch_challenge_menu_bg_Plane_011_mesh_vtx_1[6];

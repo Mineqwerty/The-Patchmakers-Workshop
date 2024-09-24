@@ -44,7 +44,8 @@ enum MenuMode {
     MENU_MODE_NEW_STAR_COMPLETE_TEXT,
     MENU_MODE_FELT_GOING_UP,
     MENU_MODE_SOUND_MENU,
-    MENU_MODE_PATCH_CHALLENGE_MENU
+    MENU_MODE_PATCH_CHALLENGE_MENU,
+    MENU_MODE_ENTERING_PATCH_CHALLENGE
 };
 
 enum HUDFlashModes {
@@ -61,6 +62,7 @@ extern s8 gDialogCourseActNum;
 extern s16 gInGameLanguage;
 extern s16 gMenuMode;
 extern s16 gSoundMenuDynamicID;
+extern s8 gPatchChallengeIndex;
 
 struct DialogEntry {
     /*0x00*/ u32 flags;

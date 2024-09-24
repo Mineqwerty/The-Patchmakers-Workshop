@@ -702,26 +702,29 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
 
 void get_next_available_patch_challenge(s8 *currentIndex, s8 direction) {
 
-    dbp(*currentIndex);
+    
 
     if (direction > 0) {
-        for (int i = *currentIndex; i <= 12; i++) {
-            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << *currentIndex))) {
+        for (int i = *currentIndex + 1; i <= 12; i++) {
+            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << i))) {
                 *currentIndex = i;
+                return;
             }
         }
     }
     else {
-        for (int i = *currentIndex; i > 0; i--) {
-            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << *currentIndex))) {
+        for (int i = *currentIndex - 1; i > 0; i--) {
+            if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << i))) {
                 *currentIndex = i;
+                return;
             }
         }
     }
 }
 
-void handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
+u8 handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
     u8 index = 0;
+    u8 updateDMA = 0;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
         if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
@@ -742,6 +745,7 @@ void handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex,
         if (*currentIndex != maxIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             get_next_available_patch_challenge(currentIndex, 1);
+            updateDMA = 1;
         }
     }
 
@@ -749,6 +753,7 @@ void handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex,
         if (*currentIndex != minIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             get_next_available_patch_challenge(currentIndex, -1);
+            updateDMA = 1;
         }
     }
 
@@ -763,6 +768,8 @@ void handle_patch_challenge_menu_scrolling(s8 scrollDirection, s8 *currentIndex,
     if ((index & 3) == 0) {
         gMenuHoldKeyTimer = 0;
     }
+
+    return updateDMA;
 }
 
 
@@ -3210,7 +3217,7 @@ const char challengeNames[12][48] = {
     "Walking on thin air"
 };
 
-s16 gPatchChallengeIndex = 1;
+s8 gPatchChallengeIndex = 1;
 
 void render_patch_challenge_menu() {
 
@@ -3224,14 +3231,34 @@ void render_patch_challenge_menu() {
     gSPDisplayList(gDisplayListHead++, patch_challenge_menu_bg_Plane_011_mesh);
 
     
-        handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12);
+        if (handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12) || gPatchChallengeIndex == 1) {
+            extern const u8 patch_textures_dma[];
+            extern u8 mario_mario_cap_rgba16[];
+            u8 *patchTexture = segmented_to_virtual(&patch_challenge_menu_bg_mario_cap_rgba16_rgba16);
+
+            dma_read(patchTexture, (gPatchChallengeIndex*2048) + patch_textures_dma, (gPatchChallengeIndex*2048) + patch_textures_dma + 2048);
+            
+        }
         //print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
 
         print_set_envcolour(0, 0, 0, 255);
-        print_small_text(SCREEN_CENTER_X ,SCREEN_CENTER_Y - 67, challengeNames[gPatchChallengeIndex-1], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_small_text(SCREEN_CENTER_X ,SCREEN_CENTER_Y - 47, challengeNames[gPatchChallengeIndex-1], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
 
-        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
+        u32 saveTime = save_file_get_patch_challenge_time(gCurrSaveFileNum-1, gPatchChallengeIndex);
+        u32 bestTime[3];
+        mm_ss_ms_from_frames(saveTime, bestTime);
+        print_set_envcolour(0, 0, 0, 255);
+        if (saveTime) {
+            char textBytes[80];
+            sprintf(textBytes, "Best Time: %d:%d.%d", bestTime[0], bestTime[1], bestTime[2]);
+            print_small_text(SCREEN_CENTER_X - 50, SCREEN_CENTER_Y + 37, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        }
+        else {
+            print_small_text(SCREEN_CENTER_X - 50, SCREEN_CENTER_Y + 37, "Best Time: --:--.--", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        }
 
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON)) {
+            gMenuMode = MENU_MODE_ENTERING_PATCH_CHALLENGE;
             
         }
 

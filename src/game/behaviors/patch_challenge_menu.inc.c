@@ -32,6 +32,19 @@ void bhv_patch_challenge_menu_loop(void) {
             if (o->oDistanceToMario > 600) {
                 o->oAction = 0;
             }
+
+            if (gMenuMode == MENU_MODE_ENTERING_PATCH_CHALLENGE) {
+                o->oAction = 3;
+            }
+        break;
+        case 3:
+            if (o->oTimer == 20) {
+                play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+            }
+            if (o->oTimer == 49) {
+                initiate_warp(LEVEL_PSS, gPatchChallengeIndex, 0x0A, 0);
+            }
         break;
     }
     
