@@ -701,6 +701,9 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
 }
 
 void get_next_available_patch_challenge(s8 *currentIndex, s8 direction) {
+
+    dbp(*currentIndex);
+
     if (direction > 0) {
         for (int i = *currentIndex; i <= 12; i++) {
             if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << *currentIndex))) {
