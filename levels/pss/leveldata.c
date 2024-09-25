@@ -21,3 +21,6 @@
 #include "levels/pss/areas/1/macro.inc.c"
 
 #include "levels/pss/leveldata.inc.c"
+
+#include "levels/pss/patch_challenge_curtain/model.inc.c"
+#include "levels/pss/patch_challenge_curtain_top/model.inc.c"

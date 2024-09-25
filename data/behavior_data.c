@@ -8290,3 +8290,12 @@ const BehaviorScript bhvGildedStarReceiver[] = {
         CALL_NATIVE(bhv_gilded_star_receiver_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPatchChallengeController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_patch_challenge_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_patch_challenge_controller_loop),
+    END_LOOP(),
+};

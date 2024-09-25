@@ -1008,3 +1008,5 @@ void bhv_gilded_star_init(void);
 void bhv_gilded_star_loop(void);
 void bhv_gilded_star_receiver_init(void);
 void bhv_gilded_star_receiver_loop(void);
+void bhv_patch_challenge_controller_init(void);
+void bhv_patch_challenge_controller_loop(void);

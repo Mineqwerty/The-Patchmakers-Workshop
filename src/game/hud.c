@@ -19,6 +19,7 @@
 #include "puppyprint.h"
 #include "levels/new_file_select/header.h"
 #include "levels/castle_inside/header.h"
+#include "levels/pss/header.h"
 
 #include "config.h"
 
@@ -347,6 +348,39 @@ void render_hud_eye_effect(void) {
         gSpecialHudRender = 0;
     }
 
+}
+
+void render_dl_curtains() {
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+    guTranslate(mtx, (f32) SCREEN_CENTER_X, (f32) SCREEN_CENTER_Y, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+              G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+    //gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_Plane_012_mesh);
+    
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, -100, 0, 0);
+        gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_Plane_012_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        create_dl_scale_matrix(MENU_MTX_NOPUSH, -1.0f, 1.0f, 1.0f);
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, -100, 0, 0);
+        gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_Plane_012_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+        create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, SCREEN_CENTER_Y, 0);
+        gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_top_Plane_013_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
 void render_dl_dpad_patches(s16 numHealthWedges) {
@@ -798,11 +832,15 @@ void render_hud(void) {
 #endif
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT) {
+            if (gCurrLevelNum != LEVEL_PSS) {
             render_hud_coins();
+            }
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT) {
+            if (gCurrLevelNum != LEVEL_PSS) {
             render_hud_stars();
+            }
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_KEYS) {
@@ -819,8 +857,15 @@ void render_hud(void) {
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
             render_hud_power_meter();
-            render_dl_dpad_patches(2);
-            render_hud_camera_status();
+
+            if (gCurrLevelNum == LEVEL_PSS) {
+                render_dl_curtains();
+            }
+            else {
+                render_dl_dpad_patches(2);
+                render_hud_camera_status();
+            }
+            
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {

@@ -1,0 +1,6 @@
+extern u8 patch_challenge_curtain_top_curtaintop_rgba16[];
+extern Vtx patch_challenge_curtain_top_Plane_013_mesh_vtx_0[62];
+extern Gfx patch_challenge_curtain_top_Plane_013_mesh_tri_0[];
+extern Gfx mat_patch_challenge_curtain_top_f3dlite_material[];
+extern Gfx mat_revert_patch_challenge_curtain_top_f3dlite_material[];
+extern Gfx patch_challenge_curtain_top_Plane_013_mesh[];
