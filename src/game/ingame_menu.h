@@ -63,6 +63,8 @@ extern s16 gInGameLanguage;
 extern s16 gMenuMode;
 extern s16 gSoundMenuDynamicID;
 extern s8 gPatchChallengeIndex;
+extern u32 patchChallengeTimes[12];
+extern s32 gCourseDoneMenuTimer;
 
 struct DialogEntry {
     /*0x00*/ u32 flags;

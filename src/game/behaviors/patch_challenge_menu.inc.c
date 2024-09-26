@@ -9,7 +9,7 @@ void bhv_patch_challenge_menu_init(void) {
 void bhv_patch_challenge_menu_loop(void) {
     switch (o->oAction) {
         case 0:
-            if (o->oDistanceToMario < 500 && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
+            if (gMenuMode == 0 &&  o->oDistanceToMario < 500 && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
                 gCamera->cutscene = 1;
                 gLakituState.goalPos[0] = o->oPosX;
                 gLakituState.goalPos[1] = o->oPosY;

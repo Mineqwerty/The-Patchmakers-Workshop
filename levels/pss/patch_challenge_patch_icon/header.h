@@ -1,0 +1,6 @@
+extern u8 patch_challenge_patch_icon_mario_cap_rgba16_rgba16[];
+extern Vtx patch_challenge_patch_icon_Plane_014_mesh_vtx_0[4];
+extern Gfx patch_challenge_patch_icon_Plane_014_mesh_tri_0[];
+extern Gfx mat_patch_challenge_patch_icon_patch_challenge_icon_source_001[];
+extern Gfx mat_revert_patch_challenge_patch_icon_patch_challenge_icon_source_001[];
+extern Gfx patch_challenge_patch_icon_Plane_014_mesh[];

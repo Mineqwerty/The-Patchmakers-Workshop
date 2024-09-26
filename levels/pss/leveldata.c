@@ -24,3 +24,4 @@
 
 #include "levels/pss/patch_challenge_curtain/model.inc.c"
 #include "levels/pss/patch_challenge_curtain_top/model.inc.c"
+#include "levels/pss/patch_challenge_patch_icon/model.inc.c"

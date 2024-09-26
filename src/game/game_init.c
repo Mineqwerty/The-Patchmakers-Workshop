@@ -88,6 +88,7 @@ void *gMarioAnimsMemAlloc;
 void *gDemoInputsMemAlloc;
 struct DmaHandlerList gMarioAnimsBuf;
 struct DmaHandlerList gDemoInputsBuf;
+u32 gPatchChallengeTimer;
 
 // General timer that runs as the game starts
 u32 gGlobalTimer = 0;

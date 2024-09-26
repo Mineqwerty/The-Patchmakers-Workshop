@@ -1872,7 +1872,7 @@ s32 act_lava_boost(struct MarioState *m) {
             if (m->floor->type == SURFACE_BURNING) {
                 m->actionState = ACT_STATE_LAVA_BOOST_HIT_LAVA;
                 if (m->curPatch != PATCH_STONE) {
-                    if (gCurrLevelNum == LEVEL_BOB) {
+                    if ((gCurrLevelNum == LEVEL_BOB) || (gCurrLevelNum == LEVEL_PSS)) {
                         m->hurtCounter += 4;
                     }
                     else {
@@ -1908,7 +1908,7 @@ s32 act_lava_boost(struct MarioState *m) {
 
     set_mario_animation(m, MARIO_ANIM_FIRE_LAVA_BURN);
     if ((m->area->terrainType & TERRAIN_MASK) != TERRAIN_SNOW && !(m->flags & MARIO_METAL_CAP)
-        && m->vel[1] > 0.0f && gCurrLevelNum != LEVEL_BOB) {
+        && m->vel[1] > 0.0f && (gCurrLevelNum != LEVEL_BOB) && (gCurrLevelNum != LEVEL_PSS)) {
         m->particleFlags |= PARTICLE_FIRE;
         if (m->actionState == ACT_STATE_LAVA_BOOST_HIT_LAVA) {
             play_sound(SOUND_MOVING_LAVA_BURN, m->marioObj->header.gfx.cameraToObject);

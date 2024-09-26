@@ -39,6 +39,7 @@
 #include "src/game/fb_effects.h"
 #include "src/game/dma_scroll.h"
 #include "levels/ssl/header.h"
+#include "src/game/ingame_menu.h"
 
 
 /**************************************************
@@ -1387,6 +1388,11 @@ void update_mario_button_inputs(struct MarioState *m) {
  * Updates the joystick intended magnitude.
  */
 void update_mario_joystick_inputs(struct MarioState *m) {
+
+    if (gCurrLevelNum == LEVEL_PSS) {
+        m->area->camera->yaw = 0;
+    }
+
     struct Controller *controller = m->controller;
     f32 mag = ((controller->stickMag / 64.0f) * (controller->stickMag / 64.0f)) * 64.0f;
 
@@ -2212,7 +2218,7 @@ u8 check_able_to_use_patch() {
 }
 
 void check_and_change_patch_dpad(u32 dir) {
-    if (gPlayer1Controller->buttonPressed & (dir)) {
+    if ((gCurrLevelNum != LEVEL_PSS) && (gPlayer1Controller->buttonPressed & (dir))) {
 
         u8 mapID = 0;
         switch (dir) {
@@ -2245,10 +2251,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     patch_update(gMarioState);
     gMarioState->patchTimer++;
-
-    if (gPlayer1Controller->buttonPressed & D_JPAD && gMarioState->action != ACT_WAITING_FOR_DIALOG) {
-        initiate_warp(LEVEL_CCM, 4, 0x0A, 0);
-    }
 
     
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
@@ -2515,6 +2517,12 @@ void init_mario(void) {
     gMarioState->miasmaSoulCount = 0;
     gMarioWaterwalk = FALSE;
     update_dl_dpad_patches();
+
+    gDialogBoxState = 0;
+                gMenuMode = MENU_MODE_NONE;
+                gCourseDoneMenuTimer = 0;
+            
+                gHudFlash = HUD_FLASH_NONE;
 
     
 

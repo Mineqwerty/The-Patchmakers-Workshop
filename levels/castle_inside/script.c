@@ -48,7 +48,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_NORMAL, hvh_book_normal_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_ACTIVE, hvh_book_active_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), /* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -119,10 +120,12 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x31, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x32, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x33, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x34, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x40, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x41, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x44, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
 		OBJECT(MODEL_NONE, -4311, 100, 1473, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_CLC_PAINTING, 4224, 282, 3444, 0, -180, 0, 0x00000000, bhvClcPainting),
@@ -144,6 +147,8 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_CARTOON_HAND, 1582, 837, 605, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_HVH_BOOK_NORMAL, 6852, 2412, 1833, 0, 0, 0, 0x20200000, bhvHvhBook),
+		OBJECT(MODEL_NONE, -3351, 1093, -3862, 0, -180, 0, (0x44 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, -3351, 1132, -3862, 0, -180, 0, (0x34 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),

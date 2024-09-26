@@ -378,9 +378,43 @@ void render_dl_curtains() {
 
         create_dl_translation_matrix(MENU_MTX_PUSH, 0, SCREEN_CENTER_Y, 0);
         gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_top_Plane_013_mesh);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X - 30, -SCREEN_CENTER_Y + 30, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++), G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+
+    extern const u8 patch_textures_dma[];
+    extern u8 patch_challenge_patch_icon_mario_cap_rgba16_rgba16[];
+    u8 *patchTexture = segmented_to_virtual(&patch_challenge_patch_icon_mario_cap_rgba16_rgba16);
+
+    dma_read(patchTexture, (gPatchChallengeIndex * 2048) + patch_textures_dma,
+             (gPatchChallengeIndex * 2048) + patch_textures_dma + 2048);
+
+    // create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.4f, 0.4f, 1.0f);
+    gSPDisplayList(gDisplayListHead++, &patch_challenge_patch_icon_Plane_014_mesh);
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+void render_hud_patch_challenge_timer(void) {
+    u32 printTime[3];
+    mm_ss_ms_from_frames(gPatchChallengeTimer, printTime);
+        print_set_envcolour(0, 0, 0, 255);
+        char textBytes[80];
+        sprintf(textBytes, "Time: %02d:%02d.%02d", printTime[0], printTime[1], printTime[2]);
+        print_small_text(21, 21, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(20, 20, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+
+        mm_ss_ms_from_frames(patchChallengeTimes[gCurrAreaIndex-1], printTime);
+        sprintf(textBytes, "Beat: %02d:%02d.%02d", printTime[0], printTime[1], printTime[2]);
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(21, 5, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(20, 4, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        
 }
 
 void render_dl_dpad_patches(s16 numHealthWedges) {
@@ -860,6 +894,7 @@ void render_hud(void) {
 
             if (gCurrLevelNum == LEVEL_PSS) {
                 render_dl_curtains();
+                render_hud_patch_challenge_timer();
             }
             else {
                 render_dl_dpad_patches(2);

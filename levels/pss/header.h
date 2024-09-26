@@ -27,4 +27,6 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/patch_challenge_curtain_top/header.h"
 
+#include "levels/pss/patch_challenge_patch_icon/header.h"
+
 #endif

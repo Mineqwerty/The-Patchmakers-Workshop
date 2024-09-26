@@ -57,6 +57,7 @@ extern s16 gBossHealth;
 extern u8 gBossMaxHealth;
 extern u32 gTatumCount;
 extern u8 gTatumStall;
+extern u32 gPatchChallengeTimer;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif

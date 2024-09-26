@@ -3217,6 +3217,21 @@ const char challengeNames[12][48] = {
     "Walking on thin air"
 };
 
+u32 patchChallengeTimes[12] = {
+    1650,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999,
+    9999
+};
+
 s8 gPatchChallengeIndex = 1;
 
 void render_patch_challenge_menu() {
@@ -3250,7 +3265,7 @@ void render_patch_challenge_menu() {
         print_set_envcolour(0, 0, 0, 255);
         if (saveTime) {
             char textBytes[80];
-            sprintf(textBytes, "Best Time: %d:%d.%d", bestTime[0], bestTime[1], bestTime[2]);
+            sprintf(textBytes, "Best Time:  %02d:%02d.%02d", bestTime[0], bestTime[1], bestTime[2]);
             print_small_text(SCREEN_CENTER_X - 50, SCREEN_CENTER_Y + 37, textBytes, PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
         }
         else {
@@ -3745,26 +3760,42 @@ void render_new_course_complete_text(s16 alpha) {
         render_new_course_complete_stars(100, 10, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gLastCompletedCourseNum), gLastCompletedStarNum - 1);
 
         gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+
+            // Print act name and catch text
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+
+        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+        print_generic_string(76 + gMenuShakeX, 45 + gMenuShakeY, actName);
+
+        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        print_generic_string(74 + gMenuShakeX, 47 + gMenuShakeY, actName);
+
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    }
+    else { //patch challenge stars
+
+        u32 printTime[3];
+        mm_ss_ms_from_frames(gPatchChallengeTimer, printTime);
+        char textBytes[80];
+        sprintf(textBytes, "Time: %02d:%02d.%02d", printTime[0], printTime[1], printTime[2]);
+
+        print_set_envcolour(0, 0, 0, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X+1, SCREEN_CENTER_Y+21, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+
+        print_set_envcolour(255, 255, 255, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X, SCREEN_CENTER_Y+20, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+
+        print_set_envcolour(0, 0, 0, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X+1, SCREEN_CENTER_Y-20, "Challenge Cleared!", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(0, 0, 0, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X+1, SCREEN_CENTER_Y, challengeNames[gPatchChallengeIndex-1], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X, SCREEN_CENTER_Y-21, "Challenge Cleared!", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, gDialogTextAlpha);
+        print_small_text(SCREEN_CENTER_X, SCREEN_CENTER_Y-1, challengeNames[gPatchChallengeIndex-1], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
     }
 
-    // Print star glyph
-    //gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
-
-    //gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
-    //print_hud_lut_string(HUD_LUT_GLOBAL, 55, 77, textSymStar);
-
-    //gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
-
-    // Print act name and catch text
-    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
-
-    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
-    print_generic_string(76 + gMenuShakeX, 45 + gMenuShakeY, actName);
-
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
-    print_generic_string(74 + gMenuShakeX, 47 + gMenuShakeY, actName);
-
-    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    
 }
 
 #define X_VAL9 x
@@ -3853,6 +3884,15 @@ s32 render_new_star_complete_text(void) {
                 gMarioState->faceAngle[1] += 0x8000;
                 s8DirModeYawOffset = -gMarioState->faceAngle[1];
                 gNewStarCollected = 0;
+
+                if (gLastCompletedCourseNum == COURSE_PSS) {
+                    u32 lastBest = save_file_get_patch_challenge_time(gCurrSaveFileNum - 1, gPatchChallengeIndex-1);
+
+                    if (!lastBest || lastBest > gPatchChallengeTimer) {
+                        save_file_set_patch_challenge_time(gCurrSaveFileNum - 1, gPatchChallengeIndex, gPatchChallengeTimer);
+                    }
+                }
+
                 save_file_do_save(gCurrSaveFileNum - 1);
             }
             if (gDialogTextAlpha < 250) {
