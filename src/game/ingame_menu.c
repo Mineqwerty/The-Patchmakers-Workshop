@@ -3211,14 +3211,14 @@ const char challengeNames[12][48] = {
     "Devoured in shadow",
     "From one to another",
     "Gone with the wind",
-    "Journey across space and... space",
+    "Journey across space",
     "Ribbons of malice",
     "Extending your abilities",
     "Walking on thin air"
 };
 
 u32 patchChallengeTimes[12] = {
-    1650,
+    1800,
     9999,
     9999,
     9999,
