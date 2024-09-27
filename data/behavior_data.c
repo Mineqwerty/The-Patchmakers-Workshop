@@ -8299,3 +8299,12 @@ const BehaviorScript bhvPatchChallengeController[] = {
         CALL_NATIVE(bhv_patch_challenge_controller_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPaperScuttlebug[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_paper_scuttlebug_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_scuttlebug_loop),
+    END_LOOP(),
+};

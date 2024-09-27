@@ -20,6 +20,7 @@
 #include "levels/new_file_select/header.h"
 #include "levels/castle_inside/header.h"
 #include "levels/pss/header.h"
+#include "include/behavior_data.h"
 
 #include "config.h"
 
@@ -396,6 +397,39 @@ void render_dl_curtains() {
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
      gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+s16 holdStartTextTimer = 0;
+s16 holdStartExitTimer = 0;
+
+void render_patch_challenge_hold_start(void) {
+    u8 printAlpha = 255;
+
+    if (gPlayer1Controller->buttonDown & START_BUTTON) {
+        holdStartTextTimer = 75;
+        holdStartExitTimer++;
+    }
+    else {
+        holdStartExitTimer = 0;
+    }
+
+    if (holdStartTextTimer > 0) {
+        if (holdStartTextTimer < 60) {
+            printAlpha = (4*holdStartTextTimer);
+        }
+        print_set_envcolour(0, 0, 0, printAlpha);
+            print_small_text(SCREEN_CENTER_X+1, SCREEN_CENTER_Y+1, "Hold Start to Exit Course", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            print_set_envcolour(255, 255, 255, printAlpha);
+            print_small_text(SCREEN_CENTER_X, SCREEN_CENTER_Y, "Hold Start to Exit Course", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        
+        holdStartTextTimer--;
+    }
+
+    if (holdStartExitTimer == 60) {
+        //initiate_warp(LEVEL_CASTLE, 2, 0x44, 0, 0);
+        struct Object *outtaWarp = spawn_object_relative(0x44, 0, 0, 0, gMarioState->marioObj, MODEL_NONE, bhvWarp);
+        SET_BPARAM1(outtaWarp->oBehParams,  70);
+    }
 }
 
 void render_hud_patch_challenge_timer(void) {
@@ -895,6 +929,7 @@ void render_hud(void) {
             if (gCurrLevelNum == LEVEL_PSS) {
                 render_dl_curtains();
                 render_hud_patch_challenge_timer();
+                render_patch_challenge_hold_start();
             }
             else {
                 render_dl_dpad_patches(2);

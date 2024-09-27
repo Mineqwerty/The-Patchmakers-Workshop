@@ -1010,3 +1010,5 @@ void bhv_gilded_star_receiver_init(void);
 void bhv_gilded_star_receiver_loop(void);
 void bhv_patch_challenge_controller_init(void);
 void bhv_patch_challenge_controller_loop(void);
+void bhv_paper_scuttlebug_init(void);
+void bhv_paper_scuttlebug_loop(void);
