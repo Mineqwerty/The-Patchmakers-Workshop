@@ -739,6 +739,15 @@ void freeze_enemy(struct MarioState *m, struct Object *obj, u32 interaction) {
     if (obj_has_behavior(obj, bhvTaeber)) {
             ice->oBehParams2ndByte = 2;
     }
+
+    if (obj_has_behavior(obj, bhvPaperScuttlebug)) {
+        if (obj->oBehParams2ndByte == 1) {
+            ice->oBehParams2ndByte = 3;
+        }
+        else {
+            ice->oBehParams2ndByte = 1;
+        }
+    }
             
 }
 

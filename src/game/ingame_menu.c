@@ -3219,7 +3219,7 @@ const char challengeNames[12][48] = {
 
 u32 patchChallengeTimes[12] = {
     1800,
-    9999,
+    1950,
     9999,
     9999,
     9999,

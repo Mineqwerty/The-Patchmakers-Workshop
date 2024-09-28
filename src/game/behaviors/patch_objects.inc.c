@@ -139,12 +139,16 @@ void bhv_ice_floor_loop(void) {
 }
 
 void bhv_ice_cube_init(void) {
-    gMarioState->forwardVel = 0;
+    
     // gMarioState->pos[0] += (o->oPosX - gMarioState->pos[0] / 3.0f);
     // gMarioState->pos[2] += (o->oPosZ - gMarioState->pos[2] / 3.0f);
-    gMarioState->pos[0] = o->oPosX;
-    gMarioState->pos[2] = o->oPosZ;
-    gMarioState->action = ACT_JUMP_LAND;
+    if (o->oBehParams2ndByte != 3) {
+        gMarioState->forwardVel = 0;
+        gMarioState->pos[0] = o->oPosX;
+        gMarioState->pos[2] = o->oPosZ;
+        gMarioState->action = ACT_JUMP_LAND;
+    }
+    
 
     check_ice_cube_corners_and_push();
 }
@@ -164,6 +168,8 @@ void bhv_ice_cube_loop(void) {
                 obj_scale_xyz(o, 1, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 1);
                 break;
             case 1:
+            FALL_THROUGH
+            case 3:
                 obj_scale_xyz(o, 2, CLAMP(((f32) o->oTimer) / 3.0f, 0.1f, 1.0f), 2);
                 break;
             case 2:
@@ -243,8 +249,10 @@ void check_ice_cube_corners_and_push(void) {
     o->parentObj->oPosX = o->oPosX;
     o->parentObj->oPosY = o->oPosY;
     o->parentObj->oPosZ = o->oPosZ;
-    gMarioState->pos[0] = o->oPosX;
-    gMarioState->pos[2] = o->oPosZ;
+    if (o->oBehParams2ndByte != 3) {
+        gMarioState->pos[0] = o->oPosX;
+        gMarioState->pos[2] = o->oPosZ;
+    }
 }
 
 void bhv_grapple_hook_init(void) {
