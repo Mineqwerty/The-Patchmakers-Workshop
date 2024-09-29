@@ -95,4 +95,3 @@
 #include "impact_grapple/model.inc.c"
 #include "impact_halo/model.inc.c"
 #include "gilded_star_g/model.inc.c"
-#include "gold_cloud/model.inc.c"

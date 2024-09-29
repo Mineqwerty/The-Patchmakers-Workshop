@@ -48,4 +48,3 @@
 #include "impact_grapple/geo.inc.c"
 #include "impact_halo/geo.inc.c"
 #include "gilded_star_g/geo.inc.c"
-#include "gold_cloud/geo.inc.c"
