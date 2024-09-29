@@ -30,11 +30,8 @@ const LevelScript level_pss_entry[] = {
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
-	JUMP_LINK(script_func_global_9), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	JUMP_LINK(script_func_global_9), 
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SCUTTLEBUG, paper_scuttlebug_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
@@ -53,8 +50,9 @@ const LevelScript level_pss_entry[] = {
 
 	AREA(1, pss_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x44, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (1 << 16), bhvPatchChallengeController),
@@ -67,8 +65,71 @@ const LevelScript level_pss_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
+	AREA(2, pss_area_2),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -12352, -494, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (2 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 13906, 1449, 0, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -9385, -433, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -6292, -703, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -4809, -703, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -4098, -604, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -3426, -512, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -1895, -104, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -2102, 551, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -3556, 1130, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -6845, 1942, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -4143, 2841, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 79, 2996, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 961, 2516, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 1836, 2804, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 2550, 2286, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 5540, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 5840, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 6140, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 5240, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 6440, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 6740, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 7040, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 7340, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 7640, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -6765, -770, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, -1386, 224, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 7940, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 8240, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 8540, 1173, 0, 0, 0, 0, (1 << 16), bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 12613, 65, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		OBJECT(MODEL_PAPER_SCUTTLEBUG, 13012, 502, 0, 0, 0, 0, 0x00000000, bhvPaperScuttlebug),
+		TERRAIN(pss_area_2_collision),
+		TERRAIN_MAT_LUT(pss_area_2_collision_materials),
+		MACRO_OBJECTS(pss_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(3, pss_area_3),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		MARIO_POS(0x01, 0, -12317, -548, 0),
+		OBJECT(MODEL_NONE, -12317, -548, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (3 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 12881, -1285, 0, 0, 0, 0, (2 << 24), bhvStar),
+		TERRAIN(pss_area_3_collision),
+		TERRAIN_MAT_LUT(pss_area_3_collision_materials),
+		MACRO_OBJECTS(pss_area_3_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, 0, 200, 0),
+	MARIO_POS(0x01, 0, -12317, -548, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),

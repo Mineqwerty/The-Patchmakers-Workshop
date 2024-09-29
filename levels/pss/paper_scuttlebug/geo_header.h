@@ -1,0 +1,15 @@
+extern const GeoLayout paper_scuttlebug_geo[];
+extern u8 paper_scuttlebug_paperscuttlebug_ci8[];
+extern u8 paper_scuttlebug_paperscuttlebug_pal_rgba16[];
+extern Vtx paper_scuttlebug_Plane_mesh_layer_5_vtx_cull[8];
+extern Vtx paper_scuttlebug_Plane_mesh_layer_5_vtx_0[4];
+extern Gfx paper_scuttlebug_Plane_mesh_layer_5_tri_0[];
+extern Vtx paper_scuttlebug_Plane_mesh_layer_1_vtx_cull[8];
+extern Vtx paper_scuttlebug_Plane_mesh_layer_1_vtx_0[4];
+extern Gfx paper_scuttlebug_Plane_mesh_layer_1_tri_0[];
+extern Gfx mat_paper_scuttlebug_f3dlite_material_013[];
+extern Gfx mat_revert_paper_scuttlebug_f3dlite_material_013[];
+extern Gfx mat_paper_scuttlebug_f3dlite_material[];
+extern Gfx mat_revert_paper_scuttlebug_f3dlite_material[];
+extern Gfx paper_scuttlebug_Plane_mesh_layer_5[];
+extern Gfx paper_scuttlebug_Plane_mesh_layer_1[];

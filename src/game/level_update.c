@@ -729,6 +729,10 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
         sWarpDest.type = WARP_TYPE_SAME_AREA;
     }
 
+    if (gCurrLevelNum == LEVEL_PSS) {
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
+    }
+
     sWarpDest.levelNum = destLevel;
     sWarpDest.areaIdx = destArea;
     sWarpDest.nodeId = destWarpNode;
@@ -1030,6 +1034,10 @@ void initiate_delayed_warp(void) {
 
                 default:
                     warpNode = area_get_warp_node(sSourceWarpNodeId);
+
+                    if ((warpNode->node.destLevel & 0x7F) == LEVEL_PSS) {
+                        gPatchChallengeTimer = 0;
+                    }
 
                     initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
                                   warpNode->node.destNode, sDelayedWarpArg, 0);
@@ -1503,8 +1511,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     sWarpCheckpointActive = FALSE;
     gCurrLevelNum = levelNum;
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
-	if (gCurrLevelNum == LEVEL_PSS) return 0;
-	if (gCurrLevelNum == LEVEL_DDD) return 0;
+		if (gCurrLevelNum == LEVEL_DDD) return 0;
 	if (gCurrLevelNum == LEVEL_NEW_FILE_SELECT) return 0;
 		if (gCurrLevelNum == LEVEL_SSL) return 0;
 			if (gCurrLevelNum == LEVEL_BITDW) return 0;

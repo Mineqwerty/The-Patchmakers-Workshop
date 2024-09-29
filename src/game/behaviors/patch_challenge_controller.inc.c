@@ -3,6 +3,7 @@
 
 void bhv_patch_challenge_controller_init(void) {
     gPatchChallengeTimer = 0;
+    gPatchChallengeIndex = o->oBehParams2ndByte;
 }
 
 void bhv_patch_challenge_controller_loop(void) {

@@ -29,4 +29,6 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/patch_challenge_patch_icon/header.h"
 
+#include "levels/pss/paper_scuttlebug/geo_header.h"
+
 #endif

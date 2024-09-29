@@ -16,3 +16,5 @@
 #include "levels/pss/areas/1/geo.inc.c"
 
 #include "levels/pss/geo.inc.c"
+
+#include "levels/pss/paper_scuttlebug/geo.inc.c"

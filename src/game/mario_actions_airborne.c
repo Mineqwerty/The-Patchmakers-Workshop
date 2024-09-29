@@ -55,7 +55,7 @@ s32 lava_boost_on_wall(struct MarioState *m) {
     }
 
     if (m->curPatch != PATCH_STONE) {
-        m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
+        m->hurtCounter += 4;
     }
 
     play_sound(SOUND_MARIO_ON_FIRE, m->marioObj->header.gfx.cameraToObject);
@@ -1872,12 +1872,12 @@ s32 act_lava_boost(struct MarioState *m) {
             if (m->floor->type == SURFACE_BURNING) {
                 m->actionState = ACT_STATE_LAVA_BOOST_HIT_LAVA;
                 if (m->curPatch != PATCH_STONE) {
-                    if ((gCurrLevelNum == LEVEL_BOB) || (gCurrLevelNum == LEVEL_PSS)) {
+                    //if ((gCurrLevelNum == LEVEL_BOB) || (gCurrLevelNum == LEVEL_PSS)) {
                         m->hurtCounter += 4;
-                    }
-                    else {
-                        m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
-                    }
+                    //}
+                    //else {
+                    //    m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
+                    //}
                     
                 }
                 m->vel[1] = 84.0f;

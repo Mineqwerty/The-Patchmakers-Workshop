@@ -565,6 +565,9 @@
 #define MODEL_MUSIC_NOTE                  0x10F
 #define MODEL_DRAWBACK_CURTAIN                  0x110
 
+//Patch Challenge
+#define MODEL_PAPER_SCUTTLEBUG                  0x100
+
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100
 #define MODEL_BOUNCE_BULB_OPEN                   0x101
