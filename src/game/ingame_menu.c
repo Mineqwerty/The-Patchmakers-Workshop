@@ -3205,7 +3205,7 @@ void render_sound_menu() {
 const char challengeNames[12][48] = {
     "A stone's throw away",
     "Frights to freeze for",
-    "Lots to grapple",
+    "Grappling into the dark",
     "A challenge divine",
     "Making waves",
     "Devoured in shadow",
@@ -3220,7 +3220,7 @@ const char challengeNames[12][48] = {
 u32 patchChallengeTimes[12] = {
     1800,
     1950,
-    9999,
+    2640,
     9999,
     9999,
     9999,

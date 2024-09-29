@@ -39,6 +39,13 @@ const LevelScript level_pss_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, pss_area_1),
@@ -104,8 +111,25 @@ const LevelScript level_pss_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
+	AREA(3, pss_area_3),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		MARIO_POS(0x01, 0, -12317, -548, 0),
+		OBJECT(MODEL_NONE, -12317, -548, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (3 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 12881, -1285, 0, 0, 0, 0, (2 << 24), bhvStar),
+		TERRAIN(pss_area_3_collision),
+		TERRAIN_MAT_LUT(pss_area_3_collision_materials),
+		MACRO_OBJECTS(pss_area_3_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, 0, 200, 0),
+	MARIO_POS(0x01, 0, -12317, -548, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),
