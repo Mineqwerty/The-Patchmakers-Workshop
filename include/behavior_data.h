@@ -752,3 +752,5 @@ extern const BehaviorScript bhvGildedStar[];
 extern const BehaviorScript bhvGildedStarReceiver[];
 extern const BehaviorScript bhvPatchChallengeController[];
 extern const BehaviorScript bhvPaperScuttlebug[];
+extern const BehaviorScript bhvLiftCloud[];
+extern const BehaviorScript bhvLiftCloudSwitch[];

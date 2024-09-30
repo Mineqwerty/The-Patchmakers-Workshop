@@ -31,16 +31,9 @@ const LevelScript level_pss_entry[] = {
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 	JUMP_LINK(script_func_global_1), 
 	JUMP_LINK(script_func_global_9), 
-	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SCUTTLEBUG, paper_scuttlebug_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SCUTTLEBUG, paper_scuttlebug_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD, lift_cloud_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD_SWITCH, lift_cloud_switch_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
@@ -115,8 +108,7 @@ const LevelScript level_pss_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_PSS, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		MARIO_POS(0x01, 0, -12317, -548, 0),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -12317, -548, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (3 << 16), bhvPatchChallengeController),
 		OBJECT(MODEL_STAR, 12881, -1285, 0, 0, 0, 0, (2 << 24), bhvStar),
@@ -128,8 +120,40 @@ const LevelScript level_pss_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
+	AREA(4, pss_area_4),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x04, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -12317, -548, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_LIFT_CLOUD, -8172, -521, 0, 0, 0, 0, 0x00000000, bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, -7527, -442, -100, 0, 0, 0, 0x00000000, bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, -4892, 1376, -100, 0, 0, 0, (1 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 2286, 278, -100, 0, 0, 0, (2 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 1487, 1722, -115, 0, 0, 0, (3 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 2766, 2879, -115, 0, 0, 0, (4 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 3592, 3982, -115, 0, 0, 0, (5 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 4861, 4535, -115, 0, 0, 0, (6 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD_SWITCH, 7435, 6261, -115, 0, 0, 0, (7 << 16), bhvLiftCloudSwitch),
+		OBJECT(MODEL_LIFT_CLOUD, -5378, 848, 0, 0, 0, 0, (1 << 24) | (1 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 1971, -198, 0, 0, 0, 0, (2 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 1971, 1239, 0, 0, 0, 0, (3 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 1971, 2639, 0, 0, 0, 0, (4 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 4019, 3795, 0, 0, 0, 0, (1 << 24) | (5 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 5487, 4262, 0, 0, 0, 0, (1 << 24) | (6 << 16), bhvLiftCloud),
+		OBJECT(MODEL_LIFT_CLOUD, 7017, 5481, 95, 0, 0, 0, (1 << 24) | (7 << 16), bhvLiftCloud),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (4 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 11547, 6052, 0, 0, 0, 0, (4 << 24), bhvStar),
+		TERRAIN(pss_area_4_collision),
+		TERRAIN_MAT_LUT(pss_area_4_collision_materials),
+		MACRO_OBJECTS(pss_area_4_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, -12317, -548, 0),
+	MARIO_POS(0x01, 0, 0, 200, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),

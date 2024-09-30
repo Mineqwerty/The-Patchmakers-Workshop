@@ -1,0 +1,16 @@
+extern const GeoLayout lift_cloud_geo[];
+extern u8 lift_cloud_carboardplat_i8[];
+extern u8 lift_cloud_papercloud_ci8[];
+extern u8 lift_cloud_papercloud_pal_rgba16[];
+extern Vtx lift_cloud_Cube_004_mesh_layer_1_vtx_cull[8];
+extern Vtx lift_cloud_Cube_004_mesh_layer_1_vtx_0[4];
+extern Gfx lift_cloud_Cube_004_mesh_layer_1_tri_0[];
+extern Vtx lift_cloud_Cube_004_mesh_layer_5_vtx_cull[8];
+extern Vtx lift_cloud_Cube_004_mesh_layer_5_vtx_0[8];
+extern Gfx lift_cloud_Cube_004_mesh_layer_5_tri_0[];
+extern Gfx mat_lift_cloud_f3dlite_material_007[];
+extern Gfx mat_revert_lift_cloud_f3dlite_material_007[];
+extern Gfx mat_lift_cloud_f3dlite_material_025[];
+extern Gfx mat_revert_lift_cloud_f3dlite_material_025[];
+extern Gfx lift_cloud_Cube_004_mesh_layer_1[];
+extern Gfx lift_cloud_Cube_004_mesh_layer_5[];

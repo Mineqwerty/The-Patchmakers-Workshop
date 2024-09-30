@@ -31,4 +31,10 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/paper_scuttlebug/geo_header.h"
 
+#include "levels/pss/lift_cloud/collision_header.h"
+
+#include "levels/pss/lift_cloud/geo_header.h"
+
+#include "levels/pss/lift_cloud_switch/geo_header.h"
+
 #endif

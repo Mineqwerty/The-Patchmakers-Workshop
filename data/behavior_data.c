@@ -54,6 +54,7 @@
 #include "levels/bowser_2/header.h"
 #include "levels/ttm/header.h"
 #include "levels/ccm/header.h"
+#include "levels/pss/header.h"
 #include "levels/new_file_select/header.h"
 
 #include "make_const_nonconst.h"
@@ -8306,5 +8307,25 @@ const BehaviorScript bhvPaperScuttlebug[] = {
     CALL_NATIVE(bhv_paper_scuttlebug_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_paper_scuttlebug_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvLiftCloud[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(lift_cloud_collision),
+    CALL_NATIVE(bhv_lift_cloud_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lift_cloud_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvLiftCloudSwitch[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_lift_cloud_switch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lift_cloud_switch_loop),
     END_LOOP(),
 };

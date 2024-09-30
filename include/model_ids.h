@@ -567,6 +567,8 @@
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
+#define MODEL_LIFT_CLOUD                  0x101
+#define MODEL_LIFT_CLOUD_SWITCH                  0x102
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100
