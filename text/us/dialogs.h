@@ -87,7 +87,7 @@ yeah"))
 DEFINE_DIALOG(DIALOG_008, 1, 3, 30, 200, _("\
 Oh! I know this place well! This pot leads to\n\
 Thorn Thicket Cliffs! It's the first place\n\
-The Patchmaker made a warp to.\n\
+The Patchmaker made a portal to.\n\
 The area has a bunch of cool plants!\n\
 Some are even alive! But not all of them\n\
 are super friendly..."))
@@ -170,10 +170,27 @@ Oh my gosh! I completely forgot!\n\
 My name is Sewnia.\n\
 And your name is?\n\
 ...\n\
-Mario huh? Nice to meet you Mario!"))
+Mario huh? Nice to meet you Mario!\n\
+Uh... Right! Follow me!\n\
+...
+Oh, oops! Follow me, Mario!"))
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
-C15"))
+So... the rest of the workshop is beyond here.\n\
+It's actually a really big building complex.\n\
+The Patchmaker had some plans before, uh...\n\
+...Anyways, the problem.\n\
+He kind of um... Locked me in here.\n\
+With magic. No matter how you try, it won't open.\n\
+This is the only way forward, too...\n\
+I'm sorry, but we're stuck here until I think\n\
+of a way to get past it...\n\
+...Huh? You've opened sealed doors before?\n\
+You make it sound really easy!\n\
+All we need is something called star power?\n\
+And it can be found anywhere? Lucky!\n\
+Leaving the workshop isn't a good idea, but\n\
+I think I know how to help! Follow me!"))
 
 DEFINE_DIALOG(DIALOG_025, 1, 4, 95, 200, _("\
 It takes the power of\n\
@@ -206,9 +223,31 @@ stairs, you need 70\n\
 Stars.\n\
 Bwa ha ha!"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 2, 30, 200, _("\
-If you find one of the Patchmaker's patches, put it on!\n\
-It'll give you a powerful ability..."))
+DEFINE_DIALOG(DIALOG_030, 1, 3, 30, 200, _("\
+Believe it or not, this pot is a portal!\n\
+It can bring you to a place far away,\n\
+and there are a bunch more like it in here!\n\
+The Patchmaker went on a journey a long time ago,\n\
+and he made these portals to explore the reaches\n\
+of the world!\n\
+You might find some of that star power in here!\n\
+But, um... It might be dangerous.\n\
+When the Patchmaker went in, he had...\n\
+That's right! Mario, inside each of these worlds\n\
+should be a copy of the patches he made!\n\
+He hid them for the case of an emergency.\n\
+They aren't ordinary patches, they have\n\
+strong magic that can give you new\n\
+abilities!\n\
+For this world, he made the stone patch\n\
+to help him wave aside thorny bushes.\n\
+If you find it, you should try it out!\n\
+Keep an eye out for the patches while you\n\
+look for stars, they're probably super\n\
+helpful!\n\
+Good luck, Mario...\n\
+I'll be waiting here for you!\n\
+"))
 
 DEFINE_DIALOG(DIALOG_031, 1, 5, 30, 200, _("\
 No way! You beat me...\n\
@@ -1852,7 +1891,7 @@ Why are they so bright?\n\
 I thought clothes were darker than that.\n\
 ...Huh? Clothes can be any color?\n\
 That's odd. The only clothes I've\n\
-seen have been quite colorless."))
+seen have been quite dull."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_3, 1, 3, 30, 200, _("\
 You're from outside of here, right?\n\
@@ -1865,7 +1904,7 @@ Hey, if that's where you're truly from,\n\
 do you think it's far away from here?\n\
 It sounds really fun..."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_1, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_STONE_PATCH_FOUND, 1, 3, 30, 200, _("\
 You look a little shaken...\n\
 Was using the stone patch for the first\n\
 time that scary?\n\
@@ -1873,8 +1912,16 @@ The Patchmaker was actually really proud\n\
 of making that. It was how he got his\n\
 nickname after all.\n\
 He did tell me that the magic in it\n\
-does make the user hallucinate for a\n\
-short period of time."))
+does make the user confused for a\n\
+short period of time.\n\
+But don't worry! It shouldn't\n\
+happen again!\n\
+...And sorry for not warning you."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_1, 1, 3, 30, 200, _("\
+Mario, Mario, Ma-ri-o!\n\
+Mario. Mario! Ma. Ri. O!!!\n\
+Hehe... your name is fun to say!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_2, 1, 3, 30, 200, _("\
 Mario, Mario, Ma-ri-o!\n\
