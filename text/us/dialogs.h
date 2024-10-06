@@ -172,7 +172,7 @@ And your name is?\n\
 ...\n\
 Mario huh? Nice to meet you Mario!\n\
 Uh... Right! Follow me!\n\
-...
+...\n\
 Oh, oops! Follow me, Mario!"))
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\

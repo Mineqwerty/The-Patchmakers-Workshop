@@ -39,6 +39,18 @@ const LevelScript level_pss_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, pss_area_1),
@@ -143,10 +155,33 @@ const LevelScript level_pss_entry[] = {
 		OBJECT(MODEL_LIFT_CLOUD, 5487, 4262, 0, 0, 0, 0, (1 << 24) | (6 << 16), bhvLiftCloud),
 		OBJECT(MODEL_LIFT_CLOUD, 7017, 5481, 95, 0, 0, 0, (1 << 24) | (7 << 16), bhvLiftCloud),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (4 << 16), bhvPatchChallengeController),
-		OBJECT(MODEL_STAR, 11547, 6052, 0, 0, 0, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_STAR, 11547, 6052, 0, 0, 0, 0, (5 << 24), bhvStar),
 		TERRAIN(pss_area_4_collision),
 		TERRAIN_MAT_LUT(pss_area_4_collision_materials),
 		MACRO_OBJECTS(pss_area_4_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(5, pss_area_5),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x05, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13055, 2800, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (5 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, -13872, 9370, 0, 0, 0, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_NONE, 0, 2137, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, 538, 2612, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, 1517, 2612, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, 6662, 4831, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, -9156, 6251, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, -11344, 7066, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, -14397, 7854, 0, 0, 0, 0, (132 << 16), bhvPoleGrabbing),
+		TERRAIN(pss_area_5_collision),
+		TERRAIN_MAT_LUT(pss_area_5_collision_materials),
+		MACRO_OBJECTS(pss_area_5_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
