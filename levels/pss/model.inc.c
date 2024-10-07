@@ -1,6 +1,3 @@
-Lights1 pss_dl_f3dlite_material_006_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx pss_dl_pcs_grass_side_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 pss_dl_pcs_grass_side_ci8[] = {
@@ -20434,7 +20431,8 @@ Gfx mat_revert_pss_dl_f3dlite_material_005[] = {
 };
 
 Gfx mat_pss_dl_f3dlite_material_006[] = {
-	gsSPSetLights1(pss_dl_f3dlite_material_006_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
