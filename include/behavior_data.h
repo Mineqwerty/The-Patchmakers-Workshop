@@ -754,3 +754,4 @@ extern const BehaviorScript bhvPatchChallengeController[];
 extern const BehaviorScript bhvPaperScuttlebug[];
 extern const BehaviorScript bhvLiftCloud[];
 extern const BehaviorScript bhvLiftCloudSwitch[];
+extern const BehaviorScript bhvPaperBoo[];

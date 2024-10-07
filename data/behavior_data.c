@@ -8329,3 +8329,12 @@ const BehaviorScript bhvLiftCloudSwitch[] = {
         CALL_NATIVE(bhv_lift_cloud_switch_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPaperBoo[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_paper_boo_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_boo_loop),
+    END_LOOP(),
+};

@@ -1029,6 +1029,9 @@ void bhv_shadow_chomp_head_loop(void) {
             if (o->oTimer >= 45) {
                 o->oAction = SHADOW_CHOMP_ACT_IDLE;
             }
+            if (gCurrLevelNum == LEVEL_PSS && o->oTimer >= 15) {
+                o->oAction = SHADOW_CHOMP_ACT_IDLE;
+            }
         break;
         case SHADOW_CHOMP_ACT_RETRACT:
             if (o->oTimer < 5) {

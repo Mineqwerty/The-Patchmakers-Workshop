@@ -33,17 +33,8 @@ const LevelScript level_pss_entry[] = {
 	JUMP_LINK(script_func_global_9), 
 	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SCUTTLEBUG, paper_scuttlebug_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD, lift_cloud_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD_SWITCH, lift_cloud_switch_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD_SWITCH, lift_cloud_switch_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_BOO, paper_boo_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
@@ -182,6 +173,33 @@ const LevelScript level_pss_entry[] = {
 		TERRAIN(pss_area_5_collision),
 		TERRAIN_MAT_LUT(pss_area_5_collision_materials),
 		MACRO_OBJECTS(pss_area_5_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(6, pss_area_6),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x06, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13870, -341, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_PAPER_BOO, -9139, -39, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, -5632, 494, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 2808, -117, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 4833, 1514, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 10280, 1212, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 2899, 4997, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 6696, 3546, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, 1963, 6157, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, -2607, 7709, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, -8425, 6308, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_PAPER_BOO, -9087, 8449, 0, 0, 0, 0, 0x00000000, bhvPaperBoo),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (6 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, -11916, 10144, 0, 0, 0, 0, (5 << 24), bhvStar),
+		TERRAIN(pss_area_6_collision),
+		TERRAIN_MAT_LUT(pss_area_6_collision_materials),
+		MACRO_OBJECTS(pss_area_6_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

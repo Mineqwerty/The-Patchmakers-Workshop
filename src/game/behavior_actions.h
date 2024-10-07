@@ -1016,3 +1016,5 @@ void bhv_lift_cloud_init(void);
 void bhv_lift_cloud_loop(void);
 void bhv_lift_cloud_switch_init(void);
 void bhv_lift_cloud_switch_loop(void);
+void bhv_paper_boo_init(void);
+void bhv_paper_boo_loop(void);
