@@ -785,6 +785,14 @@
 #define MODEL_RDR_DIORAMA                      0x57
 #define MODEL_STC_DIORAMA                      0x58
 #define MODEL_GSS_DIORAMA                      0x59
+#define MODEL_SS_DIORAMA                      0x5A
+#define MODEL_CLC_DIORAMA                      0x5B
+#define MODEL_HVH_DIORAMA                      0x5C
+#define MODEL_TVW_DIORAMA                      0x5D
+#define MODEL_TFP_DIORAMA                      0x5E
+#define MODEL_EA_DIORAMA                      0x5F
+#define MODEL_CORR_DIORAMA                      0x60
+#define MODEL_TS_DIORAMA                      0x61
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

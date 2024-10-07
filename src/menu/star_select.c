@@ -136,7 +136,7 @@ void spawn_stage_diorama(void) {
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_GOLD_SOAKED_SKY_SELECT), 0);
         break;
         case LEVEL_HMC:
-            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_SS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_SUBTERRANEAN_SEAWAY_SELECT), 0);
         break;
         case LEVEL_LLL:
@@ -205,7 +205,7 @@ void bhv_act_selector_init(void) {
         sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
     }
     //note: disable menu scrolling when using this
-    //spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
     spawn_stage_diorama();
     render_100_coin_star(stars);
 }
@@ -288,6 +288,26 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
                 case 4: coords[0] = -2240.0f; coords[1] = -270.0f; coords[2] = -4460.0f;
                 break;
                 case 5: coords[0] = -2400.0f; coords[1] = 3510.0f; coords[2] = -10060.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+        case LEVEL_HMC:
+            switch (starIndex) {
+                case 0: coords[0] = 394.0f; coords[1] = 4410.0f; coords[2] = -7626.0f;
+                break;
+                case 1: coords[0] = 1150.0f; coords[1] = 1770.0f; coords[2] = -4091.0f;
+                break;
+                case 2: coords[0] = -7456.0f; coords[1] = 2230.0f; coords[2] = -12039.0f;
+                break;
+                case 3: coords[0] = 1384.0f; coords[1] = -3270.0f; coords[2] = -7419.0f;
+                break;
+                case 4: coords[0] = 1276.0f; coords[1] = -1250.0f; coords[2] = -10000.0f;
+                break;
+                case 5: coords[0] = -7777.0f; coords[1] = -1530.0f; coords[2] = -8999.0f;
                 break;
 
 
