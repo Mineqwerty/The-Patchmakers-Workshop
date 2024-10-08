@@ -17,9 +17,6 @@ const GeoLayout glassfish_geo[] = {
 				GEO_DISPLAY_LIST(LAYER_ALPHA, glassfish_Bone_003_mesh_layer_4),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, glassfish_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, glassfish_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, glassfish_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

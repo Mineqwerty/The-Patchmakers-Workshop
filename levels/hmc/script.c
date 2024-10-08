@@ -44,6 +44,9 @@ const LevelScript level_hmc_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CORAL_SPINNER, coral_spinner_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GLASSFISH, glassfish_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -54,6 +57,14 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, -2677, 4922, 113),
 		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_YARN_BLOOPER, 10899, -1181, 2317, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, 8394, -4788, -1412, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -2858, -1919, 7171, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -907, -2370, 7495, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -1366, -682, 6641, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -1477, -1835, 4764, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -6627, -1898, 10039, 0, 105, 0, 0x00000000, bhvYarnBlooper),
+		OBJECT(MODEL_YARN_BLOOPER, -7552, 196, 9009, 0, 105, 0, 0x00000000, bhvYarnBlooper),
 		OBJECT(MODEL_CORAL_SPINNER, 645, -5487, -8892, 0, -90, 0, 0x00000000, bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -2180, -5487, -8892, 0, -90, 0, (40 << 16), bhvCoralSpinner),
 		OBJECT(MODEL_CORAL_SPINNER, -5310, -5487, -8892, 0, -90, 0, (78 << 16), bhvCoralSpinner),
@@ -70,6 +81,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_GLASSFISH, -13131, -684, -5969, 0, 105, 0, 0x00000000, bhvGlassfish),
 		OBJECT(MODEL_GLASSFISH, -10884, -112, -6297, 0, 105, 0, 0x00000000, bhvGlassfish),
 		OBJECT(MODEL_GLASSFISH, -11471, -1718, -6005, 0, 105, 0, 0x00000000, bhvGlassfish),
+		OBJECT(MODEL_GLASSFISH, -10262, -1374, 3685, 0, 105, 0, 0x00000000, bhvGlassfish),
 		OBJECT(MODEL_NONE, 8022, 4543, -10957, 0, 119, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7488, 5282, -12000, 0, 119, 0, (200 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -10913, 7501, -13720, 0, 119, 0, (3 << 24), bhvHiddenRedCoinStar),

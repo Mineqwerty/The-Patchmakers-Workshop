@@ -8909,6 +8909,17 @@ sound_ref .sound_shadow_spike_emerge
 sound_ref .sound_bass_boom
 sound_ref .sound_pokey_impact
 sound_ref .sound_pokey_howling_wind
+sound_ref .sound_marine_spin
+
+.sound_marine_spin:
+chan_setbank 12
+chan_setinstr 16
+chan_setlayer 0, .layer_marine_spin
+chan_end
+
+.layer_marine_spin:
+layer_note1 39, 0x50, 127
+layer_end
 
 .sound_pokey_howling_wind:
 chan_setbank 12
