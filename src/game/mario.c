@@ -2375,7 +2375,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         }
 
         //VTW Windy Areas
-        if (gMarioState->floor->type == SURFACE_HURT_FLOOR && gMarioState->action == ACT_BREEZE_PATCH_BOUNCING && gCurrLevelNum == LEVEL_SSL && gCurrAreaIndex == 1) {
+        if (gMarioState->floor->type == SURFACE_HURT_FLOOR && gMarioState->action == ACT_BREEZE_PATCH_BOUNCING && (gCurrLevelNum == LEVEL_SSL || gCurrLevelNum == LEVEL_HMC )  && gCurrAreaIndex == 1) {
             spawn_wind_particles(1, 0);
             play_sound(SOUND_ENV_WIND1, gMarioState->marioObj->header.gfx.cameraToObject);
         }

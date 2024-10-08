@@ -30,7 +30,7 @@ void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3) 
 
 void play_far_fall_sound(struct MarioState *m) {
     u32 action = m->action;
-    if (!(action & ACT_FLAG_INVULNERABLE) && action != ACT_TWIRLING && action != ACT_FLYING
+    if (!(action & ACT_FLAG_INVULNERABLE) && action != ACT_TWIRLING && action != ACT_FLYING && action != ACT_BREEZE_PATCH_BOUNCING
         && !(m->flags & MARIO_FALL_SOUND_PLAYED)) {
         if (m->peakHeight - m->pos[1] > FALL_DAMAGE_HEIGHT_SMALL && m->floor && (m->floor->type == SURFACE_DEATH_PLANE || m->floor->type == SURFACE_HURT_FLOOR)) {
             play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);

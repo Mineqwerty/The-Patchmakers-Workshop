@@ -85,5 +85,16 @@ void bhv_yarn_blooper_loop(void) {
     obj_handle_attacks(&sBlooperHitbox, 0, sBlooperAttackHandlers);
     
     obj_update_standard_actions(1.0f);
+
+    s32 waterLevel = find_water_level(o->oPosX, o->oPosZ);
+
+    if (waterLevel > FLOOR_LOWER_LIMIT + 10) {
+        if (o->oPosY < waterLevel) {
+            o->oHealth = 1;
+        }
+        else {
+            o->oPosY = waterLevel;
+        }
+    }
 }
 

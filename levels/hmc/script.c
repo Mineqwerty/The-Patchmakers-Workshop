@@ -47,6 +47,9 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -93,6 +96,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_RED_COIN, -12569, 7188, -4308, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -7789, 3647, -4154, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -10783, 7082, 944, 0, 119, 0, 0x00000000, bhvRedCoin),
+		OBJECT(MODEL_STAR, -14998, 1269, -14832, 0, 119, 0, (18 << 24), bhvStar),
 		OBJECT(MODEL_STAR, 6453, 7313, -2966, 0, 119, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),
 		OBJECT(MODEL_NONE, 7338, 2647, 9109, 0, 0, 0, (50 << 24) | (11 << 16), bhvWarp),
@@ -141,6 +145,7 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_METAL_BOX, -4596, 3269, -8733, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_NONE, -2243, 3726, -4263, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2253, 3998, -5447, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2248, 5289, -4816, 0, 119, 0, 0x00000000, bhvGeyser),
@@ -148,6 +153,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -2246, 5781, -3906, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2258, 2976, -4740, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_STAR, -4238, 7131, -4812, 0, 119, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_TRANSMUTATION_STAR, -4276, 5986, -13795, 0, 119, 0, (19 << 24), bhvTransmutationStar),
 		TERRAIN(hmc_area_3_collision),
 		TERRAIN_MAT_LUT(hmc_area_3_collision_materials),
 		MACRO_OBJECTS(hmc_area_3_macro_objs),
