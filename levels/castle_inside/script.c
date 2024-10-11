@@ -53,6 +53,7 @@ const LevelScript level_castle_inside_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, castle_inside_area_1),
@@ -150,7 +151,15 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_CARTOON_HAND, 1561, 837, 596, 0, -113, 0, 0x00000000, bhvCartoonHand),
 		OBJECT(MODEL_HVH_BOOK_NORMAL, 6852, 2412, 1833, 0, 0, 0, 0x20200000, bhvHvhBook),
 		OBJECT(MODEL_NONE, -3351, 1093, -3862, 0, -180, 0, (0x44 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, 1314, 2001, -4090, 0, -180, 0, (0x40 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, 6463, 2409, 1802, 0, 86, 0, (0x42 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, 4235, 331, 3244, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
+		OBJECT(MODEL_NONE, -1178, 2096, 3508, 0, -17, 0, (0x43 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -3351, 1132, -3862, 0, -180, 0, (0x34 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, 1314, 2039, -4090, 0, -180, 0, (0x30 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, 6463, 2447, 1802, 0, 86, 0, (0x32 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, 4235, 369, 3244, 0, 0, 0, (0x31 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_NONE, -1178, 2135, 3508, 0, -17, 0, (0x33 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_PAPER_SPINNER, -500, 427, -1422, 0, -113, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, -1190, 427, -1056, 0, -148, 0, 0x00000000, bhvPaperSpinner),
 		OBJECT(MODEL_PAPER_SPINNER, 200, 427, -1640, 0, 163, 0, 0x00000000, bhvPaperSpinner),

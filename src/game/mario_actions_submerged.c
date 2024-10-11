@@ -977,7 +977,7 @@ static s32 act_marine_patch_spin(struct MarioState *m) {
     cur_obj_play_sound_1(m->marioObj, SOUND_ACTION_WATER_JUMP);
             set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_MARINE_SPIN);
             if (m->actionTimer == 30) {
-                if (m->input & INPUT_B_DOWN) {
+                if ((m->input & INPUT_B_DOWN) && m->curPatch == PATCH_MARINE) {
                     m->actionTimer = 0;
                 }
                 else if (m->input & INPUT_A_DOWN) {

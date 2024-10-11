@@ -162,6 +162,12 @@ void bhv_coin_loop(void) {
         o->oCoinBounceTimer++;
     }
 
+    if (o->oMoveFlags & OBJ_MOVE_UNDERWATER_OFF_GROUND) {
+        o->oPosX = approach_f32_symmetric(o->oPosX, gMarioState->pos[0], 4);
+        o->oPosY = approach_f32_symmetric(o->oPosY, gMarioState->pos[1], 4);
+        o->oPosZ = approach_f32_symmetric(o->oPosZ, gMarioState->pos[2], 4);
+    }
+
     if (cur_obj_wait_then_blink(400, 20)) {
         obj_mark_for_deletion(o);
     }
@@ -286,6 +292,12 @@ void coin_inside_boo_act_dropped(void) {
         obj_set_hitbox(o, &sYellowCoinHitbox);
         cur_obj_become_tangible();
         cur_obj_set_behavior(bhvYellowCoin);
+    }
+
+    if (o->oMoveFlags & OBJ_MOVE_UNDERWATER_OFF_GROUND) {
+        o->oPosX = approach_f32_symmetric(o->oPosX, gMarioState->pos[0], 4);
+        o->oPosY = approach_f32_symmetric(o->oPosY, gMarioState->pos[1], 4);
+        o->oPosZ = approach_f32_symmetric(o->oPosZ, gMarioState->pos[2], 4);
     }
 
     cur_obj_move_standard(-30);

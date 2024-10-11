@@ -107,7 +107,8 @@ void bhv_glassfish_loop(void) {
         case 3:
             if (!o->parentObj) {
                 o->oAction = 0;
-                o->oForwardVel = -90.0f;
+                o->oForwardVel = -160.0f;
+                o->oVelY = random_u16() % 128 - 64;
             } else {
                 o->oPosX = o->parentObj->oPosX;
                 o->oPosY = o->parentObj->oPosY;
@@ -125,16 +126,23 @@ void bhv_glassfish_star_init(void) {
 }
 
 void bhv_glassfish_star_loop(void) {
-    if (!o->parentObj) {
+    if (o->oAction == 0) {
+        if (!o->parentObj) {
+            o->oAction = 1;
+            o->oTimer = 0;
+        } else {
+            o->oPosX = o->parentObj->oPosX;
+            o->oPosY = o->parentObj->oPosY;
+            o->oPosZ = o->parentObj->oPosZ;
+            o->oFaceAnglePitch = o->parentObj->oFaceAnglePitch;
+            o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
+            o->oFaceAngleRoll = o->parentObj->oFaceAngleRoll;
+        }
+    }
+
+    if (o->oAction == 1 && o->oTimer == 30) {
         SET_BPARAM1(o->oBehParams, 5);
         spawn_default_star(-11600.0f, -700.0f, -9055.0f);
         obj_mark_for_deletion(o);
-    } else {
-        o->oPosX = o->parentObj->oPosX;
-        o->oPosY = o->parentObj->oPosY;
-        o->oPosZ = o->parentObj->oPosZ;
-        o->oFaceAnglePitch = o->parentObj->oFaceAnglePitch;
-        o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
-        o->oFaceAngleRoll = o->parentObj->oFaceAngleRoll;
     }
 }

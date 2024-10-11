@@ -70,6 +70,7 @@ extern Gfx dl_billboard_num_7[];
 extern Gfx dl_billboard_num_8[];
 extern Gfx dl_billboard_num_9[];
 extern Gfx dl_billboard_num_star[];
+extern Gfx dl_hud_img_load_tex_block_blackout[];
 #ifdef DIALOG_INDICATOR
 extern Gfx dl_billboard_num_A[];
 extern Gfx dl_billboard_num_B[];

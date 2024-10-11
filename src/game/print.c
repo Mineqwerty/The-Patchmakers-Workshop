@@ -16,6 +16,7 @@ struct TextLabel {
     u32 y;
     s16 length;
     char buffer[50];
+    u32 operation;
 };
 
 /**
@@ -184,6 +185,59 @@ void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n) {
 
     sTextLabels[sTextLabelsCount]->x = x;
     sTextLabels[sTextLabelsCount]->y = y;
+    sTextLabels[sTextLabelsCount]->operation = 0;
+
+    c = str[srcIndex];
+
+    while (c != 0) {
+        if (c == '%') {
+            srcIndex++;
+
+            parse_width_field(str, &srcIndex, &width, &zeroPad);
+
+            if (str[srcIndex] != 'b'
+                && str[srcIndex] != 'o'
+                && str[srcIndex] != 'd'
+                && str[srcIndex] != 'x') {
+                break;
+            }
+            if (str[srcIndex] == 'b') base =  2;
+            if (str[srcIndex] == 'o') base =  8;
+            if (str[srcIndex] == 'd') base = 10;
+            if (str[srcIndex] == 'x') base = 16;
+
+            srcIndex++;
+
+            format_integer(n, base, sTextLabels[sTextLabelsCount]->buffer + len, &len, width, zeroPad);
+        } else { // straight copy
+            sTextLabels[sTextLabelsCount]->buffer[len] = c;
+            len++;
+            srcIndex++;
+        }
+        c = str[srcIndex];
+    }
+
+    sTextLabels[sTextLabelsCount]->length = len;
+    sTextLabelsCount++;
+}
+
+void print_text_fmt_int_blackout(s32 x, s32 y, const char *str, s32 n) {
+    char c = 0;
+    s8 zeroPad = FALSE;
+    u8 width = 0;
+    s32 base = 0;
+    s32 len = 0;
+    s32 srcIndex = 0;
+
+    // Don't continue if there is no memory to do so.
+    if ((sTextLabels[sTextLabelsCount] = mem_pool_alloc(gEffectsMemoryPool,
+                                                        sizeof(struct TextLabel))) == NULL) {
+        return;
+    }
+
+    sTextLabels[sTextLabelsCount]->x = x;
+    sTextLabels[sTextLabelsCount]->y = y;
+    sTextLabels[sTextLabelsCount]->operation = 1;
 
     c = str[srcIndex];
 
@@ -239,6 +293,36 @@ void print_text(s32 x, s32 y, const char *str) {
 
     sTextLabels[sTextLabelsCount]->x = x;
     sTextLabels[sTextLabelsCount]->y = y;
+    sTextLabels[sTextLabelsCount]->operation = 0;
+
+    c = str[srcIndex];
+
+    // Set the array with the text to print while finding length.
+    while (c != 0) {
+        sTextLabels[sTextLabelsCount]->buffer[length] = c;
+        length++;
+        srcIndex++;
+        c = str[srcIndex];
+    }
+
+    sTextLabels[sTextLabelsCount]->length = length;
+    sTextLabelsCount++;
+}
+
+void print_text_blackout(s32 x, s32 y, const char *str) {
+    char c = 0;
+    s32 length = 0;
+    s32 srcIndex = 0;
+
+    // Don't continue if there is no memory to do so.
+    if ((sTextLabels[sTextLabelsCount] = mem_pool_alloc(gEffectsMemoryPool,
+                                                        sizeof(struct TextLabel))) == NULL) {
+        return;
+    }
+
+    sTextLabels[sTextLabelsCount]->x = x;
+    sTextLabels[sTextLabelsCount]->y = y;
+    sTextLabels[sTextLabelsCount]->operation = 1;
 
     c = str[srcIndex];
 
@@ -374,6 +458,17 @@ void add_glyph_texture(s8 glyphIndex) {
     gSPDisplayList(gDisplayListHead++, dl_hud_img_load_tex_block);
 }
 
+#define G_CC_BLACKOUT 0, 0, TEXEL0, 0, 0, 0, 0, TEXEL0
+
+void add_glyph_texture_blackout(s8 glyphIndex) {
+    const Texture *const *glyphs = segmented_to_virtual(main_hud_lut);
+
+    gDPPipeSync(gDisplayListHead++);
+    
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, glyphs[glyphIndex]);
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_load_tex_block_blackout);
+}
+
 #ifndef WIDESCREEN
 /**
  * Clips textrect into the boundaries defined.
@@ -416,6 +511,31 @@ void render_textrect(s32 x, s32 y, s32 pos) {
                         (rectY + 15) << 2, G_TX_RENDERTILE, 0, 0, 4 << 10, 1 << 10);
 }
 
+#define G_CC_TEXT PRIMITIVE, 0, TEXEL0, 0, 0, 0, 0, TEXEL0
+
+/**
+ * Renders the glyph that's set at the given position.
+ */
+void render_textrect_blackout(s32 x, s32 y, s32 pos) {
+    s32 rectBaseX = x + pos * 12;
+    s32 rectBaseY = 224 - y;
+    s32 rectX;
+    s32 rectY;
+
+#ifndef WIDESCREEN
+    // For widescreen we must allow drawing outside the usual area
+    clip_to_bounds(&rectBaseX, &rectBaseY);
+#endif
+    rectX = rectBaseX;
+    rectY = rectBaseY;
+    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    gDPSetCombineMode(gDisplayListHead++, G_CC_BLACKOUT, G_CC_BLACKOUT);
+    gSPTextureRectangle(gDisplayListHead++, rectX << 2, rectY << 2, (rectX + 15) << 2,
+                        (rectY + 15) << 2, G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
+    //gDPSetPrimColor(gDisplayListHead++, 0, 0, 255, 255, 255, 255);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_COPY);
+}
+
 /**
  * Renders the text in sTextLabels on screen at the proper locations by iterating
  * a for loop.
@@ -447,23 +567,16 @@ void render_text_labels(void) {
             glyphIndex = char_to_glyph_index(sTextLabels[i]->buffer[j]);
 
             if (glyphIndex != GLYPH_SPACE) {
-#ifdef VERSION_EU
-                // Beta Key was removed by EU, so glyph slot reused.
-                // This produces a colorful Ü.
-                if (glyphIndex == GLYPH_BETA_KEY) {
-                    add_glyph_texture(GLYPH_U);
-                    render_textrect(sTextLabels[i]->x, sTextLabels[i]->y, j);
-
-                    add_glyph_texture(GLYPH_UMLAUT);
-                    render_textrect(sTextLabels[i]->x, sTextLabels[i]->y + 3, j);
-                } else {
+                //add_glyph_texture(glyphIndex);
+                if (sTextLabels[i]->operation == 1) {
+                    add_glyph_texture(glyphIndex);
+                    render_textrect_blackout(sTextLabels[i]->x, sTextLabels[i]->y, j);
+                }
+                else {
                     add_glyph_texture(glyphIndex);
                     render_textrect(sTextLabels[i]->x, sTextLabels[i]->y, j);
                 }
-#else
-                add_glyph_texture(glyphIndex);
-                render_textrect(sTextLabels[i]->x, sTextLabels[i]->y, j);
-#endif
+                
             }
         }
 

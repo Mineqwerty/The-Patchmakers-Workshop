@@ -687,8 +687,13 @@ void render_debug_mode(void) {
  * Renders the amount of coins collected.
  */
 void render_hud_coins(void) {
+    print_text_blackout(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X)+2, HUD_TOP_Y - 22, "$"); // 'Coin' glyph
     print_text(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X), HUD_TOP_Y - 20, "$"); // 'Coin' glyph
+
+    print_text_blackout((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 18), HUD_TOP_Y - 22, "*"); // 'X' glyph
     print_text((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 16), HUD_TOP_Y - 20, "*"); // 'X' glyph
+
+    print_text_fmt_int_blackout((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 32), HUD_TOP_Y - 22, "%d", gHudDisplay.coins);
     print_text_fmt_int((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 30), HUD_TOP_Y - 20, "%d", gHudDisplay.coins);
 }
 
@@ -699,8 +704,15 @@ void render_hud_coins(void) {
 void render_hud_stars(void) {
     if (gHudFlash == HUD_FLASH_STARS && gGlobalTimer & 0x8) return;
     s8 showX = (gHudDisplay.stars < 100);
+    print_text_blackout(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 2, HUD_TOP_Y - 2, "^"); // 'Star' glyph
     print_text(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X), HUD_TOP_Y, "^"); // 'Star' glyph
+
+
+    if (showX) print_text_blackout((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 18), HUD_TOP_Y - 2, "*"); // 'X' glyph
     if (showX) print_text((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X) + 16), HUD_TOP_Y, "*"); // 'X' glyph
+
+    print_text_fmt_int_blackout((showX * 14) + GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X - 18),
+                       HUD_TOP_Y - 2, "%d", gHudDisplay.stars);
     print_text_fmt_int((showX * 14) + GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X - 16),
                        HUD_TOP_Y, "%d", gHudDisplay.stars);
 }

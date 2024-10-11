@@ -50,14 +50,16 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_HMC, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_HMC, 0x03, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, -2677, 4922, 113),
 		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_YARN_BLOOPER, 10899, -1181, 2317, 0, 105, 0, 0x00000000, bhvYarnBlooper),
@@ -96,10 +98,10 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_RED_COIN, -12569, 7188, -4308, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -7789, 3647, -4154, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -10783, 7082, 944, 0, 119, 0, 0x00000000, bhvRedCoin),
-		OBJECT(MODEL_STAR, -14998, 1269, -14832, 0, 119, 0, (18 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -15117, 1269, -14358, 0, 119, 0, (18 << 24), bhvStar),
 		OBJECT(MODEL_STAR, 6453, 7313, -2966, 0, 119, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),
-		OBJECT(MODEL_NONE, 7338, 2647, 9109, 0, 0, 0, (50 << 24) | (11 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, 7441, 2745, 9090, 0, 0, 0, (80 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
 		OBJECT(MODEL_WATER_RING, 8564, -8131, 836, 0, -148, 0, 0x00000000, bhvSubSeaWaterRing),
 		OBJECT(MODEL_NONE, 6542, -8799, -42, 0, 119, 0, 0x00000000, bhvSubSeaWaterRingManager),
@@ -122,8 +124,8 @@ const LevelScript level_hmc_entry[] = {
 	END_AREA(),
 	AREA(2, hmc_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, 62, 2956, -7766, 0, 119, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, 11756, 3114, 13278, 0, -180, 0, (7 << 16), bhvUnderwaterStoneButton),
 		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, -12188, 3825, -3526, 0, 0, 0, (4 << 16), bhvUnderwaterStoneButton),
@@ -142,8 +144,8 @@ const LevelScript level_hmc_entry[] = {
 	END_AREA(),
 	AREA(3, hmc_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_METAL_BOX, -4596, 3269, -8733, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_NONE, -2243, 3726, -4263, 0, 119, 0, 0x00000000, bhvGeyser),
