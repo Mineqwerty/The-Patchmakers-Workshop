@@ -773,6 +773,7 @@ void bounce_back_from_attack(struct MarioState *m, u32 interaction) {
 }
 
 u32 should_push_or_pull_door(struct MarioState *m, struct Object *obj) {
+    //set_camera_mode(gCamera, CAMERA_MODE_BEHIND_MARIO, 1);
     f32 dx = obj->oPosX - m->pos[0];
     f32 dz = obj->oPosZ - m->pos[2];
 

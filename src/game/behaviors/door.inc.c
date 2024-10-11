@@ -25,7 +25,7 @@ void door_animation_and_reset(s32 animIndex) {
 }
 
 void set_door_camera_event(void) {
-    if (segmented_to_virtual(bhvDoor) == o->behavior) {
+    if ((segmented_to_virtual(bhvDoor) == o->behavior) || (segmented_to_virtual(bhvClcDoor) == o->behavior)) {
         gPlayerCameraState->cameraEvent = CAM_EVENT_DOOR;
     } else {
         gPlayerCameraState->cameraEvent = CAM_EVENT_DOOR_WARP;
@@ -95,7 +95,7 @@ void bhv_door_loop(void) {
 }
 
 void bhv_door_init(void) {
-    const f32 checkDist = 200.0f;
+    const f32 checkDist = 400.0f;
 
     f32 x = o->oPosX;
     f32 y = o->oPosY;

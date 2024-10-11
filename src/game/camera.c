@@ -10579,6 +10579,9 @@ void cutscene_door_move_behind_mario(struct Camera *c) {
     vec3s_set(sCutsceneVars[0].angle, 0, sMarioCamState->faceAngle[1] + doorRotation, 0);
     vec3f_set(camOffset, 0.f, 125.f, 250.f);
 
+    s8DirModeBaseYaw = gMarioState->faceAngle[1] + doorRotation + DEGREES(180);
+    s8DirModeYawOffset = 0;
+
     offset_rotated(c->pos, sMarioCamState->pos, camOffset, sCutsceneVars[0].angle);
 }
 
@@ -10619,10 +10622,10 @@ void cutscene_door_end(struct Camera *c) {
  */
 void cutscene_door_mode(struct Camera *c) {
     reset_pan_distance(c);
-#ifdef USE_COURSE_DEFAULT_MODE
-    c->mode = c->defMode;
-#else
-    camera_course_processing(c);
+//#ifdef USE_COURSE_DEFAULT_MODE
+    //c->mode = c->defMode;
+//#else
+    //camera_course_processing(c);
 
     if (c->mode == CAMERA_MODE_FIXED) {
         c->nextYaw = update_fixed_camera(c, c->focus, c->pos);
@@ -10630,7 +10633,7 @@ void cutscene_door_mode(struct Camera *c) {
     if (c->mode == CAMERA_MODE_PARALLEL_TRACKING) {
         c->nextYaw = update_parallel_tracking_camera(c, c->focus, c->pos);
     }
-#endif
+//#endif
 
     c->yaw = c->nextYaw;
 
@@ -10701,12 +10704,12 @@ struct Cutscene sCutsceneCredits[] = { { cutscene_credits, CUTSCENE_LOOP } };
  */
 struct Cutscene sCutsceneDoorPull[] = {
 // HackerSM64 TODO: Properly transition when moving through doors
-#ifndef FORCED_CAMERA_MODE
+//#ifndef FORCED_CAMERA_MODE
     { cutscene_door_start, 1 },
     { cutscene_door_fix_cam, 30 },
     { cutscene_door_move_behind_mario, 1 },
     { cutscene_door_follow_mario, 50 },
-#endif
+//#endif
     { cutscene_door_end, 0 }
 };
 
@@ -10715,12 +10718,12 @@ struct Cutscene sCutsceneDoorPull[] = {
  */
 struct Cutscene sCutsceneDoorPush[] = {
 // HackerSM64 TODO: Properly transition when moving through doors
-#ifndef FORCED_CAMERA_MODE
+//////#ifndef FORCED_CAMERA_MODE
     { cutscene_door_start, 1 },
     { cutscene_door_fix_cam, 20 },
     { cutscene_door_move_behind_mario, 1 },
     { cutscene_door_follow_mario, 50 },
-#endif
+//#endif
     { cutscene_door_end, 0 }
 };
 
@@ -10739,10 +10742,10 @@ struct Cutscene sCutscenePortalCancel[] = {
  */
 struct Cutscene sCutsceneDoorPullMode[] = {
 // HackerSM64 TODO: Properly transition when moving through doors
-#ifndef FORCED_CAMERA_MODE
+//#ifndef FORCED_CAMERA_MODE
     { cutscene_door_start, 1 },
     { cutscene_door_fix_cam, 30 },
-#endif
+//#endif
     { cutscene_door_mode, CUTSCENE_LOOP }
 };
 
@@ -10752,10 +10755,10 @@ struct Cutscene sCutsceneDoorPullMode[] = {
  */
 struct Cutscene sCutsceneDoorPushMode[] = {
 // HackerSM64 TODO: Properly transition when moving through doors
-#ifndef FORCED_CAMERA_MODE
+//#ifndef FORCED_CAMERA_MODE
     { cutscene_door_start, 1 },
     { cutscene_door_fix_cam, 20 },
-#endif
+//#endif
     { cutscene_door_mode, CUTSCENE_LOOP }
 };
 
