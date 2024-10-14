@@ -34,6 +34,7 @@
 #include "puppylights.h"
 #include "level_commands.h"
 #include "include/behavior_data.h"
+#include "src/game/hud.h"
 
 #include "config.h"
 
@@ -1098,6 +1099,12 @@ void update_hud_values(void) {
         if (numHealthWedges > gHudDisplay.wedges) {
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
+        else {
+            for (int i = 0; i < (gHudDisplay.wedges - numHealthWedges); i++) {
+                hudBeads[gHudDisplay.wedges - i - 1].active = 1;
+            }
+        }
+        
         gHudDisplay.wedges = numHealthWedges;
 
         COND_BIT((gMarioState->hurtCounter > 0), gHudDisplay.flags, HUD_DISPLAY_FLAG_EMPHASIZE_POWER);

@@ -1643,7 +1643,7 @@ void update_mario_health(struct MarioState *m) {
             m->health += 0x40;
             m->healCounter--;
         }
-        if (m->hurtCounter > 0) {
+        while (m->hurtCounter > 0) {
             m->health -= 0x40;
             m->hurtCounter--;
         }

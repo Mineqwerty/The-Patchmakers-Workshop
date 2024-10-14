@@ -1,0 +1,10 @@
+extern u8 menu_power_beads_power_meter_rgba16[];
+extern Vtx menu_power_beads_Plane_015_mesh_vtx_0[10];
+extern Gfx menu_power_beads_Plane_015_mesh_tri_0[];
+extern Vtx menu_power_beads_Plane_015_mesh_vtx_1[10];
+extern Gfx menu_power_beads_Plane_015_mesh_tri_1[];
+extern Gfx mat_menu_power_beads_f3dlite_material_011[];
+extern Gfx mat_revert_menu_power_beads_f3dlite_material_011[];
+extern Gfx mat_menu_power_beads_f3dlite_material_010[];
+extern Gfx mat_revert_menu_power_beads_f3dlite_material_010[];
+extern Gfx menu_power_beads_Plane_015_mesh[];

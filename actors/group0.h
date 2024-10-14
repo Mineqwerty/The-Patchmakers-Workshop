@@ -453,4 +453,8 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "gilded_star_g/geo_header.h"
 
+#include "menu_power_beads/header.h"
+
+#include "menu_single_bead/header.h"
+
 #endif

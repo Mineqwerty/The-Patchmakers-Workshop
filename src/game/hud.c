@@ -1,5 +1,7 @@
 #include <PR/ultratypes.h>
 
+
+
 #include "sm64.h"
 #include "actors/common1.h"
 #include "gfx_dimensions.h"
@@ -21,6 +23,7 @@
 #include "levels/castle_inside/header.h"
 #include "levels/pss/header.h"
 #include "include/behavior_data.h"
+#include "actors/group0.h"
 
 #include "config.h"
 
@@ -89,6 +92,8 @@ struct PowerMeterHUD {
 struct CameraHUD {
     s16 status;
 };
+
+struct HudBead hudBeads[8];
 
 // Stores health segmented value defined by numHealthWedges
 // When the HUD is rendered this value is 8, full health.
@@ -451,12 +456,92 @@ void render_hud_patch_challenge_timer(void) {
         
 }
 
+u8 beadColors[8][3] = { 
+    {0xFF, 0x40, 0x3F},
+    {0xFF, 0x40, 0x3F},
+    {0xFF, 0xE2, 0x29},
+    {0xFF, 0xE2, 0x29},
+    {0xA5, 0xFF, 0xAB},
+    {0xA5, 0xFF, 0xAB},
+    {0x70, 0x92, 0xFF},
+    {0x70, 0x92, 0xFF},
+};
+
+void render_hud_pop_off_beads() {
+    for (int i = 0; i < 8; i++) {
+
+        if (hudBeads[i].active == 1) {
+            hudBeads[i].x = 29 + 30*sins(i * 0x888);
+            hudBeads[i].y = SCREEN_HEIGHT - 30*sins((8-i) * 0x888);
+            hudBeads[i].gravity = (f32)(random_u16() % 3);
+            hudBeads[i].xVel = (f32)((random_u16() % 6) - 3);
+            hudBeads[i].active = 2;
+        }
+        
+        if (hudBeads[i].active == 2) {
+            hudBeads[i].gravity -= 1.6f;
+            hudBeads[i].y += hudBeads[i].gravity;
+            hudBeads[i].x += hudBeads[i].xVel;
+
+            if (hudBeads[i].y < 0) {
+                hudBeads[i].active = 0;
+            }
+            else {
+                Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+                if (mtx == NULL) {
+                    return;
+                }
+                gDPSetEnvColor(gDisplayListHead++, beadColors[i][0], beadColors[i][1], beadColors[i][2], 255);
+                guTranslate(mtx, (f32) 0, (f32) 0, 0);
+                gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+                gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+                        G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+                create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+                    create_dl_translation_matrix(MENU_MTX_PUSH, hudBeads[i].x, hudBeads[i].y, 0);
+                    gSPDisplayList(gDisplayListHead++, &menu_single_bead_Plane_016_mesh);
+                    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+                gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+            }
+        }
+    }
+}
+
+void render_hud_power_beads() {
+     Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+    guTranslate(mtx, (f32) 0, (f32) SCREEN_HEIGHT, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
+              G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
+    //gSPDisplayList(gDisplayListHead++, &patch_challenge_curtain_Plane_012_mesh);
+
+
+    extern u8 menu_power_beads_power_meter_rgba16[];
+
+        u8 *powerMeterTexture = segmented_to_virtual(&menu_power_beads_power_meter_rgba16);
+
+        dma_read(powerMeterTexture, (gHudDisplay.wedges*4096) + power_beads_textures_dma, (gHudDisplay.wedges*4096) + power_beads_textures_dma + 4096);
+    
+
+        create_dl_translation_matrix(MENU_MTX_PUSH, 40, -25, 0);
+        gSPDisplayList(gDisplayListHead++, &menu_power_beads_Plane_015_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
 void render_dl_dpad_patches(s16 numHealthWedges) {
     Mtx *mtx = alloc_display_list(sizeof(Mtx));
 
     if (mtx == NULL) {
         return;
     }
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     //translate it when a cutscene or dialog is going on
     if (gDialogID != -1) {
@@ -936,7 +1021,9 @@ void render_hud(void) {
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
-            render_hud_power_meter();
+            //render_hud_power_meter();
+            render_hud_power_beads();
+            render_hud_pop_off_beads();
 
             if (gCurrLevelNum == LEVEL_PSS) {
                 render_dl_curtains();

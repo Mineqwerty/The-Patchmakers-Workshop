@@ -95,3 +95,5 @@
 #include "impact_grapple/model.inc.c"
 #include "impact_halo/model.inc.c"
 #include "gilded_star_g/model.inc.c"
+#include "menu_power_beads/model.inc.c"
+#include "menu_single_bead/model.inc.c"

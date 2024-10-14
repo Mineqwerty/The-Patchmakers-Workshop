@@ -80,3 +80,25 @@ ALIGNED8 const u8 tfp_tile_textures_dma[] = {
     ,
     #include "actors/amp/tfp_tiles4.rgba16.inc.c"
 };
+
+ALIGNED8 const u8 power_beads_textures_dma[] = {
+    #include "actors/amp/power_meter_0.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_1.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_2.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_3.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_4.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_5.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_6.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_7.rgba16.inc.c" 
+    ,
+    #include "actors/amp/power_meter_8.rgba16.inc.c" 
+    ,
+
+};

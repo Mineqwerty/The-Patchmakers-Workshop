@@ -42,13 +42,23 @@ enum CameraHUDLUT {
     GLYPH_CAM_ARROW_DOWN
 };
 
+struct HudBead {
+    s32 active;
+    f32 x;
+    f32 y;
+    f32 gravity;
+    f32 xVel;
+};
+
 void set_hud_camera_status(s16 status);
 void render_hud(void);
 void update_dl_dpad_patches(void);
 
 extern const Texture *const patch_textures_lut[];
 extern const u8 patch_textures_dma[];
+extern const u8 power_beads_textures_dma[];
 extern u8 gSpecialHudRender;
 extern u8 gSpecialHudElementAlpha;
+extern struct HudBead hudBeads[8];
 
 #endif // HUD_H

@@ -395,6 +395,7 @@ static void bhv_new_boo_loop(void) {
             }
         break;
         case NEW_BOO_ACT_JUMPSCARE:
+            obj_turn_toward_object(o, gMarioState->marioObj, O_FACE_ANGLE_YAW_INDEX, 0x800);
             switch (o->oSubAction) {
                 case 0:
                     if (o->oTimer == 120) {
