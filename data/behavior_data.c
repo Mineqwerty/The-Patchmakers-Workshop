@@ -3096,7 +3096,7 @@ const BehaviorScript bhvGhostHuntBoo[] = {
     SET_HURTBOX(/*Radius*/ 40, /*Height*/ 60),
     SET_FLOAT(oGraphYOffset, 30),
     CALL_NATIVE(bhv_init_room),
-    SPAWN_CHILD(/*Model*/ MODEL_YELLOW_COIN, /*Behavior*/ bhvCoinInsideBoo),
+    //SPAWN_CHILD(/*Model*/ MODEL_YELLOW_COIN, /*Behavior*/ bhvCoinInsideBoo),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ 0, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_boo_init),
     BEGIN_LOOP(),

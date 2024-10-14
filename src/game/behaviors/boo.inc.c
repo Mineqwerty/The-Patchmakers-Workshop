@@ -332,7 +332,7 @@ static s32 boo_get_attack_status(void) {
 static void boo_chase_mario(f32 minDY, s16 yawIncrement, f32 mul) {
     s16 targetYaw;
 
-    if (boo_vanish_or_appear()) {
+    //if (boo_vanish_or_appear()) {
         o->oInteractType = INTERACT_BOUNCE_TOP;
 
         if (cur_obj_lateral_dist_from_mario_to_home() > 1500.0f) {
@@ -356,9 +356,117 @@ static void boo_chase_mario(f32 minDY, s16 yawIncrement, f32 mul) {
         if (o->oForwardVel != 0.0f) {
             boo_oscillate(FALSE);
         }
-    } else {
-        o->oInteractType = 0;
-        boo_stop();
+    //} else {
+    //    o->oInteractType = 0;
+    //    boo_stop();
+    //}
+}
+
+enum NewBooActions {
+    NEW_BOO_ACT_WAITING,
+    NEW_BOO_ACT_FADE,
+    NEW_BOO_ACT_JUMPSCARE,
+    NEW_BOO_ACT_WANDER,
+    NEW_BOO_ACT_ATTACKED
+};
+
+static void bhv_new_boo_loop(void) {
+    s32 attackStatus;
+
+    if (o->oTimer == 0) {
+        o->oBooNegatedAggressiveness = -random_float() * 5.0f;
+        o->oBooTurningSpeed = (s32)(random_float() * 128.0f);
+    }
+
+    switch (o->oAction) {
+        case NEW_BOO_ACT_WAITING:
+            if (o->oDistanceToMario < 2000) {
+                o->oAction = NEW_BOO_ACT_FADE;
+            }
+            o->oOpacity = 255;
+        break;
+        case NEW_BOO_ACT_FADE:
+            cur_obj_become_intangible();
+            o->oOpacity -= 5;
+            if (o->oOpacity < 10) {
+                cur_obj_hide();
+                o->oAction = NEW_BOO_ACT_JUMPSCARE;
+                o->oSubAction = 0;
+            }
+        break;
+        case NEW_BOO_ACT_JUMPSCARE:
+            switch (o->oSubAction) {
+                case 0:
+                    if (o->oTimer == 120) {
+                        o->oSubAction++;
+                        o->oOpacity = 15;
+                    }
+                    o->oPosX = gMarioState->pos[0];
+                    o->oPosY = gMarioState->pos[1] + 60;
+                    o->oPosZ = gMarioState->pos[2];
+                break;
+                case 1:
+                    cur_obj_unhide();
+                    o->oOpacity += 15;
+                    if (o->oOpacity == 255) {
+                        o->oSubAction++;
+                        o->oTimer = 0;
+                        o->oInteractType = INTERACT_BOUNCE_TOP;
+                        cur_obj_become_tangible();
+                    }
+                break;
+                case 2:
+                    cur_obj_scale(1.0f + 2.0f * sins(o->oTimer * 0x444));
+                    if (o->oTimer == 30) {
+                        o->oAction = NEW_BOO_ACT_WANDER;
+                        o->oSubAction = 0;
+                        cur_obj_scale(1.0f);
+                    }
+                break;
+            }
+        break;
+        case NEW_BOO_ACT_WANDER:
+            
+            o->oOpacity = 255;
+            boo_chase_mario(-100.0f, o->oBooTurningSpeed + 0x180, 0.5f);
+            cur_obj_scale(1.0f);
+            attackStatus = boo_get_attack_status();
+            if (o->oTimer == 120) {
+                o->oAction = NEW_BOO_ACT_WAITING;
+            }
+        break;
+        case NEW_BOO_ACT_ATTACKED:
+            if (boo_update_during_death()) {
+                cur_obj_disable();
+                
+                obj_mark_for_deletion(o);
+
+                obj_set_angle(o, 0, 0, 0);
+            }
+        break;
+    }
+    
+
+    
+
+    
+
+    //if (boo_should_be_stopped()) {
+    //    o->oAction = 0;
+    //}
+
+    if (attackStatus == BOO_BOUNCED_ON) {
+        o->oAction = NEW_BOO_ACT_FADE;
+    }
+
+    if (attackStatus == BOO_ATTACKED) {
+        o->oAction = NEW_BOO_ACT_ATTACKED;
+        o->oNumLootCoins = 5;
+        cur_obj_spawn_loot_blue_coin();
+    }
+
+    if (attackStatus == BOO_ATTACKED) {
+        create_sound_spawner(SOUND_OBJ_DYING_ENEMY1);
     }
 }
 
@@ -479,15 +587,12 @@ static ObjActionFunc sBooActions[] = {
 void bhv_boo_loop(void) {
     // PARTIAL_UPDATE
 
+    bhv_new_boo_loop();
     cur_obj_update_floor_and_walls();
-    cur_obj_call_action_function(sBooActions);
+    //cur_obj_call_action_function(sBooActions);
     cur_obj_move_standard(78);
-    boo_approach_target_opacity_and_update_scale();
-
-    if (obj_has_behavior(o->parentObj, bhvMerryGoRoundBooManager)
-     && o->activeFlags == ACTIVE_FLAG_DEACTIVATED) {
-        o->parentObj->oMerryGoRoundBooManagerNumBoosKilled++;
-    }
+    //boo_approach_target_opacity_and_update_scale();
+    
 
     o->oInteractStatus = INT_STATUS_NONE;
 }
