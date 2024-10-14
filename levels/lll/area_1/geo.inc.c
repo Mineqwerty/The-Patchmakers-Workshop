@@ -24,6 +24,7 @@ const GeoLayout lll_dl_A_Room_002_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_Col_Room2_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 832, 476, 352, lll_dl_Cube_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 832, 476, -348, lll_dl_Cube_007_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_NoCol_Room2_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -34,6 +35,7 @@ const GeoLayout lll_dl_A_Room_003_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_Col_room3_mesh_layer_5),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 11550, 2419, 14, 0, 38, 0, lll_dl_Cube_008_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 8190, 1106, -3597, 0, 38, 0, lll_dl_Cube_009_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_NoCol_Room3_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
