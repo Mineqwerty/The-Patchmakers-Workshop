@@ -331,10 +331,13 @@ DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
 I won't stop you from entering here, but\n\
 be warned: it is horribly dangerous.\n\
 The rogue spirits will attempt to attack you.\n\
-Just know that they are not in their right minds...\n\
+We call them Blights.\n\
+Their presence here has also attracted some\n\
+unruly Boos as well, to make matters worse...
+Just know that the Blights are not in their right minds...\n\
 Unfortunate circumstances have led them to become\n\
-this way.\n\
-And your hands won't be able to attack them.\n\
+this way, and they will likely not return to normal.\n\
+Unlike Boos, you won't be able to attack them...\n\
 If they approach you, I recommend crouching down\n\
 to the ground to try and hide."))
 
@@ -1927,3 +1930,113 @@ DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_2, 1, 3, 30, 200, _("\
 Mario, Mario, Ma-ri-o!\n\
 Mario. Mario! Ma. Ri. O!!!\n\
 Hehe... your name is fun to say!"))
+
+DEFINE_DIALOG(DIALOG_MASTER_WELCOME, 1, 3, 30, 200, _("\
+Welcome, mister Mario.\n\
+I express gratitude that you came all\n\
+the way up here to see me.\n\
+Please have a seat.\n\
+There is much to discuss.\n\
+"))
+
+DEFINE_DIALOG(DIALOG_MASTER_STORY, 1, 4, 30, 200, _("\
+I apologize for the lack of hospitality.\n\
+As I'm sure you know by now, this manor is\n\
+not in a good state. It all stems\n\
+from the disease permeating the area.\n\
+The plague that corrupts the spectral\n\
+servants is one of magic and madness.\n\
+Worry not; us living beings are unaffected\n\
+by it. But as for it's root...\n\
+Well, I'm sure you know by now. The man\n\
+you know as The Patchmaker is the cause.\n\
+Truthfully, he was once a friend of mine...\n\
+That man had ambitions beyond our wildest dreams.\n\
+Though it was a far trip, I often visited him\n\
+to view his latest works, which ranged from\n\
+simple sculptures, to magnificent mechanical marvels.\n\
+One day, he was the one to visit me.\n\
+He told me about his greatest creation yet,\n\
+a living doll. Though he loved and cherished her,\n\
+he could not help but wish to recreate the miracle\n\
+of her existence. Such is a creator's desire.\n\
+He asked me to allow him to study my servants.\n\
+To recreate this miracle, he needed more knowledge\n\
+about life itself, and spirits were something that\n\
+he thought could give him a lead.\n\
+I allowed him, and he spent days studying them,\n\
+their behaviors, their connection to this world.\n\
+What he found was that the ghosts we see are not\n\
+the ones he sought out.\n\
+These spirits have purpose, tangibility.\n\
+They were placed in this world for a reason,\n\
+to exist in the shape and soul that they\n\
+do. I tried to explain this to him.\n\
+He was not deterred, and insisted that there\n\
+was a way to give spirits new life. After all,\n\
+there is no life without a soul. His living\n\
+doll was alive, with feelings and emotions...\n\
+At this point, signs of his desperation were showing.\n\
+He asked me to let him experiment on a servant next,\n\
+an outrageous proposition that I immediately denied.\n\
+Perhaps I shouldn't have, but I chastised him for asking.\n\
+The Patchmaker stormed off after that. And the next time\n\
+I saw him, a year later... \n\
+He was not the man I formerly knew.\n\
+\n\
+It started with one of the Phantasmaids going missing.\n\
+We searched for her, until we saw a horrifying sight.\n\
+The Patchmaker stood over the missing servant with a vial,\n\
+as she writhed and contorted into a Blight.\n\
+We had naught but a moment to be surprised before the Blight\n\
+went berserk and attacked us. The Patchmaker fled as the\n\
+servants beside me began to contract the effects of\n\
+the experiment that he had performed.\n\
+As I ran, I became worried about my wife.\n\
+She had been searching with us as well, but with the\n\
+maniacal Patchmaker on the loose, I feared the worst.\n\
+While I ran, I ordered everyone to lock up the doors.\n\
+When I finally found her, what I saw horrified me.\n\
+A large needle stuck into the flesh of her face was\n\
+weaving thread through it with unsettling fluidity.\n\
+The kind of craftwork that happens with thousands of tries.\n\
+All the while, the man controlling the needle smiled\n\
+softly, the face behind it focusing on the weaving and\n\
+winding of thread, smiling despite my wife's \n\
+blood-curdling screams of terror, just... Smiling.\n\
+This man that stood in front of me knew no morality.\n\
+All he knew was his craft, the motions of creation.\n\
+All of these thoughts coalesced in my mind as I stood\n\
+in abject horror at what he was doing.\n\
+Perhaps it was the last shreds of his former self, or\n\
+it may have merely been my interruption of his work,\n\
+but when he saw me he stopped.\n\
+He gently set down the needle and walked away.\n\
+That was the last I ever saw of him.\n\
+I later learned that he had done this\n\
+to many creatures before, turning them into\n\
+craftwork without a mind of their own.\n\
+To do such a thing to a friend...\n\
+There is no doubt that The Patchmaker has\n\
+completely lost his moral and coherent thoughts.\n\
+I would bet it was the magic he used that did it.\n\
+And then, there is my poor wife. While she is\n\
+better off than most of the other beings that\n\
+The Patchmaker experimented on, she can hardly\n\
+think anymore. She is in a state of constant suffering.\n\
+I can hardly look at her anymore without the horrid\n\
+memories of that day paralyzing me.\n\
+And thus, I have kept to my study for the\n\
+future. This manor will likely never recover.\n\
+Mario... I know not what you have planned to\n\
+confront The Patchmaker. However, I must tell you\n\
+this: that man is beyond saving. He is nothing\n\
+but a walking husk without morals.\n\
+Keep this in mind so that something terrible\n\
+does not occur.\n\
+Now then, that is all I have to tell you.\n\
+I do apologize for keepipng you so long.\n\
+Mister Mario, we have utmost faith in you.\n\
+The future of all of us here hangs in the\n\
+balance. Take this. I was keeping it as a\n\
+failsafe, but you'll need all the help you can get."))
