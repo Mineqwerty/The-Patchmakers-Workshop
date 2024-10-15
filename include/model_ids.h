@@ -778,6 +778,7 @@
 #define MODEL_EXTENSION_BLOCK_SIDE           0x1A2
 #define MODEL_SKYBRIDGE           0x1A3
 #define MODEL_SKYBRIDGE_FRAGMENT                   0x1A4
+#define MODEL_GLOBAL_GROUND_PATCH                   0x1A5
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

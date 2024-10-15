@@ -100,3 +100,4 @@
 #include "levels/lll/mistress/model.inc.c"
 #include "levels/lll/mistress/anims/data.inc.c"
 #include "levels/lll/mistress/anims/table.inc.c"
+#include "levels/lll/master/model.inc.c"

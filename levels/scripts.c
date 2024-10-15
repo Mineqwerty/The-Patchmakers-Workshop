@@ -148,6 +148,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_IMPACT_GRAPPLE,            impact_grapple_geo),
     LOAD_MODEL_FROM_GEO(MODEL_IMPACT_HALO,            impact_halo_geo),
     LOAD_MODEL_FROM_GEO(MODEL_GILDED_STAR_G,            gilded_star_g_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_GLOBAL_GROUND_PATCH,            global_ground_patch_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

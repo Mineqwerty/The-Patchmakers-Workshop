@@ -48,3 +48,4 @@
 #include "impact_grapple/geo.inc.c"
 #include "impact_halo/geo.inc.c"
 #include "gilded_star_g/geo.inc.c"
+#include "global_ground_patch/geo.inc.c"

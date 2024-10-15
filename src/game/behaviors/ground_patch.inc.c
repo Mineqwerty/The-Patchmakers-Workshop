@@ -1,15 +1,25 @@
 #include "include/seq_ids.h"
 #include "src/game/cutscene.h"
+#include "actors/group0.h"
 
 void bhv_ground_patch_init(void) {
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << o->oBehParams2ndByte + 1)) {
-        obj_mark_for_deletion(o);
+        //obj_mark_for_deletion(o);
+    }
+
+    if (cur_obj_has_model(MODEL_GLOBAL_GROUND_PATCH)) {
+        extern u8 global_ground_patch_grapple_patch_rgba16_rgba16[];
+        extern const u8 patch_textures_dma[];
+
+        u8 *patchTexture = segmented_to_virtual(&global_ground_patch_grapple_patch_rgba16_rgba16);
+
+        dma_read(patchTexture, ((o->oBehParams2ndByte + 1)*2048) + patch_textures_dma, ((o->oBehParams2ndByte + 1)*2048) + patch_textures_dma + 2048);
     }
 }
 
 void bhv_ground_cutscene_patch_init(void) {
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << 1)) {
-        obj_mark_for_deletion(o);
+        //obj_mark_for_deletion(o);
     }
 }
 

@@ -52,6 +52,8 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -126,6 +128,7 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_GLOBAL_GROUND_PATCH, 89, 3881, 10822, -90, 0, 0, (4 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, 62, 2956, -7766, 0, 119, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, 11756, 3114, 13278, 0, -180, 0, (7 << 16), bhvUnderwaterStoneButton),
 		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, -12188, 3825, -3526, 0, 0, 0, (4 << 16), bhvUnderwaterStoneButton),
