@@ -184,8 +184,8 @@ Gfx lll_area_1_collision_mat_revert_lll_dl_spooky_tiles_layer1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx lll_area_1_collision_f3dlite_material_004_layer_1[] = {
-	gsSPSetLights1(lll_dl_f3dlite_material_004_lights),
+Gfx lll_area_1_collision_death_layer_1[] = {
+	gsSPSetLights1(lll_dl_death_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -193,7 +193,7 @@ Gfx lll_area_1_collision_f3dlite_material_004_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx lll_area_1_collision_mat_revert_lll_dl_f3dlite_material_004[] = {
+Gfx lll_area_1_collision_mat_revert_lll_dl_death[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -569,8 +569,8 @@ const Gfx* lll_area_1_collision_materials[] = {
 	&lll_area_1_collision_mat_revert_lll_dl_f3dlite_material_028,
 	&lll_area_1_collision_spooky_tiles_layer_1,
 	&lll_area_1_collision_mat_revert_lll_dl_spooky_tiles_layer1,
-	&lll_area_1_collision_f3dlite_material_004_layer_1,
-	&lll_area_1_collision_mat_revert_lll_dl_f3dlite_material_004,
+	&lll_area_1_collision_death_layer_1,
+	&lll_area_1_collision_mat_revert_lll_dl_death,
 	&lll_area_1_collision_f3dlite_material_019_layer_1,
 	&lll_area_1_collision_mat_revert_lll_dl_f3dlite_material_019,
 	&lll_area_1_collision_f3dlite_material_011_layer_1,
@@ -8335,7 +8335,7 @@ const Collision lll_area_1_collision[] = {
 	COL_TRI(2436, 688, 687),
 	COL_TRI(2443, 2442, 695),
 	COL_TRI(2443, 695, 694),
-	COL_TRI_MAT_INIT(SURFACE_DEATH_PLANE, 16, 17, 1, 8),
+	COL_TRI_MAT_INIT(SURFACE_HURT_FLOOR, 16, 17, 1, 8),
 	COL_TRI(2452, 2453, 2454),
 	COL_TRI(2452, 2454, 2455),
 	COL_TRI(2456, 2457, 2453),

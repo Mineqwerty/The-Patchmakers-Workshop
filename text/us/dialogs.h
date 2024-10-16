@@ -333,7 +333,7 @@ be warned: it is horribly dangerous.\n\
 The rogue spirits will attempt to attack you.\n\
 We call them Blights.\n\
 Their presence here has also attracted some\n\
-unruly Boos as well, to make matters worse...
+unruly Boos as well, to make matters worse...\n\
 Just know that the Blights are not in their right minds...\n\
 Unfortunate circumstances have led them to become\n\
 this way, and they will likely not return to normal.\n\
@@ -1946,7 +1946,7 @@ not in a good state. It all stems\n\
 from the disease permeating the area.\n\
 The plague that corrupts the spectral\n\
 servants is one of magic and madness.\n\
-Worry not; us living beings are unaffected\n\
+Worry not, us living beings are unaffected\n\
 by it. But as for it's root...\n\
 Well, I'm sure you know by now. The man\n\
 you know as The Patchmaker is the cause.\n\
