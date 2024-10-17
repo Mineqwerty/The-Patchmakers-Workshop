@@ -1,0 +1,14 @@
+extern const GeoLayout cutscene_chair_geo[];
+extern u8 cutscene_chair_oldwood_ci8[];
+extern u8 cutscene_chair_oldwood_pal_rgba16[];
+extern u8 cutscene_chair_sofa_ci8[];
+extern u8 cutscene_chair_sofa_pal_rgba16[];
+extern Vtx cutscene_chair_Plane_013_mesh_layer_1_vtx_0[140];
+extern Gfx cutscene_chair_Plane_013_mesh_layer_1_tri_0[];
+extern Vtx cutscene_chair_Plane_013_mesh_layer_1_vtx_1[58];
+extern Gfx cutscene_chair_Plane_013_mesh_layer_1_tri_1[];
+extern Gfx mat_cutscene_chair_f3dlite_material_035[];
+extern Gfx mat_revert_cutscene_chair_f3dlite_material_035[];
+extern Gfx mat_cutscene_chair_f3dlite_material_048[];
+extern Gfx mat_revert_cutscene_chair_f3dlite_material_048[];
+extern Gfx cutscene_chair_Plane_013_mesh_layer_1[];

@@ -2018,8 +2018,8 @@ to many creatures before, turning them into\n\
 craftwork without a mind of their own.\n\
 To do such a thing to a friend...\n\
 There is no doubt that The Patchmaker has\n\
-completely lost his moral and coherent thoughts.\n\
-I would bet it was the magic he used that did it.\n\
+completely lost his former self.\n\
+As for how, who knows...\n\
 And then, there is my poor wife. While she is\n\
 better off than most of the other beings that\n\
 The Patchmaker experimented on, she can hardly\n\
@@ -2027,7 +2027,7 @@ think anymore. She is in a state of constant suffering.\n\
 I can hardly look at her anymore without the horrid\n\
 memories of that day paralyzing me.\n\
 And thus, I have kept to my study for the\n\
-future. This manor will likely never recover.\n\
+future. This manor will likely never be the same.\n\
 Mario... I know not what you have planned to\n\
 confront The Patchmaker. However, I must tell you\n\
 this: that man is beyond saving. He is nothing\n\

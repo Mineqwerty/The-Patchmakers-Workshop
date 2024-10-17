@@ -14,6 +14,7 @@
 #include "src/game/mario.h"
 #include "src/game/mario_actions_moving.h"
 #include "src/game/hud.h"
+#include "include/dialog_ids.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -82,6 +83,7 @@ enum cutscene_events {
     EVENT_SET_MARIO_ACTION,
     EVENT_SET_MARIO_ACTION_ARG,
     EVENT_SET_MARIO_EYE_STATE,
+    EVENT_SET_MARIO_ANIMATION,
     EVENT_SET_MARIO_CUSTOM_ANIMATION,
     EVENT_MARIO_APPROACH_POINT,
 
@@ -97,6 +99,8 @@ enum cutscene_events {
     //EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
     EVENT_HUD_SET_EFFECT,
+    EVENT_FADE_INTO_COLOR,
+    EVENT_FADE_FROM_COLOR,
 
     EVENT_SET_FB_EFFECT,
     EVENT_CLEAR_FB_EFFECT,
@@ -422,6 +426,57 @@ s32 event_mistress[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_master_story[] = {
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_HUD_DISABLE,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_CAMERA_POSITION, 7030, 1800, -120,
+    EVENT_CAMERA_FOCUS, 7030, 1750, -600,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_YAW, 0xD260,
+    EVENT_SET_MARIO_POSITION, 7231, 1525, -746,
+    EVENT_SET_MARIO_ANIMATION, MARIO_ANIM_START_SLEEP_SITTING,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MASTER_STORY,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 31,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 32,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, 7330, 1800, -120,
+    EVENT_CAMERA_FOCUS, 7030, 1700, -600,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 8,
+    EVENT_CAMERA_POSITION, 7000, 1800, -1000,
+    EVENT_CAMERA_FOCUS, 6800, 1530, -800,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 11,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 33,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 34,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 12,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, 7030, 1800, -120,
+    EVENT_CAMERA_FOCUS, 7030, 1750, -600,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 15,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 33,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 34,
+    EVENT_SONG_PRIMARY, SEQ_MISTRESS_THEME,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 20,
+    EVENT_CAMERA_POSITION, 7330, 1800, -120,
+    EVENT_CAMERA_FOCUS, 7030, 1700, -600,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 22,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 31,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 32,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 25,
+    EVENT_CAMERA_POSITION, 7030, 1800, -120,
+    EVENT_CAMERA_FOCUS, 7030, 1750, -600,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 1,
+    EVENT_SET_MARIO_ACTION, ACT_WAKING_UP,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
+};
+
 s32 event_meet_sewnia[] = {
     EVENT_HUD_DISABLE,
     EVENT_CAMERA_ENABLE_CUTSCENE,
@@ -515,7 +570,9 @@ s32 *eventList[] = {
     event_mistress,
     event_meet_sewnia,
     event_sewnia_revive_mario,
-    event_city_lights_on
+    event_city_lights_on,
+    //10,
+    event_master_story
 };
 
 s32 *splineList[] = {
@@ -556,6 +613,10 @@ s32 *splineList[] = {
     ccm_area_4_spline_GoddessIntroCutscene6Pos,
     //30
     ccm_area_4_spline_GoddessIntroCutscene6Foc,
+    lll_area_5_spline_MasterCutsceneBehindMarioChairPos,
+    lll_area_5_spline_MasterCutsceneBehindMarioChairFoc,
+    lll_area_5_spline_MasterCutsceneLookingAtMasterPos,
+    lll_area_5_spline_MasterCutsceneLookingAtMasterFoc
 };
 
 void begin_cutscene_event(s32 event) {
@@ -724,6 +785,10 @@ void event_handler(void) {
                     set_custom_mario_animation(gMarioState, param1);
                      cCutsceneIndex += 2;
                 break;
+                case EVENT_SET_MARIO_ANIMATION:
+                    set_mario_animation(gMarioState, param1);
+                     cCutsceneIndex += 2;
+                break;
                 case EVENT_DIALOG_USER_ADVANCE:
                     create_dialog_box(param1);
                     cCutsceneIndex += 2;
@@ -739,6 +804,14 @@ void event_handler(void) {
                 case EVENT_HUD_SET_EFFECT:
                     gSpecialHudRender = param1;
                     cCutsceneIndex += 2;
+                break;
+                case EVENT_FADE_INTO_COLOR:
+                    play_transition(WARP_TRANSITION_FADE_INTO_COLOR, param1, param2, param3, cEventPointer[cCutsceneIndex + 4]);
+                    cCutsceneIndex += 5;
+                break;
+                case EVENT_FADE_FROM_COLOR:
+                    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, param1, param2, param3, cEventPointer[cCutsceneIndex + 4]);
+                    cCutsceneIndex += 5;
                 break;
                 case EVENT_END_CUTSCENE:
                     gHudDisplay.flags = HUD_DISPLAY_DEFAULT;

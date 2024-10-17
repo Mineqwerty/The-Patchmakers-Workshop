@@ -679,6 +679,8 @@
 #define MODEL_MOVING_SPECTRAL_OCTAGON                0x10A
 #define MODEL_EYEBULB                0x10B
 #define MODEL_MISTRESS                0x10C
+#define MODEL_MASTER                0x10D
+#define MODEL_CUTSCENE_CHAIR                0x10E
 
 //Hidden Village Hold
 #define MODEL_AWNING                   0x100

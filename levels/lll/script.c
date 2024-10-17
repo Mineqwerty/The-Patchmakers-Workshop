@@ -49,21 +49,9 @@ const LevelScript level_lll_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_BLIGHT, blight_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MOVING_SPECTRAL_OCTAGON, moving_spectral_octagon_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_EYEBULB, eyebulb_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_MISTRESS, mistress_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_MISTRESS, mistress_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MASTER, master_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_CUTSCENE_CHAIR, cutscene_chair_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -377,6 +365,33 @@ const LevelScript level_lll_entry[] = {
 		TERRAIN(lll_area_4_collision),
 		TERRAIN_MAT_LUT(lll_area_4_collision_materials),
 		MACRO_OBJECTS(lll_area_4_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_CANDLELIT_CHAMBER),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(5, lll_area_5),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_LLL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0E, LEVEL_LLL, 0x01, 0x10, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0F, LEVEL_LLL, 0x01, 0x11, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x10, LEVEL_LLL, 0x04, 0x10, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x11, LEVEL_LLL, 0x04, 0x11, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_CUTSCENE_CHAIR, 7278, 1500, -792, 0, 0, 0, 0x00000000, bhvCutsceneChair),
+		OBJECT(MODEL_CLC_DOOR, 9284, 1430, 100, 0, 90, 0, (2 << 24) | (17 << 16), bhvClcDoorWarp),
+		OBJECT(MODEL_CLC_DOOR, 9284, 1430, -100, 0, -90, 0, (1 << 24) | (16 << 16), bhvClcDoorWarp),
+		OBJECT(MODEL_NONE, 8609, 1639, -491, 0, -90, 0, (1 << 24) | (10 << 16), bhvAirborneWarp),
+		OBJECT(MODEL_RED_FLAME, 7031, 1595, -1384, 0, -21, 0, 0x00000000, bhvLargeFlame),
+		OBJECT(MODEL_RED_FLAME, 6870, 1624, -1363, 0, -21, 0, 0x00000000, bhvLargeFlame),
+		OBJECT(MODEL_RED_FLAME, 7315, 1632, -1352, 0, -21, 0, 0x00000000, bhvLargeFlame),
+		OBJECT(MODEL_RED_FLAME, 6735, 1614, -1327, 0, -21, 0, 0x00000000, bhvLargeFlame),
+		OBJECT(MODEL_RED_FLAME, 7157, 1604, -1378, 0, -21, 0, 0x00000000, bhvLargeFlame),
+		OBJECT(MODEL_MASTER, 6787, 1403, -802, 0, 55, 0, 0x00000000, bhvMaster),
+		TERRAIN(lll_area_5_collision),
+		TERRAIN_MAT_LUT(lll_area_5_collision_materials),
+		MACRO_OBJECTS(lll_area_5_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

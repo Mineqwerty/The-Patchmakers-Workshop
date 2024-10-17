@@ -1286,6 +1286,23 @@ const BehaviorScript bhvSmallFlame[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvLargeFlame[] = {
+    BEGIN(OBJ_LIST_PUSHABLE),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    SET_HOME(),
+    SCALE(/*Unused*/ 0, /*Field*/ 1200),
+    SET_INTERACT_TYPE(INTERACT_FLAME),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 10, /*Height*/ 5, /*Downwards offset*/ 5),
+    SET_INT(oIntangibleTimer, 0),
+    CALL_NATIVE(bhv_init_room),
+    BEGIN_LOOP(),
+        SET_INT(oInteractStatus, INT_STATUS_NONE),
+        ANIMATE_TEXTURE(oAnimState, 2),
+        //CALL_NATIVE(bhv_stationary_flame_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvAnotherElavator[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -8337,5 +8354,27 @@ const BehaviorScript bhvPaperBoo[] = {
     CALL_NATIVE(bhv_paper_boo_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_paper_boo_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMaster[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, master_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_master_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_master_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCutsceneChair[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(cutscene_chair_collision),
+    CALL_NATIVE(bhv_cutscene_chair_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_cutscene_chair_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };

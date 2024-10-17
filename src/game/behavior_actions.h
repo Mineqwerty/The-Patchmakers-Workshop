@@ -1018,3 +1018,7 @@ void bhv_lift_cloud_switch_init(void);
 void bhv_lift_cloud_switch_loop(void);
 void bhv_paper_boo_init(void);
 void bhv_paper_boo_loop(void);
+void bhv_master_init(void);
+void bhv_master_loop(void);
+void bhv_cutscene_chair_init(void);
+void bhv_cutscene_chair_loop(void);
