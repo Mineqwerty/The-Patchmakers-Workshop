@@ -48,6 +48,7 @@ struct HudBead {
     f32 y;
     f32 gravity;
     f32 xVel;
+    s32 randTexture;
 };
 
 void set_hud_camera_status(s16 status);

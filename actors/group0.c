@@ -98,3 +98,4 @@
 #include "menu_power_beads/model.inc.c"
 #include "menu_single_bead/model.inc.c"
 #include "global_ground_patch/model.inc.c"
+#include "menu_single_bead_2/model.inc.c"

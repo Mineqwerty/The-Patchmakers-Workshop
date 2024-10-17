@@ -459,4 +459,6 @@ extern const Gfx sl_seg7_dl_0700A980[];
 
 #include "global_ground_patch/geo_header.h"
 
+#include "menu_single_bead_2/header.h"
+
 #endif

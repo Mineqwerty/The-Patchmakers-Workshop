@@ -1,5 +1,26 @@
 #include "src/game/envfx_snow.h"
 
+const GeoLayout master_eyes_switch_opt1[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 94, 0, master_head_mesh_layer_1_mat_override_faceblink_0),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout master_eyes_switch_opt2[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 94, 0, master_head_mesh_layer_1_mat_override_facemad_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout master_eyes_switch_opt3[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 94, 0, master_head_mesh_layer_1_mat_override_faceseething_2),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
 const GeoLayout master_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
@@ -13,7 +34,16 @@ const GeoLayout master_geo[] = {
 					GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 48, 0, master_chest_mesh_layer_1),
 					GEO_OPEN_NODE(),
 						GEO_DISPLAY_LIST(LAYER_OPAQUE, master_head_skinned_mesh_layer_1),
-						GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 94, 0, master_head_mesh_layer_1),
+						GEO_SWITCH_CASE(0, geo_switch_master_eyes),
+						GEO_OPEN_NODE(),
+							GEO_NODE_START(),
+							GEO_OPEN_NODE(),
+								GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 94, 0, master_head_mesh_layer_1),
+							GEO_CLOSE_NODE(),
+							GEO_BRANCH(1, master_eyes_switch_opt1),
+							GEO_BRANCH(1, master_eyes_switch_opt2),
+							GEO_BRANCH(1, master_eyes_switch_opt3),
+						GEO_CLOSE_NODE(),
 						GEO_DISPLAY_LIST(LAYER_OPAQUE, master_shoulder_left_skinned_mesh_layer_1),
 						GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 0, 80, -26, -120, 0, -5),
 						GEO_OPEN_NODE(),

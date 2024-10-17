@@ -471,11 +471,12 @@ void render_hud_pop_off_beads() {
     for (int i = 0; i < 8; i++) {
 
         if (hudBeads[i].active == 1) {
-            hudBeads[i].x = 29 + 30*sins(i * 0x888);
-            hudBeads[i].y = SCREEN_HEIGHT - 30*sins((8-i) * 0x888);
+            hudBeads[i].x = 9 + 60*sins(i * 0x888);
+            hudBeads[i].y = SCREEN_HEIGHT - 10 - 28*sins((8-i) * 0x888);
             hudBeads[i].gravity = (f32)(random_u16() % 3);
             hudBeads[i].xVel = (f32)((random_u16() % 6) - 3);
             hudBeads[i].active = 2;
+            hudBeads[i].randTexture = (random_u16() % 2);
         }
         
         if (hudBeads[i].active == 2) {
@@ -499,7 +500,15 @@ void render_hud_pop_off_beads() {
                         G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
                 create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.0f, 1.0f, 1.0f);
                     create_dl_translation_matrix(MENU_MTX_PUSH, hudBeads[i].x, hudBeads[i].y, 0);
-                    gSPDisplayList(gDisplayListHead++, &menu_single_bead_Plane_016_mesh);
+                    switch (hudBeads[i].randTexture) {
+                        case 0:
+                            gSPDisplayList(gDisplayListHead++, &menu_single_bead_Plane_016_mesh);
+                        break;
+                        case 1:
+                            gSPDisplayList(gDisplayListHead++, &menu_single_bead_2_Plane_017_mesh);
+                        break;
+                    }
+                    
                     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             }

@@ -722,6 +722,8 @@ Gfx *geo_switch_rosedrift_eyes(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_podogoo_eyes(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_master_eyes(s32 callContext, struct GraphNode *node);
+
 
 
 #endif // BEHAVIOR_ACTIONS_H
