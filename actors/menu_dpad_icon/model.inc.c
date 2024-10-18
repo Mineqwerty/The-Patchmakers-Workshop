@@ -291,24 +291,39 @@ u8 menu_dpad_icon_newhalfdpad_pal_rgba16[] = {
 	0xef, 0x77, 
 };
 
-Vtx menu_dpad_icon_Plane_004_mesh_vtx_0[4] = {
-	{{ {-45, -45, 0}, 0, {-16, 2032}, {0, 0, 127, 0} }},
-	{{ {45, -45, 0}, 0, {2032, 2032}, {0, 0, 127, 0} }},
-	{{ {45, 45, 0}, 0, {2032, -16}, {0, 0, 127, 0} }},
-	{{ {-45, 45, 0}, 0, {-16, -16}, {0, 0, 127, 0} }},
+Vtx menu_dpad_icon_Plane_004_mesh_vtx_cull[8] = {
+	{{ {-45, -51, -4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-45, -51, 0}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-45, 45, 0}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-45, 45, -4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {51, -51, -4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {51, -51, 0}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {51, 45, 0}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {51, 45, -4}, 0, {0, 0}, {0, 0, 0, 0} }},
+};
+
+Vtx menu_dpad_icon_Plane_004_mesh_vtx_0[8] = {
+	{{ {-39, -51, -4}, 0, {-16, 2032}, {0, 0, 0, 0} }},
+	{{ {51, -51, -4}, 0, {2032, 2032}, {0, 0, 0, 0} }},
+	{{ {51, 39, -4}, 0, {2032, -16}, {0, 0, 0, 0} }},
+	{{ {-39, 39, -4}, 0, {-16, -16}, {0, 0, 0, 0} }},
+	{{ {-45, -45, 0}, 0, {-16, 2032}, {255, 255, 255, 0} }},
+	{{ {45, -45, 0}, 0, {2032, 2032}, {255, 255, 255, 0} }},
+	{{ {45, 45, 0}, 0, {2032, -16}, {255, 255, 255, 0} }},
+	{{ {-45, 45, 0}, 0, {-16, -16}, {255, 255, 255, 0} }},
 };
 
 Gfx menu_dpad_icon_Plane_004_mesh_tri_0[] = {
-	gsSPVertex(menu_dpad_icon_Plane_004_mesh_vtx_0 + 0, 4, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 2, 3, 0),
+	gsSPVertex(menu_dpad_icon_Plane_004_mesh_vtx_0 + 0, 8, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_menu_dpad_icon_patch_up_002[] = {
-	gsSPClearGeometryMode(G_CULL_BACK),
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
@@ -324,7 +339,7 @@ Gfx mat_menu_dpad_icon_patch_up_002[] = {
 };
 
 Gfx mat_revert_menu_dpad_icon_patch_up_002[] = {
-	gsSPSetGeometryMode(G_CULL_BACK),
+	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -332,6 +347,10 @@ Gfx mat_revert_menu_dpad_icon_patch_up_002[] = {
 };
 
 Gfx menu_dpad_icon_Plane_004_mesh[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPVertex(menu_dpad_icon_Plane_004_mesh_vtx_cull + 0, 8, 0),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_menu_dpad_icon_patch_up_002),
 	gsSPDisplayList(menu_dpad_icon_Plane_004_mesh_tri_0),
 	gsSPDisplayList(mat_revert_menu_dpad_icon_patch_up_002),

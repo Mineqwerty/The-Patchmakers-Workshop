@@ -259,46 +259,64 @@ u8 menu_patch_down_icon_nothing_rgba16[] = {
 	
 };
 
-Vtx menu_patch_down_icon_Plane_006_mesh_vtx_0[4] = {
-	{{{-29, -75, 6},0, {-16, 1008},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{29, -75, 6},0, {1008, 1008},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{29, -18, 6},0, {1008, -16},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{-29, -18, 6},0, {-16, -16},{0x0, 0x0, 0x7F, 0xFF}}},
+Vtx menu_patch_down_icon_Plane_006_mesh_vtx_cull[8] = {
+	{{ {-29, -81, -1}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-29, -81, 6}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-29, -20, 6}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-29, -20, -1}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {33, -81, -1}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {33, -81, 6}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {33, -20, 6}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {33, -20, -1}, 0, {0, 0}, {0, 0, 0, 0} }},
+};
+
+Vtx menu_patch_down_icon_Plane_006_mesh_vtx_0[8] = {
+	{{ {-25, -81, -1}, 0, {-16, 1008}, {0, 0, 0, 0} }},
+	{{ {33, -81, -1}, 0, {1008, 1008}, {0, 0, 0, 0} }},
+	{{ {33, -24, -1}, 0, {1008, -16}, {0, 0, 0, 0} }},
+	{{ {-25, -24, -1}, 0, {-16, -16}, {0, 0, 0, 0} }},
+	{{ {-29, -77, 6}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {29, -77, 6}, 0, {1008, 1008}, {255, 255, 255, 0} }},
+	{{ {29, -20, 6}, 0, {1008, -16}, {255, 255, 255, 0} }},
+	{{ {-29, -20, 6}, 0, {-16, -16}, {255, 255, 255, 0} }},
 };
 
 Gfx menu_patch_down_icon_Plane_006_mesh_tri_0[] = {
-	gsSPVertex(menu_patch_down_icon_Plane_006_mesh_vtx_0 + 0, 4, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 2, 3, 0),
+	gsSPVertex(menu_patch_down_icon_Plane_006_mesh_vtx_0 + 0, 8, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_menu_patch_down_icon_patch_down[] = {
+Gfx mat_menu_patch_down_icon_patch_down_001[] = {
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0),
-	gsSPClearGeometryMode(G_CULL_BACK),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
+	gsDPSetAlphaDither(G_AD_NOISE),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPTileSync(),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, menu_patch_down_icon_nothing_rgba16),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
-	gsDPLoadSync(),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 256),
-	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_menu_patch_down_icon_patch_down[] = {
+Gfx mat_revert_menu_patch_down_icon_patch_down_001[] = {
+	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_CULL_BACK),
+	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx menu_patch_down_icon_Plane_006_mesh[] = {
-	gsSPDisplayList(mat_menu_patch_down_icon_patch_down),
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPVertex(menu_patch_down_icon_Plane_006_mesh_vtx_cull + 0, 8, 0),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPCullDisplayList(0, 7),
+	gsSPDisplayList(mat_menu_patch_down_icon_patch_down_001),
 	gsSPDisplayList(menu_patch_down_icon_Plane_006_mesh_tri_0),
-	gsSPDisplayList(mat_revert_menu_patch_down_icon_patch_down),
+	gsSPDisplayList(mat_revert_menu_patch_down_icon_patch_down_001),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

@@ -554,16 +554,17 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
 
     //translate it when a cutscene or dialog is going on
     if (gDialogID != -1) {
-    guTranslate(mtx, (f32) 30 - (90 - gDialogBoxOpenTimer), (f32) 30, 0);
+    guTranslate(mtx, (f32) 35 - (90 - gDialogBoxOpenTimer), (f32) 32, 0);
     }
     else {
-        guTranslate(mtx, (f32) 30, (f32) 30, 0);
+        guTranslate(mtx, (f32) 35, (f32) 32, 0);
     }
     gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
               G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.4f, 0.4f, 1.0f);
     gSPDisplayList(gDisplayListHead++, &menu_dpad_icon_Plane_004_mesh);
+    
         s8 animateBounce[4] = {0, 0, 0, 0};
 
         if (gPlayer1Controller->buttonPressed & (U_JPAD)) {animateBounce[0] = 1;}
