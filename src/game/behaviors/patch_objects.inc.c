@@ -631,7 +631,7 @@ void bhv_halo_loop(void) {
             }
             
 
-            if (obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) {
+            if ((obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) || obj_has_behavior(other, bhvSmallFlame) && !o->oHaloCapturedObject) {
                 o->oHaloCapturedObject =
                     spawn_object_relative(1, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
                 gMarioState->haloCaptureType = 1;

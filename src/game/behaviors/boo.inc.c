@@ -315,7 +315,13 @@ static s32 boo_get_attack_status(void) {
 
             cur_obj_play_sound_2(SOUND_OBJ_BOO_LAUGH_SHORT);
 
-            attackStatus = BOO_ATTACKED;
+            if (gMarioState->equippedPatch == PATCH_HALO && o->collidedObjs[0] && gMarioState->patchChildObj && (gMarioState->patchChildObj == o->collidedObjs[0]) 
+                && gMarioState->patchChildObj->oHaloCapturedObject && obj_has_behavior(gMarioState->patchChildObj->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                attackStatus = BOO_EXORCISED;
+            }
+            else {
+                attackStatus = BOO_ATTACKED;
+            }
         } else {
             cur_obj_play_sound_2(SOUND_OBJ_BOO_BOUNCE_TOP);
 
@@ -367,7 +373,8 @@ enum NewBooActions {
     NEW_BOO_ACT_FADE,
     NEW_BOO_ACT_JUMPSCARE,
     NEW_BOO_ACT_WANDER,
-    NEW_BOO_ACT_ATTACKED
+    NEW_BOO_ACT_ATTACKED,
+    NEW_BOO_ACT_EXORCISED
 };
 
 static void bhv_new_boo_loop(void) {
@@ -445,6 +452,19 @@ static void bhv_new_boo_loop(void) {
                 obj_set_angle(o, 0, 0, 0);
             }
         break;
+        case NEW_BOO_ACT_EXORCISED:
+            cur_obj_scale(1.0f - ((f32)o->oTimer / 30.0f));
+            o->oPosX += random_u16() % 5 - 2;
+            o->oPosY += random_u16() % 5 - 2;
+            o->oPosZ += random_u16() % 5 - 2;
+            o->oFaceAnglePitch -= 0x100;
+            o->oForwardVel = 0;
+            if (o->oTimer == 29) {
+                o->oNumLootCoins = 5;
+                cur_obj_spawn_loot_blue_coin();
+                obj_mark_for_deletion(o);
+            }
+        break;
     }
     
 
@@ -464,6 +484,11 @@ static void bhv_new_boo_loop(void) {
         o->oAction = NEW_BOO_ACT_ATTACKED;
         o->oNumLootCoins = 5;
         cur_obj_spawn_loot_blue_coin();
+    }
+
+    if (attackStatus == BOO_EXORCISED) {
+        o->oAction = NEW_BOO_ACT_EXORCISED;
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_RED_FLAME, bhvFlameLargeBurningOut);
     }
 
     if (attackStatus == BOO_ATTACKED) {

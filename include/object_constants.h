@@ -1276,6 +1276,7 @@ enum oBehParams1stByteSlidingPlatform { // collisionDataIndex
     /* attackStatus */
     #define BOO_NOT_ATTACKED                                0x0
     #define BOO_ATTACKED                                    0x1
+    #define BOO_EXORCISED                                    0x2
     #define BOO_BOUNCED_ON                                 -0x1
 
 /* Big Boo */
