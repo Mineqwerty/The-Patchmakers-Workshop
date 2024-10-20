@@ -389,6 +389,7 @@ static void bhv_new_boo_loop(void) {
         case NEW_BOO_ACT_WAITING:
             if (o->oDistanceToMario < 2000) {
                 o->oAction = NEW_BOO_ACT_FADE;
+                cur_obj_play_sound_2(SOUND_GENERAL_VANISH_SFX);
             }
             o->oOpacity = 255;
         break;
@@ -398,16 +399,19 @@ static void bhv_new_boo_loop(void) {
             if (o->oOpacity < 10) {
                 cur_obj_hide();
                 o->oAction = NEW_BOO_ACT_JUMPSCARE;
+                
                 o->oSubAction = 0;
             }
         break;
         case NEW_BOO_ACT_JUMPSCARE:
             obj_turn_toward_object(o, gMarioState->marioObj, O_FACE_ANGLE_YAW_INDEX, 0x800);
+            obj_turn_toward_object(o, gMarioState->marioObj, O_MOVE_ANGLE_YAW_INDEX, 0x800);
             switch (o->oSubAction) {
                 case 0:
                     if (o->oTimer == 120) {
                         o->oSubAction++;
                         o->oOpacity = 15;
+                        cur_obj_play_sound_2(SOUND_GENERAL_VANISH_SFX);
                     }
                     o->oPosX = gMarioState->pos[0];
                     o->oPosY = gMarioState->pos[1] + 60;
@@ -421,6 +425,8 @@ static void bhv_new_boo_loop(void) {
                         o->oTimer = 0;
                         o->oInteractType = INTERACT_BOUNCE_TOP;
                         cur_obj_become_tangible();
+                        cur_obj_set_model(MODEL_BOO_MOUTH_OPEN);
+                        cur_obj_play_sound_2(SOUND_NEW_BOO_JUMPSCARE);
                     }
                 break;
                 case 2:
@@ -429,6 +435,7 @@ static void bhv_new_boo_loop(void) {
                         o->oAction = NEW_BOO_ACT_WANDER;
                         o->oSubAction = 0;
                         cur_obj_scale(1.0f);
+                        cur_obj_set_model(MODEL_BOO);
                     }
                 break;
             }
@@ -454,9 +461,9 @@ static void bhv_new_boo_loop(void) {
         break;
         case NEW_BOO_ACT_EXORCISED:
             cur_obj_scale(1.0f - ((f32)o->oTimer / 30.0f));
-            o->oPosX += random_u16() % 5 - 2;
-            o->oPosY += random_u16() % 5 - 2;
-            o->oPosZ += random_u16() % 5 - 2;
+            o->oPosX += random_u16() % 10 - 5;
+            o->oPosY += random_u16() % 10 - 5;
+            o->oPosZ += random_u16() % 10 - 5;
             o->oFaceAnglePitch -= 0x100;
             o->oForwardVel = 0;
             if (o->oTimer == 29) {

@@ -338,8 +338,8 @@ Just know that the Blights are not in their right minds...\n\
 Unfortunate circumstances have led them to become\n\
 this way, and they will likely not return to normal.\n\
 Unlike Boos, you won't be able to attack them...\n\
-If they approach you, I recommend crouching down\n\
-to the ground to try and hide."))
+It would be best not to provoke them, as they\n\
+dislike being looked at directly."))
 
 DEFINE_DIALOG(DIALOG_038, 1, 3, 95, 200, _("\
 Reacting to the Star\n\

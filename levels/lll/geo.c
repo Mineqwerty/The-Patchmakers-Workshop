@@ -60,3 +60,4 @@
 #include "levels/lll/mistress/geo.inc.c"
 #include "levels/lll/master/geo.inc.c"
 #include "levels/lll/cutscene_chair/geo.inc.c"
+#include "levels/lll/boo_mouth_open/geo.inc.c"

@@ -8910,6 +8910,28 @@ sound_ref .sound_bass_boom
 sound_ref .sound_pokey_impact
 sound_ref .sound_pokey_howling_wind
 sound_ref .sound_marine_spin
+sound_ref .sound_blight_scream
+sound_ref .sound_boo_jumpscare
+
+.sound_boo_jumpscare:
+chan_setbank 12
+chan_setinstr 18
+chan_setlayer 0, .layer_boo_jumpscare
+chan_end
+
+.layer_boo_jumpscare:
+layer_note1 39, 0x49, 127
+layer_end
+
+.sound_blight_scream:
+chan_setbank 12
+chan_setinstr 17
+chan_setlayer 0, .layer_blight_scream
+chan_end
+
+.layer_blight_scream:
+layer_note1 39, 0xa0, 127
+layer_end
 
 .sound_marine_spin:
 chan_setbank 12

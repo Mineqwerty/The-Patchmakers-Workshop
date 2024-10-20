@@ -95,6 +95,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "marine_spin"
+    },
+    "inst_blight_scream": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "blight_scream"
+    },
+    "inst_boo_jumpscare": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "boo_jumpscare"
     }
   },
   "instrument_list": [
@@ -114,6 +124,8 @@
     "inst_bass_boom",
     "inst_pokey_impact",
     "inst_pokey_howling_wind",
-    "inst_marine_spin"
+    "inst_marine_spin",
+    "inst_blight_scream",
+    "inst_boo_jumpscare"
   ]
 }

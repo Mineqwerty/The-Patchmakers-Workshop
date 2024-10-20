@@ -641,6 +641,8 @@ enum SoundBank {
 #define SOUND_NEW_POKEY_IMPACT                                    SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x0E, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_POKEY_HOWLING_WIND                              SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x0F, 0xDF, 0)
 #define SOUND_NEW_MARINE_SPIN                                     SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x10, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_BLIGHT_SCREAM                                   SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x11, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_BOO_JUMPSCARE                                   SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x12, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_MIASMA_STORM_R                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)

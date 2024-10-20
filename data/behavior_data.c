@@ -8378,3 +8378,12 @@ const BehaviorScript bhvCutsceneChair[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvEyebulbStarSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_eyebulb_star_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_eyebulb_star_spawner_loop),
+    END_LOOP(),
+};

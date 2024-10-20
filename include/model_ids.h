@@ -681,6 +681,7 @@
 #define MODEL_MISTRESS                0x10C
 #define MODEL_MASTER                0x10D
 #define MODEL_CUTSCENE_CHAIR                0x10E
+#define MODEL_BOO_MOUTH_OPEN                0x10F
 
 //Hidden Village Hold
 #define MODEL_AWNING                   0x100

@@ -724,6 +724,8 @@ Gfx *geo_switch_podogoo_eyes(s32 callContext, struct GraphNode *node);
 
 Gfx *geo_switch_master_eyes(s32 callContext, struct GraphNode *node);
 
+Gfx *geo_switch_blight_eyes(s32 callContext, struct GraphNode *node);
+
 
 
 #endif // BEHAVIOR_ACTIONS_H
@@ -1024,3 +1026,5 @@ void bhv_master_init(void);
 void bhv_master_loop(void);
 void bhv_cutscene_chair_init(void);
 void bhv_cutscene_chair_loop(void);
+void bhv_eyebulb_star_spawner_init(void);
+void bhv_eyebulb_star_spawner_loop(void);
