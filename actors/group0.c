@@ -26,6 +26,10 @@
 
 #include "sparkle_animation/model.inc.c"
 
+#include "koopa/model.inc.c"
+#include "koopa/anims/data.inc.c"
+#include "koopa/anims/table.inc.c"
+
 #ifdef S2DEX_TEXT_ENGINE
 #include "src/s2d_engine/s2d_config.h"
 #include FONT_C_FILE
@@ -99,3 +103,4 @@
 #include "menu_single_bead/model.inc.c"
 #include "global_ground_patch/model.inc.c"
 #include "menu_single_bead_2/model.inc.c"
+#include "yarn_koopa/model.inc.c"

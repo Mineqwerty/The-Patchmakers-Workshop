@@ -1264,6 +1264,10 @@ void bhv_transmutation_cone_loop(void) {
                         target->oBehParams2ndByte = 1;
                         obj_set_model(target, MODEL_SUPER_BOUNCE_BULB);
                     }
+                    else if (obj_has_behavior(target, bhvDryBones)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_KOOPA_WITH_SHELL, bhvKoopa);
+                        obj_mark_for_deletion(target);
+                    }
 
                     play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
                 }

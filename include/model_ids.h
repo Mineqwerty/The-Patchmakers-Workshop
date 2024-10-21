@@ -370,6 +370,7 @@
 #define MODEL_BOOKEND_PART                0x58        // bookend_part_geo
 #define MODEL_BOOKEND                     0x59        // bookend_geo
 #define MODEL_HAUNTED_CAGE                0x5A        // haunted_cage_geo
+#define MODEL_BOO_MOUTH_OPEN                0x5B
 
 // group 10
 #define MODEL_BIRDS                       0x54        // birds_geo
@@ -408,7 +409,7 @@
 // group 14
 #define MODEL_PIRANHA_PLANT               0x64        // piranha_plant_geo
 #define MODEL_WHOMP                       0x67        // whomp_geo
-#define MODEL_KOOPA_WITH_SHELL            0x68        // koopa_with_shell_geo
+#define MODEL_KOOPA_SHELL            0x68        // koopa_with_shell_geo
 #define MODEL_METALLIC_BALL               0x65        // metallic_ball_geo
 #define MODEL_CHAIN_CHOMP                 0x66        // chain_chomp
 #define MODEL_KOOPA_FLAG                  0x6A        // koopa_flag_geo
@@ -509,8 +510,7 @@
 #define MODEL_BUTTERFLY                   0xBB        // butterfly_geo
 #define MODEL_BLACK_BOBOMB                0xBC        // black_bobomb_geo
 // find me
-#define MODEL_KOOPA_SHELL                 0xBE        // koopa_shell_geo
-#define MODEL_KOOPA_WITHOUT_SHELL         0xBF        // koopa_without_shell_geo
+
 #define MODEL_GOOMBA                      0xC0        // goomba_geo
 #define MODEL_SEAWEED                     0xC1        // seaweed_geo
 #define MODEL_AMP                         0xC2        // dAmpGeo
@@ -681,7 +681,7 @@
 #define MODEL_MISTRESS                0x10C
 #define MODEL_MASTER                0x10D
 #define MODEL_CUTSCENE_CHAIR                0x10E
-#define MODEL_BOO_MOUTH_OPEN                0x10F
+
 
 //Hidden Village Hold
 #define MODEL_AWNING                   0x100
@@ -759,6 +759,7 @@
 #define MODEL_IMPACT_GRAPPLE          0x189
 #define MODEL_IMPACT_HALO          0x18A
 #define MODEL_GILDED_STAR_G     0x18B
+#define MODEL_YARN_KOOPA     0x18C
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
@@ -782,6 +783,9 @@
 #define MODEL_SKYBRIDGE           0x1A3
 #define MODEL_SKYBRIDGE_FRAGMENT                   0x1A4
 #define MODEL_GLOBAL_GROUND_PATCH                   0x1A5
+
+#define MODEL_KOOPA_WITH_SHELL                 0x1A6        // koopa_shell_geo
+#define MODEL_KOOPA_WITHOUT_SHELL         0x1A7        // koopa_without_shell_geo
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

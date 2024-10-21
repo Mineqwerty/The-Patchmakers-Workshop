@@ -334,6 +334,43 @@ extern const Gfx white_particle_small_unused_dl[];
 extern const GeoLayout sl_geo_000378[];
 extern const Gfx sl_seg7_dl_0700A980[];
 
+
+// koopa
+extern const GeoLayout koopa_without_shell_geo[];
+extern const GeoLayout koopa_with_shell_geo[];
+extern const Gfx koopa_seg6_dl_06007658[];
+extern const Gfx koopa_seg6_dl_060076B0[];
+extern const Gfx koopa_seg6_dl_06007850[];
+extern const Gfx koopa_seg6_dl_06007970[];
+extern const Gfx koopa_seg6_dl_06007A60[];
+extern const Gfx koopa_seg6_dl_06007AA0[];
+extern const Gfx koopa_seg6_dl_06007AF8[];
+extern const Gfx koopa_seg6_dl_06007B20[];
+extern const Gfx koopa_seg6_dl_06007FB8[];
+extern const Gfx koopa_seg6_dl_06008050[];
+extern const Gfx koopa_seg6_dl_060080F8[];
+extern const Gfx koopa_seg6_dl_06008250[];
+extern const Gfx koopa_seg6_dl_06008530[];
+extern const Gfx koopa_seg6_dl_060085E8[];
+extern const Gfx koopa_seg6_dl_06008640[];
+extern const Gfx koopa_seg6_dl_060086D0[];
+extern const Gfx koopa_seg6_dl_060089B0[];
+extern const Gfx koopa_seg6_dl_06008A68[];
+extern const Gfx koopa_seg6_dl_06008AC0[];
+extern const Gfx koopa_seg6_dl_06008B50[];
+extern const Gfx koopa_seg6_dl_0600B6E0[];
+extern const Gfx koopa_seg6_dl_0600B838[];
+extern const Gfx koopa_seg6_dl_0600B8B8[];
+extern const Gfx koopa_seg6_dl_0600BA10[];
+extern const Gfx koopa_seg6_dl_0600BA90[];
+extern const Gfx koopa_seg6_dl_0600BC18[];
+extern const Gfx koopa_seg6_dl_0600BC88[];
+extern const Gfx koopa_seg6_dl_0600BE10[];
+extern const Gfx koopa_seg6_dl_0600BE80[];
+extern const Gfx koopa_seg6_dl_0600C240[];
+extern const Gfx koopa_seg6_dl_0600C498[];
+extern const struct Animation *const koopa_seg6_anims_06011364[];
+
 #include "patch_mario_stone/geo_header.h"
 
 #include "mario/geo_header.h"
@@ -460,5 +497,7 @@ extern const Gfx sl_seg7_dl_0700A980[];
 #include "global_ground_patch/geo_header.h"
 
 #include "menu_single_bead_2/header.h"
+
+#include "yarn_koopa/geo_header.h"
 
 #endif

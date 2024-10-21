@@ -81,4 +81,6 @@ extern const Gfx small_key_seg5_dl_05006A28[];
 extern const Gfx small_key_seg5_dl_05006A48[];
 extern const Gfx small_key_seg5_dl_05006A68[];
 
+#include "actors/boo_mouth_open/geo_header.h"
+
 #endif

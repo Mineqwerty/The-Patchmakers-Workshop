@@ -52,7 +52,6 @@ const LevelScript level_lll_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MISTRESS, mistress_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MASTER, master_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CUTSCENE_CHAIR, cutscene_chair_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_BOO_MOUTH_OPEN, boo_mouth_open_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 

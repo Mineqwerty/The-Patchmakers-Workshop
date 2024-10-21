@@ -42,7 +42,6 @@ const GeoLayout dry_bones_geo[] = {
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, dry_bones_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

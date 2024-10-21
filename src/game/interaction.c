@@ -231,6 +231,11 @@ u32 determine_interaction(struct MarioState *m, struct Object *obj) {
     return interaction;
 }
 
+u32 obj_is_one_hp_enemy(struct Object *obj) {
+    return (obj_has_behavior(obj, bhvGoomba) ||
+            obj_has_behavior(obj, bhvPodogoo));
+}
+
 /**
  * Sets the interaction types for INT_STATUS_INTERACTED, INT_STATUS_WAS_ATTACKED
  */
@@ -265,7 +270,7 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     }
 
     obj->oInteractStatus = attackType + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED);
-    if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) {
+    if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM || obj_is_one_hp_enemy(obj)) {
         
         obj->oHealth -= damage;
         struct Object *particle;
