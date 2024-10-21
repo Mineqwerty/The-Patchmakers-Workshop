@@ -296,6 +296,8 @@ static s32 boo_update_during_death(void) {
     o->oFaceAngleRoll += 0x800;
     o->oFaceAngleYaw += 0x800;
 
+    o->oOpacity -= 7;
+
     return FALSE;
 }
 
@@ -408,12 +410,12 @@ static void bhv_new_boo_loop(void) {
             obj_turn_toward_object(o, gMarioState->marioObj, O_MOVE_ANGLE_YAW_INDEX, 0x800);
             switch (o->oSubAction) {
                 case 0:
-                    if (o->oTimer == 120) {
+                    if (o->oTimer == 60) {
                         o->oSubAction++;
                         o->oOpacity = 15;
                         cur_obj_play_sound_2(SOUND_GENERAL_VANISH_SFX);
                     }
-                    o->oPosX = gMarioState->pos[0];
+                    o->oPosX = gMarioState->pos[0] + 50;
                     o->oPosY = gMarioState->pos[1] + 60;
                     o->oPosZ = gMarioState->pos[2];
                 break;
@@ -431,11 +433,15 @@ static void bhv_new_boo_loop(void) {
                 break;
                 case 2:
                     cur_obj_scale(1.0f + 2.0f * sins(o->oTimer * 0x444));
+                    o->hitboxRadius = 180 + 180.0f * sins(o->oTimer * 0x444);
+                    o->hurtboxRadius = 80 + 160.0f * sins(o->oTimer * 0x444);
                     if (o->oTimer == 30) {
                         o->oAction = NEW_BOO_ACT_WANDER;
                         o->oSubAction = 0;
                         cur_obj_scale(1.0f);
                         cur_obj_set_model(MODEL_BOO);
+                        o->hitboxRadius = 180;
+                        o->hurtboxRadius = 80;
                     }
                 break;
             }

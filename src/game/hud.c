@@ -1042,7 +1042,7 @@ void render_hud(void) {
             }
             else {
                 render_dl_dpad_patches(2);
-                render_hud_camera_status();
+                //render_hud_camera_status();
             }
             
         }
