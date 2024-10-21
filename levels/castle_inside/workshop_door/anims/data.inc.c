@@ -1,6 +1,3 @@
-#include "anim_closed.inc.c"
-#include "anim_openingPulled.inc.c"
-#include "anim_openingPushed.inc.c"
 #include "anim_wsclosed.inc.c"
 #include "anim_wsopeningPulled.inc.c"
 #include "anim_wsopeningPushed.inc.c"
