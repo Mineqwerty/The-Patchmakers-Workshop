@@ -113,3 +113,7 @@
 #include "levels/castle_inside/music_note/model.inc.c"
 #include "levels/castle_inside/drawback_curtain/model.inc.c"
 #include "levels/castle_inside/patch_challenge_menu_bg/model.inc.c"
+#include "levels/castle_inside/workshop_door/collision.inc.c"
+#include "levels/castle_inside/workshop_door/model.inc.c"
+#include "levels/castle_inside/workshop_door/anims/data.inc.c"
+#include "levels/castle_inside/workshop_door/anims/table.inc.c"

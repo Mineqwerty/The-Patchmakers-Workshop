@@ -564,6 +564,7 @@
 #define MODEL_HVH_BOOK_ACTIVE                  0x10E
 #define MODEL_MUSIC_NOTE                  0x10F
 #define MODEL_DRAWBACK_CURTAIN                  0x110
+#define MODEL_WORKSHOP_DOOR                  0x111
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

@@ -25,7 +25,7 @@ void door_animation_and_reset(s32 animIndex) {
 }
 
 void set_door_camera_event(void) {
-    if ((segmented_to_virtual(bhvDoor) == o->behavior) || (segmented_to_virtual(bhvClcDoor) == o->behavior)) {
+    if ((segmented_to_virtual(bhvDoor) == o->behavior) || (segmented_to_virtual(bhvClcDoor) == o->behavior)  || (segmented_to_virtual(bhvWorkshopDoor) == o->behavior)) {
         gPlayerCameraState->cameraEvent = CAM_EVENT_DOOR;
     } else {
         gPlayerCameraState->cameraEvent = CAM_EVENT_DOOR_WARP;
@@ -81,11 +81,17 @@ void bhv_door_loop(void) {
             if (obj_has_behavior(o, bhvClcDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
                 o->header.gfx.animInfo.animFrame = 30;
             }
+            if (obj_has_behavior(o, bhvWorkshopDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
+                o->header.gfx.animInfo.animFrame = 30;
+            }
             break;
         case DOOR_ACT_WARP_PUSHED:
             door_animation_and_reset(DOOR_ANIM_WARP_PUSHED);
             play_warp_door_open_noise();
             if (obj_has_behavior(o, bhvClcDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
+                o->header.gfx.animInfo.animFrame = 30;
+            }
+            if (obj_has_behavior(o, bhvWorkshopDoorWarp) && o->header.gfx.animInfo.animFrame < 30) {
                 o->header.gfx.animInfo.animFrame = 30;
             }
             break;

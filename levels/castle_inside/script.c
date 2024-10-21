@@ -48,11 +48,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_NORMAL, hvh_book_normal_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_BOOK_ACTIVE, hvh_book_active_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_WORKSHOP_DOOR, workshop_door_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -77,13 +74,13 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_GSS_WINDOW_LIGHT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindowLight),
 		OBJECT(MODEL_GSS_WINDOW_LIT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindow),
 		OBJECT(MODEL_NONE, -2014, 100, -1225, 0, 0, 0, 0x051F0000, bhvPaintingDeathWarp),
-		OBJECT(MODEL_NONE, 6545, 554, -1303, 0, 0, 0, 0x050F0000, bhvWarp),
 		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 0, 0, 0x00000000, bhvStcDoor),
 		OBJECT(MODEL_STC_DOOR_LEFT, 3889, 554, 2906, 0, 0, 0, (1 << 16), bhvStcDoor),
 		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, 0, 0, 0x00000000, bhvGarageDoor),
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
+		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, 0x00000000, bhvWorkshopDoor),
 		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -4853, 168, 1010, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, 4081, 688, 2692, 0, -90, 0, (0x42 << 16), bhvPaintingDeathWarp),

@@ -41,3 +41,4 @@
 #include "levels/castle_inside/hvh_book_active/geo.inc.c"
 #include "levels/castle_inside/music_note/geo.inc.c"
 #include "levels/castle_inside/drawback_curtain/geo.inc.c"
+#include "levels/castle_inside/workshop_door/geo.inc.c"

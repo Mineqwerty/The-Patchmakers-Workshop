@@ -7435,6 +7435,31 @@ const BehaviorScript bhvClcDoor[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvWorkshopDoorWarp[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    SET_INT(oInteractType, INTERACT_WARP_DOOR),
+    GOTO(bhvWorkshopDoor + 1 + 1),
+};
+
+const BehaviorScript bhvWorkshopDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    SET_INT(oInteractType, INTERACT_DOOR),
+    // Door - common:
+    OR_LONG(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, workshop_door_anims),
+    ANIMATE(0),
+    LOAD_COLLISION_DATA(workshop_door_collision),
+    SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
+    SET_INT(oIntangibleTimer, 0),
+    SET_FLOAT(oCollisionDistance, 2000),
+    SET_HOME(),
+    //CALL_NATIVE(bhv_door_init),
+    BEGIN_LOOP(),
+        //CALL_NATIVE(bhv_door_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvBlight[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
     OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
