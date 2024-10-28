@@ -17,3 +17,6 @@ UNUSED static const u64 binid_0 = 0;
 #include "moneybag/anims/data.inc.c"
 #include "moneybag/anims/table.inc.c"
 UNUSED static const u64 binid_1 = 1;
+
+#include "sewnia/anims/data.inc.c"
+#include "sewnia/anims/table.inc.c"

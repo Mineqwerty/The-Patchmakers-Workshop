@@ -8912,6 +8912,17 @@ sound_ref .sound_pokey_howling_wind
 sound_ref .sound_marine_spin
 sound_ref .sound_blight_scream
 sound_ref .sound_boo_jumpscare
+sound_ref .sound_floor_creaks
+
+.sound_floor_creaks:
+chan_setbank 12
+chan_setinstr 19
+chan_setlayer 0, .layer_floor_creaks
+chan_end
+
+.layer_floor_creaks:
+layer_note1 39, 0x3053, 127
+layer_end
 
 .sound_boo_jumpscare:
 chan_setbank 12

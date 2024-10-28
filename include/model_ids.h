@@ -565,6 +565,9 @@
 #define MODEL_MUSIC_NOTE                  0x10F
 #define MODEL_DRAWBACK_CURTAIN                  0x110
 #define MODEL_WORKSHOP_DOOR                  0x111
+#define MODEL_MARIO_PLUSH                  0x112
+#define MODEL_BOWSER_PLUSH                  0x113
+#define MODEL_PEACH_PLUSH                  0x114
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

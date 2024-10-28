@@ -23,7 +23,11 @@ enum SewniaAnims {
     SEWNIA_ANIM_STAND_UP_GREET_MARIO,
     SEWNIA_ANIM_CUTSCENE_IDLE_1,
     SEWNIA_ANIM_PEEK_AROUND_CORNER,
-    SEWNIA_ANIM_WALK_TO_TABLE
+    SEWNIA_ANIM_WALK_TO_TABLE,
+    SEWNIA_ANIM_INTRO_SEARCH,
+    SEWNIA_ANIM_INTRO_FIND_PATCH,
+    SEWNIA_ANIM_INTRO_PANIC_TURN,
+    SEWNIA_ANIM_RUN_CORRIDOR
 };
 
 enum SewniaFaceStates {
@@ -34,7 +38,10 @@ enum SewniaFaceStates {
     SEWNIA_FACE_STATE_BLINK_HAPPY,
     SEWNIA_FACE_STATE_FROWN,
     SEWNIA_FACE_STATE_FROWN_BLINK,
-    SEWNIA_FACE_STATE_SURPRISED_BLINK
+    SEWNIA_FACE_STATE_SURPRISED_BLINK,
+    SEWNIA_FACE_STATE_SCARED,
+    SEWNIA_FACE_STATE_SCARED_GRIMACE,
+    SEWNIA_FACE_STATE_BLINK_GRIMACE
 };
 
 static struct ObjectHitbox sSewniaHitbox = {
@@ -743,6 +750,62 @@ void sewnia_act_revive_mario_cutscene(void) {
     }
     switch (o->oSubAction) {
         case 0:
+        o->oPosX = 0;
+            o->oPosY = 100;
+            o->oPosZ = 0;
+            o->oFaceAngleYaw = 0;
+            o->oMoveAngleYaw = 0;
+            if (o->oTimer == 30) {
+                o->oSubAction++;
+                cur_obj_init_animation(SEWNIA_ANIM_INTRO_SEARCH);
+            }
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger == 1) {
+                o->oSubAction++;
+                cur_obj_init_animation(SEWNIA_ANIM_INTRO_FIND_PATCH);
+                o->oTimer = 0;
+                
+            }
+        break;
+        case 2:
+            if (cExternalCutsceneTrigger == 2) {
+                o->oSubAction++;
+                o->oTimer = 0;
+                cur_obj_init_animation(SEWNIA_ANIM_INTRO_PANIC_TURN);
+            }
+
+            if (o->oTimer == 98) {
+                    o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+                }
+        break;
+        case 3:
+            if (o->oTimer == 10) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+            }
+
+            if (o->oTimer == 25) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            }
+
+            if (o->oTimer == 120) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+            }
+
+            if (o->oTimer == 135) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED_GRIMACE;
+            }
+
+            if (cExternalCutsceneTrigger == 3) {
+                o->oSubAction++;
+                o->oTimer = 0;
+                cur_obj_init_animation(SEWNIA_ANIM_RUN_CORRIDOR);
+            }
+        break;
+        case 4:
+               o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+        break;
+        case 10:
             o->oPosX = 0;
             o->oPosY = 100;
             o->oPosZ = 0;
@@ -760,14 +823,14 @@ void sewnia_act_revive_mario_cutscene(void) {
                 o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
             }
 
-            if (cExternalCutsceneTrigger == 1){
+            if (cExternalCutsceneTrigger == 10){
                 cur_obj_init_animation(SEWNIA_ANIM_WALK_TO_TABLE);
                 o->oSubAction = 1;
                 o->oTimer = 0;
                 o->oPosZ = -400;
             }
         break;
-        case 1:
+        case 11:
             o->oForwardVel = 8.0f;
             sewnia_update_movement();
         break;

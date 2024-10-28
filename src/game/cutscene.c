@@ -24,6 +24,7 @@
 #include "levels/castle_inside/header.inc.h"
 
 s16 gCurCutscene = -1;
+f32 gCutsceneFOV = -1;
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
@@ -44,6 +45,7 @@ u8 cMarioFocusSpeed;
 s32 cRotateAroundMarioRadius;
 u32 cCutsceneTimer;
 s16 cCameraDownVel;
+
 
 
 extern s16 sCutsceneSplineSegment;
@@ -103,7 +105,12 @@ enum cutscene_events {
     EVENT_FADE_FROM_COLOR,
 
     EVENT_SET_FB_EFFECT,
+    EVENT_FADE_INTO_FB_EFFECT,
     EVENT_CLEAR_FB_EFFECT,
+    EVENT_CANCEL_FB_EFFECT,
+
+    EVENT_SET_FOV,
+    EVENT_CLEAR_FOV,
 
     EVENT_STONE_PATCH_PICKED_UP,
     EVENT_STONE_PATCH_EQUIPPED,
@@ -535,12 +542,39 @@ s32 event_meet_sewnia[] = {
 
 s32 event_sewnia_revive_mario[] = {
     EVENT_HUD_DISABLE,
-    //EVENT_CAMERA_ENABLE_CUTSCENE,
-    //EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
-    //EVENT_DISABLE_MARIO_RENDER,
-    EVENT_WAIT, 70,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 35,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 36,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 140,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 37,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 38,
+    EVENT_WAIT, 200,
     EVENT_SET_EXTERNAL_TRIGGER, 1,
-    EVENT_WAIT, 5000,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 39,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 40,
+    EVENT_WAIT, 90,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 41,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 42,
+    EVENT_SET_FOV, 100,
+    EVENT_SOUND, SOUND_NEW_FLOOR_CREAKS,
+    EVENT_FADE_INTO_FB_EFFECT, FBE_EFFECT_INVERT,
+    EVENT_WAIT, 60,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 1,
+    EVENT_CANCEL_FB_EFFECT,
+    EVENT_CLEAR_FOV,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 43,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 44,
+    EVENT_WAIT, 150,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 45,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 46,
+    EVENT_WAIT, 320,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_END_CUTSCENE
@@ -616,7 +650,22 @@ s32 *splineList[] = {
     lll_area_5_spline_MasterCutsceneBehindMarioChairPos,
     lll_area_5_spline_MasterCutsceneBehindMarioChairFoc,
     lll_area_5_spline_MasterCutsceneLookingAtMasterPos,
-    lll_area_5_spline_MasterCutsceneLookingAtMasterFoc
+    lll_area_5_spline_MasterCutsceneLookingAtMasterFoc,
+    //35
+    castle_inside_area_1_spline_IntroPos1,
+    castle_inside_area_1_spline_IntroFoc1,
+    castle_inside_area_1_spline_IntroPos2,
+    castle_inside_area_1_spline_IntroFoc2,
+    castle_inside_area_1_spline_IntroPos3,
+    //40
+    castle_inside_area_1_spline_IntroFoc3,
+    castle_inside_area_1_spline_IntroPos4,
+    castle_inside_area_1_spline_IntroFoc4,
+    castle_inside_area_1_spline_IntroPos5,
+    castle_inside_area_1_spline_IntroFoc5,
+    //45
+    castle_inside_area_1_spline_IntroPos6,
+    castle_inside_area_1_spline_IntroFoc6
 };
 
 void begin_cutscene_event(s32 event) {
@@ -833,8 +882,26 @@ void event_handler(void) {
                     set_fb_effect_col(255, 255, 255);
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_FADE_INTO_FB_EFFECT:
+                    set_fb_effect_type(param1);
+                    set_goal_motion_blur(255);
+                    set_fb_effect_col(255, 255, 255);
+                    cCutsceneIndex += 2;
+                break;
                 case EVENT_CLEAR_FB_EFFECT:
                     set_fb_effect_type(FBE_EFFECT_NONE);
+                    cCutsceneIndex += 1;
+                break;
+                case EVENT_CANCEL_FB_EFFECT:
+                    cancel_fb_effect();
+                    cCutsceneIndex += 1;
+                break;
+                case EVENT_SET_FOV:
+                    gCutsceneFOV = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_CLEAR_FOV:
+                    gCutsceneFOV = -1;
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_SPAWN_OBJECT:

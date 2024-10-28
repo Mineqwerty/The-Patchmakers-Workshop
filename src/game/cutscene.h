@@ -25,6 +25,7 @@ extern u8 cWaiting;
 extern s32 *cEventPointer;
 extern u8 cExternalCutsceneTrigger;
 extern s16 gCurCutscene;
+extern f32 gCutsceneFOV;
 
 void begin_cutscene_event(s32 event);
 void event_handler(void);

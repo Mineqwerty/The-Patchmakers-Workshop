@@ -1028,3 +1028,5 @@ void bhv_cutscene_chair_init(void);
 void bhv_cutscene_chair_loop(void);
 void bhv_eyebulb_star_spawner_init(void);
 void bhv_eyebulb_star_spawner_loop(void);
+void bhv_character_plush_init(void);
+void bhv_character_plush_loop(void);

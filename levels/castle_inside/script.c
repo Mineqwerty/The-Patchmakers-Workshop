@@ -50,6 +50,9 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MUSIC_NOTE, music_note_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_DRAWBACK_CURTAIN, drawback_curtain_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WORKSHOP_DOOR, workshop_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MARIO_PLUSH, mario_plush_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_BOWSER_PLUSH, bowser_plush_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PEACH_PLUSH, peach_plush_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -80,7 +83,7 @@ const LevelScript level_castle_inside_entry[] = {
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
-		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, 0x00000000, bhvWorkshopDoor),
+		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, (15 << 16), bhvWorkshopDoorWarp),
 		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -4853, 168, 1010, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, 4081, 688, 2692, 0, -90, 0, (0x42 << 16), bhvPaintingDeathWarp),

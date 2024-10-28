@@ -272,7 +272,9 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     obj->oInteractStatus = attackType + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED);
     if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM || obj_is_one_hp_enemy(obj)) {
         
-        obj->oHealth -= damage;
+        if (!obj_is_one_hp_enemy(obj)) {
+            obj->oHealth -= damage;
+        }
         struct Object *particle;
 
         if (damage < 10) {

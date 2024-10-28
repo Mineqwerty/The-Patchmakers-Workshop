@@ -30,6 +30,9 @@ const GeoLayout castle_inside_area_1_geo[] = {
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, castle_inside_dl_Plane_024_mesh_layer_5),
 			GEO_DISPLAY_LIST(LAYER_ALPHA, castle_inside_dl_Plane_024_mesh_layer_4),
 		GEO_CLOSE_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, castle_inside_dl_Plane_026_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, castle_inside_dl_Plane_026_mesh_layer_5),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -308, -7198, 188, castle_inside_dl_Plane_027_mesh_layer_5),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

@@ -761,3 +761,4 @@ extern const BehaviorScript bhvPaperBoo[];
 extern const BehaviorScript bhvMaster[];
 extern const BehaviorScript bhvCutsceneChair[];
 extern const BehaviorScript bhvEyebulbStarSpawner[];
+extern const BehaviorScript bhvCharacterPlush[];

@@ -42,3 +42,6 @@
 #include "levels/castle_inside/music_note/geo.inc.c"
 #include "levels/castle_inside/drawback_curtain/geo.inc.c"
 #include "levels/castle_inside/workshop_door/geo.inc.c"
+#include "levels/castle_inside/bowser_plush/geo.inc.c"
+#include "levels/castle_inside/peach_plush/geo.inc.c"
+#include "levels/castle_inside/mario_plush/geo.inc.c"

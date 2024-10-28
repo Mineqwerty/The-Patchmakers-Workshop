@@ -4,7 +4,9 @@ void render_fb_effects(void);
 void run_motion_blur(s32 goalAmount);
 void set_fb_effect_type(u32 type);
 void set_motion_blur(s32 goalAmount);
+void set_goal_motion_blur(s32 goalAmount);
 void set_fb_effect_col(u8 r, u8 g, u8 b);
+void cancel_fb_effect();
 s32 render_fbe_warning(void);
 s32 script_check_fbe_warning(UNUSED s16 arg);
 

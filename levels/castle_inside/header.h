@@ -215,4 +215,10 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/workshop_door/anim_header.h"
 
+#include "levels/castle_inside/bowser_plush/geo_header.h"
+
+#include "levels/castle_inside/peach_plush/geo_header.h"
+
+#include "levels/castle_inside/mario_plush/geo_header.h"
+
 #endif

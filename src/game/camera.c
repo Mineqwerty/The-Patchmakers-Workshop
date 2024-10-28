@@ -11443,6 +11443,10 @@ void set_fov_30(UNUSED struct MarioState *m) {
     sFOVState.fov = 30.f;
 }
 
+void set_fov_custom(UNUSED struct MarioState *m) {
+    sFOVState.fov = gCutsceneFOV;
+}
+
 void approach_fov_20(UNUSED struct MarioState *m) {
     camera_approach_f32_symmetric_bool(&sFOVState.fov, 20.f, 0.3f);
 }
@@ -11538,6 +11542,10 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
     struct MarioState *marioState = &gMarioStates[0];
     u8 fovFunc = sFOVState.fovFunc;
 
+    if (gCutsceneFOV > 0) {
+        fovFunc = CAM_FOV_SET_CUSTOM;
+    }
+
     if (callContext == GEO_CONTEXT_RENDER) {
         switch (fovFunc) {
             case CAM_FOV_SET_45:
@@ -11577,6 +11585,9 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
                 approach_fov_315(marioState);
                 break;
                 //! No default case
+            case CAM_FOV_SET_CUSTOM:
+                set_fov_custom(marioState);
+                break;
             default:
                 set_fov_45(marioState);
                 break;

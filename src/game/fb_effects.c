@@ -21,6 +21,7 @@ extern u8 gFBE;
 
 s32 sCurBlur = 0;
 s32 sGoalBlur = 0;
+s32 sApproachGoalBlur = 0;
 
 FBEffects sFBEffects = {
     .r = 255,
@@ -65,8 +66,25 @@ void set_motion_blur(s32 goalAmount) {
     sFBEffects.a = CLAMP_U8(goalAmount);
 }
 
+void set_goal_motion_blur(s32 goalAmount) {
+    sApproachGoalBlur = goalAmount;
+    sGoalBlur = 255;
+    sFBEffects.a = 1;
+}
+
 void set_fb_effect_type(u32 type) {
     sFBEffects.type = type;
+
+    if (type == FBE_EFFECT_NONE) {
+        sApproachGoalBlur = 0;
+    }
+}
+
+void cancel_fb_effect() {
+    sFBEffects.type = FBE_EFFECT_NONE;
+        sApproachGoalBlur = 0;
+        sGoalBlur = 0;
+        sFBEffects.a = 0;
 }
 
 void set_fb_effect_col(u8 r, u8 g, u8 b) {
@@ -269,10 +287,18 @@ void render_fb_effects(void) {
     check_fbe();
     if (!checkedFBE) return;
     
-    if (sGoalBlur > 200) {
-        sFBEffects.a = approach_s16_asymptotic(sFBEffects.a, sGoalBlur, 18);
-    } else {
-        sFBEffects.a = approach_s32_symmetric(sFBEffects.a, sGoalBlur, MOTION_BLUR_APP_RATE);
+    if (sApproachGoalBlur < 1) {
+        if (sGoalBlur > 200) {
+            sFBEffects.a = approach_s16_asymptotic(sFBEffects.a, sGoalBlur, 18);
+        } else {
+            sFBEffects.a = approach_s32_symmetric(sFBEffects.a, sGoalBlur, MOTION_BLUR_APP_RATE);
+        }
+    }
+
+    if (sApproachGoalBlur > 200) {
+        sFBEffects.a = approach_s16_asymptotic(sFBEffects.a, sApproachGoalBlur, 18);
+    } else if (sApproachGoalBlur > 0) {
+        sFBEffects.a = approach_s32_symmetric(sFBEffects.a, sApproachGoalBlur, MOTION_BLUR_APP_RATE);
     }
     
     if (sFBEffects.a > 0) {

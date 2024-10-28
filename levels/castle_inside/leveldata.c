@@ -117,3 +117,6 @@
 #include "levels/castle_inside/workshop_door/model.inc.c"
 #include "levels/castle_inside/workshop_door/anims/data.inc.c"
 #include "levels/castle_inside/workshop_door/anims/table.inc.c"
+#include "levels/castle_inside/bowser_plush/model.inc.c"
+#include "levels/castle_inside/peach_plush/model.inc.c"
+#include "levels/castle_inside/mario_plush/model.inc.c"

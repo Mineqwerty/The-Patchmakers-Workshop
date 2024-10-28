@@ -105,6 +105,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "boo_jumpscare"
+    },
+    "inst_floor_creaks": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "floor_creaks"
     }
   },
   "instrument_list": [
@@ -126,6 +131,7 @@
     "inst_pokey_howling_wind",
     "inst_marine_spin",
     "inst_blight_scream",
-    "inst_boo_jumpscare"
+    "inst_boo_jumpscare",
+    "inst_floor_creaks"
   ]
 }

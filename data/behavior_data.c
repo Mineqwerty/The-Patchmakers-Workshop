@@ -7453,9 +7453,9 @@ const BehaviorScript bhvWorkshopDoor[] = {
     SET_INT(oIntangibleTimer, 0),
     SET_FLOAT(oCollisionDistance, 2000),
     SET_HOME(),
-    //CALL_NATIVE(bhv_door_init),
+    CALL_NATIVE(bhv_door_init),
     BEGIN_LOOP(),
-        //CALL_NATIVE(bhv_door_loop),
+        CALL_NATIVE(bhv_door_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -8410,5 +8410,15 @@ const BehaviorScript bhvEyebulbStarSpawner[] = {
     CALL_NATIVE(bhv_eyebulb_star_spawner_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_eyebulb_star_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCharacterPlush[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_character_plush_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_character_plush_loop),
     END_LOOP(),
 };
