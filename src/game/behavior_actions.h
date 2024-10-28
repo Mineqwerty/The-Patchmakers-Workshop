@@ -1030,3 +1030,7 @@ void bhv_eyebulb_star_spawner_init(void);
 void bhv_eyebulb_star_spawner_loop(void);
 void bhv_character_plush_init(void);
 void bhv_character_plush_loop(void);
+void bhv_stab_needle_init(void);
+void bhv_stab_needle_loop(void);
+void bhv_held_m_patch_init(void);
+void bhv_held_m_patch_loop(void);

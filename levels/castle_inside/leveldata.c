@@ -120,3 +120,7 @@
 #include "levels/castle_inside/bowser_plush/model.inc.c"
 #include "levels/castle_inside/peach_plush/model.inc.c"
 #include "levels/castle_inside/mario_plush/model.inc.c"
+#include "levels/castle_inside/stab_needle/model.inc.c"
+#include "levels/castle_inside/held_m_patch/model.inc.c"
+#include "levels/castle_inside/held_m_patch/anims/data.inc.c"
+#include "levels/castle_inside/held_m_patch/anims/table.inc.c"

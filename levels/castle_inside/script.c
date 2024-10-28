@@ -53,6 +53,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MARIO_PLUSH, mario_plush_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BOWSER_PLUSH, bowser_plush_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PEACH_PLUSH, peach_plush_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_STAB_NEEDLE, stab_needle_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_HELD_M_PATCH, held_m_patch_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -82,8 +84,10 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_RDR_GARAGE_DOOR, -4862, 0, 1245, 0, 0, 0, 0x00000000, bhvGarageDoor),
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_BOWSER_PLUSH, -295, 181, 1315, 0, 170, 0, (1 << 16), bhvCharacterPlush),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, (15 << 16), bhvWorkshopDoorWarp),
+		OBJECT(MODEL_MARIO_PLUSH, -9, 181, 1378, 0, -180, 0, 0x00000000, bhvCharacterPlush),
 		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -4853, 168, 1010, 0, 0, 0, (0x41 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, 4081, 688, 2692, 0, -90, 0, (0x42 << 16), bhvPaintingDeathWarp),
@@ -92,11 +96,13 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -4853, 206, 1010, 0, 0, 0, (0x31 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_NONE, 4081, 726, 2692, 0, -90, 0, (0x32 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_NONE, -712, 1886, 628, 0, -90, 0, (0x33 << 16), bhvPaintingStarCollectWarp),
+		OBJECT(MODEL_PEACH_PLUSH, -419, 181, 1436, 0, -131, 0, (2 << 16), bhvCharacterPlush),
 		OBJECT(MODEL_SEWNIA, -217, 100, -1359, 0, 0, 0, 0x00000000, bhvSewnia),
 		OBJECT(MODEL_NONE, -2096, 100, -508, 0, 0, 0, 0x00000000, bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, -4134, 100, -1677, 0, 0, 0, (1 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, 4162, 554, 3058, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_NONE, 510, 1699, 255, 0, 0, 0, (2 << 16), bhvSewniaStoppingPoint),
+		OBJECT(MODEL_STAB_NEEDLE, 6040, 676, -1351, 0, -90, 0, 0x00000000, bhvStabNeedle),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, -4862, 0, 731, 0, 0, 0, (2 << 24) | (1 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 4443, 554, 2697, 0, -90, 0, (4 << 24) | (2 << 16), bhvStarUnlockPlatform),
 		TERRAIN(castle_inside_area_1_collision),

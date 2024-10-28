@@ -1,7 +1,7 @@
 #include "src/game/envfx_snow.h"
 
 const GeoLayout workshop_door_geo[] = {
-	GEO_NODE_START(),
+	GEO_CULLING_RADIUS(0x7FFF),
 	GEO_OPEN_NODE(),
 		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
 		GEO_OPEN_NODE(),

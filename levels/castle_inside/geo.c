@@ -45,3 +45,5 @@
 #include "levels/castle_inside/bowser_plush/geo.inc.c"
 #include "levels/castle_inside/peach_plush/geo.inc.c"
 #include "levels/castle_inside/mario_plush/geo.inc.c"
+#include "levels/castle_inside/stab_needle/geo.inc.c"
+#include "levels/castle_inside/held_m_patch/geo.inc.c"

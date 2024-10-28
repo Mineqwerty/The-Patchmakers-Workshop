@@ -13,5 +13,7 @@ const struct Animation *const sewnia_anims[] = {
 	&sewnia_anim_foundPatch,
 	&sewnia_anim_panicTurn,
 	&sewnia_anim_runCorridor,
+	&sewnia_anim_sitAtDoor,
+	&sewnia_anim_pullOutPatch,
 	NULL,
 };

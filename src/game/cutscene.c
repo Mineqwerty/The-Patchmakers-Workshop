@@ -116,6 +116,7 @@ enum cutscene_events {
     EVENT_STONE_PATCH_EQUIPPED,
     EVENT_STONE_PATCH_BREAK_OUT,
 
+    EVENT_START_CUTSCENE,
     EVENT_END_CUTSCENE
 };
 
@@ -489,6 +490,7 @@ s32 event_meet_sewnia[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_DISABLE_MARIO_RENDER,
+    EVENT_FADE_FROM_COLOR, 15, 0, 0, 0,
     EVENT_SET_MARIO_POSITION, 0, 166, 1154,
     EVENT_SET_MARIO_YAW, -0x4000,
     EVENT_SET_MARIO_ROLL, 0x4000,
@@ -574,10 +576,57 @@ s32 event_sewnia_revive_mario[] = {
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 45,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 46,
-    EVENT_WAIT, 320,
-    EVENT_SET_MARIO_ACTION, ACT_IDLE,
-    EVENT_CAMERA_DISABLE_CUTSCENE,
-    EVENT_END_CUTSCENE
+    EVENT_WAIT, 220,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 47,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 48,
+    EVENT_WAIT, 30,
+    EVENT_FADE_INTO_COLOR, 60, 255, 255, 255,
+    EVENT_WAIT, 70,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 49,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 50,
+    EVENT_FADE_FROM_COLOR, 60, 255, 255, 255,
+    EVENT_WAIT, 110,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_WAIT, 120,
+    EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
+    EVENT_WAIT, 120,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 51,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 52,
+    EVENT_FADE_FROM_COLOR, 60, 0, 0, 0,
+    EVENT_WAIT, 60,
+    EVENT_SET_EXTERNAL_TRIGGER, 6,
+    EVENT_WAIT, 100,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 53,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 54,
+    EVENT_WAIT, 100,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 55,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 56,
+    EVENT_WAIT, 120,
+    EVENT_SET_EXTERNAL_TRIGGER, 7,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 57,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 58,
+    EVENT_WAIT, 70,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 59,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 60,
+    EVENT_WAIT, 110,
+    EVENT_SET_EXTERNAL_TRIGGER, 8,
+    EVENT_SPAWN_OBJECT, 0, 0, 0, 0, 0, 0, 0, bhvHeldMPatch, MODEL_HELD_M_PATCH,
+    
+    EVENT_WAIT, 100,
+    EVENT_FADE_INTO_COLOR, 60, 255, 255, 255,
+    EVENT_WAIT, 90,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 61,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 62,
+    EVENT_WAIT, 1,
+    EVENT_FADE_FROM_COLOR, 1, 255, 255, 255,
+    EVENT_WAIT, 60,
+    EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
+    EVENT_WAIT, 90,
+    EVENT_SET_EXTERNAL_TRIGGER, 0,
+    EVENT_START_CUTSCENE, 7
 };
 
 s32 event_city_lights_on[] = {
@@ -665,7 +714,26 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_IntroFoc5,
     //45
     castle_inside_area_1_spline_IntroPos6,
-    castle_inside_area_1_spline_IntroFoc6
+    castle_inside_area_1_spline_IntroFoc6,
+    castle_inside_area_1_spline_IntroPos7,
+    castle_inside_area_1_spline_IntroFoc7,
+    castle_inside_area_1_spline_IntroPos8,
+    //50
+    castle_inside_area_1_spline_IntroFoc8,
+    castle_inside_area_1_spline_IntroPos9,
+    castle_inside_area_1_spline_IntroFoc9,
+    castle_inside_area_1_spline_IntroPos10,
+    castle_inside_area_1_spline_IntroFoc10,
+    //55
+    castle_inside_area_1_spline_IntroPos11,
+    castle_inside_area_1_spline_IntroFoc11,
+    castle_inside_area_1_spline_IntroPos12,
+    castle_inside_area_1_spline_IntroFoc12,
+    castle_inside_area_1_spline_IntroPos13,
+    //60
+    castle_inside_area_1_spline_IntroFoc13,
+    castle_inside_area_1_spline_IntroPos14,
+    castle_inside_area_1_spline_IntroFoc14
 };
 
 void begin_cutscene_event(s32 event) {
@@ -861,6 +929,9 @@ void event_handler(void) {
                 case EVENT_FADE_FROM_COLOR:
                     play_transition(WARP_TRANSITION_FADE_FROM_COLOR, param1, param2, param3, cEventPointer[cCutsceneIndex + 4]);
                     cCutsceneIndex += 5;
+                break;
+                case EVENT_START_CUTSCENE:
+                    begin_cutscene_event(param1);
                 break;
                 case EVENT_END_CUTSCENE:
                     gHudDisplay.flags = HUD_DISPLAY_DEFAULT;

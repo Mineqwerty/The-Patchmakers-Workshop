@@ -568,6 +568,8 @@
 #define MODEL_MARIO_PLUSH                  0x112
 #define MODEL_BOWSER_PLUSH                  0x113
 #define MODEL_PEACH_PLUSH                  0x114
+#define MODEL_STAB_NEEDLE                  0x115
+#define MODEL_HELD_M_PATCH                  0x116
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

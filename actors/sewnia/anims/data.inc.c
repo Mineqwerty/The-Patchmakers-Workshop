@@ -11,3 +11,5 @@
 #include "anim_foundPatch.inc.c"
 #include "anim_panicTurn.inc.c"
 #include "anim_runCorridor.inc.c"
+#include "anim_sitAtDoor.inc.c"
+#include "anim_pullOutPatch.inc.c"

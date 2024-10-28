@@ -762,3 +762,5 @@ extern const BehaviorScript bhvMaster[];
 extern const BehaviorScript bhvCutsceneChair[];
 extern const BehaviorScript bhvEyebulbStarSpawner[];
 extern const BehaviorScript bhvCharacterPlush[];
+extern const BehaviorScript bhvStabNeedle[];
+extern const BehaviorScript bhvHeldMPatch[];

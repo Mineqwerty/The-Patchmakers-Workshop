@@ -27,7 +27,9 @@ enum SewniaAnims {
     SEWNIA_ANIM_INTRO_SEARCH,
     SEWNIA_ANIM_INTRO_FIND_PATCH,
     SEWNIA_ANIM_INTRO_PANIC_TURN,
-    SEWNIA_ANIM_RUN_CORRIDOR
+    SEWNIA_ANIM_RUN_CORRIDOR,
+    SEWNIA_ANIM_SLUMP_DOOR,
+    SEWNIA_ANIM_PULL_OUT_PATCH
 };
 
 enum SewniaFaceStates {
@@ -804,8 +806,32 @@ void sewnia_act_revive_mario_cutscene(void) {
         break;
         case 4:
                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+               if (cExternalCutsceneTrigger == 4) {
+                cur_obj_init_animation(SEWNIA_ANIM_SLUMP_DOOR);
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+                o->oTimer = 0;
+                o->oSubAction++;
+               }
         break;
-        case 10:
+        case 5:
+            if (o->oTimer >= 230) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+            else if (o->oTimer >= 112) {
+                if (o->oTimer % 14 == 0) {
+                    o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+                }
+                else {
+                    o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+                }
+            }
+
+            if (cExternalCutsceneTrigger == 6) {
+                o->oTimer = 0;
+                o->oSubAction++;
+            }
+        break;
+        case 6:
             o->oPosX = 0;
             o->oPosY = 100;
             o->oPosZ = 0;
@@ -823,16 +849,29 @@ void sewnia_act_revive_mario_cutscene(void) {
                 o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
             }
 
-            if (cExternalCutsceneTrigger == 10){
+            if (cExternalCutsceneTrigger == 7){
                 cur_obj_init_animation(SEWNIA_ANIM_WALK_TO_TABLE);
-                o->oSubAction = 1;
+                o->oSubAction++;
                 o->oTimer = 0;
                 o->oPosZ = -400;
             }
         break;
-        case 11:
+        case 7:
             o->oForwardVel = 8.0f;
             sewnia_update_movement();
+            if (cExternalCutsceneTrigger == 8) {
+                o->oSubAction++;
+                cur_obj_init_animation(SEWNIA_ANIM_PULL_OUT_PATCH);
+                o->oForwardVel = 0;
+                o->oPosX = 0;
+                o->oPosY = 100;
+                o->oPosZ = 0;
+            }
+        break;
+        case 8:
+            o->oPosX = 0;
+            o->oPosY = 100;
+            o->oPosZ = 0;
         break;
     }
 }

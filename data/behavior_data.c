@@ -7445,13 +7445,14 @@ const BehaviorScript bhvWorkshopDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
     SET_INT(oInteractType, INTERACT_DOOR),
     // Door - common:
-    OR_LONG(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_ANIMATIONS(oAnimations, workshop_door_anims),
     ANIMATE(0),
     LOAD_COLLISION_DATA(workshop_door_collision),
     SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
     SET_INT(oIntangibleTimer, 0),
     SET_FLOAT(oCollisionDistance, 2000),
+    SET_FLOAT(oDrawingDistance, 20000),
     SET_HOME(),
     CALL_NATIVE(bhv_door_init),
     BEGIN_LOOP(),
@@ -8420,5 +8421,25 @@ const BehaviorScript bhvCharacterPlush[] = {
     CALL_NATIVE(bhv_character_plush_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_character_plush_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvStabNeedle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_stab_needle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_stab_needle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvHeldMPatch[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, held_m_patch_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_held_m_patch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_held_m_patch_loop),
     END_LOOP(),
 };
