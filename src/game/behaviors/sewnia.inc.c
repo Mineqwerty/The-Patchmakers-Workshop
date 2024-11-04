@@ -885,6 +885,8 @@ void bhv_sewnia_init(void) {
     o->oSewniaLastWaypoint = segmented_to_virtual(&castle_inside_area_1_spline_SewniaPath);
     o->oSewniaNextWaypoint = o->oSewniaLastWaypoint;
 
+    o->oWallHitboxRadius = 30.0f;
+
     //sewnia_init_area_waypoints();
 }
 

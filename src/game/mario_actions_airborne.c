@@ -410,7 +410,7 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
         case AIR_STEP_NONE:
         case AIR_STEP_HIT_CEILING:
             if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
-                if ((m->ceil != NULL && m->ceil->normal.y > -0.5f) || (m->wall != NULL && m->wall->type == SURFACE_INVISIBLE_WALL)) {
+                if ((stepResult == AIR_STEP_HIT_CEILING && m->ceil != NULL && m->ceil->normal.y > -0.5f) || (m->wall != NULL && m->wall->type == SURFACE_INVISIBLE_WALL)) {
                     return set_mario_action(m, ACT_SOFT_BONK, 0);
                 }
                 else {
