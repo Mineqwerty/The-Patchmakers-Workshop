@@ -1447,7 +1447,7 @@ u16 shakeBitmasks[8] = {
 void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound, u32 flags) {
     u8 strChar;
     s16 colorLoop;
-    ColorRGBA rgbaColors = { 0x00, 0x00, 0x00, 0xFF };
+    ColorRGBA rgbaColors = { 0xFF, 0xFF, 0xFF, 0xFF };
     u8 customColor = 1;
     u8 diffTmp = 0;
     u8 *str = segmented_to_virtual(dialog->str);
@@ -1480,7 +1480,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
     while (pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState != DIALOG_STATE_CLOSING && (strIdx <= gDialogCharNum || (gForceDialogLoad == 1 && gPageNum < (dialog->linesPerBox + 1)))) {
 
-        get_colors_for_unique_speaker(gDialogID, &rgbaColors);
+        //get_colors_for_unique_speaker(gDialogID, &rgbaColors);
 
         if (customColor == 1) {
             gDPSetEnvColor(gDisplayListHead++, rgbaColors[0], rgbaColors[1], rgbaColors[2], rgbaColors[3]);
@@ -1495,6 +1495,9 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 break;
             case DIALOG_CHAR_COLOR:
+            if (gDialogCharNum < strIdx+8) {
+                    gDialogCharNum = strIdx+8;
+                }
                 customColor = 1;
                 strIdx++;
                 for (colorLoop = (strIdx + 8); strIdx < colorLoop; ++strIdx) {
@@ -1521,6 +1524,9 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                     }
                 }
                 strIdx--;
+
+                
+
                 break;
             case DIALOG_CHAR_NEWLINE:
                 lineNum++;
@@ -1541,6 +1547,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 xMatrix += 2;
                 linePos += 2;
                 break;
+                
             case DIALOG_CHAR_MULTI_THE:
                 render_multi_text_string_lines(STRING_THE, lineNum, &linePos, linesPerBox, xMatrix, lowerBound);
                 xMatrix = 1;
@@ -1549,6 +1556,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 render_multi_text_string_lines(STRING_YOU, lineNum, &linePos, linesPerBox, xMatrix, lowerBound);
                 xMatrix = 1;
                 break;
+                
             case DIALOG_CHAR_STAR_COUNT:
                 render_star_count_dialog_text(&xMatrix, &linePos);
                 break;

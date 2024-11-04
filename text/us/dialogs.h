@@ -45,9 +45,9 @@ But we wouldn't let\n\
 you bounce on us."))
 
 DEFINE_DIALOG(DIALOG_003, 1, 6, 95, 200, _("\
-What can I help you with, Mario?\n\
+@7F60B4FFWhat can I help you with, Mario?\n\
 \n\
-     What to do next\n\
+     @FFFFFFFFWhat to do next\n\
      About this stage\n\
      Toggle following\n\
      Just wanted to talk"))
@@ -139,57 +139,57 @@ DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
 C12"))
 
 DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
-H... Hi...\n\
+@7F60B4FFH... Hi...\n\
 \n\
 \n\
-Sorry... I didn't mean to scare you like that...\n\
+@7F60B4FFSorry... I didn't mean to scare you like that...\n\
 I got a little scared too, so it's okay...\n\
 \n\
-Oh... You look like you don't know what's going on...\n\
+@7F60B4FFOh... You look like you don't know what's going on...\n\
 Right, of course you wouldn't. Silly me...\n\
 I'll try to tell you as much as I know.\n\
-See, up until just now, you weren't exactly... alive?\n\
+@7F60B4FFSee, up until just now, you weren't exactly... alive?\n\
 You were attacked and captured by a man known as\n\
 The Patchmaker, who transformed you into a lifeless doll.\n\
-He used a forbidden craft technique called\n\
+@7F60B4FFHe used a forbidden craft technique called\n\
 The Thread of Life to steal your soul away in a thread,\n\
 trapping it within an object. That letter on your cap.\n\
-He then took you here, to this workshop...\n\
+@7F60B4FFHe then took you here, to this workshop...\n\
 And... Um... That's not all...\n\
 He got your friends too..."))
 
 DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
-Don't worry, we can fix this! It's not too late!\n\
+@7F60B4FFDon't worry, we can fix this! It's not too late!\n\
 Ah... But it might be tough with what we have...\n\
 The Patchmaker probably has their threads...\n\
-There is another issue too.\n\
+@7F60B4FFThere is another issue too.\n\
 Um... Just follow me...\n\
 ...?\n\
-What did you say? My name?\n\
+@7F60B4FFWhat did you say? My name?\n\
 Oh my gosh! I completely forgot!\n\
 My name is Sewnia.\n\
-And your name is?\n\
+@7F60B4FFAnd your name is?\n\
 ...\n\
 Mario huh? Nice to meet you Mario!\n\
-Uh... Right! Follow me!\n\
+@7F60B4FFUh... Right! Follow me!\n\
 ...\n\
 Oh, oops! Follow me, Mario!"))
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
-So... the rest of the workshop is beyond here.\n\
+@7F60B4FFSo... the rest of the workshop is beyond here.\n\
 It's actually a really big building complex.\n\
 The Patchmaker had some plans before, uh...\n\
 ...Anyways, the problem.\n\
-He kind of um... Locked me in here.\n\
+@7F60B4FFHe kind of um... Locked me in here.\n\
 With magic. No matter how you try, it won't open.\n\
 This is the only way forward, too...\n\
 I'm sorry, but we're stuck here until I think\n\
 of a way to get past it...\n\
-...Huh? You've opened sealed doors before?\n\
+@7F60B4FF...Huh? You've opened sealed doors before?\n\
 You make it sound really easy!\n\
 All we need is something called star power?\n\
 And it can be found anywhere? Lucky!\n\
-Leaving the workshop isn't a good idea, but\n\
+@7F60B4FFLeaving the workshop isn't a good idea, but\n\
 I think I know how to help! Follow me!"))
 
 DEFINE_DIALOG(DIALOG_025, 1, 4, 95, 200, _("\
@@ -224,28 +224,28 @@ Stars.\n\
 Bwa ha ha!"))
 
 DEFINE_DIALOG(DIALOG_030, 1, 3, 30, 200, _("\
-Believe it or not, this pot is a portal!\n\
+@7F60B4FFBelieve it or not, this pot is a portal!\n\
 It can bring you to a place far away,\n\
 and there are a bunch more like it in here!\n\
-The Patchmaker went on a journey a long time ago,\n\
+@7F60B4FFThe Patchmaker went on a journey a long time ago,\n\
 and he made these portals to explore the reaches\n\
 of the world!\n\
-You might find some of that star power in here!\n\
+@7F60B4FFYou might find some of that star power in here!\n\
 But, um... It might be dangerous.\n\
 When the Patchmaker went in, he had...\n\
-That's right! Mario, inside each of these worlds\n\
+@7F60B4FFThat's right! Mario, inside each of these worlds\n\
 should be a copy of the patches he made!\n\
 He hid them for the case of an emergency.\n\
-They aren't ordinary patches, they have\n\
+@7F60B4FFThey aren't ordinary patches, they have\n\
 strong magic that can give you new\n\
 abilities!\n\
-For this world, he made the stone patch\n\
+@7F60B4FFFor this world, he made the stone patch\n\
 to help him wave aside thorny bushes.\n\
 If you find it, you should try it out!\n\
-Keep an eye out for the patches while you\n\
+@7F60B4FFKeep an eye out for the patches while you\n\
 look for stars, they're probably super\n\
 helpful!\n\
-Good luck, Mario...\n\
+@7F60B4FFGood luck, Mario...\n\
 I'll be waiting here for you!\n\
 "))
 
@@ -1884,52 +1884,90 @@ without permission will\n\
 meet certain disaster."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_1, 1, 3, 30, 200, _("\
-I never thought I would see somebody\n\
+@7F60B4FFI never thought I would see somebody\n\
 else in here...\n\
 Umm... I hope it isn't too dusty..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_2, 1, 3, 30, 200, _("\
-Your clothes are kind of funny...\n\
+@7F60B4FFYour clothes are kind of funny...\n\
 Why are they so bright?\n\
 I thought clothes were darker than that.\n\
-...Huh? Clothes can be any color?\n\
+@7F60B4FF...Huh? Clothes can be any color?\n\
 That's odd. The only clothes I've\n\
 seen have been quite dull."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_3, 1, 3, 30, 200, _("\
-You're from outside of here, right?\n\
+@7F60B4FFYou're from outside of here, right?\n\
 What's it like? I have only been in\n\
 the forest right outside before.\n\
-...The Mushroom Kingdom?\n\
+@7F60B4FF...The Mushroom Kingdom?\n\
 Haha, you're funny! I haven't\n\
 heard of a crazy place like that before!\n\
-Hey, if that's where you're truly from,\n\
+@7F60B4FFHey, if that's where you're truly from,\n\
 do you think it's far away from here?\n\
 It sounds really fun..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_STONE_PATCH_FOUND, 1, 3, 30, 200, _("\
-You look a little shaken...\n\
+@7F60B4FFYou look a little shaken...\n\
 Was using the stone patch for the first\n\
 time that scary?\n\
-The Patchmaker was actually really proud\n\
+@7F60B4FFThe Patchmaker was actually really proud\n\
 of making that. It was how he got his\n\
 nickname after all.\n\
-He did tell me that the magic in it\n\
+@7F60B4FFHe did tell me that the magic in it\n\
 does make the user confused for a\n\
 short period of time.\n\
-But don't worry! It shouldn't\n\
+@7F60B4FFBut don't worry! It shouldn't\n\
 happen again!\n\
 ...And sorry for not warning you."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_1, 1, 3, 30, 200, _("\
-Mario, Mario, Ma-ri-o!\n\
+@7F60B4FFMario, Mario, Ma-ri-o!\n\
 Mario. Mario! Ma. Ri. O!!!\n\
 Hehe... your name is fun to say!"))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_2, 1, 3, 30, 200, _("\
-Mario, Mario, Ma-ri-o!\n\
-Mario. Mario! Ma. Ri. O!!!\n\
-Hehe... your name is fun to say!"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_2, 1, 4, 30, 200, _("\
+@7F60B4FFI hope the worlds you're visiting aren't\n\
+causing you too much trouble...\n\
+I have to say I feel really bad about\n\
+all of this happening still..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_3, 1, 4, 30, 200, _("\
+@7F60B4FFOh, are you bored?\n\
+I know where a bunch of fun games are\n\
+that we could play!\n\
+It's been so long since I've played one!\n\
+@7F60B4FFAh... but they're elsewhere in the workshop.\n\
+Sorry, I forgot we were locked in here...\n\
+\n\
+"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_ENOUGH_STARS_HUB_1, 1, 3, 30, 200, _("\
+@7F60B4FFHey, good job!!!\n\
+I think... I think this is enough!\n\
+We might be able to break the seal now!\n\
+@7F60B4FFI can't thank you enough, Mario!\n\
+Now we can try and find the Threads of Life\n\
+to save your friends!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_10_STARS_1, 1, 3, 30, 200, _("\
+@7F60B4FFAre you nervous?\n\
+I won't lie, I am too.\n\
+I've kind of liked being trapped in here a bit.\n\
+@7F60B4FFIt is quite unfortunate, don't get me wrong,\n\
+but there's a comforting sense of safety here...\n\
+I feel like opening the door might end that.\n\
+@7F60B4FFAh! I don't mean we shouldn't though!\n\
+We have to save your friends no matter what!\n\
+Open that door whenever you're ready!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_10_STARS_2, 1, 3, 30, 200, _("\
+@7F60B4FFThe rest of the workshop beyond the door\n\
+really is something, you know.\n\
+It's not all musty and old like it is here.\n\
+@7F60B4FFSome of the parts are really, really cool!\n\
+But... some of them are a little scary, too.\n\
+Like the section after this door..."))
 
 DEFINE_DIALOG(DIALOG_MASTER_WELCOME, 1, 3, 30, 200, _("\
 Welcome, mister Mario.\n\

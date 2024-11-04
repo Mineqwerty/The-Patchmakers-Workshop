@@ -2,6 +2,10 @@
 #include "src/game/cutscene.h"
 #include "levels/castle_inside/sewnia_pathfinding.inc.c"
 #include "src/usb/debug.h"
+#include "src/game/save_file.h"
+#include "include/dialog_ids.h"
+
+u32 flavorStart = 0;
 
 extern const PathfindData sewnia_path_area_1[];
 
@@ -593,37 +597,63 @@ void determine_course_dialog(void) {
     }
 }
 
+s16 sewnia_determine_flavor_text() {
+
+    s16 flavorText = 0;
+
+    if (gMarioState->numStars >= 10) {
+        flavorText = DIALOG_SEWNIA_FLAVOR_10_STARS_1 + (flavorStart%2);
+    }
+    else if (save_file_get_patch_flags(gCurrSaveFileNum - 1) > 0) {
+        flavorText = DIALOG_SEWNIA_FLAVOR_POST_PATCH_FOUND_1 + (flavorStart%3);
+    }
+    else {
+        flavorText = DIALOG_SEWNIA_FLAVOR_BEGINNING_1 + (flavorStart%3);
+    }
+
+    flavorStart++;
+
+    return flavorText;
+}
+
+enum SewniaDialogSubActions {
+    SEWNIA_DIALOG_SUB_ACTION_ASKING_QUESTION,
+    SEWNIA_DIALOG_SUB_ACTION_WHAT_NEXT,
+    SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO,
+    SEWNIA_DIALOG_SUB_ACTION_FOLLOW_TOGGLE,
+    SEWNIA_DIALOG_SUB_ACTION_CHATTING
+};
+
 void sewnia_act_talking_to_mario(void) {
     obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
     obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
 
     switch (o->oSubAction) {
-        case 0:
+        case SEWNIA_DIALOG_SUB_ACTION_ASKING_QUESTION:
         if (gDialogResponse > 0) {
             o->oSubAction = gDialogResponse;
             o->oTimer = 0;
             gDialogResponse = 0;
         }
         break;
-        case 1:
+        case SEWNIA_DIALOG_SUB_ACTION_WHAT_NEXT:
             if (o->oTimer == 10) {
                 create_dialog_box(4);
             }
         break;
-        case 2:
+        case SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO:
             if (o->oTimer == 10) {
                 determine_course_dialog();
             }
-        case 3:
+        case SEWNIA_DIALOG_SUB_ACTION_FOLLOW_TOGGLE:
             if (o->oTimer == 10) {
                 create_dialog_box(6);
             }
         break;
-        case 4:
+        case SEWNIA_DIALOG_SUB_ACTION_CHATTING:
             if (o->oTimer == 10) {
-                create_dialog_box(7);
+                create_dialog_box(sewnia_determine_flavor_text());
             }
-        break;
         break;
     }
 
