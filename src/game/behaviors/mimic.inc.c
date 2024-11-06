@@ -2,7 +2,7 @@ static struct ObjectHitbox sMimicHitbox = {
     /* interactType:      */ INTERACT_SPINY_WALKING,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 3,
-    /* health:            */ 0,
+    /* health:            */ 12,
     /* numLootCoins:      */ 10,
     /* radius:            */ 150,
     /* height:            */ 200,
@@ -75,5 +75,7 @@ void bhv_mimic_loop(void) {
             }
         break;
     }
+
+    obj_die_if_health_non_positive();
 }
 

@@ -856,3 +856,4 @@ void obj_spit_fire(s16 relativePosX, s16 relativePosY, s16 relativePosZ, f32 sca
 #include "behaviors/jellyfish.inc.c"
 #include "behaviors/shrine_shadow.inc.c"
 #include "behaviors/dry_bones.inc.c"
+#include "behaviors/mimic.inc.c"

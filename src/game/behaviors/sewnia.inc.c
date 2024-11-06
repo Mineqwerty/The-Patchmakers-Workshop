@@ -16,6 +16,8 @@ enum SewniaActions {
     SEWNIA_ACT_EMOTE,
     SEWNIA_ACT_INTRO_CUTSCENE,
     SEWNIA_ACT_REVIVE_MARIO_CUTSCENE,
+    SEWNIA_ACT_RUN_TO_NODE,
+    SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE
 
 };
 
@@ -430,6 +432,24 @@ struct PathfindNode *find_mario_nearest_waypoint() {
 
 }
 
+struct PathfindNode *find_node_by_id(s16 nodeID) {
+    
+    struct PathfindNode *curPoint = segmented_to_virtual(&sewnia_path_area_1);
+    struct PathfindNode *returnPoint;
+    while (curPoint->nodeID != -1) {
+
+        if (curPoint->nodeID == nodeID) {
+            returnPoint = curPoint;
+            return returnPoint;
+        }
+
+        curPoint = curPoint + 1;
+    }
+
+    return returnPoint;
+
+}
+
 
 
 u8 check_ray_to_mario() {
@@ -501,6 +521,11 @@ void follow_along_waypoints(void) {
     struct PathfindNode *sewniaNode = sewnia_find_nearest_waypoint();
     o->oSewniaSourceNode = sewniaNode->nodeID;
     struct PathfindNode *marioNode = find_mario_nearest_waypoint();
+
+    if (o->oAction == SEWNIA_ACT_RUN_TO_NODE) {
+        marioNode = find_node_by_id(o->oSewniaApproachSpecificNode);
+    }
+
     if (o->oMarioNearestNode != marioNode->nodeID) {
         o->oMarioNearestNode = marioNode->nodeID;
         o->oSewniaCurrentNodeIndex = 0;
@@ -760,7 +785,17 @@ void sewnia_act_intro_cutscene(void) {
             }
         break;
         case 4:
-
+            obj_turn_toward_object(o, gMarioState->marioObj, O_FACE_ANGLE_YAW_INDEX, 0x400);
+            o->oMoveAngleYaw = o->oFaceAngleYaw;
+            if (cExternalCutsceneTrigger == 5){
+                o->oSubAction++;
+            }
+        break;
+        case 5:
+            //if (cExternalCutsceneTrigger == 5){
+                o->oAction = SEWNIA_ACT_RUN_TO_NODE;
+                o->oSewniaApproachSpecificNode = 30;
+            //}
         break;
     }
 }
@@ -769,6 +804,81 @@ void sewnia_update_movement(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_move_standard(-60);
     
+}
+
+void sewnia_act_run_to_node(void) {
+    u8 nodeLimit = (o->oSewniaApproachSpecificNode == 30 ? 9 : 2);
+    //disgustingly hardcoded. please find a better way
+    if (o->oTimer < 10 || (o->oSewniaCurrentNodeIndex != nodeLimit)) {
+
+        if (o->oSewniaApproachSpecificNode == 12 && o->oTimer > 30) {
+            o->oForwardVel = 20.0f;
+            sewnia_update_movement();
+            if (o->oPosX < -1500) {
+                if (o->oPosZ > 1150) {
+                    o->oSewniaApproachSpecificNode = 13;
+                    //obj_turn_toward_position(o, -3000, 0, 1460, O_MOVE_ANGLE_YAW_INDEX, 0x300);
+                    //o->oSubAction++;
+                    //if (o->oSubAction == 60) {
+                    //    o->oAction = SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE;
+                    //}
+                }
+                else {
+                    obj_turn_toward_position(o, -2320, 0, 1160, O_MOVE_ANGLE_YAW_INDEX, 0x300);
+                }
+            }
+            else {
+                obj_turn_toward_position(o, -2170, 0, -1130, O_MOVE_ANGLE_YAW_INDEX, 0x300);
+            }
+        }
+        else {
+            cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
+            follow_along_waypoints();
+            dbp(o->oSewniaCurrentNodeIndex);
+        }
+    }
+    else {
+        //cur_obj_init_animation(SEWNIA_ANIM_CUTSCENE_IDLE_1);
+        o->oAction = SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE;
+    }
+}
+
+void sewnia_act_beginning_cutscene_at_course_entrance(void) {
+    switch (o->oSubAction) {
+        case 0:
+            stay_near_course_entrance();
+            sewnia_update_movement();
+
+            if (o->oInteractStatus == INT_STATUS_INTERACTED) {
+                o->oInteractStatus = 0;
+                if (o->oSewniaApproachSpecificNode == 13) {
+                    create_dialog_box(30);
+                    o->oSubAction = 1;
+                }
+                else {
+                    create_dialog_box(24);
+                    o->oSubAction = 1;
+                }
+            }
+        break;
+        case 1:
+            obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+            obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
+            if (o->oSubAction != 0 && gDialogResponse > 0 && o->oTimer > 10) {
+                gMarioState->action = ACT_IDLE;
+
+                if (o->oSewniaApproachSpecificNode == 30) {
+                    o->oAction = SEWNIA_ACT_RUN_TO_NODE;
+                    o->oSewniaApproachSpecificNode = 12;
+                    o->oSubAction = 0;
+                }
+                else {
+                    o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+                }
+                
+            }
+        break;
+    }
 }
 
 void sewnia_act_revive_mario_cutscene(void) {
@@ -988,6 +1098,12 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_REVIVE_MARIO_CUTSCENE:
             sewnia_act_revive_mario_cutscene();
+        break;
+        case SEWNIA_ACT_RUN_TO_NODE:
+            sewnia_act_run_to_node();
+        break;
+        case SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE:
+            sewnia_act_beginning_cutscene_at_course_entrance();
         break;
     }
 

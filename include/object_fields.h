@@ -1358,6 +1358,7 @@
 #define oMarioNearestNode          OBJECT_FIELD_S32(0x1F)
 #define oSewniaCurrentNodeIndex          OBJECT_FIELD_S32(0x20)
 #define oSewniaNextNode          OBJECT_FIELD_S32(0x21)
+#define oSewniaApproachSpecificNode          OBJECT_FIELD_S32(0x22)
 
 //podogoo
 #define oPotogooApproachXZ        OBJECT_FIELD_F32(0x1B)

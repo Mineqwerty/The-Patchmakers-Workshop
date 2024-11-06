@@ -65,6 +65,16 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "crickets_L"
+        },
+        "inst8": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "opening_L"
+        },
+        "inst9": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "opening_R"
         }
     },
     "instrument_list": [
@@ -75,6 +85,8 @@
         "inst4",
         "inst5",
         "inst6",
-        "inst7"
+        "inst7",
+        "inst8",
+        "inst9"
     ]
 }

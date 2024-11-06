@@ -180,6 +180,7 @@ DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
 It's actually a really big building complex.\n\
 The Patchmaker had some plans before, uh...\n\
 ...Anyways, the problem.\n\
+\n\
 @7F60B4FFHe kind of um... Locked me in here.\n\
 With magic. No matter how you try, it won't open.\n\
 This is the only way forward, too...\n\
@@ -189,6 +190,7 @@ of a way to get past it...\n\
 You make it sound really easy!\n\
 All we need is something called star power?\n\
 And it can be found anywhere? Lucky!\n\
+\n\
 @7F60B4FFLeaving the workshop isn't a good idea, but\n\
 I think I know how to help! Follow me!"))
 
@@ -247,7 +249,7 @@ look for stars, they're probably super\n\
 helpful!\n\
 @7F60B4FFGood luck, Mario...\n\
 I'll be waiting here for you!\n\
-"))
+If you need help, just ask me!"))
 
 DEFINE_DIALOG(DIALOG_031, 1, 5, 30, 200, _("\
 No way! You beat me...\n\
@@ -267,7 +269,7 @@ A... A guest! H-How did you...?\n\
 This door? I... I locked it.\n\
 I was scared that those awful diseased\n\
 spirits were in the main chamber...\n\
-...what? You say it's safe? Are you sure?\n\
+...What? You say it's safe? Are you sure?\n\
 \n\
 \n\
 Well, you are alive so I suppose there is no\n\
