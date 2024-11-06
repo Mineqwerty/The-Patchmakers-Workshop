@@ -637,7 +637,7 @@ s32 act_story_cutscene(struct MarioState *m) {
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, m->faceAngle[0], m->faceAngle[1], m->faceAngle[2]);
 
-    if (gCurrLevelNum == LEVEL_LLL && gCurrAreaIndex == 5 && m->marioObj->header.gfx.animInfo.animFrame > 20) {
+    if (m->marioObj->header.gfx.animInfo.animID == MARIO_ANIM_START_SLEEP_SITTING && (gCurrLevelNum == LEVEL_CASTLE || m->marioObj->header.gfx.animInfo.animFrame > 20)) {
         m->marioObj->header.gfx.animInfo.animFrame = 20;
     }
 

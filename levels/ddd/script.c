@@ -49,6 +49,9 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ddd_area_1),
@@ -183,6 +186,8 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_PODOGOO, 1088, 1942, 8682, 0, 131, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_PODOGOO, -718, 2038, 9663, 0, 67, 0, 0x00000000, bhvPodogoo),
 		OBJECT_WITH_ACTS(MODEL_NONE, 4710, 1624, 10183, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
+		OBJECT(MODEL_SKYBOX_TEST, 327, -457, 934, 0, 0, 0, 0x00000000, bhvBackgroundObject),
+		OBJECT(MODEL_STAR, 4252, 5780, -5409, 0, 131, 0, (23 << 24), bhvStar),
 		TERRAIN(ddd_area_4_collision),
 		TERRAIN_MAT_LUT(ddd_area_4_collision_materials),
 		MACRO_OBJECTS(ddd_area_4_macro_objs),

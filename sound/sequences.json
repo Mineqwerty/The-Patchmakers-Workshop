@@ -207,5 +207,8 @@
     ],
     "3D_hidden_village_hold_select": [
         "14_piranha_music_box"
+    ],
+    "3E_opening_cutscene": [
+        "streamed_audio"
     ]
 }

@@ -263,6 +263,17 @@ struct CutsceneSplinePoint castle_inside_area_1_spline_MeetSewniaFoc2[] = {
 	{ 7, 180, { 224, 251, 896 }},
 	{ -1, 180, { 224, 251, 817 }},
 };
+struct CutsceneSplinePoint castle_inside_area_1_spline_MeetSewniaFoc3[] = {
+	{ 0, 180, { -422, 182, 1444 }},
+	{ 1, 180, { -422, 182, 1441 }},
+	{ 2, 180, { -422, 182, 1438 }},
+	{ 3, 180, { -422, 182, 1434 }},
+	{ 4, 180, { -422, 182, 1431 }},
+	{ 5, 180, { -422, 182, 1428 }},
+	{ 6, 180, { -422, 182, 1425 }},
+	{ 7, 180, { -422, 182, 1422 }},
+	{ -1, 180, { -422, 182, 1419 }},
+};
 struct CutsceneSplinePoint castle_inside_area_1_spline_MeetSewniaPos1[] = {
 	{ 0, 60, { 6, 214, 1299 }},
 	{ 1, 60, { 3, 222, 1300 }},
@@ -283,6 +294,17 @@ struct CutsceneSplinePoint castle_inside_area_1_spline_MeetSewniaPos2[] = {
 	{ 6, 180, { 502, 273, 1047 }},
 	{ 7, 180, { 502, 273, 997 }},
 	{ -1, 180, { 502, 273, 946 }},
+};
+struct CutsceneSplinePoint castle_inside_area_1_spline_MeetSewniaPos3[] = {
+	{ 0, 180, { -127, 236, 1174 }},
+	{ 1, 180, { -177, 233, 1152 }},
+	{ 2, 180, { -226, 230, 1131 }},
+	{ 3, 180, { -284, 226, 1106 }},
+	{ 4, 180, { -341, 223, 1080 }},
+	{ 5, 180, { -388, 220, 1060 }},
+	{ 6, 180, { -435, 217, 1040 }},
+	{ 7, 180, { -481, 214, 1020 }},
+	{ -1, 180, { -527, 211, 1000 }},
 };
 const Trajectory castle_inside_area_1_spline_SewniaPath[] = {
 	TRAJECTORY_POS( 0, -4891, 0, 250),
