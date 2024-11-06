@@ -1969,6 +1969,123 @@ It's not all musty and old like it is here.\n\
 But... some of them are a little scary, too.\n\
 Like the section after this door..."))
 
+DEFINE_DIALOG(DIALOG_SEWNIA_ENTERING_WORKSHOP_1, 1, 3, 30, 200, _("\
+@7F60B4FFIt's open...\n\
+Alright, here we go...\n\
+Beyond that door somewhere is The Patchmaker.\n\
+@7F60B4FFHe, uh... might get angry if he sees me.\n\
+I think it's best if you go ahead of me, and\n\
+I'll trail you from afar..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\
+@7F60B4FFUm...\n\
+I'm sorry he attacked you...\n\
+I was hoping we wouldn't have a run-in.\n\
+@7F60B4FFI guess you have an idea of the state of him...\n\
+It might be hard to believe, but he was once a\n\
+caring man... I hate seeing him like this.\n\
+@7F60B4FFIt just kind of... started happening over time.\n\
+He became obsessed with creating something specific.\n\
+He wanted to create life again.\n\
+@7F60B4FFI'm not sure how I came to be exactly, but The Patchmaker\n\
+admitted I was a complete accident. He didn't know how he\n\
+created me, but he wanted to do it again, and became mad over it.\n\
+@7F60B4FFAh! Sorry, I didn't mean to ramble.\n\
+By the time I caught up, you were already fighting,\n\
+but look at this!\n\
+@7F60B4FFI think this is the Thread of Life for that\n\
+turtle guy! We can revive him!\n\
+Let's hurry and...\n\
+@7F60B4FF...What? Evil Koopa King?\n\
+You make him sound... scary.\n\
+But also, really powerful!\n\
+@7F60B4FFDo you think we can explain to him\n\
+what's going on? Do you think he'll\n\
+help us?\n\
+@7F60B4FFIt's up to you...\n\
+\n\
+\n\
+@7F60B4FFAlright then, let's go!\n\
+Come on, Mario!\n\
+"))
+
+DEFINE_DIALOG(DIALOG_BOWSER_REVIVED, 1, 3, 30, 200, _("\
+@7F60B4FFIs he awake?\n\
+\n\
+\n\
+@FF0202FFUrk...\n\
+What the...\n\
+\n\
+@FF0202FFWhere am I?\n\
+\n\
+\n\
+@FF0202FFHey! What on earth is Mario doing here!?\n\
+I hate seeing him when I wake up!\n\
+It usually means I lost!\n\
+@7F60B4FFAre you... Bowser?\n\
+Mario told me a bit about you!\n\
+\n\
+@FF0202FFUh... who's the freaky doll?\n\
+Hrgh... My head...\n\
+\n\
+@7F60B4FFMy name is Sewnia!\n\
+Bowser, you were brought here by a man\n\
+known as The Patchmaker, and he-\n\
+@FF0202FFHey, I remember now! I was performing my awesome\n\
+attack on Mushroom Castle! It was going great, until that weirdo\n\
+man showed up!\n\
+@FF0202FFI watched him turn Mario into a doll right before my eyes!\n\
+He jumped out from the shadows while I was storming the castle for Peach,\n\
+when Mario was trying to stop me, and attacked him from behind!\n\
+@FF0202FFAfter that... he must have gotten me too!\n\
+Bwaaargh! No!!! I can stomach losing to Mario,\n\
+but I won't accept losing to ANOTHER human!\n\
+@FF0202FFI'm gonna beat the daylights outta that guy!\n\
+Where is he!?\n\
+\n\
+@7F60B4FFBowser, wait! He probably sealed himself off in\n\
+another section of the workshop to hide if I had to guess.\n\
+Plus, it's dangerous!\n\
+@FF0202FFSorry girlie, I need to get revenge on this jerk!\n\
+I don't lose to random guys!\n\
+So now I think I'll... Huh?\n\
+@FF0202FFWhat happened to...\n\
+Is that...?\n\
+\n\
+@FF0202FFDid he do this to Peach, too?\n\
+I'LL... I'LL...! I'LL GIVE THE FLOOR A NEW\n\
+COAT OF WAX WITH HIS FACE! GRRAAGHHH!!!\n\
+@7F60B4FFBowser! Please calm down! We can still save her!\n\
+We need to focus on exploring as much of the workshop as we can!\n\
+Maybe her Thread of Life is lying around somewhere!\n\
+@FF0202FFThen what are we waiting for? MOVE!\n\
+Mario, doll girl! What are you doing just waiting here?\n\
+Let's GO!!!"))
+
+DEFINE_DIALOG(DIALOG_PATCHMAKER_MEET_MARIO, 0b10, 3, 30, 200, _("\
+Hmm?\n\
+\n\
+\n\
+You... Red one. Why do you move?\n\
+\n\
+\n\
+I thought that I had dealt with you.\n\
+DEALT WITH you... Ahaha...\n\
+Moving? You're moving?\n\
+No... You aren't supposed to!\n\
+I need you to stop that...\n\
+STOP THAT! AHAHA! STOP IT!\n\
+You were another failure. The failures need...\n\
+They need to be put into the box!\n\
+Too many! Haha...\n\
+THE FAILURES THAT MOVE!\n\
+THEY GO... They go into the box!\n\
+Ahaha...\n\
+Red one... You mustn't move!\n\
+If you do... I have failed again!\n\
+Ahahaha!\n\
+Now... Time to say goodnight once more!"))
+
 DEFINE_DIALOG(DIALOG_MASTER_WELCOME, 1, 3, 30, 200, _("\
 Welcome, mister Mario.\n\
 I express gratitude that you came all\n\

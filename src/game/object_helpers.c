@@ -896,6 +896,12 @@ struct Object *obj_find_transmute_target(struct Object *sourceObj) {
     return NULL;
 }
 
+s32 obj_shouldnt_be_attacked(struct Object *obj) {
+    return (obj_has_model(obj, MODEL_YELLOW_COIN)
+        || obj_has_model(obj, MODEL_YELLOW_COIN_NO_SHADOW)
+        || obj->behavior == segmented_to_virtual(bhvStar));
+}
+
 struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
                                   u8 damage, s32 interaction) {
     struct ObjectNode *listHead;
@@ -926,7 +932,7 @@ struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 heig
         while (obj != (struct Object *) listHead) {
 
             if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
-                && obj != sourceObj) {
+                && obj != sourceObj && !obj_shouldnt_be_attacked(obj)) {
 
                 if ((point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) || point_inside_xz_tri(&obj->oPosVec, pointB, pointC, pointD))
                     && absf(obj->oPosY - sourceObj->oPosY - (height/2)) < height) {
