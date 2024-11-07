@@ -93,4 +93,16 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/dice_spear/geo_header.h"
 
+#include "levels/ddd/cashew_man/geo_header.h"
+
+#include "levels/ddd/cashew_man/anim_header.h"
+
+#include "levels/ddd/hazelnut_woman/geo_header.h"
+
+#include "levels/ddd/hazelnut_woman/anim_header.h"
+
+#include "levels/ddd/pecan_man/geo_header.h"
+
+#include "levels/ddd/macadamia_woman/geo_header.h"
+
 #endif

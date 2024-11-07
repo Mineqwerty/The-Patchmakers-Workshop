@@ -2088,6 +2088,48 @@ If you do... I have failed again!\n\
 Ahahaha!\n\
 Now... Time to say goodnight once more!"))
 
+DEFINE_DIALOG(DIALOG_VILLAGER_FRUIT, 1, 3, 30, 200, _("\
+Fresh fruit!\n\
+Get it here!\n\
+\n\
+You, in the red!\n\
+Care for some fresh fruit?\n\
+No? What a shame!"))
+
+DEFINE_DIALOG(DIALOG_VILLAGER_FLOWERS, 1, 3, 30, 200, _("\
+Some rascal took my red flowers and hid them\n\
+all over town!\n\
+Argh!!!\n\
+These aren't ordinary flowers, either!\n\
+They hold the secret to making some\n\
+good coin! Ahh, I miss my red coin flowers!"))
+
+DEFINE_DIALOG(DIALOG_VILLAGER_FAR_AWAY, 1, 3, 30, 200, _("\
+Yeesh, I can tell you're not from around here.\n\
+Here's a tip from a local.\n\
+\n\
+Ever since those jerks occupied that castle,\n\
+the monster problem around town has gotten pretty bad.\n\
+I'd watch out, and expect the unexpected!"))
+
+DEFINE_DIALOG(DIALOG_VILLAGER_TRAVELERS, 1, 3, 30, 200, _("\
+Well, hi there!\n\
+We don't get too many travelers around here.\n\
+Welcome to our village!\n\
+I must say, the people visiting are quite strange.\n\
+First it was that @FF0000FFtall man in a tailcoat suit@FFFFFFFF,\n\
+and now you're here too.\n\
+There's also some guy in a hood hanging around town.\n\
+I'm not sure what his deal is, but he seems\n\
+a little scary to me..."))
+
+DEFINE_DIALOG(DIALOG_VILLAGER_SILO, 1, 3, 30, 200, _("\
+Oh, blast it all!\n\
+Somebody keeps leaving that darn silo open!\n\
+We built the hatch up there for a REASON!\n\
+I swear, if I get up there and there's\n\
+a buncha dirt tracked over our harvest..."))
+
 DEFINE_DIALOG(DIALOG_MASTER_WELCOME, 1, 3, 30, 200, _("\
 Welcome, mister Mario.\n\
 I express gratitude that you came all\n\

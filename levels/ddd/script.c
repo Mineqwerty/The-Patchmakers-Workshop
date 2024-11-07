@@ -52,6 +52,12 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_D8, d8_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_DICE_SPEAR, dice_spear_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_D12, d12_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_CASHEW_MAN, cashew_man_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_HAZELNUT_WOMAN, hazelnut_woman_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PECAN_MAN, pecan_man_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MACADAMIA_WOMAN, macadamia_woman_geo), 
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ddd_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -71,6 +77,11 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 1649, 303, 4053, 0, -180, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_BREAKABLE_BOX_SMALL, -3032, 711, -6692, 0, -180, 0, 0x00000000, bhvBreakableBoxSmall),
 		OBJECT(MODEL_CANNON_BARREL, -5784, 2390, 1074, 84, -180, 0, 0x00000000, bhvHiddenCannon),
+		OBJECT(MODEL_CASHEW_MAN, -2226, 306, -1107, 0, 45, 0, (1 << 24) | (DIALOG_VILLAGER_FRUIT << 16), bhvGenericNPC),
+		OBJECT(MODEL_HAZELNUT_WOMAN, -2545, 299, 436, 0, 146, 0, (DIALOG_VILLAGER_FLOWERS << 16), bhvGenericNPC),
+		OBJECT(MODEL_MACADAMIA_WOMAN, -5222, 303, -1054, 0, 18, 0, (1 << 24) | (DIALOG_VILLAGER_TRAVELERS << 16), bhvGenericNPC),
+		OBJECT(MODEL_PECAN_MAN, -1585, 300, 2508, 0, 136, 0, (DIALOG_VILLAGER_FAR_AWAY << 16), bhvGenericNPC),
+		OBJECT(MODEL_PECAN_MAN, -5054, 301, -3627, 0, -143, 0, (1 << 24) | (DIALOG_VILLAGER_SILO << 16), bhvGenericNPC),
 		OBJECT(MODEL_PODOGOO, 2326, 619, -2554, 0, -180, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_PODOGOO, 2644, 676, -3525, 0, -180, 0, 0x00000000, bhvPodogoo),
 		OBJECT(MODEL_PODOGOO, -10554, 303, -1736, 0, -180, 0, 0x00000000, bhvPodogoo),
@@ -203,7 +214,7 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT_WITH_ACTS(MODEL_NONE, 12, 9678, -10331, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
-		OBJECT(MODEL_D12, 0, 1166, 0, 0, 0, 0, 0x00000000, bhvD12),
+		OBJECT(MODEL_D6, 0, 1166, 0, 0, 0, 0, 0x00000000, bhvD6),
 		TERRAIN(ddd_area_5_collision),
 		TERRAIN_MAT_LUT(ddd_area_5_collision_materials),
 		MACRO_OBJECTS(ddd_area_5_macro_objs),

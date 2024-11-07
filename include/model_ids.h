@@ -705,6 +705,10 @@
 #define MODEL_D8                   0x10C
 #define MODEL_DICE_SPEAR                   0x10D
 #define MODEL_D12                   0x10E
+#define MODEL_CASHEW_MAN                   0x10F
+#define MODEL_HAZELNUT_WOMAN                   0x110
+#define MODEL_PECAN_MAN                   0x111
+#define MODEL_MACADAMIA_WOMAN                   0x112
 
 //Violet Twilit Woods
 #define MODEL_PURPLE_MUSHROOM                   0x100

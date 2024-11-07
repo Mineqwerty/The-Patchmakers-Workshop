@@ -40,3 +40,7 @@
 #include "levels/ddd/d20/geo.inc.c"
 #include "levels/ddd/dice_laser/geo.inc.c"
 #include "levels/ddd/dice_spear/geo.inc.c"
+#include "levels/ddd/cashew_man/geo.inc.c"
+#include "levels/ddd/hazelnut_woman/geo.inc.c"
+#include "levels/ddd/pecan_man/geo.inc.c"
+#include "levels/ddd/macadamia_woman/geo.inc.c"
