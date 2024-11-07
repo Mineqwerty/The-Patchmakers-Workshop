@@ -38,3 +38,5 @@
 #include "levels/ddd/d100/geo.inc.c"
 #include "levels/ddd/d12/geo.inc.c"
 #include "levels/ddd/d20/geo.inc.c"
+#include "levels/ddd/dice_laser/geo.inc.c"
+#include "levels/ddd/dice_spear/geo.inc.c"

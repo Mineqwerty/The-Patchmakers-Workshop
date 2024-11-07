@@ -1269,6 +1269,10 @@ void bhv_transmutation_cone_loop(void) {
                         obj_mark_for_deletion(target);
                     }
 
+                    else if (obj_has_behavior(target, bhvD4) || obj_has_behavior(target, bhvD6) || obj_has_behavior(target, bhvD8) || obj_has_behavior(target, bhvD12) || obj_has_behavior(target, bhvD20)) {
+                        attack_object(target, 32, 5);
+                    }
+
                     play_sound(SOUND_TRANSMUTATION_CONE, gGlobalSoundSource);
                 }
             }

@@ -89,4 +89,8 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/d20/geo_header.h"
 
+#include "levels/ddd/dice_laser/geo_header.h"
+
+#include "levels/ddd/dice_spear/geo_header.h"
+
 #endif

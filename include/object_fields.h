@@ -1411,6 +1411,11 @@
 //eyebulb
 #define oEyebulbEye           OBJECT_FIELD_OBJ(0x1B)
 
+//d4
+#define oLaser1Obj           OBJECT_FIELD_OBJ(0x1B)
+#define oLaser2Obj           OBJECT_FIELD_OBJ(0x1C)
+#define oLaser3Obj           OBJECT_FIELD_OBJ(0x1D)
+
 //trailer camera
 #define /*0x0F4*/ oTCPos1X             OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oTCPos1Y           OBJECT_FIELD_F32(0x1C)

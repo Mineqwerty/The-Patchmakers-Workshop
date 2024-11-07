@@ -46,13 +46,12 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_BOTTOM, hvh_chest_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HVH_CHEST_TOP, hvh_chest_top_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MIMIC, mimic_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 end persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_D4, d4_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D6, d6_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DICE_LASER, dice_laser_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D8, d8_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DICE_SPEAR, dice_spear_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D12, d12_geo), 
 
 	AREA(1, ddd_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -204,6 +203,7 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT_WITH_ACTS(MODEL_NONE, 12, 9678, -10331, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
+		OBJECT(MODEL_D12, 0, 1166, 0, 0, 0, 0, 0x00000000, bhvD12),
 		TERRAIN(ddd_area_5_collision),
 		TERRAIN_MAT_LUT(ddd_area_5_collision_materials),
 		MACRO_OBJECTS(ddd_area_5_macro_objs),

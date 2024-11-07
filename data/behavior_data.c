@@ -7688,7 +7688,7 @@ const BehaviorScript bhvDiceBoss[] = {
 
 const BehaviorScript bhvD4[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_d4_init),
     BEGIN_LOOP(),
@@ -8441,5 +8441,64 @@ const BehaviorScript bhvHeldMPatch[] = {
     CALL_NATIVE(bhv_held_m_patch_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_held_m_patch_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDiceLaser[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_dice_laser_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_laser_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD6[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO  | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d6_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d6_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD8[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO  | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d8_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d8_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD12[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO  | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d12_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d12_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvD20[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO  | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_d20_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_d20_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDiceSpear[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_dice_spear_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_spear_loop),
     END_LOOP(),
 };

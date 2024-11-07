@@ -61,3 +61,5 @@
 #include "levels/ddd/d100/model.inc.c"
 #include "levels/ddd/d12/model.inc.c"
 #include "levels/ddd/d20/model.inc.c"
+#include "levels/ddd/dice_laser/model.inc.c"
+#include "levels/ddd/dice_spear/model.inc.c"
