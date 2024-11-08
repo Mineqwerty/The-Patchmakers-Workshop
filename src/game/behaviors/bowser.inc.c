@@ -330,16 +330,14 @@ void bowser_bitdw_actions(void) {
                 //}
 
                 if (gPlayer1Controller->buttonPressed & B_BUTTON) {
-                return o->oAction = BOWSER_ACT_BREATH_FIRE; // nearby
-                }
-            //} else {
-                if (gPlayer1Controller->buttonPressed & A_BUTTON) {
-                return o->oAction = BOWSER_ACT_QUICK_JUMP; // far away
-                }
-
-                if (gPlayer1Controller->buttonDown & Z_TRIG) {
-                return o->oAction = BOWSER_ACT_CHARGE_MARIO; 
-                }
+        return o->oAction = BOWSER_ACT_DANCE;
+    }
+    if (gPlayer1Controller->buttonPressed & A_BUTTON) {
+        return o->oAction = BOWSER_ACT_QUICK_JUMP;
+    }
+    if (gPlayer1Controller->buttonDown & Z_TRIG) {
+        return o->oAction = BOWSER_ACT_BREATH_FIRE; 
+    }
 
                 
             //}
@@ -547,55 +545,89 @@ void bowser_act_walk_to_mario(void) {
      //           }
 
     if (gPlayer1Controller->stickX == 0 && gPlayer1Controller->stickY == 0) {
-        return o->oAction = BOWSER_ACT_DEFAULT;
+        //o->oForwardVel = 0.0f;
+            //cur_obj_init_animation_with_sound(BOWSER_ANIM_RUN_SLIP);
+            //if (cur_obj_check_if_near_animation_end()) {
+            //    // Set time delay to go to default action
+            //    if (o->oBowserTimer > 4) {
+            //        return o->oAction = BOWSER_ACT_DEFAULT;
+            //    }
+            //    o->oBowserTimer++;
+            //}
+            //cur_obj_extend_animation_if_at_end();
+            if (approach_f32_signed(&o->oForwardVel, 0, -10.0f)) {
+                return o->oAction = BOWSER_ACT_DEFAULT;
+            }
+            
+        
+    }
+    else {
+        o->oForwardVel = approach_f32_symmetric(o->oForwardVel, 50.0f, 15.0f);
     }
     if (gPlayer1Controller->buttonPressed & B_BUTTON) {
-        return o->oAction = BOWSER_ACT_BREATH_FIRE;
+        return o->oAction = BOWSER_ACT_DANCE;
     }
     if (gPlayer1Controller->buttonPressed & A_BUTTON) {
         return o->oAction = BOWSER_ACT_QUICK_JUMP;
     }
     if (gPlayer1Controller->buttonDown & Z_TRIG) {
-        return o->oAction = BOWSER_ACT_CHARGE_MARIO; 
+        return o->oAction = BOWSER_ACT_BREATH_FIRE; 
     }
     turnSpeed = 0x400;
-    // Set turning speed depending of the health
-    // Also special case for BITFS
-    /*if (o->oBehParams2ndByte == BOWSER_BP_BITFS) {
-        turnSpeed = 0x400;
-    } else if (o->oHealth > 2) {
-        turnSpeed = 0x400;
-    } else if (o->oHealth == 2) {
-        turnSpeed = 0x300;
-    } else { // 1 health (BITFS-BITS)
-        turnSpeed = 0x200;
-    }
-    */
+    if (gPlayer1Controller->stickX != 0 || gPlayer1Controller->stickY != 0) {
     facing = cur_obj_rotate_yaw_toward((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw), turnSpeed);
-    if (o->oSubAction == 0) {
-        o->oBowserTimer = 0;
-        // Start walking
-        if (bowser_set_anim_slow_gait()) {
-            o->oSubAction++;
-        }
-    } else if (o->oSubAction == 1) {
-        // Keep walking slowly
-        if (bowser_set_anim_slow_gait()) {
-            o->oBowserTimer++;
-            // Reset fire sky status
-            if (o->oBowserStatus & BOWSER_STATUS_FIRE_SKY) {
-                if (o->oBowserTimer > 4) {
-                    //o->oBowserStatus &= ~BOWSER_STATUS_FIRE_SKY;
-                }
-            // Do subaction below if angles is less than 0x2000
-            } else if (angleFromMario < 0x2000) {
-                //o->oSubAction++;
-            }
-        }
-    // Stop walking and set to default action
-    } else if (bowser_set_anim_look_down_stop_walk()) {
-        o->oAction = BOWSER_ACT_DEFAULT;
     }
+    
+
+            //if (!(gPlayer1Controller->buttonDown & Z_TRIG)) {
+            //    o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
+            //}
+            if (gPlayer1Controller->stickX == 0 && gPlayer1Controller->stickY == 0) {
+        //o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
+    }
+            if (cur_obj_init_animation_and_check_if_near_end(BOWSER_ANIM_RUN)) {
+                o->oBowserTimer++;
+                // Split if 6 timer frames has passed
+                if (o->oBowserTimer >= 6) {
+                    //o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
+                }
+                // Slip if Mario has a differentiable angle and 2 timer frames has passed
+                if (o->oBowserTimer >= 2) {
+                    if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) > 0x2000) {
+                        //o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
+                    }
+                }
+            }
+            // Rotate to Mario
+            if (gPlayer1Controller->stickX != 0 || gPlayer1Controller->stickY != 0) {
+            cur_obj_rotate_yaw_toward((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw), 0x200);
+            }
+    
+    
+    //if (o->oSubAction == 0) {
+    //    o->oBowserTimer = 0;
+        // Start walking
+    //    if (bowser_set_anim_slow_gait()) {
+    //        o->oSubAction++;
+    //    }
+    //} else if (o->oSubAction == 1) {
+        // Keep walking slowly
+    //    if (bowser_set_anim_slow_gait()) {
+    //        o->oBowserTimer++;
+            // Reset fire sky status
+    //        if (o->oBowserStatus & BOWSER_STATUS_FIRE_SKY) {
+    //            if (o->oBowserTimer > 4) {
+                    //o->oBowserStatus &= ~BOWSER_STATUS_FIRE_SKY;
+    //            }
+            // Do subaction below if angles is less than 0x2000
+    //        } else if (angleFromMario < 0x2000) {
+                //o->oSubAction++;
+  //          }
+    //    }
+    // Stop walking and set to default action
+    //} else if (bowser_set_anim_look_down_stop_walk()) {
+    //    o->oAction = BOWSER_ACT_DEFAULT;
+    //}
 }
 
 /**
@@ -1876,8 +1908,10 @@ Gfx *geo_update_body_rot_from_parent(s32 callContext, UNUSED struct GraphNode *n
 /**
  * Bowser's eyes Geo-Switch-Case IDs, defined from Mario's POV
  */
-enum BowserEyesGSCId
-{
+/**
+ * Bowser's eyes Geo-Switch-Case IDs, defined from Mario's POV
+ */
+enum BowserEyesGSCId {
     /*0x00*/ BOWSER_EYES_OPEN,
     /*0x01*/ BOWSER_EYES_HALF_CLOSED,
     /*0x02*/ BOWSER_EYES_CLOSED,
@@ -1896,67 +1930,88 @@ enum BowserEyesGSCId
 void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *switchCase) {
     s32 eyeCase;
     s16 angleFromMario;
+
     angleFromMario = abs_angle_diff(obj->oMoveAngleYaw, obj->oAngleToMario);
     eyeCase = switchCase->selectedCase;
+
     switch (eyeCase) {
         case BOWSER_EYES_OPEN:
             // Mario is in Bowser's field of view
             if (angleFromMario > 0x2000) {
-                if (obj->oAngleVelYaw > 0)
+                if (obj->oAngleVelYaw > 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
-                if (obj->oAngleVelYaw < 0)
+                }
+                if (obj->oAngleVelYaw < 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
+                }
             }
             // Half close, start blinking
-            if (obj->oBowserEyesTimer > 50)
+            if (obj->oBowserEyesTimer > 50) {
                 switchCase->selectedCase = BOWSER_EYES_HALF_CLOSED;
+            }
             break;
+
         case BOWSER_EYES_HALF_CLOSED:
             // Close, blinking
-            if (obj->oBowserEyesTimer > 2)
+            if (obj->oBowserEyesTimer > 2) {
                 switchCase->selectedCase = BOWSER_EYES_CLOSED;
+            }
             break;
+
         case BOWSER_EYES_CLOSED:
             // Reset blinking
-            if (obj->oBowserEyesTimer > 2)
+            if (obj->oBowserEyesTimer > 2) {
                 switchCase->selectedCase = BOWSER_EYES_RESET;
+            }
             break;
+
         case BOWSER_EYES_RESET:
             // Open, no longer blinking
-            if (obj->oBowserEyesTimer > 2)
+            if (obj->oBowserEyesTimer > 2) {
                 switchCase->selectedCase = BOWSER_EYES_OPEN;
+            }
             break;
+
         case BOWSER_EYES_RIGHT:
             // Look more on the right if angle didn't change
             // Otherwise, look at the center (open)
             if (obj->oBowserEyesTimer > 2) {
-                switchCase->selectedCase = BOWSER_EYES_OPEN;
-                if (obj->oAngleVelYaw <= 0)
+                switchCase->selectedCase = BOWSER_EYES_FAR_RIGHT;
+                if (obj->oAngleVelYaw <= 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
+                }
             }
             break;
+
         case BOWSER_EYES_FAR_RIGHT:
             // Look close right if angle was drastically changed
-            if (obj->oAngleVelYaw <= 0)
-                switchCase->selectedCase = BOWSER_EYES_OPEN;
+            if (obj->oAngleVelYaw <= 0) {
+                switchCase->selectedCase = BOWSER_EYES_RIGHT;
+            }
             break;
+
         case BOWSER_EYES_LEFT:
             // Look more on the left if angle didn't change
             // Otherwise, look at the center (open)
             if (obj->oBowserEyesTimer > 2) {
-                switchCase->selectedCase = BOWSER_EYES_OPEN;
-                if (obj->oAngleVelYaw >= 0)
+                switchCase->selectedCase = BOWSER_EYES_FAR_LEFT;
+                if (obj->oAngleVelYaw >= 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
+                }
             }
             break;
+
         case BOWSER_EYES_FAR_LEFT:
             // Look close left if angle was drastically changed
-            if (obj->oAngleVelYaw >= 0)
-                switchCase->selectedCase = BOWSER_EYES_OPEN;
+            if (obj->oAngleVelYaw >= 0) {
+                switchCase->selectedCase = BOWSER_EYES_LEFT;
+            }
             break;
+
         default:
             switchCase->selectedCase = BOWSER_EYES_OPEN;
     }
+
     // Reset timer if eye case has changed
     if (switchCase->selectedCase != eyeCase) {
         obj->oBowserEyesTimer = -1;
@@ -1969,53 +2024,122 @@ void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *swit
  * direction otherwise.
  */
 Gfx *geo_switch_bowser_eyes(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
-    UNUSED s16 eyeShut;
-    UNUSED s32 unused;
     struct Object *obj = (struct Object *) gCurGraphNodeObject;
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+
     if (callContext == GEO_CONTEXT_RENDER) {
-        if (gCurGraphNodeHeldObject != NULL)
+        if (gCurGraphNodeHeldObject != NULL) {
             obj = gCurGraphNodeHeldObject->objNode;
-        switch (eyeShut = obj->oBowserEyesShut) {
-            case FALSE: // eyes open, handle eye looking direction
-                bowser_open_eye_switch(obj, switchCase);
-                break;
-            case TRUE: // eyes closed, blinking
-                switchCase->selectedCase = BOWSER_EYES_CLOSED;
-                break;
         }
+        if (obj->oBowserEyesShut) { // eyes closed, blinking
+            switchCase->selectedCase = BOWSER_EYES_CLOSED;
+        } else { // eyes open, handle eye looking direction
+            bowser_open_eye_switch(obj, switchCase);
+        }
+
         obj->oBowserEyesTimer++;
     }
+
     return NULL;
 }
 
 /**
- * Geo switch that sets Bowser's Rainbow coloring (in BITS)
+ * Handles bowser´s shadow, in vanilla there would be a special seperate geolayout for doing this.
  */
-Gfx *geo_bits_bowser_coloring(s32 callContext, struct GraphNode *node, UNUSED s32 context) {
-    Gfx *gfxHead = NULL;
-    Gfx *gfx;
-    struct Object *obj;
-    struct GraphNodeGenerated *graphNode;
-
+Gfx *geo_disable_or_enable_bowser_shadow(s32 callContext, struct GraphNode *node, UNUSED s32 context) {
     if (callContext == GEO_CONTEXT_RENDER) {
-        obj = (struct Object *) gCurGraphNodeObject;
-        graphNode = (struct GraphNodeGenerated *) node;
-        if (gCurGraphNodeHeldObject != 0) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+
+        if (gCurGraphNodeHeldObject != NULL) {
             obj = gCurGraphNodeHeldObject->objNode;
         }
-        // Set layers if object is transparent or not
-        if (obj->oOpacity == 0xFF) {
-            graphNode->fnNode.node.flags = (graphNode->fnNode.node.flags & 0xFF) | (LAYER_OPAQUE << 8);
-        } else {
-            graphNode->fnNode.node.flags = (graphNode->fnNode.node.flags & 0xFF) | (LAYER_TRANSPARENT << 8);
-        }
-        gfx = gfxHead = alloc_display_list(2 * sizeof(Gfx));
-        // If TRUE, clear lighting to give rainbow color
-        if (obj->oBowserRainbowLight != 0) {
-            gSPClearGeometryMode(gfx++, G_LIGHTING);
-        }
-        gSPEndDisplayList(gfx);
+
+        //if (obj->oBowserShadow == TRUE)
+        //{
+            switchCase->selectedCase = 0;
+        //}
+        //else{
+        //    switchCase->selectedCase = 1;
+        //}
     }
-    return gfxHead;
+
+    return NULL;
+}
+
+/**
+ * Handles bowser´s render mode, transparency switch case and his rainbow effect in BITS in one function.
+ */
+Gfx *geo_bowser_transparency_and_rainbow(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+        struct GraphNodeGenerated *graphNode = (struct GraphNodeGenerated *) node;
+
+        obj->oAnimState = 0;
+
+        if (gCurGraphNodeHeldObject != NULL) {
+            obj = gCurGraphNodeHeldObject->objNode;
+        }
+        s32 objectOpacity = obj->oOpacity;
+
+        Gfx* gfx = alloc_display_list(5 * sizeof(Gfx));
+        Gfx* gfxHead = gfx;
+
+        // If bowser´s animation state is transparent, 
+        // set the render mode to a non overlaping transparent render mode.
+        // and turn on dither rendering if needed.
+
+        if (objectOpacity == 0xFF) {
+            SET_GRAPH_NODE_LAYER(graphNode->fnNode.node.flags, LAYER_OPAQUE);
+        } 
+        else if (objectOpacity) {
+            obj->oAnimState = 1;
+            SET_GRAPH_NODE_LAYER(graphNode->fnNode.node.flags, LAYER_TRANSPARENT);
+            gDPSetRenderMode(gfxHead++, G_RM_CUSTOM_AA_ZB_XLU_SURF, G_RM_NOOP2)
+
+            if (obj->activeFlags & ACTIVE_FLAG_DITHERED_ALPHA) {
+                gDPSetAlphaCompare(gfxHead++, G_AC_DITHER);
+            }
+        }
+
+        gDPSetEnvColor(gfxHead++, 255, 255, 255, objectOpacity);
+
+        // If TRUE, clear lighting to give rainbow color
+        if (obj->oBowserRainbowLight) {
+            gSPClearGeometryMode(gfxHead++, G_LIGHTING);
+        }
+
+        gSPEndDisplayList(gfxHead);
+
+        return gfx;
+    }
+
+    return NULL;
+}
+
+/**
+ * Reverts the render mode used for transparent bowser.
+ */
+Gfx *geo_bowser_revert_rendermode(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *obj = (struct Object *) gCurGraphNodeObject;
+
+        if (gCurGraphNodeHeldObject != NULL) {
+            obj = gCurGraphNodeHeldObject->objNode;
+        }
+
+        Gfx* gfx = alloc_display_list(2 * sizeof(Gfx));
+        Gfx* gfxHead = gfx;
+
+        if (obj->oAnimState == 1)
+        {
+            gDPSetRenderMode(gfxHead++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2)
+        }
+
+        gSPEndDisplayList(gfxHead);
+
+        return gfx;
+    }
+
+    return NULL;
 }
