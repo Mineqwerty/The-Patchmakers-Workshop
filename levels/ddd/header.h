@@ -111,4 +111,8 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/omiy/anim_header.h"
 
+#include "levels/ddd/dice_ground_spike/geo_header.h"
+
+#include "levels/ddd/dice_cube_shot/geo_header.h"
+
 #endif

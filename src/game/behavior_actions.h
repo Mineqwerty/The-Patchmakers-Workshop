@@ -1048,3 +1048,7 @@ void bhv_dice_spear_init(void);
 void bhv_dice_spear_loop(void);
 void bhv_strongnut_init(void);
 void bhv_strongnut_loop(void);
+void bhv_dice_ground_spike_init(void);
+void bhv_dice_ground_spike_loop(void);
+void bhv_dice_cube_shot_init(void);
+void bhv_dice_cube_shot_loop(void);

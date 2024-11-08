@@ -58,6 +58,9 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MACADAMIA_WOMAN, macadamia_woman_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_STRONGNUT, strongnut_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_OMIY, omiy_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DICE_GROUND_SPIKE, dice_ground_spike_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_DICE_CUBE_SHOT, dice_cube_shot_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D20, d20_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -219,7 +222,7 @@ const LevelScript level_ddd_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT_WITH_ACTS(MODEL_NONE, 12, 9678, -10331, 0, 0, 0, 0x000A0000, bhvInstantActiveWarp, ACT_1),
-		OBJECT(MODEL_D6, 0, 1166, 0, 0, 0, 0, 0x00000000, bhvD6),
+		OBJECT(MODEL_NONE, 0, 1166, 0, 0, 0, 0, 0x00000000, bhvDiceBoss),
 		TERRAIN(ddd_area_5_collision),
 		TERRAIN_MAT_LUT(ddd_area_5_collision_materials),
 		MACRO_OBJECTS(ddd_area_5_macro_objs),

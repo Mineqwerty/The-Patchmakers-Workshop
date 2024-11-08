@@ -850,6 +850,9 @@ u8 object_behavior_is_transmutable(struct Object *obj) {
 
         || obj->behavior == segmented_to_virtual(bhvD4)
         || obj->behavior == segmented_to_virtual(bhvD6)
+        || obj->behavior == segmented_to_virtual(bhvD8)
+        || obj->behavior == segmented_to_virtual(bhvD12)
+        || obj->behavior == segmented_to_virtual(bhvD20)
     );
 }
 

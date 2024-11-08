@@ -771,3 +771,5 @@ extern const BehaviorScript bhvD12[];
 extern const BehaviorScript bhvD20[];
 extern const BehaviorScript bhvDiceSpear[];
 extern const BehaviorScript bhvStrongnut[];
+extern const BehaviorScript bhvDiceGroundSpike[];
+extern const BehaviorScript bhvDiceCubeShot[];

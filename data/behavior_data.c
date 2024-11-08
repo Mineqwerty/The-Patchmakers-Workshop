@@ -8512,3 +8512,21 @@ const BehaviorScript bhvStrongnut[] = {
         CALL_NATIVE(bhv_strongnut_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDiceGroundSpike[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_dice_ground_spike_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_ground_spike_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDiceCubeShot[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_dice_cube_shot_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dice_cube_shot_loop),
+    END_LOOP(),
+};

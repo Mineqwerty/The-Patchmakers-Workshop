@@ -75,3 +75,5 @@
 #include "levels/ddd/omiy/model.inc.c"
 #include "levels/ddd/omiy/anims/data.inc.c"
 #include "levels/ddd/omiy/anims/table.inc.c"
+#include "levels/ddd/dice_ground_spike/model.inc.c"
+#include "levels/ddd/dice_cube_shot/model.inc.c"

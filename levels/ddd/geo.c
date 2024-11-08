@@ -46,3 +46,5 @@
 #include "levels/ddd/macadamia_woman/geo.inc.c"
 #include "levels/ddd/strongnut/geo.inc.c"
 #include "levels/ddd/omiy/geo.inc.c"
+#include "levels/ddd/dice_ground_spike/geo.inc.c"
+#include "levels/ddd/dice_cube_shot/geo.inc.c"

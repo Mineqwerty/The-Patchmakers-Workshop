@@ -711,6 +711,9 @@
 #define MODEL_MACADAMIA_WOMAN                   0x112
 #define MODEL_STRONGNUT                   0x113
 #define MODEL_OMIY                   0x114
+#define MODEL_DICE_GROUND_SPIKE                   0x115
+#define MODEL_DICE_CUBE_SHOT                   0x116
+#define MODEL_D20                   0x117
 
 //Violet Twilit Woods
 #define MODEL_PURPLE_MUSHROOM                   0x100

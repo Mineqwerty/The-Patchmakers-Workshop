@@ -48,6 +48,18 @@ static struct ObjectHitbox sD12Hitbox = {
     /* hurtboxHeight:     */ 290,
 };
 
+static struct ObjectHitbox sD20Hitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 40,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 140,
+    /* hurtboxHeight:     */ 290,
+};
+
 static struct ObjectHitbox sDiceSpearHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 150,
@@ -60,6 +72,18 @@ static struct ObjectHitbox sDiceSpearHitbox = {
     /* hurtboxHeight:     */ 290,
 };
 
+static struct ObjectHitbox sDiceCubeShotHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 100,
+    /* hurtboxRadius:     */ 40,
+    /* hurtboxHeight:     */ 90,
+};
+
 void bhv_dice_boss_init(void) {
     o->oDiceBossCurrentDie = 0;
 }
@@ -68,8 +92,8 @@ void bhv_dice_boss_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            if (o->oDistanceToMario < 500) {
-                //o->oAction = 1;
+            if (gMarioState->pos[1] < o->oPosY + 100) {
+                o->oAction = 1;
             }
         break;
         case 1:
@@ -78,8 +102,22 @@ void bhv_dice_boss_loop(void) {
                     o->oDiceBossDieObj = spawn_object_relative(0, 0, 100, 0, o, MODEL_D4, bhvD4);
                 break;
                 case 1:
-                    o->oDiceBossDieObj = spawn_object_relative(0, 0, 100, 0, o, MODEL_D6, bhvD6);
+                    o->oDiceBossDieObj = spawn_object_relative(0, 0, 0, 0, o, MODEL_D6, bhvD6);
                 break;
+                case 2:
+                    o->oDiceBossDieObj = spawn_object_relative(0, 0, 100, 0, o, MODEL_D8, bhvD8);
+                break;
+                case 3:
+                    o->oDiceBossDieObj = spawn_object_relative(0, 0, 100, 0, o, MODEL_D12, bhvD12);
+                break;
+                case 4:
+                    o->oDiceBossDieObj = spawn_object_relative(0, 0, 200, 0, o, MODEL_D20, bhvD20);
+                break;
+                case 5:
+                    spawn_default_star(o->oPosX, o->oPosY + 300, o->oPosZ);
+                    o->oDiceBossCurrentDie++;
+                break;
+
             }
 
             o->oAction = 2;
@@ -95,10 +133,15 @@ void bhv_dice_boss_loop(void) {
 
 void common_dice_death(void) {
     o->parentObj->oDiceBossCurrentDie++;
+    o->parentObj->oDiceBossDieObj = NULL;
         o->parentObj->oAction = 3;
         gBossHealth = 0;
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
+        o->oNumLootCoins = 5;
+        cur_obj_spawn_loot_blue_coin();
         obj_mark_for_deletion(o);
+
+    
 }
 
 void bhv_d4_init(void) {
@@ -369,29 +412,33 @@ void bhv_d12_loop(void) {
             }
         break;
         case 2:
-            obj_scale_xyz(o, 2.0f - ((f32)o->oTimer / 30), 0.5f + ((f32)o->oTimer / 60), 2.0f - ((f32)o->oTimer / 30));
+            obj_scale_xyz(o, 2.0f - ((f32)o->oTimer / 15), 0.5f + ((f32)o->oTimer / 30), 2.0f - ((f32)o->oTimer / 15));
             o->oPosY += o->oVelY;
-            o->oVelY -= 1;
+            o->oVelY -= 2;
             o->oForwardVel = 20.0f;
             cur_obj_move_xz_using_fvel_and_yaw();
-            if (o->oTimer == 30) {
+            if (o->oTimer == 15) {
                 o->oAction = 3;
             }
 
         break;
         case 3:
             o->oPosY += o->oVelY;
-            o->oVelY -= 1;
+            o->oVelY -= 2;
             cur_obj_move_xz_using_fvel_and_yaw();
             f32 floorHeight = find_floor_height(o->oPosX, o->oPosY + 500, o->oPosZ);
 
             if ((o->oPosY < floorHeight) || o->oTimer == 120) {
                 o->oPosY = floorHeight;
+                for (int i = 0; i < 12; i++) {
+                    struct Object *stabSpear = spawn_object_relative(0, 0, 0, 0, o, MODEL_DICE_GROUND_SPIKE, bhvDiceGroundSpike);
+                    stabSpear->oMoveAngleYaw = 0x1555 * i;
+                }
                 o->oAction = 4;
             }
         break;
         case 4:
-            if (o->oTimer == 60) {
+            if (o->oTimer == 30) {
                 o->oAction = 0;
             }
         break;
@@ -399,14 +446,56 @@ void bhv_d12_loop(void) {
 
     cur_obj_update_floor_and_walls();
     o->oInteractStatus = 0;
+
+    gBossHealth = o->oHealth;
+
+    if (o->oHealth <= 0) {
+        common_dice_death();
+    }
 }
 
 void bhv_d20_init(void) {
-   
+    obj_set_hitbox(o, &sD20Hitbox);
+    gBossMaxHealth = o->oHealth;
+    gBossHealth = o->oHealth;
+    o->oWallHitboxRadius = 200.0f;
 }
 
 void bhv_d20_loop(void) {
-   
+    switch (o->oAction) {
+        case 0:
+            if (o->oTimer == 30) {
+                o->oAction = 1;
+            }
+        break;
+        case 1:
+            for (int i = 0; i < 20; i++) {
+                spawn_object_relative(0, 0, 0, 0, o, MODEL_DICE_CUBE_SHOT, bhvDiceCubeShot);
+            }
+            o->oAction = 2;
+            o->oMoveAngleYaw = random_u16();
+        break;
+        case 2:
+            o->oMoveAngleYaw += 0x200;
+            o->oForwardVel = 30;
+            cur_obj_move_xz_using_fvel_and_yaw();
+
+            if (o->oTimer == 90) {
+                o->oAction = 0;
+            }
+        break;
+    }
+
+    o->oFaceAngleYaw += 0x555;
+
+    cur_obj_update_floor_and_walls();
+    o->oInteractStatus = 0;
+
+    gBossHealth = o->oHealth;
+
+    if (o->oHealth <= 0) {
+        common_dice_death();
+    }
 }
 
 void bhv_dice_spear_init(void) {
@@ -422,6 +511,41 @@ void bhv_dice_spear_loop(void) {
     cur_obj_move_xz_using_fvel_and_yaw();
     if (o->oTimer == 170) {
         obj_mark_for_deletion(o);
+    }
+}
+
+void bhv_dice_ground_spike_init(void) {
+    obj_set_hitbox(o, &sDiceSpearHitbox);
+}
+
+void bhv_dice_ground_spike_loop(void) {
+    o->oForwardVel = 23.0f;
+    o->oFaceAngleYaw = o->oMoveAngleYaw;
+    o->oPosY -= 2;
+    cur_obj_move_xz_using_fvel_and_yaw();
+
+    if (o->oTimer == 180) {
+        obj_mark_for_deletion(o);
+    }
+}
+
+void bhv_dice_cube_shot_init(void) {
+    o->oMoveAngleYaw = random_u16();
+    obj_set_hitbox(o, &sDiceCubeShotHitbox);
+}
+
+void bhv_dice_cube_shot_loop(void) {
+    o->oGravity = 0;
+    o->oForwardVel = 30.0f;
+    object_step();
+
+    o->oFaceAngleYaw += 0x333;
+    o->oFaceAnglePitch += 0x233;
+    o->oFaceAngleRoll += 0x233;
+
+    if (o->oTimer >= 90) {
+        obj_mark_for_deletion(o);
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
     }
 }
 
