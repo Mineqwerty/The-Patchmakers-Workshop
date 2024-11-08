@@ -1,4 +1,5 @@
 #include "src/game/game_init.h"
+#include "src/game/cutscene.h"
 
 static struct ObjectHitbox sD4Hitbox = {
     /* interactType:      */ INTERACT_PUSH_OUT,
@@ -86,13 +87,19 @@ static struct ObjectHitbox sDiceCubeShotHitbox = {
 
 void bhv_dice_boss_init(void) {
     o->oDiceBossCurrentDie = 0;
+    o->oSubAction = 0;
 }
 
 void bhv_dice_boss_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            if (gMarioState->pos[1] < o->oPosY + 100) {
+            if (o->oSubAction == 0 && (gMarioState->pos[1] < o->oPosY + 100)) {
+                begin_cutscene_event(11);
+                o->oSubAction = 1;
+            }
+
+            if (cExternalCutsceneTrigger == 2) {
                 o->oAction = 1;
             }
         break;
@@ -115,6 +122,8 @@ void bhv_dice_boss_loop(void) {
                 break;
                 case 5:
                     spawn_default_star(o->oPosX, o->oPosY + 300, o->oPosZ);
+                    gBossHealth = 0;
+                    gBossMaxHealth = 0;
                     o->oDiceBossCurrentDie++;
                 break;
 
@@ -148,6 +157,7 @@ void bhv_d4_init(void) {
     obj_set_hitbox(o, &sD4Hitbox);
     gBossMaxHealth = o->oHealth;
     gBossHealth = o->oHealth;
+    spawn_mist_particles();
 }
 
 void bhv_d4_loop(void) {
@@ -171,9 +181,9 @@ void bhv_d4_loop(void) {
         break;
         case 1:
             if (o->oTimer == 45) {
-                o->oLaser1Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_DICE_LASER, bhvDiceLaser);
-                o->oLaser2Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_DICE_LASER, bhvDiceLaser);
-                o->oLaser3Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_DICE_LASER, bhvDiceLaser);
+                o->oLaser1Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
+                o->oLaser2Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
+                o->oLaser3Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
                 o->oAction = 2;
             }
             cur_obj_scale(1.0f + (((f32)o->oTimer) / 60.0f));
@@ -221,6 +231,9 @@ void bhv_dice_laser_init(void) {
 }
 
 void bhv_dice_laser_loop(void) {
+    if (o->oTimer >= 1) {
+        cur_obj_unhide();
+        cur_obj_set_model(MODEL_DICE_LASER);
     Vec3f pointA;
     Vec3f pointB;
     Vec3f pointC;
@@ -249,6 +262,10 @@ void bhv_dice_laser_loop(void) {
             o->parentObj->oAction = 3;
         }
     }
+    }
+    else {
+        cur_obj_hide();
+    }
 }
 
 void bhv_d6_init(void) {
@@ -256,6 +273,7 @@ void bhv_d6_init(void) {
     gBossMaxHealth = o->oHealth;
     gBossHealth = o->oHealth;
     o->oWallHitboxRadius = 200.0f;
+    spawn_mist_particles();
 }
 
 void bhv_d6_loop(void) {
@@ -330,6 +348,7 @@ void bhv_d8_init(void) {
     gBossMaxHealth = o->oHealth;
     gBossHealth = o->oHealth;
     o->oWallHitboxRadius = 200.0f;
+    spawn_mist_particles();
 }
 
 void bhv_d8_loop(void) {
@@ -393,6 +412,7 @@ void bhv_d12_init(void) {
     gBossMaxHealth = o->oHealth;
     gBossHealth = o->oHealth;
     o->oWallHitboxRadius = 200.0f;
+    spawn_mist_particles();
 }
 
 void bhv_d12_loop(void) {
@@ -459,6 +479,7 @@ void bhv_d20_init(void) {
     gBossMaxHealth = o->oHealth;
     gBossHealth = o->oHealth;
     o->oWallHitboxRadius = 200.0f;
+    spawn_mist_particles();
 }
 
 void bhv_d20_loop(void) {
@@ -547,5 +568,40 @@ void bhv_dice_cube_shot_loop(void) {
         obj_mark_for_deletion(o);
         spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
     }
+}
+
+void bhv_fly_in_dice_init(void) {
+
+}
+
+void bhv_fly_in_dice_loop(void) {
+    switch (o->oAction) {
+        case 0:
+            cur_obj_hide();
+            if (cExternalCutsceneTrigger == 1) {
+                o->oAction = 1;
+            }
+        break;
+        case 1:
+            if (o->oTimer - (15 * o->oBehParams2ndByte) > 30) {
+                cur_obj_unhide();
+                o->oAction = 2;
+            }
+        break;
+        case 2:
+            o->oPosY = approach_f32_asymptotic(o->oPosY, 2640, 0.09f);
+            if (cExternalCutsceneTrigger == 2) {
+                o->oAction = 3;
+            }
+        break;
+        case 3:
+            if (o->oTimer == 20) {
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
+
+    o->oFaceAngleYaw += 0x300 - 10*o->oBehParams2ndByte;
+    
 }
 

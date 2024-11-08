@@ -8530,3 +8530,13 @@ const BehaviorScript bhvDiceCubeShot[] = {
         CALL_NATIVE(bhv_dice_cube_shot_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFlyInDice[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_fly_in_dice_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fly_in_dice_loop),
+    END_LOOP(),
+};

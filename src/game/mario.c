@@ -2523,6 +2523,10 @@ void init_mario(void) {
                 gCourseDoneMenuTimer = 0;
             
                 gHudFlash = HUD_FLASH_NONE;
+                gBossMaxHealth = 0;
+                gBossHealth = 0;
+                gBossDrainHealthDisplay = 0;
+                gBossHealthDisplay = 0;
 
     
 

@@ -1052,3 +1052,5 @@ void bhv_dice_ground_spike_init(void);
 void bhv_dice_ground_spike_loop(void);
 void bhv_dice_cube_shot_init(void);
 void bhv_dice_cube_shot_loop(void);
+void bhv_fly_in_dice_init(void);
+void bhv_fly_in_dice_loop(void);

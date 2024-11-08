@@ -2116,9 +2116,31 @@ void render_multi_image(Texture *image, s32 x, s32 y, s32 width, s32 height, UNU
 }
 
 void render_boss_health(void) {
+
+    f32 currentHealthDisplay;
+
+    //if (gGlobalTimer % 4 == 0) {
+    gBossDrainHealthDisplay = approach_f32_symmetric(gBossDrainHealthDisplay, gBossHealth, 0.1f);
+    //}
+
+    if (gBossDrainHealthDisplay < gBossHealth) {
+        gBossDrainHealthDisplay = gBossHealth;
+    }
+
+    if (gBossHealthDisplay < gBossHealth) {
+        gBossHealthDisplay += 1;
+    }
+    else {
+        gBossHealthDisplay = gBossHealth;
+        
+    }
+
+    currentHealthDisplay = ((f32)gBossHealthDisplay)/((f32)gBossMaxHealth);
+
     prepare_blank_box();
     render_blank_box(110, 220, 210, 230, 46, 46, 46, 255);
-    render_blank_box(110, 220, 110 + 100.0f*(((f32)gBossHealth)/((f32)gBossMaxHealth)), 230, 181, 42, 42, 255);
+    render_blank_box(110, 220, 110 + 100.0f*(((f32)gBossDrainHealthDisplay)/((f32)gBossMaxHealth)), 230, 150, 30, 30, 255);
+    render_blank_box(110, 220, 110 + 100.0f*(currentHealthDisplay), 230, 181, 42, 42, 255);
     finish_blank_box();
 }
 

@@ -904,9 +904,10 @@ void render_hud_camera_status(void) {
 
 void render_hud_boss_intro(void) {
 
-    char *bossTitles[2] = {
+    char *bossTitles[3] = {
         "Pushpin Pokey",
-        "Aurumcael"
+        "Aurumcael",
+        "Demonic Solids"
     };
     u8 bossTitleColor[3];
     switch (gHudDisplay.bossID) {
@@ -919,6 +920,11 @@ void render_hud_boss_intro(void) {
             bossTitleColor[0] = 222;
             bossTitleColor[1] = 181;
             bossTitleColor[2] = 58;
+        break;
+        case 3:
+            bossTitleColor[0] = 125;
+            bossTitleColor[1] = 175;
+            bossTitleColor[2] = 255;
         break;
         default:
             bossTitleColor[0] = 255;
@@ -938,6 +944,9 @@ void render_hud_boss_intro(void) {
         break;
         case 2:
             print_small_text(160, 140, "Goddess of an empty heaven", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+        break;
+        case 3:
+            print_small_text(160, 140, "Polyhedral punishers", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
         break;
     }
 

@@ -20,6 +20,7 @@
 #include "levels/jrb/header.inc.h"
 #include "levels/ccm/header.inc.h"
 #include "levels/lll/header.inc.h"
+#include "levels/ddd/header.inc.h"
 
 #include "levels/castle_inside/header.inc.h"
 
@@ -666,6 +667,28 @@ s32 event_city_lights_on[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_demonic_solids[] = {
+    EVENT_WAIT_FOR_MARIO_FLOOR,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_SOLIDS_HALT,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 65,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 66,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 120,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_SOLIDS_PRE_FIGHT,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SHOW_BOSS_TITLE, 3,
+    EVENT_WAIT, 120,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 1,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -679,7 +702,8 @@ s32 *eventList[] = {
     event_sewnia_revive_mario,
     event_city_lights_on,
     //10,
-    event_master_story
+    event_master_story,
+    event_demonic_solids
 };
 
 s32 *splineList[] = {
@@ -760,6 +784,9 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_IntroFoc14,
     castle_inside_area_1_spline_MeetSewniaPos3,
     castle_inside_area_1_spline_MeetSewniaFoc3,
+    //65
+    ddd_area_5_spline_DemonicSolidsPos1,
+    ddd_area_5_spline_DemonicSolidsFoc1,
 };
 
 void begin_cutscene_event(s32 event) {

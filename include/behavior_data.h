@@ -773,3 +773,4 @@ extern const BehaviorScript bhvDiceSpear[];
 extern const BehaviorScript bhvStrongnut[];
 extern const BehaviorScript bhvDiceGroundSpike[];
 extern const BehaviorScript bhvDiceCubeShot[];
+extern const BehaviorScript bhvFlyInDice[];

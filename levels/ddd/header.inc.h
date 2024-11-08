@@ -13,6 +13,10 @@ extern const MacroObject ddd_area_4_macro_objs[];
 extern const GeoLayout ddd_area_5_geo[];
 extern const GeoLayout ddd_area_5[];
 extern const MacroObject ddd_area_5_macro_objs[];
+#include "src/game/camera.h"
+
+extern struct CutsceneSplinePoint ddd_area_5_spline_DemonicSolidsFoc1[];
+extern struct CutsceneSplinePoint ddd_area_5_spline_DemonicSolidsPos1[];
 extern Lights1 ddd_dl_f3dlite_material_017_lights;
 extern Lights1 ddd_dl_inviswall_lights;
 extern u8 ddd_dl_hvhgrass_ci8[];
@@ -64,7 +68,7 @@ extern u8 ddd_dl_hedge_rgba16[];
 extern u8 ddd_dl_hedgenoise_rgba16[];
 extern Vtx ddd_dl_nocol_mesh_layer_1_vtx_0[5];
 extern Gfx ddd_dl_nocol_mesh_layer_1_tri_0[];
-extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_0[597];
+extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_0[598];
 extern Gfx ddd_dl_Plane_mesh_layer_1_tri_0[];
 extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_1[886];
 extern Gfx ddd_dl_Plane_mesh_layer_1_tri_1[];
