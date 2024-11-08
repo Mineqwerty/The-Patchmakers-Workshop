@@ -4,6 +4,7 @@
 #include "levels/lll/phantasmaid/anim_header.h"
 #include "levels/ddd/cashew_man/anim_header.h"
 #include "levels/ddd/hazelnut_woman/anim_header.h"
+#include "levels/ddd/omiy/anim_header.h"
 
 #include "src/game/cutscene.h"
 
@@ -29,13 +30,17 @@ void bhv_generic_npc_init(void) {
         o->oAnimations = (struct Animation **) phantasmaid_anims;
         cur_obj_init_animation(0);
     }
-if (cur_obj_has_model(MODEL_CASHEW_MAN) || cur_obj_has_model(MODEL_PECAN_MAN)) {
+    if (cur_obj_has_model(MODEL_CASHEW_MAN) || cur_obj_has_model(MODEL_PECAN_MAN)) {
         o->oAnimations = (struct Animation **) cashew_man_anims;
         cur_obj_init_animation(GET_BPARAM1(o->oBehParams));
     }
     if (cur_obj_has_model(MODEL_HAZELNUT_WOMAN) || cur_obj_has_model(MODEL_MACADAMIA_WOMAN)) {
         o->oAnimations = (struct Animation **) hazelnut_woman_anims;
         cur_obj_init_animation(GET_BPARAM1(o->oBehParams));
+    }
+    if (cur_obj_has_model(MODEL_OMIY)) {
+        o->oAnimations = (struct Animation **) omiy_anims;
+        cur_obj_init_animation(0);
     }
 
 

@@ -2130,6 +2130,37 @@ We built the hatch up there for a REASON!\n\
 I swear, if I get up there and there's\n\
 a buncha dirt tracked over our harvest..."))
 
+DEFINE_DIALOG(DIALOG_VILLAGER_STRONGNUT_FAN, 1, 3, 30, 200, _("\
+Teehee!\n\
+See that guy over there? His name is Strongnut.\n\
+He's REALLY popular with all the ladies in town!\n\
+I hear he stands there all day, waiting for somebody\n\
+strong enough to knock him over. How manly!\n\
+Still, he's dumb as bricks. Our flirting flies right over him."))
+
+DEFINE_DIALOG(DIALOG_STRONGNUT_1, 1, 3, 30, 200, _("\
+Bwahaha!\n\
+What are yeh, a man, or a mouse?\n\
+Grow some muscle, yeh wee shrimp!"))
+
+DEFINE_DIALOG(DIALOG_STRONGNUT_2, 1, 3, 30, 200, _("\
+Pathetic!\n\
+Me wee lil' niece could throw a better\n\
+blow 'an that!"))
+
+DEFINE_DIALOG(DIALOG_STRONGNUT_3, 1, 3, 30, 200, _("\
+Did I just feel a breeze?\n\
+Oh! Me bad! It 'as only this lil'\n\
+bug dat flew past! Hahaha!"))
+
+DEFINE_DIALOG(DIALOG_STRONGNUT_BEATEN, 1, 3, 30, 200, _("\
+URK!!!\n\
+Is... is it finally o'er?\n\
+Has big Strongnut finally taken 'is fall?\n\
+And by a puny lil' runt no less...\n\
+Hurgh... That blow didn't lie though...\n\
+I'll give yeh this shiny thing as a prize."))
+
 DEFINE_DIALOG(DIALOG_MASTER_WELCOME, 1, 3, 30, 200, _("\
 Welcome, mister Mario.\n\
 I express gratitude that you came all\n\

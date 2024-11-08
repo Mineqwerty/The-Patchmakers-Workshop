@@ -105,4 +105,10 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/macadamia_woman/geo_header.h"
 
+#include "levels/ddd/strongnut/geo_header.h"
+
+#include "levels/ddd/omiy/geo_header.h"
+
+#include "levels/ddd/omiy/anim_header.h"
+
 #endif

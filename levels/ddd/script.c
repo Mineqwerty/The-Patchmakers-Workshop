@@ -56,6 +56,8 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HAZELNUT_WOMAN, hazelnut_woman_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PECAN_MAN, pecan_man_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MACADAMIA_WOMAN, macadamia_woman_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_STRONGNUT, strongnut_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_OMIY, omiy_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -79,7 +81,9 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_CANNON_BARREL, -5784, 2390, 1074, 84, -180, 0, 0x00000000, bhvHiddenCannon),
 		OBJECT(MODEL_CASHEW_MAN, -2226, 306, -1107, 0, 45, 0, (1 << 24) | (DIALOG_VILLAGER_FRUIT << 16), bhvGenericNPC),
 		OBJECT(MODEL_HAZELNUT_WOMAN, -2545, 299, 436, 0, 146, 0, (DIALOG_VILLAGER_FLOWERS << 16), bhvGenericNPC),
+		OBJECT(MODEL_HAZELNUT_WOMAN, -45, 303, 6835, 0, -52, 0, (DIALOG_VILLAGER_STRONGNUT_FAN << 16), bhvGenericNPC),
 		OBJECT(MODEL_MACADAMIA_WOMAN, -5222, 303, -1054, 0, 18, 0, (1 << 24) | (DIALOG_VILLAGER_TRAVELERS << 16), bhvGenericNPC),
+		OBJECT(MODEL_OMIY, -4817, 300, 2029, 0, 136, 0, (DIALOG_VILLAGER_FAR_AWAY << 16), bhvGenericNPC),
 		OBJECT(MODEL_PECAN_MAN, -1585, 300, 2508, 0, 136, 0, (DIALOG_VILLAGER_FAR_AWAY << 16), bhvGenericNPC),
 		OBJECT(MODEL_PECAN_MAN, -5054, 301, -3627, 0, -143, 0, (1 << 24) | (DIALOG_VILLAGER_SILO << 16), bhvGenericNPC),
 		OBJECT(MODEL_PODOGOO, 2326, 619, -2554, 0, -180, 0, 0x00000000, bhvPodogoo),
@@ -101,6 +105,7 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_SKYBOX_TEST, -207, 264, 1112, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, -3228, 4854, -6392, 0, -180, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 1168, 552, 3974, 0, -180, 0, (2 << 24) | (8 << 16), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_STRONGNUT, -2575, 303, 10033, 0, 168, 0, 0x00000000, bhvStrongnut),
 		OBJECT(MODEL_NONE, -11016, -926, 8649, 0, -180, 0, (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -7945, 303, -12252, 0, 172, 0, (50 << 24) | (12 << 16), bhvInstantActiveWarp),
 		OBJECT(MODEL_NONE, -8419, 303, 14445, 0, 172, 0, (50 << 24) | (13 << 16), bhvInstantActiveWarp),

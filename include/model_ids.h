@@ -709,6 +709,8 @@
 #define MODEL_HAZELNUT_WOMAN                   0x110
 #define MODEL_PECAN_MAN                   0x111
 #define MODEL_MACADAMIA_WOMAN                   0x112
+#define MODEL_STRONGNUT                   0x113
+#define MODEL_OMIY                   0x114
 
 //Violet Twilit Woods
 #define MODEL_PURPLE_MUSHROOM                   0x100

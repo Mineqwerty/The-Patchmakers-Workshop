@@ -770,3 +770,4 @@ extern const BehaviorScript bhvD8[];
 extern const BehaviorScript bhvD12[];
 extern const BehaviorScript bhvD20[];
 extern const BehaviorScript bhvDiceSpear[];
+extern const BehaviorScript bhvStrongnut[];

@@ -8502,3 +8502,13 @@ const BehaviorScript bhvDiceSpear[] = {
         CALL_NATIVE(bhv_dice_spear_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvStrongnut[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_strongnut_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_strongnut_loop),
+    END_LOOP(),
+};

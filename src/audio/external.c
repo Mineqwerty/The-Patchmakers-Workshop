@@ -2278,7 +2278,7 @@ void play_dialog_sound(u8 dialogID) {
         dialogID = 0;
     }
 
-    speaker = sDialogSpeaker[dialogID];
+    speaker = 0xff;
     if (speaker != 0xff) {
         play_sound(sDialogSpeakerVoice[speaker], gGlobalSoundSource);
 

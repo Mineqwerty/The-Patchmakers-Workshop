@@ -71,3 +71,7 @@
 #include "levels/ddd/hazelnut_woman/anims/table.inc.c"
 #include "levels/ddd/pecan_man/model.inc.c"
 #include "levels/ddd/macadamia_woman/model.inc.c"
+#include "levels/ddd/strongnut/model.inc.c"
+#include "levels/ddd/omiy/model.inc.c"
+#include "levels/ddd/omiy/anims/data.inc.c"
+#include "levels/ddd/omiy/anims/table.inc.c"

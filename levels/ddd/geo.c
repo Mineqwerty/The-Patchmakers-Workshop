@@ -44,3 +44,5 @@
 #include "levels/ddd/hazelnut_woman/geo.inc.c"
 #include "levels/ddd/pecan_man/geo.inc.c"
 #include "levels/ddd/macadamia_woman/geo.inc.c"
+#include "levels/ddd/strongnut/geo.inc.c"
+#include "levels/ddd/omiy/geo.inc.c"
