@@ -1237,7 +1237,7 @@ void bowser_act_jump_onto_stage(void) {
 /**
  * The frames of the Bowser's timer on which to play a "stomp" sound
  */
-s8 sBowserDanceStepNoises[] = { 24, 42, 60, -1 };
+s8 sBowserDanceStepNoises[] = { 15, 26, 38, -1 };
 
 /**
  * Makes Bowser's dance as a "taunt"
@@ -1248,8 +1248,16 @@ void bowser_act_dance(void) {
         cur_obj_play_sound_2(SOUND_OBJ_BOWSER_WALK);
     }
     // Play dance animation and after that return to default action
-    if (cur_obj_init_animation_and_check_if_near_end(BOWSER_ANIM_DANCE)) {
+    cur_obj_init_animation_with_accel_and_sound(BOWSER_ANIM_DANCE, 1.6f);
+    if (cur_obj_check_if_near_animation_end()) {
         o->oAction = BOWSER_ACT_DEFAULT;
+    }
+
+    if (o->oForwardVel > 0) {
+        o->oForwardVel -= 3.0f;
+    }
+    else {
+        o->oForwardVel = 0.0f;
     }
 }
 
@@ -1680,11 +1688,12 @@ void bowser_free_update(void) {
     UNUSED f32 floorHeight;
 
     //gBowserObject = o;
-
+    o->oWallHitboxRadius = 150.0f;
     gMarioState->action = ACT_WAITING_FOR_DIALOG;
     gMarioState->pos[0] = o->oPosX;
     gMarioState->pos[1] = o->oPosY + 400.0f;
     gMarioState->pos[2] = o->oPosZ;
+    gMarioState->faceAngle[1] = o->oFaceAngleYaw;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
 
 #ifdef PLATFORM_DISPLACEMENT_2
@@ -1976,7 +1985,7 @@ void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *swit
             // Look more on the right if angle didn't change
             // Otherwise, look at the center (open)
             if (obj->oBowserEyesTimer > 2) {
-                switchCase->selectedCase = BOWSER_EYES_FAR_RIGHT;
+                switchCase->selectedCase = BOWSER_EYES_OPEN;
                 if (obj->oAngleVelYaw <= 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
                 }
@@ -1986,7 +1995,7 @@ void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *swit
         case BOWSER_EYES_FAR_RIGHT:
             // Look close right if angle was drastically changed
             if (obj->oAngleVelYaw <= 0) {
-                switchCase->selectedCase = BOWSER_EYES_RIGHT;
+                switchCase->selectedCase = BOWSER_EYES_OPEN;
             }
             break;
 
@@ -1994,7 +2003,7 @@ void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *swit
             // Look more on the left if angle didn't change
             // Otherwise, look at the center (open)
             if (obj->oBowserEyesTimer > 2) {
-                switchCase->selectedCase = BOWSER_EYES_FAR_LEFT;
+                switchCase->selectedCase = BOWSER_EYES_OPEN;
                 if (obj->oAngleVelYaw >= 0) {
                     switchCase->selectedCase = BOWSER_EYES_OPEN;
                 }
@@ -2004,7 +2013,7 @@ void bowser_open_eye_switch(struct Object *obj, struct GraphNodeSwitchCase *swit
         case BOWSER_EYES_FAR_LEFT:
             // Look close left if angle was drastically changed
             if (obj->oAngleVelYaw >= 0) {
-                switchCase->selectedCase = BOWSER_EYES_LEFT;
+                switchCase->selectedCase = BOWSER_EYES_OPEN;
             }
             break;
 

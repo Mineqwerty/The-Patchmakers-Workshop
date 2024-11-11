@@ -1058,3 +1058,7 @@ void bhv_dice_cube_shot_init(void);
 void bhv_dice_cube_shot_loop(void);
 void bhv_fly_in_dice_init(void);
 void bhv_fly_in_dice_loop(void);
+void bhv_wooden_plank_block_init(void);
+void bhv_wooden_plank_block_loop(void);
+void bhv_wooden_plank_fragment_init(void);
+void bhv_wooden_plank_fragment_loop(void);

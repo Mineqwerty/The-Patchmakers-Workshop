@@ -47,3 +47,6 @@
 #include "levels/bitfs/areas/1/geo.inc.c"
 
 #include "levels/bitfs/geo.inc.c"
+#include "levels/bitfs/wooden_plank_block/geo.inc.c"
+#include "levels/bitfs/wooden_plank_left/geo.inc.c"
+#include "levels/bitfs/wooden_plank_right/geo.inc.c"

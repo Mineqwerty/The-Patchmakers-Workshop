@@ -75,6 +75,16 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "opening_R"
+        },
+        "inst10": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "empyreanabyss_L"
+        },
+        "inst11": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "empyreanabyss_R"
         }
     },
     "instrument_list": [
@@ -87,6 +97,8 @@
         "inst6",
         "inst7",
         "inst8",
-        "inst9"
+        "inst9",
+        "inst10",
+        "inst11"
     ]
 }

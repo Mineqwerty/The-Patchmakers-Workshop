@@ -2971,7 +2971,7 @@ void render_pause_screen_felt() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
-#define NUM_MENU_SONGS 19
+#define NUM_MENU_SONGS 20
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -2983,6 +2983,7 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_CANDLELIT_CHAMBER,
     SEQ_HIDDEN_VILLAGE_HOLD,
     SEQ_THE_FAR_PLANE,
+    SEQ_EMPYREAN_ABYSS,
     SEQ_TIMELESS_SHRINE,
     SEQ_PATCHMAKER_THEME,
     SEQ_EVENT_PIRANHA_PLANT,
@@ -3014,6 +3015,7 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
     0
 };
 
@@ -3027,6 +3029,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Candlelit Chamber",
     "Hidden Village Hold",
     "The Far Plane",
+    "Empyrean Abyss"
     "Timeless Shrine",
     "Encounter - The Patchmaker",
     "Map - Thorn Thicket Cliffs",
@@ -3049,6 +3052,7 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "CowQuack",
     "ornevelder",
+    "CowQuack",
     "CowQuack",
     "ornevelder",
     "CowQuack\nornevelder",
@@ -3297,6 +3301,20 @@ void render_patch_challenge_menu() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
+void check_if_patch_on_dpad_and_switch(s8 patchID, s8 intendedDirection, s8 patchMap[]) {
+
+    s8 tempPatchID;
+
+    for (int i = 0; i < 4; i++) {
+        if (patchMap[i] == patchID && i != intendedDirection) {
+            tempPatchID = patchMap[intendedDirection];
+            patchMap[i] = tempPatchID;
+        }
+    }
+
+    patchMap[intendedDirection] = patchID;
+}
+
 s8 gCourseCompleteCoinsEqual = FALSE;
 s32 gCourseDoneMenuTimer = 0;
 s32 gCourseCompleteCoins = 0;
@@ -3357,29 +3375,28 @@ s32 render_pause_courses_and_castle(void) {
 #endif
 
             if (gSubMenuIndex == 2) {
-                u8 dpadMap[4]; 
+                s8 dpadMap[4]; 
                 save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+                s8 mapID = -1;
                 if (gPlayer1Controller->buttonPressed & (U_JPAD)) {
-                    dpadMap[0] = gPatchIndex;
-                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                    mapID = 0;
                 }
                 if (gPlayer1Controller->buttonPressed & (R_JPAD)) {
-                    dpadMap[1] = gPatchIndex;
-                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                    mapID = 1;
                 }
                 if (gPlayer1Controller->buttonPressed & (D_JPAD)) {
-                    dpadMap[2] = gPatchIndex;
-                    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
-                    play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                    mapID = 2;
                 }
                 if (gPlayer1Controller->buttonPressed & (L_JPAD)) {
-                    dpadMap[3] = gPatchIndex;
+                    mapID = 3;
+                }
+
+                if (mapID >= 0) {
+                    check_if_patch_on_dpad_and_switch(gPatchIndex, mapID, dpadMap);
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+                    update_dl_dpad_patches();
                 }
-                update_dl_dpad_patches();
             }
 
             if (gPlayer1Controller->buttonPressed & (START_BUTTON)) {

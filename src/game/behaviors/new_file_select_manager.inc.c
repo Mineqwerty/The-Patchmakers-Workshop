@@ -1,10 +1,16 @@
 #include "src/game/screen_transition.h"
 #include "src/game/hud.h"
+#include "src/game/save_file.h"
 
 #define NEW_FILE_SELECT_WINDING_UP    0
 #define NEW_FILE_SELECT_CAM_LOGO    1
 #define NEW_FILE_SELECT_CAM_FILES   2
 #define NEW_FILE_SELECT_LOADING_FILE   3
+
+void set_initial_game_variables(void) {
+    s8 dpadMap[4] = {-1, -1, -1, -1};
+    save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+}
 
 void bhv_new_file_select_manager_init(void) {
     gCamera->cutscene = 1;
@@ -68,6 +74,9 @@ void bhv_new_file_select_manager_loop(void) {
                     o->oAction = NEW_FILE_SELECT_CAM_LOGO;
                 }
                 else if (gPlayer1Controller->buttonPressed & (A_BUTTON)) {
+                    if (!save_file_exists(gCurrSaveFileNum - 1)) {
+                        set_initial_game_variables();
+                    }
                     o->oAction = NEW_FILE_SELECT_LOADING_FILE;
                 }
             }

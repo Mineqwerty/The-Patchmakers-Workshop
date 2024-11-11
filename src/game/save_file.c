@@ -639,7 +639,7 @@ void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags) {
     gSaveFileModified = TRUE;
 }
 
-void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
+void save_file_get_dpad_map(s32 fileIndex, s8 dpadMap[4]) {
 
     dpadMap[0] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[0];
     dpadMap[1] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[1];
@@ -647,7 +647,7 @@ void save_file_get_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
     dpadMap[3] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[3];
 }
 
-void save_file_set_dpad_map(s32 fileIndex, u8 dpadMap[4]) {
+void save_file_set_dpad_map(s32 fileIndex, s8 dpadMap[4]) {
 
     gSaveBuffer.files[fileIndex][0].dpadPatchMap[0] = dpadMap[0];
     gSaveBuffer.files[fileIndex][0].dpadPatchMap[1] = dpadMap[1];

@@ -8540,3 +8540,23 @@ const BehaviorScript bhvFlyInDice[] = {
         CALL_NATIVE(bhv_fly_in_dice_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvWoodenPlankBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(wooden_plank_block_collision),
+    CALL_NATIVE(bhv_wooden_plank_block_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_wooden_plank_block_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWoodenPlankFragment[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_wooden_plank_fragment_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_wooden_plank_fragment_loop),
+    END_LOOP(),
+};

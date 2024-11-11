@@ -58,3 +58,7 @@
 #include "levels/bitfs/areas/1/movtext.inc.c"
 
 #include "levels/bitfs/leveldata.inc.c"
+#include "levels/bitfs/wooden_plank_block/model.inc.c"
+#include "levels/bitfs/wooden_plank_left/model.inc.c"
+#include "levels/bitfs/wooden_plank_right/model.inc.c"
+#include "levels/bitfs/wooden_plank_block/collision.inc.c"

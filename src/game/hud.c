@@ -621,7 +621,7 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
 
 void update_dl_dpad_patches(void) {
 
-    u8 dpadMap[4]; 
+    s8 dpadMap[4]; 
     save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
 
     extern u8 menu_patch_left_icon_nothing_rgba16[];

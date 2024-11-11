@@ -2229,7 +2229,7 @@ void check_and_change_patch_dpad(u32 dir) {
         }
 
         common_patch_cancel(gMarioState);
-        u8 dpadMap[4]; 
+        s8 dpadMap[4]; 
         save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
         gMarioState->equippedPatch = dpadMap[mapID];
         gMarioState->updatePatch = 1;
