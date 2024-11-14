@@ -3,3 +3,7 @@
 #include "anim_slice.inc.c"
 #include "anim_jump.inc.c"
 #include "anim_jumpland.inc.c"
+#include "anim_point.inc.c"
+#include "anim_startgrab.inc.c"
+#include "anim_grabmiss.inc.c"
+#include "anim_grabbedmarioattack.inc.c"

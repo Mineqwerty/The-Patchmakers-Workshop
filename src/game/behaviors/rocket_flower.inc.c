@@ -3,7 +3,7 @@ void bhv_rocket_flower_init(void) {
 }
 
 void bhv_rocket_flower_loop(void) {
-
+    //yes i stole the mario head position code from cursed mirror
     Vec3f crabDisplacement, crabNewDisplacement;
     Vec3f original_pos;
     vec3f_copy(original_pos,&o->oPosX);
@@ -36,7 +36,7 @@ void bhv_rocket_flower_loop(void) {
             //o->transform[3][3] = gMarioState->HeadMatrix[3][3];
             o->header.gfx.throwMatrix = &o->transform;
 
-            vec3f_set(crabDisplacement, 120.0f, -50.f, 0.0f); // local displacement of the crab
+            vec3f_set(crabDisplacement, 120.0f, -50.f, 0.0f);
             linear_mtxf_mul_vec3f(o->transform, crabNewDisplacement, crabDisplacement); // rotate it with mario's head
             vec3f_add(o->transform[3], crabNewDisplacement); // add position
 
