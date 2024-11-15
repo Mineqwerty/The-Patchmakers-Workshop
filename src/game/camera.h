@@ -617,7 +617,8 @@ struct Camera {
     /// For example, this is what makes the camera rotate around the hill in BoB
     /*0x2C*/ f32 areaCenZ;
     /*0x30*/ u8 cutscene;
-    /*0x31*/ u8 filler1[8];
+            s16 approachAngleOffsetBossCam;
+    /*0x31*/ u8 filler1[6];
     /*0x3A*/ s16 nextYaw;
     /*0x3C*/ u8 filler2[40];
     /*0x64*/ u8 doorStatus;

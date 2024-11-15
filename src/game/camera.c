@@ -1761,10 +1761,17 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         offset_rotated(secondFocus, sMarioCamState->pos, holdFocOffset, sMarioCamState->faceAngle);
     }
 
-    // Set the camera focus to the average of Mario and secondFocus
-    focus[0] = (sMarioCamState->pos[0] + (secondFocus[0]/2.0f)) / 2.f;
-    focus[1] = (sMarioCamState->pos[1] + (secondFocus[1]/2.0f)) / 2.f + 125.f;
-    focus[2] = (sMarioCamState->pos[2] + (secondFocus[2]/2.0f)) / 2.f;
+    if (gCurrLevelNum == LEVEL_BOWSER_1) {
+        focus[0] = (sMarioCamState->pos[0] + (secondFocus[0])) / 2.f;
+        focus[1] = (sMarioCamState->pos[1] + (secondFocus[1])) / 2.f + 125.f;
+        focus[2] = (sMarioCamState->pos[2] + (secondFocus[2])) / 2.f;
+    }
+    else {
+        // Set the camera focus to the average of Mario and secondFocus
+        focus[0] = (sMarioCamState->pos[0] + (secondFocus[0]/2.0f)) / 2.f;
+        focus[1] = (sMarioCamState->pos[1] + (secondFocus[1]/2.0f)) / 2.f + 125.f;
+        focus[2] = (sMarioCamState->pos[2] + (secondFocus[2]/2.0f)) / 2.f;
+    }
 
     // Calculate the camera's position as an offset from the focus
     // When C-Down is not active, this
@@ -1795,6 +1802,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     }
     s16 angleDiff;
     vec3f_get_yaw(gMarioState->pos, &obj->oPosVec, &angleDiff);
+    c->approachAngleOffsetBossCam = approach_s16_symmetric(c->approachAngleOffsetBossCam, angleDiff, 0x400);
 
     if (gCurrLevelNum == LEVEL_BOB) {
         f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
@@ -1816,18 +1824,9 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
     }
     else if (gCurrLevelNum == LEVEL_BOWSER_1) {
-        f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
-        if (xDiff > 300) xDiff = 300;
-        if (xDiff < -300) xDiff = -300;
-        f32 zDiff = secondFocus[2] - gMarioState->pos[2] / 3.0f;
-        if (zDiff > 300) zDiff = 300;
-        if (zDiff < -300) zDiff = -300;
 
-        //c->pos[0] = gMarioState->pos[0] - xDiff;
-        //c->pos[2] = gMarioState->pos[2] - zDiff;
-
-        c->pos[0] = gMarioState->pos[0] + (1000 * -sins(angleDiff));
-        c->pos[2] = gMarioState->pos[2] + (1000 * -coss(angleDiff));
+        c->pos[0] = gMarioState->pos[0] + (1000 * -sins(c->approachAngleOffsetBossCam));
+        c->pos[2] = gMarioState->pos[2] + (1000 * -coss(c->approachAngleOffsetBossCam));
         c->pos[1] += 200.0f;
     }
 

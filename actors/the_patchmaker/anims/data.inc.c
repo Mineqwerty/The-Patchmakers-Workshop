@@ -7,3 +7,4 @@
 #include "anim_startgrab.inc.c"
 #include "anim_grabmiss.inc.c"
 #include "anim_grabbedmarioattack.inc.c"
+#include "anim_throwstring.inc.c"

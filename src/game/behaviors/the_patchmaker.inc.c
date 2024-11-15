@@ -15,7 +15,20 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_POINT,
     PATCHMAKER_ANIM_START_GRAB,
     PATCHMAKER_ANIM_GRAB_MISS,
-    PATCHMAKER_ANIM_GRAB_MARIO_ATTACK
+    PATCHMAKER_ANIM_GRAB_MARIO_ATTACK,
+    PATCHMAKER_ANIM_STRING_THROW,
+};
+
+static struct ObjectHitbox sPatchmakerHitbox = {
+    /* interactType:      */ INTERACT_PUSH_OUT,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
 
 void patchmaker_transition_to_next_action() {
@@ -27,14 +40,27 @@ void patchmaker_transition_to_next_action() {
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
-            switch (randomAction % 2) {
-                case 0:
-                    nextAction = PATCHMAKER_ACT_JUMPS;
-                break;
-                case 1:
-                    nextAction = PATCHMAKER_ACT_SLASH_DASH;
-                break;
+            if (o->oDistanceToMario < 1000) {
+                switch (randomAction % 2) {
+                    case 0:
+                        nextAction = PATCHMAKER_ACT_JUMPS;
+                    break;
+                    case 1:
+                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                    break;
+                }
             }
+            else {
+                switch (randomAction % 2) {
+                    case 0:
+                        nextAction = PATCHMAKER_ACT_JUMPS;
+                    break;
+                    case 1:
+                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                    break;
+                }
+            }
+            
         break;
         case PATCHMAKER_ACT_JUMPS:
             if (o->oDistanceToMario < 250) {
@@ -56,14 +82,25 @@ void patchmaker_transition_to_next_action() {
 
     o->oAction = nextAction;
     o->oSubAction = 0;
+
+    //start at a random jump if the next action is the jumps
+    if (nextAction == PATCHMAKER_ACT_JUMPS) {
+        o->oSubAction += random_u16()%2;
+    }
+}
+
+void patchmaker_set_boss_cam(void) {
+    gSecondCameraFocus = o;
+    gCamera->cutscene = 0;
+    set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+    gCamera->controlBossCameraYaw = 1;
 }
 
 void patchmaker_act_cutscene(void) {
     if (o->oDistanceToMario < 1500.0f) {
         o->oAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         cur_obj_init_animation(1);
-        gSecondCameraFocus = o;
-        set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+        patchmaker_set_boss_cam();
     }
 }
 
@@ -88,7 +125,7 @@ void patchmaker_act_jumps(void) {
         o->oVelY = 25.0f;
         o->oForwardVel = 23.0f;
         if (o->oSubAction == 2) {
-            if (random_u16()%1 == 0) {
+            if (random_u16()%2 == 0) {
                 o->oMoveAngleYaw = o->oAngleToMario;
                 f32 dist;
                 vec3f_get_lateral_dist(&o->oPosVec, gMarioState->pos, &dist);
@@ -131,16 +168,23 @@ void patchmaker_act_slash_dash(void) {
 
     if (o->oTimer == 20) {
         o->oForwardVel = 30.0f;
+        o->oInteractType = INTERACT_DAMAGE;
+    }
+
+    if (o->oTimer > 40) {
+        o->oForwardVel = CLAMP(o->oForwardVel-1, 0, 30);
     }
 
     object_step();
 
     if (cur_obj_check_if_at_animation_end()) {
+        o->oInteractType = INTERACT_PUSH_OUT;
         patchmaker_transition_to_next_action();
     }
 }
 
 void patchmaker_act_grab_mario(void) {
+    cur_obj_become_intangible();
     switch (o->oSubAction) {
         case 0:
             if (o->oTimer <= 1) {
@@ -162,12 +206,19 @@ void patchmaker_act_grab_mario(void) {
         case 1:
             //grab fail
             cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_MISS);
+            cur_obj_become_tangible();
             if (cur_obj_check_if_near_animation_end()) {
                 patchmaker_transition_to_next_action();
             }
         break;
         case 2:
+            //grab success
             cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_MARIO_ATTACK);
+
+            gCamera->cutscene = 1;
+            gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX + 800 * -coss(o->oFaceAngleYaw), 50);
+            gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 300, 40);
+            gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ + 300 * sins(o->oFaceAngleYaw), 50);
 
             if (o->oTimer < 66) {
             gMarioState->action = ACT_STORY_CUTSCENE;
@@ -195,6 +246,8 @@ void patchmaker_act_grab_mario(void) {
             }
 
             if (cur_obj_check_if_at_animation_end()) {
+                patchmaker_set_boss_cam();
+                cur_obj_become_tangible();
                 patchmaker_transition_to_next_action();
             }
         break;
@@ -207,6 +260,7 @@ void bhv_patchmaker_init(void) {
     o->oDragStrength = 5.0f;
     o->oFriction = 1.0f;
     o->oBounciness = 0.0f;
+    obj_set_hitbox(o, &sPatchmakerHitbox);
 }
 
 void bhv_patchmaker_loop(void) {
@@ -231,6 +285,8 @@ void bhv_patchmaker_loop(void) {
     if (o->oAction != PATCHMAKER_ACT_JUMPS) {
         o->oFaceAngleYaw = o->oMoveAngleYaw;
     }
+
+    o->oInteractStatus = 0;
 }
 
 Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node) {
@@ -238,7 +294,7 @@ Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node) {
         struct Object *obj = (struct Object *) gCurGraphNodeObject;
         struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
-            if (obj->oAction == 1 && (obj->oSubAction >= 1 || obj->oTimer > 16)) {
+            if (obj->oAction == PATCHMAKER_ACT_SLASH_DASH && (obj->oTimer > 16)) {
                 switchCase->selectedCase = 1;
             }
             else {
