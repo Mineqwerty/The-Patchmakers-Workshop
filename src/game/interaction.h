@@ -71,6 +71,7 @@ enum InteractSubtypes {
     INT_SUBTYPE_PTOOIE          = /* 0x00002000 */ (1 << 15),
     INT_SUBTYPE_BULB          = /* 0x00002000 */ (1 << 16),
     INT_SUBTYPE_BREAK_STONE_PATCH          = /* 0x00002000 */ (1 << 17),
+    INT_SUBTYPE_PATCHMAKER          = /* 0x00002000 */ (1 << 18),
     
 };
 

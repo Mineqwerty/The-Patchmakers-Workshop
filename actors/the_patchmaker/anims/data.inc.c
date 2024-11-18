@@ -8,3 +8,8 @@
 #include "anim_grabmiss.inc.c"
 #include "anim_grabbedmarioattack.inc.c"
 #include "anim_throwstring.inc.c"
+#include "anim_startneedlewalk.inc.c"
+#include "anim_needlewalk.inc.c"
+#include "anim_endneedlewalk.inc.c"
+#include "anim_needlewalkslash.inc.c"
+#include "anim_snap.inc.c"

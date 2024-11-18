@@ -28,6 +28,7 @@
 #include "src/game/texscroll/castle_inside_texscroll.inc.c"
 #include "src/game/texscroll/ttm_texscroll.inc.c"
 #include "src/game/texscroll/pss_texscroll.inc.c"
+#include "src/game/texscroll/group12_texscroll.inc.c"
 void scroll_textures() {
 	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bob_segment_7SegmentRomStart)) {
 		scroll_textures_bob();
@@ -87,6 +88,10 @@ void scroll_textures() {
 
 	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_pss_segment_7SegmentRomStart)) {
 		scroll_textures_pss();
+	}
+
+	if(SCROLL_CONDITION(sSegmentROMTable[0x6] == (uintptr_t)_group12_mio0SegmentRomStart)) {
+		scroll_textures_group12();
 	}
 
 }

@@ -8913,6 +8913,50 @@ sound_ref .sound_marine_spin
 sound_ref .sound_blight_scream
 sound_ref .sound_boo_jumpscare
 sound_ref .sound_floor_creaks
+sound_ref .sound_start_scrape
+sound_ref .sound_long_scrape
+sound_ref .sound_finger_snap
+sound_ref .sound_slash_air
+
+.sound_slash_air:
+chan_setbank 12
+chan_setinstr 23
+chan_setlayer 0, .layer_slash_air
+chan_end
+
+.layer_slash_air:
+layer_note1 39, 0x1c, 127
+layer_end
+
+.sound_finger_snap:
+chan_setbank 12
+chan_setinstr 22
+chan_setlayer 0, .layer_finger_snap
+chan_end
+
+.layer_finger_snap:
+layer_note1 39, 0x29, 127
+layer_end
+
+.sound_long_scrape:
+chan_setbank 12
+chan_setinstr 21
+chan_setlayer 0, .layer_long_scrape
+chan_end
+
+.layer_long_scrape:
+layer_note1 39, 0x76, 127
+layer_end
+
+.sound_start_scrape:
+chan_setbank 12
+chan_setinstr 20
+chan_setlayer 0, .layer_start_scrape
+chan_end
+
+.layer_start_scrape:
+layer_note1 39, 0x29, 127
+layer_end
 
 .sound_floor_creaks:
 chan_setbank 12

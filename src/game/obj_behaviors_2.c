@@ -464,8 +464,26 @@ static s32 obj_resolve_collisions_and_turn(s16 targetYaw, s16 turnSpeed) {
     }
 }
 
+void yarn_enemy_death(void) {
+    u8 yarnEnemyType = 0;
+    if (obj_has_behavior(o, bhvGoomba)) {
+        yarnEnemyType = 1;
+    }
+    if (obj_has_behavior(o, bhvKoopa)) {
+        yarnEnemyType = 2;
+    }
+
+    if (yarnEnemyType > 0) {
+        for (int i = 0; i < 10; i++) {
+            spawn_object_relative(yarnEnemyType, random_u16()%50 - 25, 5.0f + random_u16()%10, random_u16()%50 - 25, o, MODEL_THREAD_PARTICLE, bhvThreadParticle);
+        }
+    }
+}
+
 static void obj_die_if_health_non_positive(void) {
     if (o->oHealth <= 0) {
+
+        yarn_enemy_death();
 
         if (gMarioState->equippedPatch == PATCH_MIASMA) {
             gMarioState->miasmaSoulCount++;
@@ -621,6 +639,8 @@ static s32 obj_handle_attacks(struct ObjectHitbox *hitbox, s32 attackedMarioActi
     return ATTACK_HANDLER_NOP;
 }
 
+
+
 static void obj_act_knockback(UNUSED f32 baseScale) {
     cur_obj_update_floor_and_walls();
 
@@ -645,6 +665,7 @@ static void obj_act_knockback(UNUSED f32 baseScale) {
         }
         else {
             obj_die_if_health_non_positive();
+            
         }
         
     }

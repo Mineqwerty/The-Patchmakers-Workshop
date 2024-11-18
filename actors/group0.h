@@ -500,4 +500,8 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "yarn_koopa/geo_header.h"
 
+#include "drag_spark/geo_header.h"
+
+#include "thread_particle/geo_header.h"
+
 #endif

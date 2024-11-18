@@ -365,3 +365,8 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/held_m_patch.inc.c"
 #include "behaviors/strongnut.inc.c"
 #include "behaviors/wooden_plank_block.inc.c"
+#include "behaviors/thrown_string.inc.c"
+#include "behaviors/thread_bundle.inc.c"
+#include "behaviors/drag_spark.inc.c"
+#include "behaviors/needle_ball.inc.c"
+#include "behaviors/thread_particle.inc.c"

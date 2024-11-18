@@ -15,3 +15,8 @@
 #include "impact_smoke/geo.inc.c"
 
 #include "the_patchmaker/geo.inc.c"
+#include "thrown_string/geo.inc.c"
+#include "patchmaker_string/geo.inc.c"
+#include "string_bundle/geo.inc.c"
+#include "thread_bundle/geo.inc.c"
+#include "needle_ball/geo.inc.c"

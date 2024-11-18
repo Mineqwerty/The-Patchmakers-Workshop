@@ -6707,7 +6707,7 @@ const BehaviorScript bhvStarGate[] = {
 
 const BehaviorScript bhvPatchmaker[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
     LOAD_ANIMATIONS(oAnimations, the_patchmaker_anims),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 20000),
@@ -8558,5 +8558,52 @@ const BehaviorScript bhvWoodenPlankFragment[] = {
     CALL_NATIVE(bhv_wooden_plank_fragment_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_wooden_plank_fragment_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvThrownString[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, patchmaker_string_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_thrown_string_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_thrown_string_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvThreadBundle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_thread_bundle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_thread_bundle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDragSpark[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_drag_spark_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_drag_spark_loop),
+    END_LOOP(),
+};
+const BehaviorScript bhvNeedleBall[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    CALL_NATIVE(bhv_needle_ball_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_needle_ball_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvThreadParticle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_thread_particle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_thread_particle_loop),
     END_LOOP(),
 };

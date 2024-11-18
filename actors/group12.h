@@ -143,4 +143,18 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 
 #include "bowser/anim_header.h"
+#include "thrown_string/geo_header.h"
+
+
+#include "thrown_string/anim_header.h"
+#include "patchmaker_string/geo_header.h"
+
+
+#include "patchmaker_string/anim_header.h"
+#include "string_bundle/geo_header.h"
+
+#include "thread_bundle/geo_header.h"
+
+#include "needle_ball/geo_header.h"
+
 #endif

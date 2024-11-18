@@ -589,7 +589,7 @@ enum MarioActionFlags {
 #define ACT_LEDGE_CLIMB_SLOW_2         0x0000054D // (0x14D | ACT_FLAG_MOVING)
 #define ACT_LEDGE_CLIMB_DOWN           0x0000054E // (0x14E | ACT_FLAG_MOVING)
 #define ACT_LEDGE_CLIMB_FAST           0x0000054F // (0x14F | ACT_FLAG_MOVING)
-#define ACT_UNUSED_150                 0x00000150 // (0x150)
+#define ACT_CAUGHT_BY_STRING                 0x00000150 // (0x150)
 #define ACT_UNUSED_151                 0x00000151 // (0x151)
 #define ACT_UNUSED_152                 0x00000152 // (0x152)
 #define ACT_UNUSED_153                 0x00000153 // (0x153)

@@ -669,6 +669,17 @@ s32 act_ledge_climb_fast(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_caught_by_string(struct MarioState *m) {
+    set_mario_animation(m, MARIO_ANIM_BACKWARD_AIR_KB);
+    s16 intendedDYaw = m->intendedYaw - m->faceAngle[1];
+    f32 mag = DEGREES(30) * m->intendedMag / 32.0f;
+    m->marioBodyState->torsoAngle[0] = (s32)(mag * coss(intendedDYaw));
+    m->marioBodyState->torsoAngle[2] = (s32)(-(mag * sins(intendedDYaw)));
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    return FALSE;
+}
+
 s32 act_grabbed(struct MarioState *m) {
     if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_THROWN_BY_OBJ) {
         s32 thrown = (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROPPED_BY_OBJ) == 0;
@@ -880,6 +891,7 @@ s32 mario_execute_automatic_action(struct MarioState *m) {
         case ACT_LEDGE_CLIMB_SLOW_2:     cancel = act_ledge_climb_slow(m);       break;
         case ACT_LEDGE_CLIMB_DOWN:       cancel = act_ledge_climb_down(m);       break;
         case ACT_LEDGE_CLIMB_FAST:       cancel = act_ledge_climb_fast(m);       break;
+        case ACT_CAUGHT_BY_STRING:       cancel = act_caught_by_string(m);       break;
         case ACT_GRABBED:                cancel = act_grabbed(m);                break;
         case ACT_IN_CANNON:              cancel = act_in_cannon(m);              break;
         case ACT_TORNADO_TWIRLING:       cancel = act_tornado_twirling(m);       break;

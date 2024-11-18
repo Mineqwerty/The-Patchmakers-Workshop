@@ -1,0 +1,14 @@
+extern const GeoLayout needle_ball_geo[];
+extern u8 needle_ball_needlemetal_ia8[];
+extern u8 needle_ball_wavescroll_ci4[];
+extern u8 needle_ball_wavescroll_pal_rgba16[];
+extern Vtx needle_ball_Bone_mesh_layer_1_vtx_0[67];
+extern Gfx needle_ball_Bone_mesh_layer_1_tri_0[];
+extern Vtx needle_ball_Bone_002_mesh_layer_5_vtx_0[46];
+extern Gfx needle_ball_Bone_002_mesh_layer_5_tri_0[];
+extern Gfx mat_needle_ball_f3dlite_material[];
+extern Gfx mat_revert_needle_ball_f3dlite_material[];
+extern Gfx mat_needle_ball_f3dlite_material_004[];
+extern Gfx mat_revert_needle_ball_f3dlite_material_004[];
+extern Gfx needle_ball_Bone_mesh_layer_1[];
+extern Gfx needle_ball_Bone_002_mesh_layer_5[];

@@ -3,7 +3,10 @@ enum PatchmakerActions {
     PATCHMAKER_ACT_WALK_TO_MARIO,
     PATCHMAKER_ACT_JUMPS,
     PATCHMAKER_ACT_SLASH_DASH,
-    PATCHMAKER_ACT_GRAB_MARIO
+    PATCHMAKER_ACT_GRAB_MARIO,
+    PATCHMAKER_ACT_THROW_STRING,
+    PATCHMAKER_ACT_SLOW_NEEDLE_WALK,
+    PATCHMAKER_ACT_SUMMON_NEEDLE_BALL
 };
 
 enum PatchmakerAnims {
@@ -17,13 +20,20 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_GRAB_MISS,
     PATCHMAKER_ANIM_GRAB_MARIO_ATTACK,
     PATCHMAKER_ANIM_STRING_THROW,
+    PATCHMAKER_ANIM_START_SLOW_NEEDLE_WALK,
+    PATCHMAKER_ANIM_SLOW_NEEDLE_WALK,
+    PATCHMAKER_ANIM_END_NEEDLE_WALK,
+    PATCHMAKER_ANIM_NEEDLE_WALK_SLASH,
+    PATCHMAKER_ANIM_SNAP
 };
+
+#define PATCHMAKER_MAX_HEALTH 50
 
 static struct ObjectHitbox sPatchmakerHitbox = {
     /* interactType:      */ INTERACT_PUSH_OUT,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
-    /* health:            */ 0,
+    /* health:            */ PATCHMAKER_MAX_HEALTH,
     /* numLootCoins:      */ 0,
     /* radius:            */ 100,
     /* height:            */ 300,
@@ -40,10 +50,22 @@ void patchmaker_transition_to_next_action() {
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
-            if (o->oDistanceToMario < 1000) {
+            if (o->oDistanceToMario < 200) {
+                switch (randomAction % 4) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        nextAction = PATCHMAKER_ACT_GRAB_MARIO;
+                    break;
+                    case 3:
+                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                    break;
+                }
+            }
+            else if (o->oDistanceToMario < 900) {
                 switch (randomAction % 2) {
                     case 0:
-                        nextAction = PATCHMAKER_ACT_JUMPS;
+                        nextAction = PATCHMAKER_ACT_THROW_STRING;
                     break;
                     case 1:
                         nextAction = PATCHMAKER_ACT_SLASH_DASH;
@@ -51,12 +73,15 @@ void patchmaker_transition_to_next_action() {
                 }
             }
             else {
-                switch (randomAction % 2) {
+                switch (randomAction % 2 + (o->oPatchmakerNeedleBallObj == NULL)) {
                     case 0:
                         nextAction = PATCHMAKER_ACT_JUMPS;
                     break;
                     case 1:
-                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                        nextAction = PATCHMAKER_ACT_THROW_STRING;
+                    break;
+                    case 2:
+                        nextAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
                     break;
                 }
             }
@@ -76,6 +101,30 @@ void patchmaker_transition_to_next_action() {
         break;
 
         case PATCHMAKER_ACT_GRAB_MARIO:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+
+        case PATCHMAKER_ACT_THROW_STRING:
+            if (o->oSubAction == 1) {
+                nextAction = PATCHMAKER_ACT_SLOW_NEEDLE_WALK;
+            }
+            else {
+                nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+            }
+        break;
+
+        case PATCHMAKER_ACT_SLOW_NEEDLE_WALK:
+            switch (randomAction % 2) {
+                    case 0:
+                        nextAction = PATCHMAKER_ACT_JUMPS;
+                    break;
+                    case 1:
+                        nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+                    break;
+                }
+        break;
+
+        case PATCHMAKER_ACT_SUMMON_NEEDLE_BALL:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
     }
@@ -98,7 +147,9 @@ void patchmaker_set_boss_cam(void) {
 
 void patchmaker_act_cutscene(void) {
     if (o->oDistanceToMario < 1500.0f) {
-        o->oAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        o->oAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
+        gBossMaxHealth = PATCHMAKER_MAX_HEALTH;
+        gBossHealth = PATCHMAKER_MAX_HEALTH;
         cur_obj_init_animation(1);
         patchmaker_set_boss_cam();
     }
@@ -110,7 +161,7 @@ void patchmaker_act_walk_to_mario(void) {
     o->oForwardVel = 0.4f;
     object_step();
 
-    if (o->oTimer == 45) {
+    if (o->oTimer >= 45 - (PATCHMAKER_MAX_HEALTH - o->oHealth)) {
         patchmaker_transition_to_next_action();
     }
 }
@@ -166,9 +217,14 @@ void patchmaker_act_slash_dash(void) {
         
     }
 
+    if (o->oTimer < 20) {
+        cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    }
+
     if (o->oTimer == 20) {
         o->oForwardVel = 30.0f;
         o->oInteractType = INTERACT_DAMAGE;
+        cur_obj_play_sound_1(SOUND_NEW_SLASH_AIR);
     }
 
     if (o->oTimer > 40) {
@@ -234,15 +290,12 @@ void patchmaker_act_grab_mario(void) {
                 gMarioState->vel[1] = 10.0f;
             }
 
-            if (o->oTimer > 40 && o->oTimer < 70 && (o->oTimer % 10 > 3) && (o->oTimer % 10 < 8)) {
-                
-            }
-
             if (o->oTimer == 42 || o->oTimer == 54 || o->oTimer == 66) {
                 take_damage_from_no_interact_object(gMarioState, 1);
                 gMarioState->pos[0] += random_u16()%20 - 10;
                 gMarioState->pos[1] += random_u16()%20 - 10;
                 gMarioState->pos[2] += random_u16()%20 - 10;
+                cur_obj_play_sound_1(SOUND_ACTION_HIT_2);
             }
 
             if (cur_obj_check_if_at_animation_end()) {
@@ -255,12 +308,146 @@ void patchmaker_act_grab_mario(void) {
 
 }
 
+void patchmaker_act_throw_string(void) {
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_STRING_THROW);
+    }
+
+    if (o->oTimer == 50) {
+        struct Object *string = spawn_object_relative(0, 0, 300, 0, o, MODEL_THROWN_STRING, bhvThrownString);
+        o->oPatchmakerChildObj = string;
+    }
+
+    
+
+    if (o->oTimer > 40) {
+        o->oAngleVelYaw = approach_s16_symmetric(o->oAngleVelYaw, 450 + 6*o->oTimer, 100);
+        o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);
+
+        o->oForwardVel = 20.0f;
+
+        if (o->oTimer % 24 == 0) {
+            cur_obj_play_sound_1(SOUND_ACTION_SIDE_FLIP_UNK);
+        }
+    }
+    else {
+        o->oAngleVelYaw -= 6*o->oTimer;
+        if (o->oTimer % 12 == 0) {
+            cur_obj_play_sound_1(SOUND_ACTION_SIDE_FLIP_UNK);
+        }
+    }
+
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+
+    object_step();
+
+    if (o->oSubAction == 1) {
+        patchmaker_transition_to_next_action();
+    }
+    else if (o->oTimer > 240) {
+        obj_mark_for_deletion(o->oPatchmakerChildObj);
+        patchmaker_transition_to_next_action();
+    }
+    
+
+    
+}
+
+void patchmaker_act_slow_needle_walk(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(PATCHMAKER_ANIM_START_SLOW_NEEDLE_WALK);
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+            if (o->oTimer == 17) {
+                cur_obj_play_sound_1(SOUND_NEW_START_SCRAPE);
+            }
+            
+            if (cur_obj_check_if_at_animation_end()) {
+                o->oSubAction = 1;
+                cur_obj_play_sound_2(SOUND_NEW_LONG_SCRAPE);
+            }
+        break;
+        case 1:
+            cur_obj_init_animation(PATCHMAKER_ANIM_SLOW_NEEDLE_WALK);
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+            o->oForwardVel = 5.4f;
+            object_step();
+            
+            if (o->oTimer % 25 == 0) {
+                cur_obj_play_sound_1(SOUND_NEW_LONG_SCRAPE);
+            }
+
+            struct Object *spark = spawn_object_relative(0, 100*sins(o->oMoveAngleYaw - 0x4000), 0, 100*coss(o->oMoveAngleYaw - 0x4000), o, MODEL_DRAG_SPARK, bhvDragSpark);
+
+            spark->oPosX = o->oPosX + 100*sins(o->oMoveAngleYaw-0x4000);
+            spark->oPosZ = o->oPosZ + 100*coss(o->oMoveAngleYaw-0x4000);
+
+
+            if (o->oDistanceToMario < 200) {
+                o->oSubAction = 2;
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer >= 240) {
+                o->oSubAction = 3;
+            }
+
+        break;
+        case 2:
+            cur_obj_init_animation(PATCHMAKER_ANIM_NEEDLE_WALK_SLASH);
+
+            if (o->oTimer == 7) {
+                cur_obj_play_sound_1(SOUND_NEW_SLASH_AIR);
+            }
+
+            if (o->oTimer == 12 && o->oDistanceToMario < 300 && (o->oAngleToMario) < 0x4000 ) {
+                gMarioState->action = ACT_BACKWARD_AIR_KB;
+                gMarioState->actionArg = 1001;
+                gMarioState->forwardVel = 30.0f;
+                gMarioState->vel[1] = 15.0f;
+                take_damage_from_no_interact_object(gMarioState, 4);
+
+                
+            }
+
+            if (cur_obj_check_if_at_animation_end()) {
+                patchmaker_transition_to_next_action();
+            }
+        break;
+        case 3:
+            cur_obj_init_animation(PATCHMAKER_ANIM_END_NEEDLE_WALK);
+            if (cur_obj_check_if_at_animation_end()) {
+                patchmaker_transition_to_next_action();
+            }
+        break;
+    }
+    
+
+    
+}
+
+void patchmaker_act_summon_needle_ball(void) {
+    cur_obj_init_animation(PATCHMAKER_ANIM_SNAP);
+
+    if (o->oTimer == 20) {
+        o->oPatchmakerNeedleBallObj = spawn_object_relative(0, 0, 400, 0, o, MODEL_NEEDLE_BALL, bhvNeedleBall);
+        cur_obj_play_sound_1(SOUND_NEW_FINGER_SNAP);
+    }
+
+    if (cur_obj_check_if_at_animation_end()) {
+        patchmaker_transition_to_next_action();
+    }
+}
+
 void bhv_patchmaker_init(void) {
     o->oGravity = 3.0f;
     o->oDragStrength = 5.0f;
     o->oFriction = 1.0f;
     o->oBounciness = 0.0f;
+    o->oHealth = PATCHMAKER_MAX_HEALTH;
     obj_set_hitbox(o, &sPatchmakerHitbox);
+    o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
 }
 
 void bhv_patchmaker_loop(void) {
@@ -280,13 +467,29 @@ void bhv_patchmaker_loop(void) {
         case PATCHMAKER_ACT_GRAB_MARIO:
             patchmaker_act_grab_mario();
         break;
+        case PATCHMAKER_ACT_THROW_STRING:
+            patchmaker_act_throw_string();
+        break;
+        case PATCHMAKER_ACT_SLOW_NEEDLE_WALK:
+            patchmaker_act_slow_needle_walk();
+        break;
+        case PATCHMAKER_ACT_SUMMON_NEEDLE_BALL:
+            patchmaker_act_summon_needle_ball();
+        break;
     }
 
-    if (o->oAction != PATCHMAKER_ACT_JUMPS) {
+    if (o->oAction != PATCHMAKER_ACT_JUMPS && o->oAction != PATCHMAKER_ACT_THROW_STRING) {
         o->oFaceAngleYaw = o->oMoveAngleYaw;
     }
 
+    gBossHealth = o->oHealth;
+
     o->oInteractStatus = 0;
+}
+
+s16 patchmaker_in_needle_action(struct Object *obj) {
+    return ((obj->oAction == PATCHMAKER_ACT_SLASH_DASH && (obj->oTimer > 16))
+            || obj->oAction == PATCHMAKER_ACT_SLOW_NEEDLE_WALK && ((obj->oSubAction == 2 || obj->oTimer > 23)));
 }
 
 Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node) {
@@ -294,7 +497,7 @@ Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node) {
         struct Object *obj = (struct Object *) gCurGraphNodeObject;
         struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
-            if (obj->oAction == PATCHMAKER_ACT_SLASH_DASH && (obj->oTimer > 16)) {
+            if (patchmaker_in_needle_action(obj)) {
                 switchCase->selectedCase = 1;
             }
             else {

@@ -110,6 +110,26 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "floor_creaks"
+    },
+    "inst_start_scrape": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "start_scrape"
+    },
+    "inst_long_scrape": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "long_scrape"
+    },
+    "inst_finger_snap": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "finger_snap"
+    },
+    "inst_slash_air": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "slash_air"
     }
   },
   "instrument_list": [
@@ -132,6 +152,10 @@
     "inst_marine_spin",
     "inst_blight_scream",
     "inst_boo_jumpscare",
-    "inst_floor_creaks"
+    "inst_floor_creaks",
+    "inst_start_scrape",
+    "inst_long_scrape",
+    "inst_finger_snap",
+    "inst_slash_air"
   ]
 }

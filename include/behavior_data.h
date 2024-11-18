@@ -776,3 +776,8 @@ extern const BehaviorScript bhvDiceCubeShot[];
 extern const BehaviorScript bhvFlyInDice[];
 extern const BehaviorScript bhvWoodenPlankBlock[];
 extern const BehaviorScript bhvWoodenPlankFragment[];
+extern const BehaviorScript bhvThrownString[];
+extern const BehaviorScript bhvThreadBundle[];
+extern const BehaviorScript bhvDragSpark[];
+extern const BehaviorScript bhvNeedleBall[];
+extern const BehaviorScript bhvThreadParticle[];

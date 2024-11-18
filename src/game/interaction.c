@@ -1248,12 +1248,34 @@ u32 interact_cannon_base(struct MarioState *m, UNUSED u32 interactType, struct O
     return FALSE;
 }
 
+void special_push_out_object(struct Object *obj) {
+    u32 interaction;
+    interaction = determine_interaction(gMarioState, obj);
+
+    if (interaction & INT_ATTACK_NOT_FROM_BELOW) {
+        attack_object(obj, interaction, 1);
+        bounce_back_from_attack(gMarioState, interaction);
+
+        if (interaction & INT_HIT_FROM_ABOVE) {
+            //gMarioState->pos[1] = obj->oPosY + obj->hitboxHeight;
+            gMarioState->vel[1] = 20.0f;
+            gMarioState->forwardVel = -40.0f;
+
+            gMarioState->flags &= ~MARIO_JUMPING;
+
+            play_sound(SOUND_ACTION_BOUNCE_OFF_OBJECT, gMarioState->marioObj->header.gfx.cameraToObject);
+        }
+    }
+
+    if (!(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
+        sDelayInvincTimer = TRUE;
+    }
+}
+
 u32 interact_igloo(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
-    //! Sets used object without changing action (LOTS of interesting glitches,
-    // but unfortunately the igloo barrier is the only object with this interaction
-    // type)
-    //m->interactObj = obj;
-    //m->usedObj     = obj;
+    if (obj->oInteractionSubtype == INT_SUBTYPE_PATCHMAKER) {
+        special_push_out_object(obj);
+    }
     push_mario_out_of_object(m, obj, 5.0f);
     return FALSE;
 }

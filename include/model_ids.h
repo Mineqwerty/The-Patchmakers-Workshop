@@ -770,6 +770,9 @@
 #define MODEL_PATCHMAKER_SHADOW                   0x100
 
 #define MODEL_PATCHMAKER                   0x130
+#define MODEL_THROWN_STRING                   0x131
+#define MODEL_THREAD_BUNDLE                   0x132
+#define MODEL_NEEDLE_BALL                 0x133
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180
@@ -785,6 +788,8 @@
 #define MODEL_IMPACT_HALO          0x18A
 #define MODEL_GILDED_STAR_G     0x18B
 #define MODEL_YARN_KOOPA     0x18C
+#define MODEL_DRAG_SPARK     0x18D
+#define MODEL_THREAD_PARTICLE     0x18E
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191

@@ -46,7 +46,6 @@ const LevelScript level_bowser_1_entry[] = {
 		MARIO_POS(0x01, 0, 0, 1367, 0),
 		TERRAIN(bowser_1_area_1_collision),
 		MACRO_OBJECTS(bowser_1_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCHMAKER_THEME),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

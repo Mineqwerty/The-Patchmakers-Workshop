@@ -104,3 +104,6 @@
 #include "global_ground_patch/model.inc.c"
 #include "menu_single_bead_2/model.inc.c"
 #include "yarn_koopa/model.inc.c"
+
+#include "drag_spark/model.inc.c"
+#include "thread_particle/model.inc.c"

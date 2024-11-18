@@ -2210,6 +2210,7 @@ u8 check_able_to_use_patch() {
     && gMarioState->action != ACT_FIRST_PERSON 
     && !(gMarioState->flags & MARIO_TELEPORTING)
     && gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT
+    && gMarioState->action != ACT_CAUGHT_BY_STRING
     ) {
         return TRUE;
     }

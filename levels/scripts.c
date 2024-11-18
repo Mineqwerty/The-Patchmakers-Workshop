@@ -152,6 +152,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_YARN_KOOPA,            yarn_koopa_geo),
     LOAD_MODEL_FROM_GEO(MODEL_KOOPA_WITH_SHELL,        koopa_with_shell_geo),
     LOAD_MODEL_FROM_GEO(MODEL_KOOPA_WITHOUT_SHELL,     koopa_without_shell_geo),
+        LOAD_MODEL_FROM_GEO(MODEL_DRAG_SPARK,     drag_spark_geo),
+        LOAD_MODEL_FROM_GEO(MODEL_THREAD_PARTICLE,     thread_particle_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),
@@ -343,7 +345,11 @@ const LevelScript script_func_global_13[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_FLAMES,           bowser_flames_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_WAVE,             invisible_bowser_accessory_geo),
     //LOAD_MODEL_FROM_GEO(MODEL_BOWSER_NO_SHADOW,        bowser_geo_no_shadow),
+    LOAD_MODEL_FROM_GEO(MODEL_THROWN_STRING,        patchmaker_string_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER,        the_patchmaker_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_THREAD_BUNDLE,        thread_bundle_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_NEEDLE_BALL,        needle_ball_geo),
+    
     RETURN(),
 };
 

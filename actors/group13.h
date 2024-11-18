@@ -104,5 +104,4 @@ extern const struct Animation *const water_ring_seg6_anims_06013F7C[];
 
 
 #include "yarn_blooper/anim_header.h"
-
 #endif

@@ -14,5 +14,3 @@
 #include "whomp/geo.inc.c"
 #include "chain_ball/geo.inc.c"
 #include "chain_chomp/geo.inc.c"
-
-#include "patchmaker_string/geo.inc.c"

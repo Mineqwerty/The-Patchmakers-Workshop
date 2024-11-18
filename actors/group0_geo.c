@@ -51,3 +51,5 @@
 #include "global_ground_patch/geo.inc.c"
 #include "yarn_koopa/geo.inc.c"
 #include "koopa/geo.inc.c"
+#include "drag_spark/geo.inc.c"
+#include "thread_particle/geo.inc.c"

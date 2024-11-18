@@ -1,6 +1,3 @@
-Lights1 patchmaker_string_f3dlite_material_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx patchmaker_string_patchmakerstring_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 patchmaker_string_patchmakerstring_ci8[] = {
@@ -307,7 +304,8 @@ Gfx patchmaker_string_Bone_008_mesh_layer_5_tri_0[] = {
 
 Gfx mat_patchmaker_string_f3dlite_material[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPSetLights1(patchmaker_string_f3dlite_material_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),

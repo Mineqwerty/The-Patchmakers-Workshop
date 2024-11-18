@@ -16,6 +16,7 @@
 #include "src/game/texscroll/castle_inside_texscroll.inc.h"
 #include "src/game/texscroll/ttm_texscroll.inc.h"
 #include "src/game/texscroll/pss_texscroll.inc.h"
+#include "src/game/texscroll/group12_texscroll.inc.h"
 extern void scroll_textures();
 
 #endif
