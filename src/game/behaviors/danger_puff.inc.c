@@ -34,6 +34,14 @@ void bhv_danger_puff_loop(void) {
                     o->oAction = 1;
                     cur_obj_play_sound_1(SOUND_GENERAL_EXPLOSION6);
                 }
+                else if (o->oDistanceToMario < 200 && gMarioState->curPatch == PATCH_STONE) {
+                    cur_obj_hide();
+                    for (u8 i = 0; i < 8; i++) {
+                        spawn_object_relative(0, random_u16() % 200 - 100, random_u16() % 200 - 100, random_u16() % 200 - 100, o, MODEL_LEAVES, bhvTreeLeaf);
+                    }
+                    o->oAction = 1;
+                    cur_obj_play_sound_1(SOUND_GENERAL_EXPLOSION6);
+                }
             }
             else {
                 o->oPosX = approach_f32_symmetric(o->oPosX, o->oHomeX,  2.0f);

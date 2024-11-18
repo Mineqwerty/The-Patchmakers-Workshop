@@ -90,7 +90,7 @@ static s32 find_wall_collisions_from_list(struct SurfaceNode *surfaceNode, struc
             // Ignore camera only surfaces.
             if (type == SURFACE_CAMERA_BOUNDARY) continue;
 
-            if (type == SURFACE_THORN_WALL) {
+            if (type == SURFACE_THORN_WALL || type == SURFACE_THORNS_PASS) {
                 if (gMarioState->curPatch == PATCH_STONE && (surf == gMarioState->wall || gMarioState->patchFlags & PATCH_FLAGS_STONE_PASSING_THORNS)) {
                     if (!(gMarioState->patchFlags & PATCH_FLAGS_STONE_PASSING_THORNS)) {
                     gMarioState->patchFlags |= PATCH_FLAGS_STONE_PASSING_THORNS;

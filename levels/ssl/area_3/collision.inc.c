@@ -102,7 +102,7 @@ Gfx ssl_area_3_collision_mat_revert_ssl_dl_stumpsafe[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ssl_area_3_collision_f3dlite_material_layer_1[] = {
+Gfx ssl_area_3_collision_f3dlite_material_005_layer_1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -116,7 +116,7 @@ Gfx ssl_area_3_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ssl_area_3_collision_mat_revert_ssl_dl_f3dlite_material[] = {
+Gfx ssl_area_3_collision_mat_revert_ssl_dl_f3dlite_material_005[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -148,8 +148,8 @@ const Gfx* ssl_area_3_collision_materials[] = {
 	&ssl_area_3_collision_mat_revert_ssl_dl_noslipwood,
 	&ssl_area_3_collision_stumpsafe_layer_1,
 	&ssl_area_3_collision_mat_revert_ssl_dl_stumpsafe,
-	&ssl_area_3_collision_f3dlite_material_layer_1,
-	&ssl_area_3_collision_mat_revert_ssl_dl_f3dlite_material,
+	&ssl_area_3_collision_f3dlite_material_005_layer_1,
+	&ssl_area_3_collision_mat_revert_ssl_dl_f3dlite_material_005,
 	&ssl_area_3_collision_f3dlite_material_010_layer_1,
 	&ssl_area_3_collision_mat_revert_ssl_dl_f3dlite_material_010,
 };

@@ -947,6 +947,10 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
         noExit = TRUE;
     }
 
+    if (gCurrLevelNum == LEVEL_PSS) {
+        noExit = FALSE;
+    }
+
 #endif // !NON_STOP_STARS
     u32 grandStar = (obj->oInteractionSubtype & INT_SUBTYPE_GRAND_STAR) != 0;
 

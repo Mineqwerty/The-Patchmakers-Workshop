@@ -42,6 +42,8 @@ const LevelScript level_ssl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MALVA_FLOWER, malva_flower_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, vtw_skybox_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -63,6 +65,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_DANGER_PUFF, 13475, 2202, 15431, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 14902, 2593, 3178, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 2701, 1770, -10578, 0, 37, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -2589, -5680, -2293, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 2367, 4079, -846, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 1348, 3649, -2769, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, -15186, 856, 4529, 0, 37, 0, 0x00000000, bhvDangerPuff),
@@ -76,6 +79,14 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_DANGER_PUFF, -5431, -3931, -11589, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, -5654, -4105, -9791, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, -676, -4536, -10374, 0, 37, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -4010, -5373, -1574, 0, 37, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -3150, -5611, -1862, 0, 37, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -4748, -5072, -1469, 0, -82, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -4687, -4766, -3060, 0, -82, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -4853, -5003, -2168, 0, -82, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -5235, -4758, -3030, 0, 50, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -6459, -4451, -2012, 0, 50, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, -5685, -4689, -2485, 0, 50, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_GRAY_MUSHROOM, -5374, 515, -3660, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 6746, 1567, -7860, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 5107, 1924, -12973, 0, 0, 0, 0x00000000, bhvVTWMushroom),
@@ -109,6 +120,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_RED_COIN, 9525, 1592, -10277, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 9107, 3093, -12773, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 2081, 2819, -8328, 0, 0, 0, 0x00000000, bhvRedCoin),
+		OBJECT(MODEL_STAR, 6731, -5836, 1131, 0, 0, 0, (25 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1137, 1838, -12176, 0, 0, 0, (3 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_NONE, 1571, 605, -6542, 0, 0, 0, (40 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -1616, 5584, -917, 0, 0, 0, (40 << 24) | (12 << 16), bhvWarp),

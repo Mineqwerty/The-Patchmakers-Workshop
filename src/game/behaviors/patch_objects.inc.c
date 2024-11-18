@@ -1344,7 +1344,7 @@ void check_extension_corners_and_push(void) {
 
 void bhv_extension_block_init(void) {
 
-    check_extension_corners_and_push();
+    
 
     if (o->oBehParams2ndByte == 1) {
         o->oAction = EXT_BLOCK_ACT_EXTEND_SIDE;
@@ -1352,6 +1352,7 @@ void bhv_extension_block_init(void) {
         obj_set_collision_data(o, extension_block_side_collision);
     }
     else {
+        check_extension_corners_and_push();
         o->oMaterialIndex = gMarioState->floor->matPointer;
         o->oRevertIndex = gMarioState->floor->matRevertPointer;
         o->oMaterialLayer = gMarioState->floor->materialIndex;
