@@ -2134,6 +2134,32 @@ s32 act_stone_patch_air_land(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_transmuting(struct MarioState *m) {
+
+    if (should_begin_sliding(m)) {
+        return drop_and_set_mario_action(m, ACT_BEGIN_SLIDING, 0);
+    }
+
+    if (m->actionTimer++ > 15) {
+        return drop_and_set_mario_action(m, ACT_IDLE, 0);
+    }
+
+    switch (perform_ground_step(m)) {
+        case GROUND_STEP_LEFT_GROUND:
+            drop_and_set_mario_action(m, ACT_FREEFALL, 0);
+            break;
+
+        case GROUND_STEP_HIT_WALL:
+            if (m->forwardVel > 10.0f) {
+                mario_set_forward_vel(m, 10.0f);
+            }
+            break;
+    }
+
+    set_mario_animation(m, MARIO_ANIM_RELEASE_BOWSER);
+    return FALSE;
+}
+
 s32 check_common_moving_cancels(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
         return set_water_plunge_action(m);
@@ -2211,6 +2237,7 @@ s32 mario_execute_moving_action(struct MarioState *m) {
         case ACT_STONE_PATCH_AIR_LAND:           cancel = act_stone_patch_air_land(m);           break;
         case ACT_STONE_PATCH_GROUNDED:           cancel = act_stone_patch_grounded(m);           break;
         case ACT_MOVE_IN_CUTSCENE:           cancel = act_move_in_cutscene(m);           break;
+        case ACT_TRANSMUTING:           cancel = act_transmuting(m);           break;
     }
     /* clang-format on */
 

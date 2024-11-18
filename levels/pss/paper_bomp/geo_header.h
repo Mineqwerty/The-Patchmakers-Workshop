@@ -1,0 +1,15 @@
+extern const GeoLayout paper_bomp_geo[];
+extern u8 paper_bomp_paperbomp_ci8[];
+extern u8 paper_bomp_paperbomp_pal_rgba16[];
+extern u8 paper_bomp_paperbompside_ci8[];
+extern u8 paper_bomp_paperbompside_pal_rgba16[];
+extern Vtx paper_bomp_Cube_010_mesh_layer_1_vtx_cull[8];
+extern Vtx paper_bomp_Cube_010_mesh_layer_1_vtx_0[12];
+extern Gfx paper_bomp_Cube_010_mesh_layer_1_tri_0[];
+extern Vtx paper_bomp_Cube_010_mesh_layer_1_vtx_1[32];
+extern Gfx paper_bomp_Cube_010_mesh_layer_1_tri_1[];
+extern Gfx mat_paper_bomp_f3dlite_material_038[];
+extern Gfx mat_revert_paper_bomp_f3dlite_material_038[];
+extern Gfx mat_paper_bomp_f3dlite_material[];
+extern Gfx mat_revert_paper_bomp_f3dlite_material[];
+extern Gfx paper_bomp_Cube_010_mesh_layer_1[];

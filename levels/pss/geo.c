@@ -21,3 +21,4 @@
 #include "levels/pss/lift_cloud/geo.inc.c"
 #include "levels/pss/lift_cloud_switch/geo.inc.c"
 #include "levels/pss/paper_boo/geo.inc.c"
+#include "levels/pss/paper_bomp/geo.inc.c"

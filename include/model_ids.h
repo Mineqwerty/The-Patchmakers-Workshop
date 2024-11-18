@@ -576,6 +576,7 @@
 #define MODEL_LIFT_CLOUD                  0x101
 #define MODEL_LIFT_CLOUD_SWITCH                  0x102
 #define MODEL_PAPER_BOO                  0x103
+#define MODEL_PAPER_BOMP                  0x104
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

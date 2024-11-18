@@ -1074,3 +1074,5 @@ void bhv_needle_ball_init(void);
 void bhv_needle_ball_loop(void);
 void bhv_thread_particle_init(void);
 void bhv_thread_particle_loop(void);
+void bhv_paper_bomp_init(void);
+void bhv_paper_bomp_loop(void);

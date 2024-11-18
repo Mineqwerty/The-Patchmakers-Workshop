@@ -39,4 +39,8 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/paper_boo/geo_header.h"
 
+#include "levels/pss/paper_bomp/geo_header.h"
+
+#include "levels/pss/paper_bomp/collision_header.h"
+
 #endif

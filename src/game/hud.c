@@ -1040,10 +1040,8 @@ void render_hud(void) {
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
-            //render_hud_power_meter();
-            render_hud_power_beads();
-            render_hud_pop_off_beads();
 
+            //Patch challenge renders its overlay instead of health and dpad
             if (gCurrLevelNum == LEVEL_PSS) {
                 render_dl_curtains();
                 render_hud_patch_challenge_timer();
@@ -1051,7 +1049,8 @@ void render_hud(void) {
             }
             else {
                 render_dl_dpad_patches(2);
-                //render_hud_camera_status();
+                render_hud_power_beads();
+                render_hud_pop_off_beads();
             }
             
         }

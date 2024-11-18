@@ -1204,6 +1204,7 @@ Gfx *geo_switch_portal_texture(s32 callContext, struct GraphNode *node) {
 
 void bhv_transmutation_cone_init(void) {
     o->oOpacity = 5;
+    o->oForwardVel = gMarioState->forwardVel;
     play_sound(SOUND_TRANSMUTATION_SWISH, o->header.gfx.cameraToObject);
 }
 
@@ -1280,6 +1281,9 @@ void bhv_transmutation_cone_loop(void) {
             
         break;
     }
+
+    o->oMoveAngleYaw = o->oFaceAngleYaw;
+    cur_obj_move_xz_using_fvel_and_yaw();
     
 }
 

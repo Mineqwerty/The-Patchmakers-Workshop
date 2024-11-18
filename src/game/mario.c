@@ -1933,9 +1933,9 @@ void perform_patch_action(struct MarioState *m) {
         //halo is handled in its own object
 
         case PATCH_TRANSMUTATION:
-            if (!m->patchChildObj && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+            if (!m->patchChildObj && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT) && !(gMarioState->action & ACT_FLAG_AIR)) {
                 m->curPatch = PATCH_TRANSMUTATION;
-                //m->grappleCooldownTimer = 40;
+                drop_and_set_mario_action(m, ACT_TRANSMUTING, 0);
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_TRANSMUTATION_CONE, bhvTransmutationCone);
             }
         break;

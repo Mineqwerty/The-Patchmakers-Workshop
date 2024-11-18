@@ -30,3 +30,5 @@
 #include "levels/pss/lift_cloud/model.inc.c"
 #include "levels/pss/lift_cloud_switch/model.inc.c"
 #include "levels/pss/paper_boo/model.inc.c"
+#include "levels/pss/paper_bomp/model.inc.c"
+#include "levels/pss/paper_bomp/collision.inc.c"

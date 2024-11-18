@@ -453,9 +453,17 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
 #endif
 
     //super secret stars are indexed beginning at cotmc based on their star index being greater than 8.
-    if (starIndex > 8) {
-        s32 starByte = COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7));
-        s32 starFlag = 1 << (starIndex % 7);
+    if (starIndex >= 8) {
+        //Later patch challenge stars also have manual id override. Dont ask me why i did this im really tired
+        if (gCurrLevelNum == LEVEL_PSS) {
+            s32 starByte = COURSE_NUM_TO_INDEX(COURSE_BITS + (starIndex / 7));
+            s32 starFlag = 1 << (starIndex % 7);
+        }
+        else {
+            s32 starByte = COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7));
+            s32 starFlag = 1 << (starIndex % 7);
+        }
+        
     }
 
     gLastCompletedCourseNum = courseIndex + 1;

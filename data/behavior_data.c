@@ -4910,7 +4910,7 @@ const BehaviorScript bhvBreakableBoxSmall[] = {
 const BehaviorScript bhvMetalBoxSmall[] = {
     BEGIN(OBJ_LIST_DESTRUCTIVE),
     OR_INT(oFlags, (OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    DROP_TO_FLOOR(),
+    //DROP_TO_FLOOR(),
     SET_HOME(),
     CALL_NATIVE(bhv_breakable_box_small_init),
     BEGIN_LOOP(),
@@ -8605,5 +8605,15 @@ const BehaviorScript bhvThreadParticle[] = {
     CALL_NATIVE(bhv_thread_particle_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_thread_particle_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPaperBomp[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(paper_bomp_collision),
+    CALL_NATIVE(bhv_paper_bomp_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_bomp_loop),
     END_LOOP(),
 };

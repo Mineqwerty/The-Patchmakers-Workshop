@@ -889,8 +889,11 @@ struct Object *obj_find_transmute_target(struct Object *sourceObj) {
                 vec3f_set(pointB, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw - 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw - 0x1000));
                 vec3f_set(pointC, pointA[0] + laserLength * sins(sourceObj->oFaceAngleYaw + 0x1000), sourceObj->oPosY, pointA[2] + laserLength * coss(sourceObj->oFaceAngleYaw + 0x1000));
 
-
-                if (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) && absf(obj->oPosY - sourceObj->oPosY - 100) < 300) {
+                f32 checkHeight = 300;
+                if (gCurrLevelNum == LEVEL_PSS) {
+                    checkHeight = 500;
+                }
+                if (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) && absf(obj->oPosY - sourceObj->oPosY - 100) < checkHeight) {
                     return obj;
                 }
             }

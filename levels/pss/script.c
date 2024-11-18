@@ -34,13 +34,8 @@ const LevelScript level_pss_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_PAPER_SCUTTLEBUG, paper_scuttlebug_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD, lift_cloud_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_LIFT_CLOUD_SWITCH, lift_cloud_switch_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_PAPER_BOO, paper_boo_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_BOO, paper_boo_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PAPER_BOMP, paper_bomp_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -200,6 +195,50 @@ const LevelScript level_pss_entry[] = {
 		TERRAIN(pss_area_6_collision),
 		TERRAIN_MAT_LUT(pss_area_6_collision_materials),
 		MACRO_OBJECTS(pss_area_6_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(7, pss_area_7),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x07, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13870, -341, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_PAPER_BOMP, -1606, -5, 0, 0, 0, 0, 0x00000000, bhvPaperBomp),
+		OBJECT(MODEL_PAPER_BOMP, 1138, 1161, 0, 0, 0, 0, 0x00000000, bhvPaperBomp),
+		OBJECT(MODEL_PAPER_BOMP, 4307, 2840, 0, 0, 0, 0, 0x00000000, bhvPaperBomp),
+		OBJECT(MODEL_METAL_BOX, -10673, -157, 0, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
+		OBJECT(MODEL_METAL_BOX, -8894, -157, 0, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
+		OBJECT(MODEL_METAL_BOX, -3185, 37, 0, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
+		OBJECT(MODEL_METAL_BOX, 470, 1042, 0, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
+		OBJECT(MODEL_METAL_BOX, 2290, 2301, 0, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (7 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_TRANSMUTATION_STAR, 6591, 3292, 0, 0, 0, 0, (8 << 24), bhvTransmutationStar),
+		OBJECT(MODEL_BREAKABLE_BOX_SMALL, -6501, -971, 0, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
+		OBJECT(MODEL_BREAKABLE_BOX_SMALL, -4141, -263, 0, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
+		OBJECT(MODEL_BREAKABLE_BOX_SMALL, -4623, -673, 0, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
+		OBJECT(MODEL_BREAKABLE_BOX_SMALL, 3189, 1109, 0, 0, 0, 0, 0x00000000, bhvBreakableBoxSmall),
+		TERRAIN(pss_area_7_collision),
+		TERRAIN_MAT_LUT(pss_area_7_collision_materials),
+		MACRO_OBJECTS(pss_area_7_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(8, pss_area_8),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x08, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13870, -341, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (8 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 785, 7828, 0, 0, 0, 0, (9 << 24), bhvStar),
+		TERRAIN(pss_area_8_collision),
+		TERRAIN_MAT_LUT(pss_area_8_collision_materials),
+		MACRO_OBJECTS(pss_area_8_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
