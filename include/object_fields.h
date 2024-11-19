@@ -1423,6 +1423,9 @@
 //lily pad
 #define oLilyIceObj           OBJECT_FIELD_OBJ(0x1B)
 
+//rotating plane spawner
+#define oSpawnedRotatingPlane           OBJECT_FIELD_OBJ(0x1B)
+
 //trailer camera
 #define /*0x0F4*/ oTCPos1X             OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oTCPos1Y           OBJECT_FIELD_F32(0x1C)

@@ -11521,7 +11521,7 @@ void approach_fov_45(struct MarioState *m) {
     sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
 }
 
-void approach_fov_315(struct MarioState *m) {
+void set_fov_315(struct MarioState *m) {
     if (gReonucamState.overhead != 2) {
         sFOVState.fov = 315.f;
         gReonucamState.overhead = 2;
@@ -11529,6 +11529,12 @@ void approach_fov_315(struct MarioState *m) {
         s8DirModeBaseYaw = snap_to_45_degrees(s8DirModeBaseYaw);
         set_cam_angle(CAM_ANGLE_LAKITU);
     }
+}
+
+void approach_fov_170(struct MarioState *m) {
+    f32 targetFoV = 170.0f;
+
+    sFOVState.fov = approach_f32(sFOVState.fov, targetFoV, 2.f, 2.f);
 }
 
 void approach_fov_80(UNUSED struct MarioState *m) {
@@ -11599,7 +11605,10 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
                 approach_fov_60(marioState);
                 break;
             case CAM_FOV_APP_315:
-                approach_fov_315(marioState);
+                set_fov_315(marioState);
+                break;
+            case CAM_FOV_APP_170:
+                approach_fov_170(marioState);
                 break;
                 //! No default case
             case CAM_FOV_SET_CUSTOM:

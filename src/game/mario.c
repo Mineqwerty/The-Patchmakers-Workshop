@@ -964,6 +964,11 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         m->vel[1] *= 2;
         m->curPatch = 0;
         m->patchTimer = 0;
+
+        if (gCurrLevelNum == LEVEL_BBH && gCurrAreaIndex == 1) {
+            m->overrideGravity = 1;
+        }
+
         if (m->patchChildObj && obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
             m->patchChildObj->oAction = 2;
         }
@@ -2131,11 +2136,35 @@ void late_patch_update(struct MarioState *m ) {
     }
 
     switch (m->equippedPatch) {
+        case PATCH_SHADOWCHOMP:
+            if (m->overrideGravity && gCurrLevelNum == LEVEL_BBH) {
+                if (m->patchTimer == 60) {
+                    set_mario_action(m, ACT_FREEFALL, 0);
+                    
+                }
+                if (m->patchTimer == 90) {
+                    sFOVState.fovFunc = CAM_FOV_APP_170;
+                }
+                if (m->patchTimer == 140) {
+                    gMarioState->pos[0] = 0;
+                    gMarioState->pos[1] = 1000;
+                    gMarioState->pos[2] = 0;
+                    sFOVState.fovFunc = CAM_FOV_SET_45;
+                    m->overrideGravity = 0;
+                    s16 cameraAngle = gMarioState->area->camera->yaw;
+                        change_area(5);
+                        gMarioState->area = gCurrentArea;
+                        
+                        gMarioState->area->camera->yaw = cameraAngle;
+                }
+            }
+        break;
         case PATCH_SKYBRIDGE:
             if (m->patchChildObj) {
                 m->patchChildObj->oPosX = m->pos[0];
                 m->patchChildObj->oPosZ = m->pos[2];
             }
+        break;
     }
 }
 
@@ -2517,6 +2546,7 @@ void init_mario(void) {
     gMarioState->invincTimer = 0;
     gMarioState->miasmaSoulCount = 0;
     gMarioWaterwalk = FALSE;
+    gMarioState->overrideGravity = FALSE;
     update_dl_dpad_patches();
 
     gDialogBoxState = 0;

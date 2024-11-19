@@ -1132,6 +1132,7 @@ void bhv_shadow_chomp_tail_loop(void) {
 
     if (o->oShadowTailAttachToMario == 1) {
         marioShadowHeight = gMarioState->pos[1];
+        o->oShadowTailHeight = marioShadowHeight;
         if (gMarioState->pos[1] - gMarioState->floorHeight < 100) {
             o->oShadowTailAttachToMario = 0;
         }

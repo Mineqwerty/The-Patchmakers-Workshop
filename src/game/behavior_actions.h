@@ -1078,3 +1078,5 @@ void bhv_paper_bomp_init(void);
 void bhv_paper_bomp_loop(void);
 void bhv_lily_star_manager_init(void);
 void bhv_lily_star_manager_loop(void);
+void bhv_rotating_plane_spawner_init(void);
+void bhv_rotating_plane_spawner_loop(void);

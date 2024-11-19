@@ -58,6 +58,12 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR, haunted_door_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, bbh_area_1),
@@ -211,7 +217,7 @@ const LevelScript level_bbh_entry[] = {
 		TERRAIN(bbh_area_3_collision),
 		TERRAIN_MAT_LUT(bbh_area_3_collision_materials),
 		MACRO_OBJECTS(bbh_area_3_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -229,6 +235,23 @@ const LevelScript level_bbh_entry[] = {
 		TERRAIN_MAT_LUT(bbh_area_4_collision_materials),
 		MACRO_OBJECTS(bbh_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(5, bbh_area_5),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_BBH, 0x01, 0x0B, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
+		OBJECT(MODEL_NONE, -6, 920, -10, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, -799, 675, -1496, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
+		OBJECT(MODEL_NONE, -1727, 480, -4925, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
+		TERRAIN(bbh_area_5_collision),
+		TERRAIN_MAT_LUT(bbh_area_5_collision_materials),
+		MACRO_OBJECTS(bbh_area_5_macro_objs),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

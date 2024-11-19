@@ -15,7 +15,7 @@ const GeoLayout bbh_area_1_geo[] = {
 				GEO_SCALE(LAYER_OPAQUE, 65536),
 				GEO_OPEN_NODE(),
 					GEO_ASM(0, geo_zbuffer_clear),
-					GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_FORCE, 16, 1149, 12839, -90, 0, -180, bbh_dl_planewindow_mesh_layer_0),
+					GEO_ROTATION_NODE_WITH_DL(LAYER_FORCE, -90, 0, -180, bbh_dl_planewindow_mesh_layer_0),
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),

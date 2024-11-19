@@ -617,6 +617,10 @@ s32 act_freefall(struct MarioState *m) {
             break;
     }
 
+    if (m->overrideGravity) {
+        animation = MARIO_ANIM_BEING_GRABBED;
+    }
+
     common_air_action_step(m, ACT_FREEFALL_LAND, animation, AIR_STEP_CHECK_LEDGE_GRAB);
     return FALSE;
 }

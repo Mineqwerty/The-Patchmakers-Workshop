@@ -344,6 +344,7 @@ enum CameraFov {
     CAM_FOV_ZOOM_30,
     CAM_FOV_SET_29,
     CAM_FOV_APP_315,
+    CAM_FOV_APP_170,
     CAM_FOV_SET_CUSTOM
 };
 

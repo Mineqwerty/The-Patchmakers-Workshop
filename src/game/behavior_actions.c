@@ -372,3 +372,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/thread_particle.inc.c"
 #include "behaviors/paper_bomp.inc.c"
 #include "behaviors/lily_star_manager.inc.c"
+#include "behaviors/rotating_plane_spawner.inc.c"

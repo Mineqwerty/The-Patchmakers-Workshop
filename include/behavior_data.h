@@ -783,3 +783,4 @@ extern const BehaviorScript bhvNeedleBall[];
 extern const BehaviorScript bhvThreadParticle[];
 extern const BehaviorScript bhvPaperBomp[];
 extern const BehaviorScript bhvLilyStarManager[];
+extern const BehaviorScript bhvRotatingPlaneSpawner[];

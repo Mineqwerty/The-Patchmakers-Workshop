@@ -8626,3 +8626,12 @@ const BehaviorScript bhvLilyStarManager[] = {
         CALL_NATIVE(bhv_lily_star_manager_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvRotatingPlaneSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_rotating_plane_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rotating_plane_spawner_loop),
+    END_LOOP(),
+};
