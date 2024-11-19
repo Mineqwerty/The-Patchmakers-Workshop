@@ -1,6 +1,6 @@
 void scroll_ssl_dl_Circle_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 25;
+	int count = 53;
 	int width = 64 * 0x20;
 	int height = 64 * 0x20;
 
@@ -111,7 +111,7 @@ void scroll_ssl_dl_Circle_006_mesh_layer_1_vtx_0() {
 
 void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 20;
+	int count = 30;
 	int width = 64 * 0x20;
 	int height = 64 * 0x20;
 
@@ -148,7 +148,7 @@ void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0() {
 
 void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_2() {
 	int i = 0;
-	int count = 6;
+	int count = 14;
 	int width = 64 * 0x20;
 	int height = 64 * 0x20;
 
