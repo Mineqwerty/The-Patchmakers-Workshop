@@ -64,6 +64,9 @@ const LevelScript level_bbh_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, bbh_area_1),
@@ -246,8 +249,13 @@ const LevelScript level_bbh_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
 		OBJECT(MODEL_NONE, -6, 920, -10, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, -5410, 3953, 1294, 0, 48, 0, 0x00000000, bhvFarPlaneBoostPanel),
+		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, 668, 2773, 10121, 0, 134, 0, 0x00000000, bhvFarPlaneBoostPanel),
 		OBJECT(MODEL_NONE, -799, 675, -1496, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
 		OBJECT(MODEL_NONE, -1727, 480, -4925, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
+		OBJECT(MODEL_NONE, -4155, 2038, -826, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
+		OBJECT(MODEL_NONE, -5612, 2874, -13, 0, 0, 0, 0x00000000, bhvRotatingPlaneSpawner),
+		OBJECT(MODEL_STAR, 7531, 1994, 5188, 0, 48, 0, (27 << 24), bhvStar),
 		TERRAIN(bbh_area_5_collision),
 		TERRAIN_MAT_LUT(bbh_area_5_collision_materials),
 		MACRO_OBJECTS(bbh_area_5_macro_objs),

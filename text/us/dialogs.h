@@ -105,16 +105,14 @@ DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
 SS"))
 
 DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
-CLC"))
+You obtained the 100 coin star!\n\
+With the search over, Mario breathes\n\
+a relieved sigh and continues on!"))
 
-DEFINE_DIALOG(DIALOG_014, 1, 4, 30, 200, _("\
-Wow! Another Power Star!\n\
-Mario gains more courage\n\
-from the power of the\n\
-castle.\n\
-Do you want to Save?\n\
-\n\
-//You Bet//Not Now"))
+DEFINE_DIALOG(DIALOG_014, 1, 3, 30, 200, _("\
+You found a secret star!\n\
+With another mystery uncovered,\n\
+it's time to keep searching!"))
 
 DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
 Activate the Obelisk? \n\
