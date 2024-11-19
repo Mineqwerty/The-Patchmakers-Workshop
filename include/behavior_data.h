@@ -782,3 +782,4 @@ extern const BehaviorScript bhvDragSpark[];
 extern const BehaviorScript bhvNeedleBall[];
 extern const BehaviorScript bhvThreadParticle[];
 extern const BehaviorScript bhvPaperBomp[];
+extern const BehaviorScript bhvLilyStarManager[];

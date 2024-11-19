@@ -27,9 +27,15 @@ void bhv_lily_pad_loop(void) {
 
             if (gMarioState->marioObj->platform == o && gMarioState->equippedPatch == PATCH_CHILLSTEP) {
                 freeze_lily();
-                o->oAction = 2;
+                if (o->oBehParams2ndByte == 1) {
+                    o->oAction = 2;
+                }
+                else {
+                    o->oAction = 4;
+                }
+                
             }
-
+            object_step_without_floor_orient();
         break;
         case 1:
         if (o->oTimer == 1) {
@@ -43,19 +49,70 @@ void bhv_lily_pad_loop(void) {
             if (o->oTimer == 120) {
                 o->oAction = 0;
             }
+            object_step_without_floor_orient();
         break;
         case 2:
             if (o->oLilyIceObj) {
-                o->oForwardVel = 5.0f;
-                cur_obj_move_xz_using_fvel_and_yaw();
+                o->oForwardVel = CLAMP(o->oTimer/2, 1.0f, 20.0f);
+                o->oFriction = 1.0f;
+                o->oLilyIceObj->oPosX = o->oPosX;
+                o->oLilyIceObj->oPosY = o->oPosY - 100;
+                o->oLilyIceObj->oPosZ = o->oPosZ;
+                s16 collisionFlags = object_step();
+                if (collisionFlags & OBJ_COL_FLAG_GROUNDED) {
+                    o->oAction = 3;
+                }
             }
             else {
                 o->oAction = 0;
             }
         break;
-    }
+        case 3:
+            if (o->oLilyIceObj) {
+                o->oForwardVel = 20.0f;
+                o->oFriction = 1.0f;
+                o->oLilyIceObj->oPosX = o->oPosX;
+                o->oLilyIceObj->oPosY = o->oPosY - 100;
+                o->oLilyIceObj->oPosZ = o->oPosZ;
+                s16 collisionFlags = object_step();
+                if (collisionFlags & OBJ_COL_FLAG_UNDERWATER) {
+                    o->oAction = 4;
+                }
+            }
+            else {
+                o->oAction = 0;
+            }
+        break;
+        case 4:
 
-    object_step_without_floor_orient();
+            o->oFriction = 0.1f;
+            if (o->oForwardVel > 0) {
+                o->oForwardVel -= (o->oTimer % 4 == 0);
+            }
+
+            if (o->oTimer > 60) {
+                o->oPosY += 10.0f * (((o->oTimer % 2) * 2) - 1);
+            }
+
+            if (o->oLilyIceObj) {
+                o->oLilyIceObj->oPosX = o->oPosX;
+                o->oLilyIceObj->oPosY = o->oPosY - 100;
+                o->oLilyIceObj->oPosZ = o->oPosZ;
+            }
+
+            if (o->oTimer == 90) {
+                if (o->oLilyIceObj) {
+                    o->oLilyIceObj->oAction = 20;
+                    o->oLilyIceObj = NULL;
+                }
+                o->oAction = 0;
+                o->oBehParams2ndByte = 0;
+                o->oBehParams = 0;
+            }
+
+            object_step_without_floor_orient();
+        break;
+    }
     
 }
 

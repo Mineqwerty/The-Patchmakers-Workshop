@@ -46,6 +46,10 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -94,12 +98,13 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_GRAY_MUSHROOM, 5107, 1924, -12973, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 6633, 2379, -10390, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_LILY_PAD, -3170, 878, 6509, 0, 0, 0, 0x00000000, bhvLilyPad),
+		OBJECT(MODEL_NONE, -3456, 1354, 4676, 0, 37, 0, 0x00000000, bhvLilyStarManager),
 		OBJECT(MODEL_LILY_PAD, -3456, 878, 4676, 0, 37, 0, 0x00000000, bhvLilyPad),
 		OBJECT(MODEL_LILY_PAD, -4271, 878, 4214, 0, -62, 0, 0x00000000, bhvLilyPad),
 		OBJECT(MODEL_LILY_PAD, -2648, 878, 3635, 0, -22, 0, 0x00000000, bhvLilyPad),
 		OBJECT(MODEL_LILY_PAD, -2239, 878, 4648, 0, -154, 0, 0x00000000, bhvLilyPad),
-		OBJECT(MODEL_LILY_PAD, 3013, 3260, 7852, 0, -120, 0, 0x00000000, bhvLilyPad),
-		OBJECT(MODEL_LILY_PAD, 1846, 3258, 8247, 0, -154, 0, 0x00000000, bhvLilyPad),
+		OBJECT(MODEL_LILY_PAD, 3013, 3260, 7852, 0, -120, 0, (1 << 16), bhvLilyPad),
+		OBJECT(MODEL_LILY_PAD, 2015, 3258, 8110, 0, -143, 0, (1 << 16), bhvLilyPad),
 		OBJECT(MODEL_LILY_PAD, -2564, 1880, -78, 0, -1, 0, (1 << 16), bhvLilyPad),
 		OBJECT(MODEL_MALVA_BUD, -2621, 1965, -3542, 0, 37, 0, 0x00000000, bhvMalvaFlower),
 		OBJECT(MODEL_NONE, -3708, 344, -3426, 0, 37, 0, 0x00000000, bhvMalvaFlowerManager),

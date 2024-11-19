@@ -149,8 +149,9 @@ void bhv_ice_cube_init(void) {
         gMarioState->action = ACT_JUMP_LAND;
     }
     
-
-    check_ice_cube_corners_and_push();
+    if (!obj_has_behavior(o->parentObj, bhvLilyPad)) {
+        check_ice_cube_corners_and_push();
+    }
 }
 
 extern s16 gCutsceneTimer;
@@ -158,7 +159,9 @@ extern s16 gCutsceneTimer;
 void bhv_ice_cube_loop(void) {
 
     if (o->oIsPushingIceCube == 1 && o->oTimer < 10) {
-        check_ice_cube_corners_and_push();
+        if (!obj_has_behavior(o->parentObj, bhvLilyPad)) {
+            check_ice_cube_corners_and_push();
+        }
     }
 
     if (o->oTimer <= 3) {
@@ -201,7 +204,9 @@ void bhv_ice_cube_loop(void) {
             coin->oMoveAngleYaw = random_u16();
         }
 
-        obj_mark_for_deletion(o->parentObj);
+        if (!obj_has_behavior(o->parentObj, bhvLilyPad)) {
+            obj_mark_for_deletion(o->parentObj);
+        }
 
         // obj_explode_and_spawn_coins(46.0f, 0);
         spawn_mist_particles();

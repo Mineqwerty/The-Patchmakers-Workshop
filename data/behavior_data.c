@@ -8617,3 +8617,12 @@ const BehaviorScript bhvPaperBomp[] = {
         CALL_NATIVE(bhv_paper_bomp_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvLilyStarManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_lily_star_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lily_star_manager_loop),
+    END_LOOP(),
+};
