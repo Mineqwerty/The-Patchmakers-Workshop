@@ -1977,6 +1977,126 @@ Beyond that door somewhere is The Patchmaker.\n\
 I think it's best if you go ahead of me, and\n\
 I'll trail you from afar..."))
 
+DEFINE_DIALOG(DIALOG_SEWNIA_TTC, 1, 3, 30, 200, _("\
+@7F60B4FFAh, this pot is a portal to a land\n\
+called Thorn Thicket Cliffs!\n\
+The smell of roses is always wafting up from within!\n\
+@7F60B4FFDon't tell anyone, but I've actually peeked in\n\
+there a few times. I was too scared to explore, but there was\n\
+a friendly person called a Rosedrift there.\n\
+@7F60B4FFShe, um, attempted to say hi to me, but ah...\n\
+I was a little nervous, so I came back here.\n\
+I'm sure you'll be able to talk better, Mario.\n\
+@7F60B4FFRight, anyways. Watch out for the thorny ground there!\n\
+The Patchmaker had a special tool when he explored which let him\n\
+bypass thorns, so if you haven't found it yet, keep an eye out for it!\n\
+@7F60B4FFWhen he was giving hints on where he hid it, he may have\n\
+underestimated my ability to figure it out a little...\n\
+I believe it's hidden down a secret path near the top of the cliffs!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_RDR, 1, 4, 30, 200, _("\
+@7F60B4FFEvery time I opened this door, I could always\n\
+hear the distant pitter-patter of raindrops...\n\
+Sometimes, I would sit here for hours just listening, smelling\n\
+the damp musk carried on the cool, wet breeze blowing in.\n\
+@7F60B4FFThis door leads to a place called Rainy Day Roadside.\n\
+Despite what you may think, it isn't actually right outside.\n\
+At some point, you'll pass through a magical portal to the\n\
+muddy farmland that lies along a road.\n\
+@7F60B4FFI haven't been to any other places, so I can only tell\n\
+you what The Patchmaker has told me about this place.\n\
+Apparently, there's a rushing river that will sweep you away\n\
+if you aren't careful navigating around it.\n\
+@7F60B4FFBut if you're brave enough to cross it, there's a hidden\n\
+cave along its side. In there, you'll find a patch that will ease\n\
+your worries about falling into the river!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_STC, 1, 4, 30, 200, _("\
+@7F60B4FFI haven't ever opened this door...\n\
+After seeing the way it closes, I always got scared of being\n\
+caught in between the doors and squeezed between them until I\n\
+popped into a pile of stuffing...\n\
+@7F60B4FFAh! Sorry! I shouldn't have said that!\n\
+I watched The Patchmaker enter here many times, it's perfectly safe\n\
+as long as you wait to close it until you're inside!\n\
+I'm only being a little scared for no reason here...\n\
+@7F60B4FFAnyways, the mechanical clicks of gears echo even with\n\
+the doors closed. This door leads to an ancient land called\n\
+Stone Terrace City. I've heard it's truly a marvel of technology.\n\
+Be careful not to fall off of the moving parts!\n\
+@7F60B4FFAs for the patch, I was given the hint that it was\n\
+hidden somewhere over a fence... I know that isn't very helpful,\n\
+but if you see some fence that looks as though it was climbed over,\n\
+I would give it a look!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_GSS, 1, 3, 30, 200, _("\
+@7F60B4FFThe light in this window only shines when one of\n\
+great power stands before it... So it seems that for you,\n\
+that would mean star power.\n\
+@7F60B4FFI'll admit, I don't know much about this place.\n\
+The Patchmaker described it as a sky stained with a rich gold,\n\
+so I suppose it could be called Gold Soaked Sky...\n\
+@7F60B4FFThere are some scary things there. One time, the Patchmaker\n\
+returned from it bloodied and beaten. He never told me what happened,\n\
+only something about a goddess...\n\
+@7F60B4FFBe very careful if you enter here, Mario. You'll want to find\n\
+the patch that was made for this location for sure. I believe\n\
+it was hidden somewhere in a vast, empty field."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_SS, 1, 3, 30, 200, _("\
+@7F60B4FFHeehee... This bubble column is a bit different!\n\
+That's because it's a portal! It'll suck you down into\n\
+cavernous depths surrounded by the salty sea.\n\
+@7F60B4FFThe place it goes to is called Subterranean Seaway.\n\
+You'll find out that there isn't much to explore without\n\
+plunging into the watery depths...\n\
+@7F60B4FFBut don't do it until you find the patch that was hidden there!\n\
+The Patchmaker said that there's a strong upward current that\n\
+prevents anyone but the strongest swimmer from exploring deeper.\n\
+So I think that the patch is hidden somewhere dry...\n\
+In any case, be careful as always. I can't imagine how scary\n\
+it would be to drown under the sea, with nobody to hear you...\n\
+@7F60B4FF...Be careful, Mario."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_CLC, 1, 3, 30, 200, _("\
+@7F60B4FFThere's something hidden here... One of the portals.\n\
+Truthfully, there was once a portal that was out in the open\n\
+like the others. It went to a place called Candlelit Chamber.\n\
+@7F60B4FFThis place was a little special to The Patchmaker.\n\
+Within it, the Master and Mistress of the place were very\n\
+good friends of his. Apparently, they visited here to see his works often.\n\
+@7F60B4FFAfter he... lost himself... The Patchmaker visited there\n\
+once again. I don't know what happened, but I watched from a distance\n\
+as he moved the warp tile to another room, looking tired and beaten up.\n\
+@7F60B4FFI... didn't want to ask why, but it almost looked like guilt was painted\n\
+on his face. It made me want to believe that he wasn't completely\n\
+lost yet, but at the same time... What could he have done?\n\
+@7F60B4FFSorry... Anyways, if you find the warp in here, watch out.\n\
+The manor had a notorious problem with ghost infestations.\n\
+It also has many secrets hidden high up above..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_HVH, 1, 4, 30, 200, _("\
+@7F60B4FFMario, what do you think is defined as real?\n\
+I'm sure that line is a little blurred for you with the places you've been...\n\
+The Patchmaker talked often about defining reality with words, but\n\
+always came to the conclusion that it was not possible.\n\
+@7F60B4FFI think this book was the reason why.\n\
+When powered up, it seems to be a warp to somewhere far away, but\n\
+the people and land there are almost identical to what the book describes.\n\
+It's possible that it could be an entire world contained within the book.\n\
+@7F60B4FFHe wondered how real it ever was, and if it had the\n\
+secrets to the creation of life... But he found that even if it was a\n\
+fabricated world, in the end it wasn't any different from everything outside of it.\n\
+If people could enter and exit, then how was it any different from reality?\n\
+@7F60B4FFSomething you might want to know is that the author was\n\
+mysterious. He finished the book on his deathbed, minutes before he passed.\n\
+Apparently, this meant that some ends were left untied, and for the\n\
+world inside, something about it may not quite fit in...\n\
+@7F60B4FFThis place was titled Hidden Village Hold, and it's a very\n\
+charming village from what I've read of the book.\n\
+As for the patch, it HAS to be in the big wizard tower!\n\
+There's no way anything magical wouldn't be in there!"))
+
 DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\
 @7F60B4FFUm...\n\
 I'm sorry he attacked you...\n\
@@ -2084,7 +2204,7 @@ Ahaha...\n\
 Red one... You mustn't move!\n\
 If you do... I have failed again!\n\
 Ahahaha!\n\
-Now... Time to say goodnight once more!"))
+Now... TIME FOR BED!"))
 
 DEFINE_DIALOG(DIALOG_VILLAGER_FRUIT, 1, 3, 30, 200, _("\
 Fresh fruit!\n\
