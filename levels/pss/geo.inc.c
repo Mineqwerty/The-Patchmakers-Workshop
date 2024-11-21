@@ -6,3 +6,4 @@
 #include "levels/pss/area_6/geo.inc.c"
 #include "levels/pss/area_7/geo.inc.c"
 #include "levels/pss/area_8/geo.inc.c"
+#include "levels/pss/area_9/geo.inc.c"

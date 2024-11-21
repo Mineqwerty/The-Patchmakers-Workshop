@@ -14,6 +14,8 @@
 #include "levels/pss/area_7/spline.inc.c"
 #include "levels/pss/area_8/macro.inc.c"
 #include "levels/pss/area_8/spline.inc.c"
+#include "levels/pss/area_9/macro.inc.c"
+#include "levels/pss/area_9/spline.inc.c"
 #include "levels/pss/model.inc.c"
 #include "levels/pss/area_1/collision.inc.c"
 #include "levels/pss/area_2/collision.inc.c"
@@ -23,3 +25,4 @@
 #include "levels/pss/area_6/collision.inc.c"
 #include "levels/pss/area_7/collision.inc.c"
 #include "levels/pss/area_8/collision.inc.c"
+#include "levels/pss/area_9/collision.inc.c"

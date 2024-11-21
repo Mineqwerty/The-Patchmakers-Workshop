@@ -8635,3 +8635,33 @@ const BehaviorScript bhvRotatingPlaneSpawner[] = {
         CALL_NATIVE(bhv_rotating_plane_spawner_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvOnOffSwitch[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(on_switch_collision),
+    CALL_NATIVE(bhv_on_off_switch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_on_off_switch_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvOnOffBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(on_block_collision),
+    CALL_NATIVE(bhv_on_off_block_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_on_off_block_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvOnOffController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_on_off_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_on_off_controller_loop),
+    END_LOOP(),
+};
