@@ -2097,6 +2097,114 @@ charming village from what I've read of the book.\n\
 As for the patch, it HAS to be in the big wizard tower!\n\
 There's no way anything magical wouldn't be in there!"))
 
+DEFINE_DIALOG(DIALOG_SEWNIA_VTW, 1, 3, 30, 200, _("\
+@7F60B4FFIt's a beautiful mobile, is it not?\n\
+Standing atop it with enough star power will transport\n\
+you to a place called Violet Twilit Woods.\n\
+@7F60B4FFWhen this was first made, I spent hours looking at\n\
+it while waiting for The Patchmaker to return.\n\
+That night, I had a very strange dream...\n\
+@7F60B4FFI was walking amidst a purple forest, a summer breeze in my hair...\n\
+The sound of crickets were a percussion to the melody of the wind,\n\
+and as I explored, a slight floral scent was present in the haze.\n\
+@7F60B4FFIt was quiet and had a sense of peace I have never felt since...\n\
+I don't remember how I got there, but walking amidst the foliage felt like\n\
+I was floating, almost as naturally as if I had a pair of wings on my back.\n\
+@7F60B4FFI... don't know why, but there was a place I had wanted to find.\n\
+I had this idea in my head of a moonlit grove, one that I could lie in\n\
+and bask in the filtered light amid a pile of moss.\n\
+@7F60B4FFI still wonder if I was truly dreaming...\n\
+\n\
+\n\
+@7F60B4FFAh... Look at me rambling again. Sorry, I should be helping you here...\n\
+Although, I can't tell you much to be honest. The Patchmaker stopped\n\
+telling me about his journeys around this point...\n\
+@7F60B4FF...I really wish things had turned out different.\n\
+I never did find that grove, by the way.\n\
+And as much as I wish I could, I don't think it's possible to anymore."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_TFP, 1, 3, 30, 200, _("\
+@7F60B4FFThis place... The Far Plane...\n\
+The Patchmaker... obviously had been changing over time,\n\
+but he was never the same after coming back from this place.\n\
+@7F60B4FFHe spent weeks in there. I know it seems foolish now, but I was really\n\
+scared he had disappeared forever. He didn't even return to create the\n\
+patch to navigate it. He did it all in there.\n\
+@7F60B4FFI wonder if it was because he got lost...\n\
+He was forced to create something that would help him find his\n\
+way back from anywhere is all I know...\n\
+@7F60B4FFWhen... When he finally got back, he barely talked about it.\n\
+I think... I think that this place pushed his madness forward more.\n\
+Mario... If you're really going in there, please come back soon...\n\
+@7F60B4FFI'm sorry, but that's all I can say...\n\
+In truth, I know nothing of this place other than the\n\
+fact that it rests close to the edge of existence itself..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_EA, 1, 4, 30, 200, _("\
+@7F60B4FFHaha...\n\
+Oh, sorry. I was just thinking a little about how foolish I was.\n\
+I should have known what was happening to The Patchmaker at this point...\n\
+How could I have hid in denial with what he made after he went here, after all.\n\
+@7F60B4FFSee the covered painting over there? He painted it after coming back here.\n\
+The whole time, I hid and watched as he vigorously scratched on the canvas,\n\
+a horrid malice in his eyes that conveyed frustration ink could not.\n\
+It... scared me, so I covered the painting up after he left.\n\
+@7F60B4FFIf... If you think it would help to see the painting, I won't stop you\n\
+from peeking... After he finished, The Patchmaker tried talking to me,\n\
+assuring me he would create a sister for me. He told me not to worry with a smile,\n\
+but this smile hit piles of wrath and weariness for his failures thus far.\n\
+@7F60B4FFI think that this was the first time I felt fear in my life.\n\
+I didn't know what to tell this breaking man, so I simply nodded in fright.\n\
+That was a mistake. I should have never done that.\n\
+I...\n\
+@7F60B4FFI should have stopped him! I could have! It wasn't too late!\n\
+I didn't want a sister, I didn't want him to go to another land!\n\
+I just... I just wanted him to stay with me! But I couldn't say anything!\n\
+And look what happened! He's... never... coming back...\n\
+@7F60B4FFWhy didn't I do anything? Why...\n\
+I... I could have...\n\
+I could have done it...\n\
+\n\
+@7F60B4FF...\n\
+\n\
+\n\
+\n\
+@7F60B4FFMario... be careful if you're going.\n\
+I don't want to lose you too...\n\
+I won't let it happen again."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_CORR, 1, 4, 30, 200, _("\
+@7F60B4FFThis place...\n\
+After The Patchmaker came back from the last journey hopeless and defeated,\n\
+I could tell that he had almost given up on everything.\n\
+When he opened the portal, I knew it would not help him find any secrets of life.\n\
+@7F60B4FFThis place is a city in a far away land.\n\
+One day, a snowstorm blew in and never ceased. The people living there\n\
+were quite concerned, as they were right to be when the snow piled up.\n\
+Eventually, their doors were covered. And so, they took to higher lands.\n\
+@7F60B4FFBut the snow kept coming down. Eventually, even these places were uninhabitable.\n\
+So, the people started building. If they couldn't live on the ground, they would on the snow.\n\
+After all, the skies would have to clear one day, right?\n\
+That's what they thought... But they never did.\n\
+@7F60B4FFIt's a land that is constantly being rebuilt and torn down.\n\
+And even though it can't be stopped, the people there still rebuild.\n\
+It sounds really sad, doesn't it?\n\
+That's what I thought at least.\n\
+@7F60B4FFThe Patchmaker simply looked forward with a sullen face as he walked into the\n\
+fog ahead, and I knew that he had gone there to give up.\n\
+But... To my surprise, he returned. He returned with a small glint of hope\n\
+in his dead eyes.\n\
+@7F60B4FFSomething about this place had resonated with him.\n\
+I don't quite understand how, but he picked himself up and\n\
+continued his search.\n\
+To get something like that from such a hopeless place..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_EA_ALTERNATE, 1, 3, 30, 200, _("\
+@7F60B4FFI... don't want to talk about this place again\n\
+if that's alright...\n\
+Sorry..."))
+
+
 DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\
 @7F60B4FFUm...\n\
 I'm sorry he attacked you...\n\
