@@ -2140,6 +2140,7 @@ void late_patch_update(struct MarioState *m ) {
             if (m->overrideGravity && gCurrLevelNum == LEVEL_BBH) {
                 if (m->patchTimer == 60) {
                     set_mario_action(m, ACT_FREEFALL, 0);
+                    play_sound(SOUND_MARIO_WAAAOOOW, gMarioState->pos);
                     
                 }
                 if (m->patchTimer == 90) {

@@ -91,7 +91,7 @@ extern Vtx bbh_dl_ccc_zlevel_geo_mesh_layer_1_vtx_7[37];
 extern Gfx bbh_dl_ccc_zlevel_geo_mesh_layer_1_tri_7[];
 extern Vtx bbh_dl_ccc_zlevel_geo_mesh_layer_1_vtx_8[12];
 extern Gfx bbh_dl_ccc_zlevel_geo_mesh_layer_1_tri_8[];
-extern Vtx bbh_dl_ccc_zlevel_geo_mesh_layer_1_vtx_9[182];
+extern Vtx bbh_dl_ccc_zlevel_geo_mesh_layer_1_vtx_9[178];
 extern Gfx bbh_dl_ccc_zlevel_geo_mesh_layer_1_tri_9[];
 extern Vtx bbh_dl_ccc_zlevel_geo_mesh_layer_1_vtx_10[1734];
 extern Gfx bbh_dl_ccc_zlevel_geo_mesh_layer_1_tri_10[];
