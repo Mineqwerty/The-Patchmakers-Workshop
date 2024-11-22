@@ -1430,7 +1430,7 @@
 #define oOnOffBlockType           OBJECT_FIELD_S32(0x1B)
 
 //on off controller
-#define oOnOffState           OBJECT_FIELD_S32(0x1B)
+#define oOnOffState           OBJECT_FIELD_S32(0x1C)
 
 //trailer camera
 #define /*0x0F4*/ oTCPos1X             OBJECT_FIELD_F32(0x1B)

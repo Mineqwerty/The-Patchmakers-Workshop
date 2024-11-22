@@ -20,7 +20,7 @@ void bhv_on_off_switch_loop(void) {
         o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvOnOffController, &dist);
     }
     else {
-
+        dbp(o->parentObj->oOnOffState);
         obj_set_hitbox(o, &sOnOffSwitchHitbox);
         cur_obj_set_model(MODEL_OFF_SWITCH + o->parentObj->oOnOffState);
 

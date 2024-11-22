@@ -3,10 +3,13 @@ void bhv_on_off_block_init(void) {
 }
 
 void bhv_on_off_block_loop(void) {
-    if (!o->parentObj) {
+    if (o->oTimer < 5) {
         f32 dist;
         o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvOnOffController, &dist);
     } else {
+        f32 dist;
+        o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvOnOffController, &dist);
+        dbp(o->parentObj->oOnOffState);
         if (o->oOnOffBlockType == o->parentObj->oOnOffState) {
             cur_obj_set_model(MODEL_OFF_BLOCK + 2 * (o->oOnOffBlockType));
             load_object_collision_model();
@@ -22,5 +25,5 @@ void bhv_on_off_controller_init(void) {
 }
 
 void bhv_on_off_controller_loop(void) {
-    dbp(o->oOnOffState);
+    //dbp(o->oOnOffState);
 }

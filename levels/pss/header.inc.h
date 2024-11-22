@@ -95,7 +95,7 @@ extern u8 pss_dl_paperwood_pal_rgba16[];
 extern u8 pss_dl_paperbackgroundfarplanething_ia8[];
 extern u8 pss_dl_papertfp_rgba16[];
 extern Vtx pss_dl_Cube_mesh_layer_1_vtx_cull[8];
-extern Vtx pss_dl_Cube_mesh_layer_1_vtx_0[374];
+extern Vtx pss_dl_Cube_mesh_layer_1_vtx_0[375];
 extern Gfx pss_dl_Cube_mesh_layer_1_tri_0[];
 extern Vtx pss_dl_Cube_mesh_layer_1_vtx_1[230];
 extern Gfx pss_dl_Cube_mesh_layer_1_tri_1[];
