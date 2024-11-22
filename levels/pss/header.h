@@ -43,4 +43,24 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/paper_bomp/collision_header.h"
 
+#include "levels/pss/on_block/collision_header.h"
+
+#include "levels/pss/on_block/geo_header.h"
+
+#include "levels/pss/off_block/collision_header.h"
+
+#include "levels/pss/off_block/geo_header.h"
+
+#include "levels/pss/on_switch/collision_header.h"
+
+#include "levels/pss/on_switch/geo_header.h"
+
+#include "levels/pss/off_switch/collision_header.h"
+
+#include "levels/pss/off_switch/geo_header.h"
+
+#include "levels/pss/transparent_on_block/geo_header.h"
+
+#include "levels/pss/transparent_off_block/geo_header.h"
+
 #endif

@@ -784,3 +784,6 @@ extern const BehaviorScript bhvThreadParticle[];
 extern const BehaviorScript bhvPaperBomp[];
 extern const BehaviorScript bhvLilyStarManager[];
 extern const BehaviorScript bhvRotatingPlaneSpawner[];
+extern const BehaviorScript bhvOnOffSwitch[];
+extern const BehaviorScript bhvOnOffBlock[];
+extern const BehaviorScript bhvOnOffController[];

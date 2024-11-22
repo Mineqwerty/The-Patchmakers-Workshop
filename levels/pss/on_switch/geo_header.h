@@ -1,0 +1,15 @@
+extern const GeoLayout on_switch_geo[];
+extern u8 on_switch_onblbok_ci4[];
+extern u8 on_switch_onblbok_pal_rgba16[];
+extern u8 on_switch_onblock_ci8[];
+extern u8 on_switch_onblock_pal_rgba16[];
+extern Vtx on_switch_Cube_016_mesh_layer_1_vtx_cull[8];
+extern Vtx on_switch_Cube_016_mesh_layer_1_vtx_0[12];
+extern Gfx on_switch_Cube_016_mesh_layer_1_tri_0[];
+extern Vtx on_switch_Cube_016_mesh_layer_1_vtx_1[4];
+extern Gfx on_switch_Cube_016_mesh_layer_1_tri_1[];
+extern Gfx mat_on_switch_f3dlite_material_049[];
+extern Gfx mat_revert_on_switch_f3dlite_material_049[];
+extern Gfx mat_on_switch_f3dlite_material[];
+extern Gfx mat_revert_on_switch_f3dlite_material[];
+extern Gfx on_switch_Cube_016_mesh_layer_1[];
