@@ -2199,6 +2199,56 @@ I don't quite understand how, but he picked himself up and\n\
 continued his search.\n\
 To get something like that from such a hopeless place..."))
 
+DEFINE_DIALOG(DIALOG_SEWNIA_TS, 1, 3, 30, 200, _("\
+@7F60B4FFAnd so here it is...\n\
+This is where The Patchmaker's journey ended...\n\
+And where his madness truly began.\n\
+@7F60B4FFInside of this portal is the place where he found the lockbox.\n\
+The one that has a pocket between life and death hidden within, where\n\
+he hides now...\n\
+@7F60B4FFAs for the place itself, you should look for a key to the\n\
+lockbox within. I have no idea what you'll be facing, or what The\n\
+Patchmaker did to traverse it...\n\
+@7F60B4FFBut I believe in you, Mario.\n\
+I know you'll see this through, so we can put him to rest.\n\
+Just... as always, be careful..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_1, 1, 3, 30, 200, _("\
+@7F60B4FFOh, you want to know about this part of the workshop?\n\
+Well, as somebody who explored this place through and through,\n\
+I'd be glad to tell you!\n\
+@7F60B4FFSo, this part is actually pretty old and forgotten, even\n\
+more so than most areas here. It was the very first part of the workshop\n\
+that was built, after all. It has a slight nostalgic feeling...\n\
+@7F60B4FFThe Patchmaker used magic to build a lot of the workshop, but\n\
+this area was all built by hand.\n\
+It's sure showing its neglect, huh?\n\
+@7F60B4FFUm... what else...\n\
+Oh! The window in the attic! It might seem dull and dark,\n\
+but I would check on it when you get a decent amount of star power!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_2, 1, 3, 30, 200, _("\
+@7F60B4FFThis part of the workshop could be better described as a museum.\n\
+The Patchmaker displays a lot of his work here, and he even\n\
+went out of his way to make the stairs themself artistic and whimsical.\n\
+@7F60B4FFSee, he wanted to one day open up a gallery to the public.\n\
+This place is quite off the beaten path in terms of location, but he\n\
+claimed that those seeking art will always look hard for it.\n\
+@7F60B4FFIt was a lofty dream... But I had always believed he could do it.\n\
+That was so long ago...\n\
+I hope the dream can still be real one day."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_3, 1, 3, 30, 200, _("\
+@7F60B4FFThis... is where The Patchmaker had spent most of his\n\
+time before everything recent happened.\n\
+I have bad memories of this place...\n\
+@7F60B4FFI'm sure you can tell by everything around you just how obsessed he became.\n\
+I really had hoped to not be coming back here, but...\n\
+Um... Something is missing. Something that was here before.\n\
+@7F60B4FF...Huh? You asked what it was?\n\
+I... I don't want to say. It isn't important.\n\
+I just wonder where they all went..."))
+
 DEFINE_DIALOG(DIALOG_SEWNIA_EA_ALTERNATE, 1, 3, 30, 200, _("\
 @7F60B4FFI... don't want to talk about this place again\n\
 if that's alright...\n\
