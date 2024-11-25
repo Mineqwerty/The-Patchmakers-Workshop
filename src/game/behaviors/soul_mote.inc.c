@@ -47,17 +47,40 @@ void bhv_soul_mote_loop(void) {
             break;
         }
 
-        if (gMarioState->miasmaSoulCount == o->oBehParams2ndByte && gMarioState->miasmaArmorTimer > 0) {
+        if (gMarioState->miasmaSoulCount < o->oBehParams2ndByte && gMarioState->miasmaArmorTimer > 0) {
             o->oAction = 1;
-            gMarioState->miasmaSoulCount--;
+            o->oOpacity = 0;
         }
         else if (gMarioState->miasmaSoulCount < o->oBehParams2ndByte) {
+            struct Object *flame = spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                flame->oBehParams = 0x01000000;
             obj_mark_for_deletion(o);
         }
 
     }
     else {
-        
+        o->oPosX = gMarioState->pos[0];
+        o->oPosY = gMarioState->pos[1] + 80;
+        o->oPosZ = gMarioState->pos[2];
+
+        cur_obj_scale(3.0f);
+
+        u8 r,g,b;
+                r = 0x5F - abss(0x3F * sins(o->oTimer * 0x222));
+                g =  0xB6 - abss(0x84 * sins(o->oTimer * 0x222));
+                b =  0xD9 - abss(0x85 * sins(o->oTimer * 0x222));
+
+        SET_BPARAM1(o->oPrimColorParams, r);
+        SET_BPARAM2(o->oPrimColorParams, g);
+        SET_BPARAM3(o->oPrimColorParams, b);
+
+        o->oOpacity = approach_s16_symmetric(o->oOpacity, CLAMP(gMarioState->miasmaArmorTimer/2, 0, 127), 10);
+
+        if (gMarioState->miasmaArmorTimer == 1) {
+            struct Object *flame = spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                flame->oBehParams = 0x01000000;
+            obj_mark_for_deletion(o);
+        }
     }
 }
 

@@ -603,6 +603,8 @@ UNUSED static u32 unused_determine_knockback_action(struct MarioState *m) {
 u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg) {
     u32 bonkAction;
 
+    u32 originalAction = m->action;
+
     s16 terrainIndex = 0; // 1 = air, 2 = water, 0 = default
     s16 strengthIndex = 0;
 
@@ -623,7 +625,7 @@ u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg) {
     } else if (m->interactObj->oDamageOrCoinValue >= 2) {
         strengthIndex = 1;
     }
-
+    if (m->miasmaArmorTimer == 0) {
     m->faceAngle[1] = angleToObject;
 
     if (terrainIndex == 2) {
@@ -652,6 +654,11 @@ u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg) {
     } else {
         m->faceAngle[1] += 0x8000;
         bonkAction = sForwardKnockbackActions[terrainIndex][strengthIndex];
+    }
+    }
+
+    if (m->miasmaArmorTimer > 0) {
+        bonkAction = originalAction;
     }
 
     return bonkAction;
@@ -858,7 +865,12 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
 
         damage = take_damage_from_interact_object(m);
 
-        if (obj->oInteractionSubtype & INT_SUBTYPE_BIG_KNOCKBACK) {
+        if (m->miasmaArmorTimer > 0 && damage > 0) {
+            damage = CLAMP((damage/2), 1, 8);
+            m->invincTimer = 90;
+        }
+
+        else if (obj->oInteractionSubtype & INT_SUBTYPE_BIG_KNOCKBACK) {
             m->forwardVel = 40.0f;
         }
 

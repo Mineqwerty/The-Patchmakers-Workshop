@@ -150,6 +150,14 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
         case ACT_ARG_PUNCH_SEQUENCE_BREAKDANCE:
             play_mario_action_sound(m, SOUND_MARIO_PUNCH_HOO, 1);
             set_mario_animation(m, MARIO_ANIM_BREAKDANCE);
+            if (m->equippedPatch == PATCH_MIASMA) {
+                for (u8 i = 0; i < 10; i++) {
+                        struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                        ribbon->oFaceAngleRoll = random_u16();
+                        ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                    }
+            }
+
             animFrame = m->marioObj->header.gfx.animInfo.animFrame;
 
             if (animFrame >= 2 && animFrame < 8) {

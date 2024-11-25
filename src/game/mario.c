@@ -1979,13 +1979,10 @@ void perform_patch_action(struct MarioState *m) {
 
         if (gMarioState->miasmaSoulCount > 0) {
             if (gMarioState->miasmaSoulCount < 5) {
-                for (u8 i = 0; i < 10; i++) {
-                    struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, gMarioObject, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
-                    ribbon->oFaceAngleRoll = random_u16();
-                    ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
+                if (gMarioState->miasmaArmorTimer == 0) {
+                    gMarioState->miasmaArmorTimer = 300;
+                    gMarioState->miasmaSoulCount--;
                 }
-
-                gMarioState->miasmaArmorTimer = 300;
             }
             else {
                 for (u8 i = 0; i < 10; i++) {
