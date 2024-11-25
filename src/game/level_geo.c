@@ -121,6 +121,24 @@ Gfx *geo_backdrop_move(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
     return 0;
 }
 
+Gfx *geo_remove_cracked_wall(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER && gDestroyedCrackInReality) {
+        ((struct GraphNodeTranslation *) node->next)->translation[0] = 0;
+        ((struct GraphNodeTranslation *) node->next)->translation[1] = -18000;
+        ((struct GraphNodeTranslation *) node->next)->translation[2] = 0;
+    }
+    return 0;
+}
+
+Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        Gfx *mat = segmented_to_virtual(mat_bbh_dl_f3dlite_material_003_layer1);
+
+	    align_st_to_cam(mat, 17);
+    }
+    return 0;
+}
+
 Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
         Vec3f portalPos;

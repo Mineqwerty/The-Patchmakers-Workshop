@@ -3,25 +3,18 @@ void bhv_on_off_block_init(void) {
 }
 
 void bhv_on_off_block_loop(void) {
-    if (o->oTimer < 5) {
-        f32 dist;
-        o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvOnOffController, &dist);
-    } else {
-        f32 dist;
-        o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvOnOffController, &dist);
-        dbp(o->parentObj->oOnOffState);
-        if (o->oOnOffBlockType == o->parentObj->oOnOffState) {
+        if (o->oOnOffBlockType == gMarioState->onOffState) {
             cur_obj_set_model(MODEL_OFF_BLOCK + 2 * (o->oOnOffBlockType));
             load_object_collision_model();
         } else {
             cur_obj_set_model(MODEL_TRANSPARENT_OFF_BLOCK + 2 * (o->oOnOffBlockType));
         }
-    }
+    
     
 }
 
 void bhv_on_off_controller_init(void) {
-    o->oOnOffState = 1;
+    
 }
 
 void bhv_on_off_controller_loop(void) {

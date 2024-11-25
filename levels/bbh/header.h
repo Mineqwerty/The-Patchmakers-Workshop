@@ -182,4 +182,8 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/tfp_skybox_web/geo_header.h"
 
+#include "levels/bbh/reality_cracks/geo_header.h"
+
+#include "levels/bbh/reality_cracks/collision_header.h"
+
 #endif

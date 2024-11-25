@@ -11,14 +11,6 @@ void scroll_gfx_mat_bbh_dl_tfp_tiles_layer1() {
 
 };
 
-void scroll_gfx_mat_bbh_dl_f3dlite_material_003_layer1() {
-	Gfx *mat = segmented_to_virtual(mat_bbh_dl_f3dlite_material_003_layer1);
-
-	shift_s(mat, 17, PACK_TILESIZE(0, 20));
-
-};
-
 void scroll_bbh() {
 	scroll_gfx_mat_bbh_dl_tfp_tiles_layer1();
-	scroll_gfx_mat_bbh_dl_f3dlite_material_003_layer1();
 };

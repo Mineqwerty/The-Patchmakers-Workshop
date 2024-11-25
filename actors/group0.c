@@ -107,3 +107,6 @@
 
 #include "drag_spark/model.inc.c"
 #include "thread_particle/model.inc.c"
+#include "menu_purple_portal/model.inc.c"
+#include "menu_orange_portal/model.inc.c"
+#include "menu_arrow_portal_selector/model.inc.c"

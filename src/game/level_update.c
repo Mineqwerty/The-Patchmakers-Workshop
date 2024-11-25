@@ -730,8 +730,9 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
         sWarpDest.type = WARP_TYPE_SAME_AREA;
     }
 
-    if (gCurrLevelNum == LEVEL_PSS) {
+    if (gCurrLevelNum == LEVEL_PSS && portalID == 0) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
+        gMarioState->onOffState = 1;
     }
 
     sWarpDest.levelNum = destLevel;

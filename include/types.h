@@ -551,6 +551,7 @@ struct MarioState {
     s16 marioScreenY;
     s16 boostTimer;
     u16 overrideGravity;
+    u16 onOffState;
 
     Vec3f waterCurrentVel;
 

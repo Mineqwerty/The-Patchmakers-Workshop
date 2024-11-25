@@ -1,0 +1,11 @@
+extern u8 menu_purple_portal_purpportal_rgba16[];
+extern Vtx menu_purple_portal_Plane_018_mesh_vtx_cull[8];
+extern Vtx menu_purple_portal_Plane_018_mesh_vtx_0[4];
+extern Gfx menu_purple_portal_Plane_018_mesh_tri_0[];
+extern Vtx menu_purple_portal_Plane_018_mesh_vtx_1[4];
+extern Gfx menu_purple_portal_Plane_018_mesh_tri_1[];
+extern Gfx mat_menu_purple_portal_z[];
+extern Gfx mat_revert_menu_purple_portal_z[];
+extern Gfx mat_menu_purple_portal_f3dlite_material_014[];
+extern Gfx mat_revert_menu_purple_portal_f3dlite_material_014[];
+extern Gfx menu_purple_portal_Plane_018_mesh[];

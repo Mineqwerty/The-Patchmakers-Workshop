@@ -1,0 +1,11 @@
+extern u8 menu_orange_portal_orangportal_rgba16[];
+extern Vtx menu_orange_portal_Plane_019_mesh_vtx_cull[8];
+extern Vtx menu_orange_portal_Plane_019_mesh_vtx_0[4];
+extern Gfx menu_orange_portal_Plane_019_mesh_tri_0[];
+extern Vtx menu_orange_portal_Plane_019_mesh_vtx_1[4];
+extern Gfx menu_orange_portal_Plane_019_mesh_tri_1[];
+extern Gfx mat_menu_orange_portal_z[];
+extern Gfx mat_revert_menu_orange_portal_z[];
+extern Gfx mat_menu_orange_portal_f3dlite_material_015[];
+extern Gfx mat_revert_menu_orange_portal_f3dlite_material_015[];
+extern Gfx menu_orange_portal_Plane_019_mesh[];

@@ -1086,3 +1086,7 @@ void bhv_on_off_block_init(void);
 void bhv_on_off_block_loop(void);
 void bhv_on_off_controller_init(void);
 void bhv_on_off_controller_loop(void);
+void bhv_reality_cracks_init(void);
+void bhv_reality_cracks_loop(void);
+void bhv_reality_cracks_hitbox_init(void);
+void bhv_reality_cracks_hitbox_loop(void);

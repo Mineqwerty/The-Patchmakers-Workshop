@@ -691,7 +691,7 @@ void bhv_halo_loop(void) {
         }
 
         struct Object *nearRedCoin = cur_obj_find_nearest_object_with_behavior(bhvRedCoin, &dist);
-        if (dist < 200) {
+        if (dist < 200 && nearRedCoin->activeFlags != ACTIVE_FLAG_DEACTIVATED && nearRedCoin->oInteractStatus == 0) {
             if (o->oHaloCapturedObject) {
                 if (obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
                     obj_mark_for_deletion(o->oHaloCapturedObject);
@@ -760,6 +760,10 @@ void portal_sample_fb(void) {
     u16 *image = segmented_to_virtual(portal_portal_2_rgba16);
     if (o->oBehParams2ndByte == 1) {
         image = segmented_to_virtual(portal_portal_rgba16);
+        gMarioState->portal2Info[2] = 1;
+    }
+    else {
+        gMarioState->portal1Info[2] = 1;
     }
 
     if (gMarioState->marioScreenX < 120) {
@@ -816,7 +820,7 @@ void bhv_portal_init(void) {
     }
 
     if (o->oPortalSpawnType == 1) {
-        portal_sample_fb();
+        
         play_sound(SOUND_GENERAL_PAINTING_EJECT, gMarioState->marioObj->header.gfx.cameraToObject);
     }
 
@@ -833,6 +837,10 @@ void bhv_portal_loop(void) {
         } else if (o->oTimer == 20) {
             obj_scale_xyz(o, 1.0f, 1.0f, 1.0f);
             o->oAction = 1;
+        }
+
+        if (o->oTimer == 15) {
+            portal_sample_fb();
         }
     } else if (o->oAction < 3) {
         //if mario gets close, get ready to be able to warp him
@@ -1262,6 +1270,10 @@ void bhv_transmutation_cone_loop(void) {
                     }
                     else if (obj_has_behavior(target, bhvRedFlower)) {
                         spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvFloatingPlane)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
                         obj_mark_for_deletion(target);
                     }
                     else if (obj_has_behavior(target, bhvTorchHolder)) {

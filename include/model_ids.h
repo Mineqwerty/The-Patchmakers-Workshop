@@ -652,26 +652,6 @@
 #define MODEL_GODDESS_SPEAR              0x111
 #define MODEL_GILDED_STAR              0x112
 
-//The Far Plane
-#define MODEL_FLOATING_PLANE                   0x100
-#define MODEL_FAR_PLANE_CUBE                   0x101
-#define MODEL_FAR_PLANE_CUBE_HEAD                   0x102
-#define MODEL_PORTAL_BARRIER                   0x103
-#define MODEL_BOX_SWITCH                   0x104
-#define MODEL_TFP_PUZZLE_BOX                   0x105
-#define MODEL_TFP_GROWING_BLOCK                   0x106
-#define MODEL_TFP_ROTARY_ARM                  0x107
-#define MODEL_TFP_ROTARY_PLATFORM                   0x108
-#define MODEL_BOX_BASKET                   0x109
-#define MODEL_FAR_PLANE_BOOST_PANEL                   0x10A
-#define MODEL_RING_MISSION_RING                   0x10B
-#define MODEL_RING_MISSION_TARGET                   0x10C
-#define MODEL_RING_FRAGMENT                   0x10D
-#define MODEL_TFP_CHECKER_PLATFORM                   0x10E
-#define MODEL_TFP_SKYBOX_BUBBLES                   0x10F
-#define MODEL_TFP_SKYBOX_SQUARES                   0x110
-#define MODEL_TFP_SKYBOX_WEB                   0x111
-
 //Subterranean Seaway
 #define MODEL_TILTING_STONE_BRIDGE                   0x100
 #define MODEL_UNDERWATER_STONE_DOOR                   0x101
@@ -730,6 +710,27 @@
 #define MODEL_DANGER_PUFF                   0x103
 #define MODEL_MALVA_BUD                   0x104
 #define MODEL_MALVA_FLOWER                   0x105
+
+//The Far Plane
+#define MODEL_FLOATING_PLANE                   0x100
+#define MODEL_FAR_PLANE_CUBE                   0x101
+#define MODEL_FAR_PLANE_CUBE_HEAD                   0x102
+#define MODEL_PORTAL_BARRIER                   0x103
+#define MODEL_BOX_SWITCH                   0x104
+#define MODEL_TFP_PUZZLE_BOX                   0x105
+#define MODEL_TFP_GROWING_BLOCK                   0x106
+#define MODEL_TFP_ROTARY_ARM                  0x107
+#define MODEL_TFP_ROTARY_PLATFORM                   0x108
+#define MODEL_BOX_BASKET                   0x109
+#define MODEL_FAR_PLANE_BOOST_PANEL                   0x10A
+#define MODEL_RING_MISSION_RING                   0x10B
+#define MODEL_RING_MISSION_TARGET                   0x10C
+#define MODEL_RING_FRAGMENT                   0x10D
+#define MODEL_TFP_CHECKER_PLATFORM                   0x10E
+#define MODEL_TFP_SKYBOX_BUBBLES                   0x10F
+#define MODEL_TFP_SKYBOX_SQUARES                   0x110
+#define MODEL_TFP_SKYBOX_WEB                   0x111
+#define MODEL_REALITY_CRACKS                   0x112
 
 //Empyrean Abyss
 #define MODEL_FLOATING_TILTING_GEM                   0x100

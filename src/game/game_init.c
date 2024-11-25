@@ -63,6 +63,8 @@ s16 gBossHealthDisplay;
 s16 gBossMaxHealth;
 u32 gTatumCount;
 u8 gTatumStall;
+s16 portalSelectorSide;
+s16 gDestroyedCrackInReality = 0;
 u8 gFBE = FALSE;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;

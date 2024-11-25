@@ -21,6 +21,7 @@ void bhv_floating_plane_loop(void) {
             }
 
             if (o->oDistanceToMario < 200.0f) {
+               cur_obj_play_sound_1(SOUND_BOX_BLIP);
                o->oAngleVelPitch = random_u16() / 0x50;
                o->oAngleVelYaw = random_u16() / 0x50;
                o->oAngleVelRoll = random_u16() / 0x50;

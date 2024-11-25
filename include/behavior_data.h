@@ -787,3 +787,5 @@ extern const BehaviorScript bhvRotatingPlaneSpawner[];
 extern const BehaviorScript bhvOnOffSwitch[];
 extern const BehaviorScript bhvOnOffBlock[];
 extern const BehaviorScript bhvOnOffController[];
+extern const BehaviorScript bhvRealityCracks[];
+extern const BehaviorScript bhvRealityCracksHitbox[];

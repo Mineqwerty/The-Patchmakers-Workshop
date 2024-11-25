@@ -21,6 +21,7 @@ const GeoLayout bbh_area_1_geo[] = {
 		GEO_CLOSE_NODE(),
 		GEO_ASM(1, geo_start_loop),
 		GEO_OPEN_NODE(),
+		GEO_ASM(0, geo_update_road_depth),
 		GEO_ASM(0, geo_loop_level),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 0, 100, 0, bbh_dl_ccc_zlevel_geo_mesh_layer_1),
 		GEO_ASM(0, geo_loop_level),

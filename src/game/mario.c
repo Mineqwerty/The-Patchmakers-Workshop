@@ -46,6 +46,8 @@
  *                    ANIMATIONS                  *
  **************************************************/
 
+u8 check_able_to_use_patch();
+
 /**
  * Checks if Mario's animation has reached its end point.
  */
@@ -1516,8 +1518,15 @@ void update_mario_inputs(struct MarioState *m) {
     }
 #endif
 
-    update_mario_button_inputs(m);
-    update_mario_joystick_inputs(m);
+    
+    if (gMenuMode != MENU_MODE_PLACING_PORTAL) {
+        update_mario_button_inputs(m);
+        update_mario_joystick_inputs(m);
+    }
+    else {
+        m->input = 0;
+        m->intendedMag = 0;
+    }
     update_mario_geometry_inputs(m);
 #ifdef VANILLA_DEBUG
     debug_print_speed_action_normal(m);
@@ -2086,6 +2095,30 @@ void patch_update(struct MarioState *m ) {
         break;
 
         case PATCH_PORTAL:
+
+
+            if ((gPlayer1Controller->buttonDown & L_TRIG) && check_able_to_use_patch() && gMenuMode == MENU_MODE_NONE) {
+                gMenuMode = MENU_MODE_PLACING_PORTAL;
+            }
+            else if (!(gPlayer1Controller->buttonDown & L_TRIG) && gMenuMode == MENU_MODE_PLACING_PORTAL) {
+                gMenuMode = MENU_MODE_NONE;
+                gSlowdownCount = 0;
+
+                if (portalSelectorSide == -1) {
+                    if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
+                    m->patchChildSecondaryObj = spawn_object_relative(1, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
+                    m->patchChildSecondaryObj->oPortalSpawnType = 1;
+                    m->curPatch = PATCH_NONE;
+                }
+                else if (portalSelectorSide == 1) {
+                    if (m->patchChildPortalObj) obj_mark_for_deletion(m->patchChildPortalObj);
+                    m->patchChildPortalObj = spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvPortal);
+                    m->patchChildPortalObj->oPortalSpawnType = 1;
+                    m->curPatch = PATCH_NONE;
+                }
+            }
+
+            /*
             if ((gPlayer1Controller->buttonDown & L_TRIG) && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE) {
                 if (gMarioState->patchTimer >= 7) {
                     if (m->patchChildSecondaryObj) obj_mark_for_deletion(m->patchChildSecondaryObj);
@@ -2100,6 +2133,7 @@ void patch_update(struct MarioState *m ) {
                 m->patchChildPortalObj->oPortalSpawnType = 1;
                 m->curPatch = PATCH_NONE;
             }
+            */
         break;
         case PATCH_BREEZE:
             if (gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
@@ -2548,6 +2582,7 @@ void init_mario(void) {
     gMarioState->miasmaSoulCount = 0;
     gMarioWaterwalk = FALSE;
     gMarioState->overrideGravity = FALSE;
+    
     update_dl_dpad_patches();
 
     gDialogBoxState = 0;
@@ -2644,6 +2679,9 @@ void init_mario_from_save_file(void) {
     gMarioState->portal2Position[0] = 0;
     gMarioState->portal2Position[1] = 0;
     gMarioState->portal2Position[2] = 0;
+
+    gMarioState->portal1Info[2] = 0;
+    gMarioState->portal2Info[2] = 0;
 
     gMarioState->numCoins = 0;
     gMarioState->numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);

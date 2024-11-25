@@ -24,6 +24,7 @@ enum EnvFxMode {
 Gfx *geo_envfx_main(s32 callContext, struct GraphNode *node, Mat4 mtxf);
 Gfx *geo_skybox_main(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_zbuffer_clear(s32 callContext, UNUSED struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_remove_cracked_wall(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_backdrop_move(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
@@ -32,6 +33,7 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_get_area_material_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_rotate_billboard(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H

@@ -106,3 +106,5 @@
 #include "levels/bbh/tfp_skybox_bubbles/model.inc.c"
 #include "levels/bbh/tfp_skybox_squares/model.inc.c"
 #include "levels/bbh/tfp_skybox_web/model.inc.c"
+#include "levels/bbh/reality_cracks/model.inc.c"
+#include "levels/bbh/reality_cracks/collision.inc.c"

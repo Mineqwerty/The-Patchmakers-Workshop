@@ -433,6 +433,11 @@ void render_game(void) {
 
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, gBorderHeight, SCREEN_WIDTH,
                       SCREEN_HEIGHT - gBorderHeight);
+
+        if (gMenuMode == MENU_MODE_PLACING_PORTAL) {
+                shade_portal_screen();
+         }
+
         render_hud();
 
         render_fb_effects();

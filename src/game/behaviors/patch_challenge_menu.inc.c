@@ -43,6 +43,7 @@ void bhv_patch_challenge_menu_loop(void) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
             }
             if (o->oTimer == 49) {
+                gMarioState->onOffState = 1;
                 initiate_warp(LEVEL_PSS, gPatchChallengeIndex, 0x0A, 0, 0);
             }
         break;

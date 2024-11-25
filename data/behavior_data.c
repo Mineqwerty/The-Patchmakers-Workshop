@@ -8649,8 +8649,9 @@ const BehaviorScript bhvOnOffSwitch[] = {
 
 const BehaviorScript bhvOnOffBlock[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ACTIVE_FROM_AFAR)),
     LOAD_COLLISION_DATA(on_block_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_on_off_block_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_on_off_block_loop),
@@ -8663,5 +8664,25 @@ const BehaviorScript bhvOnOffController[] = {
     CALL_NATIVE(bhv_on_off_controller_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_on_off_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRealityCracks[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_COLLISION_DATA(reality_cracks_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_reality_cracks_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_reality_cracks_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRealityCracksHitbox[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_reality_cracks_hitbox_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_reality_cracks_hitbox_loop),
     END_LOOP(),
 };

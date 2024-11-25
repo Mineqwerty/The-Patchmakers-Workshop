@@ -375,3 +375,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/rotating_plane_spawner.inc.c"
 #include "behaviors/on_off_switch.inc.c"
 #include "behaviors/on_off_block.inc.c"
+#include "behaviors/reality_cracks.inc.c"

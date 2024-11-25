@@ -504,4 +504,10 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "thread_particle/geo_header.h"
 
+#include "menu_purple_portal/header.h"
+
+#include "menu_orange_portal/header.h"
+
+#include "menu_arrow_portal_selector/header.h"
+
 #endif

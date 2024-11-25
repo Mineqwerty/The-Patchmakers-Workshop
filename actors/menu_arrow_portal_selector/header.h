@@ -1,0 +1,7 @@
+extern u8 menu_arrow_portal_selector_arrowpoint_ia8[];
+extern Vtx menu_arrow_portal_selector_Plane_020_mesh_vtx_cull[8];
+extern Vtx menu_arrow_portal_selector_Plane_020_mesh_vtx_0[4];
+extern Gfx menu_arrow_portal_selector_Plane_020_mesh_tri_0[];
+extern Gfx mat_menu_arrow_portal_selector_f3dlite_material[];
+extern Gfx mat_revert_menu_arrow_portal_selector_f3dlite_material[];
+extern Gfx menu_arrow_portal_selector_Plane_020_mesh[];

@@ -52,7 +52,7 @@ void align_st_to_cam(Gfx *dl, u32 cmd) {
     vec3f_normalize(dir);
     f32 amt = vec3f_dot(dir, down);
     amt = absf(amt); // 1 looking down, 0 perpendicular
-    amt = ((amt * -1) + 1) * 256.0f*sins(0x100 * gGlobalTimer);
+    amt = ((amt * -1) + 1)* 256.0f;//sins(0x100 * gGlobalTimer);
     f32 sA = sins(gLakituState.yaw) * amt;
     f32 tA = coss(gLakituState.yaw) * amt;
 

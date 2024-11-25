@@ -29,6 +29,7 @@
 #include "src/game/geo_misc.h"
 #include "levels/castle_inside/header.h"
 #include "src/game/puppyprint.h"
+#include "actors/group0.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
@@ -3029,7 +3030,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Candlelit Chamber",
     "Hidden Village Hold",
     "The Far Plane",
-    "Empyrean Abyss"
+    "Empyrean Abyss",
     "Timeless Shrine",
     "Encounter - The Patchmaker",
     "Map - Thorn Thicket Cliffs",
@@ -3299,6 +3300,63 @@ void render_patch_challenge_menu() {
         
     
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+s16 lastSelectedSide;
+
+void shade_portal_screen() {
+    portalSelectorSide = (absf(gPlayer1Controller->rawStickX) > 60 ? CLAMP(-gPlayer1Controller->rawStickX, -1, 1) : 0);
+    
+    prepare_blank_box();
+    
+    render_blank_box(0, 0, SCREEN_WIDTH/2 + 30*portalSelectorSide, SCREEN_HEIGHT, 180, 38, 212, 160);
+    render_blank_box(SCREEN_WIDTH/2 + 30*portalSelectorSide, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 227, 111, 2, 160);
+    finish_blank_box();
+}
+
+void render_placing_portal_menu() {
+
+    portalSelectorSide = (absf(gPlayer1Controller->rawStickX) > 60 ? CLAMP(-gPlayer1Controller->rawStickX, -1, 1) : 0);
+
+    if (lastSelectedSide != portalSelectorSide) {
+        lastSelectedSide = portalSelectorSide;
+        play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+    }
+
+    if (gMarioState->portal1Info[2] == 1) {
+        //bcopy(segmented_to_virtual(&portal_portal_rgba16), segmented_to_virtual(&menu_purple_portal_purpportal_rgba16), 4096);
+    }
+    if (gMarioState->portal2Info[2] == 1) {
+        //bcopy(segmented_to_virtual(&portal_portal_2_rgba16), segmented_to_virtual(&menu_orange_portal_orangportal_rgba16), 4096);
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X, SCREEN_CENTER_Y, 0);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, -100 + 10*portalSelectorSide, -40, 0);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.4f + 0.1f*portalSelectorSide, 0.4f + 0.1f*portalSelectorSide, 1.0f);
+    gSPDisplayList(gDisplayListHead++, menu_purple_portal_Plane_018_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, 100 + 10*portalSelectorSide, -40, 0);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.4f - 0.1f*portalSelectorSide, 0.4f - 0.1f*portalSelectorSide, 1.0f);
+    gSPDisplayList(gDisplayListHead++, menu_orange_portal_Plane_019_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+
+    //create_dl_rotation_matrix(MENU_MTX_PUSH, 90 * portalSelectorSide, 0, 0, 1.0f);
+    //gSPDisplayList(gDisplayListHead++, menu_arrow_portal_selector_Plane_020_mesh);
+    //gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (gMarioState->equippedPatch != PATCH_PORTAL) {
+        gMenuMode = MENU_MODE_NONE;
+    }
+
 }
 
 void check_if_patch_on_dpad_and_switch(s8 patchID, s8 intendedDirection, s8 patchMap[]) {
@@ -3986,6 +4044,11 @@ s32 render_menus_and_dialogs(void) {
             case MENU_MODE_PATCH_CHALLENGE_MENU:
                 render_patch_challenge_menu();
             break;
+            case MENU_MODE_PLACING_PORTAL:
+                render_placing_portal_menu();
+                gSlowdownCount = 8;
+            break;
+            
         }
 
         gDialogColorFadeTimer = (s16) gDialogColorFadeTimer + 0x1000;

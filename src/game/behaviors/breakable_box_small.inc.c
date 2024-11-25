@@ -171,4 +171,9 @@ void bhv_breakable_box_small_loop(void) {
     }
 
     o->oInteractStatus = INT_STATUS_NONE;
+
+    if (gCurrLevelNum == LEVEL_PSS) {
+        o->oPosZ = 0;
+    }
+
 }
