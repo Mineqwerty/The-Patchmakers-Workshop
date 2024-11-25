@@ -485,8 +485,10 @@ static void obj_die_if_health_non_positive(void) {
 
         yarn_enemy_death();
 
-        if (gMarioState->equippedPatch == PATCH_MIASMA) {
+        if (gMarioState->equippedPatch == PATCH_MIASMA && gMarioState->miasmaSoulCount < 5) {
             gMarioState->miasmaSoulCount++;
+            struct Object *mote = spawn_object_relative(gMarioState->miasmaSoulCount, 0, 20, 0, o, MODEL_SOUL_MOTE, bhvSoulMote);
+            mote->parentObj = gMarioState->marioObj;
         }
 
         if (o->parentObj && obj_has_behavior(o->parentObj, bhvActualEnemyObelisk)) {

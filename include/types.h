@@ -541,6 +541,7 @@ struct MarioState {
     u8 haloCaptureType;
     u8 miasmaSoulCount;
     u8 patchTimer;
+    s16 miasmaArmorTimer;
     u8 dialogStoryNum;
     struct Object *patchChildObj;
     struct Object *patchChildPortalObj;

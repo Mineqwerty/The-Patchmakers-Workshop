@@ -110,3 +110,4 @@
 #include "menu_purple_portal/model.inc.c"
 #include "menu_orange_portal/model.inc.c"
 #include "menu_arrow_portal_selector/model.inc.c"
+#include "soul_mote/model.inc.c"

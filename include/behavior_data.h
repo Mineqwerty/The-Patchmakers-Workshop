@@ -789,3 +789,4 @@ extern const BehaviorScript bhvOnOffBlock[];
 extern const BehaviorScript bhvOnOffController[];
 extern const BehaviorScript bhvRealityCracks[];
 extern const BehaviorScript bhvRealityCracksHitbox[];
+extern const BehaviorScript bhvSoulMote[];

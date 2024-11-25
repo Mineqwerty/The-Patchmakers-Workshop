@@ -1984,6 +1984,8 @@ void perform_patch_action(struct MarioState *m) {
                     ribbon->oFaceAngleRoll = random_u16();
                     ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
                 }
+
+                gMarioState->miasmaArmorTimer = 300;
             }
             else {
                 for (u8 i = 0; i < 10; i++) {
@@ -2337,6 +2339,10 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     if (gMarioState->boostTimer > 0) {
         gMarioState->boostTimer--;
+    }
+
+    if (gMarioState->miasmaArmorTimer > 0) {
+        gMarioState->miasmaArmorTimer--;
     }
 
     // Updates once per frame:

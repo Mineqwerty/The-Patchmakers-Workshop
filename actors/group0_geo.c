@@ -53,3 +53,4 @@
 #include "koopa/geo.inc.c"
 #include "drag_spark/geo.inc.c"
 #include "thread_particle/geo.inc.c"
+#include "soul_mote/geo.inc.c"

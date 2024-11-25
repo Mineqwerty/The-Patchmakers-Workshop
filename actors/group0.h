@@ -510,4 +510,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "menu_arrow_portal_selector/header.h"
 
+#include "soul_mote/geo_header.h"
+
 #endif

@@ -8686,3 +8686,13 @@ const BehaviorScript bhvRealityCracksHitbox[] = {
         CALL_NATIVE(bhv_reality_cracks_hitbox_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSoulMote[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_soul_mote_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_soul_mote_loop),
+    END_LOOP(),
+};
