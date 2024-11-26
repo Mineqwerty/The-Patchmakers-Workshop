@@ -1627,7 +1627,7 @@ void render_dialog_triangle_choice(void) {
     }
     else if (gLastDialogResponse == 2) {
         if (gDialogBoxState != DIALOG_STATE_CLOSING) {
-            handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gDialogLineNum, 1, 4);
+            handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gDialogLineNum, 1, 3);
         }
         create_dl_translation_matrix(MENU_MTX_NOPUSH, 9, -(gDialogLineNum * 16) + Y_VAL4_1 - (32), 0);
     }

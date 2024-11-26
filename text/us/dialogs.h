@@ -47,10 +47,9 @@ you bounce on us."))
 DEFINE_DIALOG(DIALOG_003, 1, 6, 95, 200, _("\
 @7F60B4FFWhat can I help you with, Mario?\n\
 \n\
-     @FFFFFFFFWhat to do next\n\
+     @FFFFFFFFJust wanted to talk\n\
      About this stage\n\
-     Toggle following\n\
-     Just wanted to talk"))
+     Toggle following"))
 
 DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
 You should make the\n\
@@ -2227,16 +2226,22 @@ It's sure showing its neglect, huh?\n\
 Oh! The window in the attic! It might seem dull and dark,\n\
 but I would check on it when you get a decent amount of star power!"))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_2, 1, 3, 30, 200, _("\
-@7F60B4FFThis part of the workshop could be better described as a museum.\n\
-The Patchmaker displays a lot of his work here, and he even\n\
-went out of his way to make the stairs themself artistic and whimsical.\n\
-@7F60B4FFSee, he wanted to one day open up a gallery to the public.\n\
-This place is quite off the beaten path in terms of location, but he\n\
-claimed that those seeking art will always look hard for it.\n\
-@7F60B4FFIt was a lofty dream... But I had always believed he could do it.\n\
-That was so long ago...\n\
-I hope the dream can still be real one day."))
+DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_2, 1, 5, 30, 200, _("\
+@7F60B4FFThis part of the workshop could be better \n\
+described as a museum. The Patchmaker displays \n\
+a lot of his work here, and he even\n\
+went out of his way to make the stairs \n\
+themselves artistic and whimsical.\n\
+@7F60B4FFSee, he wanted to one day open up a gallery \n\
+to the public. This place is quite off the beaten \n\
+path in terms of location, but he\n\
+claimed that those seeking art will \n\
+always look hard for it.\n\
+@7F60B4FFIt was a lofty dream... But I had always\n\
+believed he could do it. That was so long ago...\n\
+\n\
+\n\
+...I hope the dream can still be real one day."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_3, 1, 3, 30, 200, _("\
 @7F60B4FFThis... is where The Patchmaker had spent most of his\n\
@@ -2253,6 +2258,27 @@ DEFINE_DIALOG(DIALOG_SEWNIA_EA_ALTERNATE, 1, 3, 30, 200, _("\
 @7F60B4FFI... don't want to talk about this place again\n\
 if that's alright...\n\
 Sorry..."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_STOP_FOLLOWING, 1, 3, 30, 200, _("\
+@7F60B4FFOh, you want me to stop following you?\n\
+Of course, I'll be around if you\n\
+need me."))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_STOP_FOLLOWING_BOWSER, 1, 3, 30, 200, _("\
+@7F60B4FFGot it, I'll go see what\n\
+Mr. Bowser is up to! He'll probably\n\
+like the company, even if he doesn't say it!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_STOP_FOLLOWING_PEACH, 1, 4, 30, 200, _("\
+@7F60B4FFAlright then, good luck!\n\
+I'll think I'll go talk with Princess Peach!\n\
+It seems like she has a lot to teach me,\n\
+especially the lady-like stuff!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_START_FOLLOWING, 1, 3, 30, 200, _("\
+@7F60B4FFAh! Well then, lead the way!\n\
+\n\
+"))
 
 
 DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\

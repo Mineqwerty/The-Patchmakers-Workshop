@@ -1,5 +1,6 @@
 #include "levels/castle_inside/header.h"
 #include "src/game/cutscene.h"
+#include "src/game/game_init.h"
 #include "levels/castle_inside/sewnia_pathfinding.inc.c"
 #include "src/usb/debug.h"
 #include "src/game/save_file.h"
@@ -608,17 +609,10 @@ void determine_course_dialog(void) {
     struct Object *nearPoint = cur_obj_find_nearest_object_with_behavior(bhvSewniaStoppingPoint, &dist);
 
     if (nearPoint && dist < 200) {
-        switch (nearPoint->oBehParams2ndByte) {
-            case 0:
-                create_dialog_box(8);
-            break;
-            case 1:
-                create_dialog_box(9);
-            break;
-        }
+        create_dialog_box(DIALOG_SEWNIA_TTC + nearPoint->oBehParams2ndByte);
     }
     else {
-        create_dialog_box(5);
+        create_dialog_box(DIALOG_SEWNIA_WORKSHOP_HUB_1 + gCurrAreaIndex - 1);
     }
 }
 
@@ -641,12 +635,23 @@ s16 sewnia_determine_flavor_text() {
     return flavorText;
 }
 
+void sewnia_toggle_follow() {
+    gSewniaFollowing = !gSewniaFollowing;
+
+    if (gSewniaFollowing) {
+        create_dialog_box(DIALOG_SEWNIA_START_FOLLOWING);
+    }
+    else {
+        create_dialog_box(DIALOG_SEWNIA_STOP_FOLLOWING + gCurrAreaIndex - 1);
+    }
+}
+
 enum SewniaDialogSubActions {
     SEWNIA_DIALOG_SUB_ACTION_ASKING_QUESTION,
-    SEWNIA_DIALOG_SUB_ACTION_WHAT_NEXT,
+    SEWNIA_DIALOG_SUB_ACTION_CHATTING,
     SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO,
     SEWNIA_DIALOG_SUB_ACTION_FOLLOW_TOGGLE,
-    SEWNIA_DIALOG_SUB_ACTION_CHATTING
+    
 };
 
 void sewnia_act_talking_to_mario(void) {
@@ -661,18 +666,13 @@ void sewnia_act_talking_to_mario(void) {
             gDialogResponse = 0;
         }
         break;
-        case SEWNIA_DIALOG_SUB_ACTION_WHAT_NEXT:
-            if (o->oTimer == 10) {
-                create_dialog_box(4);
-            }
-        break;
         case SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO:
             if (o->oTimer == 10) {
                 determine_course_dialog();
             }
         case SEWNIA_DIALOG_SUB_ACTION_FOLLOW_TOGGLE:
             if (o->oTimer == 10) {
-                create_dialog_box(6);
+                sewnia_toggle_follow();
             }
         break;
         case SEWNIA_DIALOG_SUB_ACTION_CHATTING:
@@ -1039,28 +1039,30 @@ void sewnia_act_idle(void) {
 }
 
 void sewnia_act_follow_mario(void) {
-    switch (o->oSubAction) {
-        case 0:
-            cur_obj_update_floor_and_walls();
-            cur_obj_move_standard(-60);
-            follow_mario_directly();
-            o->oMarioNearestNode = -1;
-        break;
-        case 1:
-            follow_along_waypoints();
-        break;
-        case 2:
-            cur_obj_update_floor_and_walls();
-            cur_obj_move_standard(-60);
-            stay_near_course_entrance();
-            o->oMarioNearestNode = -1;
-        break;
+    if (gSewniaFollowing) {
+        switch (o->oSubAction) {
+            case 0:
+                cur_obj_update_floor_and_walls();
+                cur_obj_move_standard(-60);
+                follow_mario_directly();
+                o->oMarioNearestNode = -1;
+            break;
+            case 1:
+                follow_along_waypoints();
+            break;
+            case 2:
+                cur_obj_update_floor_and_walls();
+                cur_obj_move_standard(-60);
+                stay_near_course_entrance();
+                o->oMarioNearestNode = -1;
+            break;
+        }
     }
     
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED) {
         o->oInteractStatus = 0;
-        create_sewnia_dialog_box(3);
+        create_sewnia_dialog_box(DIALOG_003);
         o->oAction = SEWNIA_ACT_TALKING_TO_MARIO;
     }
     

@@ -55,6 +55,7 @@ extern u8 gSlowdownCount;
 extern u8 gMarioWaterwalk;
 extern s16 gBossHealth;
 extern s16 gBossMaxHealth;
+extern u8 gSewniaFollowing;
 extern f32 gBossDrainHealthDisplay;
 extern s16 gBossHealthDisplay;
 extern u32 gTatumCount;
