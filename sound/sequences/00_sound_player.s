@@ -8917,6 +8917,17 @@ sound_ref .sound_start_scrape
 sound_ref .sound_long_scrape
 sound_ref .sound_finger_snap
 sound_ref .sound_slash_air
+sound_ref .sound_soul_mote_shield
+
+.sound_soul_mote_shield:
+chan_setbank 12
+chan_setinstr 24
+chan_setlayer 0, .layer_soul_mote_shield
+chan_end
+
+.layer_soul_mote_shield:
+layer_note1 39, 0x70, 127
+layer_end
 
 .sound_slash_air:
 chan_setbank 12

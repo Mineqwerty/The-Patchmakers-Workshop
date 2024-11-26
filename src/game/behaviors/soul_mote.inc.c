@@ -50,6 +50,7 @@ void bhv_soul_mote_loop(void) {
         if (gMarioState->miasmaSoulCount < o->oBehParams2ndByte && gMarioState->miasmaArmorTimer > 0) {
             o->oAction = 1;
             o->oOpacity = 0;
+            cur_obj_play_sound_2(SOUND_NEW_SOUL_MOTE_SHIELD);
         }
         else if (gMarioState->miasmaSoulCount < o->oBehParams2ndByte) {
             struct Object *flame = spawn_object_relative(0, 0, 0, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);

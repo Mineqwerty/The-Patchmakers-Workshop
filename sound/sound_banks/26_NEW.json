@@ -130,6 +130,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "slash_air"
+    },
+    "inst_soul_mote_shield": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "soul_mote_shield"
     }
   },
   "instrument_list": [
@@ -156,6 +161,7 @@
     "inst_start_scrape",
     "inst_long_scrape",
     "inst_finger_snap",
-    "inst_slash_air"
+    "inst_slash_air",
+    "inst_soul_mote_shield"
   ]
 }
