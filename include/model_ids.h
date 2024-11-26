@@ -579,11 +579,13 @@
 #define MODEL_PAPER_BOMP                  0x104
 #define MODEL_ON_SWITCH                  0x106
 #define MODEL_OFF_SWITCH                  0x105
+#define MODEL_OFF_BLOCK                  0x107
+#define MODEL_TRANSPARENT_OFF_BLOCK                  0x108
 #define MODEL_ON_BLOCK                  0x109
 #define MODEL_TRANSPARENT_ON_BLOCK                  0x10A
-#define MODEL_OFF_BLOCK                  0x107
+#define MODEL_PAPER_URCHIN                  0x10B
+#define MODEL_PAPER_TENTACLES                  0x10C
 
-#define MODEL_TRANSPARENT_OFF_BLOCK                  0x108
 
 //Thorn Thicket Cliffs
 #define MODEL_BOUNCE_BULB                   0x100

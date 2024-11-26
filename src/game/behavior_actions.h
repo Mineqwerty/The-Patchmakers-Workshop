@@ -1092,3 +1092,7 @@ void bhv_reality_cracks_hitbox_init(void);
 void bhv_reality_cracks_hitbox_loop(void);
 void bhv_soul_mote_init(void);
 void bhv_soul_mote_loop(void);
+void bhv_paper_urchin_init(void);
+void bhv_paper_urchin_loop(void);
+void bhv_paper_tentacles_init(void);
+void bhv_paper_tentacles_loop(void);

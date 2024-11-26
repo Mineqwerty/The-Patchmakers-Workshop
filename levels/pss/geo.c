@@ -28,3 +28,5 @@
 #include "levels/pss/off_switch/geo.inc.c"
 #include "levels/pss/transparent_on_block/geo.inc.c"
 #include "levels/pss/transparent_off_block/geo.inc.c"
+#include "levels/pss/paper_urchin/geo.inc.c"
+#include "levels/pss/paper_tentacles/geo.inc.c"

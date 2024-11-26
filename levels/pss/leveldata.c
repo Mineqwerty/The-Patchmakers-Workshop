@@ -42,3 +42,5 @@
 #include "levels/pss/off_switch/model.inc.c"
 #include "levels/pss/transparent_on_block/model.inc.c"
 #include "levels/pss/transparent_off_block/model.inc.c"
+#include "levels/pss/paper_urchin/model.inc.c"
+#include "levels/pss/paper_tentacles/model.inc.c"

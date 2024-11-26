@@ -8696,3 +8696,21 @@ const BehaviorScript bhvSoulMote[] = {
         CALL_NATIVE(bhv_soul_mote_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPaperUrchin[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    CALL_NATIVE(bhv_paper_urchin_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_urchin_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPaperTentacles[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    CALL_NATIVE(bhv_paper_tentacles_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_paper_tentacles_loop),
+    END_LOOP(),
+};

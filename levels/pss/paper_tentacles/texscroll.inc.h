@@ -1,0 +1,3 @@
+extern void scroll_paper_tentacles_Plane_004_mesh_layer_5_vtx_0();
+extern void scroll_paper_tentacles_Plane_004_mesh_layer_5_vtx_1();
+extern void scroll_pss_level_geo_paper_tentacles();

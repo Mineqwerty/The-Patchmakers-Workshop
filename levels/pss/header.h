@@ -63,4 +63,8 @@ extern const LevelScript level_pss_entry[];
 
 #include "levels/pss/transparent_off_block/geo_header.h"
 
+#include "levels/pss/paper_urchin/geo_header.h"
+
+#include "levels/pss/paper_tentacles/geo_header.h"
+
 #endif

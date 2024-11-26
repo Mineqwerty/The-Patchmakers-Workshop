@@ -1,0 +1,13 @@
+extern const GeoLayout paper_tentacles_geo[];
+extern u8 paper_tentacles_papertentacles1_ia8[];
+extern u8 paper_tentacles_papertentacles2_ia8[];
+extern Vtx paper_tentacles_Plane_004_mesh_layer_5_vtx_cull[8];
+extern Vtx paper_tentacles_Plane_004_mesh_layer_5_vtx_0[24];
+extern Gfx paper_tentacles_Plane_004_mesh_layer_5_tri_0[];
+extern Vtx paper_tentacles_Plane_004_mesh_layer_5_vtx_1[24];
+extern Gfx paper_tentacles_Plane_004_mesh_layer_5_tri_1[];
+extern Gfx mat_paper_tentacles_f3dlite_material_057[];
+extern Gfx mat_revert_paper_tentacles_f3dlite_material_057[];
+extern Gfx mat_paper_tentacles_f3dlite_material_058[];
+extern Gfx mat_revert_paper_tentacles_f3dlite_material_058[];
+extern Gfx paper_tentacles_Plane_004_mesh_layer_5[];

@@ -841,6 +841,8 @@ static void treat_far_home_as_mario(f32 threshold) {
 #include "behaviors/abyss_urchin.inc.c"
 #include "behaviors/tentacle_cage.inc.c"
 #include "behaviors/paper_scuttlebug.inc.c"
+#include "behaviors/paper_urchin.inc.c"
+#include "behaviors/paper_tentacles.inc.c"
 
 /**
  * Used by bowser, fly guy, piranha plant, and fire spitters.
