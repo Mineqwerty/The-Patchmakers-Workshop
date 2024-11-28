@@ -660,10 +660,12 @@ void sewnia_act_talking_to_mario(void) {
 
     switch (o->oSubAction) {
         case SEWNIA_DIALOG_SUB_ACTION_ASKING_QUESTION:
-        if (gDialogResponse > 0) {
-            o->oSubAction = gDialogResponse;
-            o->oTimer = 0;
-            gDialogResponse = 0;
+        if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT)) {
+            if (gDialogResponse > 0) {
+                o->oSubAction = gDialogResponse;
+                o->oTimer = 0;
+                gDialogResponse = 0;
+            }
         }
         break;
         case SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO:
@@ -684,7 +686,7 @@ void sewnia_act_talking_to_mario(void) {
 
     //puts mario back in idle after any of the 4 textboxes are done
     if (o->oSubAction != 0 && gDialogResponse > 0 && o->oTimer > 10) {
-                gMarioState->action = ACT_IDLE;
+                set_mario_npc_dialog(MARIO_DIALOG_STOP);
                 o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
             }
 }
@@ -1031,7 +1033,7 @@ void bhv_sewnia_init(void) {
 }
 
 void sewnia_act_idle(void) {
-    o->oInteractStatus = 0;
+    //o->oInteractStatus = 0;
     cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
 
     o->oForwardVel = 0.0f;

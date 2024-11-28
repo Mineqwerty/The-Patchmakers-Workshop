@@ -1976,6 +1976,38 @@ Beyond that door somewhere is The Patchmaker.\n\
 I think it's best if you go ahead of me, and\n\
 I'll trail you from afar..."))
 
+DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\
+@7F60B4FFUm...\n\
+I'm sorry he attacked you...\n\
+I was hoping we wouldn't have a run-in.\n\
+@7F60B4FFI guess you have an idea of the state of him...\n\
+It might be hard to believe, but he was once a\n\
+caring man... I hate seeing him like this.\n\
+@7F60B4FFIt just kind of... started happening over time.\n\
+He became obsessed with creating something specific.\n\
+He wanted to create life again.\n\
+@7F60B4FFI'm not sure how I came to be exactly, but The Patchmaker\n\
+admitted I was a complete accident. He didn't know how he\n\
+created me, but he wanted to do it again, and became mad over it.\n\
+@7F60B4FFAh! Sorry, I didn't mean to ramble.\n\
+By the time I caught up, you were already fighting,\n\
+but look at this!\n\
+@7F60B4FFI think this is the Thread of Life for that\n\
+turtle guy! We can revive him!\n\
+Let's hurry and...\n\
+@7F60B4FF...What? Evil Koopa King?\n\
+You make him sound... scary.\n\
+But also, really powerful!\n\
+@7F60B4FFDo you think we can explain to him\n\
+what's going on? Do you think he'll\n\
+help us?\n\
+@7F60B4FFIt's up to you...\n\
+\n\
+\n\
+@7F60B4FFAlright then, let's go!\n\
+Come on, Mario!\n\
+"))
+
 DEFINE_DIALOG(DIALOG_SEWNIA_TTC, 1, 3, 30, 200, _("\
 @7F60B4FFAh, this pot is a portal to a land\n\
 called Thorn Thicket Cliffs!\n\
@@ -2281,37 +2313,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_START_FOLLOWING, 1, 3, 30, 200, _("\
 "))
 
 
-DEFINE_DIALOG(DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1, 1, 3, 30, 200, _("\
-@7F60B4FFUm...\n\
-I'm sorry he attacked you...\n\
-I was hoping we wouldn't have a run-in.\n\
-@7F60B4FFI guess you have an idea of the state of him...\n\
-It might be hard to believe, but he was once a\n\
-caring man... I hate seeing him like this.\n\
-@7F60B4FFIt just kind of... started happening over time.\n\
-He became obsessed with creating something specific.\n\
-He wanted to create life again.\n\
-@7F60B4FFI'm not sure how I came to be exactly, but The Patchmaker\n\
-admitted I was a complete accident. He didn't know how he\n\
-created me, but he wanted to do it again, and became mad over it.\n\
-@7F60B4FFAh! Sorry, I didn't mean to ramble.\n\
-By the time I caught up, you were already fighting,\n\
-but look at this!\n\
-@7F60B4FFI think this is the Thread of Life for that\n\
-turtle guy! We can revive him!\n\
-Let's hurry and...\n\
-@7F60B4FF...What? Evil Koopa King?\n\
-You make him sound... scary.\n\
-But also, really powerful!\n\
-@7F60B4FFDo you think we can explain to him\n\
-what's going on? Do you think he'll\n\
-help us?\n\
-@7F60B4FFIt's up to you...\n\
-\n\
-\n\
-@7F60B4FFAlright then, let's go!\n\
-Come on, Mario!\n\
-"))
+
 
 DEFINE_DIALOG(DIALOG_BOWSER_REVIVED, 1, 3, 30, 200, _("\
 @7F60B4FFIs he awake?\n\
