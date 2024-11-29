@@ -69,7 +69,8 @@ struct PathfindNode waypointPath[40];
 s16 shortestPath[50];
 
 void sewnia_init_area_waypoints() {
-    struct PathfindNode *curPoint = segmented_to_virtual(&sewnia_path_area_1);
+    struct PathfindNode *curPoint = sewnia_path_area_1;
+
     u8 reachedEnd = FALSE;
     for (int i = 0; i < 50; i++) {
         if (curPoint->nodeID == -1) {
@@ -77,16 +78,7 @@ void sewnia_init_area_waypoints() {
             break;
         }
 
-        if (!reachedEnd) {
-            //bcopy(curPoint, &waypointPath[i], sizeof(curPoint));
-            waypointPath[i] = *curPoint;
-        }
-        else {
-            struct PathfindNode *empty;
-            empty->nodeID = -1;
-            bcopy(empty, &waypointPath[i], sizeof(empty));
-        }
-
+        bcopy(curPoint, &waypointPath[i], sizeof(struct PathfindNode));
         curPoint = curPoint + 1;
     }
 
@@ -392,7 +384,7 @@ void find_best_path() {
 struct PathfindNode *sewnia_find_nearest_waypoint() {
     f32 dist = 0;
     f32 minDist = 32000;
-    struct PathfindNode *curPoint = segmented_to_virtual(&sewnia_path_area_1);
+    struct PathfindNode *curPoint = sewnia_path_area_1;
     struct PathfindNode *returnPoint;
     while (curPoint->nodeID != -1) {
 
@@ -414,7 +406,7 @@ struct PathfindNode *sewnia_find_nearest_waypoint() {
 struct PathfindNode *find_mario_nearest_waypoint() {
     f32 dist = 0;
     f32 minDist = 32000;
-    struct PathfindNode *curPoint = segmented_to_virtual(&sewnia_path_area_1);
+    struct PathfindNode *curPoint = sewnia_path_area_1;
     struct PathfindNode *returnPoint;
     while (curPoint->nodeID != -1) {
 
@@ -435,7 +427,7 @@ struct PathfindNode *find_mario_nearest_waypoint() {
 
 struct PathfindNode *find_node_by_id(s16 nodeID) {
     
-    struct PathfindNode *curPoint = segmented_to_virtual(&sewnia_path_area_1);
+    struct PathfindNode *curPoint = sewnia_path_area_1;
     struct PathfindNode *returnPoint;
     while (curPoint->nodeID != -1) {
 
@@ -533,9 +525,13 @@ void follow_along_waypoints(void) {
         find_best_path();
     }
 
+    
+
     struct Waypoint *prevWaypoint = o->oSewniaLastWaypoint;
     struct Waypoint *nextWaypoint = o->oSewniaNextWaypoint;
     struct Waypoint *marioWaypoint;
+
+    //print_text_fmt_int(40, 40, "Sewnia: %d", nextWaypoint->flags);
 
     struct PathfindNode nextNode = waypointPath[shortestPath[o->oSewniaCurrentNodeIndex]];
 
