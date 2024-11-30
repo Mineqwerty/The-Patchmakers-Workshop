@@ -99,6 +99,38 @@ const LevelScript level_pss_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
+	AREA(11, pss_area_11),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x0B, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13085, -1042, 9, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (11 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 4593, 7849, 9, 0, 0, 0, (12 << 24), bhvStar),
+		TERRAIN(pss_area_11_collision),
+		TERRAIN_MAT_LUT(pss_area_11_collision_materials),
+		MACRO_OBJECTS(pss_area_11_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(12, pss_area_12),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x34, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_PSS, 0x0C, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -13085, -1301, 9, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (12 << 16), bhvPatchChallengeController),
+		OBJECT(MODEL_STAR, 4593, 7849, 9, 0, 0, 0, (13 << 24), bhvStar),
+		TERRAIN(pss_area_12_collision),
+		TERRAIN_MAT_LUT(pss_area_12_collision_materials),
+		MACRO_OBJECTS(pss_area_12_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	AREA(2, pss_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x45, LEVEL_CASTLE, 0x02, 0x45, WARP_NO_CHECKPOINT),

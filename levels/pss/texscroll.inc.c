@@ -72,6 +72,14 @@ void scroll_pss_dl_Cube_012_mesh_layer_5_vtx_3() {
 	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
 }
 
+void scroll_gfx_mat_pss_dl_f3dlite_material_layer1() {
+	Gfx *mat = segmented_to_virtual(mat_pss_dl_f3dlite_material_layer1);
+
+	shift_s(mat, 16, PACK_TILESIZE(0, 1));
+	shift_t(mat, 16, PACK_TILESIZE(0, 2));
+
+};
+
 void scroll_gfx_mat_pss_dl_f3dlite_material_051() {
 	Gfx *mat = segmented_to_virtual(mat_pss_dl_f3dlite_material_051);
 
@@ -83,5 +91,6 @@ void scroll_gfx_mat_pss_dl_f3dlite_material_051() {
 void scroll_pss() {
 	scroll_pss_dl_Cube_001_mesh_layer_5_vtx_0();
 	scroll_pss_dl_Cube_012_mesh_layer_5_vtx_3();
+	scroll_gfx_mat_pss_dl_f3dlite_material_layer1();
 	scroll_gfx_mat_pss_dl_f3dlite_material_051();
 };
