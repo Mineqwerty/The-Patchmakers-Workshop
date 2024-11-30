@@ -213,6 +213,7 @@ struct Object *cur_obj_find_object_with_bparam_1st_byte(const BehaviorScript *be
 struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,
                                   u8 damage, s32 interaction);
 struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 damage, s32 interaction);
+void sewnia_move(s16 steepSlopeAngleDegrees);
 
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_NONE 0

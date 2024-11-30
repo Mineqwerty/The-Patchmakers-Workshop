@@ -36,6 +36,14 @@
 #define LANGUAGE_FUNCTION gInGameLanguage
 #endif
 
+enum SpeakerSounds {
+    SPEAKER_SOUND_NONE,
+    SPEAKER_SOUND_SEWNIA,
+    SPEAKER_SOUND_BOWSER,
+    SPEAKER_SOUND_PEACH
+};
+s16 curSpeaker = 0;
+
 u16 gDialogColorFadeTimer;
 s8 gLastDialogLineNum;
 s32 gDialogVariable;
@@ -1445,6 +1453,24 @@ u16 shakeBitmasks[8] = {
     0b1100000000000000
 };
 
+
+//this is terrible
+s16 get_speaker_from_color(ColorRGBA rgbaColors) {
+    if (rgbaColors[0] == 0x7F && rgbaColors[1] == 0x60 && rgbaColors[2] == 0xB4) {
+        return SPEAKER_SOUND_SEWNIA;
+    }
+    return SPEAKER_SOUND_NONE;
+}
+
+void play_speaker_sound(void) {
+    switch (curSpeaker) {
+        case SPEAKER_SOUND_SEWNIA:
+            play_sound(SOUND_NEW_2_SPEAKER_SEWNIA, gGlobalSoundSource);
+        break;
+    }
+    
+}
+
 void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound, u32 flags) {
     u8 strChar;
     s16 colorLoop;
@@ -1479,9 +1505,13 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
     create_dl_translation_matrix(MENU_MTX_PUSH, 0, 2 - lineNum * Y_VAL3, 0);
 
+    
+
     while (pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState != DIALOG_STATE_CLOSING && (strIdx <= gDialogCharNum || (gForceDialogLoad == 1 && gPageNum < (dialog->linesPerBox + 1)))) {
 
         //get_colors_for_unique_speaker(gDialogID, &rgbaColors);
+
+        
 
         if (customColor == 1) {
             gDPSetEnvColor(gDisplayListHead++, rgbaColors[0], rgbaColors[1], rgbaColors[2], rgbaColors[3]);
@@ -1525,6 +1555,8 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                     }
                 }
                 strIdx--;
+
+                curSpeaker = get_speaker_from_color(rgbaColors);
 
                 
 
@@ -1593,9 +1625,13 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
             gDialogCharNum = strIdx;
         }
     }
+
+    //print_text_fmt_int(20, 60, "%d", rgbaColors[0]);
+    //print_text_fmt_int(20, 40, "%d", rgbaColors[1]);
+    //print_text_fmt_int(20, 20, "%d", rgbaColors[2]);
     if (gDialogRenderLineNum < (linesPerBox + 1) && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
     gDialogCharNum++;
-    //play_sound(SOUND_SEWNIA_BLURB, gGlobalSoundSource);
+        play_speaker_sound();
     }
 
     if (gDialogRenderLineNum == (linesPerBox + 1) || pageState != DIALOG_PAGE_STATE_NONE) {
@@ -1648,7 +1684,7 @@ void render_dialog_triangle_choice(void) {
 }
 
 #define X_VAL5 118.0f
-#define Y_VAL5_1 -16
+#define Y_VAL5_1 8
 #define Y_VAL5_2 5
 #define X_Y_VAL6 0.8f
 
@@ -1659,7 +1695,7 @@ void render_dialog_triangle_next(s8 linesPerBox) {
         return;
     }
 
-    create_dl_translation_matrix(MENU_MTX_PUSH, 240, (linesPerBox * Y_VAL5_1) + Y_VAL5_2, 0);
+    create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_WIDTH - 40, 10, 0);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, X_Y_VAL6, X_Y_VAL6, 1.0f);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, -DEFAULT_DIALOG_BOX_ANGLE, 0, 0, 1.0f);
 
@@ -1905,7 +1941,7 @@ void new_dialog_render_dialog_entries(void) {
         case DIALOG_STATE_VERTICAL:
             gDialogBoxOpenTimer = 0.0f;
 
-            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON | D_CBUTTONS | R_CBUTTONS | D_JPAD | R_JPAD)) {
+            if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON)) {
                 
                 
                 if (gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) {
@@ -1917,6 +1953,7 @@ void new_dialog_render_dialog_entries(void) {
                         gDialogBoxState = DIALOG_STATE_HORIZONTAL;
                         play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
                         gPageNum++;
+                        curSpeaker = SPEAKER_SOUND_NONE;
                         gForceDialogLoad = 0;
                         //this is because it actually renders one character ahead of what it should be
                         gDialogCharNum--;
@@ -1981,7 +2018,7 @@ void new_dialog_render_dialog_entries(void) {
         render_dialog_triangle_choice();
     }
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, SCREEN_WIDTH - gBorderHeight / 2, SCREEN_HEIGHT - gBorderHeight / 2);
-    if (gLastDialogPageStrPos != -1 && gDialogBoxState == DIALOG_STATE_VERTICAL) {
+    if ((gDialogRenderLineNum == (dialog->linesPerBox + 1) || gForceDialogLoad == 1 || gLastDialogPageStrPos == -1) && gDialogBoxState == DIALOG_STATE_VERTICAL && gLastDialogResponse < 1) {
         render_dialog_triangle_next(dialog->linesPerBox);
     }
 }

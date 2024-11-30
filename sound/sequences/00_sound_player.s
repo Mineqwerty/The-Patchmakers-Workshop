@@ -9185,6 +9185,18 @@ chan_jump .main_loop_023589
 sound_ref .sound_miasma_storm_r
 sound_ref .sound_loud_winds
 sound_ref .sound_muffled_winds
+sound_ref .sound_speaker_sewnia
+
+
+.sound_speaker_sewnia:
+chan_setbank 13
+chan_setinstr 3
+chan_setlayer 0, .layer_speaker_sewnia
+chan_end
+
+.layer_speaker_sewnia:
+layer_note1 39, 0x79, 127
+layer_end
 
 .sound_muffled_winds:
 chan_setbank 13

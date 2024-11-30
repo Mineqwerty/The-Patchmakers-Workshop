@@ -25,11 +25,17 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "muffled_winds"
+    },
+    "inst_speaker_sewnia": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_sewnia"
     }
   },
   "instrument_list": [
     "inst_miasma_storm_r",
     "inst_loud_winds",
-    "inst_muffled_winds"
+    "inst_muffled_winds",
+    "inst_speaker_sewnia"
   ]
 }

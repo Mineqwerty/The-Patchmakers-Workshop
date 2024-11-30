@@ -36,7 +36,9 @@ enum SewniaAnims {
     SEWNIA_ANIM_INTRO_PANIC_TURN,
     SEWNIA_ANIM_RUN_CORRIDOR,
     SEWNIA_ANIM_SLUMP_DOOR,
-    SEWNIA_ANIM_PULL_OUT_PATCH
+    SEWNIA_ANIM_PULL_OUT_PATCH,
+    SEWNIA_ANIM_START_FALL,
+    SEWNIA_ANIM_FALLING
 };
 
 enum SewniaFaceStates {
@@ -68,8 +70,19 @@ static struct ObjectHitbox sSewniaHitbox = {
 struct PathfindNode waypointPath[40];
 s16 shortestPath[50];
 
+struct PathfindNode *get_area_waypoints() {
+    switch (gCurrAreaIndex) {
+        case 1:
+            return sewnia_path_area_1;
+        break;
+        case 2:
+            return sewnia_path_area_2;
+        break;
+    }
+}
+
 void sewnia_init_area_waypoints() {
-    struct PathfindNode *curPoint = sewnia_path_area_1;
+    struct PathfindNode *curPoint = get_area_waypoints();
 
     u8 reachedEnd = FALSE;
     for (int i = 0; i < 50; i++) {
@@ -83,7 +96,6 @@ void sewnia_init_area_waypoints() {
     }
 
 }
-
 
 void find_best_path() {
 
@@ -384,19 +396,36 @@ void find_best_path() {
 struct PathfindNode *sewnia_find_nearest_waypoint() {
     f32 dist = 0;
     f32 minDist = 32000;
-    struct PathfindNode *curPoint = sewnia_path_area_1;
-    struct PathfindNode *returnPoint;
+    struct PathfindNode *curPoint = get_area_waypoints();
+    struct PathfindNode *returnPoint = NULL;
     while (curPoint->nodeID != -1) {
 
         Vec3f waypointPos;
         vec3f_set(waypointPos, (f32) curPoint->pos[0], (f32) curPoint->pos[1], (f32) curPoint->pos[2]);
         vec3f_get_dist(&o->oPosVec, waypointPos, &dist);
-        if (dist < minDist) {
+        if (dist < minDist && (absf(o->oPosY - curPoint->pos[1]) < 200)) {
             minDist = dist;
             returnPoint = curPoint;
         }
 
         curPoint = curPoint + 1;
+    }
+
+    //if it fails, iterate again without vertical distance checks
+    if (returnPoint == NULL) {
+        curPoint = get_area_waypoints();
+         while (curPoint->nodeID != -1) {
+            
+            Vec3f waypointPos;
+            vec3f_set(waypointPos, (f32) curPoint->pos[0], (f32) curPoint->pos[1], (f32) curPoint->pos[2]);
+            vec3f_get_dist(&o->oPosVec, waypointPos, &dist);
+            if (dist < minDist) {
+                minDist = dist;
+                returnPoint = curPoint;
+            }
+
+            curPoint = curPoint + 1;
+        }
     }
 
     return returnPoint;
@@ -406,7 +435,7 @@ struct PathfindNode *sewnia_find_nearest_waypoint() {
 struct PathfindNode *find_mario_nearest_waypoint() {
     f32 dist = 0;
     f32 minDist = 32000;
-    struct PathfindNode *curPoint = sewnia_path_area_1;
+    struct PathfindNode *curPoint = get_area_waypoints();
     struct PathfindNode *returnPoint;
     while (curPoint->nodeID != -1) {
 
@@ -427,7 +456,7 @@ struct PathfindNode *find_mario_nearest_waypoint() {
 
 struct PathfindNode *find_node_by_id(s16 nodeID) {
     
-    struct PathfindNode *curPoint = sewnia_path_area_1;
+    struct PathfindNode *curPoint = get_area_waypoints();
     struct PathfindNode *returnPoint;
     while (curPoint->nodeID != -1) {
 
@@ -443,7 +472,27 @@ struct PathfindNode *find_node_by_id(s16 nodeID) {
 
 }
 
+u8 check_slope_increments() {
+    s16 numFails = 0;
+    f32 floorIncrementHeight = o->oFloorHeight;
+    for (int i = 1; i < 5; i++) {
+        f32 testHeight = find_floor_height(o->oPosX + ((i * (gMarioState->pos[0] - o->oPosX)) / 4.0f), 
+        o->oPosY + 50.0f + ((i * (gMarioState->pos[1] - o->oPosY)) / 4.0f), 
+        o->oPosZ + ((i * (gMarioState->pos[2] - o->oPosZ)) / 4.0f));
 
+        if (testHeight > floorIncrementHeight + 15.0f) {
+            floorIncrementHeight = testHeight;
+        }
+        else if (absf(gMarioState->floorHeight - floorIncrementHeight) > 30){
+            numFails++;
+        }
+    }
+
+    if (numFails > 2) {
+        return 1;
+    }
+    return 0;
+}
 
 u8 check_ray_to_mario() {
     struct Surface *surf;
@@ -466,13 +515,18 @@ u8 check_ray_to_mario() {
         find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 2);
         if (surf != NULL) rayResult = 1;
 
+        //If there's a big difference in height, check to see if mario is up a slope.
+        if (rayResult == 0 && gMarioState->floorHeight - o->oPosY > 150) {
+            rayResult = check_slope_increments();
+        }
+
 
         return rayResult;
 }
 
 void follow_mario_directly(void) {
     if (o->oDistanceToMario > 400.0f) {
-        cur_obj_init_animation_with_accel_and_sound(1, 1.5f);
+        
         u8 approachMode = 0;
         //cast a ray towards mario. if there are no walls, floors, or ceilings in the way try 
         //to approach mario directly. Otherwise, follow a path along waypoints that leads closer to him.
@@ -554,7 +608,10 @@ void follow_along_waypoints(void) {
             o->oFlags &= ~OBJ_MOVE_HIT_WALL;
         }
 
-        cur_obj_move_standard(-60);
+        sewnia_move(-60);
+        if (o->oMoveFlags & OBJ_MOVE_HIT_EDGE) {
+            o->oVelY = 5.0f;
+        }
 
         f32 dist = 1000;
         Vec3f waypointPos;
@@ -585,7 +642,6 @@ void stay_near_course_entrance(void) {
     if (dist > 100) {
         obj_turn_toward_object(o, nearPoint, O_MOVE_ANGLE_YAW_INDEX, 0x800);
         o->oForwardVel = 20.0f;
-        cur_obj_init_animation_with_accel_and_sound(1, 1.5f);
     }
     else {
         obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
@@ -800,7 +856,7 @@ void sewnia_act_intro_cutscene(void) {
 
 void sewnia_update_movement(void) {
     cur_obj_update_floor_and_walls();
-    cur_obj_move_standard(-60);
+    sewnia_move(-60);
     
 }
 
@@ -832,7 +888,6 @@ void sewnia_act_run_to_node(void) {
         else {
             cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
             follow_along_waypoints();
-            dbp(o->oSewniaCurrentNodeIndex);
         }
     }
     else {
@@ -1040,8 +1095,7 @@ void sewnia_act_follow_mario(void) {
     if (gSewniaFollowing) {
         switch (o->oSubAction) {
             case 0:
-                cur_obj_update_floor_and_walls();
-                cur_obj_move_standard(-60);
+                sewnia_update_movement();
                 follow_mario_directly();
                 o->oMarioNearestNode = -1;
             break;
@@ -1049,12 +1103,27 @@ void sewnia_act_follow_mario(void) {
                 follow_along_waypoints();
             break;
             case 2:
-                cur_obj_update_floor_and_walls();
-                cur_obj_move_standard(-60);
+                sewnia_update_movement();
                 stay_near_course_entrance();
                 o->oMarioNearestNode = -1;
             break;
         }
+        if (o->oMoveFlags & OBJ_MOVE_IN_AIR) {
+            if (o->header.gfx.animInfo.animID != SEWNIA_ANIM_FALLING) {
+                
+                if (cur_obj_check_if_at_animation_end() && o->header.gfx.animInfo.animID == SEWNIA_ANIM_START_FALL) {
+                    cur_obj_init_animation(SEWNIA_ANIM_FALLING);
+                }
+                else {
+                    cur_obj_init_animation(SEWNIA_ANIM_START_FALL);
+                }
+            }
+        }
+        else if (o->oForwardVel > 1.0f) {
+            cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
+        }
+        
+
     }
     
 

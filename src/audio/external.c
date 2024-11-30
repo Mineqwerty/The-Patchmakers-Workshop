@@ -1171,6 +1171,10 @@ static f32 get_sound_freq_scale(u8 bank, u8 item) {
         amount = sSoundBanks[bank][item].distance / AUDIO_MAX_DISTANCE;
         if (sSoundBanks[bank][item].soundBits & SOUND_VIBRATO) {
             amount += (f32)(gAudioRandom & 0xff) / 64.0f;
+
+            if (bank == 12) {
+                amount /= 2;
+            }
         }
     } else {
         amount = 0.0f;

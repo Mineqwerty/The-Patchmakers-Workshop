@@ -72,6 +72,8 @@ enum SoundBank {
                                               // further increase with speed, and volume will
                                               // decrease at slow speeds.
 
+#define SOUND_DIALOG_SHIFT          0x0800000
+
 /* Audio lower bitflags. */
 #define SOUND_LOWER_BACKGROUND_MUSIC  0x10 // Lower volume of background music while playing
 #define SOUND_NO_ECHO                 0x20 // Disable level reverb. Not in JP
@@ -652,6 +654,7 @@ enum SoundBank {
 #define SOUND_NEW_2_MIASMA_STORM_R                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)
+#define SOUND_NEW_2_SPEAKER_SEWNIA                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x03, 0xFF, SOUND_VIBRATO | SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK1                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK2                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x01, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK3                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x02, 0xFF, SOUND_DISCRETE)

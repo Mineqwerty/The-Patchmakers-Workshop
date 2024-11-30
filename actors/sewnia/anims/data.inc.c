@@ -14,3 +14,5 @@
 #include "anim_sitAtDoor.inc.c"
 #include "anim_pullOutPatch.inc.c"
 #include "anim_idle.inc.c"
+#include "anim_startFall.inc.c"
+#include "anim_falling.inc.c"
