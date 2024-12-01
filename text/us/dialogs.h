@@ -2020,22 +2020,22 @@ I was a little nervous, so I came back here.\n\
 I'm sure you'll be able to talk better, Mario.\n\
 @7F60B4FFRight, anyways. Watch out for the thorny ground there!\n\
 The Patchmaker had a special tool when he explored which let him\n\
-bypass thorns, so if you haven't found it yet, keep an eye out for it!\n\
+bypass thorns, so if you haven't found it yet, keep an eye out!\n\
 @7F60B4FFWhen he was giving hints on where he hid it, he may have\n\
 underestimated my ability to figure it out a little...\n\
 I believe it's hidden down a secret path near the top of the cliffs!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_RDR, 1, 4, 30, 200, _("\
 @7F60B4FFEvery time I opened this door, I could always\n\
-hear the distant pitter-patter of raindrops...\n\
-Sometimes, I would sit here for hours just listening, smelling\n\
+hear the distant pitter-patter of raindrops... Sometimes\n\
+I would sit here for hours just listening, smelling\n\
 the damp musk carried on the cool, wet breeze blowing in.\n\
 @7F60B4FFThis door leads to a place called Rainy Day Roadside.\n\
 Despite what you may think, it isn't actually right outside.\n\
 At some point, you'll pass through a magical portal to the\n\
 muddy farmland that lies along a road.\n\
-@7F60B4FFI haven't been to any other places, so I can only tell\n\
-you what The Patchmaker has told me about this place.\n\
+@7F60B4FFI haven't been to any other places, so I can only \n\
+tell you what The Patchmaker has told me about this place.\n\
 Apparently, there's a rushing river that will sweep you away\n\
 if you aren't careful navigating around it.\n\
 @7F60B4FFBut if you're brave enough to cross it, there's a hidden\n\
@@ -2048,8 +2048,8 @@ After seeing the way it closes, I always got scared of being\n\
 caught in between the doors and squeezed between them until I\n\
 popped into a pile of stuffing...\n\
 @7F60B4FFAh! Sorry! I shouldn't have said that!\n\
-I watched The Patchmaker enter here many times, it's perfectly safe\n\
-as long as you wait to close it until you're inside!\n\
+I watched The Patchmaker enter here many times, it's perfectly\n\
+safe as long as you wait to close it until you're inside!\n\
 I'm only being a little scared for no reason here...\n\
 @7F60B4FFAnyways, the mechanical clicks of gears echo even with\n\
 the doors closed. This door leads to an ancient land called\n\
@@ -2060,33 +2060,38 @@ hidden somewhere over a fence... I know that isn't very helpful,\n\
 but if you see some fence that looks as though it was climbed over,\n\
 I would give it a look!"))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_GSS, 1, 3, 30, 200, _("\
-@7F60B4FFThe light in this window only shines when one of\n\
-great power stands before it... So it seems that for you,\n\
-that would mean star power.\n\
+DEFINE_DIALOG(DIALOG_SEWNIA_GSS, 1, 4, 30, 200, _("\
+@7F60B4FFThe light in this window only shines when\n\
+one of great power stands before it... \n\
+So it seems that for you, that would mean star power.\n\
+\n\
 @7F60B4FFI'll admit, I don't know much about this place.\n\
-The Patchmaker described it as a sky stained with a rich gold,\n\
-so I suppose it could be called Gold Soaked Sky...\n\
+The Patchmaker described it as a sky stained with a \n\
+rich gold, so I suppose it could be called\n\
+Gold Soaked Sky...\n\
 @7F60B4FFThere are some scary things there. One time, the Patchmaker\n\
-returned from it bloodied and beaten. He never told me what happened,\n\
-only something about a goddess...\n\
+returned from it bloodied and beaten. He never told me\n\
+what happened, only something about a divine being...\n\
+\n\
 @7F60B4FFBe very careful if you enter here, Mario. You'll want to find\n\
 the patch that was made for this location for sure. I believe\n\
 it was hidden somewhere in a vast, empty field."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_SS, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_SS, 1, 4, 30, 200, _("\
 @7F60B4FFHeehee... This bubble column is a bit different!\n\
 That's because it's a portal! It'll suck you down into\n\
 cavernous depths surrounded by the salty sea.\n\
 @7F60B4FFThe place it goes to is called Subterranean Seaway.\n\
 You'll find out that there isn't much to explore without\n\
 plunging into the watery depths...\n\
-@7F60B4FFBut don't do it until you find the patch that was hidden there!\n\
-The Patchmaker said that there's a strong upward current that\n\
-prevents anyone but the strongest swimmer from exploring deeper.\n\
-So I think that the patch is hidden somewhere dry...\n\
-In any case, be careful as always. I can't imagine how scary\n\
-it would be to drown under the sea, with nobody to hear you...\n\
+@7F60B4FFBut don't do it until you find the patch that\n\
+was hidden there! The Patchmaker said that there's\n\
+a strong upward current that prevents anyone but the \n\
+strongest swimmer from exploring deeper.\n\
+@7F60B4FFSo I think that the patch is hidden somewhere dry...\n\
+In any case, be careful as always. I can't imagine\n\
+how scary it would be to drown under the sea, with\n\
+nobody to hear you...\n\
 @7F60B4FF...Be careful, Mario."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_CLC, 1, 3, 30, 200, _("\

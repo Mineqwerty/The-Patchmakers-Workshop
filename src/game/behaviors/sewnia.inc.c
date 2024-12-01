@@ -724,6 +724,7 @@ void sewnia_act_talking_to_mario(void) {
             if (o->oTimer == 10) {
                 determine_course_dialog();
             }
+        break;
         case SEWNIA_DIALOG_SUB_ACTION_FOLLOW_TOGGLE:
             if (o->oTimer == 10) {
                 sewnia_toggle_follow();
