@@ -1503,10 +1503,10 @@ static void sewnia_move_xz(f32 steepSlopeNormalY, s32 careAboutEdgesAndSteepSlop
     else if (deltaFloorHeight > 50) {
         //Jump up large steps
         if (o->oMoveFlags & OBJ_MOVE_ON_GROUND) {
-            o->oVelY = 32.0f;
+            o->oVelY = 22.0f + (deltaFloorHeight / 10);
             o->oForwardVel = 30;
         }
-    } else if (intendedFloor->normal.y > steepSlopeNormalY || o->oPosY + 25 > intendedFloorHeight) {
+    } else if (intendedFloor->normal.y > steepSlopeNormalY || o->oPosY + 50 > intendedFloorHeight) {
         // Allow movement upward, provided either:
         // - The target floor is flat enough (e.g. walking up stairs)
         // - We are above the target floor (most likely in the air)

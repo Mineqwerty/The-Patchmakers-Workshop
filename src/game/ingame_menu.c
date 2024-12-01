@@ -1456,6 +1456,9 @@ u16 shakeBitmasks[8] = {
 
 //this is terrible
 s16 get_speaker_from_color(ColorRGBA rgbaColors) {
+    //print_text_fmt_int(20, 60, "%d", rgbaColors[0]);
+    //print_text_fmt_int(20, 40, "%d", rgbaColors[1]);
+    //print_text_fmt_int(20, 20, "%d", rgbaColors[2]);
     if (rgbaColors[0] == 0x7F && rgbaColors[1] == 0x60 && rgbaColors[2] == 0xB4) {
         return SPEAKER_SOUND_SEWNIA;
     }
@@ -1556,6 +1559,8 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                 }
                 strIdx--;
 
+               
+
                 curSpeaker = get_speaker_from_color(rgbaColors);
 
                 
@@ -1626,9 +1631,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
         }
     }
 
-    //print_text_fmt_int(20, 60, "%d", rgbaColors[0]);
-    //print_text_fmt_int(20, 40, "%d", rgbaColors[1]);
-    //print_text_fmt_int(20, 20, "%d", rgbaColors[2]);
+    
     if (gDialogRenderLineNum < (linesPerBox + 1) && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
     gDialogCharNum++;
         play_speaker_sound();
