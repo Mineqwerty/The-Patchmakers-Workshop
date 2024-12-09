@@ -480,6 +480,11 @@ static struct Surface *find_floor_from_list(struct SurfaceNode *surfaceNode, s32
             continue;
         }
 
+        if (surf != NULL && surf->type == SURFACE_TENTACLES && gMarioState->curPatch == PATCH_STONE) {
+            //gMarioState->vel[1] *= 0.05f;
+            continue;
+        }
+
         if (surf != NULL && surf->type == SURFACE_WING_FLOOR) {
             //continue;
         }

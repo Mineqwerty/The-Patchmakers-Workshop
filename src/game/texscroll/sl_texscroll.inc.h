@@ -1,3 +1,5 @@
+#include "levels/sl/texscroll.inc.h"
+
 #include "levels/sl/jellyfish/texscroll.inc.h"
 #include "levels/sl/water_launcher/texscroll.inc.h"
 #include "levels/sl/sky_slug/texscroll.inc.h"

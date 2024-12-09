@@ -969,7 +969,7 @@ struct Object *obj_attack_in_radius(struct Object *sourceObj, f32 radius, u8 dam
         while (obj != (struct Object *) listHead) {
 
             if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
-                && obj != sourceObj) {
+                && obj != sourceObj && !obj_shouldnt_be_attacked(obj)) {
 
                 if (dist_between_objects(sourceObj, obj) < radius) {
                     attack_object(obj, interaction, damage);

@@ -49,11 +49,19 @@ const LevelScript level_sl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), /* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, sl_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_SL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, -8596, -2635, 6594),
@@ -159,6 +167,7 @@ const LevelScript level_sl_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -1452, 7172, -165, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_TENTACLE_CAGE, -213, 3244, 343, 0, 0, 0, (5 << 16), bhvTentacleCage),
+		OBJECT(MODEL_GLOBAL_GROUND_PATCH, 4166, 3553, 2584, -90, 0, 0, (9 << 16), bhvGroundPatch),
 		OBJECT(MODEL_SKYBOX_TEST, -4128, 1433, 3923, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, -213, 3530, 343, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_ABYSS_URCHIN, 3474, 3565, -1327, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
@@ -171,6 +180,23 @@ const LevelScript level_sl_entry[] = {
 		TERRAIN(sl_area_2_collision),
 		TERRAIN_MAT_LUT(sl_area_2_collision_materials),
 		MACRO_OBJECTS(sl_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(3, sl_area_3),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 5, 1195, 164, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_JELLYFISH, 1248, 1303, -2459, 0, 0, 0, 0x00000000, bhvJellyfish),
+		OBJECT(MODEL_JELLYFISH, -72, 1127, -4276, 0, 0, 0, 0x00000000, bhvJellyfish),
+		OBJECT(MODEL_JELLYFISH, 2177, 3230, -1475, 0, 0, 0, 0x00000000, bhvJellyfish),
+		OBJECT(MODEL_STAR, 7878, 2763, -156, 0, 0, 0, (29 << 24), bhvStar),
+		TERRAIN(sl_area_3_collision),
+		TERRAIN_MAT_LUT(sl_area_3_collision_materials),
+		MACRO_OBJECTS(sl_area_3_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

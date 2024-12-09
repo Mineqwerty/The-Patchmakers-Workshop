@@ -169,7 +169,7 @@ s32 act_climbing_pole(struct MarioState *m) {
         return set_mario_action(m, ACT_HOLDING_POLE, 0);
     }
 
-    marioObj->oMarioPolePos += m->controller->stickY / 8.0f;
+    marioObj->oMarioPolePos += m->controller->stickY / 4.0f;
     m->angleVel[1]  = 0;
     m->faceAngle[1] = cameraAngle - approach_s32((s16)(cameraAngle - m->faceAngle[1]), 0, 0x400, 0x400);
 

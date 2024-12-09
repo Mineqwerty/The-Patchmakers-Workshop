@@ -36,7 +36,7 @@ void spawn_waves(u8 wave) {
             spawn_wave_enemy(bhvJellyfish, MODEL_JELLYFISH);
             spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
             spawn_wave_enemy(bhvYarnBlooper, MODEL_YARN_BLOOPER);
-            o->oNumWaveEnemiesLeft = 7;
+            o->oNumWaveEnemiesLeft = 6;
         break;
     }
 }
@@ -78,7 +78,7 @@ void bhv_enemy_obelisk_loop() {
         //wave 1 happening
         case 2:
             //print_text(20, 20, "wave 1");
-            if (o->oNumWaveEnemiesLeft == 0) {
+            if (o->oNumWaveEnemiesLeft <= 0) {
                 o->oAction++;
             }
         break; 
@@ -91,7 +91,7 @@ void bhv_enemy_obelisk_loop() {
 
         case 4:
             //print_text(20, 20, "wave 2");
-            if (o->oNumWaveEnemiesLeft == 0) {
+            if (o->oNumWaveEnemiesLeft <= 0) {
                 o->oAction++;
             }
         break; 
@@ -104,7 +104,7 @@ void bhv_enemy_obelisk_loop() {
 
         case 6:
             //print_text(20, 20, "wave 3");
-            if (o->oNumWaveEnemiesLeft == 0) {
+            if (o->oNumWaveEnemiesLeft <= 0) {
                 o->oAction++;
             }
         break; 
