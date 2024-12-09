@@ -40,7 +40,8 @@ enum SpeakerSounds {
     SPEAKER_SOUND_NONE,
     SPEAKER_SOUND_SEWNIA,
     SPEAKER_SOUND_BOWSER,
-    SPEAKER_SOUND_PEACH
+    SPEAKER_SOUND_PEACH,
+    SPEAKER_SOUND_AURUMCAEL
 };
 s16 curSpeaker = 0;
 
@@ -1462,6 +1463,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors) {
     if (rgbaColors[0] == 0x7F && rgbaColors[1] == 0x60 && rgbaColors[2] == 0xB4) {
         return SPEAKER_SOUND_SEWNIA;
     }
+    else if (rgbaColors[0] == 197 && rgbaColors[1] == 149 && rgbaColors[2] == 15) {
+        return SPEAKER_SOUND_AURUMCAEL;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1469,6 +1473,12 @@ void play_speaker_sound(void) {
     switch (curSpeaker) {
         case SPEAKER_SOUND_SEWNIA:
             play_sound(SOUND_NEW_2_SPEAKER_SEWNIA, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_AURUMCAEL:
+            play_sound(SOUND_NEW_2_SPEAKER_AURUMCAEL, gGlobalSoundSource);
+        break;
+        default:
+            play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);
         break;
     }
     
@@ -1507,6 +1517,8 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
     //}
 
     create_dl_translation_matrix(MENU_MTX_PUSH, 0, 2 - lineNum * Y_VAL3, 0);
+
+    curSpeaker = 0;
 
     
 
@@ -1646,6 +1658,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
     if (gDialogBoxState == DIALOG_STATE_VERTICAL) {
         if (pageState == DIALOG_PAGE_STATE_END) {
             gLastDialogPageStrPos = -1;
+            curSpeaker = 0;
         } else {
             gLastDialogPageStrPos = strIdx;
         }

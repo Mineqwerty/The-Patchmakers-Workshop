@@ -655,6 +655,8 @@ enum SoundBank {
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)
 #define SOUND_NEW_2_SPEAKER_SEWNIA                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x03, 0xFF, SOUND_VIBRATO | SOUND_DISCRETE)
+#define SOUND_NEW_2_SPEAKER_DEFAULT                               SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x04, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_2_SPEAKER_AURUMCAEL                             SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x05, 0xFF, SOUND_VIBRATO | SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK1                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK2                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x01, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_ENV_SPARK3                                      SOUND_ARG_LOAD(SOUND_BANK_NEW_ENV, 0x02, 0xFF, SOUND_DISCRETE)

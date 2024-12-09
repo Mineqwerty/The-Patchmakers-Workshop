@@ -9186,6 +9186,28 @@ sound_ref .sound_miasma_storm_r
 sound_ref .sound_loud_winds
 sound_ref .sound_muffled_winds
 sound_ref .sound_speaker_sewnia
+sound_ref .sound_speaker_default
+sound_ref .sound_speaker_aurumcael
+
+.sound_speaker_aurumcael:
+chan_setbank 13
+chan_setinstr 5
+chan_setlayer 0, .layer_speaker_aurumcael
+chan_end
+
+.layer_speaker_aurumcael:
+layer_note1 39, 0x46, 127
+layer_end
+
+.sound_speaker_default:
+chan_setbank 13
+chan_setinstr 4
+chan_setlayer 0, .layer_speaker_default
+chan_end
+
+.layer_speaker_default:
+layer_note1 39, 0x20, 127
+layer_end
 
 
 .sound_speaker_sewnia:

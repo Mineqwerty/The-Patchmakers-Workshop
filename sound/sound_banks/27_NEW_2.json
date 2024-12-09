@@ -30,12 +30,24 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_sewnia"
+    },
+    "inst_speaker_default": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_default"
+    },
+    "inst_speaker_aurumcael": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_aurumcael"
     }
   },
   "instrument_list": [
     "inst_miasma_storm_r",
     "inst_loud_winds",
     "inst_muffled_winds",
-    "inst_speaker_sewnia"
+    "inst_speaker_sewnia",
+    "inst_speaker_default",
+    "inst_speaker_aurumcael"
   ]
 }

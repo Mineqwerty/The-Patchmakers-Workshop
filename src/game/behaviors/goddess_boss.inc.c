@@ -391,9 +391,9 @@ void goddess_act_cutscene(void) {
 
     switch (o->oSubAction) {
         case 0:
-            o->oSubAction = 3;
-            //o->oSubAction = 1;
-            //begin_cutscene_event(CUTSCENE_EVENT_GODDESS_INTRO);
+            //o->oSubAction = 3;
+            o->oSubAction = 1;
+            begin_cutscene_event(CUTSCENE_EVENT_GODDESS_INTRO);
             break;
         case 1:
         /*

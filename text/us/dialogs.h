@@ -497,88 +497,88 @@ Her parents must be\n\
 worried sick!"))
 
 DEFINE_DIALOG(DIALOG_060, 1, 3, 30, 200, _("\
-Why?\n\
+@C5950FFFWhy?\n\
 \n\
 \n\
-Why does another life show itself to me?\n\
+@C5950FFFWhy does another life show itself to me?\n\
 This place lost its luster long ago...\n\
 And yet, you come here seeking more.\n\
-You are akin to that foolish man who entered\n\
+@C5950FFFYou are akin to that foolish man who entered\n\
 these halls years ago, asking a ludicrous feat!\n\
 Something that, even to a goddess, is a miracle.\n\
-And now you stand before me, mocking\n\
+@C5950FFFAnd now you stand before me, mocking\n\
 me by holding a fragment of my diminished\n\
 divine strength upon your cap...\n\
-...The very same one that\n\
+@C5950FFF...The very same one that\n\
 man tried to overcome me with!\n\
 The impertinence of it is quite ironic, no?\n\
-Unfortunately, that man escaped with his\n\
+@C5950FFFUnfortunately, that man escaped with his\n\
 life. Such is the sorrow of a goddess that\n\
 is trapped with this wretched curse...\n\
-Tch! What am I doing here telling you\n\
+@C5950FFFTch! What am I doing here telling you\n\
 this? Do you wish to join the spirits\n\
 below that badly to step into here?\n\
-What gain have you from visiting\n\
+@C5950FFFWhat gain have you from visiting\n\
 such a broken, shattered realm anyways?\n\
 There is nothing here for you!\n\
-There SHOULD be nothing here!\n\
+@C5950FFFThere SHOULD be nothing here!\n\
 That's the way it needs to be!\n\
 An empty heaven, my hell alone!"))
 
 DEFINE_DIALOG(DIALOG_061, 0b10, 3, 30, 200, _("\
-Hrk......\n\
+@C5950FFFHrk......\n\
 \n\
 \n\
-IT... IT BURNS!!!\n\
+@C5950FFFIT... IT BURNS!!!\n\
 I CAN'T...\n\
 AAUUUGHHHH!!!\n\
-Enough...\n\
+@C5950FFFEnough...\n\
 ENOUGH!!!\n\
 ..."))
 
 DEFINE_DIALOG(DIALOG_062, 1, 3, 30, 200, _("\
-What is it you want!?\n\
+@C5950FFFWhat is it you want!?\n\
 Power? Treasure?\n\
 Or is it simply my head?\n\
-How does a mortal like you\n\
+@C5950FFFHow does a mortal like you\n\
 even know of me!?\n\
 \n\
-...\n\
+@C5950FFF...\n\
 \n\
 \n\
-I see... So, those restless Spekturrs that\n\
+@C5950FFFI see... So, those restless Spekturrs that\n\
 remain in the abyss below told you of my\n\
 past. Were you trying to avenge them? Haha...\n\
-Perhaps those souls have\n\
+@C5950FFFPerhaps those souls have\n\
 remained merely to witness my\n\
 gruesome demise one day...\n\
-It is regrettable in that case.\n\
+@C5950FFFIt is regrettable in that case.\n\
 I cannot be killed. Not while my\n\
 curse remains, that is.\n\
-You can inflict the searing pain of\n\
+@C5950FFFYou can inflict the searing pain of\n\
 thousands of blades upon me, but I will\n\
 never perish. Your efforts are for naught."))
 
 DEFINE_DIALOG(DIALOG_063, 1, 3, 30, 200, _("\
-What did you say?\n\
+@C5950FFFWhat did you say?\n\
 Star Power?\n\
 \n\
-Ha... HAHAHAHA!!!\n\
+@C5950FFFHa... HAHAHAHA!!!\n\
 \n\
 \n\
-Here I surmised you were some valiant\n\
+@C5950FFFHere I surmised you were some valiant\n\
 knight avenging restless spirits!\n\
 But you're just a shallow power-seeking mortal!\n\
-Well... I suppose those tangents\n\
+@C5950FFFWell... I suppose those tangents\n\
 I went on were in vain. Though, you are\n\
 a formidable foe... For a lousy human.\n\
-Do note that I would have ended your\n\
+@C5950FFFDo note that I would have ended your\n\
 pitiful life on the spot were I at my true\n\
 power, unburdened by this searing curse.\n\
-Very well. For your meaningless victory,\n\
+@C5950FFFVery well. For your meaningless victory,\n\
 you may have some of this Star Power\n\
 that you seek.\n\
-Oh but do keep in mind, if you ever\n\
+@C5950FFFOh but do keep in mind, if you ever\n\
 enter this place again I will not\n\
 hesitate to impale you. Understood?"))
 

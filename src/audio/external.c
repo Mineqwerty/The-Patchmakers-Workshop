@@ -1174,6 +1174,9 @@ static f32 get_sound_freq_scale(u8 bank, u8 item) {
 
             if (bank == 12) {
                 amount /= 2;
+                if (item == 4) {
+                    amount /= 2;
+                }
             }
         }
     } else {
