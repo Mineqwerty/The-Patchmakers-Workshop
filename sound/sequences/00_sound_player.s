@@ -9188,6 +9188,17 @@ sound_ref .sound_muffled_winds
 sound_ref .sound_speaker_sewnia
 sound_ref .sound_speaker_default
 sound_ref .sound_speaker_aurumcael
+sound_ref .sound_speaker_demonic_solids
+
+.sound_speaker_demonic_solids:
+chan_setbank 13
+chan_setinstr 6
+chan_setlayer 0, .layer_speaker_demonic_solids
+chan_end
+
+.layer_speaker_demonic_solids:
+layer_note1 39, 0xf9, 127
+layer_end
 
 .sound_speaker_aurumcael:
 chan_setbank 13

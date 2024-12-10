@@ -2596,3 +2596,112 @@ Mister Mario, we have utmost faith in you.\n\
 The future of all of us here hangs in the\n\
 balance. Take this. I was keeping it as a\n\
 failsafe, but you'll need all the help you can get."))
+
+DEFINE_DIALOG(DIALOG_BEFORE_REVIVE_PEACH, 1, 4, 30, 200, _("\
+@7F60B4FFHey Bowser...\n\
+You're not holding it straight again...\n\
+\n\
+\n\
+@FF0202FFWhy you little...!\n\
+I definitely AM holding...\n\
+Oh...\n\
+Sorry, is this better?\n\
+@7F60B4FFYes... Thank you, Bowser.\n\
+Mario... make sure you keep my\n\
+back straight, alright?\n\
+\n\
+@7F60B4FFThis is already hard enough...\n\
+\n\
+\n\
+\n\
+@FF0202FFDoes it hurt?\n\
+That was absolutely ruthless...\n\
+I wish I had recovered faster.\n\
+\n\
+@7F60B4FFIt's alright... I'm just glad you saved us.\n\
+And no... It doesn't hurt at all.\n\
+To be honest, it's a miracle I can still\n\
+move...\n\
+@7F60B4FFAh! I think... I think I've got it!"))
+
+DEFINE_DIALOG(DIALOG_PEACH_REVIVED_1, 1, 4, 30, 200, _("\
+@FF75DFFFNgh...\n\
+My head...\n\
+Where... am I?\n\
+\n\
+@FF0202FFPrincess Peach!\n\
+You're okay!\n\
+\n\
+\n\
+@FF75DFFFBowser? Mario, too?\n\
+What on earth is going on here?\n\
+\n\
+\n\
+@7F60B4FFYou're Princess Peach?\n\
+These two have said a lot of nice things\n\
+about you...\n\
+Hi... I'm Sewnia.\n\
+@FF75DFFFAww! What a cute little doll!\n\
+What happened to your body, though?\n\
+And hey, wait...\n\
+I still have no idea what's going on!\n\
+@7F60B4FFUm... It's right there.\n\
+That's not important though...\n\
+I have to tell you what's-\n\
+...Huh?\n\
+@FF75DFFFSorry, dear... I couldn't bear to see you\n\
+ripped up like that. I'll fix you\n\
+right up!\n\
+\n\
+@FF0202FFBwahaha! That's the princess for you!\n\
+She'd help just about anyone, even people\n\
+she doesn't know!\n\
+\n\
+@7F60B4FFTh... Thank you.\n\
+I'll try and explain everything as\n\
+best as I can...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_PEACH_REVIVED_2, 1, 4, 30, 200, _("\
+@7F60B4FF...And that's about it.\n\
+After we got your Thread of Life back,\n\
+we came straight here to revive you...\n\
+...Oh! You... you fixed me! Thank you!\n\
+@FF75DFFFI'm glad you're feeling better, Sewnia.\n\
+Your head should be on straight again!\n\
+And now...\n\
+\n\
+@FF75DFFF...You've been through a lot, haven't you?\n\
+I could tell during your story.\n\
+It's all okay now...\n\
+\n\
+@7F60B4FFPrincess Peach, I...\n\
+I um...\n\
+\n\
+\n\
+...\n\
+\n\
+\n\
+"))
+
+DEFINE_DIALOG(DIALOG_PEACH_REVIVED_4, 1, 3, 30, 200, _("\
+@7F60B4FFHow... how could he do that to me?\n\
+Why would he do that to me?\n\
+Does he... does he really hate me that much?\n\
+\n\
+@FF75DFFFShh... It's not your fault.\n\
+You know that. He isn't the man who once\n\
+took care of you anymore.\n\
+No father would ever do such a thing.\n\
+@FF75DFFFI can't believe you two didn't comfort her sooner!\n\
+Especially you, Bowser!\n\
+As a parent, how could you be so dense to\n\
+her suffering!?\n\
+@FF0202FFHey! You think I didn't notice!?\n\
+There's a REASON I can't stand that Patchmaker guy!\n\
+Being a king, a father... A soulless husk like that\n\
+who only causes suffering ticks me off!\n\
+@7F60B4FFIt's alright, Princess Peach...\n\
+I... knew all along 
+\n\
+"))

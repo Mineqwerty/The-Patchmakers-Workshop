@@ -40,6 +40,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_aurumcael"
+    },
+    "inst_speaker_demonic_solids": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_demonic_solids"
     }
   },
   "instrument_list": [
@@ -48,6 +53,7 @@
     "inst_muffled_winds",
     "inst_speaker_sewnia",
     "inst_speaker_default",
-    "inst_speaker_aurumcael"
+    "inst_speaker_aurumcael",
+    "inst_speaker_demonic_solids"
   ]
 }
