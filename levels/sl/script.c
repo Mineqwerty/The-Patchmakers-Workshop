@@ -56,12 +56,19 @@ const LevelScript level_sl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, sl_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_SL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_SL, 0x04, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, -8596, -2635, 6594),
@@ -151,6 +158,7 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_ABYSS_SWIMMER, -855, 2309, 4118, 0, 85, 0, (3 << 16), bhvAbyssSwimmer),
 		OBJECT(MODEL_ABYSS_URCHIN, 6002, -4362, 9125, 0, 0, 0, 0x00000000, bhvAbyssUrchin),
 		OBJECT(MODEL_NONE, 6965, -3288, 777, 0, 0, 0, (60 << 24) | (11 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -13992, 1477, -6353, 0, 104, 0, (30 << 24) | (13 << 16), bhvWarp),
 		OBJECT(MODEL_WATER_LAUNCHER, 3444, -1247, 2267, 0, 0, 0, 0x00000000, bhvWaterLauncher),
 		OBJECT(MODEL_WATER_LAUNCHER, 429, 5005, 4454, 0, 0, 0, 0x00000000, bhvWaterLauncher),
 		TERRAIN(sl_area_1_collision),
@@ -197,7 +205,30 @@ const LevelScript level_sl_entry[] = {
 		TERRAIN(sl_area_3_collision),
 		TERRAIN_MAT_LUT(sl_area_3_collision_materials),
 		MACRO_OBJECTS(sl_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_EMPYREAN_ABYSS),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(4, sl_area_4),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -32, 4684, -560, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_SKY_SLUG, 1137, 3386, 2038, 0, -90, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, -1122, 3872, 2818, 0, 90, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, 1130, 4137, 3617, 0, -90, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, 873, 4393, 7806, 0, 95, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, 2748, 4887, 7177, 0, -85, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, -177, 5500, 8050, 0, 95, 0, (10 << 24) | (20 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, 3581, 6518, 9151, 0, 179, 0, (26 << 24) | (50 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKY_SLUG, 2674, 6518, -2389, 0, -1, 0, (26 << 24) | (50 << 16), bhvSkySlug),
+		OBJECT(MODEL_SKYBOX_TEST, -4128, 1433, 3923, 0, 0, 0, 0x00000000, bhvBackgroundObject),
+		OBJECT(MODEL_STAR, 6216, 6681, -3213, 0, 0, 0, (30 << 24), bhvStar),
+		TERRAIN(sl_area_4_collision),
+		TERRAIN_MAT_LUT(sl_area_4_collision_materials),
+		MACRO_OBJECTS(sl_area_4_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_EMPYREAN_ABYSS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

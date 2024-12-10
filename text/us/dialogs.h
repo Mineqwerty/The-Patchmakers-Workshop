@@ -2643,8 +2643,8 @@ about you...\n\
 Hi... I'm Sewnia.\n\
 @FF75DFFFAww! What a cute little doll!\n\
 What happened to your body, though?\n\
-And hey, wait...\n\
-I still have no idea what's going on!\n\
+Wait just a minute...\n\
+\n\
 @7F60B4FFUm... It's right there.\n\
 That's not important though...\n\
 I have to tell you what's-\n\
@@ -2702,6 +2702,54 @@ There's a REASON I can't stand that Patchmaker guy!\n\
 Being a king, a father... A soulless husk like that\n\
 who only causes suffering ticks me off!\n\
 @7F60B4FFIt's alright, Princess Peach...\n\
-I... knew all along 
+I thought I would just get in the way of rescuing\n\
+everyone, so I tried my hardest not to say anything...\n\
+But even then... Why did things turn out this way?\n\
+@7F60B4FFWhy him? Why did he have to lose himself?\n\
+He was all I ever knew, all I ever had...\n\
+And now, I... I'm alone...\n\
+He's... gone. I have to... accept it.\n\
+@7F60B4FFI always held out a slight bit of hope.\n\
+That he was able to be saved...\n\
+That Mario could do something...\n\
+But I see now... That future is tarnished.\n\
+@FF75DFFFSewnia... Are you sure about this?\n\
+I mean... Even some of the most vile\n\
+people I know have good in them.\n\
+Maybe, just maybe-\n\
+@FF0202FFHrmph! You're wrong.\n\
+You haven't met that man. He's far,\n\
+far gone. I'm not going to pretend\n\
+otherwise. Sorry, doll. It's the truth.\n\
+@FF75DFFFBowser...!\n\
 \n\
-"))
+\n\
+\n\
+@7F60B4FFNo... He's right, Princess. Truly.\n\
+I can't keep hiding behind hope forever.\n\
+Especially... After what he did to me.\n\
+The man who created me would have never done that.\n\
+@7F60B4FFThat's why... I have to ask you, Mario...\n\
+No, I'm begging you. Please help me...\n\
+I know you were saving your friends, but I can't\n\
+let The Patchmaker keep going on like this.\n\
+@7F60B4FFI can't bear to see anyone else hurt by him...\n\
+And whatever is left of him is suffering...\n\
+Which is why...\n\
+We need to find and defeat him.\n\
+@7F60B4FFBwahaha! Now THAT is a plan, Sewnia!\n\
+I'll make this guy pay!\n\
+\n\
+\n\
+@FF75DFFFMario and I agree as well.\n\
+If you're truly set on this, we'll\n\
+see it through to the end for you!\n\
+Even if we have just met.\n\
+@7F60B4FFTh... Thank you.\n\
+It means so much to me...\n\
+Ah...\n\
+I feel a lot better now.\n\
+@7F60B4FFAlright, there's no time to waste!\n\
+Let's finish this, Bowser!\n\
+And Peach!\n\
+And of course, Mario!"))

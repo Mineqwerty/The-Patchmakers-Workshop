@@ -26,6 +26,9 @@ void bhv_abyss_swimmer_loop(void) {
             cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, 0x400);
             if (cur_obj_check_anim_frame_in_range(21, 23)) {
                 o->oForwardVel += 3.6f;
+                for (int i = 0; i < 4; i++) {
+                    spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvSmallParticleBubbles);
+                }
             }
             else if (o->oForwardVel > 0) {
                 o->oForwardVel = CLAMP(o->oForwardVel - 1.7f, 0, 70.0f);

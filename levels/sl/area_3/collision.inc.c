@@ -22,7 +22,7 @@ Gfx sl_area_3_collision_f3dlite_material_025_layer_1_revert[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx sl_area_3_collision_f3dlite_material_layer_1[] = {
+Gfx sl_area_3_collision_f3dlite_material_027_layer_1[] = {
 	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
 	gsSPLightColor(LIGHT_1, 0xFFFFFFFF),
 	gsSPLightColor(LIGHT_2, 0x7F7F7FFF),
@@ -34,7 +34,7 @@ Gfx sl_area_3_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx sl_area_3_collision_f3dlite_material_layer_1_revert[] = {
+Gfx sl_area_3_collision_f3dlite_material_027_layer_1_revert[] = {
 	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
@@ -42,8 +42,8 @@ Gfx sl_area_3_collision_f3dlite_material_layer_1_revert[] = {
 const Gfx* sl_area_3_collision_materials[] = {
 	&sl_area_3_collision_f3dlite_material_025_layer_1,
 	&sl_area_3_collision_f3dlite_material_025_layer_1_revert,
-	&sl_area_3_collision_f3dlite_material_layer_1,
-	&sl_area_3_collision_f3dlite_material_layer_1_revert,
+	&sl_area_3_collision_f3dlite_material_027_layer_1,
+	&sl_area_3_collision_f3dlite_material_027_layer_1_revert,
 };
 
 const Collision sl_area_3_collision[] = {

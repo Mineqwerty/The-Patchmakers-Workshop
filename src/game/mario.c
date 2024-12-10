@@ -1441,6 +1441,7 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     if ((m->equippedPatch == PATCH_CHILLSTEP) && m->floorHeight < m->waterLevel && waterFloor && !((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         m->floorHeight = m->waterLevel;
         m->floor = waterFloor;
+        m->floor->type = SURFACE_NOT_SLIPPERY;
         gMarioWaterwalk = TRUE;
     }
     else {
@@ -2340,6 +2341,14 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     if (gMarioState->miasmaArmorTimer > 0) {
         gMarioState->miasmaArmorTimer--;
+    }
+
+    if (gCurrLevelNum == LEVEL_SL) {
+        if (random_u16()%12 == 0) {
+            spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvSmallParticleBubbles);
+        }
+
+        gMarioState->particleFlags |= PARTICLE_PLUNGE_BUBBLE;
     }
 
     // Updates once per frame:

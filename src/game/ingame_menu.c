@@ -54,6 +54,7 @@ s16 gCutsceneMsgXOffset;
 s16 gCutsceneMsgYOffset;
 s8 gRedCoinsCollected;
 s16 gDialogCharNum;
+s16 gDialogEndOfSentenceStall;
 u8 gDialogRenderLineNum;
 u8 gPageNum;
 u8 gForceDialogLoad;
@@ -1652,9 +1653,22 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
     
     if (gDialogRenderLineNum < (linesPerBox + 1) && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
-    gDialogCharNum++;
-        if (gDialogCharNum != 0) {
-            play_speaker_sound();
+        if (gDialogEndOfSentenceStall <= 0) {
+            gDialogCharNum++;
+            if (gDialogCharNum != 0) {
+                play_speaker_sound();
+            }
+
+            //elipsis has a longer delay
+            if (gDialogCharNum + 2 <= strIdx && str[gDialogCharNum] == 0x3F && str[gDialogCharNum+1] == 0x3F && str[gDialogCharNum+2] == 0x3F) {
+                gDialogEndOfSentenceStall = 15;
+            }
+            else if (str[gDialogCharNum] == 0x3F ||  str[gDialogCharNum] == 0xF4) {
+                gDialogEndOfSentenceStall = 8;
+            }
+        }
+        else {
+            gDialogEndOfSentenceStall--;
         }
     }
 
@@ -1961,6 +1975,7 @@ void new_dialog_render_dialog_entries(void) {
             lowerBound = 1;
 
             gDialogCharNum = -1;
+            gDialogEndOfSentenceStall = 0;
             break;
 
         case DIALOG_STATE_VERTICAL:
@@ -2016,6 +2031,7 @@ void new_dialog_render_dialog_entries(void) {
                 gDialogResponse = DIALOG_RESPONSE_NONE;
             }
             gDialogCharNum = 0;
+            gDialogEndOfSentenceStall = 0;
             lowerBound = 1;
             break;
     }
@@ -2083,6 +2099,7 @@ void new_dialog_render_automatic_dialog(void) {
             lowerBound = 1;
             gDialogAdvanceTimer = gDialogAuto == 2 ? 15 : 60;
             gDialogCharNum = -1;
+            gDialogEndOfSentenceStall = 0;
             break;
 
         case DIALOG_STATE_VERTICAL:
@@ -2132,6 +2149,7 @@ void new_dialog_render_automatic_dialog(void) {
                 gDialogResponse = DIALOG_RESPONSE_NONE;
             }
             gDialogCharNum = -1;
+            gDialogEndOfSentenceStall = 0;
             gDialogAdvanceTimer = gDialogAuto == 2 ? 15 : 60;
             lowerBound = 1;
             break;
