@@ -31,3 +31,4 @@
 #include "levels/sl/water_launcher/geo.inc.c"
 #include "levels/sl/jellyfish/geo.inc.c"
 #include "levels/sl/abyss_obelisk/geo.inc.c"
+#include "levels/sl/prince/geo.inc.c"

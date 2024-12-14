@@ -42,7 +42,8 @@ enum SpeakerSounds {
     SPEAKER_SOUND_BOWSER,
     SPEAKER_SOUND_PEACH,
     SPEAKER_SOUND_AURUMCAEL,
-    SPEAKER_SOUND_DEMONIC_SOLIDS
+    SPEAKER_SOUND_DEMONIC_SOLIDS,
+    SPEAKER_SOUND_XODARAP
 };
 s16 curSpeaker = 0;
 
@@ -1471,6 +1472,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors) {
     else if (rgbaColors[0] == 125 && rgbaColors[1] == 175 && rgbaColors[2] == 255) {
         return SPEAKER_SOUND_DEMONIC_SOLIDS;
     }
+    else if (rgbaColors[0] == 76 && rgbaColors[1] == 42 && rgbaColors[2] == 189) {
+        return SPEAKER_SOUND_XODARAP;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1484,6 +1488,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_DEMONIC_SOLIDS:
             play_sound(SOUND_NEW_2_SPEAKER_DEMONIC_SOLIDS, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_XODARAP:
+            play_sound(SOUND_NEW_2_SPEAKER_XODARAP, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);
@@ -1653,11 +1660,9 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
     
     if (gDialogRenderLineNum < (linesPerBox + 1) && pageState == DIALOG_PAGE_STATE_NONE && gDialogBoxState == DIALOG_STATE_VERTICAL) {
-        if (gDialogEndOfSentenceStall <= 0) {
+        //aurumcael death should have no stalling
+        if (gDialogEndOfSentenceStall <= 0 || gDialogID == 61) {
             gDialogCharNum++;
-            if (gDialogCharNum != 0) {
-                play_speaker_sound();
-            }
 
             //elipsis has a longer delay
             if (gDialogCharNum + 2 <= strIdx && str[gDialogCharNum] == 0x3F && str[gDialogCharNum+1] == 0x3F && str[gDialogCharNum+2] == 0x3F) {
@@ -1665,6 +1670,9 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
             }
             else if (str[gDialogCharNum] == 0x3F ||  str[gDialogCharNum] == 0xF4) {
                 gDialogEndOfSentenceStall = 8;
+            }
+            else if (gDialogCharNum != 0 && str[gDialogCharNum] != DIALOG_CHAR_NEWLINE) {
+                play_speaker_sound();
             }
         }
         else {

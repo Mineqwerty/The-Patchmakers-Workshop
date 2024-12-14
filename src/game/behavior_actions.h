@@ -1096,3 +1096,5 @@ void bhv_paper_urchin_init(void);
 void bhv_paper_urchin_loop(void);
 void bhv_paper_tentacles_init(void);
 void bhv_paper_tentacles_loop(void);
+void bhv_prince_boss_init(void);
+void bhv_prince_boss_loop(void);

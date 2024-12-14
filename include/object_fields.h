@@ -541,6 +541,7 @@
 #define /*0x0F4*/ oBlueFishRandomVel   OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oBlueFishRandomTime  OBJECT_FIELD_S32(0x1C)
 #define /*0x100*/ oBlueFishRandomAngle OBJECT_FIELD_F32(0x1E)
+#define /*0x100*/ oBlueFishPresetRandomAngleSpeed OBJECT_FIELD_F32(0x1F)
 
 /* Fish Group */
 #define /*0x0F4*/ oFishWaterLevel     OBJECT_FIELD_F32(0x1B)

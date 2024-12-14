@@ -45,6 +45,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_demonic_solids"
+    },
+    "inst_speaker_xodarap": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_xodarap"
     }
   },
   "instrument_list": [
@@ -54,6 +59,7 @@
     "inst_speaker_sewnia",
     "inst_speaker_default",
     "inst_speaker_aurumcael",
-    "inst_speaker_demonic_solids"
+    "inst_speaker_demonic_solids",
+    "inst_speaker_xodarap"
   ]
 }

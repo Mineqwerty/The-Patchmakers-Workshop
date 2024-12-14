@@ -792,3 +792,4 @@ extern const BehaviorScript bhvRealityCracksHitbox[];
 extern const BehaviorScript bhvSoulMote[];
 extern const BehaviorScript bhvPaperUrchin[];
 extern const BehaviorScript bhvPaperTentacles[];
+extern const BehaviorScript bhvPrinceBoss[];

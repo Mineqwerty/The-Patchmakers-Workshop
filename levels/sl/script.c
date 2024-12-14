@@ -46,21 +46,8 @@ const LevelScript level_sl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SKY_SLUG, sky_slug_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_WATER_LAUNCHER, water_launcher_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_JELLYFISH, jellyfish_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PRINCE, prince_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -229,6 +216,23 @@ const LevelScript level_sl_entry[] = {
 		TERRAIN_MAT_LUT(sl_area_4_collision_materials),
 		MACRO_OBJECTS(sl_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_EMPYREAN_ABYSS),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(5, sl_area_5),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_SL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_SL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_SL, 0x04, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, -4359, 6318, 469, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_PRINCE, 3243, 2699, 696, 0, -90, 0, 0x00000000, bhvPrinceBoss),
+		TERRAIN(sl_area_5_collision),
+		TERRAIN_MAT_LUT(sl_area_5_collision_materials),
+		MACRO_OBJECTS(sl_area_5_macro_objs),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

@@ -745,6 +745,7 @@
 #define MODEL_WATER_LAUNCHER                   0x107
 #define MODEL_JELLYFISH                   0x108
 #define MODEL_ABYSS_OBELISK                   0x109
+#define MODEL_PRINCE                   0x10A
 
 //City of Reconstructed Ruin
 #define MODEL_RED_CONSTRUCTION_LIGHT                  0x100

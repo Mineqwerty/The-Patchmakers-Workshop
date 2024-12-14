@@ -8714,3 +8714,15 @@ const BehaviorScript bhvPaperTentacles[] = {
         CALL_NATIVE(bhv_paper_tentacles_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPrinceBoss[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    LOAD_ANIMATIONS(oAnimations, prince_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_prince_boss_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_prince_boss_loop),
+    END_LOOP(),
+};

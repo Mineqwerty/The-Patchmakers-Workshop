@@ -9189,6 +9189,17 @@ sound_ref .sound_speaker_sewnia
 sound_ref .sound_speaker_default
 sound_ref .sound_speaker_aurumcael
 sound_ref .sound_speaker_demonic_solids
+sound_ref .sound_speaker_xodarap
+
+.sound_speaker_xodarap:
+chan_setbank 13
+chan_setinstr 7
+chan_setlayer 0, .layer_speaker_xodarap
+chan_end
+
+.layer_speaker_xodarap:
+layer_note1 39, 0xc0, 127
+layer_end
 
 .sound_speaker_demonic_solids:
 chan_setbank 13

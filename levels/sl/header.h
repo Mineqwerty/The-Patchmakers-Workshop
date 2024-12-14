@@ -80,4 +80,8 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/abyss_obelisk/collision_header.h"
 
+#include "levels/sl/prince/geo_header.h"
+
+#include "levels/sl/prince/anim_header.h"
+
 #endif

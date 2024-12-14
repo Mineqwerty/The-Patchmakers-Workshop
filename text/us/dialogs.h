@@ -2753,3 +2753,62 @@ I feel a lot better now.\n\
 Let's finish this, Bowser!\n\
 And Peach!\n\
 And of course, Mario!"))
+
+DEFINE_DIALOG(DIALOG_PRINCE_INTRO, 1, 3, 30, 200, _("\
+@4C2ABDFFYou.\n\
+\n\
+\n\
+@4C2ABDFFI have been watching you.\n\
+\n\
+\n\
+@4C2ABDFFTell me. Do you have knowledge of\n\
+where you currently stand?\n\
+Do you have purpose in being here?\n\
+@4C2ABDFF...And do you know the story\n\
+of that cursed patch you found here?\n\
+Its true capabilities?\n\
+@4C2ABDFFThis realm is the highest point of\n\
+the lowest reaches. It reflects on its\n\
+perciever much as the inverse is true...\n\
+@4C2ABDFFWhat I say is that whether one drowns\n\
+or swims here depends on one's state of mind.\n\
+And yet... you are an anomaly.\n\
+@4C2ABDFFYou neither float nor sink here...\n\
+A strong sense of purpose is keeping you\n\
+firmly grounded, yet able to move. How peculiar.\n\
+@4C2ABDFFHad it not been for this odd behavior, I\n\
+would have immediately chased you away...\n\
+Especially after recent events.\n\
+@4C2ABDFFI can see in your eyes you know what\n\
+I am about to say... But a man recently\n\
+traveled here in pursuit of eldritch secrets.\n\
+@4C2ABDFFHe was already nearing his breaking point,\n\
+and this realm is what seemed to have\n\
+made his mind cross some point...\n\
+@4C2ABDFFWhen he first arrived here, I met him.\n\
+I told him plainly, his quest was in vain.\n\
+The secrets of life were not his to hold.\n\
+@4C2ABDFFLife is an elusive, precious aspect of existence.\n\
+To wish to control it, manufacture it...\n\
+Such a practice as that shall not be.\n\
+@4C2ABDFFAnd when I next saw him...\n\
+He was brimming with hatred, that patch\n\
+upon his sleeve, radiating malice.\n\
+@4C2ABDFFHe attacked me without purpose, without goals,\n\
+only to kill. The patch had been made for\n\
+my demise particularly.\n\
+@4C2ABDFFBut...\n\
+You do not possess the same hatred.\n\
+I can sense that clearly.\n\
+@4C2ABDFFHowever... I need to make sure\n\
+you will not succumb to its toxic\n\
+hatred that permeates the air around it.\n\
+@4C2ABDFFI am able to see both past and future...\n\
+You, Mario, will confront this man soon.\n\
+When that time comes, will you be in control?\n\
+@4C2ABDFFSo... Prove it to me, Mario.\n\
+If you can maintain control over a long\n\
+battle, the patch is yours to keep.\n\
+@4C2ABDFFA useful tool... Or demise.\n\
+We shall commence a battle to see which\n\
+path you take!"))

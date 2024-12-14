@@ -116,7 +116,7 @@ static void fish_act_roam(void) {
     o->oFishGoalY = gMarioObject->oPosY + o->oFishHeightOffset;
 
     // Rotate the fish towards Mario.
-    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    cur_obj_rotate_yaw_toward(cur_obj_angle_to_home(), o->oBlueFishPresetRandomAngleSpeed);
 
     if (gCurrLevelNum != LEVEL_SL) {
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
@@ -179,7 +179,7 @@ static void fish_act_flee(void) {
     o->oFishGoalY = gMarioObject->oPosY + o->oFishHeightOffset;
 
     // Rotate fish away from Mario.
-    cur_obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, o->oFishYawVel);
+    cur_obj_rotate_yaw_toward(cur_obj_angle_to_home(), o->oFishYawVel);
     
     if (gCurrLevelNum != LEVEL_SL) {
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
@@ -219,6 +219,7 @@ static void fish_act_init(void) {
     o->header.gfx.animInfo.animFrame = (s16)(random_float() * 28.0f);
     o->oFishDepthDistance = random_float() * 300.0f;
     cur_obj_scale(random_float() * 0.4f + 0.8f);
+    o->oBlueFishPresetRandomAngleSpeed = 0x100 + random_u16() % 0x800;
     o->oAction = FISH_ACT_ROAM;
 }
 

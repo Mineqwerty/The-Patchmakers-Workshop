@@ -57,3 +57,6 @@
 #include "levels/sl/abyss_obelisk/model.inc.c"
 #include "levels/sl/enemy_arena_combat_walls/collision.inc.c"
 #include "levels/sl/abyss_obelisk/collision.inc.c"
+#include "levels/sl/prince/model.inc.c"
+#include "levels/sl/prince/anims/data.inc.c"
+#include "levels/sl/prince/anims/table.inc.c"
