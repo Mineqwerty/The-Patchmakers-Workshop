@@ -277,6 +277,12 @@
             [1, 32700],
             [32700, 29430],
             "hang"
+        ],
+        "envelope46": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -703,6 +709,18 @@
             "envelope": "envelope40",
             "sound": "5C_castanets"
         },
+        "Tubular Echo": {
+            "release_rate": 1,
+            "normal_range_hi": 50,
+            "envelope": "envelope46",
+            "sound": "5F_tubular_echo",
+            "sound_hi": "61_tubular_echo_lq"
+        },
+        "Tremolo Voice": {
+            "release_rate": 114,
+            "envelope": "envelope18",
+            "sound": "60_tremolo_voice"
+        },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "envelope2", "sound": {"sample": "06_kick_drum_1", "tuning": 0.210224}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope2", "sound": {"sample": "06_kick_drum_1", "tuning": 0.2227245}},
@@ -872,6 +890,8 @@
         "Harmonica",
         "Kalimba",
 
-        "Castanets"
+        "Castanets",
+        "Tubular Echo",
+        "Tremolo Voice"
     ]
 }

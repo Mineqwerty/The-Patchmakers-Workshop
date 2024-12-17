@@ -878,6 +878,10 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
             play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
         }
 
+        if (obj_has_behavior(obj, bhvAbyssUrchin)) {
+            damage = 0;
+        }
+
         update_mario_sound_and_camera(m);
         return drop_and_set_mario_action(m, determine_knockback_action(m, obj->oDamageOrCoinValue), damage);
     }
@@ -1494,7 +1498,7 @@ u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct Object 
 
         if (m->action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER)) {
             return drop_and_set_mario_action(m, ACT_WATER_SHOCKED, 0);
-        } else {
+        } else if (m->miasmaArmorTimer <= 0) {
             update_mario_sound_and_camera(m);
             return drop_and_set_mario_action(m, ACT_SHOCKED, actionArg);
         }

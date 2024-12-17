@@ -1521,8 +1521,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
 	if (gCurrLevelNum == LEVEL_BITFS) return 0;
 			if (gCurrLevelNum == LEVEL_NEW_FILE_SELECT) return 0;
-		if (gCurrLevelNum == LEVEL_SSL) return 0;
-			if (gCurrLevelNum == LEVEL_BITDW) return 0;
+					if (gCurrLevelNum == LEVEL_BITDW) return 0;
 
     if (gCurrDemoInput != NULL || gCurrCreditsEntry != NULL || gCurrCourseNum == COURSE_NONE) {
         return FALSE;

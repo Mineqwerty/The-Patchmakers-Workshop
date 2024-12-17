@@ -1,0 +1,10 @@
+extern const GeoLayout jelly_surround_circle_geo[];
+extern Lights1 jelly_surround_circle_f3dlite_material_lights;
+extern u8 jelly_surround_circle_jellypattern_rgba16[];
+extern u8 jelly_surround_circle_jellyoveralay_i4[];
+extern Vtx jelly_surround_circle_Circle_mesh_layer_1_vtx_cull[8];
+extern Vtx jelly_surround_circle_Circle_mesh_layer_1_vtx_0[27];
+extern Gfx jelly_surround_circle_Circle_mesh_layer_1_tri_0[];
+extern Gfx mat_jelly_surround_circle_f3dlite_material[];
+extern Gfx mat_revert_jelly_surround_circle_f3dlite_material[];
+extern Gfx jelly_surround_circle_Circle_mesh_layer_1[];

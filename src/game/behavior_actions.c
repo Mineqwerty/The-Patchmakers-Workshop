@@ -379,3 +379,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/soul_mote.inc.c"
 
 #include "behaviors/prince_boss.inc.c"
+#include "behaviors/jelly_surround_circle.inc.c"

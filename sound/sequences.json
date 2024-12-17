@@ -216,5 +216,17 @@
     ],
     "40_workshop_hub": [
         "0C"
+    ],
+    "41_violet_twilit_woods": [
+        "0C"
+    ],
+    "42_violet_twilit_woods_select": [
+        "14_piranha_music_box"
+    ],
+    "43_empyrean_abyss_select": [
+        "14_piranha_music_box"
+    ],
+    "44_the_far_plane_select": [
+        "14_piranha_music_box"
     ]
 }

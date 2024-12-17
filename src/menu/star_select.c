@@ -147,6 +147,18 @@ void spawn_stage_diorama(void) {
             //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_HIDDEN_VILLAGE_HOLD_SELECT), 0);
         break;
+        case LEVEL_SSL:
+            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_VIOLET_TWILIT_WOODS_SELECT), 0);
+        break;
+        case LEVEL_BBH:
+            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_THE_FAR_PLANE_SELECT), 0);
+        break;
+        case LEVEL_SL:
+            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EMPYREAN_ABYSS_SELECT), 0);
+        break;
         case LEVEL_TTM:
             //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_TIMELESS_SHRINE_SELECT), 0);

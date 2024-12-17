@@ -32,3 +32,4 @@
 #include "levels/sl/jellyfish/geo.inc.c"
 #include "levels/sl/abyss_obelisk/geo.inc.c"
 #include "levels/sl/prince/geo.inc.c"
+#include "levels/sl/jelly_surround_circle/geo.inc.c"

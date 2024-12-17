@@ -5,10 +5,12 @@
 #include "levels/sl/jellyfish/texscroll.inc.c"
 #include "levels/sl/texscroll.inc.c"
 
+#include "levels/sl/jelly_surround_circle/texscroll.inc.c"
 void scroll_textures_sl() {
 	scroll_sl_level_geo_tentacle_cage();
 	scroll_sl_level_geo_sky_slug();
 	scroll_sl_level_geo_water_launcher();
 	scroll_sl_level_geo_jellyfish();
 	scroll_sl();
+	scroll_sl_level_geo_jelly_surround_circle();
 }

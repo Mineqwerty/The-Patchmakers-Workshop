@@ -48,6 +48,7 @@ const LevelScript level_sl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_JELLYFISH, jellyfish_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PRINCE, prince_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_JELLY_SURROUND_CIRCLE, jelly_surround_circle_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -228,7 +229,7 @@ const LevelScript level_sl_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -4359, 6318, 469, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_PRINCE, 3243, 2699, 696, 0, -90, 0, 0x00000000, bhvPrinceBoss),
+		OBJECT(MODEL_PRINCE, 4044, 2699, 0, 0, -90, 0, 0x00000000, bhvPrinceBoss),
 		TERRAIN(sl_area_5_collision),
 		TERRAIN_MAT_LUT(sl_area_5_collision_materials),
 		MACRO_OBJECTS(sl_area_5_macro_objs),

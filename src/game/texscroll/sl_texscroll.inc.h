@@ -1,3 +1,4 @@
+#include "levels/sl/jelly_surround_circle/texscroll.inc.h"
 #include "levels/sl/texscroll.inc.h"
 
 #include "levels/sl/jellyfish/texscroll.inc.h"

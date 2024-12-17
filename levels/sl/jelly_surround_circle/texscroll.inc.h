@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_jelly_surround_circle_f3dlite_material();
+extern void scroll_sl_level_geo_jelly_surround_circle();

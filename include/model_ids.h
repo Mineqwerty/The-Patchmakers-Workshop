@@ -746,6 +746,7 @@
 #define MODEL_JELLYFISH                   0x108
 #define MODEL_ABYSS_OBELISK                   0x109
 #define MODEL_PRINCE                   0x10A
+#define MODEL_JELLY_SURROUND_CIRCLE                   0x10B
 
 //City of Reconstructed Ruin
 #define MODEL_RED_CONSTRUCTION_LIGHT                  0x100

@@ -84,4 +84,6 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/prince/anim_header.h"
 
+#include "levels/sl/jelly_surround_circle/geo_header.h"
+
 #endif

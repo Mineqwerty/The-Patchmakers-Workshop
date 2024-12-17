@@ -60,3 +60,4 @@
 #include "levels/sl/prince/model.inc.c"
 #include "levels/sl/prince/anims/data.inc.c"
 #include "levels/sl/prince/anims/table.inc.c"
+#include "levels/sl/jelly_surround_circle/model.inc.c"

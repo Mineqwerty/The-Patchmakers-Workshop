@@ -8726,3 +8726,12 @@ const BehaviorScript bhvPrinceBoss[] = {
         CALL_NATIVE(bhv_prince_boss_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvJellySurroundCircle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_jelly_surround_circle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_jelly_surround_circle_loop),
+    END_LOOP(),
+};

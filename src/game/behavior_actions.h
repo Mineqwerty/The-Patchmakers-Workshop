@@ -1098,3 +1098,5 @@ void bhv_paper_tentacles_init(void);
 void bhv_paper_tentacles_loop(void);
 void bhv_prince_boss_init(void);
 void bhv_prince_boss_loop(void);
+void bhv_jelly_surround_circle_init(void);
+void bhv_jelly_surround_circle_loop(void);
