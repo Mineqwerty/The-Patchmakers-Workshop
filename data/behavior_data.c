@@ -8735,3 +8735,53 @@ const BehaviorScript bhvJellySurroundCircle[] = {
         CALL_NATIVE(bhv_jelly_surround_circle_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPrinceTeleportRift[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_prince_teleport_rift_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_prince_teleport_rift_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPrinceBullet[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_prince_bullet_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_prince_bullet_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPrinceShockWave[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_prince_shock_wave_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_prince_shock_wave_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFocusObject[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_focus_object_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_focus_object_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPrinceLaser[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_prince_laser_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_prince_laser_loop),
+    END_LOOP(),
+};

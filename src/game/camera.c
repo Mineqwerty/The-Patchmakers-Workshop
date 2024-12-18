@@ -1761,7 +1761,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         offset_rotated(secondFocus, sMarioCamState->pos, holdFocOffset, sMarioCamState->faceAngle);
     }
 
-    if (gCurrLevelNum == LEVEL_BOWSER_1) {
+    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_SL) {
         focus[0] = (sMarioCamState->pos[0] + (secondFocus[0])) / 2.f;
         focus[1] = (sMarioCamState->pos[1] + (secondFocus[1])) / 2.f + 125.f;
         focus[2] = (sMarioCamState->pos[2] + (secondFocus[2])) / 2.f;
@@ -1823,7 +1823,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
         approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
     }
-    else if (gCurrLevelNum == LEVEL_BOWSER_1) {
+    else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_SL) {
 
         c->pos[0] = gMarioState->pos[0] + (1000 * -sins(c->approachAngleOffsetBossCam));
         c->pos[2] = gMarioState->pos[2] + (1000 * -coss(c->approachAngleOffsetBossCam));

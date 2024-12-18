@@ -1478,6 +1478,9 @@
 
 //prince
 #define oLastTeleportIndex           OBJECT_FIELD_S32(0x1B)
+#define oAttackCounter           OBJECT_FIELD_S32(0x1C)
+#define oSpawnedCameraFocus           OBJECT_FIELD_OBJ(0x1D)
+#define oPrinceLaserObject           OBJECT_FIELD_OBJ(0x1E)
 
 /*Custom general defines:
 

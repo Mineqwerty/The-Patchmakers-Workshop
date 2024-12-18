@@ -794,3 +794,8 @@ extern const BehaviorScript bhvPaperUrchin[];
 extern const BehaviorScript bhvPaperTentacles[];
 extern const BehaviorScript bhvPrinceBoss[];
 extern const BehaviorScript bhvJellySurroundCircle[];
+extern const BehaviorScript bhvPrinceTeleportRift[];
+extern const BehaviorScript bhvPrinceBullet[];
+extern const BehaviorScript bhvPrinceShockWave[];
+extern const BehaviorScript bhvFocusObject[];
+extern const BehaviorScript bhvPrinceLaser[];

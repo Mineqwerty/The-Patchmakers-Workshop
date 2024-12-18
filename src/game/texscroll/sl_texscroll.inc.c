@@ -6,6 +6,7 @@
 #include "levels/sl/texscroll.inc.c"
 
 #include "levels/sl/jelly_surround_circle/texscroll.inc.c"
+#include "levels/sl/prince_shock_wave/texscroll.inc.c"
 void scroll_textures_sl() {
 	scroll_sl_level_geo_tentacle_cage();
 	scroll_sl_level_geo_sky_slug();
@@ -13,4 +14,5 @@ void scroll_textures_sl() {
 	scroll_sl_level_geo_jellyfish();
 	scroll_sl();
 	scroll_sl_level_geo_jelly_surround_circle();
+	scroll_sl_level_geo_prince_shock_wave();
 }

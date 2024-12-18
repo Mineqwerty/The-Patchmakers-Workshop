@@ -40,19 +40,7 @@ const LevelScript level_wdw_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, corr_skybox_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_RED_CONSTRUCTION_LIGHT, red_construction_light_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_POWER_BREAKER, power_breaker_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_BREAKER_SPARK, breaker_spark_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 end persistent block [level commands] */
+	
 
 	AREA(1, wdw_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),

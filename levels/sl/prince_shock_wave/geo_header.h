@@ -1,0 +1,10 @@
+extern const GeoLayout prince_shock_wave_geo[];
+extern Lights1 prince_shock_wave_f3dlite_material_009_lights;
+extern u8 prince_shock_wave_jellypattern_rgba16[];
+extern u8 prince_shock_wave_jellyoveralay_i4[];
+extern Vtx prince_shock_wave_Circle_001_mesh_layer_1_vtx_cull[8];
+extern Vtx prince_shock_wave_Circle_001_mesh_layer_1_vtx_0[28];
+extern Gfx prince_shock_wave_Circle_001_mesh_layer_1_tri_0[];
+extern Gfx mat_prince_shock_wave_f3dlite_material_009[];
+extern Gfx mat_revert_prince_shock_wave_f3dlite_material_009[];
+extern Gfx prince_shock_wave_Circle_001_mesh_layer_1[];

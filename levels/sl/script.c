@@ -49,6 +49,10 @@ const LevelScript level_sl_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_ABYSS_OBELISK, abyss_obelisk_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_PRINCE, prince_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_JELLY_SURROUND_CIRCLE, jelly_surround_circle_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PRINCE_TELEPORT_RIFT, prince_teleport_rift_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PRINCE_BULLET, prince_bullet_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PRINCE_SHOCK_WAVE, prince_shock_wave_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_PRINCE_LASER, prince_laser_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 

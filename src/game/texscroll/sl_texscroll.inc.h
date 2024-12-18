@@ -1,3 +1,4 @@
+#include "levels/sl/prince_shock_wave/texscroll.inc.h"
 #include "levels/sl/jelly_surround_circle/texscroll.inc.h"
 #include "levels/sl/texscroll.inc.h"
 

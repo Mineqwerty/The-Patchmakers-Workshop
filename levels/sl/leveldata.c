@@ -61,3 +61,7 @@
 #include "levels/sl/prince/anims/data.inc.c"
 #include "levels/sl/prince/anims/table.inc.c"
 #include "levels/sl/jelly_surround_circle/model.inc.c"
+#include "levels/sl/prince_teleport_rift/model.inc.c"
+#include "levels/sl/prince_bullet/model.inc.c"
+#include "levels/sl/prince_shock_wave/model.inc.c"
+#include "levels/sl/prince_laser/model.inc.c"

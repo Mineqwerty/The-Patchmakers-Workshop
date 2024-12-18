@@ -86,4 +86,12 @@ extern const LevelScript level_sl_entry[];
 
 #include "levels/sl/jelly_surround_circle/geo_header.h"
 
+#include "levels/sl/prince_teleport_rift/geo_header.h"
+
+#include "levels/sl/prince_bullet/geo_header.h"
+
+#include "levels/sl/prince_shock_wave/geo_header.h"
+
+#include "levels/sl/prince_laser/geo_header.h"
+
 #endif

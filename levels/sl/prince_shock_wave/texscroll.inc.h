@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_prince_shock_wave_f3dlite_material_009();
+extern void scroll_sl_level_geo_prince_shock_wave();

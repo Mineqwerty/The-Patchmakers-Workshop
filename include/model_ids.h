@@ -747,11 +747,15 @@
 #define MODEL_ABYSS_OBELISK                   0x109
 #define MODEL_PRINCE                   0x10A
 #define MODEL_JELLY_SURROUND_CIRCLE                   0x10B
+#define MODEL_PRINCE_TELEPORT_RIFT                   0x10C
+#define MODEL_PRINCE_BULLET                   0x10D
+#define MODEL_PRINCE_SHOCK_WAVE                   0x10E
+#define MODEL_PRINCE_LASER                   0x10F
 
 //City of Reconstructed Ruin
 #define MODEL_RED_CONSTRUCTION_LIGHT                  0x100
 #define MODEL_POWER_BREAKER                  0x101
-#define MODEL_BREAKER_SPARK                  0x102
+
 
 //Timeless Shrine
 #define MODEL_SIGHT_CUBE                  0x100
@@ -829,6 +833,7 @@
 #define MODEL_KOOPA_WITH_SHELL                 0x1A6        // koopa_shell_geo
 #define MODEL_KOOPA_WITHOUT_SHELL         0x1A7        // koopa_without_shell_geo
 #define MODEL_SOUL_MOTE         0x1A8
+#define MODEL_BREAKER_SPARK                  0x1A9
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

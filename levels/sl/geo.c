@@ -33,3 +33,7 @@
 #include "levels/sl/abyss_obelisk/geo.inc.c"
 #include "levels/sl/prince/geo.inc.c"
 #include "levels/sl/jelly_surround_circle/geo.inc.c"
+#include "levels/sl/prince_teleport_rift/geo.inc.c"
+#include "levels/sl/prince_bullet/geo.inc.c"
+#include "levels/sl/prince_shock_wave/geo.inc.c"
+#include "levels/sl/prince_laser/geo.inc.c"
