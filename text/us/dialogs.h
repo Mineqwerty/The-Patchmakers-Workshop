@@ -2812,3 +2812,19 @@ battle, the patch is yours to keep.\n\
 @4C2ABDFFA useful tool... Or demise.\n\
 We shall commence a battle to see which\n\
 path you take!"))
+
+DEFINE_DIALOG(DIALOG_PRINCE_DEFEATED, 1, 3, 30, 200, _("\
+@4C2ABDFF...Wonderful\n\
+\n\
+\n\
+@4C2ABDFFYou have proven yourself.\n\
+In truth, I knew it would turn\n\
+out this way...\n\
+@4C2ABDFFBut... fate can always bend.\n\
+Nothing is predetermined by visions\n\
+alone.\n\
+@4C2ABDFFYour future will be a good one\n\
+so long as you continue this way.\n\
+Do not lose sight of what is important.\n\
+@4C2ABDFFI shall now aid you on your quest.\n\
+Take this as a token of victory."))

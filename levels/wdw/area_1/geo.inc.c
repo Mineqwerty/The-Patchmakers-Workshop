@@ -30,6 +30,7 @@ const GeoLayout wdw_area_1_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_011_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, wdw_dl_Plane_011_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wdw_dl_Plane_012_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 3526, -792, 0, wdw_dl_Plane_018_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

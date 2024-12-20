@@ -12,13 +12,17 @@ void bhv_red_construction_light_init(void) {
         SET_BPARAM3(o->oPrimColorParams, 0);
         f32 dist;
         o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvPowerBreakerController, &dist);
+
+        if (o->oBehParams2ndByte == 2) {
+            cur_obj_scale(3.0f);
+        }
     }
 }
 
 void bhv_red_construction_light_loop(void) {
     o->oOpacity = 128 + 127*sins(o->oTimer * 0x222);
 
-    if (o->oBehParams2ndByte == 1) {
+    if (o->oBehParams2ndByte >= 1) {
         if (o->parentObj->oAction >= 1 && o->parentObj->oTimer > 30) {
             cur_obj_enable_rendering();
         }

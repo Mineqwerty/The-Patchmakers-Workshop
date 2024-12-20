@@ -8785,3 +8785,12 @@ const BehaviorScript bhvPrinceLaser[] = {
         CALL_NATIVE(bhv_prince_laser_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFarawayBeepManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_faraway_beep_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_faraway_beep_manager_loop),
+    END_LOOP(),
+};

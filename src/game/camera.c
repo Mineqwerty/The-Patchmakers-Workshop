@@ -1823,10 +1823,15 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
         approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
     }
-    else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_SL) {
+    else if (gCurrLevelNum == LEVEL_BOWSER_1) {
 
         c->pos[0] = gMarioState->pos[0] + (1000 * -sins(c->approachAngleOffsetBossCam));
         c->pos[2] = gMarioState->pos[2] + (1000 * -coss(c->approachAngleOffsetBossCam));
+        c->pos[1] += 200.0f;
+    }
+    else if ( gCurrLevelNum == LEVEL_SL) {
+        c->pos[0] = gMarioState->pos[0] + (2000 * -sins(c->approachAngleOffsetBossCam));
+        c->pos[2] = gMarioState->pos[2] + (2000 * -coss(c->approachAngleOffsetBossCam));
         c->pos[1] += 200.0f;
     }
 
@@ -11046,7 +11051,7 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(1, 1, 0, 1, 1, 1, 1, 1), // BBH            | CCM
 	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 1, 1, 1, 0), // CASTLE_INSIDE  | HMC
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 0, 0, 0), // SSL            | BOB
-	ZOOMOUT_AREA_MASK(1, 1, 1, 1, 1, 1, 1, 0), // SL             | WDW
+	ZOOMOUT_AREA_MASK(1, 1, 1, 1, 1, 1, 1, 1), // SL             | WDW
 	ZOOMOUT_AREA_MASK(1, 1, 1, 0, 1, 1, 0, 0), // JRB            | THI
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // TTC            | RR
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // CASTLE_GROUNDS | BITDW

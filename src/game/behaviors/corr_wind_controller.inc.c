@@ -6,7 +6,7 @@ void bhv_corr_wind_controller_loop(void) {
     if (gMarioState->floor && gMarioState->floor->type == SURFACE_LESS_BLIZZARD) {
         play_sound(SOUND_NEW_INDOOR_WINDS, gGlobalSoundSource);
     }
-    else if (gCurrAreaIndex == 2) {
+    else if (gCurrAreaIndex >= 2) {
         play_sound(SOUND_NEW_INDOOR_WINDS, gGlobalSoundSource);
     }
     else {

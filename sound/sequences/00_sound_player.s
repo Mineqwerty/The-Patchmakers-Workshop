@@ -8918,6 +8918,28 @@ sound_ref .sound_long_scrape
 sound_ref .sound_finger_snap
 sound_ref .sound_slash_air
 sound_ref .sound_soul_mote_shield
+sound_ref .sound_crane_short
+sound_ref .sound_crane_long
+
+.sound_crane_long:
+chan_setbank 12
+chan_setinstr 26
+chan_setlayer 0, .layer_crane_long
+chan_end
+
+.layer_crane_long:
+layer_note1 39, 0x1ea, 127
+layer_end
+
+.sound_crane_short:
+chan_setbank 12
+chan_setinstr 25
+chan_setlayer 0, .layer_crane_short
+chan_end
+
+.layer_crane_short:
+layer_note1 39, 0x70, 127
+layer_end
 
 .sound_soul_mote_shield:
 chan_setbank 12

@@ -1,5 +1,6 @@
 #include "src/game/cutscene.h"
 #include "src/game/game_init.h"
+#include "include/dialog_ids.h"
 
 enum PrinceActions {
     PRINCE_ACT_CUTSCENE,
@@ -10,7 +11,8 @@ enum PrinceActions {
     PRINCE_ACT_BARRAGE,
     PRINCE_ACT_SHOCK_WAVES,
     PRINCE_ACT_LASER,
-    PRINCE_ACT_MELT_ATTACK
+    PRINCE_ACT_MELT_ATTACK,
+    PRINCE_ACT_DEFEATED
 };
 
 enum PrinceAnimations {
@@ -31,19 +33,31 @@ void prince_act_cutscene(void) {
     switch (o->oSubAction) {
         case 0:
             if (o->oDistanceToMario < 1000) {
-                //begin_cutscene_event(CUTSCENE_EVENT_PRINCE_INTRO);
+                begin_cutscene_event(CUTSCENE_EVENT_PRINCE_INTRO);
+                
+                o->oSubAction++;
+            }
+            
+        break;
+        case 1:
+            if (gCurCutscene == -1) {
                 o->oAction = PRINCE_ACT_IDLE;
                 o->oHealth = 100;
                 gBossMaxHealth = 100;
                 gBossHealth = 100;
-                o->oSubAction++;
             }
-            
         break;
     }
 }
 
 s16 decide_prince_action() {
+    struct Surface *floor;
+    f32 height = find_floor(o->oPosX, o->oPosY + 10, o->oPosZ, &floor);
+
+    if (height < 0) {
+        return PRINCE_ACT_TELEPORT;
+    }
+
     if (o->oDistanceToMario < 1000) {
         switch (random_u16()%4) {
             case 0:
@@ -61,7 +75,7 @@ s16 decide_prince_action() {
         }
     }
     else {
-        switch (random_u16()%3) {
+        switch (random_u16()%4) {
             case 0:
                 return PRINCE_ACT_SHOCK_WAVES;
             break;
@@ -70,6 +84,9 @@ s16 decide_prince_action() {
             break;
             case 2:
                 return PRINCE_ACT_DASH_FORWARD;
+            break;
+            case 3:
+                return PRINCE_ACT_TELEPORT;
             break;
         }
     }
@@ -98,12 +115,16 @@ void prince_warp_to_teleport_spot(void) {
 void prince_act_teleport(void) {
     switch(o->oSubAction) {
         case 0:
-            obj_scale_xyz(o, 1.0f - (f32)o->oTimer/15.0f, 1.0f + (f32)o->oTimer/15.0f, 1.0f - (f32)o->oTimer/15.0f);
+            obj_scale_xyz(o, CLAMP(1.0f - (f32)o->oTimer/15.0f, 0.02f, 1.0f), 1.0f + (f32)o->oTimer/15.0f, CLAMP(1.0f - (f32)o->oTimer/15.0f, 0.02f, 1.0f));
             if (o->oTimer == 14) {
                 cur_obj_hide();
                 for (int i = 0; i < 3; i++) {
                     spawn_object_relative(0, random_u16()%500 - 250, random_u16()%250, random_u16()%500 - 250, o, MODEL_JELLYFISH, bhvJellyfish);
                 }
+                
+            }
+
+            if (o->oTimer == 30) {
                 o->oTimer = 0;
                 o->oLastTeleportIndex = (o->oLastTeleportIndex + 1 + random_u16()%3)%4;
                 prince_warp_to_teleport_spot();
@@ -431,6 +452,25 @@ void prince_act_laser(void) {
     }
 }
 
+void prince_act_defeated(void) {
+    switch (o->oSubAction) {
+        case 0:
+            create_dialog_box(DIALOG_PRINCE_DEFEATED);
+            cur_obj_init_animation(PRINCE_ANIM_IDLE);
+            gMarioState->action = ACT_MOVE_IN_CUTSCENE;
+            gMarioState->pos[1] = gMarioState->floorHeight;
+            o->oSubAction++;
+        break;
+        case 1:
+            if (gDialogID == -1) {
+                gMarioState->action = ACT_IDLE;
+                spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
+}
+
 void bhv_prince_boss_init(void) {
     o->oLastTeleportIndex = 0;
 }
@@ -461,6 +501,9 @@ void bhv_prince_boss_loop(void) {
         case PRINCE_ACT_LASER:
             prince_act_laser();
         break;
+        case PRINCE_ACT_DEFEATED:
+            prince_act_defeated();
+        break;
     }
     if (o->oAction != PRINCE_ACT_CUTSCENE) {
         gBossHealth = o->oHealth;
@@ -468,6 +511,11 @@ void bhv_prince_boss_loop(void) {
 
     if (o->oHealth < 100 && gGlobalTimer % 150 == 0) {
         o->oHealth += 1;
+    }
+
+    if (o->oHealth <= 0 && o->oAction != PRINCE_ACT_DEFEATED) {
+        o->oAction = PRINCE_ACT_DEFEATED;
+        o->oSubAction = 0;
     }
 }
 

@@ -1110,3 +1110,5 @@ void bhv_focus_object_init(void);
 void bhv_focus_object_loop(void);
 void bhv_prince_laser_init(void);
 void bhv_prince_laser_loop(void);
+void bhv_faraway_beep_manager_init(void);
+void bhv_faraway_beep_manager_loop(void);

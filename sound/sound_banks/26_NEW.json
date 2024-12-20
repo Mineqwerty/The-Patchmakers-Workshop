@@ -135,6 +135,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "soul_mote_shield"
+    },
+    "inst_crane_short": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "crane_short"
+    },
+    "inst_crane_long": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "crane_long"
     }
   },
   "instrument_list": [
@@ -162,6 +172,8 @@
     "inst_long_scrape",
     "inst_finger_snap",
     "inst_slash_air",
-    "inst_soul_mote_shield"
+    "inst_soul_mote_shield",
+    "inst_crane_short",
+    "inst_crane_long"
   ]
 }

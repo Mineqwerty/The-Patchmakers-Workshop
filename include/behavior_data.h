@@ -799,3 +799,4 @@ extern const BehaviorScript bhvPrinceBullet[];
 extern const BehaviorScript bhvPrinceShockWave[];
 extern const BehaviorScript bhvFocusObject[];
 extern const BehaviorScript bhvPrinceLaser[];
+extern const BehaviorScript bhvFarawayBeepManager[];

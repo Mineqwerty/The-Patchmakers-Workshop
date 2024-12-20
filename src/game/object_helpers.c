@@ -1791,7 +1791,13 @@ static void obj_spawn_loot_coins(struct Object *obj, s32 numCoins, f32 baseYVel,
         spawnHeight = obj->oPosY;
     }
 
-    for (i = 0; i < numCoins; i++) {
+    s32 lootCoins = numCoins;
+
+    if (gCurrLevelNum == LEVEL_SL && gCurrAreaIndex == 5) {
+        lootCoins = 1;
+    }
+
+    for (i = 0; i < lootCoins; i++) {
         if (obj->oNumLootCoins <= 0) {
             break;
         }
