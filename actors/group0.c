@@ -112,3 +112,4 @@
 #include "menu_arrow_portal_selector/model.inc.c"
 #include "soul_mote/model.inc.c"
 #include "breaker_spark/model.inc.c"
+#include "rose_crystal/model.inc.c"

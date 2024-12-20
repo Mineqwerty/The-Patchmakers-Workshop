@@ -168,6 +168,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, 730, 2689, 996, 0, 12, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3),
 		OBJECT_WITH_ACTS(MODEL_PTOOIE, -862, 2469, -4682, 0, 24, 0, 0x00000000, bhvPtooie, ACT_1 | ACT_2 | ACT_3),
 		OBJECT(MODEL_PTOOIE, 5191, 5792, 1732, 0, 42, 0, 0x00000000, bhvPtooie),
+		OBJECT(MODEL_ROSE_CRYSTAL, 4892, 4831, 2054, 0, 42, 0, 0x00000000, bhvRoseCrystal),
 		OBJECT(MODEL_TRANSMUTATION_STAR, -10618, 4461, -3327, 0, 0, 0, (9 << 24), bhvTransmutationStar),
 		TERRAIN(bob_area_1_collision),
 		ROOMS(bob_area_1_collision_rooms),

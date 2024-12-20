@@ -800,3 +800,6 @@ extern const BehaviorScript bhvPrinceShockWave[];
 extern const BehaviorScript bhvFocusObject[];
 extern const BehaviorScript bhvPrinceLaser[];
 extern const BehaviorScript bhvFarawayBeepManager[];
+extern const BehaviorScript bhvRoseCrystal[];
+extern const BehaviorScript bhvRoseCrystalReciever[];
+extern const BehaviorScript bhvGreyFireTorch[];

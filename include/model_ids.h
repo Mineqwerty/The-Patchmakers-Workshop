@@ -834,6 +834,7 @@
 #define MODEL_KOOPA_WITHOUT_SHELL         0x1A7        // koopa_without_shell_geo
 #define MODEL_SOUL_MOTE         0x1A8
 #define MODEL_BREAKER_SPARK                  0x1A9
+#define MODEL_ROSE_CRYSTAL                  0x1B0
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

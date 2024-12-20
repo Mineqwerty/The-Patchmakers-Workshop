@@ -156,6 +156,7 @@ const LevelScript level_main_scripts_entry[] = {
         LOAD_MODEL_FROM_GEO(MODEL_THREAD_PARTICLE,     thread_particle_geo),
         LOAD_MODEL_FROM_GEO(MODEL_SOUL_MOTE,     soul_mote_geo),
         LOAD_MODEL_FROM_GEO(MODEL_BREAKER_SPARK, breaker_spark_geo),
+        LOAD_MODEL_FROM_GEO(MODEL_ROSE_CRYSTAL, rose_crystal_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),

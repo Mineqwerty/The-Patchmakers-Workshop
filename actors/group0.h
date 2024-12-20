@@ -514,4 +514,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "breaker_spark/geo_header.h"
 
+#include "rose_crystal/geo_header.h"
+
 #endif

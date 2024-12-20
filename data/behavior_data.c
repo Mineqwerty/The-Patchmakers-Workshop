@@ -8794,3 +8794,30 @@ const BehaviorScript bhvFarawayBeepManager[] = {
         CALL_NATIVE(bhv_faraway_beep_manager_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvRoseCrystal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_HOLDABLE)),
+    CALL_NATIVE(bhv_rose_crystal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rose_crystal_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvRoseCrystalReciever[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_rose_crystal_reciever_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_rose_crystal_reciever_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvGreyFireTorch[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_grey_fire_torch_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_grey_fire_torch_loop),
+    END_LOOP(),
+};
