@@ -1543,6 +1543,17 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
         return FALSE;
     }
 
+    if (sWarpDest.portalID > 0) {
+        if (sWarpDest.portalID == 1) {
+            gCurrActNum = gMarioState->portal1Info[3];
+        }
+        else {
+            gCurrActNum = gMarioState->portal2Info[3];
+        }
+        
+        return FALSE;
+    }
+
     return !gDebugLevelSelect;
 }
 

@@ -804,6 +804,7 @@ void bhv_portal_init(void) {
             SET_BPARAM3(o->oPrimColorParams, 235);
             gMarioState->portal1Info[0] = gCurrLevelNum;
             gMarioState->portal1Info[1] = gCurrAreaIndex;
+            gMarioState->portal1Info[3] = gCurrActNum;
             gMarioState->portal1Position[0] = o->oPosX;
             gMarioState->portal1Position[1] = o->oPosY;
             gMarioState->portal1Position[2] = o->oPosZ;
@@ -814,6 +815,7 @@ void bhv_portal_init(void) {
             SET_BPARAM3(o->oPrimColorParams, 34);
             gMarioState->portal2Info[0] = gCurrLevelNum;
             gMarioState->portal2Info[1] = gCurrAreaIndex;
+            gMarioState->portal2Info[3] = gCurrActNum;
             gMarioState->portal2Position[0] = o->oPosX;
             gMarioState->portal2Position[1] = o->oPosY;
             gMarioState->portal2Position[2] = o->oPosZ;

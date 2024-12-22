@@ -558,8 +558,8 @@ struct MarioState {
 
     Vec3f portal1Position;
     Vec3f portal2Position;
-    u8 portal1Info[3];
-    u8 portal2Info[3];
+    u8 portal1Info[4];
+    u8 portal2Info[4];
     const BehaviorScript *lastHeldBehavior;
     u16 lastHeldModel;
     u8 lastHeldBehaviorParams;
