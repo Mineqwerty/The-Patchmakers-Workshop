@@ -224,8 +224,7 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_safe_layer1[] = {
 };
 
 Gfx hmc_area_1_collision_water_bottom_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(hmc_dl_water_bottom_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -240,8 +239,7 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_water_bottom[] = {
 };
 
 Gfx hmc_area_1_collision_hurt_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(hmc_dl_hurt_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -256,8 +254,7 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_hurt[] = {
 };
 
 Gfx hmc_area_1_collision_wattah_001_layer_5[] = {
-    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
-    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
+	gsSPSetLights1(hmc_dl_wattah_001_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -273,8 +270,7 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_wattah_001[] = {
 };
 
 Gfx hmc_area_1_collision_vertical_boost_water_floor_001_layer_5[] = {
-    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
-    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
+	gsSPSetLights1(hmc_dl_vertical_boost_water_floor_001_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -5685,14 +5681,10 @@ const Collision hmc_area_1_collision[] = {
 	COL_TRI(1823, 1816, 1547),
 	COL_TRI(1548, 1820, 1824),
 	COL_TRI(1548, 1824, 1823),
-	COL_TRI(1618, 1617, 1605),
 	COL_TRI(1618, 1605, 1576),
-	COL_TRI(1825, 1618, 1576),
-	COL_TRI(1825, 1576, 1621),
-	COL_TRI(1826, 1825, 1621),
-	COL_TRI(1826, 1621, 1606),
-	COL_TRI(1617, 1826, 1606),
-	COL_TRI(1617, 1606, 1605),
+	COL_TRI(1618, 1621, 1825),
+	COL_TRI(1825, 1606, 1826),
+	COL_TRI(1826, 1605, 1617),
 	COL_TRI(1827, 1828, 1829),
 	COL_TRI(1827, 1829, 1830),
 	COL_TRI(1828, 1827, 1826),
@@ -6090,6 +6082,10 @@ const Collision hmc_area_1_collision[] = {
 	COL_TRI(1948, 1973, 1974),
 	COL_TRI(1948, 1207, 1953),
 	COL_TRI(1948, 1953, 1952),
+	COL_TRI(1618, 1576, 1621),
+	COL_TRI(1825, 1621, 1606),
+	COL_TRI(1826, 1606, 1605),
+	COL_TRI(1618, 1617, 1605),
 	COL_TRI_MAT_INIT(SURFACE_NOT_SLIPPERY, 8, 9, 1, 56),
 	COL_TRI(1427, 2004, 1421),
 	COL_TRI(2005, 242, 241),

@@ -807,6 +807,7 @@
 #define MODEL_YARN_KOOPA     0x18C
 #define MODEL_DRAG_SPARK     0x18D
 #define MODEL_THREAD_PARTICLE     0x18E
+#define MODEL_FOG_YELLOW_COIN            0x18F
 
 #define MODEL_PATCH_MARIO_STONE                  0x190
 #define MODEL_ICE_SPIKES                  0x191
@@ -834,7 +835,10 @@
 #define MODEL_KOOPA_WITHOUT_SHELL         0x1A7        // koopa_without_shell_geo
 #define MODEL_SOUL_MOTE         0x1A8
 #define MODEL_BREAKER_SPARK                  0x1A9
-#define MODEL_ROSE_CRYSTAL                  0x1B0
+#define MODEL_ROSE_CRYSTAL                  0x1AA
+#define MODEL_FOG_YELLOW_COIN_NO_SHADOW            0x1AB
+#define MODEL_FOG_PURPLE_COIN           0x1AC
+#define MODEL_FOG_PURPLE_COIN_NO_SHADOW            0x1AD
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

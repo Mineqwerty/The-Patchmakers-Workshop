@@ -52,6 +52,8 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -65,6 +67,23 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_STAR, 10605, 3619, 752, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, 1663, -4561, -8586, 0, 0, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -10044, 87, -3591, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 5490, 3818, -2975, 0, -64, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 2934, 1944, -12379, 0, -77, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 9876, 1475, -7156, 0, -68, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 8626, 1788, -13132, 0, -103, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 1392, 2061, -2576, 0, -134, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 1006, 264, 13422, 0, -114, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -9036, 712, 3658, 0, 99, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -12827, -617, -1715, 0, 99, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -7899, -3252, -10159, 0, -166, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -8680, -3761, -3285, 0, 75, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2986, 2001, -8515, 0, 135, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -4958, 383, -462, 0, 0, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5080, 1609, 3769, 0, 0, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 9900, 1500, -7200, 0, 0, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 9619, 3552, -351, 0, 0, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 11205, 3694, 2102, 0, 0, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 4909, 3304, 6807, 0, 0, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_DANGER_PUFF, 480, 1342, 4138, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 2424, 2001, 439, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 3203, 1791, 4841, 0, 37, 0, 0x00000000, bhvDangerPuff),
@@ -95,6 +114,9 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_DANGER_PUFF, -5235, -4758, -3030, 0, 50, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, -6459, -4451, -2012, 0, 50, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, -5685, -4689, -2485, 0, 50, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_NONE, 1523, 2276, -5907, 0, -180, 0, (16 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 13604, 449, 8546, 0, 170, 0, (16 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 15435, 1980, 11532, 0, 178, 0, (16 << 16), bhvCoinFormation),
 		OBJECT(MODEL_GRAY_MUSHROOM, -5374, 515, -3660, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 6746, 1567, -7860, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 5107, 1924, -12973, 0, 0, 0, 0x00000000, bhvVTWMushroom),
@@ -132,6 +154,15 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_RED_COIN, 2081, 2819, -8328, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_STAR, 6731, -5836, 1131, 0, 0, 0, (25 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1137, 1838, -12176, 0, 0, 0, (3 << 24), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, -4034, 1396, -3803, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -5408, 2148, -5547, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 6749, 2036, -7840, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 6796, 3393, -3786, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 1547, 1229, -6609, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 7097, -294, 14437, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 6766, 742, 11810, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 10080, 854, 13754, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3195, 1753, 6518, 0, 0, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 1571, 605, -6542, 0, 0, 0, (40 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -1616, 5584, -917, 0, 0, 0, (40 << 24) | (12 << 16), bhvWarp),
 		TERRAIN(ssl_area_1_collision),

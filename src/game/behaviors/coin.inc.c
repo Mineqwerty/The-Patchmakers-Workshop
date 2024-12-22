@@ -55,7 +55,9 @@ void bhv_yellow_coin_init(void) {
             cur_obj_set_model(MODEL_YELLOW_COIN_NO_SHADOW);
         } else if (cur_obj_has_model(MODEL_BLUE_COIN)) {
             cur_obj_set_model(MODEL_BLUE_COIN_NO_SHADOW);
-        } else if (cur_obj_has_model(MODEL_RED_COIN)) {
+        } else if (cur_obj_has_model(MODEL_FOG_YELLOW_COIN)) {
+            cur_obj_set_model(MODEL_FOG_YELLOW_COIN_NO_SHADOW);
+        }else if (cur_obj_has_model(MODEL_RED_COIN)) {
             cur_obj_set_model(MODEL_RED_COIN_NO_SHADOW);
 #ifdef IA8_30FPS_COINS
         } else if (cur_obj_has_model(MODEL_SILVER_COIN)) {
@@ -192,7 +194,14 @@ void bhv_coin_formation_spawned_coin_loop(void) {
             cur_obj_update_floor_height();
 
             if (absf(o->oPosY - o->oFloorHeight) > 250.0f) {
-                cur_obj_set_model(MODEL_YELLOW_COIN_NO_SHADOW);
+                s16 coinModel = MODEL_YELLOW_COIN_NO_SHADOW;
+                if (gCurrLevelNum == LEVEL_WDW || gCurrLevelNum == LEVEL_TTM) {
+                    coinModel = MODEL_FOG_YELLOW_COIN_NO_SHADOW;
+                }
+                else if (gCurrLevelNum == LEVEL_SSL) {
+                    coinModel = MODEL_FOG_PURPLE_COIN_NO_SHADOW;
+                }
+                cur_obj_set_model(coinModel);
             }
         }
     } else {
@@ -241,9 +250,16 @@ void spawn_coin_in_formation(s32 index, s32 shape) {
     }
 
     if (spawnCoin) {
+        s16 coinModel = MODEL_YELLOW_COIN;
+        if (gCurrLevelNum == LEVEL_WDW || gCurrLevelNum == LEVEL_TTM) {
+            coinModel = MODEL_FOG_YELLOW_COIN;
+        }
+        else if (gCurrLevelNum == LEVEL_SSL) {
+            coinModel = MODEL_FOG_PURPLE_COIN;
+        }
         struct Object *newCoin =
             spawn_object_relative(index, pos[0], pos[1], pos[2], o,
-                                  MODEL_YELLOW_COIN, bhvCoinFormationSpawnedCoin);
+                                  coinModel, bhvCoinFormationSpawnedCoin);
         newCoin->oCoinSnapToGround = snapToGround;
     }
 }

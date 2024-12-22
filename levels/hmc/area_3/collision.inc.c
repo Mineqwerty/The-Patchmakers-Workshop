@@ -193,8 +193,7 @@ Gfx hmc_area_3_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
 };
 
 Gfx hmc_area_3_collision_vertical_boost_water_floor_001_layer_5[] = {
-    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
-    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
+	gsSPSetLights1(hmc_dl_vertical_boost_water_floor_001_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),
