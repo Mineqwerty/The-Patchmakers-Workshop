@@ -151,7 +151,7 @@ const GeoLayout sewnia_Head_switch_opt10[] = {
 	GEO_RETURN(),
 };
 const GeoLayout sewnia_geo[] = {
-	GEO_CULLING_RADIUS(13107),
+	GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 80),
 	GEO_OPEN_NODE(),
 		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
 		GEO_OPEN_NODE(),

@@ -1,18 +1,6 @@
-Lights1 hmc_dl_water_bottom_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 hmc_dl_hurt_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 hmc_dl_wattah_001_lights = gdSPDefLights1(
-	0x2C, 0x5A, 0x7F,
-	0x5F, 0xB8, 0xFF, 0x49, 0x49, 0x49);
 
-Lights1 hmc_dl_vertical_boost_water_floor_001_lights = gdSPDefLights1(
-	0x2C, 0x5A, 0x7F,
-	0x5F, 0xB8, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx hmc_dl_gggg_i8_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_gggg_i8[] = {
@@ -20923,7 +20911,8 @@ Gfx mat_revert_hmc_dl_tunnel_layer1[] = {
 };
 
 Gfx mat_hmc_dl_water_bottom[] = {
-	gsSPSetLights1(hmc_dl_water_bottom_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -20938,7 +20927,8 @@ Gfx mat_revert_hmc_dl_water_bottom[] = {
 };
 
 Gfx mat_hmc_dl_hurt[] = {
-	gsSPSetLights1(hmc_dl_hurt_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
