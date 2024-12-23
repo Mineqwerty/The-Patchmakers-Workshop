@@ -18,7 +18,8 @@ enum EnvFxMode {
     ENVFX_RAIN,
     ENVFX_FORCE_FLOOR_BUBBLES,
     ENVFX_FAIRY_LIGHTS,
-    ENVFX_COLUMN_BUBBLES
+    ENVFX_COLUMN_BUBBLES,
+    ENVFX_DUST
 };
 
 Gfx *geo_envfx_main(s32 callContext, struct GraphNode *node, Mat4 mtxf);
