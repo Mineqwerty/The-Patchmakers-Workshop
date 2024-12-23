@@ -93,6 +93,48 @@ Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUS
     return dlStart;
 }
 
+void get_environment_level_color(u8 rgbColors[3]) {
+    switch (gCurrLevelNum) {
+        case LEVEL_SSL:
+            rgbColors[0] = 192;
+            rgbColors[1] = 151;
+            rgbColors[2] = 209;
+        break;
+        default:
+            rgbColors[0] = 255;
+            rgbColors[1] = 255;
+            rgbColors[2] = 255;
+        break;
+    }
+}
+
+Gfx *geo_get_environment_color_from_level(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+    Gfx *dlStart = NULL;
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        struct Object *objectGraphNode = (struct Object *) gCurGraphNodeObject; // TODO: change this to object pointer?
+        struct GraphNodeGenerated *currentGraphNode = (struct GraphNodeGenerated *) node;
+        s32 parameter = currentGraphNode->parameter;
+
+        if (gCurGraphNodeHeldObject != NULL) {
+            objectGraphNode = gCurGraphNodeHeldObject->objNode;
+        }
+
+        dlStart = alloc_display_list(sizeof(Gfx) * 3);
+
+        Gfx *dlHead = dlStart;
+
+        u8 rgbColors[3];
+
+        get_environment_level_color(rgbColors);
+
+        gDPSetEnvColor(dlHead++, rgbColors[0], rgbColors[1], rgbColors[2], 255);
+        gSPEndDisplayList(dlHead);
+    }
+
+    return dlStart;
+}
+
 Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void *context) {
     Gfx *dlStart, *dlHead;
     struct Object *objectGraphNode;
