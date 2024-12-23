@@ -93,20 +93,7 @@ Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUS
     return dlStart;
 }
 
-void get_environment_level_color(u8 rgbColors[3]) {
-    switch (gCurrLevelNum) {
-        case LEVEL_SSL:
-            rgbColors[0] = 192;
-            rgbColors[1] = 151;
-            rgbColors[2] = 209;
-        break;
-        default:
-            rgbColors[0] = 255;
-            rgbColors[1] = 255;
-            rgbColors[2] = 255;
-        break;
-    }
-}
+
 
 Gfx *geo_get_environment_color_from_level(s32 callContext, struct GraphNode *node, UNUSED void *context) {
     Gfx *dlStart = NULL;
@@ -120,18 +107,17 @@ Gfx *geo_get_environment_color_from_level(s32 callContext, struct GraphNode *nod
             objectGraphNode = gCurGraphNodeHeldObject->objNode;
         }
 
-        dlStart = alloc_display_list(sizeof(Gfx) * 3);
+        dlStart = alloc_display_list(sizeof(Gfx) * 2);
 
         Gfx *dlHead = dlStart;
 
         u8 rgbColors[3];
 
-        get_environment_level_color(rgbColors);
+        //get_environment_level_color(rgbColors);
 
         gDPSetEnvColor(dlHead++, rgbColors[0], rgbColors[1], rgbColors[2], 255);
         gSPEndDisplayList(dlHead);
     }
-
     return dlStart;
 }
 

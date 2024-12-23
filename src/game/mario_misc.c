@@ -294,6 +294,63 @@ void bhv_unlock_door_star_loop(void) {
     }
 }
 
+void get_environment_level_color(u8 rgbColors[3]) {
+    switch (gCurrLevelNum) {
+        case LEVEL_CASTLE:
+            if (gCurrAreaIndex == 1) {
+                rgbColors[0] = 222;
+                rgbColors[1] = 222;
+                rgbColors[2] = 222;
+            }
+            else {
+                rgbColors[0] = 255;
+                rgbColors[1] = 255;
+                rgbColors[2] = 255;
+            }
+            
+        break;
+        case LEVEL_CCM:
+            rgbColors[0] = 245;
+            rgbColors[1] = 233;
+            rgbColors[2] = 169;
+        break;
+        case LEVEL_LLL:
+            rgbColors[0] = 237;
+            rgbColors[1] = 205;
+            rgbColors[2] = 190;
+        break;
+        case LEVEL_SSL:
+            if (gCurrAreaIndex == 3) {
+                rgbColors[0] = 255;
+                rgbColors[1] = 255;
+                rgbColors[2] = 255;
+            }
+            else { 
+                rgbColors[0] = 192;
+                rgbColors[1] = 151;
+                rgbColors[2] = 209;
+            }
+        break;
+        case LEVEL_SL:
+            rgbColors[0] = 171;
+            rgbColors[1] = 200;
+            rgbColors[2] = 214;
+        break;
+        case LEVEL_WF:
+        FALL_THROUGH;
+        case LEVEL_WDW:
+            rgbColors[0] = 235;
+            rgbColors[1] = 236;
+            rgbColors[2] = 237;
+        break;
+        default:
+            rgbColors[0] = 255;
+            rgbColors[1] = 255;
+            rgbColors[2] = 255;
+        break;
+    }
+}
+
 /**
  * Generate a display list that sets the correct blend mode and color for mirror Mario.
  */
@@ -315,7 +372,10 @@ static Gfx *make_gfx_mario_alpha(struct GraphNodeGenerated *node, s16 alpha) {
             gDPSetAlphaCompare(gfx++, G_AC_NONE);
         }
     }
-    gDPSetEnvColor(gfx++, 255, 255, 255, alpha);
+
+    u8 rgbColors[3];
+    get_environment_level_color(rgbColors);
+    gDPSetEnvColor(gfx++, rgbColors[0], rgbColors[1], rgbColors[2], alpha);
     gSPEndDisplayList(gfx);
     return gfxHead;
 }

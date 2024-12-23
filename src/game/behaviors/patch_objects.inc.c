@@ -554,6 +554,8 @@ void halo_apply_knockback(void) {
 
 void bhv_halo_init(void) {
     o->oHaloLengthMod = 1.0f;
+    o->oFaceAngleRoll = 0;
+    o->oFaceAnglePitch = 0;
 }
 
 void bhv_halo_loop(void) {

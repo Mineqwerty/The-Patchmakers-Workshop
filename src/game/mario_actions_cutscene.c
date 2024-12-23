@@ -430,7 +430,7 @@ s32 act_warp_ttc(struct MarioState *m) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
             }
             if (m->actionTimer == 59) {
-                initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
+                initiate_warp(LEVEL_BOB, 1, 0x0A, 0, 0);
             }
         break;
         case 1:;
@@ -452,7 +452,7 @@ s32 act_warp_ttc(struct MarioState *m) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
             }
             if (m->actionTimer == 59) {
-                initiate_warp(LEVEL_HMC, 1, 0x0A, 0);
+                initiate_warp(LEVEL_HMC, 1, 0x0A, 0, 0);
             }
         break;
         }
@@ -481,7 +481,7 @@ s32 act_warp_rdr(struct MarioState *m) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
             }
             if (m->actionTimer == 59) {
-                initiate_warp(LEVEL_WF, 1, 0x0A, 0);
+                initiate_warp(LEVEL_WF, 1, 0x0A, 0, 0);
             }
         break;
         case 1:
@@ -506,7 +506,7 @@ s32 act_warp_rdr(struct MarioState *m) {
                 
             }
             if (m->actionTimer == 59) {
-                initiate_warp(LEVEL_LLL, 1, 0x0A, 0);
+                initiate_warp(LEVEL_LLL, 1, 0x0A, 0, 0);
             }
         break;
 
@@ -530,7 +530,7 @@ s32 act_warp_stc(struct MarioState *m) {
             play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
         }
         if (m->actionTimer == 59) {
-            initiate_warp(LEVEL_JRB, 1, 0x0A, 0);
+            initiate_warp(LEVEL_JRB, 1, 0x0A, 0, 0);
         }
         break;
         case 1:;
@@ -563,7 +563,7 @@ s32 act_warp_gss(struct MarioState *m) {
         play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
     }
     if (m->actionTimer == 59) {
-        initiate_warp(LEVEL_CCM, 1, 0x0A, 0);
+        initiate_warp(LEVEL_CCM, 1, 0x0A, 0, 0);
     }
     return FALSE;
 }

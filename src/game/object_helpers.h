@@ -65,6 +65,7 @@ Gfx *geo_update_flame_color(s32 callContext, struct GraphNode *node, UNUSED void
 Gfx *geo_update_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_update_transparent_prim_color_from_obj_fields(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_get_environment_color_from_level(s32 callContext, struct GraphNode *node, UNUSED void *context);
 Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context);
 void obj_update_pos_from_parent_transformation(Mat4 mtx, struct Object *obj);
 void create_transformation_from_matrices(Mat4 a0, Mat4 a1, Mat4 a2);

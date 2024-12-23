@@ -91,7 +91,7 @@ void bhv_new_file_select_manager_loop(void) {
         case NEW_FILE_SELECT_LOADING_FILE:
             play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 0, 0, 0);
             if (o->oTimer == 19) {
-                initiate_warp(LEVEL_CASTLE, 1, 0x0A, 0);
+                initiate_warp(LEVEL_CASTLE, 1, 0x0A, 0, 0);
             }
         break;
     }
