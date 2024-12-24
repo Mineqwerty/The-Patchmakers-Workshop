@@ -1,3 +1,5 @@
+#include "src/game/cutscene.h"
+
 enum PatchmakerActions {
     PATCHMAKER_ACT_CUTSCENE,
     PATCHMAKER_ACT_WALK_TO_MARIO,
@@ -24,7 +26,8 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_SLOW_NEEDLE_WALK,
     PATCHMAKER_ANIM_END_NEEDLE_WALK,
     PATCHMAKER_ANIM_NEEDLE_WALK_SLASH,
-    PATCHMAKER_ANIM_SNAP
+    PATCHMAKER_ANIM_SNAP,
+    PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE,
 };
 
 #define PATCHMAKER_MAX_HEALTH 50
@@ -146,6 +149,14 @@ void patchmaker_set_boss_cam(void) {
 }
 
 void patchmaker_act_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_INTRO);
+            cur_obj_init_animation(PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE);
+            o->oSubAction++;
+        break;
+    }
+    
     if (o->oDistanceToMario < 1500.0f) {
         o->oAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
         gBossMaxHealth = PATCHMAKER_MAX_HEALTH;

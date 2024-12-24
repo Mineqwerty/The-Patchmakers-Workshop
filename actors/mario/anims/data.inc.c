@@ -20,3 +20,4 @@
 #include "anim_sitSurprisedScuttleBack.inc.c"
 #include "anim_ClimbVertical.inc.c"
 #include "anim_Action_001.inc.c"
+#include "anim_mariowalkinpatchmakerone.inc.c"

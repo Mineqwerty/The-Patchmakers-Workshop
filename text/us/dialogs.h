@@ -2363,7 +2363,7 @@ So now I think I'll... Huh?\n\
 @FF0202FFWhat happened to...\n\
 Is that...?\n\
 \n\
-@FF0202FFDid he do this to Peach, too?\n\
+@FF0202FFDid he do this to Peach, too!?\n\
 I'LL... I'LL...! I'LL GIVE THE FLOOR A NEW\n\
 COAT OF WAX WITH HIS FACE! GRRAAGHHH!!!\n\
 @7F60B4FFBowser! Please calm down! We can still save her!\n\
@@ -2395,7 +2395,7 @@ Ahaha...\n\
 Red one... You mustn't move!\n\
 If you do... I have failed again!\n\
 Ahahaha!\n\
-Now... TIME FOR BED!"))
+Now... TIME TO STOP MOVING!"))
 
 DEFINE_DIALOG(DIALOG_VILLAGER_FRUIT, 1, 3, 30, 200, _("\
 Fresh fruit!\n\
@@ -2477,7 +2477,7 @@ DEFINE_DIALOG(DIALOG_SOLIDS_PRE_FIGHT, 1, 3, 30, 200, _("\
 @7DAFFFFFWHAT IS THE MEANING OF THIS?\n\
 A CREATURE SUCH AS YOU SHOULD NOT ENTER HERE.\n\
 THIS HOLD IS ONLY FOR THOSE OF PERFECT FORM.\n\
-@7DAFFFFFWE HAVE DISCARDED ALL THAT IS NOT PERFECT.\n\
+@7DAFFFFFWE WILL DISCARD ALL THAT IS NOT PERFECT.\n\
 THE VILLAGERS, THIS WORLD, THE LAND WE\n\
 HAIL FROM... IT IS ALL IMPERFECT.\n\
 @7DAFFFFFNO, WE FIVE ARE THE ONLY PERFECT SHAPES.\n\
@@ -2598,7 +2598,7 @@ balance. Take this. I was keeping it as a\n\
 failsafe, but you'll need all the help you can get."))
 
 DEFINE_DIALOG(DIALOG_BEFORE_REVIVE_PEACH, 1, 4, 30, 200, _("\
-@7F60B4FFHey Bowser...\n\
+@7F60B4FFHey, Bowser...\n\
 You're not holding it straight again...\n\
 \n\
 \n\

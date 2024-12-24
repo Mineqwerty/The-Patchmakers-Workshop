@@ -13,3 +13,4 @@
 #include "anim_endneedlewalk.inc.c"
 #include "anim_needlewalkslash.inc.c"
 #include "anim_snap.inc.c"
+#include "anim_introfirstanimturn.inc.c"

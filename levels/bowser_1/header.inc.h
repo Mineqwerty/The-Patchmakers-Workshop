@@ -1,6 +1,10 @@
 extern const GeoLayout bowser_1_area_1_geo[];
 extern const GeoLayout bowser_1_area_1[];
 extern const MacroObject bowser_1_area_1_macro_objs[];
+#include "src/game/camera.h"
+
+extern struct CutsceneSplinePoint bowser_1_area_1_spline_CutsceneFocus1[];
+extern struct CutsceneSplinePoint bowser_1_area_1_spline_CutscenePos1[];
 extern u8 bowser_1_dl_oldwall_i8[];
 extern u8 bowser_1_dl_oldplanks_i8[];
 extern Vtx bowser_1_dl_Circle_mesh_layer_1_vtx_cull[8];

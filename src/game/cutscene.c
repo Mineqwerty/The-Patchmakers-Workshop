@@ -24,6 +24,7 @@
 #include "levels/sl/header.inc.h"
 
 #include "levels/castle_inside/header.inc.h"
+#include "levels/bowser_1/header.inc.h"
 
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
@@ -718,6 +719,38 @@ s32 event_prince_intro[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_patchmaker_first_fight_intro[] = {
+    //EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_POSITION, -2000, 0, 0,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_MARIO_APPROACH_POINT, -2511, 1024, 537,
+    //EVENT_CAMERA_POSITION_SPLINE_DATA, 75,
+    //EVENT_CAMERA_FOCUS_SPLINE_DATA, 76,
+    EVENT_WAIT, 200,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PRINCE_INTRO,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 67,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 68,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 69,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 70,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 71,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 72,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 11,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 69,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 70,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 18,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 73,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 74,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SHOW_BOSS_TITLE, 4,
+    EVENT_WAIT, 120,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -733,7 +766,8 @@ s32 *eventList[] = {
     //10,
     event_master_story,
     event_demonic_solids,
-    event_prince_intro
+    event_prince_intro,
+    event_patchmaker_first_fight_intro
 };
 
 s32 *splineList[] = {
@@ -826,6 +860,9 @@ s32 *splineList[] = {
     sl_area_5_spline_PrinceCutsceneFoc3,
     sl_area_5_spline_PrinceCutscenePos4,
     sl_area_5_spline_PrinceCutsceneFoc4,
+    //75
+    bowser_1_area_1_spline_CutscenePos1,
+    bowser_1_area_1_spline_CutsceneFocus1,
 };
 
 void begin_cutscene_event(s32 event) {

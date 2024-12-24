@@ -17,5 +17,6 @@ const struct Animation *const mario_anims[] = {
 	&mario_anim_testanim,
 	&mario_anim_sitSurprisedScuttleBack,
 	&mario_anim_ClimbVertical,
+	&mario_anim_mariowalkinpatchmakerone,
 	NULL,
 };
