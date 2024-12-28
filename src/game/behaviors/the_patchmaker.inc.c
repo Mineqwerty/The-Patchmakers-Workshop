@@ -28,6 +28,9 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_NEEDLE_WALK_SLASH,
     PATCHMAKER_ANIM_SNAP,
     PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE,
+    PATCHMAKER_ANIM_REVERSED_IDLE,
+    PATCHMAKER_ANIM_START_HEAD_GRAB,
+    PATCHMAKER_ANIM_HEAD_GRAB
 };
 
 #define PATCHMAKER_MAX_HEALTH 50
@@ -152,8 +155,30 @@ void patchmaker_act_cutscene(void) {
     switch (o->oSubAction) {
         case 0:
             begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_INTRO);
-            cur_obj_init_animation(PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE);
             o->oSubAction++;
+        break;
+        case 1:
+            if (o->oTimer == 60) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE);
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_REVERSED_IDLE);
+            }
+
+            if (cExternalCutsceneTrigger == 1) {
+                o->oSubAction++;
+                cur_obj_init_animation(PATCHMAKER_ANIM_START_HEAD_GRAB);
+                o->oMoveAngleYaw += 0x8000;
+                o->oFaceAngleYaw += 0x8000;
+            }
+        break;
+        case 3:
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_HEAD_GRAB);
+            }
         break;
     }
     

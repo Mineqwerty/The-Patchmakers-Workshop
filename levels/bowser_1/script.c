@@ -41,7 +41,7 @@ const LevelScript level_bowser_1_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 99, -2731, 1025, 537),
 		OBJECT(MODEL_NONE, -2731, 1025, 537, 0, 99, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_PATCHMAKER, 0, 1025, 0, 0, 0, 0, 0x00000000, bhvPatchmaker),
+		OBJECT(MODEL_PATCHMAKER, 0, 1025, 0, 0, 99, 0, 0x00000000, bhvPatchmaker),
 		TERRAIN(bowser_1_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_1_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_1_area_1_macro_objs),

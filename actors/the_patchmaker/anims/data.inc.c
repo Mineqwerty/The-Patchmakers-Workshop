@@ -14,3 +14,6 @@
 #include "anim_needlewalkslash.inc.c"
 #include "anim_snap.inc.c"
 #include "anim_introfirstanimturn.inc.c"
+#include "anim_reversedidle.inc.c"
+#include "anim_startgrabhead.inc.c"
+#include "anim_grabhead.inc.c"

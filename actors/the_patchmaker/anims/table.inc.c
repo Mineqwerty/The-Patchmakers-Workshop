@@ -16,5 +16,8 @@ const struct Animation *const the_patchmaker_anims[] = {
 	&the_patchmaker_anim_needlewalkslash,
 	&the_patchmaker_anim_snap,
 	&the_patchmaker_anim_introfirstanimturn,
+	&the_patchmaker_anim_reversedidle,
+	&the_patchmaker_anim_startgrabhead,
+	&the_patchmaker_anim_grabhead,
 	NULL,
 };
