@@ -43,7 +43,8 @@ enum SpeakerSounds {
     SPEAKER_SOUND_PEACH,
     SPEAKER_SOUND_AURUMCAEL,
     SPEAKER_SOUND_DEMONIC_SOLIDS,
-    SPEAKER_SOUND_XODARAP
+    SPEAKER_SOUND_XODARAP,
+    SPEAKER_SOUND_PATCHMAKER
 };
 s16 curSpeaker = 0;
 
@@ -1475,6 +1476,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors) {
     else if (rgbaColors[0] == 76 && rgbaColors[1] == 42 && rgbaColors[2] == 189) {
         return SPEAKER_SOUND_XODARAP;
     }
+    else if (rgbaColors[0] == 0x5D && rgbaColors[1] == 0x5D && rgbaColors[2] == 0x5D) {
+        return SPEAKER_SOUND_PATCHMAKER;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1491,6 +1495,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_XODARAP:
             play_sound(SOUND_NEW_2_SPEAKER_XODARAP, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_PATCHMAKER:
+            play_sound(SOUND_NEW_2_SPEAKER_PATCHMAKER, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);

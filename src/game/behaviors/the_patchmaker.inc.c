@@ -30,7 +30,12 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_TURN_FIRST_CUTSCENE,
     PATCHMAKER_ANIM_REVERSED_IDLE,
     PATCHMAKER_ANIM_START_HEAD_GRAB,
-    PATCHMAKER_ANIM_HEAD_GRAB
+    PATCHMAKER_ANIM_HEAD_GRAB,
+    PATCHMAKER_ANIM_SCREAM_AT_SKY,
+    PATCHMAKER_ANIM_START_ARM_SWAY,
+    PATCHMAKER_ANIM_ARM_SWAY,
+    PATCHMAKER_ANIM_SWERVE_ZOOM_IN,
+    PATCHMAKER_ANIM_SWERVE_TWITCHING
 };
 
 #define PATCHMAKER_MAX_HEALTH 50
@@ -179,7 +184,33 @@ void patchmaker_act_cutscene(void) {
             if (cur_obj_check_if_at_animation_end()) {
                 cur_obj_init_animation(PATCHMAKER_ANIM_HEAD_GRAB);
             }
+
+            if (cExternalCutsceneTrigger == 2) {
+                o->oSubAction++;
+                cur_obj_init_animation(PATCHMAKER_ANIM_SCREAM_AT_SKY);
+            }
         break;
+        case 4:
+            if (cExternalCutsceneTrigger == 3) {
+                o->oSubAction++;
+                cur_obj_init_animation(PATCHMAKER_ANIM_START_ARM_SWAY);
+            }
+        break;
+        case 5:
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_ARM_SWAY);
+            }
+            if (cExternalCutsceneTrigger == 4) {
+                o->oSubAction++;
+                cur_obj_init_animation(PATCHMAKER_ANIM_SWERVE_ZOOM_IN);
+            }
+        break;
+        case 6:
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_SWERVE_TWITCHING);
+            }
+
+            break;
     }
     
     if (o->oDistanceToMario < 1500.0f) {

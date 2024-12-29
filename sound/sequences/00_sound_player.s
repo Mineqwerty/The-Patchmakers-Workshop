@@ -9212,6 +9212,17 @@ sound_ref .sound_speaker_default
 sound_ref .sound_speaker_aurumcael
 sound_ref .sound_speaker_demonic_solids
 sound_ref .sound_speaker_xodarap
+sound_ref .sound_speaker_patchmaker
+
+.sound_speaker_patchmaker:
+chan_setbank 13
+chan_setinstr 8
+chan_setlayer 0, .layer_speaker_patchmaker
+chan_end
+
+.layer_speaker_patchmaker:
+layer_note1 39, 0x43, 127
+layer_end
 
 .sound_speaker_xodarap:
 chan_setbank 13

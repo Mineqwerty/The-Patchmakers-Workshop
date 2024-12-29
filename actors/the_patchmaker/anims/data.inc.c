@@ -17,3 +17,8 @@
 #include "anim_reversedidle.inc.c"
 #include "anim_startgrabhead.inc.c"
 #include "anim_grabhead.inc.c"
+#include "anim_screamatsky.inc.c"
+#include "anim_startarmsway.inc.c"
+#include "anim_armsway.inc.c"
+#include "anim_swerveupzoomin.inc.c"
+#include "anim_swervetwitching.inc.c"

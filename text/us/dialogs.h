@@ -2374,28 +2374,28 @@ Mario, doll girl! What are you doing just waiting here?\n\
 Let's GO!!!"))
 
 DEFINE_DIALOG(DIALOG_PATCHMAKER_MEET_MARIO, 0b10, 3, 30, 200, _("\
-Hmm?\n\
+@5D5D5DFFHmm?\n\
 \n\
 \n\
-You... Red one. Why do you move?\n\
+@5D5D5DFFYou... Red one. Why do you move?\n\
 \n\
 \n\
-I thought that I had dealt with you.\n\
+@5D5D5DFFI thought that I had dealt with you.\n\
 DEALT WITH you... Ahaha...\n\
 Moving? You're moving?\n\
-No... You aren't supposed to!\n\
+@5D5D5DFFNo... You aren't supposed to!\n\
 I need you to stop that...\n\
 STOP THAT! AHAHA! STOP IT!\n\
-You were another failure. The failures need...\n\
+@5D5D5DFFYou were another failure. The failures need...\n\
 They need to be put into the box!\n\
 Too many! Haha...\n\
-THE FAILURES THAT MOVE!\n\
+@5D5D5DFFTHE FAILURES THAT MOVE!\n\
 THEY GO... They go into the box!\n\
 Ahaha...\n\
-Red one... You mustn't move!\n\
+@5D5D5DFFRed one... You mustn't move!\n\
 If you do... I have failed again!\n\
 Ahahaha!\n\
-Now... TIME TO STOP MOVING!"))
+@5D5D5DFFNow... TIME TO BE STILL!"))
 
 DEFINE_DIALOG(DIALOG_VILLAGER_FRUIT, 1, 3, 30, 200, _("\
 Fresh fruit!\n\

@@ -166,7 +166,7 @@ const LevelScript level_wdw_entry[] = {
 		TERRAIN(wdw_area_1_collision),
 		TERRAIN_MAT_LUT(wdw_area_1_collision_materials),
 		MACRO_OBJECTS(wdw_area_1_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_CITY_OF_RECONSTRUCTED_RUIN),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
