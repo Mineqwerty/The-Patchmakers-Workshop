@@ -22,3 +22,5 @@
 #include "anim_armsway.inc.c"
 #include "anim_swerveupzoomin.inc.c"
 #include "anim_swervetwitching.inc.c"
+#include "anim_bosssplashfightfirst.inc.c"
+#include "anim_runawaydefeated.inc.c"

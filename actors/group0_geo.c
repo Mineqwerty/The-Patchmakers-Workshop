@@ -56,3 +56,5 @@
 #include "soul_mote/geo.inc.c"
 #include "breaker_spark/geo.inc.c"
 #include "rose_crystal/geo.inc.c"
+
+#include "sewnia/geo.inc.c"

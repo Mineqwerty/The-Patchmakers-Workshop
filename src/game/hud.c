@@ -26,6 +26,7 @@
 #include "actors/group0.h"
 
 #include "config.h"
+#include "src/game/cutscene.h"
 
 /* @file hud.c
  * This file implements HUD rendering and power meter animations.
@@ -995,6 +996,14 @@ void render_hud_boss_intro(void) {
  */
 void render_hud(void) {
     s16 hudDisplayFlags = gHudDisplay.flags;
+
+    if (cSkipCutsceneState == 1) {
+        create_dl_ortho_matrix();
+        print_set_envcolour(0, 0, 0, CLAMP(cSkipCutsceneTimer * 5, 1, 255));
+            print_small_text(SCREEN_WIDTH-10, 10, "Press Start to Skip", PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, FONT_VANILLA);
+            print_set_envcolour(255, 255, 255, CLAMP(cSkipCutsceneTimer * 5, 1, 255));
+            print_small_text(SCREEN_WIDTH-9, 9, "Press Start to Skip", PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, FONT_VANILLA);
+    }
 
     if (hudDisplayFlags == HUD_DISPLAY_NONE) {
         sPowerMeterHUD.animation = POWER_METER_HIDDEN;

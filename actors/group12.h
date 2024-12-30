@@ -157,4 +157,7 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 #include "needle_ball/geo_header.h"
 
+
+#include "bowser_thread/geo_header.h"
+
 #endif

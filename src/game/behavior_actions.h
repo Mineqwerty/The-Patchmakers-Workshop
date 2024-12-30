@@ -1118,3 +1118,5 @@ void bhv_rose_crystal_reciever_init(void);
 void bhv_rose_crystal_reciever_loop(void);
 void bhv_grey_fire_torch_init(void);
 void bhv_grey_fire_torch_loop(void);
+void bhv_thread_of_life_init(void);
+void bhv_thread_of_life_loop(void);

@@ -2004,6 +2004,9 @@ help us?\n\
 @7F60B4FFIt's up to you...\n\
 \n\
 \n\
+@7F60B4FF...\n\
+\n\
+\n\
 @7F60B4FFAlright then, let's go!\n\
 Come on, Mario!\n\
 "))

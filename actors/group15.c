@@ -23,7 +23,3 @@ UNUSED static const u64 binid_2 = 2;
 
 #include "boo_castle/model.inc.c"
 UNUSED static const u64 binid_3 = 3;
-
-#include "sewnia/model.inc.c"
-#include "sewnia/anims/data.inc.c"
-#include "sewnia/anims/table.inc.c"

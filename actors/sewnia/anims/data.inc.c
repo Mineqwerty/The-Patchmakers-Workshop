@@ -16,3 +16,5 @@
 #include "anim_idle.inc.c"
 #include "anim_startFall.inc.c"
 #include "anim_falling.inc.c"
+#include "anim_reservedIdle.inc.c"
+#include "anim_takeOutBowserThread.inc.c"

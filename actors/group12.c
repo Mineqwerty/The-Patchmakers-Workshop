@@ -39,3 +39,6 @@ UNUSED static const u64 binid_5 = 5;
 #include "string_bundle/model.inc.c"
 #include "thread_bundle/model.inc.c"
 #include "needle_ball/model.inc.c"
+
+
+#include "bowser_thread/model.inc.c"

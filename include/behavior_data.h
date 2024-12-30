@@ -803,3 +803,4 @@ extern const BehaviorScript bhvFarawayBeepManager[];
 extern const BehaviorScript bhvRoseCrystal[];
 extern const BehaviorScript bhvRoseCrystalReciever[];
 extern const BehaviorScript bhvGreyFireTorch[];
+extern const BehaviorScript bhvThreadOfLife[];

@@ -20,3 +20,5 @@
 #include "string_bundle/geo.inc.c"
 #include "thread_bundle/geo.inc.c"
 #include "needle_ball/geo.inc.c"
+
+#include "bowser_thread/geo.inc.c"

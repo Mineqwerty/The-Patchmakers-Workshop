@@ -5,6 +5,7 @@
 #include "src/usb/debug.h"
 #include "src/game/save_file.h"
 #include "include/dialog_ids.h"
+#include "src/game/ingame_menu.h"
 
 u32 flavorStart = 0;
 
@@ -18,7 +19,8 @@ enum SewniaActions {
     SEWNIA_ACT_INTRO_CUTSCENE,
     SEWNIA_ACT_REVIVE_MARIO_CUTSCENE,
     SEWNIA_ACT_RUN_TO_NODE,
-    SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE
+    SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE,
+    SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED
 
 };
 
@@ -38,7 +40,9 @@ enum SewniaAnims {
     SEWNIA_ANIM_SLUMP_DOOR,
     SEWNIA_ANIM_PULL_OUT_PATCH,
     SEWNIA_ANIM_START_FALL,
-    SEWNIA_ANIM_FALLING
+    SEWNIA_ANIM_FALLING,
+    SEWNIA_ANIM_RESERVED_IDLE,
+    SEWNIA_ANIM_PULL_OUT_BOWSER_THREAD
 };
 
 enum SewniaFaceStates {
@@ -1076,6 +1080,11 @@ void bhv_sewnia_init(void) {
     o->oAction = 1;
     o->oGravity = -3.0f;
 
+    if (gCurrLevelNum == LEVEL_BOWSER_1) {
+        o->oAction = SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED;
+        return;
+    }
+    
     o->oSewniaLastWaypoint = segmented_to_virtual(&castle_inside_area_1_spline_SewniaPath);
     o->oSewniaNextWaypoint = o->oSewniaLastWaypoint;
 
@@ -1137,6 +1146,55 @@ void sewnia_act_follow_mario(void) {
 
 }
 
+void sewnia_act_patchmaker_first_fight_defeated(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(SEWNIA_ANIM_RESERVED_IDLE);
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            o->oSubAction++;
+        break;
+        case 1:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger == 1) {
+                o->oSubAction++;
+                cur_obj_init_animation(SEWNIA_ANIM_PULL_OUT_BOWSER_THREAD);
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+            if (o->oTimer < 10) {
+                o->oMoveAngleYaw += 0x600;
+                o->oFaceAngleYaw += 0x600;
+            }
+            else if (o->oTimer == 80) {
+                spawn_object_relative(0, 130, 100, 0, o, MODEL_BOWSER_THREAD_OF_LIFE, bhvThreadOfLife);
+            }
+
+            if (gPageNum == 7) {
+                cur_obj_init_animation(SEWNIA_ANIM_RESERVED_IDLE);
+                o->oSubAction++;
+            }
+        break;
+        case 3:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (gPageNum == 8) {
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            if (gPageNum == 11) {
+                o->oSubAction++;
+                cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+            }
+        break;
+        case 5:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+        break;
+    }
+}
+
 
 
 void bhv_sewnia_loop(void) {
@@ -1174,6 +1232,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE:
             sewnia_act_beginning_cutscene_at_course_entrance();
+        break;
+        case SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED:
+            sewnia_act_patchmaker_first_fight_defeated();
         break;
     }
 

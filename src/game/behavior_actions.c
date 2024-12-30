@@ -388,3 +388,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/faraway_beep_manager.inc.c"
 #include "behaviors/rose_crystal.inc.c"
 #include "behaviors/grey_fire_torch.inc.c"
+#include "behaviors/thread_of_life.inc.c"

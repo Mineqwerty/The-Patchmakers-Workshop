@@ -17,5 +17,7 @@ const struct Animation *const sewnia_anims[] = {
 	&sewnia_anim_pullOutPatch,
 	&sewnia_anim_startFall,
 	&sewnia_anim_falling,
+	&sewnia_anim_reservedIdle,
+	&sewnia_anim_takeOutBowserThread,
 	NULL,
 };

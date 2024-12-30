@@ -58,7 +58,7 @@ void bhv_ice_spikes_loop(void) {
         if (other != gMarioObject) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 8, 8);
+            attack_object(other, 8, 4);
         }
     }
 

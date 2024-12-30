@@ -8,7 +8,9 @@ enum PatchmakerActions {
     PATCHMAKER_ACT_GRAB_MARIO,
     PATCHMAKER_ACT_THROW_STRING,
     PATCHMAKER_ACT_SLOW_NEEDLE_WALK,
-    PATCHMAKER_ACT_SUMMON_NEEDLE_BALL
+    PATCHMAKER_ACT_SUMMON_NEEDLE_BALL,
+
+    PATCHMAKER_ACT_DEFEATED
 };
 
 enum PatchmakerAnims {
@@ -35,7 +37,9 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_START_ARM_SWAY,
     PATCHMAKER_ANIM_ARM_SWAY,
     PATCHMAKER_ANIM_SWERVE_ZOOM_IN,
-    PATCHMAKER_ANIM_SWERVE_TWITCHING
+    PATCHMAKER_ANIM_SWERVE_TWITCHING,
+    PATCHMAKER_ANIM_FIRST_FIGHT_SPLASH_SCREEN,
+    PATCHMAKER_ANIM_DEFEATED_RUN_AWAY
 };
 
 #define PATCHMAKER_MAX_HEALTH 50
@@ -156,7 +160,15 @@ void patchmaker_set_boss_cam(void) {
     gCamera->controlBossCameraYaw = 1;
 }
 
-void patchmaker_act_cutscene(void) {
+void patchmaker_fight_start(void) {
+    o->oAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
+                gBossMaxHealth = PATCHMAKER_MAX_HEALTH;
+                gBossHealth = PATCHMAKER_MAX_HEALTH;
+                cur_obj_init_animation(1);
+                patchmaker_set_boss_cam();
+}
+
+void patchmaker_act_first_fight_cutscene(void) {
     switch (o->oSubAction) {
         case 0:
             begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_INTRO);
@@ -209,16 +221,20 @@ void patchmaker_act_cutscene(void) {
             if (cur_obj_check_if_at_animation_end()) {
                 cur_obj_init_animation(PATCHMAKER_ANIM_SWERVE_TWITCHING);
             }
-
+            if (cExternalCutsceneTrigger == 5) {
+                o->oSubAction++;
+                cur_obj_init_animation(PATCHMAKER_ANIM_FIRST_FIGHT_SPLASH_SCREEN);
+            }
             break;
+        case 7:
+            if (gCurCutscene == -1) {
+                patchmaker_fight_start();
+            }
+        break;
     }
-    
-    if (o->oDistanceToMario < 1500.0f) {
-        o->oAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
-        gBossMaxHealth = PATCHMAKER_MAX_HEALTH;
-        gBossHealth = PATCHMAKER_MAX_HEALTH;
-        cur_obj_init_animation(1);
-        patchmaker_set_boss_cam();
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        patchmaker_fight_start();
     }
 }
 
@@ -505,6 +521,25 @@ void patchmaker_act_summon_needle_ball(void) {
     if (cur_obj_check_if_at_animation_end()) {
         patchmaker_transition_to_next_action();
     }
+
+    o->oHealth = 1;
+}
+
+void patchmaker_act_first_fight_defeated(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = 0;
+            o->oPosZ = 0;
+            o->oPosY = 1024;
+            o->oFaceAngleYaw = -0x4000;
+            o->oMoveAngleYaw = -0x4000;
+            cur_obj_init_animation(PATCHMAKER_ANIM_DEFEATED_RUN_AWAY);
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_DEFEATED);
+            o->oSubAction++;
+
+        break;
+    }
+    
 }
 
 void bhv_patchmaker_init(void) {
@@ -520,7 +555,7 @@ void bhv_patchmaker_init(void) {
 void bhv_patchmaker_loop(void) {
     switch (o->oAction) {
         case PATCHMAKER_ACT_CUTSCENE:
-            patchmaker_act_cutscene();
+            patchmaker_act_first_fight_cutscene();
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
             patchmaker_act_walk_to_mario();
@@ -543,13 +578,21 @@ void bhv_patchmaker_loop(void) {
         case PATCHMAKER_ACT_SUMMON_NEEDLE_BALL:
             patchmaker_act_summon_needle_ball();
         break;
+        case PATCHMAKER_ACT_DEFEATED:
+            patchmaker_act_first_fight_defeated();
+        break;
     }
 
     if (o->oAction != PATCHMAKER_ACT_JUMPS && o->oAction != PATCHMAKER_ACT_THROW_STRING) {
         o->oFaceAngleYaw = o->oMoveAngleYaw;
     }
 
-    gBossHealth = o->oHealth;
+    gBossHealth = CLAMP(o->oHealth, 0, 255);
+
+    if (o->oHealth <= 0 && o->oAction != PATCHMAKER_ACT_DEFEATED) {
+        o->oAction = PATCHMAKER_ACT_DEFEATED;
+        o->oSubAction = 0;
+    }
 
     o->oInteractStatus = 0;
 }

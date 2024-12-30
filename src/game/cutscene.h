@@ -19,8 +19,11 @@ enum CutsceneTitles {
     CUTSCENE_EVENT_MASTER_STORY,
     CUTSCENE_EVENT_DEMONIC_SOLIDS,
     CUTSCENE_EVENT_PRINCE_INTRO,
-    CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_INTRO
+    CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_INTRO,
+    CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_DEFEATED
 };
+
+#define EXTERNAL_TRIGGER_CUTSCENE_SKIPPED   201
 
 extern u8 cCutsceneActive;
 extern int cCutsceneIndex;
@@ -30,6 +33,8 @@ extern s32 *cEventPointer;
 extern u8 cExternalCutsceneTrigger;
 extern s16 gCurCutscene;
 extern f32 gCutsceneFOV;
+extern s16 cSkipCutsceneState;
+extern s16 cSkipCutsceneTimer;
 
 void begin_cutscene_event(s32 event);
 void event_handler(void);

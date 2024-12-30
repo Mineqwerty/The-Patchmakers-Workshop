@@ -161,6 +161,8 @@ const LevelScript level_main_scripts_entry[] = {
         LOAD_MODEL_FROM_GEO(MODEL_SOUL_MOTE,     soul_mote_geo),
         LOAD_MODEL_FROM_GEO(MODEL_BREAKER_SPARK, breaker_spark_geo),
         LOAD_MODEL_FROM_GEO(MODEL_ROSE_CRYSTAL, rose_crystal_geo),
+        
+    LOAD_MODEL_FROM_GEO(MODEL_SEWNIA,                    sewnia_geo),
     
     FREE_LEVEL_POOL(),
     POP_POOL(),
@@ -356,6 +358,7 @@ const LevelScript script_func_global_13[] = {
     LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER,        the_patchmaker_geo),
     LOAD_MODEL_FROM_GEO(MODEL_THREAD_BUNDLE,        thread_bundle_geo),
     LOAD_MODEL_FROM_GEO(MODEL_NEEDLE_BALL,        needle_ball_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_BOWSER_THREAD_OF_LIFE,                    bowser_thread_geo),
     
     RETURN(),
 };
@@ -389,7 +392,6 @@ const LevelScript script_func_global_16[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOO_CASTLE,              boo_castle_geo),
     LOAD_MODEL_FROM_GEO(MODEL_LAKITU,                  lakitu_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TOAD,                    toad_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_SEWNIA,                    sewnia_geo),
     RETURN(),
 };
 

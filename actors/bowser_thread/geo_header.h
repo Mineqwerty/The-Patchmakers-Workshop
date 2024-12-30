@@ -1,0 +1,14 @@
+extern const GeoLayout bowser_thread_geo[];
+extern u8 bowser_thread_bowserthread_ia8[];
+extern Vtx bowser_thread_Plane_mesh_layer_4_vtx_cull[8];
+extern Vtx bowser_thread_Plane_mesh_layer_4_vtx_0[4];
+extern Gfx bowser_thread_Plane_mesh_layer_4_tri_0[];
+extern Vtx bowser_thread_Plane_mesh_layer_5_vtx_cull[8];
+extern Vtx bowser_thread_Plane_mesh_layer_5_vtx_0[80];
+extern Gfx bowser_thread_Plane_mesh_layer_5_tri_0[];
+extern Gfx mat_bowser_thread_f3dlite_material_010[];
+extern Gfx mat_revert_bowser_thread_f3dlite_material_010[];
+extern Gfx mat_bowser_thread_f3dlite_material[];
+extern Gfx mat_revert_bowser_thread_f3dlite_material[];
+extern Gfx bowser_thread_Plane_mesh_layer_4[];
+extern Gfx bowser_thread_Plane_mesh_layer_5[];

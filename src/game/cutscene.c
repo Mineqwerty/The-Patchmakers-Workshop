@@ -15,6 +15,7 @@
 #include "src/game/mario_actions_moving.h"
 #include "src/game/hud.h"
 #include "include/dialog_ids.h"
+#include "include/mario_animation_ids.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -48,6 +49,8 @@ u8 cMarioFocusSpeed;
 s32 cRotateAroundMarioRadius;
 u32 cCutsceneTimer;
 s16 cCameraDownVel;
+s16 cSkipCutsceneState;
+s16 cSkipCutsceneTimer;
 
 
 
@@ -56,7 +59,8 @@ extern s16 sCutsceneSplineSegment;
 //extern struct CutsceneSplinePoint jrb_area_1_spline_camfoc[];
 
 enum cutscene_events {
-    EVENT_WAIT,
+    EVENT_SKIP_CUTSCENE_JUMP = -99,
+    EVENT_WAIT = 0,
     EVENT_WAIT_FOR_NEXT_DIALOG_PAGE,
     EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE,
     EVENT_WAIT_FOR_TRIGGER,
@@ -67,6 +71,7 @@ enum cutscene_events {
     EVENT_DIALOG_AUTO,
     EVENT_FAST_DIALOG_AUTO,
     EVENT_DIALOG_USER_ADVANCE,
+    EVENT_CANCEL_DIALOG,
 
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
@@ -89,12 +94,16 @@ enum cutscene_events {
     EVENT_SET_MARIO_ACTION_ARG,
     EVENT_SET_MARIO_EYE_STATE,
     EVENT_SET_MARIO_ANIMATION,
+    EVENT_SET_MARIO_FORWARD_VELOCITY,
     EVENT_SET_MARIO_CUSTOM_ANIMATION,
     EVENT_MARIO_APPROACH_POINT,
+    EVENT_SET_MARIO_Y_TO_FLOOR,
 
     EVENT_SPAWN_OBJECT,
 
     EVENT_SET_EXTERNAL_TRIGGER,
+
+    EVENT_INITIATE_WARP,
 
     EVENT_SOUND,
     EVENT_SONG_PRIMARY,
@@ -120,7 +129,7 @@ enum cutscene_events {
     EVENT_STONE_PATCH_BREAK_OUT,
 
     EVENT_START_CUTSCENE,
-    EVENT_END_CUTSCENE
+    EVENT_END_CUTSCENE,
 };
 
 s32 event_test[] = {
@@ -720,7 +729,7 @@ s32 event_prince_intro[] = {
 };
 
 s32 event_patchmaker_first_fight_intro[] = {
-    //EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_POSITION, -2000, 0, 0,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
@@ -756,9 +765,75 @@ s32 event_patchmaker_first_fight_intro[] = {
     EVENT_SET_EXTERNAL_TRIGGER, 4,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SHOW_BOSS_TITLE, 5,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
     EVENT_WAIT, 120,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE,
+
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0, 
+    EVENT_WAIT, 30,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_SET_EXTERNAL_TRIGGER, EXTERNAL_TRIGGER_CUTSCENE_SKIPPED,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_WAIT, 1,
+    
+    EVENT_END_CUTSCENE,
+};
+
+s32 event_patchmaker_first_fight_defeated[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_POSITION, -2511, 1065, 537,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_FORWARD_VELOCITY, 0,
+    EVENT_SET_MARIO_YAW, 0x8000,
+    EVENT_SET_MARIO_ROLL, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 81,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 82,
+    EVENT_WAIT, 200,
+    EVENT_SET_MARIO_POSITION, -2511, 1069, 537,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_YAW, 0x8000,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_REACH_TO_PATCHMAKER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 89,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 90,
+    EVENT_WAIT, 60,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_IDLE_AFTER_REACH,
+    EVENT_SPAWN_OBJECT, -2500, 1024, 1000, 0, 0x5000, 0, 10, bhvSewnia, MODEL_SEWNIA,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_SEWNIA_POST_PATCHMAKER_FIGHT_1,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 91,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 92,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 93,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 94,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_SET_MARIO_Y_TO_FLOOR,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_MARIO_APPROACH_POINT, -2500, 1024, 990,
+    EVENT_SET_MARIO_YAW, 0,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 95,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 96,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_SHAKE_HEAD,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 8,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_THINKING,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 10,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_NOD_HEAD,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 45, 0, 0, 0,
+    EVENT_WAIT, 45,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_INITIATE_WARP, LEVEL_CASTLE, 1, 0x0A,
     EVENT_END_CUTSCENE
 };
 
@@ -778,7 +853,9 @@ s32 *eventList[] = {
     event_master_story,
     event_demonic_solids,
     event_prince_intro,
-    event_patchmaker_first_fight_intro
+    event_patchmaker_first_fight_intro,
+    event_patchmaker_first_fight_defeated,
+    //15
 };
 
 s32 *splineList[] = {
@@ -888,6 +965,16 @@ s32 *splineList[] = {
     bowser_1_area_1_spline_CutsceneFocus6,
     bowser_1_area_1_spline_CutscenePos7,
     bowser_1_area_1_spline_CutsceneFocus7,
+    bowser_1_area_1_spline_CutscenePos8,
+    //90
+    bowser_1_area_1_spline_CutsceneFocus8,
+    bowser_1_area_1_spline_CutscenePos9,
+    bowser_1_area_1_spline_CutsceneFocus9,
+    bowser_1_area_1_spline_CutscenePos10,
+    bowser_1_area_1_spline_CutsceneFocus10,
+    //95
+    bowser_1_area_1_spline_CutscenePos11,
+    bowser_1_area_1_spline_CutsceneFocus11,
 };
 
 void begin_cutscene_event(s32 event) {
@@ -897,6 +984,8 @@ void begin_cutscene_event(s32 event) {
     cWaitTimer = 0;
     cWaiting = 0;
     cCutsceneTimer = 0;
+    cSkipCutsceneState = 0;
+    cSkipCutsceneTimer = 0;
     cExternalCutsceneTrigger = 0;
     gPlayerCameraState[0].cameraEvent = 0;
     cEventPointer = eventList[event];
@@ -908,7 +997,37 @@ void event_handler(void) {
         struct Object *eventObj;
         f32 dist;
 
+        if (gPlayer1Controller->buttonPressed & START_BUTTON) {
+            if (cSkipCutsceneState == 0) {
+                cSkipCutsceneState = 1;
+                cSkipCutsceneTimer = 90;
+            }
+            else if (cSkipCutsceneState == 1) {
+                eventCommand = cEventPointer[cCutsceneIndex];
+                u8 findJumpPoint = 1;
+                while (findJumpPoint) {
+                    s32 param1 = cEventPointer[cCutsceneIndex + 1];
+                    s32 param2 = cEventPointer[cCutsceneIndex + 2];
+                    s32 param3 = cEventPointer[cCutsceneIndex + 3];
+                    eventCommand = cEventPointer[cCutsceneIndex];
+                    if (eventCommand == EVENT_SKIP_CUTSCENE_JUMP && param1 == -69  && param2 == -79 && param3 == -89) {
+                        findJumpPoint = 0;
+                    }
+                    else {
+                        cCutsceneIndex+=1;
+                    }
+                }
+                cSkipCutsceneState = 2;
+                cWaiting = 0;
+            }
+        }
 
+        if (cSkipCutsceneTimer > 0) {
+            cSkipCutsceneTimer--;
+        }
+        else if (cSkipCutsceneState == 1) {
+            cSkipCutsceneState = 0;
+        }
 
         while (!cWaiting && cCutsceneActive) {
             eventCommand = cEventPointer[cCutsceneIndex];
@@ -969,6 +1088,9 @@ void event_handler(void) {
                 case EVENT_CAMERA_DISABLE_CUTSCENE:
                     gCamera->cutscene = 0;
                     cCutsceneIndex += 1;
+                break;
+                case EVENT_SKIP_CUTSCENE_JUMP:
+                    cCutsceneIndex += 4;
                 break;
                 case EVENT_CAMERA_POSITION:
                     gCamera->pos[0] = param1;
@@ -1064,6 +1186,12 @@ void event_handler(void) {
                     create_dialog_box(param1);
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_CANCEL_DIALOG:
+                    if (gDialogID > -1) {
+                        gDialogBoxState = 3;
+                    }
+                    cCutsceneIndex += 1;
+                break;
                 case EVENT_SOUND:
                     play_sound(param1, gGlobalSoundSource);
                     cCutsceneIndex += 2;
@@ -1093,6 +1221,8 @@ void event_handler(void) {
                     cMarioFocusSpeed = 0;
                     cCutsceneActive = 0;
                     cExternalCutsceneTrigger = 0;
+                    cSkipCutsceneState = 0;
+                    cSkipCutsceneTimer = 0;
                 break;
                 case EVENT_SHOW_BOSS_TITLE:
                     gHudDisplay.flags |= HUD_DISPLAY_BOSS_INTRO;
@@ -1129,6 +1259,10 @@ void event_handler(void) {
                     gCutsceneFOV = -1;
                     cCutsceneIndex += 1;
                 break;
+                case EVENT_INITIATE_WARP:
+                    initiate_warp(param1, param2, param3, 0, 0);
+                    cCutsceneIndex += 4;
+                break;
                 case EVENT_SPAWN_OBJECT:
                     eventObj = spawn_object_abs_with_rot(gMarioState->marioObj, 0, cEventPointer[cCutsceneIndex + 9], cEventPointer[cCutsceneIndex + 8], 
                         param1, param2, param3, cEventPointer[cCutsceneIndex + 4], cEventPointer[cCutsceneIndex + 5], cEventPointer[cCutsceneIndex + 6]);
@@ -1147,6 +1281,10 @@ void event_handler(void) {
                     cEyeStateOverride = param1;
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_SET_MARIO_FORWARD_VELOCITY:
+                    gMarioState->forwardVel = param1;
+                    cCutsceneIndex += 2;
+                break;
                 case EVENT_MARIO_APPROACH_POINT:
                     marioCutsceneGoalWalkPos[0] = param1;
                     marioCutsceneGoalWalkPos[1] = param2;
@@ -1154,7 +1292,10 @@ void event_handler(void) {
                     set_mario_action(gMarioState, ACT_MOVE_IN_CUTSCENE, 0);
                     cCutsceneIndex += 4;
                 break;
-
+                case EVENT_SET_MARIO_Y_TO_FLOOR:
+                    gMarioState->pos[1] = gMarioState->floorHeight;
+                    cCutsceneIndex += 1;
+                break;
 
 
 

@@ -36,5 +36,4 @@ extern const Gfx moneybag_seg6_dl_060059F0[];
 extern const struct Animation *const moneybag_seg6_anims_06005E5C[];
 
 
-#include "sewnia/anim_header.h"
 #endif

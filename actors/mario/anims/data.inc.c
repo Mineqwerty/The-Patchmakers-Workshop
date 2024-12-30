@@ -21,3 +21,8 @@
 #include "anim_ClimbVertical.inc.c"
 #include "anim_Action_001.inc.c"
 #include "anim_mariowalkinpatchmakerone.inc.c"
+#include "anim_reachOutToPatchmaker.inc.c"
+#include "anim_afterReachIdle.inc.c"
+#include "anim_shakeHeadThink.inc.c"
+#include "anim_thinking.inc.c"
+#include "anim_nodHeadPostThink.inc.c"

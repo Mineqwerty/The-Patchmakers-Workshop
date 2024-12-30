@@ -113,3 +113,8 @@
 #include "soul_mote/model.inc.c"
 #include "breaker_spark/model.inc.c"
 #include "rose_crystal/model.inc.c"
+
+
+#include "sewnia/model.inc.c"
+#include "sewnia/anims/data.inc.c"
+#include "sewnia/anims/table.inc.c"

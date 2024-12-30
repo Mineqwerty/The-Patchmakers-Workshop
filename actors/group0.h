@@ -516,4 +516,9 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "rose_crystal/geo_header.h"
 
+
+
+#include "sewnia/geo_header.h"
+#include "sewnia/anim_header.h"
+
 #endif

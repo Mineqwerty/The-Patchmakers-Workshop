@@ -1610,27 +1610,27 @@ Gfx bowser_1_dl_Circle_mesh_layer_1_tri_1[] = {
 Vtx bowser_1_dl_Circle_001_mesh_layer_1_vtx_cull[8] = {
 	{{ {-4681, 1025, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
 	{{ {-4681, 1926, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-4681, 1926, -1673}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-4681, 1025, -1673}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {5130, 1025, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {5130, 1926, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {5130, 1926, -1673}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {5130, 1025, -1673}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-4681, 1926, -1290}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-4681, 1025, -1290}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {3577, 1025, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {3577, 1926, 1557}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {3577, 1926, -1290}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {3577, 1025, -1290}, 0, {0, 0}, {0, 0, 0, 0} }},
 };
 
 Vtx bowser_1_dl_Circle_001_mesh_layer_1_vtx_0[32] = {
-	{{ {4902, 1025, -1673}, 0, {2453, 2350}, {0, 0, 0, 255} }},
-	{{ {5130, 1025, -526}, 0, {1405, 2350}, {0, 0, 0, 255} }},
-	{{ {5130, 1926, -526}, 0, {1405, 1527}, {0, 0, 0, 255} }},
-	{{ {4902, 1926, -1673}, 0, {2453, 1527}, {0, 0, 0, 255} }},
+	{{ {3348, 1025, -1290}, 0, {2388, 2350}, {0, 0, 0, 255} }},
+	{{ {3577, 1025, -143}, 0, {1340, 2350}, {0, 0, 0, 255} }},
+	{{ {3577, 1926, -143}, 0, {1340, 1527}, {0, 0, 0, 255} }},
+	{{ {3348, 1926, -1290}, 0, {2388, 1527}, {0, 0, 0, 255} }},
 	{{ {2769, 1025, -1147}, 0, {3367, 2350}, {49, 47, 35, 255} }},
-	{{ {4902, 1025, -1673}, 0, {5316, 2350}, {0, 0, 0, 255} }},
-	{{ {4902, 1926, -1673}, 0, {5316, 1527}, {0, 0, 0, 255} }},
+	{{ {3348, 1025, -1290}, 0, {3897, 2350}, {0, 0, 0, 255} }},
+	{{ {3348, 1926, -1290}, 0, {3897, 1527}, {0, 0, 0, 255} }},
 	{{ {2769, 1926, -1147}, 0, {3367, 1527}, {100, 95, 72, 255} }},
-	{{ {5130, 1025, -526}, 0, {5524, 2350}, {0, 0, 0, 255} }},
+	{{ {3577, 1025, -143}, 0, {4105, 2350}, {0, 0, 0, 255} }},
 	{{ {2997, 1025, 0}, 0, {3575, 2350}, {49, 47, 35, 255} }},
 	{{ {2997, 1926, 0}, 0, {3575, 1527}, {100, 95, 72, 255} }},
-	{{ {5130, 1926, -526}, 0, {5524, 1527}, {0, 0, 0, 255} }},
+	{{ {3577, 1926, -143}, 0, {4105, 1527}, {0, 0, 0, 255} }},
 	{{ {-4453, 1025, 1557}, 0, {-499, 2350}, {0, 0, 0, 255} }},
 	{{ {-4681, 1025, 411}, 0, {549, 2350}, {0, 0, 0, 255} }},
 	{{ {-4681, 1926, 411}, 0, {549, 1527}, {0, 0, 0, 255} }},
@@ -1647,10 +1647,10 @@ Vtx bowser_1_dl_Circle_001_mesh_layer_1_vtx_0[32] = {
 	{{ {-2997, 1926, 0}, 0, {-1901, 1001}, {100, 95, 72, 255} }},
 	{{ {-2769, 1926, 1147}, 0, {-1693, 2049}, {100, 95, 72, 255} }},
 	{{ {-4453, 1926, 1557}, 0, {-3232, 2424}, {0, 0, 0, 255} }},
-	{{ {5130, 1926, -526}, 0, {5524, 520}, {0, 0, 0, 255} }},
+	{{ {3577, 1926, -143}, 0, {4105, 870}, {0, 0, 0, 255} }},
 	{{ {2997, 1926, 0}, 0, {3575, 1001}, {100, 95, 72, 255} }},
 	{{ {2769, 1926, -1147}, 0, {3367, -47}, {100, 95, 72, 255} }},
-	{{ {4902, 1926, -1673}, 0, {5316, -528}, {0, 0, 0, 255} }},
+	{{ {3348, 1926, -1290}, 0, {3897, -178}, {0, 0, 0, 255} }},
 };
 
 Gfx bowser_1_dl_Circle_001_mesh_layer_1_tri_0[] = {
@@ -1669,8 +1669,8 @@ Gfx bowser_1_dl_Circle_001_mesh_layer_1_tri_0[] = {
 Vtx bowser_1_dl_Circle_001_mesh_layer_1_vtx_1[8] = {
 	{{ {2769, 1025, -1147}, 0, {3377, 4113}, {88, 69, 49, 255} }},
 	{{ {2997, 1025, 0}, 0, {1870, 4898}, {88, 69, 49, 255} }},
-	{{ {5130, 1025, -526}, 0, {3472, 7659}, {0, 0, 0, 255} }},
-	{{ {4902, 1025, -1673}, 0, {4979, 6874}, {0, 0, 0, 255} }},
+	{{ {3577, 1025, -143}, 0, {2306, 5649}, {0, 0, 0, 255} }},
+	{{ {3348, 1025, -1290}, 0, {3812, 4864}, {0, 0, 0, 255} }},
 	{{ {-2769, 1025, 1147}, 0, {-2076, -2676}, {88, 69, 49, 255} }},
 	{{ {-2997, 1025, 0}, 0, {-569, -3461}, {88, 69, 49, 255} }},
 	{{ {-4681, 1025, 411}, 0, {-1827, -5643}, {0, 0, 0, 255} }},
@@ -1705,7 +1705,7 @@ Gfx mat_revert_bowser_1_dl_f3dlite_material_001[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_bowser_1_dl_f3dlite_material[] = {
+Gfx mat_bowser_1_dl_f3dlite_material_009[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -1719,7 +1719,7 @@ Gfx mat_bowser_1_dl_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_bowser_1_dl_f3dlite_material[] = {
+Gfx mat_revert_bowser_1_dl_f3dlite_material_009[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -1734,9 +1734,9 @@ Gfx bowser_1_dl_Circle_mesh_layer_1[] = {
 	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material_001),
 	gsSPDisplayList(bowser_1_dl_Circle_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material_001),
-	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material),
+	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material_009),
 	gsSPDisplayList(bowser_1_dl_Circle_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material_009),
 	gsSPEndDisplayList(),
 };
 
@@ -1748,9 +1748,9 @@ Gfx bowser_1_dl_Circle_001_mesh_layer_1[] = {
 	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material_001),
 	gsSPDisplayList(bowser_1_dl_Circle_001_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material_001),
-	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material),
+	gsSPDisplayList(mat_bowser_1_dl_f3dlite_material_009),
 	gsSPDisplayList(bowser_1_dl_Circle_001_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_bowser_1_dl_f3dlite_material_009),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

@@ -8821,3 +8821,13 @@ const BehaviorScript bhvGreyFireTorch[] = {
         CALL_NATIVE(bhv_grey_fire_torch_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvThreadOfLife[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_thread_of_life_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_thread_of_life_loop),
+    END_LOOP(),
+};

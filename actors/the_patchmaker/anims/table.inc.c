@@ -24,5 +24,7 @@ const struct Animation *const the_patchmaker_anims[] = {
 	&the_patchmaker_anim_armsway,
 	&the_patchmaker_anim_swerveupzoomin,
 	&the_patchmaker_anim_swervetwitching,
+	&the_patchmaker_anim_bosssplashfightfirst,
+	&the_patchmaker_anim_runawaydefeated,
 	NULL,
 };

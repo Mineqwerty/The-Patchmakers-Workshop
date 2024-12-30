@@ -37,6 +37,7 @@
 #include "src/game/hud.h"
 
 #include "config.h"
+#include "src/game/cutscene.h"
 
 // TODO: Make these ifdefs better
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
@@ -197,7 +198,7 @@ u32 pressed_pause(void) {
 #endif
 
     if (!intangible && !dialogActive && !gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE
-        && (gPlayer1Controller->buttonPressed & START_BUTTON)) {
+        && cCutsceneActive == 0 && (gPlayer1Controller->buttonPressed & START_BUTTON)) {
         return TRUE;
     }
 

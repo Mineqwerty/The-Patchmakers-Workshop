@@ -547,7 +547,7 @@
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
 //Workshop HUB
-#define MODEL_SEWNIA                  0x100
+
 #define MODEL_RDR_GARAGE_DOOR                  0x101
 #define MODEL_STC_DOOR_RIGHT                  0x102
 #define MODEL_STC_DOOR_LEFT                  0x103
@@ -791,6 +791,8 @@
 #define MODEL_THREAD_BUNDLE                   0x132
 #define MODEL_NEEDLE_BALL                 0x133
 
+#define MODEL_BOWSER_THREAD_OF_LIFE                  0x135
+
 //Global
 #define MODEL_YARN_GOOMBA                   0x180
 #define MODEL_FIRE_SMOKE                    0x181
@@ -839,6 +841,7 @@
 #define MODEL_FOG_YELLOW_COIN_NO_SHADOW            0x1AB
 #define MODEL_FOG_PURPLE_COIN           0x1AC
 #define MODEL_FOG_PURPLE_COIN_NO_SHADOW            0x1AD
+#define MODEL_SEWNIA                  0x1AE
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55
