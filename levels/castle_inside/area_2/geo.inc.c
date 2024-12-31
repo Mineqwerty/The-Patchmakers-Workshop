@@ -16,6 +16,7 @@ const GeoLayout castle_inside_area_2_geo[] = {
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, castle_inside_dl_Cube_012_mesh_layer_6),
 		GEO_CLOSE_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, castle_inside_dl_Cube_015_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

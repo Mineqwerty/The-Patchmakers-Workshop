@@ -78,7 +78,8 @@ struct DialogEntry {
 enum NewDialogFlags {
     NEWDIALOG_FLAG_NONE                 = /* 0x00000000 */ (0 <<  0),
     NEWDIALOG_FLAG_VANILLA                 = /* 0x00000001 */ (1 <<  0),
-    NEWDIALOG_FLAG_SHAKE_TEXT            = /* 0x00000002 */ (1 <<  1)
+    NEWDIALOG_FLAG_SHAKE_TEXT            = /* 0x00000002 */ (1 <<  1),
+    NEWDIALOG_FLAG_FULL_TEXTBOX            = /* 0x00000002 */ (1 <<  2)
     
 };
 

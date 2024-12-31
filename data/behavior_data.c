@@ -8845,3 +8845,12 @@ const BehaviorScript bhvBowserNpc[] = {
         CALL_NATIVE(bhv_bowser_npc_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvReadableBook[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_readable_book_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_readable_book_loop),
+    END_LOOP(),
+};

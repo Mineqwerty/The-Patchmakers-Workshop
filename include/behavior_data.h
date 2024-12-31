@@ -805,3 +805,4 @@ extern const BehaviorScript bhvRoseCrystalReciever[];
 extern const BehaviorScript bhvGreyFireTorch[];
 extern const BehaviorScript bhvThreadOfLife[];
 extern const BehaviorScript bhvBowserNpc[];
+extern const BehaviorScript bhvReadableBook[];

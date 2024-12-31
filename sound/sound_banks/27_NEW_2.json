@@ -60,6 +60,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_bowser"
+    },
+    "inst_speaker_book": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_book"
     }
   },
   "instrument_list": [
@@ -72,6 +77,7 @@
     "inst_speaker_demonic_solids",
     "inst_speaker_xodarap",
     "inst_speaker_patchmaker",
-    "inst_speaker_bowser"
+    "inst_speaker_bowser",
+    "inst_speaker_book"
   ]
 }

@@ -145,6 +145,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "crane_long"
+    },
+    "inst_page_turn": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "page_turn"
     }
   },
   "instrument_list": [
@@ -174,6 +179,7 @@
     "inst_slash_air",
     "inst_soul_mote_shield",
     "inst_crane_short",
-    "inst_crane_long"
+    "inst_crane_long",
+    "inst_page_turn"
   ]
 }

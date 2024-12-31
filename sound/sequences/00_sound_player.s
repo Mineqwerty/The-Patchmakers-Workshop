@@ -8920,6 +8920,17 @@ sound_ref .sound_slash_air
 sound_ref .sound_soul_mote_shield
 sound_ref .sound_crane_short
 sound_ref .sound_crane_long
+sound_ref .sound_page_turn
+
+.sound_page_turn:
+chan_setbank 12
+chan_setinstr 27
+chan_setlayer 0, .layer_page_turn
+chan_end
+
+.layer_page_turn:
+layer_note1 39, 0x70, 127
+layer_end
 
 .sound_crane_long:
 chan_setbank 12
@@ -9214,6 +9225,17 @@ sound_ref .sound_speaker_demonic_solids
 sound_ref .sound_speaker_xodarap
 sound_ref .sound_speaker_patchmaker
 sound_ref .sound_speaker_bowser
+sound_ref .sound_speaker_book
+
+.sound_speaker_book:
+chan_setbank 13
+chan_setinstr 10
+chan_setlayer 0, .layer_speaker_book
+chan_end
+
+.layer_speaker_book:
+layer_note1 39, 0xc, 127
+layer_end
 
 .sound_speaker_bowser:
 chan_setbank 13

@@ -2831,3 +2831,76 @@ so long as you continue this way.\n\
 Do not lose sight of what is important.\n\
 @4C2ABDFFI shall now aid you on your quest.\n\
 Take this as a token of victory."))
+
+DEFINE_DIALOG(DIALOG_BOOK_AUTONOMY, 0b100, 3, 30, 200, _("\
+@FEFEFEFFIf one pictures an eye, it can perceive all around it.\n\
+The eye chooses what it observes, and thus, has full\n\
+autonomy over its actions, its reality.\n\
+@FEFEFEFFEyes are complicated structures, not simply able to be\n\
+constructed by man in a capacity anywhere near as capable\n\
+as the ones we possess.\n\
+@FEFEFEFFAnd so, we can do nothing but try to emulate the eye in \n\
+what we create. Upon something such as a yarn doll, the eye\n\
+is represented by a sewn-on button.\n\
+@FEFEFEFFSomething attached in this way has no autonomy. It was\n\
+affixed for one intent, and its actions can only be stirred\n\
+by an external force.\n\
+@FEFEFEFFThus, it can be inferred that the nature of something with a\n\
+sewn-on eye is controlled, lacking free will.\n\
+\n\
+@FEFEFEFFAnd to be alive is to have free will."))
+
+DEFINE_DIALOG(DIALOG_BOOK_DEFINING_LIFE, 0b100, 4, 30, 200, _("\
+@FEFEFEFFMan oftentimes wishes to create a concrete foundation of\n\
+any term to serve as our understanding of a concept.\n\
+In our definition of life, we claim that immobile plants\n\
+are of the same ilk as creatures that breathe and move.\n\
+@FEFEFEFFIn a basic sense, the similarities between these two things\n\
+can be life. However, the life I pursue to create is \n\
+different.\n\
+\n\
+@FEFEFEFFIf my goal were merely to create something humanoid and\n\
+with motion, then I had accomplished my goal years ago\n\
+with my music box automaton.\n\
+\n\
+@FEFEFEFFIf I wished life to be something that moves without\n\
+machinery, a new state of existence, then I also have\n\
+reached that goal with the creatures I have woven over\n\
+with yarn.\n\
+@FEFEFEFFBut my itch for recreation does not let me deceive\n\
+myself. I know what the life I want to create truly is.\n\
+All I wish to do is recreate my greatest work, another\n\
+living doll.\n\
+@FEFEFEFFOne that was a complete mystery as to how life came to be."))
+
+DEFINE_DIALOG(DIALOG_BOOK_MACHINE, 0b100, 3, 30, 200, _("\
+@FEFEFEFFI mean not to sound pretentious in my writing...\n\
+After all, I intend to one day show the world\n\
+my work.\n\
+@FEFEFEFFHowever, to create the work in the first place, I must\n\
+shun the world itself. Such is the sacrifice of\n\
+full commitment and dedication.\n\
+@FEFEFEFFThrough learning fine machinery and complicated spells,\n\
+through weaving intricate patterns and painting thoughts,\n\
+through sculping imagination and making dreams real...\n\
+@FEFEFEFF...I have always wondered if by the time I were finished,\n\
+the people in the world I had shunned would not be there\n\
+to see my work in the end.\n\
+@FEFEFEFFWhat is there to achieve if nobody is there to see it?\n\
+And yet... time spent with others is time that could be\n\
+spent bettering my craft. A paradoxical misfortune.\n\
+@FEFEFEFFThese thoughts berate me, they slow me down, they tempt\n\
+me with ideas of a life wasted, a life in the dark,\n\
+a life without recognition and a death forgotten.\n\
+@FEFEFEFFHow is one supposed to create when it comes at such\n\
+a cost? Ideas are limitless, but time is the ultimate\n\
+boundary, one that even I cannot elude.\n\
+@FEFEFEFFTo progress in life would be to create something\n\
+that could offer the satisfaction of a lifetime.\n\
+Something I have yet to do...\n\
+@FEFEFEFFAnd if I were to never achieve such a thing...\n\
+Is it my ego or my ambition I must overcome\n\
+to truly move on?\n\
+@FEFEFEFF...I am a machine.\n\
+A well-oiled machine.\n\
+"))

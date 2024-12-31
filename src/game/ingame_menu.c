@@ -44,7 +44,8 @@ enum SpeakerSounds {
     SPEAKER_SOUND_AURUMCAEL,
     SPEAKER_SOUND_DEMONIC_SOLIDS,
     SPEAKER_SOUND_XODARAP,
-    SPEAKER_SOUND_PATCHMAKER
+    SPEAKER_SOUND_PATCHMAKER,
+    SPEAKER_SOUND_BOOK
 };
 s16 curSpeaker = 0;
 
@@ -1163,17 +1164,47 @@ void new_dialog_render_dialog_box_type(struct DialogEntry *dialog, s8 linesPerBo
     //create_dl_translation_matrix(MENU_MTX_NOPUSH, 20, 100, 0);
 
             if ((gDialogBoxState == DIALOG_STATE_OPENING) || (gDialogBoxState == DIALOG_STATE_CLOSING)) {
-                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3) - (gDialogBoxOpenTimer * ((f32)linesPerBox / 3.0f)) , 0);
+                if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(16 - 3) - (gDialogBoxOpenTimer * (16.0f / 3.0f)) , 0);
+                }
+                else {
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3) - (gDialogBoxOpenTimer * ((f32)linesPerBox / 3.0f)) , 0);
+                }
             }
             else {
-                create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3), 0);
+                if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(16 - 3), 0);
+                }
+                else {
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 55 + 16*(linesPerBox - 3), 0);
+                }
             }
-            gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 150);
-    create_dl_translation_matrix(MENU_MTX_PUSH, -7.0f, 5.0f + (linesPerBox - 3), 0);
-    create_dl_scale_matrix(MENU_MTX_NOPUSH, 4.0f, 0.4f * ((f32)linesPerBox), 1.0f);
+            
+
+    
+    if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 220);
+        create_dl_translation_matrix(MENU_MTX_PUSH, -7.0f, 5.0f + (16 - 3), 0);
+    }
+    else {
+        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 150);
+        create_dl_translation_matrix(MENU_MTX_PUSH, -7.0f, 5.0f + (linesPerBox - 3), 0);
+    }
+    
+    if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+        create_dl_scale_matrix(MENU_MTX_NOPUSH, 4.0f, 0.4f * (16.0f), 1.0f);
+    }
+    else {
+        create_dl_scale_matrix(MENU_MTX_NOPUSH, 4.0f, 0.4f * ((f32)linesPerBox), 1.0f);
+    }
 
     gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0.0f, -120.0f, 0);
+    }
+
 }
 
 void change_and_flash_dialog_text_color_lines(s8 colorMode, s8 lineNum, u8 *customColor) {
@@ -1460,7 +1491,7 @@ u16 shakeBitmasks[8] = {
 
 
 //this is terrible
-s16 get_speaker_from_color(ColorRGBA rgbaColors) {
+s16 get_speaker_from_color(ColorRGBA rgbaColors, struct DialogEntry *dialog) {
     //print_text_fmt_int(20, 60, "%d", rgbaColors[0]);
     //print_text_fmt_int(20, 40, "%d", rgbaColors[1]);
     //print_text_fmt_int(20, 20, "%d", rgbaColors[2]);
@@ -1481,6 +1512,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors) {
     }
     else if (rgbaColors[0] == 0xFF && rgbaColors[1] == 0x02 && rgbaColors[2] == 0x02) {
         return SPEAKER_SOUND_BOWSER;
+    }
+    else if (rgbaColors[0] == 0xFE && rgbaColors[1] == 0xFE && rgbaColors[2] == 0xFE) {
+        return SPEAKER_SOUND_BOOK;
     }
     return SPEAKER_SOUND_NONE;
 }
@@ -1504,6 +1538,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_BOWSER:
             play_sound(SOUND_NEW_2_SPEAKER_BOWSER, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_BOOK:
+            play_sound(SOUND_NEW_2_SPEAKER_BOOK, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);
@@ -1601,7 +1638,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
 
                
 
-                curSpeaker = get_speaker_from_color(rgbaColors);
+                curSpeaker = get_speaker_from_color(rgbaColors, dialog);
 
                 
 
@@ -1684,7 +1721,7 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
             else if (str[gDialogCharNum] == 0x3F ||  str[gDialogCharNum] == 0xF4) {
                 gDialogEndOfSentenceStall = 8;
             }
-            else if (gDialogCharNum != 0 && str[gDialogCharNum] != DIALOG_CHAR_NEWLINE) {
+            else if (gDialogCharNum != 0 && str[gDialogCharNum] != DIALOG_CHAR_NEWLINE && str[gDialogCharNum] != DIALOG_CHAR_COLOR) {
                 play_speaker_sound();
             }
         }
@@ -2012,7 +2049,12 @@ void new_dialog_render_dialog_entries(void) {
                         gForceDialogLoad = 0;
                     } else {
                         gDialogBoxState = DIALOG_STATE_HORIZONTAL;
-                        play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
+                        if (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) {
+                            play_sound(SOUND_NEW_PAGE_TURN, gGlobalSoundSource);
+                        }
+                        else {
+                            play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
+                        }
                         gPageNum++;
                         curSpeaker = SPEAKER_SOUND_NONE;
                         gForceDialogLoad = 0;
