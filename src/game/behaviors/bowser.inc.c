@@ -1843,6 +1843,10 @@ void bhv_bowser_loop(void) {
             bowser_thrown_dropped_update();
             break;
     }
+
+    
+    obj_attack_in_radius(o, 400.0f, 4, 2);
+
     // Adjust model to the floor
     cur_obj_align_gfx_with_floor();
 

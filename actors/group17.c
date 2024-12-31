@@ -27,6 +27,4 @@ UNUSED static const u64 binid_3 = 3;
 UNUSED static const u64 binid_4 = 4;
 
 #include "scuttlebug/model.inc.c"
-#include "scuttlebug/anims/data.inc.c"
-#include "scuttlebug/anims/table.inc.c"
 UNUSED static const u64 binid_5 = 5;

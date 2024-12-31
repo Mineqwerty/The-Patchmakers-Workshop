@@ -58,3 +58,4 @@
 #include "rose_crystal/geo.inc.c"
 
 #include "sewnia/geo.inc.c"
+#include "yarn_scuttlebug/geo.inc.c"

@@ -56,12 +56,16 @@ void bhv_scuttlebug_loop(void) {
                     o->oAngleToMario = obj_angle_to_object(o, gMarioObject);
                     if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x800) {
                         o->oScuttlebugIsAtttacking = 1;
-                        o->oVelY = 20.0f;
+                        o->oVelY = 40.0f;
                         cur_obj_play_sound_2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
                     }
                 } else if (o->oScuttlebugIsAtttacking == 1) {
                     o->oForwardVel = 15.0f;
                     o->oScuttlebugTimer++;
+                    if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND){
+                        o->oVelY = 40.0f;
+                        cur_obj_play_sound_2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
+                    }
                     if (o->oScuttlebugTimer > 50) {
                         o->oScuttlebugIsAtttacking = FALSE;
                     }

@@ -118,3 +118,7 @@
 #include "sewnia/model.inc.c"
 #include "sewnia/anims/data.inc.c"
 #include "sewnia/anims/table.inc.c"
+#include "yarn_scuttlebug/model.inc.c"
+
+#include "scuttlebug/anims/data.inc.c"
+#include "scuttlebug/anims/table.inc.c"

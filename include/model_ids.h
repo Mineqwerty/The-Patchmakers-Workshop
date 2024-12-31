@@ -842,6 +842,7 @@
 #define MODEL_FOG_PURPLE_COIN           0x1AC
 #define MODEL_FOG_PURPLE_COIN_NO_SHADOW            0x1AD
 #define MODEL_SEWNIA                  0x1AE
+#define MODEL_YARN_SCUTTLEBUG                  0x1AF
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

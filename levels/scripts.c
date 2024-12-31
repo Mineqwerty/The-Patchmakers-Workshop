@@ -161,6 +161,7 @@ const LevelScript level_main_scripts_entry[] = {
         LOAD_MODEL_FROM_GEO(MODEL_SOUL_MOTE,     soul_mote_geo),
         LOAD_MODEL_FROM_GEO(MODEL_BREAKER_SPARK, breaker_spark_geo),
         LOAD_MODEL_FROM_GEO(MODEL_ROSE_CRYSTAL, rose_crystal_geo),
+        LOAD_MODEL_FROM_GEO(MODEL_YARN_SCUTTLEBUG, yarn_scuttlebug_geo),
         
     LOAD_MODEL_FROM_GEO(MODEL_SEWNIA,                    sewnia_geo),
     

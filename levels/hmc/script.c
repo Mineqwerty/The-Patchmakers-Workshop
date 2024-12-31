@@ -56,6 +56,7 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -139,6 +140,19 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_RED_COIN, -12569, 7188, -4308, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -7789, 3647, -4154, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -10783, 7082, 944, 0, 119, 0, 0x00000000, bhvRedCoin),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 8149, 3867, -4309, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 10042, 4343, -6729, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 9038, 4343, -6493, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 11162, 4355, -10734, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 12652, 4629, -13186, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 10821, 5966, -14897, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, 8498, 6861, -6248, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -1793, 4851, -4382, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -591, 6075, -15991, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -102, 6075, -15781, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -8358, 3030, -13045, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -7746, 3030, -13146, 0, 90, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_YARN_SCUTTLEBUG, -3372, 5500, -5210, 0, 90, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_STAR, -15117, 1269, -14358, 0, 119, 0, (18 << 24), bhvStar),
 		OBJECT(MODEL_STAR, 6453, 7313, -2966, 0, 119, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),

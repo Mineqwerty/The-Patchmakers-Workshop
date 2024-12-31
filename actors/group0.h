@@ -521,4 +521,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 #include "sewnia/geo_header.h"
 #include "sewnia/anim_header.h"
 
+#include "yarn_scuttlebug/geo_header.h"
+
 #endif
