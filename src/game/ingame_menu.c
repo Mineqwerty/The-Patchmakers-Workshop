@@ -1479,6 +1479,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors) {
     else if (rgbaColors[0] == 0x5D && rgbaColors[1] == 0x5D && rgbaColors[2] == 0x5D) {
         return SPEAKER_SOUND_PATCHMAKER;
     }
+    else if (rgbaColors[0] == 0xFF && rgbaColors[1] == 0x02 && rgbaColors[2] == 0x02) {
+        return SPEAKER_SOUND_BOWSER;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1498,6 +1501,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_PATCHMAKER:
             play_sound(SOUND_NEW_2_SPEAKER_PATCHMAKER, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_BOWSER:
+            play_sound(SOUND_NEW_2_SPEAKER_BOWSER, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);

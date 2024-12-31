@@ -1988,7 +1988,7 @@ He became obsessed with creating something specific.\n\
 He wanted to create life again.\n\
 @7F60B4FFI'm not sure how I came to be exactly, but The Patchmaker\n\
 admitted I was a complete accident. He didn't know how he\n\
-created me, but he wanted to do it again, and became mad over it.\n\
+created me, but he wanted it again, and became mad over it.\n\
 @7F60B4FFAh! Sorry, I didn't mean to ramble.\n\
 By the time I caught up, you were already fighting,\n\
 but look at this!\n\
@@ -2334,8 +2334,8 @@ What the...\n\
 \n\
 \n\
 @FF0202FFHey! What on earth is Mario doing here!?\n\
-I hate seeing him when I wake up!\n\
-It usually means I lost!\n\
+I HATE seeing him when I wake up!\n\
+...It usually means I lost a fight!\n\
 @7F60B4FFAre you... Bowser?\n\
 Mario told me a bit about you!\n\
 \n\
@@ -2346,11 +2346,11 @@ Hrgh... My head...\n\
 Bowser, you were brought here by a man\n\
 known as The Patchmaker, and he-\n\
 @FF0202FFHey, I remember now! I was performing my awesome\n\
-attack on Mushroom Castle! It was going great, until that weirdo\n\
-man showed up!\n\
+attack on Mushroom Castle! It was going great, until that\n\
+weirdo man showed up!\n\
 @FF0202FFI watched him turn Mario into a doll right before my eyes!\n\
-He jumped out from the shadows while I was storming the castle for Peach,\n\
-when Mario was trying to stop me, and attacked him from behind!\n\
+He jumped out while I was storming the castle for Peach,\n\
+while Mario was blocking me, and attacked from behind!\n\
 @FF0202FFAfter that... he must have gotten me too!\n\
 Bwaaargh! No!!! I can stomach losing to Mario,\n\
 but I won't accept losing to ANOTHER human!\n\
@@ -2370,11 +2370,11 @@ Is that...?\n\
 I'LL... I'LL...! I'LL GIVE THE FLOOR A NEW\n\
 COAT OF WAX WITH HIS FACE! GRRAAGHHH!!!\n\
 @7F60B4FFBowser! Please calm down! We can still save her!\n\
-We need to focus on exploring as much of the workshop as we can!\n\
-Maybe her Thread of Life is lying around somewhere!\n\
+We need to focus on exploring as much of the workshop as\n\
+we can! Maybe her Thread of Life is around somewhere!\n\
 @FF0202FFThen what are we waiting for? MOVE!\n\
 Mario, doll girl! What are you doing just waiting here?\n\
-Let's GO!!!"))
+Peach needs me, let's GO!!!"))
 
 DEFINE_DIALOG(DIALOG_PATCHMAKER_MEET_MARIO, 0b10, 3, 30, 200, _("\
 @5D5D5DFFHmm?\n\

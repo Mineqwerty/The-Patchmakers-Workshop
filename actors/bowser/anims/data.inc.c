@@ -52,3 +52,8 @@
 #include "anim_P__24___Edge_stop_.inc.c"
 #include "anim_P__25___Flip_.inc.c"
 #include "anim_Q__26___Stand_up_from_flip_.inc.c"
+#include "anim_R_27_surprised.inc.c"
+#include "anim_R_28_stomping.inc.c"
+#include "anim_S_29_tremble_after_stomp.inc.c"
+#include "anim_T_30_look_at_peach.inc.c"
+#include "anim_U_31_Amgry_scream.inc.c"

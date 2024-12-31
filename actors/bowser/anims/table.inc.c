@@ -27,5 +27,10 @@ const struct Animation *const bowser_seg6_anims_06057690[] = {
 	&bowser_anim_P__24___Edge_stop_,
 	&bowser_anim_P__25___Flip_,
 	&bowser_anim_Q__26___Stand_up_from_flip_,
+	&bowser_anim_R_27_surprised,
+	&bowser_anim_R_28_stomping,
+	&bowser_anim_S_29_tremble_after_stomp,
+	&bowser_anim_T_30_look_at_peach,
+	&bowser_anim_U_31_Amgry_scream,
 	NULL,
 };

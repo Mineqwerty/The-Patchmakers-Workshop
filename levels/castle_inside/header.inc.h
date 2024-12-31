@@ -3,6 +3,28 @@ extern const GeoLayout castle_inside_area_1[];
 extern const MacroObject castle_inside_area_1_macro_objs[];
 #include "src/game/camera.h"
 
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus1[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus10[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus11[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus2[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus3[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus4[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus5[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus6[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus7[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus8[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserReviveFocus9[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos1[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos10[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos11[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos2[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos3[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos4[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos5[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos6[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos7[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos8[];
+extern struct CutsceneSplinePoint castle_inside_area_1_spline_BowserRevivePos9[];
 extern struct CutsceneSplinePoint castle_inside_area_1_spline_IntroFoc1[];
 extern struct CutsceneSplinePoint castle_inside_area_1_spline_IntroFoc10[];
 extern struct CutsceneSplinePoint castle_inside_area_1_spline_IntroFoc11[];

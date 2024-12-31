@@ -147,7 +147,7 @@ static const u16 bowser_anim_2__Shaking__indices[] = {
 };
 
 static const struct Animation bowser_anim_2__Shaking_ = {
-	0,
+	1,
 	0,
 	0,
 	0,

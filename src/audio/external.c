@@ -1173,9 +1173,15 @@ static f32 get_sound_freq_scale(u8 bank, u8 item) {
             amount += (f32)(gAudioRandom & 0xff) / 64.0f;
 
             if (bank == 12) {
-                amount /= 2;
-                if (item == 4) {
+                if (item == 9) {
+                    //bowser
+                    amount -= 10;
+                }
+                else {
                     amount /= 2;
+                    if (item == 4) {
+                        amount /= 2;
+                    }
                 }
             }
         }

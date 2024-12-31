@@ -20,7 +20,8 @@ enum SewniaActions {
     SEWNIA_ACT_REVIVE_MARIO_CUTSCENE,
     SEWNIA_ACT_RUN_TO_NODE,
     SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE,
-    SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED
+    SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED,
+    SEWNIA_ACT_REVIVE_BOWSER
 
 };
 
@@ -42,7 +43,9 @@ enum SewniaAnims {
     SEWNIA_ANIM_START_FALL,
     SEWNIA_ANIM_FALLING,
     SEWNIA_ANIM_RESERVED_IDLE,
-    SEWNIA_ANIM_PULL_OUT_BOWSER_THREAD
+    SEWNIA_ANIM_PULL_OUT_BOWSER_THREAD,
+    SEWNIA_ANIM_LEANING_IDLE,
+    SEWNIA_ANIM_CUTSCENE_IDLE_LOOK_UP
 };
 
 enum SewniaFaceStates {
@@ -1074,6 +1077,103 @@ void sewnia_act_revive_mario_cutscene(void) {
     }
 }
 
+void sewnia_act_revive_bowser_cutscene(void) {
+    o->oForwardVel = 0;
+
+    if (cExternalCutsceneTrigger >= 100) {
+        cur_obj_hide();
+    }
+    else {
+        cur_obj_unhide();
+    }
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = 100;
+            o->oPosY = 100;
+            o->oPosZ = 500;
+            cur_obj_init_animation(SEWNIA_ANIM_LEANING_IDLE);
+
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 1){
+                cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 1:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 3){
+                cur_obj_init_animation(SEWNIA_ANIM_CUTSCENE_IDLE_LOOK_UP);
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 5){
+                cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 3:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger == 7){
+                cur_obj_init_animation(SEWNIA_ANIM_CUTSCENE_IDLE_1);
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break; 
+        case 4:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+
+            if (o->oTimer > 45 + (random_u16()%10)) {
+                o->oTimer = 0;
+            }
+
+            if (o->oTimer < 3) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+        break;
+    }
+}
+
 void bhv_sewnia_init(void) {
     obj_set_hitbox(o, &sSewniaHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_NPC;
@@ -1236,6 +1336,9 @@ void bhv_sewnia_loop(void) {
         case SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED:
             sewnia_act_patchmaker_first_fight_defeated();
         break;
+        case SEWNIA_ACT_REVIVE_BOWSER:
+            sewnia_act_revive_bowser_cutscene();
+        break;
     }
 
     if (gCurCutscene != -1) {
@@ -1244,6 +1347,9 @@ void bhv_sewnia_loop(void) {
         }
         else if (gCurCutscene == CUTSCENE_EVENT_SEWNIA_REVIVE_MARIO) {
             o->oAction = SEWNIA_ACT_REVIVE_MARIO_CUTSCENE;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
+            o->oAction = SEWNIA_ACT_REVIVE_BOWSER;
         }
     }
 }

@@ -18,3 +18,5 @@
 #include "anim_falling.inc.c"
 #include "anim_reservedIdle.inc.c"
 #include "anim_takeOutBowserThread.inc.c"
+#include "anim_leanDown.inc.c"
+#include "anim_cutsceneIdleLookUp.inc.c"

@@ -26,3 +26,5 @@
 #include "anim_shakeHeadThink.inc.c"
 #include "anim_thinking.inc.c"
 #include "anim_nodHeadPostThink.inc.c"
+#include "anim_bendDown.inc.c"
+#include "anim_lookUpAtBowser.inc.c"

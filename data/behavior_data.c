@@ -8831,3 +8831,17 @@ const BehaviorScript bhvThreadOfLife[] = {
         CALL_NATIVE(bhv_thread_of_life_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvBowserNpc[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, bowser_seg6_anims_06057690),
+    SET_HITBOX(/*Radius*/ 400, /*Height*/ 400),
+    SET_INTERACT_TYPE(INTERACT_TEXT),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_bowser_npc_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bowser_npc_loop),
+    END_LOOP(),
+};

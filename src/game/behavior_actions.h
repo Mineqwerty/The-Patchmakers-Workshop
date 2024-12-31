@@ -1120,3 +1120,5 @@ void bhv_grey_fire_torch_init(void);
 void bhv_grey_fire_torch_loop(void);
 void bhv_thread_of_life_init(void);
 void bhv_thread_of_life_loop(void);
+void bhv_bowser_npc_init(void);
+void bhv_bowser_npc_loop(void);

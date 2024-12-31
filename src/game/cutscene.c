@@ -837,6 +837,79 @@ s32 event_patchmaker_first_fight_defeated[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_revive_bowser[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_POSITION, -100, 100, 500,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_BEND_DOWN_IDLE,
+    EVENT_HUD_SET_EFFECT, 2,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 97,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 98,
+    EVENT_WAIT, 130,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_BOWSER_REVIVED,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
+    EVENT_SPAWN_OBJECT, 0, 100, 1000, 0, 0x8000, 0, 1, bhvBowserNpc, MODEL_BOWSER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 99,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 100,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 101,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 102,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_LOOK_UP_AT_BOWSER,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 103,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 104,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 105,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 106,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 103,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 104,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 8,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 107,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 108,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 10,
+    EVENT_SET_EXTERNAL_TRIGGER, 6,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 109,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 110,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 12,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 103,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 104,
+    EVENT_SET_EXTERNAL_TRIGGER, 7,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 13,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 111,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 112,
+    EVENT_SET_EXTERNAL_TRIGGER, 8,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 14,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 113,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 114,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 15,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 115,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 116,
+    EVENT_SET_EXTERNAL_TRIGGER, 9,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 16,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 103,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 104,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 17,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 105,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 106,
+    EVENT_SET_EXTERNAL_TRIGGER, 10,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 117,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 118,
+    EVENT_WAIT, 100,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_INITIATE_WARP, LEVEL_CASTLE, 2, 0x0A,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -856,6 +929,7 @@ s32 *eventList[] = {
     event_patchmaker_first_fight_intro,
     event_patchmaker_first_fight_defeated,
     //15
+    event_revive_bowser,
 };
 
 s32 *splineList[] = {
@@ -975,6 +1049,33 @@ s32 *splineList[] = {
     //95
     bowser_1_area_1_spline_CutscenePos11,
     bowser_1_area_1_spline_CutsceneFocus11,
+    castle_inside_area_1_spline_BowserRevivePos1,
+    castle_inside_area_1_spline_BowserReviveFocus1,
+    castle_inside_area_1_spline_BowserRevivePos2,
+    //100
+    castle_inside_area_1_spline_BowserReviveFocus2,
+    castle_inside_area_1_spline_BowserRevivePos3,
+    castle_inside_area_1_spline_BowserReviveFocus3,
+    castle_inside_area_1_spline_BowserRevivePos4,
+    castle_inside_area_1_spline_BowserReviveFocus4,
+    //105
+    castle_inside_area_1_spline_BowserRevivePos5,
+    castle_inside_area_1_spline_BowserReviveFocus5,
+    castle_inside_area_1_spline_BowserRevivePos6,
+    castle_inside_area_1_spline_BowserReviveFocus6,
+    castle_inside_area_1_spline_BowserRevivePos7,
+    //110
+    castle_inside_area_1_spline_BowserReviveFocus7,
+    castle_inside_area_1_spline_BowserRevivePos8,
+    castle_inside_area_1_spline_BowserReviveFocus8,
+    castle_inside_area_1_spline_BowserRevivePos9,
+    castle_inside_area_1_spline_BowserReviveFocus9,
+    //115
+    castle_inside_area_1_spline_BowserRevivePos10,
+    castle_inside_area_1_spline_BowserReviveFocus10,
+    castle_inside_area_1_spline_BowserRevivePos11,
+    castle_inside_area_1_spline_BowserReviveFocus11,
+
 };
 
 void begin_cutscene_event(s32 event) {
