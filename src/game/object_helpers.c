@@ -1814,6 +1814,10 @@ static void obj_spawn_loot_coins(struct Object *obj, s32 numCoins, f32 baseYVel,
     struct Surface *floor;
     struct Object *coin;
 
+    if (gCurrLevelNum == LEVEL_BITFS) {
+        return;
+    }
+
     f32 spawnHeight = find_floor(obj->oPosX, obj->oPosY, obj->oPosZ, &floor);
     if (obj->oPosY - spawnHeight > 100.0f) {
         spawnHeight = obj->oPosY;
@@ -1840,10 +1844,16 @@ static void obj_spawn_loot_coins(struct Object *obj, s32 numCoins, f32 baseYVel,
 }
 
 void obj_spawn_loot_blue_coins(struct Object *obj, s32 numCoins, f32 baseYVel, s16 posJitter) {
+    if (gCurrLevelNum == LEVEL_BITFS) {
+        return;
+    }
     obj_spawn_loot_coins(obj, numCoins, baseYVel, bhvBlueCoinJumping, posJitter, MODEL_BLUE_COIN);
 }
 
 void obj_spawn_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 baseYVel) {
+    if (gCurrLevelNum == LEVEL_BITFS) {
+        return;
+    }
     obj_spawn_loot_coins(obj, numCoins, baseYVel, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
 
@@ -1853,6 +1863,9 @@ void cur_obj_spawn_loot_coins(s32 numCoins, f32 baseYVel,
                                         s32 i;
     struct Surface *floor;
     struct Object *coin;
+    if (gCurrLevelNum == LEVEL_BITFS) {
+        return;
+    }
 
     f32 spawnHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
     if (o->oPosY - spawnHeight > 100.0f) {
@@ -2594,6 +2607,37 @@ s32 cur_obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deat
             obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
             obj_mark_for_deletion(o);
             create_sound_spawner(deathSound);
+        } else {
+            interacted = TRUE;
+        }
+    }
+
+    o->oInteractStatus = INT_STATUS_NONE;
+    return interacted;
+}
+
+s32 cur_obj_set_hitbox_and_knock_back_if_attacked(struct ObjectHitbox *hitbox, s32 deathSound, s32 noLootCoins) {
+    s32 interacted = FALSE;
+
+    obj_set_hitbox(o, hitbox);
+
+    if (noLootCoins) {
+        o->oNumLootCoins = 0;
+    }
+
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+        if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
+            if (o->oHealth <= 0) {
+                spawn_mist_particles();
+                obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
+                obj_mark_for_deletion(o);
+                create_sound_spawner(deathSound);
+            }
+            else {
+                o->oMoveAngleYaw = gMarioState->faceAngle[1] + 0x8000;
+                o->oForwardVel = 20.0f;
+                o->oVelY = 15.0f;
+            }
         } else {
             interacted = TRUE;
         }

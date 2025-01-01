@@ -4,7 +4,7 @@ struct ObjectHitbox sScuttlebugHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 1,
-    /* health:            */ 1,
+    /* health:            */ 3,
     /* numLootCoins:      */ 3,
     /* radius:            */ 130,
     /* height:            */ 70,
@@ -27,7 +27,7 @@ void bhv_scuttlebug_loop(void) {
     cur_obj_update_floor_and_walls();
 
     if (o->oSubAction != 0
-        && cur_obj_set_hitbox_and_die_if_attacked(&sScuttlebugHitbox, SOUND_OBJ_DYING_ENEMY1, o->oScuttlebugHasNoLootCoins)) {
+        && cur_obj_set_hitbox_and_knock_back_if_attacked(&sScuttlebugHitbox, SOUND_OBJ_DYING_ENEMY1, o->oScuttlebugHasNoLootCoins)) {
         o->oSubAction = 3;
     }
 

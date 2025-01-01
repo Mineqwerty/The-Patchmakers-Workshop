@@ -391,3 +391,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/thread_of_life.inc.c"
 #include "behaviors/bowser_npc.inc.c"
 #include "behaviors/readable_book.inc.c"
+#include "behaviors/burnable_rope_net.inc.c"

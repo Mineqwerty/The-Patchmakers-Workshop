@@ -104,4 +104,8 @@ extern const LevelScript level_bitfs_entry[];
 
 #include "levels/bitfs/wooden_plank_block/collision_header.h"
 
+#include "levels/bitfs/burnable_rope_net/collision_header.h"
+
+#include "levels/bitfs/burnable_rope_net/geo_header.h"
+
 #endif

@@ -1,6 +1,7 @@
 #include "src/game/puppyprint.h"
 #include "src/game/patch_tutorial_dialog.h"
 #include "include/dialog_ids.h"
+#include "src/game/ingame_menu.h"
 
 void bhv_readable_book_init(void) {
    

@@ -806,3 +806,4 @@ extern const BehaviorScript bhvGreyFireTorch[];
 extern const BehaviorScript bhvThreadOfLife[];
 extern const BehaviorScript bhvBowserNpc[];
 extern const BehaviorScript bhvReadableBook[];
+extern const BehaviorScript bhvBurnableRopeNet[];

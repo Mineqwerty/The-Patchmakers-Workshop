@@ -776,6 +776,7 @@ s32 bowser_land(void) {
         cur_obj_init_animation_with_sound(BOWSER_ANIM_JUMP_STOP);
         o->header.gfx.animInfo.animFrame = 0;
         cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
+        cur_obj_shake_screen(SHAKE_POS_MEDIUM);
         // Set status attacks in BITDW since the other levels
         // have different attacks defined
         if (o->oBehParams2ndByte == BOWSER_BP_BITDW) {
@@ -849,7 +850,7 @@ void bowser_act_big_jump(void) {
 /**
  * Fixed values for the quick jump action
  */
-s16 sBowserVelYAir[] = { 60 };
+s16 sBowserVelYAir[] = { 90 };
 s16 sBowserFVelAir[] = { 50 };
 
 /**
@@ -885,8 +886,15 @@ void bowser_act_quick_jump(void) {
         if (bowser_land()) {
             o->oSubAction++;
         }
-    } else if (cur_obj_check_if_near_animation_end()) {
-        o->oAction = BOWSER_ACT_DEFAULT;
+
+        o->oVelY -= 4;
+    } else {
+        if (cur_obj_check_if_near_animation_end()) {
+            o->oAction = BOWSER_ACT_DEFAULT;
+        }
+        else if (o->header.gfx.animInfo.animFrame > 5 && gPlayer1Controller->stickMag > 20) {
+            o->oAction = BOWSER_ACT_WALK_TO_MARIO;
+        }
     }
 }
 
@@ -1215,10 +1223,10 @@ void bowser_act_jump_onto_stage(void) {
 #if BUGFIX_BOWSER_FALLEN_OFF_STAGE
             bowser_reset_fallen_off_stage();
 #else
-            if (o->oVelY < 0.0f && o->oPosY < o->oHomeY - 300.0f) {
-                o->oPosZ = 0.0f, o->oPosX = o->oPosZ;
-                o->oPosY = o->oHomeY + 2000.0f;
-                o->oVelY = 0.0f;
+            if (o->oVelY < 0.0f && o->oPosY < o->oHomeY - 6000.0f) {
+                //o->oPosZ = 0.0f, o->oPosX = o->oPosZ;
+                //o->oPosY = o->oHomeY + 2000.0f;
+                //o->oVelY = 0.0f;
             }
 #endif
             break;
@@ -1590,8 +1598,8 @@ void bowser_act_tilt_lava_platform(void) {
  */
 s32 bowser_check_fallen_off_stage(void) {
     if (o->oAction != BOWSER_ACT_JUMP_ONTO_STAGE && o->oAction != BOWSER_ACT_TILT_LAVA_PLATFORM) {
-        if (o->oPosY < o->oHomeY - 1000.0f)
-            return TRUE;
+        if (o->oPosY < o->oHomeY - 8000.0f)
+            //return TRUE;
         if (o->oMoveFlags & OBJ_MOVE_LANDED) {
             // Check for Fire Sea
             if (o->oFloorType == SURFACE_BURNING) {

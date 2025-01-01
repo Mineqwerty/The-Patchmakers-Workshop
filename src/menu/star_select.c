@@ -140,7 +140,7 @@ void spawn_stage_diorama(void) {
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_SUBTERRANEAN_SEAWAY_SELECT), 0);
         break;
         case LEVEL_LLL:
-            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_CLC_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_CANDLELIT_CHAMBER_SELECT), 0);
         break;
         case LEVEL_DDD:

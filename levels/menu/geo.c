@@ -205,3 +205,4 @@ const GeoLayout geo_menu_act_selector_strings[] = {
 #include "levels/menu/gss_diorama/geo.inc.c"
 #include "levels/menu/patchmaker_shadow/geo.inc.c"
 #include "levels/menu/ss_diorama/geo.inc.c"
+#include "levels/menu/clc_diorama/geo.inc.c"

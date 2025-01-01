@@ -782,6 +782,7 @@
 #define MODEL_WOODEN_PLANK_BLOCK                   0x100
 #define MODEL_WOODEN_PLANK_LEFT                   0x101
 #define MODEL_WOODEN_PLANK_RIGHT                   0x102
+#define MODEL_BURNABLE_ROPE_NET                   0x103
 
 //New File Select
 #define MODEL_PATCHMAKER_SHADOW                   0x100

@@ -9264,6 +9264,14 @@ void cutscene_dialog(struct Camera *c) {
     cutscene_event(cutscene_dialog_create_dialog_box, c, 10, 10);
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
 
+    
+    void **dialogTable = segmented_to_virtual(languageTable[gInGameLanguage][0]);
+    struct DialogEntry *dialog = segmented_to_virtual(dialogTable[gDialogID]);
+
+    if ((dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) && gDialogBoxState != 0) {
+            seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, CLAMP(40 - gPageNum*8, 0, 40));
+    }
+
     if (gDialogResponse != DIALOG_RESPONSE_NONE) {
         sCutsceneDialogResponse = gDialogResponse;
     }

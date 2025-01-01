@@ -50,3 +50,4 @@
 #include "levels/bitfs/wooden_plank_block/geo.inc.c"
 #include "levels/bitfs/wooden_plank_left/geo.inc.c"
 #include "levels/bitfs/wooden_plank_right/geo.inc.c"
+#include "levels/bitfs/burnable_rope_net/geo.inc.c"

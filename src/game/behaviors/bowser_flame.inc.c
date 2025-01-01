@@ -138,6 +138,10 @@ void bhv_flame_moving_forward_growing_loop(void) {
         spawn_object(o, MODEL_RED_FLAME, bhvFlameBowser);
         obj_mark_for_deletion(o);
     }
+
+    if (gCurrLevelNum == LEVEL_BITFS) {
+        obj_attack_in_radius(o, 200.0f, 8, 1);
+    }
 }
 
 void bhv_flame_floating_landing_init(void) {

@@ -62,3 +62,5 @@
 #include "levels/bitfs/wooden_plank_left/model.inc.c"
 #include "levels/bitfs/wooden_plank_right/model.inc.c"
 #include "levels/bitfs/wooden_plank_block/collision.inc.c"
+#include "levels/bitfs/burnable_rope_net/collision.inc.c"
+#include "levels/bitfs/burnable_rope_net/model.inc.c"

@@ -1124,3 +1124,5 @@ void bhv_bowser_npc_init(void);
 void bhv_bowser_npc_loop(void);
 void bhv_readable_book_init(void);
 void bhv_readable_book_loop(void);
+void bhv_burnable_rope_net_init(void);
+void bhv_burnable_rope_net_loop(void);
