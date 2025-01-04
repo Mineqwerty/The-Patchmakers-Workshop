@@ -95,6 +95,7 @@ const GeoLayout bitdw_area_1_geo[] = {
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 2291, -1883, -11314, bitdw_dl_Plane_017_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 4263, -63, 5334, -17, 22, 121, bitdw_dl_Plane_018_mesh_layer_5),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 3321, 279, 7363, -161, -55, -53, bitdw_dl_Plane_019_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, bitdw_dl_Plane_020_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

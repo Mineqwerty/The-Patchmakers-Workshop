@@ -57,6 +57,7 @@ const LevelScript level_bitdw_entry[] = {
 		OBJECT(MODEL_BOO, 12154, -4531, -10422, 0, 78, 0, 0x00000000, bhvBoo),
 		OBJECT(MODEL_BOO, 12884, -3095, -6923, 0, 78, 0, 0x00000000, bhvBoo),
 		OBJECT(MODEL_BOO, 14077, -979, -8695, 0, 78, 0, 0x00000000, bhvBoo),
+		OBJECT(MODEL_NONE, 861, -3133, -4061, 0, -74, 0, 0x00000000, bhvMemoryCutsceneController),
 		OBJECT(MODEL_DRY_BONES, -9174, 553, 4837, 0, -90, 0, 0x00000000, bhvDryBones),
 		OBJECT(MODEL_DRY_BONES, 13625, -6059, -8181, 0, -90, 0, 0x00000000, bhvDryBones),
 		OBJECT(MODEL_DRY_BONES, 1396, -838, 1903, 0, -90, 0, (1 << 16), bhvDryBones),
@@ -71,7 +72,6 @@ const LevelScript level_bitdw_entry[] = {
 		OBJECT(MODEL_DRY_BONES, 12521, -6059, -6729, 0, -90, 0, 0x00000000, bhvDryBones),
 		OBJECT(MODEL_DRY_BONES, 14155, -3882, -8473, 0, -90, 0, 0x00000000, bhvDryBones),
 		OBJECT(MODEL_DRY_BONES, 11126, -2804, -7360, 0, 61, 0, 0x00000000, bhvDryBones),
-		OBJECT(MODEL_YARN_KOOPA, -11152, 1, -31, 0, -90, 0, 0x00000000, bhvKoopa),
 		OBJECT(MODEL_YARN_KOOPA, -6937, 553, 4330, 0, -90, 0, 0x00000000, bhvKoopa),
 		OBJECT(MODEL_YARN_KOOPA, 3419, -237, 8737, 0, -90, 0, 0x00000000, bhvKoopa),
 		OBJECT(MODEL_YARN_KOOPA, 3485, -2082, -8930, 0, -90, 0, 0x00000000, bhvKoopa),
@@ -82,7 +82,7 @@ const LevelScript level_bitdw_entry[] = {
 		TERRAIN(bitdw_area_1_collision),
 		TERRAIN_MAT_LUT(bitdw_area_1_collision_materials),
 		MACRO_OBJECTS(bitdw_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCHMAKER_THEME),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

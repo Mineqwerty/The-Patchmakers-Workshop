@@ -2904,3 +2904,57 @@ to truly move on?\n\
 @FEFEFEFF...I am a machine.\n\
 A well-oiled machine.\n\
 "))
+
+DEFINE_DIALOG(DIALOG_BOOK_SEWNIA, 0b100, 3, 30, 200, _("\
+@FEFEFEFFOne day, whilst crafting a plush doll,\n\
+something miraculous occured.\n\
+The doll smiled at me.\n\
+@FEFEFEFFI had done nothing different, nor special, and yet,\n\
+the doll breathed life. It grew tenfold and\n\
+sat upon my work station, looking around curiously.\n\
+@FEFEFEFFThat was the day I became part of a family.\n\
+That day, Sewnia was born.\n\
+\n\
+@FEFEFEFFI taught her like she was my own daughter.\n\
+Creating life was an incredible feat, and even\n\
+more surprising were her capabilities.\n\
+@FEFEFEFFShe behaved like a child would, yet\n\
+she could speak perfectly, and some words\n\
+she knew, not even I had heard before.\n\
+@FEFEFEFFI was so morbidly curious about it all.\n\
+No magic had ever created life itself. But...\n\
+She is a living person, and I will treat her as one.\n\
+@FEFEFEFFAll my worries, all my failures and successes...\n\
+They led to this. I know it. This is my\n\
+life's work, to bring her to life.\n\
+@FEFEFEFFAnd yet... There is a nagging pain in the back of my\n\
+mind. A small part of me feels as though this feat\n\
+is not mine to hold, a mere fluke of chance.\n\
+@FEFEFEFFNo... I am finally fulfilled, I have created\n\
+something marvelous, and I shall focus on her.\n\
+I mustn't let that small feeling grow.\n\
+@FEFEFEFFSewnia's joy is my focus now.\n\
+I'll do what makes her happy.\n\
+I truly will."))
+
+DEFINE_DIALOG(DIALOG_MEMORY_1, 1, 3, 30, 200, _("\
+@7E5FB3FFFather, look! Look at what I drew!\n\
+There's you, and there's me!\n\
+Wonderful, isn't it?\n\
+@5C5C5CFFLet me see, dear...\n\
+Ah! It is! At this rate, you'll be a great\n\
+artist like your old man, Sewnia!\n\
+@7E5FB3FFHehehe... I hope so!\n\
+What are you working on, father?\n\
+\n\
+@5C5C5CFFIt's a secret! Your third birthday is\n\
+coming up, after all. Though, it feels a bit\n\
+odd to say that when you act much older than three...\n\
+@7E5FB3FFYay! I can't wait to see what it is!\n\
+\n\
+\n\
+@5C5C5CFFSay, Sewnia... This may seem unrelated, but...\n\
+\n\
+\n\
+@5C5C5CFFWhat would you think about having a sister?\n\
+"))

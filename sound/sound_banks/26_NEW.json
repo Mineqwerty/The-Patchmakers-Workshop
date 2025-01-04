@@ -150,6 +150,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "page_turn"
+    },
+    "inst_memory_end": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "memory_end"
     }
   },
   "instrument_list": [
@@ -180,6 +185,7 @@
     "inst_soul_mote_shield",
     "inst_crane_short",
     "inst_crane_long",
-    "inst_page_turn"
+    "inst_page_turn",
+    "inst_memory_end"
   ]
 }

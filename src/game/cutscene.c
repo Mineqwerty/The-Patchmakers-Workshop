@@ -23,6 +23,7 @@
 #include "levels/lll/header.inc.h"
 #include "levels/ddd/header.inc.h"
 #include "levels/sl/header.inc.h"
+#include "levels/bitdw/header.inc.h"
 
 #include "levels/castle_inside/header.inc.h"
 #include "levels/bowser_1/header.inc.h"
@@ -910,6 +911,29 @@ s32 event_revive_bowser[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_first_memory[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 119,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 120,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_1,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 90, 255, 0, 0,
+    EVENT_SOUND, SOUND_NEW_MEMORY_END,
+    EVENT_WAIT, 90,
+    
+    EVENT_FADE_INTO_COLOR, 1, 0, 0, 0,
+    EVENT_WAIT, 60,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, -14700, 400, 0,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_FADE_FROM_COLOR, 10, 0, 0, 0,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -930,6 +954,7 @@ s32 *eventList[] = {
     event_patchmaker_first_fight_defeated,
     //15
     event_revive_bowser,
+    event_first_memory
 };
 
 s32 *splineList[] = {
@@ -1075,6 +1100,9 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_BowserReviveFocus10,
     castle_inside_area_1_spline_BowserRevivePos11,
     castle_inside_area_1_spline_BowserReviveFocus11,
+    bitdw_area_1_spline_FirstMemoryPos1,
+    //120
+    bitdw_area_1_spline_FirstMemoryFocus1
 
 };
 

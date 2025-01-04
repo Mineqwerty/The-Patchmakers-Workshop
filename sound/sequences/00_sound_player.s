@@ -8921,6 +8921,17 @@ sound_ref .sound_soul_mote_shield
 sound_ref .sound_crane_short
 sound_ref .sound_crane_long
 sound_ref .sound_page_turn
+sound_ref .sound_memory_end
+
+.sound_memory_end:
+chan_setbank 12
+chan_setinstr 28
+chan_setlayer 0, .layer_memory_end
+chan_end
+
+.layer_memory_end:
+layer_note1 39, 0x1ed, 127
+layer_end
 
 .sound_page_turn:
 chan_setbank 12

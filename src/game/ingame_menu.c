@@ -1516,6 +1516,12 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors, struct DialogEntry *dialog) {
     else if (rgbaColors[0] == 0xFE && rgbaColors[1] == 0xFE && rgbaColors[2] == 0xFE) {
         return SPEAKER_SOUND_BOOK;
     }
+    else if (rgbaColors[0] == 0x7E && rgbaColors[1] == 0x5F && rgbaColors[2] == 0xB3) {
+        return SPEAKER_SOUND_BOOK;
+    }
+    else if (rgbaColors[0] == 0x5C && rgbaColors[1] == 0x5C && rgbaColors[2] == 0x5C) {
+        return SPEAKER_SOUND_BOOK;
+    }
     return SPEAKER_SOUND_NONE;
 }
 

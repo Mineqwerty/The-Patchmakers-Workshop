@@ -1126,3 +1126,5 @@ void bhv_readable_book_init(void);
 void bhv_readable_book_loop(void);
 void bhv_burnable_rope_net_init(void);
 void bhv_burnable_rope_net_loop(void);
+void bhv_memory_cutscene_controller_init(void);
+void bhv_memory_cutscene_controller_loop(void);

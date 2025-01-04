@@ -654,6 +654,7 @@ enum SoundBank {
 #define SOUND_NEW_CRANE_SHORT                                     SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x19, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_CRANE_LONG                                      SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x1A, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_PAGE_TURN                                       SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x1B, 0xFF, SOUND_DISCRETE)
+#define SOUND_NEW_MEMORY_END                                      SOUND_ARG_LOAD(SOUND_BANK_NEW, 0x1C, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_MIASMA_STORM_R                                SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x00, 0xFF, SOUND_DISCRETE)
 #define SOUND_NEW_2_LOUD_WINDS                                    SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x01, 0xFF, 0)
 #define SOUND_NEW_2_MUFFLED_WINDS                                 SOUND_ARG_LOAD(SOUND_BANK_NEW_2, 0x02, 0xFF, 0)
