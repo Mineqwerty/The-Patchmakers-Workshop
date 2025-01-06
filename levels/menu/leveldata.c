@@ -1859,3 +1859,4 @@ const Collision main_menu_seg7_collision[] = {
 #include "levels/menu/patchmaker_shadow/model.inc.c"
 #include "levels/menu/ss_diorama/model.inc.c"
 #include "levels/menu/clc_diorama/model.inc.c"
+#include "levels/menu/hvh_diorama/model.inc.c"
