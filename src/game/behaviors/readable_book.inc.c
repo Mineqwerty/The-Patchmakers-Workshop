@@ -71,6 +71,9 @@ void bhv_readable_book_loop(void) {
                 case 22:
                     dialog = DIALOG_BOOK_MACHINE;
                 break;
+                case 23:
+                    dialog = DIALOG_BOOK_SEWNIA;
+                break;
             }
             
             if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_DOWN) == MARIO_DIALOG_STATUS_SPEAK 

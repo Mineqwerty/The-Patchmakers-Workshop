@@ -2317,6 +2317,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
+    gMarioState->numStars = 41;
+
     
     //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
     

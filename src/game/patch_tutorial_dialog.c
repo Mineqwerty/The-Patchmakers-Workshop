@@ -27,5 +27,6 @@ char *tutorialDialogs[] = {
     "\"Autonomy and Control\"",
     "\"The Futility of Defining Life\"",
     "\"Ticking Clock\"",
+    "\"The Living Doll\"",
 
 };
