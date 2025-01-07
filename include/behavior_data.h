@@ -808,3 +808,5 @@ extern const BehaviorScript bhvBowserNpc[];
 extern const BehaviorScript bhvReadableBook[];
 extern const BehaviorScript bhvBurnableRopeNet[];
 extern const BehaviorScript bhvMemoryCutsceneController[];
+extern const BehaviorScript bhvBowserNpcSpot[];
+extern const BehaviorScript bhvVtwEntrance[];

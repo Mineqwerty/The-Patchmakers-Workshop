@@ -15,7 +15,11 @@ struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus2[] 
 	{ 5, 20, { 468, 421, 91 }},
 	{ 6, 20, { 712, 435, 555 }},
 	{ 7, 20, { 647, 329, 1232 }},
-	{ -1, 20, { 520, 299, 1431 }},
+	{ 8, 20, { 520, 299, 1431 }},
+	{ 9, 20, { 440, 137, 1785 }},
+	{ 10, 20, { 169, 163, 1973 }},
+	{ 11, 20, { -22, 149, 2055 }},
+	{ -1, 20, { -59, 144, 2068 }},
 };
 struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus3[] = {
 	{ 0, 60, { 1643, 1522, -3993 }},

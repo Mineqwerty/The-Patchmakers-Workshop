@@ -393,3 +393,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/readable_book.inc.c"
 #include "behaviors/burnable_rope_net.inc.c"
 #include "behaviors/memory_cutscene_controller.inc.c"
+#include "behaviors/bowser_npc_spot.inc.c"
+#include "behaviors/vtw_entrance.inc.c"

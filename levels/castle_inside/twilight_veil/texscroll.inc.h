@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_twilight_veil_f3dlite_material_022();
+extern void scroll_castle_inside_level_geo_twilight_veil();

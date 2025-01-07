@@ -570,6 +570,7 @@
 #define MODEL_PEACH_PLUSH                  0x114
 #define MODEL_STAB_NEEDLE                  0x115
 #define MODEL_HELD_M_PATCH                  0x116
+#define MODEL_TWILIGHT_VEIL                  0x117
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

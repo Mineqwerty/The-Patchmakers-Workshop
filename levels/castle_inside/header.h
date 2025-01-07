@@ -227,4 +227,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/held_m_patch/anim_header.h"
 
+#include "levels/castle_inside/twilight_veil/geo_header.h"
+
 #endif

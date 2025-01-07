@@ -54,14 +54,16 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x043, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 148, 435, -816, 0, 0, 0, 0x00000000, bhvFoliageManager),
 		MARIO_POS(0x01, 0, -10044, 87, -3591),
 		OBJECT(MODEL_STAR, 10605, 3619, 752, 0, 0, 0, 0x00000000, bhvStar),
@@ -175,8 +177,8 @@ const LevelScript level_ssl_entry[] = {
 	END_AREA(),
 	AREA(2, ssl_area_2),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x43, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 11841, 559, -5, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_GRAY_MUSHROOM, 3198, 3950, -6135, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GROUND_PATCH, 10592, 675, -12, -90, 0, 0, (8 << 16), bhvGroundPatch),
@@ -193,8 +195,8 @@ const LevelScript level_ssl_entry[] = {
 		WARP_NODE(0x0A, LEVEL_SSL, 0x01, 0x0C, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x43, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 102, 1253, -148, 0, 156, 0, (50 << 24) | (10 << 16), bhvWarp),
 		OBJECT(MODEL_SKYBOX_TEST, -1430, 2324, -3, 0, 156, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 2873, 4637, -414, 0, 156, 0, (5 << 24), bhvStar),

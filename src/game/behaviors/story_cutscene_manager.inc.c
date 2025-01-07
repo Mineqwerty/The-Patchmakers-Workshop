@@ -15,7 +15,7 @@ void bhv_story_cutscene_manager_hub1_init(void) {
             //begin_cutscene_event(CUTSCENE_EVENT_REVIVE_BOWSER);
         break;
         case 2:
-            begin_cutscene_event(CUTSCENE_EVENT_SECOND_HUB_ARRIVAL);
+            //begin_cutscene_event(CUTSCENE_EVENT_SECOND_HUB_ARRIVAL);
         break;
     }
 }

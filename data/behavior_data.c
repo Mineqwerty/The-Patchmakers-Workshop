@@ -8838,6 +8838,7 @@ const BehaviorScript bhvBowserNpc[] = {
     LOAD_ANIMATIONS(oAnimations, bowser_seg6_anims_06057690),
     SET_HITBOX(/*Radius*/ 400, /*Height*/ 400),
     SET_INTERACT_TYPE(INTERACT_TEXT),
+    SET_FLOAT(oDrawingDistance, 32000),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_bowser_npc_init),
@@ -8873,5 +8874,23 @@ const BehaviorScript bhvMemoryCutsceneController[] = {
     CALL_NATIVE(bhv_memory_cutscene_controller_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_memory_cutscene_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBowserNpcSpot[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_bowser_npc_spot_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bowser_npc_spot_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvVtwEntrance[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_vtw_entrance_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_vtw_entrance_loop),
     END_LOOP(),
 };

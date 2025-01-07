@@ -1128,3 +1128,7 @@ void bhv_burnable_rope_net_init(void);
 void bhv_burnable_rope_net_loop(void);
 void bhv_memory_cutscene_controller_init(void);
 void bhv_memory_cutscene_controller_loop(void);
+void bhv_bowser_npc_spot_init(void);
+void bhv_bowser_npc_spot_loop(void);
+void bhv_vtw_entrance_init(void);
+void bhv_vtw_entrance_loop(void);

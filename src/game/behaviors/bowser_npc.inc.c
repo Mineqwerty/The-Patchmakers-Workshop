@@ -1,4 +1,5 @@
 #include "src/game/cutscene.h"
+#include "include/dialog_ids.h"
 
 static struct ObjectHitbox sBowserNPCHitbox = {
     /* interactType:      */ INTERACT_TEXT,
@@ -6,14 +7,16 @@ static struct ObjectHitbox sBowserNPCHitbox = {
     /* damageOrCoinValue: */ 0,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 200,
+    /* radius:            */ 300,
     /* height:            */ 300,
     /* hurtboxRadius:     */ 0,
     /* hurtboxHeight:     */ 0,
 };
 
 enum BowserNPCActions {
-    BOWSER_NPC_ACT_IDLE,
+    BOWSER_NPC_ACT_IDLE = 0,
+    BOWSER_NPC_ACT_IDLE_END = 3,
+    BOWSER_NPC_ACT_FIND_SPOT = 4,
     BOWSER_NPC_ACT_REVIVE_CUTSCENE,
     BOWSER_NPC_ACT_ENTER_SECOND_HUB
 };
@@ -117,15 +120,61 @@ void bowser_npc_act_enter_second_hub(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger >= 4) {
+            struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvBowserNpcSpot, DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB);
+            o->oPosX = spot->oPosX;
+            o->oPosY = spot->oPosY;
+            o->oPosZ = spot->oPosZ;
+            SET_BPARAM2(o->oBehParams, DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB);
+            o->oBehParams2ndByte = DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB;
+            o->oAction = BOWSER_NPC_ACT_IDLE;
+    }
+}
+
+void bowser_npc_find_spot(void) {
+    switch (gCurrAreaIndex) {
+        case 2:;
+            u8 randSpot = random_u16()%4;
+            struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvBowserNpcSpot, DIALOG_BOWSER_NPC_AUTOMATON + randSpot);
+            o->oPosX = spot->oPosX;
+            o->oPosY = spot->oPosY;
+            o->oPosZ = spot->oPosZ;
+            SET_BPARAM2(o->oBehParams, DIALOG_BOWSER_NPC_AUTOMATON + randSpot);
+            o->oBehParams2ndByte = DIALOG_BOWSER_NPC_AUTOMATON + randSpot;
+        break;
+    }
+}
+
+void bowser_npc_act_find_spot(void) {
+    bowser_npc_find_spot();
+    o->oAction = BOWSER_NPC_ACT_IDLE;
+}
+
+void bowser_npc_act_idle(void) {
+    cur_obj_init_animation(12);
+    o->oInteractionSubtype = INT_SUBTYPE_NPC;
 }
 
 void bhv_bowser_npc_init(void) {
     obj_set_hitbox(o, &sBowserNPCHitbox);
+    o->oAction = BOWSER_NPC_ACT_FIND_SPOT;
 }
 
 void bhv_bowser_npc_loop(void) {
-    o->oInteractStatus = 0;
+    if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
+        o->oAction = BOWSER_NPC_ACT_REVIVE_CUTSCENE;
+    }
+    else if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
+        o->oAction = BOWSER_NPC_ACT_ENTER_SECOND_HUB;
+    }
     switch (o->oAction) {
+        case BOWSER_NPC_ACT_FIND_SPOT:
+            bowser_npc_act_find_spot();
+        break;
+        case BOWSER_NPC_ACT_IDLE:
+            bowser_npc_act_idle();
+        break;
         case BOWSER_NPC_ACT_REVIVE_CUTSCENE:
             bowser_npc_act_revive_cutscene();
         break;
@@ -134,12 +183,15 @@ void bhv_bowser_npc_loop(void) {
         break;
     }
 
-    if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
-        o->oAction = BOWSER_NPC_ACT_REVIVE_CUTSCENE;
+    if (o->oAction <= BOWSER_NPC_ACT_IDLE_END) {
+        
+        bhv_bobomb_buddy_loop();
+        if (o->oAction > 0) {
+            o->oFaceAngleYaw = o->oMoveAngleYaw;
+        }
+        o->oInteractStatus = 0;
     }
 
-    if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
-        o->oAction = BOWSER_NPC_ACT_ENTER_SECOND_HUB;
-    }
+    
 }
 

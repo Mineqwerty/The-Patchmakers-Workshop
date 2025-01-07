@@ -1332,6 +1332,10 @@ void sewnia_act_enter_second_hub(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger >= 4) {
+        o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+    }
 }
 
 
@@ -1340,6 +1344,20 @@ void bhv_sewnia_loop(void) {
 
     //print_text_fmt_int(200, 80, "sewnia %d", o->oSewniaSourceNode);
     //print_text_fmt_int(200, 60, "mario %d", o->oMarioNearestNode);
+    if (gCurCutscene != -1) {
+        if (gCurCutscene == CUTSCENE_EVENT_MEET_SEWNIA) {
+            o->oAction = SEWNIA_ACT_INTRO_CUTSCENE;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_SEWNIA_REVIVE_MARIO) {
+            o->oAction = SEWNIA_ACT_REVIVE_MARIO_CUTSCENE;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
+            o->oAction = SEWNIA_ACT_REVIVE_BOWSER;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
+            o->oAction = SEWNIA_ACT_ENTER_SECOND_HUB;
+        }
+    }
 
     switch (o->oAction) {
         case SEWNIA_ACT_IDLE:
@@ -1383,20 +1401,6 @@ void bhv_sewnia_loop(void) {
         break;
     }
 
-    if (gCurCutscene != -1) {
-        if (gCurCutscene == CUTSCENE_EVENT_MEET_SEWNIA) {
-            o->oAction = SEWNIA_ACT_INTRO_CUTSCENE;
-        }
-        else if (gCurCutscene == CUTSCENE_EVENT_SEWNIA_REVIVE_MARIO) {
-            o->oAction = SEWNIA_ACT_REVIVE_MARIO_CUTSCENE;
-        }
-        else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
-            o->oAction = SEWNIA_ACT_REVIVE_BOWSER;
-        }
-        else if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
-            o->oAction = SEWNIA_ACT_ENTER_SECOND_HUB;
-        }
-    }
 }
 
 Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {

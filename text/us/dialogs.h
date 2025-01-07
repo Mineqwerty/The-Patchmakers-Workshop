@@ -2391,8 +2391,8 @@ flowers, too!\n\
 @7F60B4FFHehe... You seem scary Bowser, but\n\
 you're actually pretty silly!\n\
 \n\
-@FF0202FFI AM SCARY! Don't get on my wrong side,\n\
-just because you're not Mario doesn't mean I wanted\n\
+@FF0202FFI AM SCARY! Don't get on my wrong side.\n\
+Just because you're not Mario doesn't mean I wanted\n\
 to team up with you! I'm here for Peach!\n\
 @7F60B4FFRight... Assuming we can't find her thread,\n\
 Mario will be able to explore more portals to lands\n\
@@ -2991,4 +2991,44 @@ odd to say that when you act much older than three...\n\
 \n\
 \n\
 @5C5C5CFFWhat would you think about having a sister?\n\
+"))
+
+DEFINE_DIALOG(DIALOG_MEMORY_2, 1, 3, 30, 200, _("\
+@7E5FB3FF "))
+DEFINE_DIALOG(DIALOG_MEMORY_3, 1, 3, 30, 200, _("\
+@7E5FB3FF "))
+
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB, 1, 3, 30, 200, _("\
+@FF0202FFThis is the worst...\n\
+Peach being in danger is bad enough, but I\n\
+have to team up with YOU to save her?\n\
+@FF0202FFJust don't get in my way, got it?\n\
+Go explore those stupid portals, they're too\n\
+small for me to fit into anyways!\n\
+@FF0202FFEven better, don't come back!\n\
+Then I'll be the one to save Peach, and she'll\n\
+finally realize what a BOSS I am! Bwahaha!"))
+
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_AUTOMATON, 1, 3, 30, 200, _("\
+@FF0202FFThis room smells like an old grandma.\n\
+I bet its that weird looking robot...\n\
+moving... lady thing on that giant music box.\n\
+@FF0202FF...What? It's called an automaton?\n\
+I didn't ask, pasta-brain!\n\
+That kind of language makes you a nerd!\n\
+@FF0202FFStill, I'll give that Patchmaker guy one thing...\n\
+He sure knows how to make a lot of junk.\n\
+He didn't even sell any of it! What a loser!"))
+
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_BUBBLES, 1, 3, 30, 200, _("\
+@FF0202FFHow is a bunch of bubbles supposed to be art?\n\
+This stuff makes no sense to me...\n\
+Urgh... I hope Peach's thread isn't in the water..."))
+
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_STAIRS, 1, 3, 30, 200, _("\
+@FF0202FFstairs\n\
+"))
+
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_PATCH_CHALLENGE, 1, 3, 30, 200, _("\
+@FF0202FFu suck at patch challenge\n\
 "))
