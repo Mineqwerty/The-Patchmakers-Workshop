@@ -14,7 +14,8 @@ static struct ObjectHitbox sBowserNPCHitbox = {
 
 enum BowserNPCActions {
     BOWSER_NPC_ACT_IDLE,
-    BOWSER_NPC_ACT_REVIVE_CUTSCENE
+    BOWSER_NPC_ACT_REVIVE_CUTSCENE,
+    BOWSER_NPC_ACT_ENTER_SECOND_HUB
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -100,6 +101,24 @@ void bowser_npc_act_revive_cutscene(void) {
     }
 }
 
+void bowser_npc_act_enter_second_hub(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(12);
+            if (cExternalCutsceneTrigger >= 2) {
+                cur_obj_init_animation(27);
+                o->oSubAction = 1;
+            }
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 3) {
+                cur_obj_init_animation(12);
+                o->oSubAction = 2;
+            }
+        break;
+    }
+}
+
 void bhv_bowser_npc_init(void) {
     obj_set_hitbox(o, &sBowserNPCHitbox);
 }
@@ -110,10 +129,17 @@ void bhv_bowser_npc_loop(void) {
         case BOWSER_NPC_ACT_REVIVE_CUTSCENE:
             bowser_npc_act_revive_cutscene();
         break;
+        case BOWSER_NPC_ACT_ENTER_SECOND_HUB:
+            bowser_npc_act_enter_second_hub();
+        break;
     }
 
     if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
         o->oAction = BOWSER_NPC_ACT_REVIVE_CUTSCENE;
+    }
+
+    if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
+        o->oAction = BOWSER_NPC_ACT_ENTER_SECOND_HUB;
     }
 }
 

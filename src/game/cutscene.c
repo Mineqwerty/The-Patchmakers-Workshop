@@ -922,7 +922,7 @@ s32 event_first_memory[] = {
     EVENT_FADE_INTO_COLOR, 90, 255, 0, 0,
     EVENT_SOUND, SOUND_NEW_MEMORY_END,
     EVENT_WAIT, 90,
-    
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
     EVENT_FADE_INTO_COLOR, 1, 0, 0, 0,
     EVENT_WAIT, 60,
     EVENT_CANCEL_SPLINE_DATA,
@@ -930,6 +930,47 @@ s32 event_first_memory[] = {
     EVENT_WAIT, 1,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_FADE_FROM_COLOR, 10, 0, 0, 0,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
+s32 event_second_hub_arrival[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_POSITION, -4470, 100, 1376,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 121,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 122,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_ENTER_SECOND_HUB_1,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 123,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 124,
+    EVENT_WAIT, 120,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 121,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 122,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_ENTER_SECOND_HUB_2,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 125,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 126,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 127,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 128,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 9,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 121,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 122,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_FADE_INTO_COLOR, 15, 0, 0, 0,
+    EVENT_WAIT, 15,
+    EVENT_FADE_FROM_COLOR, 15, 0, 0, 0,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_END_CUTSCENE
 };
@@ -954,7 +995,8 @@ s32 *eventList[] = {
     event_patchmaker_first_fight_defeated,
     //15
     event_revive_bowser,
-    event_first_memory
+    event_first_memory,
+    event_second_hub_arrival
 };
 
 s32 *splineList[] = {
@@ -1102,7 +1144,17 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_BowserReviveFocus11,
     bitdw_area_1_spline_FirstMemoryPos1,
     //120
-    bitdw_area_1_spline_FirstMemoryFocus1
+    bitdw_area_1_spline_FirstMemoryFocus1,
+    castle_inside_area_2_spline_SecondHubArrivalPos1,
+    castle_inside_area_2_spline_SecondHubArrivalFocus1,
+    castle_inside_area_2_spline_SecondHubArrivalPos2,
+    castle_inside_area_2_spline_SecondHubArrivalFocus2,
+    //125
+    castle_inside_area_2_spline_SecondHubArrivalPos3,
+    castle_inside_area_2_spline_SecondHubArrivalFocus3,
+    castle_inside_area_2_spline_SecondHubArrivalPos4,
+    castle_inside_area_2_spline_SecondHubArrivalFocus4,
+
 
 };
 

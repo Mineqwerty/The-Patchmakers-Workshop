@@ -21,7 +21,8 @@ enum SewniaActions {
     SEWNIA_ACT_RUN_TO_NODE,
     SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE,
     SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED,
-    SEWNIA_ACT_REVIVE_BOWSER
+    SEWNIA_ACT_REVIVE_BOWSER,
+    SEWNIA_ACT_ENTER_SECOND_HUB
 
 };
 
@@ -1295,6 +1296,44 @@ void sewnia_act_patchmaker_first_fight_defeated(void) {
     }
 }
 
+void sewnia_act_enter_second_hub(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oSubAction = 1;
+                o->oTimer = 0;
+            }
+        break;
+        case 1:;
+            f32 dist;
+            struct Object *bowser = cur_obj_find_nearest_object_with_behavior(bhvBowserNpc, &dist);
+            obj_turn_toward_object(o, bowser, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+            o->oFaceAngleYaw = o->oMoveAngleYaw;
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+
+            if (o->oTimer >= 60) {
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 3) {
+                o->oSubAction = 3;
+                o->oTimer = 0;
+            }
+        break;
+        case 3:;
+            obj_turn_toward_object(o, gMarioState->marioObj, O_MOVE_ANGLE_YAW_INDEX, 0x800);
+            o->oFaceAngleYaw = o->oMoveAngleYaw;
+
+            if (o->oTimer >= 60) {
+                o->oSubAction++;
+            }
+        break;
+    }
+}
+
 
 
 void bhv_sewnia_loop(void) {
@@ -1339,6 +1378,9 @@ void bhv_sewnia_loop(void) {
         case SEWNIA_ACT_REVIVE_BOWSER:
             sewnia_act_revive_bowser_cutscene();
         break;
+        case SEWNIA_ACT_ENTER_SECOND_HUB:
+            sewnia_act_enter_second_hub();
+        break;
     }
 
     if (gCurCutscene != -1) {
@@ -1350,6 +1392,9 @@ void bhv_sewnia_loop(void) {
         }
         else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
             o->oAction = SEWNIA_ACT_REVIVE_BOWSER;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
+            o->oAction = SEWNIA_ACT_ENTER_SECOND_HUB;
         }
     }
 }

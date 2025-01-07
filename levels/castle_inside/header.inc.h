@@ -63,6 +63,16 @@ extern const Trajectory castle_inside_area_1_spline_SewniaPath[];
 extern const GeoLayout castle_inside_area_2_geo[];
 extern const GeoLayout castle_inside_area_2[];
 extern const MacroObject castle_inside_area_2_macro_objs[];
+#include "src/game/camera.h"
+
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus1[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus2[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus3[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus4[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalPos1[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalPos2[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalPos3[];
+extern struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalPos4[];
 extern const Trajectory castle_inside_area_2_spline_SewniaPath2[];
 extern const GeoLayout castle_inside_area_3_geo[];
 extern const GeoLayout castle_inside_area_3[];

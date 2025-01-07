@@ -2376,6 +2376,40 @@ we can! Maybe her Thread of Life is around somewhere!\n\
 Mario, doll girl! What are you doing just waiting here?\n\
 Peach needs me, let's GO!!!"))
 
+DEFINE_DIALOG(DIALOG_ENTER_SECOND_HUB_1, 1, 3, 30, 200, _("\
+@7F60B4FFHere we are...\n\
+\n\
+"))
+
+DEFINE_DIALOG(DIALOG_ENTER_SECOND_HUB_2, 1, 3, 30, 200, _("\
+@7F60B4FFLet's look around for Princess Peach's\n\
+Thread of Life. But... I have a feeling it might\n\
+not be here. This place is kept clean without clutter.\n\
+@FF0202FFHey! Anything with Peach's name on it IS\n\
+clean! Very clean! And it probably smells like\n\
+flowers, too!\n\
+@7F60B4FFHehe... You seem scary Bowser, but\n\
+you're actually pretty silly!\n\
+\n\
+@FF0202FFI AM SCARY! Don't get on my wrong side,\n\
+just because you're not Mario doesn't mean I wanted\n\
+to team up with you! I'm here for Peach!\n\
+@7F60B4FFRight... Assuming we can't find her thread,\n\
+Mario will be able to explore more portals to lands\n\
+even farther out than the last ones here...\n\
+@7F60B4FFWe'll need it, too. I'm sure a more powerful\n\
+magical barrier is waiting for us through the only\n\
+way through... Nothing star power can't break!\n\
+@FF0202FFWell, Mario can go on his dumb adventure\n\
+or whatever, but I'm going to be turning over every\n\
+stone to find Peach's thread!\n\
+@FF0202FFI mean, do you know how small those things are!?\n\
+It could be between the floorboards for all we know!\n\
+I'll save you, Peach! I promise!\n\
+@7F60B4FFMario, I'll do my best to tell you everything\n\
+I know about the areas here. Make sure to ask\n\
+me if you want to know more!"))
+
 DEFINE_DIALOG(DIALOG_PATCHMAKER_MEET_MARIO, 0b10, 3, 30, 200, _("\
 @5D5D5DFFHmm?\n\
 \n\
@@ -2594,7 +2628,7 @@ but a walking husk without morals.\n\
 Keep this in mind so that something terrible\n\
 does not occur.\n\
 Now then, that is all I have to tell you.\n\
-I do apologize for keepipng you so long.\n\
+I do apologize for keeping you so long.\n\
 Mister Mario, we have utmost faith in you.\n\
 The future of all of us here hangs in the\n\
 balance. Take this. I was keeping it as a\n\
@@ -2617,9 +2651,9 @@ back straight, alright?\n\
 \n\
 \n\
 \n\
-@FF0202FFDoes it hurt?\n\
+@FF0202FF...Does it hurt?\n\
 That was absolutely ruthless...\n\
-I wish I had recovered faster.\n\
+I wish I had gotten up faster.\n\
 \n\
 @7F60B4FFIt's alright... I'm just glad you saved us.\n\
 And no... It doesn't hurt at all.\n\
@@ -2636,7 +2670,7 @@ Where... am I?\n\
 You're okay!\n\
 \n\
 \n\
-@FF75DFFFBowser? Mario, too?\n\
+@FF75DFFFBowser!? Mario, too?\n\
 What on earth is going on here?\n\
 \n\
 \n\
@@ -2724,18 +2758,18 @@ Maybe, just maybe-\n\
 You haven't met that man. He's far,\n\
 far gone. I'm not going to pretend\n\
 otherwise. Sorry, doll. It's the truth.\n\
-@FF75DFFFBowser...!\n\
+@FF75DFFFBowser!\n\
 \n\
 \n\
 \n\
 @7F60B4FFNo... He's right, Princess. Truly.\n\
 I can't keep hiding behind hope forever.\n\
 Especially... After what he did to me.\n\
-The man who created me would have never done that.\n\
+My... my father would have never done that.\n\
 @7F60B4FFThat's why... I have to ask you, Mario...\n\
 No, I'm begging you. Please help me...\n\
 I know you were saving your friends, but I can't\n\
-let The Patchmaker keep going on like this.\n\
+let my father keep going on like this.\n\
 @7F60B4FFI can't bear to see anyone else hurt by him...\n\
 And whatever is left of him is suffering...\n\
 Which is why...\n\
