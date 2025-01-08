@@ -210,8 +210,7 @@ Gfx ddd_area_4_collision_mat_revert_ddd_dl_hedge_layer1[] = {
 };
 
 Gfx ddd_area_4_collision_inviswall_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(ddd_dl_inviswall_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
