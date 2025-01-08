@@ -523,4 +523,12 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "yarn_scuttlebug/geo_header.h"
 
+#include "fortune_teleporter/geo_header.h"
+
+
+#include "fortune_teleporter/anim_header.h"
+#include "fortune_teleporter_pedestal/collision_header.h"
+
+#include "fortune_teleporter_pedestal/geo_header.h"
+
 #endif

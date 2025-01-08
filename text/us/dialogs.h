@@ -3032,3 +3032,7 @@ DEFINE_DIALOG(DIALOG_BOWSER_NPC_STAIRS, 1, 3, 30, 200, _("\
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_PATCH_CHALLENGE, 1, 3, 30, 200, _("\
 @FF0202FFu suck at patch challenge\n\
 "))
+
+DEFINE_DIALOG(DIALOG_RETURN_FROM_SUBAREA, 1, 4, 30, 200, _("\
+@FEFEFEFFReturn to the main area? \n\
+//Yes    //No      "))

@@ -59,3 +59,5 @@
 
 #include "sewnia/geo.inc.c"
 #include "yarn_scuttlebug/geo.inc.c"
+#include "fortune_teleporter/geo.inc.c"
+#include "fortune_teleporter_pedestal/geo.inc.c"

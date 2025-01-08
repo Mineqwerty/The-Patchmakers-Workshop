@@ -1,0 +1,8 @@
+extern const GeoLayout fortune_teleporter_pedestal_geo[];
+extern u8 fortune_teleporter_pedestal_origamipattern_i8[];
+extern Vtx fortune_teleporter_pedestal_Circle_mesh_layer_1_vtx_cull[8];
+extern Vtx fortune_teleporter_pedestal_Circle_mesh_layer_1_vtx_0[28];
+extern Gfx fortune_teleporter_pedestal_Circle_mesh_layer_1_tri_0[];
+extern Gfx mat_fortune_teleporter_pedestal_f3dlite_material[];
+extern Gfx mat_revert_fortune_teleporter_pedestal_f3dlite_material[];
+extern Gfx fortune_teleporter_pedestal_Circle_mesh_layer_1[];

@@ -1,10 +1,4 @@
-Lights1 ddd_dl_f3dlite_material_017_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 ddd_dl_inviswall_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx ddd_dl_hvhgrass_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 ddd_dl_hvhgrass_ci8[] = {
@@ -31896,7 +31890,8 @@ Gfx ddd_dl_Plane_010_mesh_layer_1_tri_0[] = {
 
 Gfx mat_ddd_dl_f3dlite_material_017[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPSetLights1(ddd_dl_f3dlite_material_017_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

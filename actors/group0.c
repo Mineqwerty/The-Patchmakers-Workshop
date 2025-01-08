@@ -122,3 +122,8 @@
 
 #include "scuttlebug/anims/data.inc.c"
 #include "scuttlebug/anims/table.inc.c"
+#include "fortune_teleporter/model.inc.c"
+#include "fortune_teleporter/anims/data.inc.c"
+#include "fortune_teleporter/anims/table.inc.c"
+#include "fortune_teleporter_pedestal/collision.inc.c"
+#include "fortune_teleporter_pedestal/model.inc.c"

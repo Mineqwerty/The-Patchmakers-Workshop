@@ -1132,3 +1132,7 @@ void bhv_bowser_npc_spot_init(void);
 void bhv_bowser_npc_spot_loop(void);
 void bhv_vtw_entrance_init(void);
 void bhv_vtw_entrance_loop(void);
+void bhv_fortune_teleporter_init(void);
+void bhv_fortune_teleporter_loop(void);
+void bhv_fortune_teleporter_pedestal_init(void);
+void bhv_fortune_teleporter_pedestal_loop(void);

@@ -810,3 +810,5 @@ extern const BehaviorScript bhvBurnableRopeNet[];
 extern const BehaviorScript bhvMemoryCutsceneController[];
 extern const BehaviorScript bhvBowserNpcSpot[];
 extern const BehaviorScript bhvVtwEntrance[];
+extern const BehaviorScript bhvFortuneTeleporter[];
+extern const BehaviorScript bhvFortuneTeleporterPedestal[];

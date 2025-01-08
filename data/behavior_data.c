@@ -8894,3 +8894,25 @@ const BehaviorScript bhvVtwEntrance[] = {
         CALL_NATIVE(bhv_vtw_entrance_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFortuneTeleporter[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, fortune_teleporter_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_fortune_teleporter_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fortune_teleporter_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFortuneTeleporterPedestal[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(fortune_teleporter_pedestal_collision),
+    CALL_NATIVE(bhv_fortune_teleporter_pedestal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fortune_teleporter_pedestal_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
