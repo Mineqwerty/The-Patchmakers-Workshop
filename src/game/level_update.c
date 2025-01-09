@@ -309,6 +309,9 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
         case MARIO_SPAWN_AIRBORNE:
             set_mario_action(m, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             break;
+        case MARIO_SPAWN_FORTUNE_TELEPORTER:
+            set_mario_action(m, ACT_SPAWN_FORTUNE_TELEPORTER, 0);
+            break;
         case MARIO_SPAWN_HARD_AIR_KNOCKBACK:
             set_mario_action(m, ACT_HARD_BACKWARD_AIR_KB, 0);
             break;
@@ -377,7 +380,10 @@ void init_mario_after_warp(void) {
         }
     }
 
-    
+    if (sWarpDest.arg & WARP_FLAG_FORTUNE_TELEPORTER) {
+            marioSpawnType = MARIO_SPAWN_FORTUNE_TELEPORTER;
+            spawn_object_relative(1, 0, 200, 0, gMarioObject, MODEL_FORTUNE_TELEPORTER, bhvFortuneTeleporter);
+    }
 
     if (gMarioState->action != ACT_UNINITIALIZED) {
         if (sWarpDest.portalID == 0) {

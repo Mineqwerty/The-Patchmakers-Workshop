@@ -186,6 +186,7 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_STAR, -14507, -286, -425, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_GROUND_PATCH, -1434, 122, -31, -90, 0, 0, 0x00000000, bhvGroundCutscenePatch),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, -14441, -1673, 478, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_NONE, -450, -3694, 808, 0, 0, 0, (0 << 16), bhvStonePatchCutsceneShard),
 		OBJECT(MODEL_NONE, -578, -3694, 585, 0, 0, 0, (1 << 16), bhvStonePatchCutsceneShard),
 		OBJECT(MODEL_NONE, -978, -3648, 405, 0, 0, 0, (2 << 16), bhvStonePatchCutsceneShard),

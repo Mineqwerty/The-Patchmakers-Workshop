@@ -180,7 +180,8 @@ Gfx fortune_teleporter_Bone_004_mesh_layer_1_tri_1[] = {
 };
 
 
-Gfx mat_fortune_teleporter_f3dlite_material[] = {
+Gfx mat_fortune_teleporter_f3dlite_material_001[] = {
+	gsSPGeometryMode(G_CULL_BACK, 0),
     gsSPLightColor(LIGHT_1, 0xffffffff),
     gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
@@ -190,69 +191,70 @@ Gfx mat_fortune_teleporter_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_fortune_teleporter_f3dlite_material[] = {
+Gfx mat_revert_fortune_teleporter_f3dlite_material_001[] = {
+	gsSPGeometryMode(0, G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_001_skinned_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_001_skinned_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_001_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_001_mesh_layer_1_tri_0),
 	gsSPDisplayList(fortune_teleporter_Bone_001_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_002_skinned_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_002_skinned_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_002_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_002_mesh_layer_1_tri_0),
 	gsSPDisplayList(fortune_teleporter_Bone_002_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_003_skinned_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_003_skinned_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_003_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_003_mesh_layer_1_tri_0),
 	gsSPDisplayList(fortune_teleporter_Bone_003_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_004_skinned_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_004_skinned_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsSPEndDisplayList(),
 };
 
 Gfx fortune_teleporter_Bone_004_mesh_layer_1[] = {
-	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_fortune_teleporter_f3dlite_material_001),
 	gsSPDisplayList(fortune_teleporter_Bone_004_mesh_layer_1_tri_0),
 	gsSPDisplayList(fortune_teleporter_Bone_004_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material),
+	gsSPDisplayList(mat_revert_fortune_teleporter_f3dlite_material_001),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

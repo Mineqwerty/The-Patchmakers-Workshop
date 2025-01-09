@@ -4,7 +4,7 @@
 
 void bhv_ground_patch_init(void) {
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << o->oBehParams2ndByte + 1)) {
-        //obj_mark_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 
     if (cur_obj_has_model(MODEL_GLOBAL_GROUND_PATCH)) {
@@ -19,7 +19,7 @@ void bhv_ground_patch_init(void) {
 
 void bhv_ground_cutscene_patch_init(void) {
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << 1)) {
-        //obj_mark_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }
 

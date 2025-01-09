@@ -1159,16 +1159,12 @@ s32 act_sink_upwards(struct MarioState *m) {
     return FALSE;
 }
 
-s32 act_eaten_by_bubba(struct MarioState *m) {
-    play_sound_if_no_flag(m, SOUND_MARIO_DYING, MARIO_ACTION_SOUND_PLAYED);
-    set_mario_animation(m, MARIO_ANIM_A_POSE);
-    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
-#ifdef BREATH_METER
-    m->breath = 0xFF;
-#endif
-    m->health = 0xFF;
-    if (m->actionTimer++ == 60) {
-        level_trigger_warp(m, WARP_OP_DEATH);
+s32 act_spawn_fortune_teleporter(struct MarioState *m) {
+        m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
+    
+    if (m->actionTimer++ == 31) {
+        m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+        set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);
     }
     return FALSE;
 }
@@ -3153,7 +3149,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_SUFFOCATION:                cancel = act_suffocation(m);                break;
         case ACT_DEATH_ON_STOMACH:           cancel = act_death_on_stomach(m);           break;
         case ACT_DEATH_ON_BACK:              cancel = act_death_on_back(m);              break;
-        case ACT_EATEN_BY_BUBBA:             cancel = act_eaten_by_bubba(m);             break;
+        case ACT_SPAWN_FORTUNE_TELEPORTER:             cancel = act_spawn_fortune_teleporter(m);             break;
         case ACT_END_PEACH_CUTSCENE:         cancel = act_end_peach_cutscene(m);         break;
         case ACT_CREDITS_CUTSCENE:           cancel = act_credits_cutscene(m);           break;
         case ACT_END_WAVING_CUTSCENE:        cancel = act_end_waving_cutscene(m);        break;

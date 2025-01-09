@@ -1427,7 +1427,7 @@ u32 interact_clam_or_bubba(struct MarioState *m, UNUSED u32 interactType, struct
     if (obj->oInteractionSubtype & INT_SUBTYPE_EATS_MARIO) {
         obj->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = obj;
-        return set_mario_action(m, ACT_EATEN_BY_BUBBA, 0);
+        return set_mario_action(m, ACT_SPAWN_FORTUNE_TELEPORTER, 0);
     } else if (take_damage_and_knock_back(m, obj)) {
         return TRUE;
     }

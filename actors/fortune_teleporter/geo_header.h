@@ -1,5 +1,5 @@
 extern const GeoLayout fortune_teleporter_geo[];
-extern Lights1 fortune_teleporter_f3dlite_material_lights;
+extern Lights1 fortune_teleporter_f3dlite_material_001_lights;
 extern Vtx fortune_teleporter_Bone_001_skinned_mesh_layer_1_vtx_0[6];
 extern Gfx fortune_teleporter_Bone_001_skinned_mesh_layer_1_tri_0[];
 extern Vtx fortune_teleporter_Bone_001_mesh_layer_1_vtx_0[6];
@@ -24,8 +24,8 @@ extern Vtx fortune_teleporter_Bone_004_mesh_layer_1_vtx_0[6];
 extern Gfx fortune_teleporter_Bone_004_mesh_layer_1_tri_0[];
 extern Vtx fortune_teleporter_Bone_004_mesh_layer_1_vtx_1[6];
 extern Gfx fortune_teleporter_Bone_004_mesh_layer_1_tri_1[];
-extern Gfx mat_fortune_teleporter_f3dlite_material[];
-extern Gfx mat_revert_fortune_teleporter_f3dlite_material[];
+extern Gfx mat_fortune_teleporter_f3dlite_material_001[];
+extern Gfx mat_revert_fortune_teleporter_f3dlite_material_001[];
 extern Gfx fortune_teleporter_Bone_001_skinned_mesh_layer_1[];
 extern Gfx fortune_teleporter_Bone_001_mesh_layer_1[];
 extern Gfx fortune_teleporter_Bone_002_skinned_mesh_layer_1[];
