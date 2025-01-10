@@ -1126,7 +1126,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
 
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING) {
 #ifndef UNLOCK_ALL
-        if (warpDoorId == 1 && !(saveFlags & SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR)) {
+        if (warpDoorId == 1 && !(saveFlags & SAVE_FLAG_UNLOCKED_HUB_3_DOOR)) {
             if (!(saveFlags & SAVE_FLAG_HAVE_KEY_2)) {
                 if (!sDisplayingDoorText) {
                     set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG,
@@ -1140,7 +1140,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
             doorAction = ACT_UNLOCKING_KEY_DOOR;
         }
 
-        if (warpDoorId == 2 && !(saveFlags & SAVE_FLAG_UNLOCKED_BASEMENT_DOOR)) {
+        if (warpDoorId == 2 && !(saveFlags & SAVE_FLAG_UNLOCKED_HUB_2_DOOR)) {
             if (!(saveFlags & SAVE_FLAG_HAVE_KEY_1)) {
                 if (!sDisplayingDoorText) {
                     // Moat door skip was intended confirmed
@@ -1186,8 +1186,8 @@ u32 get_door_save_file_flag(struct Object *door) {
     switch (requiredNumStars) {
         case  1: saveFileFlag = (isPssDoor ? 1 : 1 ); break;
         case  3: saveFileFlag = (isCcmDoor ? SAVE_FLAG_UNLOCKED_COURSE_CLC : SAVE_FLAG_UNLOCKED_COURSE_HVH); break;
-        case  8: saveFileFlag = SAVE_FLAG_UNLOCKED_BITDW_DOOR;                                           break;
-        case 30: saveFileFlag = SAVE_FLAG_UNLOCKED_BITFS_DOOR;                                           break;
+        case  8: saveFileFlag = SAVE_FLAG_UNLOCKED_50_STAR_DOOR;                                           break;
+        case 30: saveFileFlag = SAVE_FLAG_UNLOCKED_50_STAR_DOOR;                                           break;
         case 50: saveFileFlag = SAVE_FLAG_UNLOCKED_50_STAR_DOOR;                                         break;
     }
 

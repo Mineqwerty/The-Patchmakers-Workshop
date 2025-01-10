@@ -54,6 +54,7 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_STAB_NEEDLE, stab_needle_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HELD_M_PATCH, held_m_patch_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TWILIGHT_VEIL, twilight_veil_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_HUB_BARRIER, hub_barrier_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -138,6 +139,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_AUTOMATON, 1690, 331, 3403, 0, -136, 0, 0x00000000, bhvAutomaton),
 		OBJECT(MODEL_NONE, 24, 100, -38, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
+		OBJECT(MODEL_HUB_BARRIER, -5469, 1397, -1186, 0, 0, 0, 0x00000000, bhvHubBarrier),
 		OBJECT(MODEL_NONE, 2093, 2177, 2616, 0, -180, 0, (20 << 24) | (3 << 16), bhvReadableBook),
 		OBJECT(MODEL_NONE, 5460, 2177, 605, 0, -180, 0, (21 << 24) | (3 << 16), bhvReadableBook),
 		OBJECT(MODEL_NONE, 6495, 3191, 791, 0, -180, 0, (22 << 24) | (3 << 16), bhvReadableBook),
@@ -219,7 +221,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x44, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, 24, 1862, -38, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, -3624, 1621, -6725, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(castle_inside_area_3_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_3_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_3_macro_objs),

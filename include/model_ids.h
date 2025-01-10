@@ -571,6 +571,7 @@
 #define MODEL_STAB_NEEDLE                  0x115
 #define MODEL_HELD_M_PATCH                  0x116
 #define MODEL_TWILIGHT_VEIL                  0x117
+#define MODEL_HUB_BARRIER                  0x118
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

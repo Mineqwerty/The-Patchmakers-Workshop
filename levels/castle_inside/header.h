@@ -229,4 +229,8 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/twilight_veil/geo_header.h"
 
+#include "levels/castle_inside/hub_barrier/collision_header.h"
+
+#include "levels/castle_inside/hub_barrier/geo_header.h"
+
 #endif

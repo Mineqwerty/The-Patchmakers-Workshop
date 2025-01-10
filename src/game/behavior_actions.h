@@ -1136,3 +1136,5 @@ void bhv_fortune_teleporter_init(void);
 void bhv_fortune_teleporter_loop(void);
 void bhv_fortune_teleporter_pedestal_init(void);
 void bhv_fortune_teleporter_pedestal_loop(void);
+void bhv_hub_barrier_init(void);
+void bhv_hub_barrier_loop(void);

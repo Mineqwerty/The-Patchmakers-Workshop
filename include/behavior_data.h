@@ -812,3 +812,4 @@ extern const BehaviorScript bhvBowserNpcSpot[];
 extern const BehaviorScript bhvVtwEntrance[];
 extern const BehaviorScript bhvFortuneTeleporter[];
 extern const BehaviorScript bhvFortuneTeleporterPedestal[];
+extern const BehaviorScript bhvHubBarrier[];

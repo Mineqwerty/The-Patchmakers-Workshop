@@ -1211,10 +1211,10 @@ s32 act_unlocking_key_door(struct MarioState *m) {
 
     if (is_anim_at_end(m)) {
         if (GET_BPARAM1(m->usedObj->oBehParams) == KEY_DOOR_BP1_UPSTAIRS) {
-            save_file_set_flags(SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR);
+            save_file_set_flags(SAVE_FLAG_UNLOCKED_HUB_3_DOOR);
             save_file_clear_flags(SAVE_FLAG_HAVE_KEY_2);
         } else {
-            save_file_set_flags(SAVE_FLAG_UNLOCKED_BASEMENT_DOOR);
+            save_file_set_flags(SAVE_FLAG_UNLOCKED_HUB_2_DOOR);
             save_file_clear_flags(SAVE_FLAG_HAVE_KEY_1);
         }
         set_mario_action(m, ACT_WALKING, 0);

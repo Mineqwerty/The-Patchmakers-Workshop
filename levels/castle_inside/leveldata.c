@@ -125,3 +125,5 @@
 #include "levels/castle_inside/held_m_patch/anims/data.inc.c"
 #include "levels/castle_inside/held_m_patch/anims/table.inc.c"
 #include "levels/castle_inside/twilight_veil/model.inc.c"
+#include "levels/castle_inside/hub_barrier/collision.inc.c"
+#include "levels/castle_inside/hub_barrier/model.inc.c"
