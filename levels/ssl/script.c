@@ -56,6 +56,7 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -64,6 +65,7 @@ const LevelScript level_ssl_entry[] = {
 		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x043, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 148, 435, -816, 0, 0, 0, 0x00000000, bhvFoliageManager),
 		MARIO_POS(0x01, 0, -10044, 87, -3591),
 		OBJECT(MODEL_STAR, 10605, 3619, 752, 0, 0, 0, 0x00000000, bhvStar),
@@ -156,6 +158,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_RED_COIN, 2081, 2819, -8328, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_STAR, 6731, -5836, 1131, 0, 0, 0, (25 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1137, 1838, -12176, 0, 0, 0, (3 << 24), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, 1504, 2547, -4370, 0, -134, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -4034, 1396, -3803, 0, 0, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -5408, 2148, -5547, 0, 0, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 6749, 2036, -7840, 0, 0, 0, (1 << 16), bhvCoinFormation),
@@ -180,6 +183,7 @@ const LevelScript level_ssl_entry[] = {
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x43, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 11841, 559, -5, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 12374, 771, -1792, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GRAY_MUSHROOM, 3198, 3950, -6135, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GROUND_PATCH, 10592, 675, -12, -90, 0, 0, (8 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, 3119, 5387, -8619, 0, 0, 0, (1 << 24), bhvStar),

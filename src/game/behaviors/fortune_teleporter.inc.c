@@ -42,7 +42,7 @@ void bhv_fortune_teleporter_loop(void) {
         case 1:
             cur_obj_init_animation(1);
             if (o->oTimer == 30) {
-                initiate_warp(gCurrLevelNum, 1, 0x0A, WARP_FLAG_FORTUNE_TELEPORTER, 0);
+                initiate_warp(gCurrLevelNum, 1, 0xEF, WARP_FLAG_FORTUNE_TELEPORTER, 0);
             }
         break;
         case 2:
@@ -73,7 +73,10 @@ void bhv_fortune_teleporter_loop(void) {
                 cur_obj_init_animation_with_accel_and_sound(1, -1.0f);
                 o->header.gfx.animInfo.animFrame = 20;
             }
-            if (o->oTimer == 60) {
+            else if (o->oTimer > 30 && cur_obj_check_anim_frame(1)) {
+                cur_obj_init_animation(0);
+            }
+            if (o->oTimer == 45) {
                 o->oPotogooApproachXZ = 1.1f;
                     o->oPotogooApproachY = 1.0f;
                     o->oPotogooVelXZ = 0.2f;

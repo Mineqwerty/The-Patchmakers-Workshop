@@ -271,8 +271,7 @@ Gfx ssl_area_1_collision_mat_revert_ssl_dl_f3dlite_material_020[] = {
 };
 
 Gfx ssl_area_1_collision_f3dlite_material_022_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(ssl_dl_f3dlite_material_022_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

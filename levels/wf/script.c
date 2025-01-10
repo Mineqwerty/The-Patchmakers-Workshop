@@ -59,12 +59,15 @@ const LevelScript level_wf_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wf_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x31, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x41, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(11, LEVEL_WF, 0x02, 10, WARP_NO_CHECKPOINT),
 		WARP_NODE(12, LEVEL_WF, 0x03, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_STAR, 10512, 1421, 2979, 0, 0, 0, 0x00000000, bhvStar),
@@ -112,6 +115,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, 6935, 146, -4390, 0, 10, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 9936, 46, -6625, 0, 10, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 4534, -1553, -13001, 0, 10, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2413, 550, 1180, 0, 27, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -125, 314, 121, 0, 27, 0, 0x00000000, bhvRainSoundManager),
 		OBJECT(MODEL_RED_COIN, 11563, -235, -3504, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_NONE, 7259, 381, -5086, 0, 0, 0, 0x00000000, bhvHiddenRedCoinStar),
@@ -165,6 +169,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_YARN_GOOMBA, 3739, 2518, 13486, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_STAR, 3212, 3507, 13369, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -5356, -18, -1325, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 1858, 1329, 12457, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GROUND_PATCH, -481, 250, -1306, -90, 0, 0, (1 << 16), bhvGroundPatch),
 		OBJECT(MODEL_NONE, -481, 418, -1306, 0, 0, 0, (5 << 24) | (4 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 3569, 237, 2377, 0, 0, 0, (7 << 24) | (8 << 16), bhvTextVolume),
@@ -194,6 +199,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, -3132, -4064, 645, 0, -70, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -3253, -3899, -2885, 0, 0, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 1658, -2311, -9067, 0, -73, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, -1781, -7229, 8225, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_NONE, -125, 314, 121, 0, 27, 0, 0x00000000, bhvRainSoundManager),
 		TERRAIN(wf_area_3_collision),
 		TERRAIN_MAT_LUT(wf_area_3_collision_materials),

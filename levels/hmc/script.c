@@ -57,14 +57,18 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_HMC, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_HMC, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		MARIO_POS(0x01, 0, -2677, 4922, 113),
 		OBJECT(MODEL_NONE, -2677, 4922, 113, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BLUE_COIN, 12910, 3986, -7778, 0, 90, 0, 0x00000000, bhvHiddenBlueCoin),
@@ -115,6 +119,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -6298, -1803, 10129, 0, -104, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -6298, -317, 10129, 0, -104, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -6298, 1240, 10129, 0, -104, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 2150, 5420, -128, 0, -7, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 9762, 6510, -13813, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, 7580, 6702, -12617, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, 8272, 6943, -13275, 0, 119, 0, 0x00000000, bhvGeyser),
@@ -158,6 +163,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),
 		OBJECT(MODEL_NONE, 7441, 2745, 9090, 0, 0, 0, (80 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -9040, -5345, -8838, 0, 0, 0, (13 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_WATER_RING, 8564, -8131, 836, 0, -148, 0, 0x00000000, bhvSubSeaWaterRing),
 		OBJECT(MODEL_NONE, 6542, -8799, -42, 0, 119, 0, 0x00000000, bhvSubSeaWaterRingManager),
 		OBJECT(MODEL_WATER_RING, 9775, -7798, 2067, 0, -165, 0, (1 << 16), bhvSubSeaWaterRing),
@@ -181,6 +187,7 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, -1139, 3893, 10577, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GLOBAL_GROUND_PATCH, 89, 3881, 10822, -90, 0, 0, (4 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, 62, 2956, -7766, 0, 119, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_UNDERWATER_STONE_BUTTON, 11756, 3114, 13278, 0, -180, 0, (7 << 16), bhvUnderwaterStoneButton),
@@ -200,9 +207,10 @@ const LevelScript level_hmc_entry[] = {
 	END_AREA(),
 	AREA(3, hmc_area_3),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_HMC, 0x01, 0x0D, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x40, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, 5343, -3290, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 5343, -2780, -8444, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_METAL_BOX, -4596, 3269, -8733, 0, 0, 0, 0x00000000, bhvPushableMetalBox),
 		OBJECT(MODEL_NONE, 8731, 4, -6408, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 3525, -1611, -9392, 0, 119, 0, (2 << 16), bhvCoinFormation),
@@ -221,6 +229,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, 7213, -1330, -7986, 0, 119, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 5975, 372, -4952, 0, 119, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 775, 2118, -4907, 0, 119, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5318, -3573, -8479, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
 		TERRAIN(hmc_area_3_collision),
 		TERRAIN_MAT_LUT(hmc_area_3_collision_materials),
 		MACRO_OBJECTS(hmc_area_3_macro_objs),

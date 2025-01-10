@@ -1,6 +1,5 @@
 Gfx bbh_area_4_collision_camrealitybreak_layer_0[] = {
-    gsSPLightColor(LIGHT_1, 0xbff30ff),
-    gsSPLightColor(LIGHT_2, 0x27f13ff),
+	gsSPSetLights1(bbh_dl_camrealitybreak_layer0_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, 1, 0, 0, 0, SHADE, 0, 0, 0, 1),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -191,8 +190,7 @@ Gfx bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_060[] = {
 };
 
 Gfx bbh_area_4_collision_f3dlite_material_068_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(bbh_dl_f3dlite_material_068_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -207,8 +205,7 @@ Gfx bbh_area_4_collision_mat_revert_bbh_dl_f3dlite_material_068[] = {
 };
 
 Gfx bbh_area_4_collision_inviswall_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(bbh_dl_inviswall_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -223,8 +220,7 @@ Gfx bbh_area_4_collision_mat_revert_bbh_dl_inviswall[] = {
 };
 
 Gfx bbh_area_4_collision_f3dlite_material_045_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(bbh_dl_f3dlite_material_045_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

@@ -21,7 +21,6 @@
 const LevelScript level_castle_inside_entry[] = {
 	INIT_LEVEL(),
 	LOAD_YAY0(0x07, _castle_inside_segment_7SegmentRomStart, _castle_inside_segment_7SegmentRomEnd), 
-	LOAD_YAY0_TEXTURE(0x09, _inside_yay0SegmentRomStart, _inside_yay0SegmentRomEnd), 
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
 	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
@@ -220,6 +219,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x42, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x44, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 24, 1862, -38, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(castle_inside_area_3_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_3_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_3_macro_objs),

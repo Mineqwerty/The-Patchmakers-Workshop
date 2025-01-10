@@ -20,8 +20,7 @@ Gfx bbh_area_5_collision_mat_revert_bbh_dl_f3dlite_material_049[] = {
 };
 
 Gfx bbh_area_5_collision_death_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(bbh_dl_death_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
