@@ -8928,3 +8928,13 @@ const BehaviorScript bhvHubBarrier[] = {
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
+
+const BehaviorScript bhvGearWalls[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_gear_walls_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_gear_walls_loop),
+    END_LOOP(),
+};
