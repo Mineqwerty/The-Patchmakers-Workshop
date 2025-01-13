@@ -983,6 +983,44 @@ s32 event_second_hub_arrival[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_leaving_second_hub[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_SET_MARIO_POSITION, -4277, 955, -834,
+    EVENT_SET_MARIO_YAW, -0x4000,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 129,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 130,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 45,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_LEAVING_SECOND_HUB,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 131,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 132,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 133,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 134,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 15, 0, 0, 0,
+    EVENT_WAIT, 15,
+    EVENT_FADE_FROM_COLOR, 15, 0, 0, 0,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1004,7 +1042,8 @@ s32 *eventList[] = {
     //15
     event_revive_bowser,
     event_first_memory,
-    event_second_hub_arrival
+    event_second_hub_arrival,
+    event_leaving_second_hub
 };
 
 s32 *splineList[] = {
@@ -1162,7 +1201,14 @@ s32 *splineList[] = {
     castle_inside_area_2_spline_SecondHubArrivalFocus3,
     castle_inside_area_2_spline_SecondHubArrivalPos4,
     castle_inside_area_2_spline_SecondHubArrivalFocus4,
-
+    castle_inside_area_2_spline_LeavingSecondHubPos1,
+    //130
+    castle_inside_area_2_spline_LeavingSecondHubFocus1,
+    castle_inside_area_2_spline_LeavingSecondHubPos2,
+    castle_inside_area_2_spline_LeavingSecondHubFocus2,
+    castle_inside_area_2_spline_LeavingSecondHubPos3,
+    castle_inside_area_2_spline_LeavingSecondHubFocus3,
+    //135
 
 };
 

@@ -1,5 +1,43 @@
 #include "src/game/camera.h"
 
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubFocus1[] = {
+	{ 0, 1, { -4756, 1374, -1235 }},
+	{ 1, 1, { -4764, 1374, -1235 }},
+	{ 2, 1, { -4797, 1374, -1235 }},
+	{ -1, 1, { -4805, 1374, -1235 }},
+};
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubFocus2[] = {
+	{ 0, 1, { -4657, 1053, -991 }},
+	{ 1, 1, { -4652, 1053, -984 }},
+	{ 2, 1, { -4635, 1053, -957 }},
+	{ -1, 1, { -4631, 1053, -950 }},
+};
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubFocus3[] = {
+	{ 0, 1, { -2923, 1146, -1272 }},
+	{ 1, 1, { -2915, 1146, -1272 }},
+	{ 2, 1, { -2882, 1146, -1272 }},
+	{ -1, 1, { -2874, 1146, -1272 }},
+};
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubPos1[] = {
+	{ 0, 1, { -4535, 1374, -1249 }},
+	{ 1, 1, { -4543, 1374, -1249 }},
+	{ 2, 1, { -4576, 1374, -1249 }},
+	{ -1, 1, { -4584, 1374, -1249 }},
+};
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubPos2[] = {
+	{ 0, 1, { -4819, 1119, -1616 }},
+	{ 1, 1, { -4814, 1119, -1609 }},
+	{ 2, 1, { -4797, 1119, -1581 }},
+	{ -1, 1, { -4793, 1119, -1574 }},
+};
+struct CutsceneSplinePoint castle_inside_area_2_spline_LeavingSecondHubPos3[] = {
+	{ 0, 90, { -5010, 1146, -1167 }},
+	{ 1, 90, { -4906, 1146, -1167 }},
+	{ 2, 90, { -4490, 1146, -1167 }},
+	{ 3, 90, { -4387, 1146, -1167 }},
+	{ 4, 90, { -4261, 1146, -1170 }},
+	{ -1, 90, { -4179, 1146, -1168 }},
+};
 struct CutsceneSplinePoint castle_inside_area_2_spline_SecondHubArrivalFocus1[] = {
 	{ 0, 60, { -4128, 268, 1303 }},
 	{ 1, 60, { -4136, 268, 1303 }},

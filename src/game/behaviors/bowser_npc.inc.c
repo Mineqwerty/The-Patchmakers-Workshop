@@ -18,7 +18,8 @@ enum BowserNPCActions {
     BOWSER_NPC_ACT_IDLE_END = 3,
     BOWSER_NPC_ACT_FIND_SPOT = 4,
     BOWSER_NPC_ACT_REVIVE_CUTSCENE,
-    BOWSER_NPC_ACT_ENTER_SECOND_HUB
+    BOWSER_NPC_ACT_ENTER_SECOND_HUB,
+    BOWSER_NPC_ACT_LEAVING_SECOND_HUB
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -132,6 +133,22 @@ void bowser_npc_act_enter_second_hub(void) {
     }
 }
 
+void bowser_npc_act_leaving_second_hub(void) {
+            if (cExternalCutsceneTrigger >= 2) {
+                cur_obj_init_animation(12);
+                o->oMoveAngleYaw = -0x4000;
+                o->oFaceAngleYaw = -0x4000;
+                
+                o->oPosX = -3653;
+                o->oPosY = 955;
+                o->oPosZ = -1163;
+                if (o->oSubAction == 0 && gPageNum == 7) {
+                    cur_obj_shake_screen(SHAKE_POS_LARGE);
+                    o->oSubAction = 1;
+                }
+            }
+}
+
 void bowser_npc_find_spot(void) {
     switch (gCurrAreaIndex) {
         case 2:;
@@ -168,6 +185,9 @@ void bhv_bowser_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_SECOND_HUB_ARRIVAL) {
         o->oAction = BOWSER_NPC_ACT_ENTER_SECOND_HUB;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_LEAVING_SECOND_HUB) {
+        o->oAction = BOWSER_NPC_ACT_LEAVING_SECOND_HUB;
+    }
     switch (o->oAction) {
         case BOWSER_NPC_ACT_FIND_SPOT:
             bowser_npc_act_find_spot();
@@ -180,6 +200,9 @@ void bhv_bowser_npc_loop(void) {
         break;
         case BOWSER_NPC_ACT_ENTER_SECOND_HUB:
             bowser_npc_act_enter_second_hub();
+        break;
+        case BOWSER_NPC_ACT_LEAVING_SECOND_HUB:
+            bowser_npc_act_leaving_second_hub();
         break;
     }
 

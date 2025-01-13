@@ -2167,7 +2167,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_TFP, 1, 3, 30, 200, _("\
 The Patchmaker... obviously had been changing over time,\n\
 but he was never the same after coming back from this place.\n\
 @7F60B4FFHe spent weeks in there. I know it seems foolish now, but I was really\n\
-scared he had disappeared forever. He didn't even return to create the\n\
+scared he had disappeared forever. He didn't even return to create a\n\
 patch to navigate it. He did it all in there.\n\
 @7F60B4FFI wonder if it was because he got lost...\n\
 He was forced to create something that would help him find his\n\
@@ -2994,7 +2994,37 @@ odd to say that when you act much older than three...\n\
 "))
 
 DEFINE_DIALOG(DIALOG_MEMORY_2, 1, 3, 30, 200, _("\
-@7E5FB3FF "))
+@7E5FB3FFFather... are you leaving again?\n\
+You just got back...\n\
+\n\
+@5C5C5CFFI'm sorry, Sewnia.\n\
+I'm so very close to figuring this out.\n\
+The secrets of life are closer than ever.\n\
+@7E5FB3FFYes... but...\n\
+You... just got back.\n\
+Aren't you... tired?\n\
+@5C5C5CFFYes. I am.\n\
+The burning desire to create life\n\
+once more is motivation enough though.\n\
+@5C5C5CFFSewnia... you know, I'm doing\n\
+this for you, right?\n\
+Creating a sister...\n\
+@5C5C5CFFIt's what you wanted, right?\n\
+\n\
+\n\
+@7E5FB3FFI...\n\
+Um...\n\
+...yes. It is...\n\
+@5C5C5CFFGood.\n\
+I'll be off then.\n\
+\n\
+@7E5FB3FF...I wish you could\n\
+have stayed to play a little with me.\n\
+You didn't even see my new drawing...\n\
+@7E5FB3FFI'll... show him when he's back.\n\
+I'm sure it will make him happy.\n\
+He looks so tired lately..."))
+
 DEFINE_DIALOG(DIALOG_MEMORY_3, 1, 3, 30, 200, _("\
 @7E5FB3FF "))
 
@@ -3036,6 +3066,27 @@ DEFINE_DIALOG(DIALOG_BOWSER_NPC_PATCH_CHALLENGE, 1, 3, 30, 200, _("\
 DEFINE_DIALOG(DIALOG_BOWSER_SEWNIA_NPC_ANGER, 1, 3, 30, 200, _("\
 @FF0202FFget mad\n\
 "))
+
+DEFINE_DIALOG(DIALOG_LEAVING_SECOND_HUB, 1, 3, 30, 200, _("\
+@7F60B4FFIt's open...\n\
+I hope we won't have to see him again...\n\
+Well... Let's go.\n\
+@7F60B4FFShould we do what we did last time?\n\
+You run ahead and I'll trail behind?\n\
+I think that wou-\n\
+@FF0202FFHey.\n\
+\n\
+\n\
+@FF0202FFI have been scouring this place...\n\
+Every nook, every cranny.\n\
+Peach's thread isn't here!\n\
+@FF0202FFI was an idiot for thinking your\n\
+loser plan would work out!\n\
+Move aside!\n\
+@FF0202FFWe're doing things MY way now.\n\
+And there WON'T be any objections!\n\
+\n\
+@FF0202FFIt's Bowser time!"))
 
 DEFINE_DIALOG(DIALOG_RETURN_FROM_SUBAREA, 1, 4, 30, 200, _("\
 @FEFEFEFFReturn to the main area? \n\

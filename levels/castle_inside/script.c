@@ -189,6 +189,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -1318, 1600, 4068, 0, 0, 0, (7 << 16), bhvSewniaStoppingPoint),
 		OBJECT(MODEL_SEWNIA, -4587, 100, 1106, 0, 94, 0, 0x00000000, bhvSewnia),
 		OBJECT(MODEL_NONE, 1690, 100, 3403, 0, -136, 0, 0x00000000, bhvSoundMenu),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, -4886, 955, -1200, 0, 0, 0, (36 << 24) | (5 << 16), bhvHubBarrier),
 		OBJECT(MODEL_TWILIGHT_VEIL, -1475, 2394, 4453, 0, 0, 0, 0x21210000, bhvVtwEntrance),
 		OBJECT(MODEL_NONE, -4470, 100, 1376, 0, 94, 0, 0x00000000, bhvSpinAirborneWarp),
 		TERRAIN(castle_inside_area_2_collision),
