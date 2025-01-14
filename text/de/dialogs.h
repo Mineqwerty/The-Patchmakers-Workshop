@@ -1,6 +1,6 @@
 // Parameters: dialog enum ID, (unused), lines per box, left offset, width
 
-DEFINE_DIALOG(DIALOG_000, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_INTRO, 1, 6, 30, 200, _("\
 Du bist inmitten der\n\
 Kampfarena gelandet.\n\
 Sei vorsichtig!\n\
@@ -20,7 +20,7 @@ umblättern. In anderen\n\
 Kursen triffst Du weitere\n\
 Freunde, die Dir helfen."))
 
-DEFINE_DIALOG(DIALOG_001, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_GOOMBAS, 1, 4, 95, 200, _("\
 Bewege Dich vorsichtig\n\
 durch das Gelände, damit\n\
 Du kein Opfer der\n\
@@ -42,7 +42,7 @@ wenn es Dir gelungen ist,\n\
 ihm den Stern abzujagen.\n\
 Viel Glück..."))
 
-DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_BOUNCY, 1, 4, 95, 200, _("\
 Hallo! Sei wachsam, Du\n\
 befindest Dich inmitten\n\
 einer Schlacht. Aber ich\n\
@@ -60,7 +60,7 @@ Bob-Ombs und werden Dir\n\
 helfen. Sprich mit uns,\n\
 wann immer Du möchtest."))
 
-DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 5, 95, 200, _("\
 Herzlichen Dank, Mario!\n\
 Du hast es diesem\n\
 Tyrannen gezeigt. Aber\n\
@@ -196,7 +196,7 @@ Spielstand speichern?\n\
 \n\
 //Ja!////Nein!"))
 
-DEFINE_DIALOG(DIALOG_013, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_HUNDRED_COINS, 1, 6, 30, 200, _("\
 Du hast 100 Münzen\n\
 eingesammelt. Der\n\
 Stern verleiht Dir\n\
@@ -204,7 +204,7 @@ zusätzliche Kraft.\n\
 Spielstand speichern?\n\
 //Ja!////Nein!"))
 
-DEFINE_DIALOG(DIALOG_014, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SECRET_STAR, 1, 6, 30, 200, _("\
 Unglaublich, Du hast einen\n\
 weiteren Stern erhalten.\n\
 Er verleiht Dir\n\
@@ -212,7 +212,7 @@ zusätzliche Kraft.\n\
 Spielstand speichern?\n\
 //Ja!////Nein!"))
 
-DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
 Setze Deine Fäuste ein,\n\
 um Dich zu verteidigen.\n\
 Drücke [A] zum Springen\n\
@@ -275,16 +275,16 @@ Hause, also verschwinde\n\
 besser wieder...\n\
 Hua...hua...hua!!!"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA, 1, 3, 95, 200, _("\
 Ohne den passenden\n\
 Schlüssel bleibt Dir\n\
 dieser Weg versperrt!"))
 
-DEFINE_DIALOG(DIALOG_023, 1, 2, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_2, 1, 2, 95, 200, _("\
 Der Kellerschlüssel wird\n\
 Dir hier nichts nützen!"))
 
-DEFINE_DIALOG(DIALOG_024, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_3, 1, 4, 95, 200, _("\
 Du brauchst schon einen\n\
 Stern, um diese Tür zu\n\
 öffnen. Untersuche doch\n\
@@ -320,7 +320,7 @@ Zum Öffnen der Tür zum\n\
 benötigst Du 70 Sterne.\n\
 Hua...Hua...Hua...!"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_4, 1, 4, 30, 200, _("\
 Die Lakitu-Film AG\n\
 berichtet live und in\n\
 Farbe! Hier die neuesten\n\
@@ -357,7 +357,7 @@ Naja, ich denke, auch\n\
 dieser Stern gehört Dir!\n\
 Herzlichen Glückwunsch!"))
 
-DEFINE_DIALOG(DIALOG_032, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 5, 30, 200, _("\
 Mit der Federkappe\n\
 kannst Du fliegen.\n\
 Besitzt Du sie, springe\n\
@@ -369,7 +369,7 @@ kannst Du die Flughöhe\n\
 enorm steigern. Mit dem\n\
 [Z]-Knopf kannst Du landen."))
 
-DEFINE_DIALOG(DIALOG_033, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_FIREPLACE, 1, 4, 30, 200, _("\
 Herzlich willkommen! Durch\n\
 eine Warpröhre bist Du\n\
 direkt zum Schloss der\n\
@@ -387,7 +387,7 @@ der Steuerung. Doch jetzt\n\
 genug der vielen Worte:\n\
 Auf zum Schloss!!!"))
 
-DEFINE_DIALOG(DIALOG_034, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_WELCOME, 1, 5, 30, 200, _("\
 Guten Tag, liebe Freunde\n\
 des Actionkinos! Die\n\
 Lakitu-Film AG versorgt\n\
@@ -414,7 +414,7 @@ zu gegebener Zeit\n\
 mitteilen. Damit zurück\n\
 zum Hauptfilm!"))
 
-DEFINE_DIALOG(DIALOG_035, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_ISSUES, 1, 5, 30, 200, _("\
 Die [C]-Knöpfe dienen der\n\
 Steuerung der Kamera.\n\
 Benutze den ^-Knopf, um\n\
@@ -441,7 +441,7 @@ Du an einem kleinen Bild,\n\
 das sich rechts unten auf\n\
 dem Bildschirm befindet."))
 
-DEFINE_DIALOG(DIALOG_036, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_MASTER_CHAMBER, 1, 5, 30, 200, _("\
 AUSSICHTSPLATTFORM\n\
 Drücke ^ und genieße die\n\
 Aussicht. Vielleicht\n\
@@ -458,7 +458,7 @@ vornehmen. Wähle „Stativ』\n\
 und halte die [R]-Taste\n\
 gedrückt!"))
 
-DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_WARNING, 1, 3, 30, 200, _("\
 Hihihi, ich habe gewonnen!\n\
 Du solltest noch ein paar\n\
 Trainingsrunden einlegen!"))
@@ -2010,7 +2010,7 @@ Match wagen?\n\
 \n\
 //Okay!///Später!"))
 
-DEFINE_DIALOG(DIALOG_165, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 4, 30, 200, _("\
 Sei vorsichtig, wenn Du\n\
 um den Pfahl herumrennst,\n\
 damit Dir nicht schlecht\n\

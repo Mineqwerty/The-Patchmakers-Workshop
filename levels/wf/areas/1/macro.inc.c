@@ -17,7 +17,7 @@ const MacroObject wf_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_hidden_1up_trigger,          /*yaw*/   0, /*pos*/     0,  2650,  2900),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_hidden_1up,                  /*yaw*/   0, /*pos*/  -250,  2650,  2400, /*behParam*/ 2),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 315, /*pos*/  4200,   256,  5160, /*behParam*/ DIALOG_018),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/   0, /*pos*/ -2540,  2560,  -900, /*behParam*/ DIALOG_036),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/   0, /*pos*/ -2540,  2560,  -900, /*behParam*/ DIALOG_PHANTASMAID_MASTER_CHAMBER),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/  90, /*pos*/  1600,  2560,  2600, /*behParam*/ DIALOG_042),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 270, /*pos*/ -2705,  2560,    59, /*behParam*/ DIALOG_051),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 180, /*pos*/  3460,  2304,   -40, /*behParam*/ DIALOG_096),

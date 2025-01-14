@@ -50,7 +50,7 @@ void bhv_enemy_obelisk_loop() {
         case 0:
             if (o->oDistanceToMario < 500.0f && (gMarioState->action == ACT_WALKING || gMarioState->action == ACT_IDLE || gMarioState->action == ACT_WAITING_FOR_DIALOG)) {
                 if (o->oDialogTrigger == 0) {
-                    create_dialog_box_with_response(DIALOG_015);
+                    create_dialog_box_with_response(DIALOG_OBELISK);
                     gMarioState->action = ACT_WAITING_FOR_DIALOG;
                     o->oDialogTrigger = 1;
                 }
@@ -138,7 +138,7 @@ void bhv_falling_block_obelisk_loop(void) {
         case 0:
             if (o->oDistanceToMario < 500.0f && (gMarioState->action == ACT_WALKING || gMarioState->action == ACT_IDLE || gMarioState->action == ACT_WAITING_FOR_DIALOG)) {
                 if (o->oDialogTrigger == 0) {
-                    create_dialog_box_with_response(DIALOG_015);
+                    create_dialog_box_with_response(DIALOG_OBELISK);
                     gMarioState->action = ACT_WAITING_FOR_DIALOG;
                     o->oDialogTrigger = 1;
                 }

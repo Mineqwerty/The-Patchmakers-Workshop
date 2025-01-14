@@ -7215,7 +7215,7 @@ s16 cutscene_object_with_dialog(u8 cutscene, struct Object *obj, s16 dialogID) {
             if (dialogID != DIALOG_NONE) {
                 sCutsceneDialogID = dialogID;
             } else {
-                sCutsceneDialogID = DIALOG_001;
+                sCutsceneDialogID = DIALOG_ROSEDRIFT_GOOMBAS;
             }
         } else {
             response = sCutsceneDialogResponse;
@@ -9874,7 +9874,7 @@ void cutscene_intro_peach_handheld_shake_off(UNUSED struct Camera *c) {
 }
 
 void intro_pipe_exit_text(UNUSED struct Camera *c) {
-    create_dialog_box(DIALOG_033);
+    create_dialog_box(DIALOG_BUTLERGEIST_FIREPLACE);
 }
 
 void play_sound_intro_turn_on_hud(UNUSED struct Camera *c) {

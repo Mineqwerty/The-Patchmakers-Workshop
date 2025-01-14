@@ -1,6 +1,6 @@
 // Parameters: dialog enum ID, (unused), lines per box, left offset, width
 
-DEFINE_DIALOG(DIALOG_000, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_INTRO, 1, 6, 30, 200, _("\
 Incroyable! Vous voilà\n\
 propulsé au beau milieu\n\
 d'un champ de bataille!\n\
@@ -26,7 +26,7 @@ au panneau et appuyez sur\n\
 pour lire la suite du\n\
 texte."))
 
-DEFINE_DIALOG(DIALOG_001, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_GOOMBAS, 1, 5, 95, 200, _("\
 Attention! Si tu te\n\
 promènes par ici, tu\n\
 risques de te faire\n\
@@ -56,7 +56,7 @@ Reviens me voir lorsque tu\n\
 auras récupéré l'étoile de\n\
 puissance!"))
 
-DEFINE_DIALOG(DIALOG_002, 1, 6, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_BOUNCY, 1, 6, 95, 200, _("\
 Hé, toi! C'est dangereux\n\
 par ici! Alors écoute bien\n\
 mon conseil:\n\
@@ -82,7 +82,7 @@ N'hésite pas à venir nous\n\
 parler à chaque fois que\n\
 tu en as envie!"))
 
-DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 5, 95, 200, _("\
 Merci beaucoup Mario!\n\
 Tu as éclaté le vilain Roi\n\
 Bob-omb comme une vieille\n\
@@ -243,7 +243,7 @@ Voulez-vous sauvegarder?\n\
 \n\
 //Oui////Non."))
 
-DEFINE_DIALOG(DIALOG_013, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_HUNDRED_COINS, 1, 6, 30, 200, _("\
 Vous avez récupéré 100\n\
 pièces! Mario sera\n\
 désormais plus puissant!\n\
@@ -251,7 +251,7 @@ Voulez-vous sauvegarder?\n\
 \n\
 //Oui////Non."))
 
-DEFINE_DIALOG(DIALOG_014, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SECRET_STAR, 1, 6, 30, 200, _("\
 Whoa, génial! Une autre\n\
 étoile de puissance! Mario\n\
 devient de plus en plus\n\
@@ -259,7 +259,7 @@ courageux!\n\
 Voulez-vous sauvegarder?\n\
 //Oui////Non."))
 
-DEFINE_DIALOG(DIALOG_015, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OBELISK, 1, 6, 30, 200, _("\
 Vous pouvez frapper vos\n\
 ennemis et les assommer.\n\
 Appuyez sur [A] pour sauter\n\
@@ -315,15 +315,15 @@ Ici il n'y a personne,\n\
 alors dégage, moustique!\n\
 GWA HA HA HA HA HA!!!"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 2, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA, 1, 2, 95, 200, _("\
 Cette porte est fermée\n\
 à clé..."))
 
-DEFINE_DIALOG(DIALOG_023, 1, 2, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_2, 1, 2, 95, 200, _("\
 Ce n'est pas la bonne clé.\n\
 Peut-être à la cave..."))
 
-DEFINE_DIALOG(DIALOG_024, 1, 6, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_3, 1, 6, 95, 200, _("\
 Vous avez besoin de la\n\
 puissance des étoiles pour\n\
 ouvrir cette porte.\n\
@@ -363,7 +363,7 @@ fin』... Il vous manque\n\
 encore [%] étoile(s).\n\
 GWA HA HA HA HA HA!!!"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_4, 1, 4, 30, 200, _("\
 Bonjour à tous!\n\
 Ici Lakitu, le reporter de\n\
 choc et de charme! Voici\n\
@@ -391,7 +391,7 @@ certain de gagner!\n\
 Tiens, petit homme, tu as\n\
 bien mérité cette étoile..."))
 
-DEFINE_DIALOG(DIALOG_032, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 5, 30, 200, _("\
 Si en portant une\n\
 casquette ailée vous\n\
 effectuez trois sauts\n\
@@ -407,7 +407,7 @@ regarder autour de vous\n\
 en plein vol, et appuyez\n\
 sur [Z] pour atterrir."))
 
-DEFINE_DIALOG(DIALOG_033, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_FIREPLACE, 1, 5, 30, 200, _("\
 Ciao bello!\n\
 Vous voici arrivé au\n\
 château de la Princesse\n\
@@ -424,7 +424,7 @@ Mario...\n\
 Et maintenant, en route\n\
 vers le château!!!"))
 
-DEFINE_DIALOG(DIALOG_034, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_WELCOME, 1, 6, 30, 200, _("\
 Bonjour! Nous sommes les\n\
 frères Lakitu et nous nous\n\
 ferons une joie de filmer\n\
@@ -454,7 +454,7 @@ le caméraman toujours\n\
 prêt à vous fournir les\n\
 meilleures images..."))
 
-DEFINE_DIALOG(DIALOG_035, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_ISSUES, 1, 6, 30, 200, _("\
 Il existe quatre boutons\n\
 [C]. En appuyant sur [C]^ et\n\
 en bougeant le stick\n\
@@ -474,7 +474,7 @@ pour voir Mario de loin,\n\
 quelque soit le mode de\n\
 vue que vous utilisez."))
 
-DEFINE_DIALOG(DIALOG_036, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_MASTER_CHAMBER, 1, 4, 30, 200, _("\
 --PANORAMA--\n\
 Appuyez sur [C]^ pour jeter\n\
 un coup d'oeil. Profitez\n\
@@ -492,7 +492,7 @@ choisissez le mode 『Fixe』\n\
 puis maintenez [R] pour que\n\
 la caméra reste en place."))
 
-DEFINE_DIALOG(DIALOG_037, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_WARNING, 1, 2, 30, 200, _("\
 Bwa ha ha ha ha!\n\
 Je t'ai battu gros nain!\n\
 Tu es aussi rapide qu'une\n\
@@ -2258,7 +2258,7 @@ Prêt...\n\
 \n\
 //Partez!//Heu, non!"))
 
-DEFINE_DIALOG(DIALOG_165, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 3, 30, 200, _("\
 Tourner autour du poteau\n\
 peut faire tourner les\n\
 têtes..."))

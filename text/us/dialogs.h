@@ -14,23 +14,23 @@
 #define SCRAM "scram--"
 #endif
 
-DEFINE_DIALOG(DIALOG_000, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_INTRO, 1, 3, 30, 200, _("\
 Hi there! You seem to be new around here.\n\
 Oh don't look so tense, we aren't like our\n\
 Spindrift cousins at all!\n\
 I'm a Rosedrift! Sort of a relative to\n\
 Spindrifts. We live here in these\n\
-rugged thorny cliffs. \n\
+rugged, thorny cliffs. \n\
 Hey, here's a bit of friendly advice:\n\
 Watch out from above. The Ptooies that live\n\
 here aren't so friendly towards new faces."))
 
-DEFINE_DIALOG(DIALOG_001, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_GOOMBAS, 1, 3, 95, 200, _("\
 The local goombas have been acting strangely\n\
 for a decent while now.\n\
 Look at that blank stare, are they ok?"))
 
-DEFINE_DIALOG(DIALOG_002, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_BOUNCY, 1, 4, 95, 200, _("\
 The flowers that grow \n\
 here are all pretty\n\
 bouncy on top.\n\
@@ -44,7 +44,7 @@ us Rosedrifts too.\n\
 But we wouldn't let\n\
 you bounce on us."))
 
-DEFINE_DIALOG(DIALOG_003, 1, 6, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 6, 95, 200, _("\
 @7F60B4FFWhat can I help you with, Mario?\n\
 \n\
      @FFFFFFFFJust wanted to talk\n\
@@ -103,17 +103,17 @@ GSS"))
 DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
 SS"))
 
-DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_HUNDRED_COINS, 1, 5, 30, 200, _("\
 You obtained the 100 coin star!\n\
 With the search over, Mario breathes\n\
 a relieved sigh and continues on!"))
 
-DEFINE_DIALOG(DIALOG_014, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SECRET_STAR, 1, 3, 30, 200, _("\
 You found a secret star!\n\
 With another mystery uncovered,\n\
 it's time to keep searching!"))
 
-DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
 Activate the Obelisk? \n\
 //Yes    //No      "))
 
@@ -135,7 +135,7 @@ C11"))
 DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
 C12"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA, 1, 3, 95, 200, _("\
 @7F60B4FFH... Hi...\n\
 \n\
 \n\
@@ -155,7 +155,7 @@ trapping it within an object. That letter on your cap.\n\
 And... Um... That's not all...\n\
 He got your friends too..."))
 
-DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_2, 1, 3, 95, 200, _("\
 @7F60B4FFDon't worry, we can fix this! It's not too late!\n\
 Ah... But it might be tough with what we have...\n\
 The Patchmaker probably has their threads...\n\
@@ -172,7 +172,7 @@ Mario huh? Nice to meet you Mario!\n\
 ...\n\
 Oh, oops! Follow me, Mario!"))
 
-DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_3, 1, 5, 95, 200, _("\
 @7F60B4FFSo... the rest of the workshop is beyond here.\n\
 It's actually a really big building complex.\n\
 The Patchmaker had some plans before, uh...\n\
@@ -222,7 +222,7 @@ stairs, you need 70\n\
 Stars.\n\
 Bwa ha ha!"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_4, 1, 3, 30, 200, _("\
 @7F60B4FFBelieve it or not, this pot is a portal!\n\
 It can bring you to a place far away,\n\
 and there are a bunch more like it in here!\n\
@@ -259,7 +259,7 @@ hand over this Star to\n\
 the winner of the race.\n\
 Congrats, Mario!"))
 
-DEFINE_DIALOG(DIALOG_032, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 5, 30, 200, _("\
 A... A guest! H-How did you...?\n\
 \n\
 \n\
@@ -273,7 +273,7 @@ Well, you are alive so I suppose there is no\n\
 reason to doubt you. Alright, I released the\n\
 lock. I apologize deeply for any trouble it caused."))
 
-DEFINE_DIALOG(DIALOG_033, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_FIREPLACE, 1, 3, 30, 200, _("\
 Even though the Master and Mistress\n\
 do not roam the manor these days,\n\
 I must still keep the fireplace warm...\n\
@@ -290,7 +290,7 @@ Many of the secrets these chambers hold\n\
 are up in the rafters. Looking upward\n\
 is never a bad idea."))
 
-DEFINE_DIALOG(DIALOG_034, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_WELCOME, 1, 3, 30, 200, _("\
 Ah! It seems we have a guest. \n\
 Manor guests are rare these days...\n\
 Tell me sir, what might your name be?\n\
@@ -305,7 +305,7 @@ down the hall. Let us just say, we have\n\
 been dealing with issues beyond there.\n\
 Enjoy your visit, Mr. Mario."))
 
-DEFINE_DIALOG(DIALOG_035, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_ISSUES, 1, 3, 30, 200, _("\
 The issues we've been dealing with?\n\
 \n\
 \n\
@@ -319,14 +319,14 @@ It's best you simply avoid them.\n\
 I implore you try not to fight something\n\
 that cannot be touched."))
 
-DEFINE_DIALOG(DIALOG_036, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_MASTER_CHAMBER, 1, 3, 30, 200, _("\
 Beyond this door is the Master's\n\
 chamber. Unfortunately, he is not\n\
 seeing guests at this time.\n\
 ...Maybe if the Mistress was healthy\n\
 again he would..."))
 
-DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_WARNING, 1, 3, 30, 200, _("\
 I won't stop you from entering here, but\n\
 be warned: it is horribly dangerous.\n\
 The rogue spirits will attempt to attack you.\n\
@@ -1841,12 +1841,8 @@ Ready...set...\n\
 \n\
 //Go//// Don't Go"))
 
-DEFINE_DIALOG(DIALOG_165, 1, 5, 30, 200, _("\
-I take no responsibility\n\
-whatsoever for those who\n\
-get dizzy and pass out\n\
-from running around\n\
-this post."))
+DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 5, 30, 200, _("\
+So... this is it."))
 
 DEFINE_DIALOG(DIALOG_166, 1, 4, 30, 200, _("\
 I'll be back soon.\n\
@@ -3025,8 +3021,60 @@ You didn't even see my new drawing...\n\
 I'm sure it will make him happy.\n\
 He looks so tired lately..."))
 
-DEFINE_DIALOG(DIALOG_MEMORY_3, 1, 3, 30, 200, _("\
-@7E5FB3FF "))
+DEFINE_DIALOG(DIALOG_MEMORY_3_1, 1, 3, 30, 200, _("\
+@5C5C5CFFI've found it, Sewnia.\n\
+I've found something that may...\n\
+No, it WILL. It will let me make life.\n\
+@5C5C5CFFGaze upon this marvelous lockbox.\n\
+It took me so long to find this...\n\
+But I can finally reach a new magnum opus!\n\
+@7E5FB3FFDoes... does that mean you'll\n\
+be around again? We can go...\n\
+back to how things were?\n\
+@5C5C5CFFAnd more! I'll do it, Sewnia.\n\
+I'll make you a sister!\n\
+And then, we may be happy!"))
+
+DEFINE_DIALOG(DIALOG_MEMORY_3_2, 1, 3, 30, 200, _("\
+@5C5C5CFF...Another failure.\n\
+Disappointing.\n\
+\n\
+@5C5C5CFFI'm able to sew a soul to the doll...\n\
+but what results is more of a zombie than\n\
+a living thing.\n\
+@5C5C5CFFWhat could I be missing...?\n\
+\n\
+\n\
+@5C5C5CFFPerhaps it has something to do with\n\
+Sewnia's appearance...?\n\
+\n\
+@5C5C5CFFNo...! What am I saying!?\n\
+I couldn't possibly...\n\
+I should just try again. I'm nearly there."))
+
+DEFINE_DIALOG(DIALOG_MEMORY_3_3, 1, 3, 30, 200, _("\
+@5C5C5CFFDamn it all!\n\
+\n\
+\n\
+@5C5C5CFFIt isn't working!\n\
+Not like this, at least!\n\
+\n\
+@5C5C5CFFI... I didn't...\n\
+I didn't do this all for nothing.\n\
+I can't have.\n\
+@5C5C5CFFI'll try one...\n\
+Just one... that looks like her.\n\
+After all... it will be her sister..."))
+
+DEFINE_DIALOG(DIALOG_MEMORY_3_4, 1, 3, 30, 200, _("\
+@7E5FB3FFFather, I..."))
+
+DEFINE_DIALOG(DIALOG_MEMORY_3_5, 1, 2, 30, 200, _("\
+@5C5C5CFF...But a needle thin enough to sew life\n\
+itself would never be enough to take my own.\n\
+@5C5C5CFFAnd so... through the guilt,\n\
+the pain, and the weariness...\n\
+I continued my work."))
 
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB, 1, 3, 30, 200, _("\
 @FF0202FFThis is the worst...\n\
@@ -3087,6 +3135,65 @@ Move aside!\n\
 And there WON'T be any objections!\n\
 \n\
 @FF0202FFIt's Bowser time!"))
+
+DEFINE_DIALOG(DIALOG_BOWSER_BEFORE_SECOND_FIGHT, 1, 3, 30, 200, _("\
+@FF0202FFIs that...?\n\
+\n\
+\n\
+@FF0202FFBwahaha! Hey Mario, check it out!\n\
+Looks like I get to save Peach today!\n\
+I've got her thread, right in-"))
+
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BEFORE_SECOND_FIGHT, 0b10, 3, 30, 200, _("\
+@5D5D5DFFWhy?\n\
+\n\
+\n\
+@5D5D5DFFWhy must you move!?\n\
+Why must you interrupt my work!?\n\
+Why? WhywhywhywhywhyWHY?\n\
+@5D5D5DFFBe silent! Let me work!\n\
+Hahahaha!!! Go away!\n\
+I'm so close!\n\
+@5D5D5DFFI am!\n\
+You...\n\
+Stop looking at me like that!\n\
+@5D5D5DFFI am close!\n\
+Don't look at me like that!\n\
+I really really really am!\n\
+@5D5D5DFFIf you won't stop moving...\n\
+I have no choice but to pin you\n\
+down forever!!!"))
+
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BREAKING_POINT, 0b10, 3, 30, 200, _("\
+@7F60B4FFNo!!!\n\
+\n\
+\n\
+@5D5D5DFF...?\n\
+\n\
+\n\
+@5D5D5DFFY...\n\
+\n\
+\n\
+@5D5D5DFFY... O... U!\n\
+\n\
+\n\
+@5D5D5DFFIt's YOUR FAULT!\n\
+YOU were the reason I became like this!\n\
+WHY couldn't I RECREATE you!?\n\
+@5D5D5DFFWHY did you have to ask for a sister!?\n\
+HOW did you even come to be!?\n\
+WHY COULDN'T YOU TELL ME???\n\
+@7F60B4FFYou're... you're hurting me!"))
+
+DEFINE_DIALOG(DIALOG_SEWNIA_HEAD_RIPPED_OFF, 0b10, 3, 30, 200, _("\
+@7F60B4FFMario...\n\
+\n\
+\n\
+@7F60B4FFDon't you see now?\n\
+This is... why...\n\
+\n\
+@7F60B4FFThis is why we have to...\n\
+end him...!"))
 
 DEFINE_DIALOG(DIALOG_RETURN_FROM_SUBAREA, 1, 4, 30, 200, _("\
 @FEFEFEFFReturn to the main area? \n\

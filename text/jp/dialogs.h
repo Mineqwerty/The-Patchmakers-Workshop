@@ -7,7 +7,7 @@
 かけてくれる　どうぶつも\n\
 います。"
 
-DEFINE_DIALOG(DIALOG_000, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_INTRO, 1, 5, 30, 200, _("\
 おおっと、ここはキケンな\n\
 せんじょうの　どまんなか。\n\
 『え』のなかのせかいには\n\
@@ -20,7 +20,7 @@ DEFINE_DIALOG(DIALOG_000, 1, 5, 30, 200, _("\
 くれるはずだ。\n"\
 HOW_TO_READ_SIGNS_1))
 
-DEFINE_DIALOG(DIALOG_001, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_GOOMBAS, 1, 4, 95, 200, _("\
 あぶない　あぶない！！\n\
 こんなところを　うろうろ\n\
 してると、みずばくだんが\n\
@@ -42,7 +42,7 @@ DEFINE_DIALOG(DIALOG_001, 1, 4, 95, 200, _("\
 を　とりもどしたら　また\n\
 あいに　きてください。"))
 
-DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_ROSEDRIFT_BOUNCY, 1, 4, 95, 200, _("\
 ちょっと　あなた！\n\
 このさきはキケンですよ！\n\
 \n\
@@ -60,7 +60,7 @@ DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
 いつでも　はなしかけて\n\
 きてくださいね！"))
 
-DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 5, 95, 200, _("\
 おかげで　ボムキングは\n\
 おとなしくなりました！\n\
 でも、たたかいは　おわり\n\
@@ -185,7 +185,7 @@ DEFINE_DIALOG(DIALOG_012, 1, 3, 30, 200, _("\
 \n\
 　　　はい　　　いいえ"))
 
-DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_HUNDRED_COINS, 1, 5, 30, 200, _("\
 １００まいコインの\n\
 スターを　てにいれた！\n\
 おしろのパワーが\n\
@@ -196,7 +196,7 @@ DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
 \n\
 　　　はい　　　いいえ"))
 
-DEFINE_DIALOG(DIALOG_014, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SECRET_STAR, 1, 5, 30, 200, _("\
 おもわぬところで\n\
 スターをてにいれた。\n\
 そして　おしろのパワーが\n\
@@ -207,7 +207,7 @@ DEFINE_DIALOG(DIALOG_014, 1, 5, 30, 200, _("\
 \n\
 　　　はい　　　いいえ"))
 
-DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
 てきはパンチでたおせるよ。\n\
 Ａボタンは『ジャンプ』\n\
 Ｂボタンは『パンチ』です。\n\
@@ -261,15 +261,15 @@ DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
 　　おかえりください。\n\
 ガハハハッ！"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA, 1, 3, 95, 200, _("\
 カギが　かかっている・・"))
 
-DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_2, 1, 3, 95, 200, _("\
 ・・・カギがあわない！\n\
 このカギは『ちか』への\n\
 カギのようだ。"))
 
-DEFINE_DIALOG(DIALOG_024, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_3, 1, 3, 95, 200, _("\
 クッパがとじたこのドアを\n\
 ひらくには、スターの\n\
 パワーが　ひつようです。\n\
@@ -314,7 +314,7 @@ DEFINE_DIALOG(DIALOG_029, 1, 4, 95, 200, _("\
 たりません・・・\n\
 ガハハッ！"))
 
-DEFINE_DIALOG(DIALOG_030, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MEET_SEWNIA_4, 1, 4, 30, 200, _("\
 カメラマンのジュゲムです。\n\
 ちょっと　アドバイス！\n\
 しずかにあるきたいときは\n\
@@ -336,7 +336,7 @@ DEFINE_DIALOG(DIALOG_031, 1, 3, 30, 200, _("\
 このスターも\n\
 あげちゃいます！"))
 
-DEFINE_DIALOG(DIALOG_032, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 4, 30, 200, _("\
 はねぼうしの　あるひとは\n\
 ３かいれんぞくでジャンプ\n\
 しよう。　おおぞらたかく\n\
@@ -346,7 +346,7 @@ DEFINE_DIALOG(DIALOG_032, 1, 4, 30, 200, _("\
 まわりをみるのはＣボタン。\n\
 おりたいときはＺボタン。"))
 
-DEFINE_DIALOG(DIALOG_033, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_FIREPLACE, 1, 4, 30, 200, _("\
 ワープどかんを\n\
 くぐりぬけ、\n\
 ピーチの　おしろに\n\
@@ -360,7 +360,7 @@ DEFINE_DIALOG(DIALOG_033, 1, 4, 30, 200, _("\
 『３Ｄスティック』。\n\
 まずはおしろへ　すすめ！"))
 
-DEFINE_DIALOG(DIALOG_034, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_WELCOME, 1, 5, 30, 200, _("\
 こんにちは！　\n\
 ぼくたちカメラマンの\n\
 ジュゲムブラザーズです。\n\
@@ -386,7 +386,7 @@ DEFINE_DIALOG(DIALOG_034, 1, 5, 30, 200, _("\
 おしらせでした。\n\
 それじゃ、きをつけて！"))
 
-DEFINE_DIALOG(DIALOG_035, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BUTLERGEIST_ISSUES, 1, 4, 30, 200, _("\
 きいろい４つの　Ｃボタン。\n\
 『うえ』をおすと\n\
 ３Ｄスティックで\n\
@@ -408,7 +408,7 @@ DEFINE_DIALOG(DIALOG_035, 1, 4, 30, 200, _("\
 がめん　みぎしたの\n\
 アイコンを　みてください。"))
 
-DEFINE_DIALOG(DIALOG_036, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_MASTER_CHAMBER, 1, 5, 30, 200, _("\
 　『てんぼうだい』\n\
 Ｃボタンの　うえをおすと、\n\
 まわりを　みわたせます。\n\
@@ -430,7 +430,7 @@ DEFINE_DIALOG(DIALOG_036, 1, 5, 30, 200, _("\
 マリオとの　きょりは\n\
 きいろやじるしを　みよう。"))
 
-DEFINE_DIALOG(DIALOG_037, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_WARNING, 1, 3, 30, 200, _("\
 あたしの『かち』です。\n\
 あなたの『まけ』です。\n\
 ははははは！！！\n\
@@ -1854,7 +1854,7 @@ DEFINE_DIALOG(DIALOG_164, 1, 4, 30, 200, _("\
 \n\
 　　　ゴー！！　やめとく"))
 
-DEFINE_DIALOG(DIALOG_165, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 4, 30, 200, _("\
 このクイの　まわりを\n\
 クルクルまわって\n\
 めをまわしても\n\

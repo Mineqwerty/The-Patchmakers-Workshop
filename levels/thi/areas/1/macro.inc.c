@@ -31,7 +31,7 @@ const MacroObject thi_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away, /*yaw*/   0, /*pos*/ -5712, -2190,  1100),
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away, /*yaw*/   0, /*pos*/  6022, -1722,  -633),
     MACRO_OBJECT(/*preset*/ macro_wooden_post,          /*yaw*/   0, /*pos*/ -5822, -2969,  5822),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,      /*yaw*/  90, /*pos*/  -886, -2559,  6655, /*behParam*/ DIALOG_165),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,      /*yaw*/  90, /*pos*/  -886, -2559,  6655, /*behParam*/ DIALOG_ENTERING_BRINK),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,      /*yaw*/   0, /*pos*/ -2370,  -511,  2320, /*behParam*/ DIALOG_166),
     MACRO_OBJECT(/*preset*/ macro_box_star_2,           /*yaw*/   0, /*pos*/  2600,  3500, -2400),
     MACRO_OBJECT(/*preset*/ macro_huge_goomba,          /*yaw*/   0, /*pos*/ -3180,  -511,  2080),

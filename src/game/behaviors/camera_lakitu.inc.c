@@ -115,7 +115,7 @@ static void camera_lakitu_intro_act_show_dialog(void) {
                 }
             }
         } else if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP,
-            DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_034)) {
+            DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_BUTLERGEIST_WELCOME)) {
             o->oCameraLakituFinishedDialog = TRUE;
         }
     }

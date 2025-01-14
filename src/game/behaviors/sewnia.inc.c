@@ -1241,7 +1241,7 @@ void sewnia_act_follow_mario(void) {
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED) {
         o->oInteractStatus = 0;
-        create_sewnia_dialog_box(DIALOG_003);
+        create_sewnia_dialog_box(DIALOG_SEWNIA_OPTIONS);
         o->oAction = SEWNIA_ACT_TALKING_TO_MARIO;
     }
     
