@@ -416,8 +416,6 @@ struct Surface {
     /*0x0A*/ Vec3t vertex1;
     /*0x10*/ Vec3t vertex2;
     /*0x16*/ Vec3t vertex3;
-    /*0x1C*/ struct Normal normal;
-    /*0x28*/ f32 originOffset;
     /*0x2C*/ struct Object *object;
     s16 matPointer;
     s16 matRevertPointer;
@@ -487,6 +485,7 @@ struct MarioState {
     /*0x60*/ struct Surface *wall;
     /*0x64*/ struct Surface *ceil;
     /*0x68*/ struct Surface *floor;
+    Vec3f floorNormal;
     /*0x6C*/ f32 ceilHeight;
     /*0x70*/ f32 floorHeight;
     /*0x74*/ s16 floorYaw;

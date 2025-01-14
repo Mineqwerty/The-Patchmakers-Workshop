@@ -74,8 +74,10 @@ static f32 get_buoyancy(struct MarioState *m) {
 
 void apply_ceiling_slope_submerged(struct MarioState *m, struct Surface *ceil, Vec3f step) {
     f32 slopeAccel;
+    Vec3f normal;
+        get_surface_normal(normal, ceil);
 
-    f32 steepness = sqrtf(sqr(ceil->normal.x) + sqr(ceil->normal.z));
+    f32 steepness = sqrtf(sqr(normal[0]) + sqr(normal[2]));
 
     //s16 floorDYaw = abs_angle_diff(atan2s(ceil->normal.z, ceil->normal.x), m->faceAngle[1]);
 
@@ -93,8 +95,10 @@ void apply_ceiling_slope_submerged(struct MarioState *m, struct Surface *ceil, V
 
 void apply_floor_slope_submerged(struct MarioState *m, struct Surface *floor, Vec3f step) {
     f32 slopeAccel;
+    Vec3f normal;
+        get_surface_normal(normal, floor);
 
-    f32 steepness = sqrtf(sqr(floor->normal.x) + sqr(floor->normal.z));
+    f32 steepness = sqrtf(sqr(normal[0]) + sqr(normal[2]));
 
     slopeAccel = 0.15f;
 
@@ -103,7 +107,7 @@ void apply_floor_slope_submerged(struct MarioState *m, struct Surface *floor, Ve
     m->slideVelX = step[0] - (slopeAccel * sqr(steepness));
     m->slideVelZ = step[2] - (slopeAccel * sqr(steepness));
 
-    s16 floorYaw = atan2s(floor->normal.z, floor->normal.x);
+    s16 floorYaw = atan2s(normal[2], normal[0]);
     //floorYaw += -0x4000;
     
     if (abss(m->faceAngle[1] - (floorYaw)) > 0x4000) {
@@ -1294,7 +1298,7 @@ static void update_metal_water_walking_speed(struct MarioState *m) {
         m->forwardVel += 1.1f;
     } else if (m->forwardVel <= targetSpeed) {
         m->forwardVel += 1.1f - m->forwardVel / 43.0f;
-    } else if (m->floor->normal.y >= 0.95f) {
+    } else if (m->floorNormal[1] >= 0.95f) {
         m->forwardVel -= 1.0f;
     }
 

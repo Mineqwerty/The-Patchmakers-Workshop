@@ -29,9 +29,10 @@ struct Surface gWaterSurfacePseudoFloor = {
     { 0, 0, 0 },                // vertex1
     { 0, 0, 0 },                // vertex2
     { 0, 0, 0 },                // vertex3
-    { 0.0f, 1.0f, 0.0f },       // normal
-    0.0f,                       // originOffset
     NULL,                       // object
+    NULL,
+    NULL,
+    0,
 };
 
 /**
@@ -336,7 +337,8 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
     if ((m->equippedPatch == PATCH_CHILLSTEP) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
-        floor->originOffset = -floorHeight;
+        get_surface_normal(m->floorNormal, floor);
+        //floor->originOffset = -floorHeight;
     }
 
     if (nextPos[1] > floorHeight + 100.0f) {
@@ -425,8 +427,8 @@ s32 perform_ground_step(struct MarioState *m) {
 
     m->usedStonePatch = 0;
     for (i = 0; i < 4; i++) {
-        intendedPos[0] = m->pos[0] + m->floor->normal.y * (m->vel[0] / numSteps);
-        intendedPos[2] = m->pos[2] + m->floor->normal.y * (m->vel[2] / numSteps);
+        intendedPos[0] = m->pos[0] + m->floorNormal[1] * (m->vel[0] / numSteps);
+        intendedPos[2] = m->pos[2] + m->floorNormal[1] * (m->vel[2] / numSteps);
         intendedPos[1] = m->pos[1];
 
         if (gCurrLevelNum == LEVEL_BBH) {
@@ -477,7 +479,11 @@ s32 check_level_loop(Vec3f intendedPos) {
 }
 
 // Horizontal dot product of surface normal
-#define hdot_surf(surf, vec) (((surf)->normal.x * (vec)[0]) + ((surf)->normal.z * (vec)[2]))
+#define hdot_surf(surf, vec) ({ \
+    Vec3f normal; \
+    get_surface_normal(normal, surf); \
+    ((normal[0] * (vec)[0]) + (normal[2] * (vec)[2])); \
+})
 
 struct Surface *check_ledge_grab(struct MarioState *m, struct Surface *prevWall, struct Surface *wall, Vec3f intendedPos, Vec3f nextPos, Vec3f ledgePos, struct Surface **ledgeFloor) {
     struct Surface *returnedWall = wall;
@@ -502,16 +508,15 @@ struct Surface *check_ledge_grab(struct MarioState *m, struct Surface *prevWall,
         returnedWall = prevWall;
     }
 
-    ledgePos[0] = nextPos[0] - (wall->normal.x * 60.0f);
-    ledgePos[2] = nextPos[2] - (wall->normal.z * 60.0f);
+    Vec3f normal;
+    get_surface_normal(normal, wall);
+    ledgePos[0] = nextPos[0] - (normal[0] * 60.0f);
+    ledgePos[2] = nextPos[2] - (normal[2] * 60.0f);
     ledgePos[1] = find_floor(ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], ledgeFloor);
 
     if (ledgeFloor == NULL
         || (*ledgeFloor) == NULL
         || ledgePos[1] < nextPos[1] + 100.0f
-#ifdef DONT_LEDGE_GRAB_STEEP_SLOPES
-        || (*ledgeFloor)->normal.y < COS25 // H64 TODO: check if floor is actually slippery
-#endif
     ) {
         return NULL;
     }
@@ -597,7 +602,8 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
     if ((m->equippedPatch == PATCH_CHILLSTEP) && floorHeight < waterLevel) {
         floorHeight = waterLevel;
         floor = &gWaterSurfacePseudoFloor;
-        floor->originOffset = -floorHeight;
+        get_surface_normal(m->floorNormal, floor);
+        //floor->originOffset = -floorHeight;
     }
 
     //! This check uses f32, but findFloor uses short (overflow jumps)

@@ -21,10 +21,11 @@
      ((zPos) <= -LEVEL_BOUNDARY_MAX) ||     \
      ((zPos) >=  LEVEL_BOUNDARY_MAX))
 
-#define get_surface_height_at_location(xPos, zPos, surf) (-(((xPos) * (surf)->normal.x) + ((zPos) * (surf)->normal.z) + (surf)->originOffset) / (surf)->normal.y)
-
-#define SURFACE_YAW(s) (atan2s(((s)->normal.z), ((s)->normal.x)))
-
+#define SURFACE_YAW(s) ({ \
+    Vec3f normal; \
+    get_surface_normal(normal, s); \
+    atan2s(normal[2], normal[0]); \
+})
 enum RaycastFlags {
     RAYCAST_FIND_FLOOR = (1 << 0),
     RAYCAST_FIND_WALL  = (1 << 1),
@@ -46,6 +47,8 @@ s32 f32_find_wall_collision(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 ra
 s32 find_wall_collisions(struct WallCollisionData *colData);
 void resolve_and_return_wall_collisions(Vec3f pos, f32 offset, f32 radius, struct WallCollisionData *collisionData);
 f32 find_ceil(f32 posX, f32 posY, f32 posZ, struct Surface **pceil);
+void get_surface_normal(f32 normal[3], struct Surface *surf);
+void get_surface_normal_oo(f32 normal[4], struct Surface *surf);
 
 // Finds the ceiling from a vec3f and a minimum height (with 3 unit vertical buffer).
 ALWAYS_INLINE f32 find_mario_ceil(Vec3f pos, f32 height, struct Surface **ceil) {

@@ -412,7 +412,11 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
         case AIR_STEP_NONE:
         case AIR_STEP_HIT_CEILING:
             if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
-                if ((stepResult == AIR_STEP_HIT_CEILING && m->ceil != NULL && m->ceil->normal.y > -0.5f) || (m->wall != NULL && m->wall->type == SURFACE_INVISIBLE_WALL)) {
+                Vec3f normal;
+                if (m->ceil != NULL) {
+                    get_surface_normal(normal, m->ceil);
+                }
+                if ((stepResult == AIR_STEP_HIT_CEILING && m->ceil != NULL && normal[1] > -0.5f) || (m->wall != NULL && m->wall->type == SURFACE_INVISIBLE_WALL)) {
                     return set_mario_action(m, ACT_SOFT_BONK, 0);
                 }
                 else {
@@ -1002,7 +1006,9 @@ s32 act_marine_patch_waterfall(struct MarioState *m) {
     m->pos[1] += 30.0f;
 
     if (m->wall) {
-        m->faceAngle[1] = atan2s(m->wall->normal.z, m->wall->normal.x) + 0x8000;
+        Vec3f normal;
+        get_surface_normal(normal, m->wall);
+        m->faceAngle[1] = atan2s(normal[2], normal[1]) + 0x8000;
     }
 
     m->marioObj->header.gfx.angle[0] = -0x4000;
@@ -1082,14 +1088,14 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
         }
         
         
-        if (m->floor != NULL && m->floor->normal.y < 0.6f) {
+        if (m->floor != NULL && m->floorNormal[1] < 0.6f) {
             m->faceAngle[1] = m->floorYaw - 0x8000;
             m->forwardVel = -absf(m->forwardVel);
-            m->vel[1] *= m->floor->normal.y;
+            m->vel[1] *= m->floorNormal[1];
         }
-        else if (m->floor != NULL && m->floor->normal.y < 0.8f) {
-            m->forwardVel *= m->floor->normal.y;
-            m->vel[1] *= 1.0f + (1.0f-m->floor->normal.y);
+        else if (m->floor != NULL && m->floorNormal[1] < 0.8f) {
+            m->forwardVel *= m->floorNormal[1];
+            m->vel[1] *= 1.0f + (1.0f-m->floorNormal[1]);
             
         }
     }
@@ -1637,7 +1643,9 @@ s32 act_grapple_wall(struct MarioState *m) {
             m->lastFrameObjPosition[2] = 0;
         return set_mario_action(m, ACT_FREEFALL, 0);
     } else {
-        gMarioState->faceAngle[1] = atan2s(surf->normal.z, surf->normal.x);
+        Vec3f normal;
+        get_surface_normal(normal, surf);
+        gMarioState->faceAngle[1] = atan2s(normal[2], normal[0]);
         if (surf->object != NULL) {
             apply_platform_displacement(&sMarioDisplacementInfo, m->pos, &m->faceAngle[1], surf->object);
             m->lastFrameObj = surf->object;
@@ -1790,7 +1798,7 @@ s32 act_butt_slide_air(struct MarioState *m) {
 
     switch (perform_air_step(m, AIR_STEP_CHECK_NONE)) {
         case AIR_STEP_LANDED:
-            if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal.y >= COS10) {
+            if (m->actionState == 0 && m->vel[1] < 0.0f && m->floorNormal[1] >= COS10) {
                 m->vel[1] = -m->vel[1] / 2.0f;
                 m->actionState = 1;
             } else {
@@ -1829,7 +1837,7 @@ s32 act_hold_butt_slide_air(struct MarioState *m) {
 
     switch (perform_air_step(m, AIR_STEP_CHECK_NONE)) {
         case AIR_STEP_LANDED:
-            if (m->actionState == ACT_STATE_BUTT_SLIDE_AIR_SMALL_BOUNCE && m->vel[1] < 0.0f && m->floor->normal.y >= COS10) {
+            if (m->actionState == ACT_STATE_BUTT_SLIDE_AIR_SMALL_BOUNCE && m->vel[1] < 0.0f && m->floorNormal[1] >= COS10) {
                 m->vel[1] = -m->vel[1] / 2.0f;
                 m->actionState = 1;
             } else {
@@ -2452,10 +2460,12 @@ s32 act_climbing_wall(struct MarioState *m) {
         return set_mario_action(m, ACT_JUMP, 0);
     }
     
+    Vec3f normal;
+        get_surface_normal(normal, m->wall);
 
     m->pos[1] += gPlayer1Controller->rawStickY * climbSpeed;
-        m->pos[0] += ((f32)gPlayer1Controller->rawStickX)*coss(atan2s(m->wall->normal.z, m->wall->normal.x)) * climbSpeed;
-        m->pos[2] -= ((f32)gPlayer1Controller->rawStickX)*sins(atan2s(m->wall->normal.z, m->wall->normal.x)) * climbSpeed;
+        m->pos[0] += ((f32)gPlayer1Controller->rawStickX)*coss(atan2s(normal[2], normal[0])) * climbSpeed;
+        m->pos[2] -= ((f32)gPlayer1Controller->rawStickX)*sins(atan2s(normal[2], normal[0])) * climbSpeed;
     //apply_landing_accel(m, 6.0f);
 
     f32 floorHeight = find_floor(m->pos[0], m->pos[1] + 50, m->pos[2], &floor);
@@ -2468,7 +2478,7 @@ s32 act_climbing_wall(struct MarioState *m) {
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     
-    m->faceAngle[1] = atan2s(m->wall->normal.z, m->wall->normal.x) + 0x8000;
+    m->faceAngle[1] = atan2s(normal[2], normal[0]) + 0x8000;
     m->marioObj->header.gfx.angle[1] = m->faceAngle[1];
     return FALSE;
 }
