@@ -27,6 +27,7 @@
 
 #include "levels/castle_inside/header.inc.h"
 #include "levels/bowser_1/header.inc.h"
+#include "levels/bowser_2/header.inc.h"
 
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
@@ -1021,6 +1022,54 @@ s32 event_leaving_second_hub[] = {
     EVENT_END_CUTSCENE
 };
 
+s32 event_before_second_patchmaker_fight[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 135,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 136,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_BOWSER_BEFORE_SECOND_FIGHT,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 137,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 138,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_SET_MARIO_YAW, 0,
+    EVENT_WAIT, 2,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 139,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 140,
+    EVENT_MARIO_APPROACH_POINT, -3000, 1000, 0,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 137,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 138,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 30,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 141,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 142,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_BEFORE_SECOND_FIGHT,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 143,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 144,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 145,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 146,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SHOW_BOSS_TITLE, 6,
+    EVENT_WAIT, 120,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_END_CUTSCENE,
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1043,7 +1092,9 @@ s32 *eventList[] = {
     event_revive_bowser,
     event_first_memory,
     event_second_hub_arrival,
-    event_leaving_second_hub
+    event_leaving_second_hub,
+    event_before_second_patchmaker_fight,
+    //20
 };
 
 s32 *splineList[] = {
@@ -1209,6 +1260,20 @@ s32 *splineList[] = {
     castle_inside_area_2_spline_LeavingSecondHubPos3,
     castle_inside_area_2_spline_LeavingSecondHubFocus3,
     //135
+    bowser_2_area_1_spline_SecondFightIntroPos1,
+    bowser_2_area_1_spline_SecondFightIntroFocus1,
+    bowser_2_area_1_spline_SecondFightIntroPos2,
+    bowser_2_area_1_spline_SecondFightIntroFocus2,
+    bowser_2_area_1_spline_SecondFightIntroPos3,
+    //140
+    bowser_2_area_1_spline_SecondFightIntroFocus3,
+    bowser_2_area_1_spline_SecondFightIntroPos4,
+    bowser_2_area_1_spline_SecondFightIntroFocus4,
+    bowser_2_area_1_spline_SecondFightIntroPos5,
+    bowser_2_area_1_spline_SecondFightIntroFocus5,
+    //145
+    bowser_2_area_1_spline_SecondFightIntroPos6,
+    bowser_2_area_1_spline_SecondFightIntroFocus6,
 
 };
 

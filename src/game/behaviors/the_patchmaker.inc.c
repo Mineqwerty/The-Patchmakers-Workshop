@@ -1,7 +1,7 @@
 #include "src/game/cutscene.h"
 
 enum PatchmakerActions {
-    PATCHMAKER_ACT_CUTSCENE,
+    PATCHMAKER_ACT_FIRST_CUTSCENE,
     PATCHMAKER_ACT_WALK_TO_MARIO,
     PATCHMAKER_ACT_JUMPS,
     PATCHMAKER_ACT_SLASH_DASH,
@@ -10,7 +10,8 @@ enum PatchmakerActions {
     PATCHMAKER_ACT_SLOW_NEEDLE_WALK,
     PATCHMAKER_ACT_SUMMON_NEEDLE_BALL,
 
-    PATCHMAKER_ACT_DEFEATED
+    PATCHMAKER_ACT_DEFEATED,
+    PATCHMAKER_ACT_SECOND_CUTSCENE
 };
 
 enum PatchmakerAnims {
@@ -61,7 +62,7 @@ void patchmaker_transition_to_next_action() {
     u16 nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
 
     switch (o->oAction) {
-        case PATCHMAKER_ACT_CUTSCENE:
+        case PATCHMAKER_ACT_FIRST_CUTSCENE:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
@@ -235,6 +236,53 @@ void patchmaker_act_first_fight_cutscene(void) {
 
     if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
         patchmaker_fight_start();
+    }
+}
+
+void patchmaker_act_second_fight_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_SECOND_FIGHT_INTRO);
+            cur_obj_hide();
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 3) {
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_POINT, 1.0f);
+                //o->header.gfx.animInfo.animFrame = 30;
+                cur_obj_unhide();
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 4) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_HEAD_GRAB);
+                o->oTimer = 0;
+                o->oSubAction++;
+            }
+        break;
+        case 3:
+            if (o->oTimer == 60) {
+                o->oPosX = 300;
+                o->oPosY = 1000;
+                o->oPosZ = -40;
+                o->oFaceAngleYaw = -0x4000;
+                o->oMoveAngleYaw = -0x4000;
+            }
+            
+            if (cExternalCutsceneTrigger >= 5) {
+                    cur_obj_shake_screen(SHAKE_POS_LARGE);
+                    o->oSubAction++;
+                o->oPosX = 300;
+                o->oPosY = 1000;
+                o->oPosZ = -40;
+                o->oFaceAngleYaw = -0x4000;
+                o->oMoveAngleYaw = -0x4000;
+            }
+        break;
+        case 4:
+
+        break;
     }
 }
 
@@ -550,12 +598,24 @@ void bhv_patchmaker_init(void) {
     o->oHealth = PATCHMAKER_MAX_HEALTH;
     obj_set_hitbox(o, &sPatchmakerHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
+
+    switch (gCurrLevelNum) {
+        case LEVEL_BOWSER_1:
+            o->oAction = PATCHMAKER_ACT_FIRST_CUTSCENE;
+        break;
+        case LEVEL_BOWSER_2:
+            o->oAction = PATCHMAKER_ACT_SECOND_CUTSCENE;
+        break;
+    }
 }
 
 void bhv_patchmaker_loop(void) {
     switch (o->oAction) {
-        case PATCHMAKER_ACT_CUTSCENE:
+        case PATCHMAKER_ACT_FIRST_CUTSCENE:
             patchmaker_act_first_fight_cutscene();
+        break;
+        case PATCHMAKER_ACT_SECOND_CUTSCENE:
+            patchmaker_act_second_fight_cutscene();
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
             patchmaker_act_walk_to_mario();

@@ -208,3 +208,4 @@ const GeoLayout geo_menu_act_selector_strings[] = {
 #include "levels/menu/clc_diorama/geo.inc.c"
 #include "levels/menu/hvh_diorama/geo.inc.c"
 #include "levels/menu/tvw_diorama/geo.inc.c"
+#include "levels/menu/tfp_diorama/geo.inc.c"

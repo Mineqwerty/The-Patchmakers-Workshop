@@ -3137,7 +3137,13 @@ And there WON'T be any objections!\n\
 @FF0202FFIt's Bowser time!"))
 
 DEFINE_DIALOG(DIALOG_BOWSER_BEFORE_SECOND_FIGHT, 1, 3, 30, 200, _("\
+@FF0202FFUrgh...\n\
+How much garbage did that guy make?\n\
+Wait...\n\
 @FF0202FFIs that...?\n\
+\n\
+\n\
+@FF0202FFIt is!\n\
 \n\
 \n\
 @FF0202FFBwahaha! Hey Mario, check it out!\n\

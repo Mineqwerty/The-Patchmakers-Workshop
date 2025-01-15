@@ -905,14 +905,15 @@ void render_hud_camera_status(void) {
 
 void render_hud_boss_intro(void) {
 
-    char *bossTitles[5] = {
+    char *bossTitles[6] = {
         "Pushpin Pokey",
         "Aurumcael",
         "Demonic Solids",
         "Xodorap",
+        "The Patchmaker",
         "The Patchmaker"
     };
-    u8 bossTitleColor[5];
+    u8 bossTitleColor[6];
     switch (gHudDisplay.bossID) {
         case 1:
             bossTitleColor[0] = 209;
@@ -935,6 +936,11 @@ void render_hud_boss_intro(void) {
             bossTitleColor[2] = 0xBD;
         break;
         case 5:
+            bossTitleColor[0] = 0x4C;
+            bossTitleColor[1] = 0x2A;
+            bossTitleColor[2] = 0x2D;
+        break;
+        case 6:
             bossTitleColor[0] = 0x4C;
             bossTitleColor[1] = 0x2A;
             bossTitleColor[2] = 0x2D;
@@ -966,6 +972,9 @@ void render_hud_boss_intro(void) {
         break;
         case 5:
             print_small_text(160, 140, "Crazed creator of all that surrounds", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+        break;
+        case 6:
+            print_small_text(160, 140, "Decaying man of creation and failure", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
         break;
     }
 

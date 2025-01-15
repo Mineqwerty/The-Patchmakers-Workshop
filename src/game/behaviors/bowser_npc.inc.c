@@ -19,7 +19,8 @@ enum BowserNPCActions {
     BOWSER_NPC_ACT_FIND_SPOT = 4,
     BOWSER_NPC_ACT_REVIVE_CUTSCENE,
     BOWSER_NPC_ACT_ENTER_SECOND_HUB,
-    BOWSER_NPC_ACT_LEAVING_SECOND_HUB
+    BOWSER_NPC_ACT_LEAVING_SECOND_HUB,
+    BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -135,6 +136,7 @@ void bowser_npc_act_enter_second_hub(void) {
 
 void bowser_npc_act_leaving_second_hub(void) {
             if (cExternalCutsceneTrigger >= 2) {
+                cur_obj_unhide();
                 cur_obj_init_animation(12);
                 o->oMoveAngleYaw = -0x4000;
                 o->oFaceAngleYaw = -0x4000;
@@ -147,6 +149,42 @@ void bowser_npc_act_leaving_second_hub(void) {
                     o->oSubAction = 1;
                 }
             }
+}
+
+void bowser_npc_act_second_patchmaker_fight_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(12);
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oSubAction = 1;
+            }
+        break;
+        case 1:
+            o->oPosX = 2000;
+            o->oPosZ = 400;
+            o->oMoveAngleYaw = 0x8000;
+            o->oFaceAngleYaw = 0x8000;
+            if (cExternalCutsceneTrigger >= 2) {
+                for (int i = 0; i < 7; i++) {
+                    spawn_object_relative(0, random_u16()%200 - 100, random_u16()%200, - 100 + random_u16()%50, o, MODEL_EXPLOSION, bhvExplosion);
+                }
+                o->oForwardVel = 80.0f;
+                o->oVelY = 50;
+                o->oTimer = 0;
+                o->oSubAction = 2;
+            }
+        break;
+        case 2:
+            cur_obj_init_animation_with_accel_and_sound(3, 2.0f);
+            cur_obj_move_xz_using_fvel_and_yaw();
+            o->oPosY += o->oVelY;
+            o->oVelY -= 2;
+
+            if (o->oTimer >= 30) {
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
 }
 
 void bowser_npc_find_spot(void) {
@@ -188,6 +226,10 @@ void bhv_bowser_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_LEAVING_SECOND_HUB) {
         o->oAction = BOWSER_NPC_ACT_LEAVING_SECOND_HUB;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_PATCHMAKER_SECOND_FIGHT_INTRO) {
+        o->oAction = BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE;
+    }
+
     switch (o->oAction) {
         case BOWSER_NPC_ACT_FIND_SPOT:
             bowser_npc_act_find_spot();
@@ -203,6 +245,9 @@ void bhv_bowser_npc_loop(void) {
         break;
         case BOWSER_NPC_ACT_LEAVING_SECOND_HUB:
             bowser_npc_act_leaving_second_hub();
+        break;
+        case BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE:
+            bowser_npc_act_second_patchmaker_fight_cutscene();
         break;
     }
 
