@@ -1063,6 +1063,10 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
         return set_mario_action(m, ACT_GROUND_POUND, 0);
     }
 
+    if (m->equippedPatch != PATCH_BREEZE) {
+        return set_mario_action(m, ACT_FREEFALL, 0);
+    }
+
     
 
     // Vanilla
@@ -2088,7 +2092,7 @@ s32 act_flying(struct MarioState *m) {
     s16 startPitch = m->faceAngle[0];
 
 #ifdef REONUCAM
-    if (gPlayer1Controller->buttonPressed & R_TRIG) {
+    if (gPlayer1Controller->buttonPressed & camera_button_input()) {
         gReonucamState.flyingCamOverride ^= 1;
     }
 #endif

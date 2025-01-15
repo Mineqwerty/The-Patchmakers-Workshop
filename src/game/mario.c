@@ -1583,7 +1583,7 @@ void set_submerged_cam_preset_and_spawn_bubbles(struct MarioState *m) {
     if ((m->action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED) return;
 
     // R Trigger toggles camera mode override
-    if ((gPlayer1Controller->buttonPressed & R_TRIG) && (m->action & ACT_FLAG_SWIMMING)) {
+    if ((gPlayer1Controller->buttonPressed & camera_button_input()) && (m->action & ACT_FLAG_SWIMMING)) {
         gReonucamState.waterCamOverride ^= 1;
     }
 

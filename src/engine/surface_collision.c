@@ -9,6 +9,7 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 #include "game/puppyprint.h"
+#include "src/game/mario_step.h"
 
 struct SpawnParticlesInfo ThornPass = {
     1, 10, MODEL_LEAVES, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f
@@ -70,6 +71,11 @@ void get_surface_normal(f32 normal[3], struct Surface *surf) {
     normal[0] = nx;
     normal[1] = ny;
     normal[2] = nz;
+    if (surf == &gWaterSurfacePseudoFloor) {
+        normal[0] = 0;
+        normal[1] = 1;
+        normal[2] = 0;
+    }
 }
 
 /**************************************************

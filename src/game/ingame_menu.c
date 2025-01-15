@@ -74,6 +74,10 @@ s16 gSoundMenuDynamicID = -1;
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
 u8 textPressL[] = { TEXT_HUD_PRESS_L };
+u8 textCameraCorrectionOn[] = { TEXT_HUD_CAMERA_CORRECTION_ENABLED };
+u8 textCameraCorrectionOff[] = { TEXT_HUD_CAMERA_CORRECTION_DISABLED };
+u8 textPatchButtonL[] = { TEXT_HUD_PATCH_BUTTON_L };
+u8 textPatchButtonR[] = { TEXT_HUD_PATCH_BUTTON_R };
 #endif
 
 #if MULTILANG
@@ -2462,19 +2466,19 @@ void render_reonucam_speed_setting(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     switch (gReonucamState.speed) {
         case 0:
-            print_generic_string(-60, 30, textCamInfoSlowest);
+            print_generic_string(-80, 30, textCamInfoSlowest);
             break;
         case 1:
-            print_generic_string(-60, 30, textCamInfoSlow);
+            print_generic_string(-80, 30, textCamInfoSlow);
             break;
         case 2:
-            print_generic_string(-60, 30, textCamInfoMedium);
+            print_generic_string(-80, 30, textCamInfoMedium);
             break;
         case 3:
-            print_generic_string(-60, 30, textCamInfoFast);
+            print_generic_string(-80, 30, textCamInfoFast);
             break;
         case 4:
-            print_generic_string(-60, 30, textCamInfoFastest);
+            print_generic_string(-80, 30, textCamInfoFastest);
             break;
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -2576,10 +2580,10 @@ void render_widescreen_setting(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     if (!gConfig.widescreen) {
-        print_generic_string(-60, 10, textCurrRatio43);
+        print_generic_string(-80, 10, textCurrRatio43);
         //print_generic_string(10,  7, textPressL);
     } else {
-        print_generic_string(-60, 10, textCurrRatio169);
+        print_generic_string(-80, 10, textCurrRatio169);
         //print_generic_string(10,  7, textPressL);
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -2591,6 +2595,44 @@ void render_widescreen_setting(void) {
     */
 }
 #endif
+
+void render_camera_volume_setting(void) {
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    if (!gConfig.cameraCorrectionDisabled) {
+        print_generic_string(-80, -10, textCameraCorrectionOn);
+        //print_generic_string(10,  7, textPressL);
+    } else {
+        print_generic_string(-80, -10, textCameraCorrectionOff);
+        //print_generic_string(10,  7, textPressL);
+    }
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    /*
+    if (gPlayer1Controller->buttonPressed & L_TRIG){
+        gConfig.widescreen ^= 1;
+        save_file_set_widescreen_mode(gConfig.widescreen);
+    }
+    */
+}
+
+void render_patch_button_setting(void) {
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    if (!gConfig.patchButtonAlternate) {
+        print_generic_string(-80, -30, textPatchButtonL);
+        //print_generic_string(10,  7, textPressL);
+    } else {
+        print_generic_string(-80, -30, textPatchButtonR);
+        //print_generic_string(10,  7, textPressL);
+    }
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    /*
+    if (gPlayer1Controller->buttonPressed & L_TRIG){
+        gConfig.widescreen ^= 1;
+        save_file_set_widescreen_mode(gConfig.widescreen);
+    }
+    */
+}
 
 #if defined(VERSION_JP) || defined(VERSION_SH)
     #define CRS_NUM_X1 93
@@ -2865,11 +2907,12 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     u8 strVal[8];
     s16 prevCourseIndex = gDialogLineNum;
 
-
+    if (gSubMenuIndex == 1) {
     handle_menu_scrolling(
         MENU_SCROLL_VERTICAL, &gDialogLineNum,
         COURSE_NUM_TO_INDEX(COURSE_MIN) - 1, COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES) + 1
     );
+    }
 
     if (gDialogLineNum == COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES) + 1) {
         gDialogLineNum = COURSE_NUM_TO_INDEX(COURSE_MIN); // Exceeded max, set to min
@@ -3068,16 +3111,21 @@ void render_pause_screen_felt() {
 
     gSPDisplayList(gDisplayListHead++, menu_layer_3_Plane_002_mesh);
 
-    #if defined(WIDE) && !defined(PUPPYCAM)
-        render_widescreen_setting();
-#endif
-#ifdef REONUCAM
-        render_reonucam_speed_setting();
-#endif
+    render_widescreen_setting();
+    render_reonucam_speed_setting();
+    render_camera_volume_setting();
+    render_patch_button_setting();
 
     if (gSubMenuIndex == 3) {
-        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gOptionsIndex, 0, 2);
-        create_dl_translation_matrix(MENU_MTX_PUSH, -70, 10 - (((gOptionsIndex - 1) * 20)), 0);
+        s16 arrowPosX = 94 + 4*sins(gGlobalTimer * 0x444);
+        handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gOptionsIndex, 0, 3);
+        create_dl_rotation_matrix(MENU_MTX_PUSH, -180.0f, 0.0f, 0.0f, 1.0f);
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, arrowPosX, -26 - ((-(gOptionsIndex - 1) * 20)), 0);
+            
+            gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        create_dl_translation_matrix(MENU_MTX_PUSH, arrowPosX, 10 - (((gOptionsIndex - 1) * 20)), 0);
 
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
         gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
@@ -3101,8 +3149,14 @@ void render_pause_screen_felt() {
     gSPDisplayList(gDisplayListHead++, menu_layer_1_Plane_mesh);
 
     if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
-    render_pause_my_score_coins();
-    render_pause_course_options(-90, 0, &gDialogLineNum, 15);
+        if (gCurrLevelNum == LEVEL_CASTLE) {
+            render_pause_castle_menu_box(0, 83);
+            render_pause_castle_main_strings(-66, 0); 
+        }
+        else {
+            render_pause_my_score_coins();
+            render_pause_course_options(-90, 0, &gDialogLineNum, 15);
+        }
     }
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -3534,6 +3588,47 @@ enum OptionsMenu {
     OPTION_INDEX_PATCH_BUTTON
 };
 
+void toggle_options_menu_selection(u8 direction) {
+    switch (gOptionsIndex) {
+                        
+                        case OPTION_INDEX_CAMERA_SPEED:
+                        if (direction == 1) {
+                                if (gReonucamState.speed < 4) {
+                                    gReonucamState.speed += 1;
+                                } else {
+                                    gReonucamState.speed = 0;
+                                }
+                        }
+                        else {
+                            if (gReonucamState.speed > 0) {
+                                    gReonucamState.speed -= 1;
+                                } else {
+                                    gReonucamState.speed = 3;
+                                }
+                        }
+                                save_file_set_camera_speed(gReonucamState.speed);
+                            break;
+                        case OPTION_INDEX_WIDESCREEN:
+                            gConfig.widescreen ^= 1;
+                            save_file_set_widescreen_mode(gConfig.widescreen);
+                            break;
+
+                        case OPTION_INDEX_CAMERA_CORRECTION:
+                            gConfig.cameraCorrectionDisabled ^= 1;
+                            save_file_set_camera_correction(gConfig.cameraCorrectionDisabled);
+                            break;
+                        break;
+
+                        case OPTION_INDEX_PATCH_BUTTON:
+                            gConfig.patchButtonAlternate ^= 1;
+                            save_file_set_patch_button(gConfig.patchButtonAlternate);
+                            break;
+                        break;
+                    }
+}
+
+s16 optionScrollTimer = 0;
+
 s32 render_pause_courses_and_castle(void) {
     s16 index;
 
@@ -3568,7 +3663,7 @@ s32 render_pause_courses_and_castle(void) {
                 gDialogBoxState = DIALOG_STATE_VERTICAL;
             } else {
                 highlight_last_course_complete_stars();
-                gDialogBoxState = DIALOG_STATE_HORIZONTAL;
+                gDialogBoxState = DIALOG_STATE_VERTICAL;
             }
             break;
 
@@ -3663,35 +3758,29 @@ s32 render_pause_courses_and_castle(void) {
                 }
 
             else if (gSubMenuIndex == 3) {
-                    switch (gOptionsIndex) {
-                        
-                        case OPTION_INDEX_CAMERA_SPEED:
-                                if (gReonucamState.speed < 4) {
-                                    gReonucamState.speed += 1;
-                                } else {
-                                    gReonucamState.speed = 0;
-                                }
-                                save_file_set_camera_speed(gReonucamState.speed);
-                            break;
-                        case OPTION_INDEX_WIDESCREEN:
-                            gConfig.widescreen ^= 1;
-                            save_file_set_widescreen_mode(gConfig.widescreen);
-                            break;
-
-                        case OPTION_INDEX_CAMERA_CORRECTION:
-                            gConfig.cameraCorrectionDisabled ^= 1;
-                            save_file_set_camera_correction(gConfig.cameraCorrectionDisabled);
-                            break;
-                        break;
-
-                        case OPTION_INDEX_PATCH_BUTTON:
-                            gConfig.patchButtonAlternate ^= 1;
-                            save_file_set_patch_button(gConfig.patchButtonAlternate);
-                            break;
-                        break;
-                    }
+                    toggle_options_menu_selection(1);
                 }
             }
+
+            if (gSubMenuIndex == 3) {
+                if (((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD)))) {
+                    if (optionScrollTimer == 0) {
+                        toggle_options_menu_selection(1);
+                        optionScrollTimer = 15;
+                    }
+                }
+                else if (((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD)))) {
+                    if (optionScrollTimer == 0) {
+                        toggle_options_menu_selection(0);
+                        optionScrollTimer = 15;
+                    }
+                }
+                else {
+                    optionScrollTimer = 0;
+                }
+            }
+
+            
             break;
 
         case DIALOG_STATE_HORIZONTAL:
@@ -3713,6 +3802,9 @@ s32 render_pause_courses_and_castle(void) {
     if (gDialogTextAlpha < 250) {
         gDialogTextAlpha += 25;
     }
+    if (optionScrollTimer > 0) {
+                optionScrollTimer--; 
+            }
 #ifdef PUPPYCAM
     } else {
         shade_screen();

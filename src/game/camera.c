@@ -600,6 +600,10 @@ void set_environmental_camera_shake(s16 shake) {
     }
 }
 
+u32 camera_button_input(void) {
+    return (gConfig.patchButtonAlternate == 0 ? R_TRIG : L_TRIG);
+}
+
 /**
  * Starts a camera shake, but scales the amplitude by the point's distance from the camera
  */
@@ -918,10 +922,10 @@ s32 update_8_directions_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         yOff = 125.f;
     }
 
-    if ((gPlayer1Controller->buttonDown & R_TRIG) && (gPlayer1Controller->buttonDown & U_CBUTTONS)) {
+    if ((gPlayer1Controller->buttonDown & camera_button_input()) && (gPlayer1Controller->buttonDown & U_CBUTTONS)) {
         gReonucamState.keepCliffCam = 1;
         pitch = DEGREES(60);
-    } else if (((gPlayer1Controller->buttonDown & U_CBUTTONS) || (gPlayer1Controller->buttonDown & R_TRIG)) && gReonucamState.keepCliffCam) {
+    } else if (((gPlayer1Controller->buttonDown & U_CBUTTONS) || (gPlayer1Controller->buttonDown & camera_button_input())) && gReonucamState.keepCliffCam) {
         pitch = DEGREES(60);
     } else {
         gReonucamState.keepCliffCam = 0;
@@ -1178,15 +1182,15 @@ void reonucam_handler(void) {
     // Get the camera speed based on the user's setting
     f32 cameraSpeed = set_camera_speed();
     //45º rotations
-    if ((gPlayer1Controller->buttonPressed & L_CBUTTONS) && !(gPlayer1Controller->buttonDown & R_TRIG)) {
+    if ((gPlayer1Controller->buttonPressed & L_CBUTTONS) && !(gPlayer1Controller->buttonDown & camera_button_input())) {
         s8DirModeBaseYaw -= DEGREES(45);
         sCameraDisturbed = 1;
-    } else if ((gPlayer1Controller->buttonPressed & R_CBUTTONS) && !(gPlayer1Controller->buttonDown & R_TRIG)) {
+    } else if ((gPlayer1Controller->buttonPressed & R_CBUTTONS) && !(gPlayer1Controller->buttonDown & camera_button_input())) {
         s8DirModeBaseYaw += DEGREES(45);
         sCameraDisturbed = 1;
     }
     //Smooth rotation
-    if (gPlayer1Controller->buttonDown & R_TRIG) {
+    if (gPlayer1Controller->buttonDown & camera_button_input()) {
         if (gPlayer1Controller->buttonDown & L_CBUTTONS) {
             s8DirModeBaseYaw -= DEGREES(cameraSpeed);
             sCameraDisturbed = 1;
@@ -1206,7 +1210,7 @@ void reonucam_handler(void) {
         }
         gReonucamState.rButtonCounter = 0;
     }
-    if (gPlayer1Controller->buttonPressed & R_TRIG) {
+    if (gPlayer1Controller->buttonPressed & camera_button_input()) {
         if (gReonucamState.rButtonCounter2 <= 5) {
             set_cam_angle(CAM_ANGLE_MARIO); // Enter mario cam if R is pressed 2 times in less than 5 frames
             gReonucamState.rButtonCounter2 = 6;
@@ -1217,7 +1221,7 @@ void reonucam_handler(void) {
     } else {
         gReonucamState.rButtonCounter2++;
      }
-    if (gPlayer1Controller->buttonDown & R_TRIG && gPlayer1Controller->buttonPressed & D_CBUTTONS) {
+    if (gPlayer1Controller->buttonDown & camera_button_input() && gPlayer1Controller->buttonPressed & D_CBUTTONS) {
        s8DirModeBaseYaw = snap_to_45_degrees(s8DirModeBaseYaw); // Lock the camera to the nearest 45deg axis
        sCameraDisturbed = 1;
     }
@@ -3490,7 +3494,7 @@ void update_camera(struct Camera *c) {
         && gCurrentArea->camera->mode != CAMERA_MODE_INSIDE_CANNON) {
         // Only process R_TRIG if 'fixed' is not selected in the menu
         if (cam_select_alt_mode(CAM_SELECTION_NONE) == CAM_SELECTION_MARIO) {
-            if (gPlayer1Controller->buttonPressed & R_TRIG && sFOVState.fovFunc != CAM_FOV_APP_315) {
+            if (gPlayer1Controller->buttonPressed & camera_button_input() && sFOVState.fovFunc != CAM_FOV_APP_315) {
 #ifdef REONUCAM
                 if (set_cam_angle(0) == CAM_ANGLE_MARIO) {
                     s8DirModeBaseYaw = snap_to_45_degrees(s8DirModeBaseYaw);
@@ -3677,13 +3681,13 @@ void update_camera(struct Camera *c) {
 #endif
             // If fixed camera is selected as the alternate mode, then fix the camera as long as the
             // right trigger is held
-            if ((c->cutscene == CUTSCENE_NONE && (gPlayer1Controller->buttonDown & R_TRIG)
+            if ((c->cutscene == CUTSCENE_NONE && (gPlayer1Controller->buttonDown & camera_button_input())
                  && cam_select_alt_mode(0) == CAM_SELECTION_FIXED)
                 || (gCameraMovementFlags & CAM_MOVE_FIX_IN_PLACE)
                 || (sMarioCamState->action) == ACT_GETTING_BLOWN) {
 
                 // If this is the first frame that R_TRIG is held, play the "click" sound
-                if (c->cutscene == CUTSCENE_NONE && (gPlayer1Controller->buttonPressed & R_TRIG)
+                if (c->cutscene == CUTSCENE_NONE && (gPlayer1Controller->buttonPressed & camera_button_input())
                     && cam_select_alt_mode(0) == CAM_SELECTION_FIXED) {
                     sCameraSoundFlags |= CAM_SOUND_FIXED_ACTIVE;
                     play_sound_rbutton_changed();
@@ -4421,7 +4425,7 @@ s32 update_camera_hud_status(struct Camera *c) {
     s16 status = CAM_STATUS_NONE;
 
     if (c->cutscene != CUTSCENE_NONE
-        || ((gPlayer1Controller->buttonDown & R_TRIG)
+        || ((gPlayer1Controller->buttonDown & camera_button_input())
             && cam_select_alt_mode(0) == CAM_SELECTION_FIXED)) {
         status |= CAM_STATUS_FIXED;
     } else if (set_cam_angle(0) == CAM_ANGLE_MARIO) {
@@ -5332,7 +5336,7 @@ void radial_camera_input(struct Camera *c) {
 
     // Zoom in / enter C-Up
 #ifdef REONUCAM
-    if ((gPlayer1Controller->buttonPressed & U_CBUTTONS) && !(gPlayer1Controller->buttonDown & R_TRIG)) {
+    if ((gPlayer1Controller->buttonPressed & U_CBUTTONS) && !(gPlayer1Controller->buttonDown & camera_button_input())) {
 #else
     if (gPlayer1Controller->buttonPressed & U_CBUTTONS) {
 #endif
