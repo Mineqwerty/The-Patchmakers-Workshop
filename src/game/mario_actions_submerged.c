@@ -450,7 +450,7 @@ static s32 act_water_idle(struct MarioState *m) {
         return set_mario_action(m, (m->equippedPatch == PATCH_MARINE) ? ACT_MARINE_PATCH_SPIN : ACT_WATER_PUNCH, 0);
     }
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && m->equippedPatch == PATCH_MARINE) {
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && m->equippedPatch == PATCH_MARINE) {
         return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
     }
 
@@ -496,7 +496,7 @@ static s32 act_water_action_end(struct MarioState *m) {
         return set_mario_action(m, (m->equippedPatch == PATCH_MARINE) ? ACT_MARINE_PATCH_SPIN : ACT_WATER_PUNCH, 0);
     }
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && m->equippedPatch == PATCH_MARINE) {
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && m->equippedPatch == PATCH_MARINE) {
         return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
     }
 

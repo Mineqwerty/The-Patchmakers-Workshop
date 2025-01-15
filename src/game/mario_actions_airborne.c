@@ -2486,7 +2486,7 @@ s32 act_climbing_wall(struct MarioState *m) {
 s32 act_bounced_on_rosedrift(struct MarioState *m) {
     s32 stepResult;
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && m->vel[1] < 0.0f && m->curPatch != PATCH_STONE && m->equippedPatch == PATCH_STONE) {
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && m->vel[1] < 0.0f && m->curPatch != PATCH_STONE && m->equippedPatch == PATCH_STONE) {
             m->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_PATCH_MARIO_STONE];
             m->forwardVel = 0;
             m->vel[0] = 0;

@@ -48,6 +48,10 @@
 
 u8 check_able_to_use_patch();
 
+u32 patch_button_input(void) {
+    return (gConfig.patchButtonAlternate == 1 ? R_TRIG : L_TRIG);
+}
+
 /**
  * Checks if Mario's animation has reached its end point.
  */
@@ -1912,6 +1916,18 @@ void check_special_warp_operation(u8 op) {
     }
 }
 
+s16 check_no_portal_area(void) {
+    return ((gCurrLevelNum == LEVEL_BITDW)
+        || (gCurrLevelNum == LEVEL_BITFS)
+        || (gCurrLevelNum == LEVEL_BITS)
+        || (gCurrLevelNum == LEVEL_BOWSER_1)
+        || (gCurrLevelNum == LEVEL_BOWSER_2)
+        || (gCurrLevelNum == LEVEL_BOWSER_3)
+        || (gCurrLevelNum == LEVEL_CCM && gCurrAreaIndex == 4)
+        || (gCurrLevelNum == LEVEL_DDD && gCurrAreaIndex == 5)
+        || (gCurrLevelNum == LEVEL_SL && gCurrAreaIndex == 5));
+}
+
 struct SpawnParticlesInfo StoneBreak = {
     0, 30, MODEL_PEBBLE, 0, 40, 0, 20, 40, 252, 30, 5.0f, 0.0f
 };
@@ -2101,8 +2117,16 @@ void patch_update(struct MarioState *m ) {
 
         case PATCH_PORTAL:
 
-
-            if ((gPlayer1Controller->buttonDown & L_TRIG) && check_able_to_use_patch() && gMenuMode == MENU_MODE_NONE) {
+            if (check_no_portal_area()) {
+                if (gPlayer1Controller->buttonPressed & L_TRIG) {
+                    f32 dist;
+                    struct Object *lightningSentry = cur_obj_find_nearest_object_with_behavior(bhvLightningSentry, &dist);
+                    if (lightningSentry) obj_mark_for_deletion(m->patchChildSecondaryObj);
+                    spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvLightningSentry);
+                    m->curPatch = PATCH_NONE;
+                }
+            }
+            else if ((gPlayer1Controller->buttonDown & L_TRIG) && check_able_to_use_patch() && gMenuMode == MENU_MODE_NONE) {
                 gMenuMode = MENU_MODE_PLACING_PORTAL;
             }
             else if (!(gPlayer1Controller->buttonDown & L_TRIG) && gMenuMode == MENU_MODE_PLACING_PORTAL) {
@@ -2313,7 +2337,7 @@ void check_and_change_patch_dpad(u32 dir) {
 s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
 
-    if (gPlayer1Controller->buttonPressed & L_TRIG && check_able_to_use_patch()) {
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && check_able_to_use_patch()) {
         perform_patch_action(gMarioState);
     }
 

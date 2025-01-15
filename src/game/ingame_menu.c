@@ -3527,6 +3527,13 @@ s32 gCourseDoneMenuTimer = 0;
 s32 gCourseCompleteCoins = 0;
 s8 gHudFlash = HUD_FLASH_NONE;
 
+enum OptionsMenu {
+    OPTION_INDEX_CAMERA_SPEED,
+    OPTION_INDEX_WIDESCREEN,
+    OPTION_INDEX_CAMERA_CORRECTION,
+    OPTION_INDEX_PATCH_BUTTON
+};
+
 s32 render_pause_courses_and_castle(void) {
     s16 index;
 
@@ -3658,7 +3665,7 @@ s32 render_pause_courses_and_castle(void) {
             else if (gSubMenuIndex == 3) {
                     switch (gOptionsIndex) {
                         
-                        case 0:
+                        case OPTION_INDEX_CAMERA_SPEED:
                                 if (gReonucamState.speed < 4) {
                                     gReonucamState.speed += 1;
                                 } else {
@@ -3666,10 +3673,22 @@ s32 render_pause_courses_and_castle(void) {
                                 }
                                 save_file_set_camera_speed(gReonucamState.speed);
                             break;
-                        case 1:
+                        case OPTION_INDEX_WIDESCREEN:
                             gConfig.widescreen ^= 1;
                             save_file_set_widescreen_mode(gConfig.widescreen);
                             break;
+
+                        case OPTION_INDEX_CAMERA_CORRECTION:
+                            gConfig.cameraCorrectionDisabled ^= 1;
+                            save_file_set_camera_correction(gConfig.cameraCorrectionDisabled);
+                            break;
+                        break;
+
+                        case OPTION_INDEX_PATCH_BUTTON:
+                            gConfig.patchButtonAlternate ^= 1;
+                            save_file_set_patch_button(gConfig.patchButtonAlternate);
+                            break;
+                        break;
                     }
                 }
             }

@@ -397,3 +397,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/vtw_entrance.inc.c"
 #include "behaviors/fortune_teleporter.inc.c"
 #include "behaviors/hub_barrier.inc.c"
+#include "behaviors/lightning_sentry.inc.c"

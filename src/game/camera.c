@@ -29,6 +29,7 @@
 #include "puppyprint.h"
 #include "src/game/cutscene.h"
 #include "profiling.h"
+#include "src/game/main.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -3230,6 +3231,7 @@ s16 check_mario_is_in_course_volume(void) {
 
     switch (gCurrLevelNum) {
         case LEVEL_BOB:
+            if (gConfig.cameraCorrectionDisabled) return 0;
             switch (gCurrAreaIndex) {
                 case 1:
                     volumeID = course_volume_loop_through(0, NUM_TTC_A1_VOLUMES, ttcVolumes);
@@ -3240,6 +3242,7 @@ s16 check_mario_is_in_course_volume(void) {
             }
             break;
             case LEVEL_WF:
+            if (gConfig.cameraCorrectionDisabled) return 0;
             switch (gCurrAreaIndex) {
                 case 1:
                     volumeID = course_volume_loop_through(0, NUM_RDR_A1_VOLUMES, rdrVolumes);

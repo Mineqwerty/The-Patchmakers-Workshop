@@ -72,6 +72,9 @@ struct MainMenuSaveData {
     u8 cameraSpeedSetting: 3;
 #endif
 
+    u8 cameraCorrectionSetting : 1;
+    u8 patchButtonSetting : 1;
+
 #if MULTILANG
     u8 language: 2;
 #define SUBTRAHEND 8
@@ -223,6 +226,10 @@ u32 save_file_get_collected_patch_upgrades(s32 fileIndex);
 void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades);
 s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex);
 s32 save_file_is_cannon_unlocked(void);
+u32 save_file_get_camera_correction(void);
+u32 save_file_get_patch_button(void);
+void save_file_set_camera_correction(u8 mode);
+void save_file_set_patch_button(u8 mode);
 void save_file_set_cannon_unlocked(void);
 void save_file_set_cap_pos(s16 x, s16 y, s16 z);
 s32 save_file_get_cap_pos(Vec3s capPos);

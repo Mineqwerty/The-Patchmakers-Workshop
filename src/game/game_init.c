@@ -836,6 +836,8 @@ void thread5_game_loop(UNUSED void *arg) {
 #ifdef WIDE
     gConfig.widescreen = save_file_get_widescreen_mode();
 #endif
+    gConfig.cameraCorrectionDisabled = save_file_get_camera_correction();
+    gConfig.patchButtonAlternate = save_file_get_patch_button();
     render_init();
 
     while (TRUE) {

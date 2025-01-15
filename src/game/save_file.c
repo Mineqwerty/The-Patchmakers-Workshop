@@ -755,6 +755,28 @@ void save_file_set_widescreen_mode(u8 mode) {
 }
 #endif
 
+u32 save_file_get_camera_correction(void) {
+    return gSaveBuffer.menuData.cameraCorrectionSetting;
+}
+
+void save_file_set_camera_correction(u8 mode) {
+    gSaveBuffer.menuData.cameraCorrectionSetting = mode;
+
+    gMainMenuDataModified = TRUE;
+    save_main_menu_data();
+}
+
+u32 save_file_get_patch_button(void) {
+    return gSaveBuffer.menuData.patchButtonSetting;
+}
+
+void save_file_set_patch_button(u8 mode) {
+    gSaveBuffer.menuData.patchButtonSetting = mode;
+
+    gMainMenuDataModified = TRUE;
+    save_main_menu_data();
+}
+
 u32 save_file_get_sound_mode(void) {
     if (gSaveBuffer.menuData.soundMode >= SOUND_MODE_COUNT) {
         return 0;
