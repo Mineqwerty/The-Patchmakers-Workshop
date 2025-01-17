@@ -160,4 +160,8 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 #include "bowser_thread/geo_header.h"
 
+#include "pm_shockwave/geo_header.h"
+
+#include "pm_thrown_needle/geo_header.h"
+
 #endif

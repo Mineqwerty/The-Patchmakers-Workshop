@@ -42,3 +42,5 @@ UNUSED static const u64 binid_5 = 5;
 
 
 #include "bowser_thread/model.inc.c"
+#include "pm_shockwave/model.inc.c"
+#include "pm_thrown_needle/model.inc.c"

@@ -795,6 +795,8 @@
 #define MODEL_NEEDLE_BALL                 0x133
 
 #define MODEL_BOWSER_THREAD_OF_LIFE                  0x135
+#define MODEL_PM_SHOCKWAVE                 0x136
+#define MODEL_PM_THROWN_NEEDLE                 0x137
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

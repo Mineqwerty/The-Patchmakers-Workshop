@@ -22,3 +22,5 @@
 #include "needle_ball/geo.inc.c"
 
 #include "bowser_thread/geo.inc.c"
+#include "pm_shockwave/geo.inc.c"
+#include "pm_thrown_needle/geo.inc.c"

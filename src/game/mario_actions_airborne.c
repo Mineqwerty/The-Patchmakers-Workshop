@@ -1430,7 +1430,11 @@ s32 act_backward_air_kb(struct MarioState *m) {
     }
 
     play_knockback_sound(m);
-    common_air_knockback_step(m, ACT_BACKWARD_GROUND_KB, ACT_HARD_BACKWARD_GROUND_KB, MARIO_ANIM_BACKWARD_AIR_KB, -16.0f);
+    f32 backSpeed = -16.0f;
+    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
+        backSpeed = CLAMP(m->forwardVel, -100.0f, -16.0f);
+    }
+    common_air_knockback_step(m, ACT_BACKWARD_GROUND_KB, ACT_HARD_BACKWARD_GROUND_KB, MARIO_ANIM_BACKWARD_AIR_KB, backSpeed);
     return FALSE;
 }
 

@@ -398,3 +398,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/fortune_teleporter.inc.c"
 #include "behaviors/hub_barrier.inc.c"
 #include "behaviors/lightning_sentry.inc.c"
+#include "behaviors/pm_shockwave.inc.c"
+#include "behaviors/pm_thrown_needle.inc.c"

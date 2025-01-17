@@ -815,3 +815,5 @@ extern const BehaviorScript bhvFortuneTeleporterPedestal[];
 extern const BehaviorScript bhvHubBarrier[];
 extern const BehaviorScript bhvGearWalls[];
 extern const BehaviorScript bhvLightningSentry[];
+extern const BehaviorScript bhvPmShockwave[];
+extern const BehaviorScript bhvPmThrownNeedle[];

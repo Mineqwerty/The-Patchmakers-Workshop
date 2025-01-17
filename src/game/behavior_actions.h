@@ -1140,3 +1140,7 @@ void bhv_hub_barrier_init(void);
 void bhv_hub_barrier_loop(void);
 void bhv_lightning_sentry_init(void);
 void bhv_lightning_sentry_loop(void);
+void bhv_pm_shockwave_init(void);
+void bhv_pm_shockwave_loop(void);
+void bhv_pm_thrown_needle_init(void);
+void bhv_pm_thrown_needle_loop(void);
