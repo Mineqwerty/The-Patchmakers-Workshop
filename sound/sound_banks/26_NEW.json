@@ -155,6 +155,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "memory_end"
+    },
+    "inst_wood_thunk": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "wood_thunk"
     }
   },
   "instrument_list": [
@@ -186,6 +191,7 @@
     "inst_crane_short",
     "inst_crane_long",
     "inst_page_turn",
-    "inst_memory_end"
+    "inst_memory_end",
+    "inst_wood_thunk"
   ]
 }

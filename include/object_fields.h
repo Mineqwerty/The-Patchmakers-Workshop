@@ -1420,6 +1420,7 @@
 //patchmaker
 #define oPatchmakerChildObj           OBJECT_FIELD_OBJ(0x1B)
 #define oPatchmakerNeedleBallObj           OBJECT_FIELD_OBJ(0x1C)
+#define oPatchmakerNumAttacksLeft       OBJECT_FIELD_S32(0x1D)
 
 //lily pad
 #define oLilyIceObj           OBJECT_FIELD_OBJ(0x1B)

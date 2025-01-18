@@ -42,16 +42,19 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_SWERVE_ZOOM_IN,
     PATCHMAKER_ANIM_SWERVE_TWITCHING,
     PATCHMAKER_ANIM_FIRST_FIGHT_SPLASH_SCREEN,
-    PATCHMAKER_ANIM_DEFEATED_RUN_AWAY
+    PATCHMAKER_ANIM_DEFEATED_RUN_AWAY,
+    PATCHMAKER_ANIM_FALL_TO_GROUND
 };
 
-#define PATCHMAKER_MAX_HEALTH 50
+#define PATCHMAKER_1_MAX_HEALTH 50
+#define PATCHMAKER_2_MAX_HEALTH 75
+#define PATCHMAKER_SECOND_FIGHT (gCurrLevelNum == LEVEL_BOWSER_2)
 
 static struct ObjectHitbox sPatchmakerHitbox = {
     /* interactType:      */ INTERACT_PUSH_OUT,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
-    /* health:            */ PATCHMAKER_MAX_HEALTH,
+    /* health:            */ PATCHMAKER_1_MAX_HEALTH,
     /* numLootCoins:      */ 0,
     /* radius:            */ 100,
     /* height:            */ 300,
@@ -186,8 +189,8 @@ void patchmaker_set_boss_cam(void) {
 
 void patchmaker_fight_start(void) {
     o->oAction = PATCHMAKER_ACT_NEEDLE_STORM;
-                gBossMaxHealth = PATCHMAKER_MAX_HEALTH;
-                gBossHealth = PATCHMAKER_MAX_HEALTH;
+                gBossMaxHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
+                gBossHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
                 cur_obj_init_animation(1);
                 patchmaker_set_boss_cam();
 }
@@ -304,8 +307,19 @@ void patchmaker_act_second_fight_cutscene(void) {
             }
         break;
         case 4:
-
+            if (gCurCutscene == -1) {
+                patchmaker_fight_start();
+            }
         break;
+    }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        o->oPosX = 300;
+                o->oPosY = 1000;
+                o->oPosZ = -40;
+                o->oFaceAngleYaw = -0x4000;
+                o->oMoveAngleYaw = -0x4000;
+                patchmaker_fight_start();
     }
 }
 
@@ -315,7 +329,7 @@ void patchmaker_act_walk_to_mario(void) {
     o->oForwardVel = 0.4f;
     object_step();
 
-    if (o->oTimer >= 45 - (PATCHMAKER_MAX_HEALTH - o->oHealth)) {
+    if (o->oTimer >= 45 - (PATCHMAKER_1_MAX_HEALTH - o->oHealth)) {
         patchmaker_transition_to_next_action();
     }
 }
@@ -368,7 +382,9 @@ void patchmaker_act_slash_dash(void) {
     if (o->oTimer == 1) {
         cur_obj_init_animation(PATCHMAKER_ANIM_SLICE);
         o->oMoveAngleYaw = o->oAngleToMario;
-        
+        if (PATCHMAKER_SECOND_FIGHT) {
+            o->oPatchmakerNumAttacksLeft = 2;
+        }
     }
 
     if (o->oTimer < 20) {
@@ -388,8 +404,16 @@ void patchmaker_act_slash_dash(void) {
     object_step();
 
     if (cur_obj_check_if_at_animation_end()) {
-        o->oInteractType = INTERACT_PUSH_OUT;
-        patchmaker_transition_to_next_action();
+        if (o->oPatchmakerNumAttacksLeft > 0) {
+            o->oTimer = 19;
+            o->header.gfx.animInfo.animFrame = 19;
+            o->oMoveAngleYaw = o->oAngleToMario;
+            o->oPatchmakerNumAttacksLeft--;
+        }
+        else {
+            o->oInteractType = INTERACT_PUSH_OUT;
+            patchmaker_transition_to_next_action();
+        }
     }
 }
 
@@ -398,7 +422,7 @@ void patchmaker_act_grab_mario(void) {
     switch (o->oSubAction) {
         case 0:
             if (o->oTimer <= 1) {
-                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_START_GRAB, 1.5f);
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_START_GRAB, (PATCHMAKER_SECOND_FIGHT ? 2.0f : 1.5f));
             }
 
             cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
@@ -415,7 +439,13 @@ void patchmaker_act_grab_mario(void) {
         break;
         case 1:
             //grab fail
-            cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_MISS);
+            if (PATCHMAKER_SECOND_FIGHT) {
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_GRAB_MISS, 1.5f);
+            }
+            else {
+                cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_MISS);
+            }
+            
             cur_obj_become_tangible();
             if (cur_obj_check_if_near_animation_end()) {
                 patchmaker_transition_to_next_action();
@@ -475,10 +505,10 @@ void patchmaker_act_throw_string(void) {
     
 
     if (o->oTimer > 40) {
-        o->oAngleVelYaw = approach_s16_symmetric(o->oAngleVelYaw, 450 + 6*o->oTimer, 100);
+        o->oAngleVelYaw = approach_s16_symmetric(o->oAngleVelYaw, 450 + (PATCHMAKER_SECOND_FIGHT ? 12 : 6)*o->oTimer, 100);
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);
 
-        o->oForwardVel = 20.0f;
+        o->oForwardVel = (PATCHMAKER_SECOND_FIGHT ? 30.0f : 20.0f);
 
         if (o->oTimer % 24 == 0) {
             cur_obj_play_sound_1(SOUND_ACTION_SIDE_FLIP_UNK);
@@ -525,7 +555,7 @@ void patchmaker_act_slow_needle_walk(void) {
         case 1:
             cur_obj_init_animation(PATCHMAKER_ANIM_SLOW_NEEDLE_WALK);
             cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
-            o->oForwardVel = 5.4f;
+            o->oForwardVel = (PATCHMAKER_SECOND_FIGHT ? 7.0f : 5.4f);
             object_step();
             
             if (o->oTimer % 25 == 0) {
@@ -606,7 +636,7 @@ void patchmaker_act_shockwave(void) {
     if (o->oTimer == 13) {
         gMarioState->action = ACT_BACKWARD_AIR_KB;
         gMarioState->vel[1] = 25;
-        gMarioState->forwardVel = -48.0f;
+        gMarioState->forwardVel = (PATCHMAKER_SECOND_FIGHT ? -70.0f : -48.0f);
         gMarioState->faceAngle[1] = o->oAngleToMario + 0x8000;
     }
 
@@ -619,7 +649,7 @@ void patchmaker_act_throw_needles(void) {
     cur_obj_init_animation(PATCHMAKER_ANIM_POINT);
     cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
 
-    if (o->oTimer % 4 == 0) {
+    if (o->oTimer % (PATCHMAKER_SECOND_FIGHT ? 4 : 8) == 0 && o->oTimer < 40) {
         spawn_object_relative(0, random_u16()%300 - 150, 100, -300,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
     }
 
@@ -645,12 +675,29 @@ void patchmaker_act_first_fight_defeated(void) {
     
 }
 
+void patchmaker_act_second_fight_defeated(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = 0;
+            o->oPosZ = 0;
+            o->oPosY = 1000;
+            o->oFaceAngleYaw = -0x4000;
+            o->oMoveAngleYaw = -0x4000;
+            cur_obj_init_animation(PATCHMAKER_ANIM_DEFEATED_RUN_AWAY);
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_BREAKING_POINT);
+            o->oSubAction++;
+
+        break;
+    }
+    
+}
+
 void bhv_patchmaker_init(void) {
     o->oGravity = 3.0f;
     o->oDragStrength = 5.0f;
     o->oFriction = 1.0f;
     o->oBounciness = 0.0f;
-    o->oHealth = PATCHMAKER_MAX_HEALTH;
+    o->oHealth = PATCHMAKER_1_MAX_HEALTH;
     obj_set_hitbox(o, &sPatchmakerHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
 
@@ -700,7 +747,13 @@ void bhv_patchmaker_loop(void) {
             patchmaker_act_throw_needles();
         break;
         case PATCHMAKER_ACT_DEFEATED:
-            patchmaker_act_first_fight_defeated();
+            if (PATCHMAKER_SECOND_FIGHT) {
+                patchmaker_act_second_fight_defeated();
+            }
+            else {
+                patchmaker_act_first_fight_defeated();
+            }
+            
         break;
     }
 

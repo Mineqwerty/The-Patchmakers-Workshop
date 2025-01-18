@@ -24,3 +24,4 @@
 #include "anim_swervetwitching.inc.c"
 #include "anim_bosssplashfightfirst.inc.c"
 #include "anim_runawaydefeated.inc.c"
+#include "anim_hurtFallToGround.inc.c"

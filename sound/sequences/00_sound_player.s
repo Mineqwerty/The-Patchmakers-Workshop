@@ -8922,6 +8922,17 @@ sound_ref .sound_crane_short
 sound_ref .sound_crane_long
 sound_ref .sound_page_turn
 sound_ref .sound_memory_end
+sound_ref .sound_wood_thunk
+
+.sound_wood_thunk:
+chan_setbank 12
+chan_setinstr 29
+chan_setlayer 0, .layer_wood_thunk
+chan_end
+
+.layer_wood_thunk:
+layer_note1 39, 0xc, 127
+layer_end
 
 .sound_memory_end:
 chan_setbank 12

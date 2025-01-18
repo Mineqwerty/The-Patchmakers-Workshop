@@ -185,6 +185,10 @@ void bowser_npc_act_second_patchmaker_fight_cutscene(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bowser_npc_find_spot(void) {
