@@ -23,8 +23,8 @@ enum SewniaActions {
     SEWNIA_ACT_PATCHMAKER_FIRST_FIGHT_DEFEATED,
     SEWNIA_ACT_REVIVE_BOWSER,
     SEWNIA_ACT_ENTER_SECOND_HUB,
-    SEWNIA_ACT_LEAVING_SECOND_HUB
-
+    SEWNIA_ACT_LEAVING_SECOND_HUB,
+    SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE
 };
 
 enum SewniaAnims {
@@ -47,7 +47,9 @@ enum SewniaAnims {
     SEWNIA_ANIM_RESERVED_IDLE,
     SEWNIA_ANIM_PULL_OUT_BOWSER_THREAD,
     SEWNIA_ANIM_LEANING_IDLE,
-    SEWNIA_ANIM_CUTSCENE_IDLE_LOOK_UP
+    SEWNIA_ANIM_CUTSCENE_IDLE_LOOK_UP,
+    SEWNIA_ANIM_LOOK_OUT_AT_PATCHMAKER,
+    SEWNIA_ANIM_SHOCKED_AT_PATCHMAKER
 };
 
 enum SewniaFaceStates {
@@ -1364,7 +1366,26 @@ void sewnia_act_leaving_second_hub(void) {
     }
 }
 
-
+void sewnia_act_second_patchmaker_fight_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            cur_obj_init_animation(SEWNIA_ANIM_LOOK_OUT_AT_PATCHMAKER);
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            o->oSubAction++;
+        break;
+        case 1:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger >= 2) {
+                cur_obj_init_animation(SEWNIA_ANIM_SHOCKED_AT_PATCHMAKER);
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+        break;
+    }
+}
 
 void bhv_sewnia_loop(void) {
 
@@ -1385,6 +1406,9 @@ void bhv_sewnia_loop(void) {
         }
         else if (gCurCutscene == CUTSCENE_EVENT_LEAVING_SECOND_HUB) {
             o->oAction = SEWNIA_ACT_LEAVING_SECOND_HUB;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_PATCHMAKER_BREAKING_POINT) {
+            o->oAction = SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE;
         }
     }
 
@@ -1430,6 +1454,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_LEAVING_SECOND_HUB:
             sewnia_act_leaving_second_hub();
+        break;
+        case SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE:
+            sewnia_act_second_patchmaker_fight_cutscene();
         break;
     }
 

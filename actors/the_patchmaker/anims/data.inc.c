@@ -25,3 +25,5 @@
 #include "anim_bosssplashfightfirst.inc.c"
 #include "anim_runawaydefeated.inc.c"
 #include "anim_hurtFallToGround.inc.c"
+#include "anim_lungeAtMarioFromGound.inc.c"
+#include "anim_throwMarioDown.inc.c"

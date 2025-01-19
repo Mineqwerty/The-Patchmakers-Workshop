@@ -53,6 +53,8 @@ u32 cCutsceneTimer;
 s16 cCameraDownVel;
 s16 cSkipCutsceneState;
 s16 cSkipCutsceneTimer;
+s16 cMarioMoveDownTimer;
+s16 cMarioAnimLockFrame;
 
 
 
@@ -100,6 +102,9 @@ enum cutscene_events {
     EVENT_SET_MARIO_CUSTOM_ANIMATION,
     EVENT_MARIO_APPROACH_POINT,
     EVENT_SET_MARIO_Y_TO_FLOOR,
+    EVENT_MARIO_MOVE_DOWN_VERTICALLY,
+    EVENT_LOCK_MARIO_ANIM_FRAME,
+    EVENT_UNLOCK_MARIO_ANIM_FRAME,
 
     EVENT_SPAWN_OBJECT,
 
@@ -1092,9 +1097,63 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_SET_MARIO_FORWARD_VELOCITY, 0,
     EVENT_SET_MARIO_YAW, 0x8000,
     EVENT_SET_MARIO_ROLL, 0,
-    EVENT_CAMERA_POSITION_SPLINE_DATA, 81,
-    EVENT_CAMERA_FOCUS_SPLINE_DATA, 82,
-    EVENT_WAIT, 200
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 147,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 148,
+    EVENT_WAIT, 100,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_DEFEATED_SECOND_FIGHT,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_MARIO_POSITION, 0, 1000, 150,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_LOOK_DOWN_AT_PATCHMAKER,
+    EVENT_SET_MARIO_YAW, 0x8000,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 149,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 150,
+    EVENT_WAIT, 60,
+    EVENT_SPAWN_OBJECT, 0, 1000, 0, 0, 0, 0, 0, bhvSewnia, MODEL_SEWNIA,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 151,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 152,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_WAIT, 90,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 153,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 154,
+    EVENT_DIALOG_AUTO, DIALOG_PATCHMAKER_LISTEN,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_WAIT, 15,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_SOUND, SOUND_MARIO_ATTACKED,
+    EVENT_SET_MARIO_ANIMATION, MARIO_ANIM_DROWNING_PART1,
+    EVENT_SET_MARIO_POSITION, 0, 1080, 170,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 155,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 156,
+    EVENT_WAIT, 40,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 157,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 158,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 30,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 159,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 160,
+    EVENT_SET_MARIO_POSITION, 0, 1080, 160,
+    EVENT_MARIO_MOVE_DOWN_VERTICALLY, 10,
+    EVENT_WAIT, 10,
+    EVENT_SET_MARIO_ANIMATION, MARIO_ANIM_FALL_OVER_BACKWARDS,
+    EVENT_SET_MARIO_POSITION, 0, 1000, 140,
+    EVENT_CAMERA_SHAKE, 0, 1000, 170,
+    EVENT_WAIT, 25,
+    EVENT_LOCK_MARIO_ANIM_FRAME, 35,
+    EVENT_WAIT, 5,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_BREAKING_POINT,
+
+    EVENT_WAIT_FOR_DIALOG_END,
+
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_END_CUTSCENE,
+
 };
 
 s32 *eventList[] = {
@@ -1302,6 +1361,23 @@ s32 *splineList[] = {
     //145
     bowser_2_area_1_spline_SecondFightIntroPos6,
     bowser_2_area_1_spline_SecondFightIntroFocus6,
+    bowser_2_area_1_spline_BreakingPointPos1,
+    bowser_2_area_1_spline_BreakingPointFocus1,
+    bowser_2_area_1_spline_BreakingPointPos2,
+    //150
+    bowser_2_area_1_spline_BreakingPointFocus2,
+    bowser_2_area_1_spline_BreakingPointPos3,
+    bowser_2_area_1_spline_BreakingPointFocus3,
+    bowser_2_area_1_spline_BreakingPointPos4,
+    bowser_2_area_1_spline_BreakingPointFocus4,
+    //155
+    bowser_2_area_1_spline_BreakingPointPos5,
+    bowser_2_area_1_spline_BreakingPointFocus5,
+    bowser_2_area_1_spline_BreakingPointPos6,
+    bowser_2_area_1_spline_BreakingPointFocus6,
+    bowser_2_area_1_spline_BreakingPointPos7,
+    //160
+    bowser_2_area_1_spline_BreakingPointFocus7,
 
 };
 
@@ -1317,6 +1393,8 @@ void begin_cutscene_event(s32 event) {
     cExternalCutsceneTrigger = 0;
     gPlayerCameraState[0].cameraEvent = 0;
     cEventPointer = eventList[event];
+    cMarioMoveDownTimer = 0;
+    cMarioAnimLockFrame = 0;
 }
 
 void event_handler(void) {
@@ -1624,11 +1702,18 @@ void event_handler(void) {
                     gMarioState->pos[1] = gMarioState->floorHeight;
                     cCutsceneIndex += 1;
                 break;
-
-
-
-
-
+                case EVENT_MARIO_MOVE_DOWN_VERTICALLY:
+                    cMarioMoveDownTimer = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_LOCK_MARIO_ANIM_FRAME:
+                    cMarioAnimLockFrame = param1;
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_UNLOCK_MARIO_ANIM_FRAME:
+                    cMarioAnimLockFrame = 0;
+                    cCutsceneIndex += 1;
+                break;
 
                 case EVENT_STONE_PATCH_PICKED_UP:
                     eventObj = obj_find_nearest_object_with_behavior(gMarioState->marioObj, bhvGroundCutscenePatch, &dist);
@@ -1722,6 +1807,16 @@ void event_handler(void) {
         if (cCameraDownVel != 0) {
             gCamera->pos[1] -= cCameraDownVel;
         }
+
+        if (cMarioMoveDownTimer > 0) {
+            cMarioMoveDownTimer--;
+            gMarioState->pos[1] -= 9;
+        }
+
+        if (cMarioAnimLockFrame > 0) {
+            gMarioState->marioObj->header.gfx.animInfo.animFrame = cMarioAnimLockFrame;
+        }
+
     cCutsceneTimer++;
     }
 }

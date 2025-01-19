@@ -20,3 +20,5 @@
 #include "anim_takeOutBowserThread.inc.c"
 #include "anim_leanDown.inc.c"
 #include "anim_cutsceneIdleLookUp.inc.c"
+#include "anim_lookOutAtPatchmaker.inc.c"
+#include "anim_gaspAtPatchmaker.inc.c"

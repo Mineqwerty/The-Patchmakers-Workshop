@@ -28,3 +28,4 @@
 #include "anim_nodHeadPostThink.inc.c"
 #include "anim_bendDown.inc.c"
 #include "anim_lookUpAtBowser.inc.c"
+#include "anim_lookingDownAtPatchmaker.inc.c"

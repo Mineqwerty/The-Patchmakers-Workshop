@@ -25,5 +25,6 @@ const struct Animation *const mario_anims[] = {
 	&mario_anim_nodHeadPostThink,
 	&mario_anim_bendDown,
 	&mario_anim_lookUpAtBowser,
+	&mario_anim_lookingDownAtPatchmaker,
 	NULL,
 };

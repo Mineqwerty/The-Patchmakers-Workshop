@@ -3,6 +3,20 @@ extern const GeoLayout bowser_2_area_1[];
 extern const MacroObject bowser_2_area_1_macro_objs[];
 #include "src/game/camera.h"
 
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus1[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus2[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus3[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus4[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus5[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus6[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointFocus7[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos1[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos2[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos3[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos4[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos5[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos6[];
+extern struct CutsceneSplinePoint bowser_2_area_1_spline_BreakingPointPos7[];
 extern struct CutsceneSplinePoint bowser_2_area_1_spline_SecondFightIntroFocus1[];
 extern struct CutsceneSplinePoint bowser_2_area_1_spline_SecondFightIntroFocus2[];
 extern struct CutsceneSplinePoint bowser_2_area_1_spline_SecondFightIntroFocus3[];

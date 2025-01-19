@@ -3170,6 +3170,20 @@ I really really really am!\n\
 I have no choice but to pin you\n\
 down forever!!!"))
 
+DEFINE_DIALOG(DIALOG_PATCHMAKER_DEFEATED_SECOND_FIGHT, 0b10, 3, 30, 200, _("\
+@5D5D5DFFWhy... why?\n\
+\n\
+\n\
+@5D5D5DFFWhy can't I...\n\
+Why won't it...\n\
+Why...\n\
+@5D5D5DFFWhy?"))
+
+DEFINE_DIALOG(DIALOG_PATCHMAKER_LISTEN, 0b10, 3, 30, 200, _("\
+@5D5D5DFFPlease...\n\
+Listen...\n\
+Closer..."))
+
 DEFINE_DIALOG(DIALOG_PATCHMAKER_BREAKING_POINT, 0b10, 3, 30, 200, _("\
 @7F60B4FFNo!!!\n\
 \n\

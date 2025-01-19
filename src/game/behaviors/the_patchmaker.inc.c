@@ -43,7 +43,9 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_SWERVE_TWITCHING,
     PATCHMAKER_ANIM_FIRST_FIGHT_SPLASH_SCREEN,
     PATCHMAKER_ANIM_DEFEATED_RUN_AWAY,
-    PATCHMAKER_ANIM_FALL_TO_GROUND
+    PATCHMAKER_ANIM_FALL_TO_GROUND,
+    PATCHMAKER_ANIM_REACH_TO_MARIO,
+    PATCHMAKER_ANIM_THROW_MARIO_DOWN
 };
 
 #define PATCHMAKER_1_MAX_HEALTH 50
@@ -622,8 +624,6 @@ void patchmaker_act_summon_needle_ball(void) {
     if (cur_obj_check_if_at_animation_end()) {
         patchmaker_transition_to_next_action();
     }
-
-    o->oHealth = 1;
 }
 
 void patchmaker_act_shockwave(void) {
@@ -656,6 +656,7 @@ void patchmaker_act_throw_needles(void) {
     if (cur_obj_check_if_at_animation_end()) {
         patchmaker_transition_to_next_action();
     }
+    o->oHealth = 1;
 }
 
 void patchmaker_act_first_fight_defeated(void) {
@@ -681,12 +682,24 @@ void patchmaker_act_second_fight_defeated(void) {
             o->oPosX = 0;
             o->oPosZ = 0;
             o->oPosY = 1000;
-            o->oFaceAngleYaw = -0x4000;
-            o->oMoveAngleYaw = -0x4000;
-            cur_obj_init_animation(PATCHMAKER_ANIM_DEFEATED_RUN_AWAY);
+            o->oFaceAngleYaw = 0;
+            o->oMoveAngleYaw = 0;
+            cur_obj_init_animation(PATCHMAKER_ANIM_FALL_TO_GROUND);
             begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_BREAKING_POINT);
             o->oSubAction++;
 
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_REACH_TO_MARIO);
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 3) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_THROW_MARIO_DOWN);
+                o->oSubAction++;
+            }
         break;
     }
     

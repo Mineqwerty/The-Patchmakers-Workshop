@@ -27,5 +27,7 @@ const struct Animation *const the_patchmaker_anims[] = {
 	&the_patchmaker_anim_bosssplashfightfirst,
 	&the_patchmaker_anim_runawaydefeated,
 	&the_patchmaker_anim_hurtFallToGround,
+	&the_patchmaker_anim_lungeAtMarioFromGound,
+	&the_patchmaker_anim_throwMarioDown,
 	NULL,
 };
