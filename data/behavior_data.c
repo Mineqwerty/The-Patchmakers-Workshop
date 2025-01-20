@@ -8954,3 +8954,12 @@ const BehaviorScript bhvPmThrownNeedle[] = {
         CALL_NATIVE(bhv_pm_thrown_needle_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvStringBreakController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_string_break_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_string_break_controller_loop),
+    END_LOOP(),
+};

@@ -817,3 +817,4 @@ extern const BehaviorScript bhvGearWalls[];
 extern const BehaviorScript bhvLightningSentry[];
 extern const BehaviorScript bhvPmShockwave[];
 extern const BehaviorScript bhvPmThrownNeedle[];
+extern const BehaviorScript bhvStringBreakController[];

@@ -1144,3 +1144,5 @@ void bhv_pm_shockwave_init(void);
 void bhv_pm_shockwave_loop(void);
 void bhv_pm_thrown_needle_init(void);
 void bhv_pm_thrown_needle_loop(void);
+void bhv_string_break_controller_init(void);
+void bhv_string_break_controller_loop(void);

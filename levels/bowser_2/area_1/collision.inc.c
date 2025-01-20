@@ -1,4 +1,4 @@
-Gfx bowser_2_area_1_collision_f3dlite_material_layer_1[] = {
+Gfx bowser_2_area_1_collision_f3dlite_material_001_layer_1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -16,7 +16,7 @@ Gfx bowser_2_area_1_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material[] = {
+Gfx bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material_001[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -25,8 +25,8 @@ Gfx bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material[] = {
 };
 
 const Gfx* bowser_2_area_1_collision_materials[] = {
-	&bowser_2_area_1_collision_f3dlite_material_layer_1,
-	&bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material,
+	&bowser_2_area_1_collision_f3dlite_material_001_layer_1,
+	&bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material_001,
 };
 
 const Collision bowser_2_area_1_collision[] = {
