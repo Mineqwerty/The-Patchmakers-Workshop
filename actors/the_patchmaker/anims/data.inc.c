@@ -27,3 +27,8 @@
 #include "anim_hurtFallToGround.inc.c"
 #include "anim_lungeAtMarioFromGound.inc.c"
 #include "anim_throwMarioDown.inc.c"
+#include "anim_reelBackReadyToTurn.inc.c"
+#include "anim_turnToCamera.inc.c"
+#include "anim_stompToSewnia.inc.c"
+#include "anim_grabSewnia.inc.c"
+#include "anim_grabSewniaIdle.inc.c"

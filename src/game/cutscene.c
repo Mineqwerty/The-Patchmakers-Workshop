@@ -31,6 +31,7 @@
 
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
+f32 gCutsceneApproachFOV = -1;
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
@@ -129,6 +130,7 @@ enum cutscene_events {
     EVENT_CANCEL_FB_EFFECT,
 
     EVENT_SET_FOV,
+    EVENT_APPROACH_FOV,
     EVENT_CLEAR_FOV,
 
     EVENT_STONE_PATCH_PICKED_UP,
@@ -1146,6 +1148,46 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_LOCK_MARIO_ANIM_FRAME, 35,
     EVENT_WAIT, 5,
     EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_BREAKING_POINT,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
+    EVENT_SET_EXTERNAL_TRIGGER, 4,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 161,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 162,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 163,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 164,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_SET_EXTERNAL_TRIGGER, 6,
+    EVENT_SET_FOV, 130,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 165,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 166,
+    EVENT_WAIT, 1,
+    EVENT_CLEAR_FOV,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_SET_EXTERNAL_TRIGGER, 7,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 167,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 168,
+    EVENT_WAIT, 28,
+    EVENT_SET_EXTERNAL_TRIGGER, 8,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 169,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 170,
+    EVENT_WAIT, 30,
+    EVENT_SET_EXTERNAL_TRIGGER, 9,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 171,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 172,
+    EVENT_WAIT, 18,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 173,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 174,
+    EVENT_WAIT, 18,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 175,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 176,
+
 
     EVENT_WAIT_FOR_DIALOG_END,
 
@@ -1378,6 +1420,25 @@ s32 *splineList[] = {
     bowser_2_area_1_spline_BreakingPointPos7,
     //160
     bowser_2_area_1_spline_BreakingPointFocus7,
+    bowser_2_area_1_spline_BreakingPointPos8,
+    bowser_2_area_1_spline_BreakingPointFocus8,
+    bowser_2_area_1_spline_BreakingPointPos9,
+    bowser_2_area_1_spline_BreakingPointFocus9,
+    //165
+    bowser_2_area_1_spline_BreakingPointPos10,
+    bowser_2_area_1_spline_BreakingPointFocus10,
+    bowser_2_area_1_spline_BreakingPointPos11,
+    bowser_2_area_1_spline_BreakingPointFocus11,
+    bowser_2_area_1_spline_BreakingPointPos12,
+    //170
+    bowser_2_area_1_spline_BreakingPointFocus12,
+    bowser_2_area_1_spline_BreakingPointPos13,
+    bowser_2_area_1_spline_BreakingPointFocus13,
+    bowser_2_area_1_spline_BreakingPointPos14,
+    bowser_2_area_1_spline_BreakingPointFocus14,
+    //175
+    bowser_2_area_1_spline_BreakingPointPos15,
+    bowser_2_area_1_spline_BreakingPointFocus15,
 
 };
 
@@ -1661,8 +1722,14 @@ void event_handler(void) {
                     gCutsceneFOV = param1;
                     cCutsceneIndex += 2;
                 break;
+                case EVENT_APPROACH_FOV:
+                    gCutsceneApproachFOV = param1;
+                    gCutsceneFOV = sFOVState.fov;
+                    cCutsceneIndex += 2;
+                break;
                 case EVENT_CLEAR_FOV:
                     gCutsceneFOV = -1;
+                    gCutsceneApproachFOV = -1;
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_INITIATE_WARP:
@@ -1810,11 +1877,15 @@ void event_handler(void) {
 
         if (cMarioMoveDownTimer > 0) {
             cMarioMoveDownTimer--;
-            gMarioState->pos[1] -= 9;
+            gMarioState->pos[1] -= 12;
         }
 
         if (cMarioAnimLockFrame > 0) {
             gMarioState->marioObj->header.gfx.animInfo.animFrame = cMarioAnimLockFrame;
+        }
+
+        if (gCutsceneApproachFOV > 0) {
+            camera_approach_f32_symmetric_bool(&gCutsceneFOV, gCutsceneApproachFOV, 2.0f);
         }
 
     cCutsceneTimer++;

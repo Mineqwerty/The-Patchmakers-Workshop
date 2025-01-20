@@ -3203,7 +3203,7 @@ WHY couldn't I RECREATE you!?\n\
 @5D5D5DFFWHY did you have to ask for a sister!?\n\
 HOW did you even come to be!?\n\
 WHY COULDN'T YOU TELL ME???\n\
-@7F60B4FFYou're... you're hurting me!"))
+@5F4094FFYou're... you're hurting me!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_HEAD_RIPPED_OFF, 0b10, 3, 30, 200, _("\
 @7F60B4FFMario...\n\

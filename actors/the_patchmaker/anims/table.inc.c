@@ -29,5 +29,10 @@ const struct Animation *const the_patchmaker_anims[] = {
 	&the_patchmaker_anim_hurtFallToGround,
 	&the_patchmaker_anim_lungeAtMarioFromGound,
 	&the_patchmaker_anim_throwMarioDown,
+	&the_patchmaker_anim_reelBackReadyToTurn,
+	&the_patchmaker_anim_turnToCamera,
+	&the_patchmaker_anim_stompToSewnia,
+	&the_patchmaker_anim_grabSewnia,
+	&the_patchmaker_anim_grabSewniaIdle,
 	NULL,
 };

@@ -65,6 +65,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_book"
+    },
+    "inst_speaker_sewnia_choking": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_sewnia_choking"
     }
   },
   "instrument_list": [
@@ -78,6 +83,7 @@
     "inst_speaker_xodarap",
     "inst_speaker_patchmaker",
     "inst_speaker_bowser",
-    "inst_speaker_book"
+    "inst_speaker_book",
+    "inst_speaker_sewnia_choking"
   ]
 }

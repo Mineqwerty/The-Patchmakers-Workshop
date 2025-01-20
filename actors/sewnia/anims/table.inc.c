@@ -23,5 +23,9 @@ const struct Animation *const sewnia_anims[] = {
 	&sewnia_anim_cutsceneIdleLookUp,
 	&sewnia_anim_lookOutAtPatchmaker,
 	&sewnia_anim_gaspAtPatchmaker,
+	&sewnia_anim_stoppingPatchmaker,
+	&sewnia_anim_walkBackScared,
+	&sewnia_anim_grabbedByPatchmaker,
+	&sewnia_anim_grabbedByPatchmakerIdle,
 	NULL,
 };

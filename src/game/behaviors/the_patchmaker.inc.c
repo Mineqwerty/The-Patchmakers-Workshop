@@ -45,7 +45,12 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_DEFEATED_RUN_AWAY,
     PATCHMAKER_ANIM_FALL_TO_GROUND,
     PATCHMAKER_ANIM_REACH_TO_MARIO,
-    PATCHMAKER_ANIM_THROW_MARIO_DOWN
+    PATCHMAKER_ANIM_THROW_MARIO_DOWN,
+    PATCHMAKER_ANIM_CURL_UP_SHOCKWAVE,
+    PATCHMAKER_ANIM_TURN_TO_CAMERA,
+    PATCHMAKER_ANIM_STOMP_TO_SEWNIA,
+    PATCHMAKER_ANIM_GRAB_SEWNIA,
+    PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE
 };
 
 #define PATCHMAKER_1_MAX_HEALTH 50
@@ -698,6 +703,49 @@ void patchmaker_act_second_fight_defeated(void) {
         case 2:
             if (cExternalCutsceneTrigger >= 3) {
                 cur_obj_init_animation(PATCHMAKER_ANIM_THROW_MARIO_DOWN);
+                o->oSubAction++;
+            }
+        break;
+        case 3:
+            if (cExternalCutsceneTrigger >= 5) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_CURL_UP_SHOCKWAVE);
+                o->oTimer = 0;
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+            if (o->oTimer == 10) {
+                spawn_object_relative(0, 0, 0, 0,  o, MODEL_PM_SHOCKWAVE, bhvPmShockwave);
+                gMarioState->action = ACT_BACKWARD_AIR_KB;
+                gMarioState->vel[1] = 25;
+                gMarioState->forwardVel = (PATCHMAKER_SECOND_FIGHT ? -70.0f : -48.0f);
+                gMarioState->faceAngle[1] = o->oAngleToMario + 0x8000;
+            }
+            if (o->oTimer == 20) {
+                gMarioState->action = ACT_WAITING_FOR_DIALOG;
+            }
+
+            if (cExternalCutsceneTrigger >= 6) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_TURN_TO_CAMERA);
+                o->oTimer = 0;
+                o->oSubAction++;
+            }
+        break;
+        case 5:
+            if (cExternalCutsceneTrigger >= 8) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_STOMP_TO_SEWNIA);
+                o->oSubAction++;
+            }
+        break;
+        case 6:
+            if (cExternalCutsceneTrigger >= 9) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_SEWNIA);
+                o->oSubAction++;
+            }
+        break;
+        case 7:
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE);
                 o->oSubAction++;
             }
         break;

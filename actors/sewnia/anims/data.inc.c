@@ -22,3 +22,7 @@
 #include "anim_cutsceneIdleLookUp.inc.c"
 #include "anim_lookOutAtPatchmaker.inc.c"
 #include "anim_gaspAtPatchmaker.inc.c"
+#include "anim_stoppingPatchmaker.inc.c"
+#include "anim_walkBackScared.inc.c"
+#include "anim_grabbedByPatchmaker.inc.c"
+#include "anim_grabbedByPatchmakerIdle.inc.c"

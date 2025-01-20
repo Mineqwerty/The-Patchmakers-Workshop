@@ -9248,6 +9248,17 @@ sound_ref .sound_speaker_xodarap
 sound_ref .sound_speaker_patchmaker
 sound_ref .sound_speaker_bowser
 sound_ref .sound_speaker_book
+sound_ref .sound_speaker_sewnia_choking
+
+.sound_speaker_sewnia_choking:
+chan_setbank 13
+chan_setinstr 11
+chan_setlayer 0, .layer_speaker_sewnia_choking
+chan_end
+
+.layer_speaker_sewnia_choking:
+layer_note1 39, 0x10, 127
+layer_end
 
 .sound_speaker_book:
 chan_setbank 13

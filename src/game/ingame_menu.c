@@ -45,7 +45,8 @@ enum SpeakerSounds {
     SPEAKER_SOUND_DEMONIC_SOLIDS,
     SPEAKER_SOUND_XODARAP,
     SPEAKER_SOUND_PATCHMAKER,
-    SPEAKER_SOUND_BOOK
+    SPEAKER_SOUND_BOOK,
+    SPEAKER_SOUND_SEWNIA_CHOKING
 };
 s16 curSpeaker = 0;
 
@@ -1526,6 +1527,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors, struct DialogEntry *dialog) {
     else if (rgbaColors[0] == 0x5C && rgbaColors[1] == 0x5C && rgbaColors[2] == 0x5C) {
         return SPEAKER_SOUND_BOOK;
     }
+    else if (rgbaColors[0] == 0x5F && rgbaColors[1] == 0x40 && rgbaColors[2] == 0x94) {
+        return SPEAKER_SOUND_SEWNIA_CHOKING;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1551,6 +1555,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_BOOK:
             play_sound(SOUND_NEW_2_SPEAKER_BOOK, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_SEWNIA_CHOKING:
+            play_sound(SOUND_NEW_2_SPEAKER_SEWNIA_CHOKING, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);

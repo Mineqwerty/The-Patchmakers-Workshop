@@ -49,7 +49,11 @@ enum SewniaAnims {
     SEWNIA_ANIM_LEANING_IDLE,
     SEWNIA_ANIM_CUTSCENE_IDLE_LOOK_UP,
     SEWNIA_ANIM_LOOK_OUT_AT_PATCHMAKER,
-    SEWNIA_ANIM_SHOCKED_AT_PATCHMAKER
+    SEWNIA_ANIM_SHOCKED_AT_PATCHMAKER,
+    SEWNIA_ANIM_STOP_PATCHMAKER,
+    SEWNIA_ANIM_BACK_AWAY_FROM_PATCHMAKER,
+    SEWNIA_ANIM_GRABBED_BY_PATCHMAKER,
+    SEWNIA_ANIM_GRABBED_BY_PATCHMAKER_IDLE
 };
 
 enum SewniaFaceStates {
@@ -1383,6 +1387,46 @@ void sewnia_act_second_patchmaker_fight_cutscene(void) {
         break;
         case 2:
             o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED;
+            if (cExternalCutsceneTrigger >= 4) {
+                cur_obj_init_animation(SEWNIA_ANIM_STOP_PATCHMAKER);
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+                o->oSubAction++;
+
+            }
+        break;
+        case 3:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger >= 7) {
+                cur_obj_init_animation(SEWNIA_ANIM_BACK_AWAY_FROM_PATCHMAKER);
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED_GRIMACE;
+                o->oSubAction++;
+
+            }
+        break;
+        case 4:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED_GRIMACE;
+            if (cExternalCutsceneTrigger >= 9) {
+                cur_obj_init_animation(SEWNIA_ANIM_GRABBED_BY_PATCHMAKER);
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED_GRIMACE;
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 5:
+            if (o->oTimer > 20) {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+            }
+            else {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SCARED_GRIMACE;
+            }
+
+            if (cur_obj_check_if_at_animation_end()) {
+                cur_obj_init_animation(SEWNIA_ANIM_GRABBED_BY_PATCHMAKER_IDLE);
+                o->oSubAction++;
+            }
+        break;
+        case 6:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
         break;
     }
 }
