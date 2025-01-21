@@ -797,6 +797,8 @@
 #define MODEL_BOWSER_THREAD_OF_LIFE                  0x135
 #define MODEL_PM_SHOCKWAVE                 0x136
 #define MODEL_PM_THROWN_NEEDLE                 0x137
+#define MODEL_SEWNIA_BODY                 0x138
+#define MODEL_SEWNIA_HEAD                 0x139
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

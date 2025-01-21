@@ -50,7 +50,9 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_TURN_TO_CAMERA,
     PATCHMAKER_ANIM_STOMP_TO_SEWNIA,
     PATCHMAKER_ANIM_GRAB_SEWNIA,
-    PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE
+    PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE,
+    PATCHMAKER_ANIM_FROZEN_ARMS_OUT,
+    PATCHMAKER_ANIM_WALK_AWAY_FROM_FIGHT
 };
 
 #define PATCHMAKER_1_MAX_HEALTH 50
@@ -748,6 +750,34 @@ void patchmaker_act_second_fight_defeated(void) {
                 cur_obj_init_animation(PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE);
                 o->oSubAction++;
             }
+        break;
+        case 8:
+            if (cExternalCutsceneTrigger >= 15) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_FROZEN_ARMS_OUT);
+                o->oSubAction++;
+
+            }
+        break;
+        case 9:;
+            extern const u8 patchmaker_face_dma[];
+            extern u8 the_patchmaker_patchmakerface_rgba16[];
+
+            u8 *faceTexture = segmented_to_virtual(&the_patchmaker_patchmakerface_rgba16);
+
+            dma_read(faceTexture, patchmaker_face_dma, patchmaker_face_dma + 4096);
+
+            
+            if (cExternalCutsceneTrigger >= 16) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_WALK_AWAY_FROM_FIGHT);
+                o->oSubAction++;
+
+            }
+        break;
+        case 10:
+        if (cExternalCutsceneTrigger >= 17) {
+                obj_mark_for_deletion(o);
+            }
+
         break;
     }
     

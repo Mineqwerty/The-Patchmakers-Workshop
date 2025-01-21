@@ -362,6 +362,8 @@ const LevelScript script_func_global_13[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_THREAD_OF_LIFE,                    bowser_thread_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_SHOCKWAVE,        pm_shockwave_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_NEEDLE,        pm_thrown_needle_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SEWNIA_BODY,        sewnia_body_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_SEWNIA_HEAD,        sewnia_head_geo),
     
     RETURN(),
 };

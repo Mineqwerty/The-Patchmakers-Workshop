@@ -164,4 +164,12 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 #include "pm_thrown_needle/geo_header.h"
 
+#include "sewnia_body/geo_header.h"
+
+
+#include "sewnia_body/anim_header.h"
+#include "sewnia_head/geo_header.h"
+
+
+#include "sewnia_head/anim_header.h"
 #endif

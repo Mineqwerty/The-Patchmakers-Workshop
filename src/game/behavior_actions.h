@@ -1146,3 +1146,7 @@ void bhv_pm_thrown_needle_init(void);
 void bhv_pm_thrown_needle_loop(void);
 void bhv_string_break_controller_init(void);
 void bhv_string_break_controller_loop(void);
+void bhv_sewnia_body_init(void);
+void bhv_sewnia_body_loop(void);
+void bhv_sewnia_head_init(void);
+void bhv_sewnia_head_loop(void);

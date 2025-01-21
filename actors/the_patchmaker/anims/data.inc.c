@@ -32,3 +32,5 @@
 #include "anim_stompToSewnia.inc.c"
 #include "anim_grabSewnia.inc.c"
 #include "anim_grabSewniaIdle.inc.c"
+#include "anim_frozenArmsOut.inc.c"
+#include "anim_walkAwayFromFight.inc.c"

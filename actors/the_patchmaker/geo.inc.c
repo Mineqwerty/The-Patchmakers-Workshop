@@ -472,8 +472,6 @@ const GeoLayout the_patchmaker_geo[] = {
 			GEO_CLOSE_NODE(),
 			GEO_SHADOW(1, 128, 100),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, the_patchmaker_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, the_patchmaker_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

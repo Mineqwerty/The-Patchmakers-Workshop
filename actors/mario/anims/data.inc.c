@@ -29,3 +29,5 @@
 #include "anim_bendDown.inc.c"
 #include "anim_lookUpAtBowser.inc.c"
 #include "anim_lookingDownAtPatchmaker.inc.c"
+#include "anim_getUpFromBeingBlaster.inc.c"
+#include "anim_lookToDecapitatedSewnia.inc.c"

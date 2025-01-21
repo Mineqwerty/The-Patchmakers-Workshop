@@ -1,5 +1,5 @@
 Gfx bowser_2_area_1_collision_f3dlite_material_001_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -17,7 +17,7 @@ Gfx bowser_2_area_1_collision_f3dlite_material_001_layer_1[] = {
 };
 
 Gfx bowser_2_area_1_collision_mat_revert_bowser_2_dl_f3dlite_material_001[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),

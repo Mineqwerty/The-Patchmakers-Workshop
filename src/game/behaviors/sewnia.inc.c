@@ -1427,6 +1427,9 @@ void sewnia_act_second_patchmaker_fight_cutscene(void) {
         break;
         case 6:
             o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+            if (cExternalCutsceneTrigger >= 14) {
+                obj_mark_for_deletion(o);
+            }
         break;
     }
 }

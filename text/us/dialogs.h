@@ -3206,14 +3206,14 @@ WHY COULDN'T YOU TELL ME???\n\
 @5F4094FFYou're... you're hurting me!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_HEAD_RIPPED_OFF, 0b10, 3, 30, 200, _("\
-@7F60B4FFMario...\n\
+@5F4094FFMario...\n\
 \n\
 \n\
-@7F60B4FFDon't you see now?\n\
+@5F4094FFDon't... you see now?\n\
 This is... why...\n\
 \n\
-@7F60B4FFThis is why we have to...\n\
-end him...!"))
+@5F4094FFThis is why we have to...\n\
+end... him..."))
 
 DEFINE_DIALOG(DIALOG_RETURN_FROM_SUBAREA, 1, 4, 30, 200, _("\
 @FEFEFEFFReturn to the main area? \n\

@@ -64,7 +64,7 @@ void bhv_string_break_controller_loop(void) {
 
                 dma_read(stringTexture, ((o->oTimer + 70)*4096) + string_break_dma, ((o->oTimer + 70)*4096) + string_break_dma + 4096);
 
-                if (o->oTimer == 79) {
+                if (o->oTimer == 78) {
                     o->oAction++;
                 }
             break;

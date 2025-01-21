@@ -8963,3 +8963,25 @@ const BehaviorScript bhvStringBreakController[] = {
         CALL_NATIVE(bhv_string_break_controller_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSewniaBody[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, sewnia_body_anims),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_sewnia_body_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sewnia_body_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSewniaHead[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, sewnia_head_anims),
+    SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_sewnia_head_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sewnia_head_loop),
+    END_LOOP(),
+};
