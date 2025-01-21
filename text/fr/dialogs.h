@@ -2244,7 +2244,7 @@ BWA HA HA HA HA HA HA!\n\
 GWA HI HA HI HOU HEU!\n\
 ..... Atcha!"))
 
-DEFINE_DIALOG(DIALOG_164, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_THIRD_HUB, 1, 4, 30, 200, _("\
 Beuuuuuuuu...\n\
 J'ai trop mangé, moi...\n\
 Beuuuuuuuu...\n\
@@ -2263,13 +2263,13 @@ Tourner autour du poteau\n\
 peut faire tourner les\n\
 têtes..."))
 
-DEFINE_DIALOG(DIALOG_166, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_1, 1, 4, 30, 200, _("\
 Je m'entraîne...\n\
 Je reviens plus tard...\n\
 \n\
 -- Koopa-Rapido --"))
 
-DEFINE_DIALOG(DIALOG_167, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_2, 1, 5, 30, 200, _("\
 En route vers le château!\n\
 \n\
 Appuyez sur [A] pour sauter\n\

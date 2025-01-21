@@ -1997,7 +1997,7 @@ verschwinde. So long...\n\
 Bis zum nächsten Mal.\n\
 Ich komme wieder..."))
 
-DEFINE_DIALOG(DIALOG_164, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_THIRD_HUB, 1, 6, 30, 200, _("\
 Hi! Wie geht's, Mario?\n\
 Ich bin zwar etwas außer\n\
 Übung, aber ein Rennen\n\
@@ -2016,14 +2016,14 @@ um den Pfahl herumrennst,\n\
 damit Dir nicht schlecht\n\
 wird!"))
 
-DEFINE_DIALOG(DIALOG_166, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_1, 1, 5, 30, 200, _("\
 Ich mache gerade einen\n\
 kleinen Waldlauf. Komm\n\
 doch später wieder\n\
 vorbei!\n\
 Dein Freund Koopa"))
 
-DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_2, 1, 4, 30, 200, _("\
 Dort vorne ist das\n\
 Schloss der Prinzessin.\n\
 Sieh Dich zunächst hier\n\

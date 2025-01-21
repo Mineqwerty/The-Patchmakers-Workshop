@@ -1827,40 +1827,152 @@ that Control Stick\n\
 smokin'!\n\
 Buwaa ha ha!"))
 
-DEFINE_DIALOG(DIALOG_164, 1, 4, 30, 200, _("\
-Mario! What's up, pal?\n\
-I haven't been on the\n\
-slide lately, so I'm out\n\
-of shape.\n\
-Still, I'm always up for a\n\
-good race, especially\n\
-against an old sleddin'\n\
-buddy.\n\
-Whaddya say?\n\
-Ready...set...\n\
-\n\
-//Go//// Don't Go"))
-
-DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 5, 30, 200, _("\
-So... this is it."))
-
-DEFINE_DIALOG(DIALOG_166, 1, 4, 30, 200, _("\
-I'll be back soon.\n\
-I'm out training now,\n\
-so come back later.\n\
-//--Koopa the Quick"))
-
-DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
-Princess Toadstool's\n\
-castle is just ahead.\n\
+DEFINE_DIALOG(DIALOG_ENTERING_THIRD_HUB, 1, 3, 30, 200, _("\
+@FF0202FFWoah!\n\
 \n\
 \n\
-Press [A] to jump, [Z] to\n\
-crouch, and [B] to punch,\n\
-read a sign, or grab\n\
-something.\n\
-Press [B] again to throw\n\
-something you're holding."))
+@FF0202FFThis place is even weirder...\n\
+\n\
+\n\
+@7F60B4FFThis place has some of The Patchmaker's\n\
+most abstract creations...\n\
+Some of the works span an entire room.\n\
+@7F60B4FFWait... no...\n\
+It couldn't be!\n\
+\n\
+@7F60B4FFDid he enter the lockbox!?\n\
+\n\
+\n\
+@FF75DFFFWhatever does that mean?\n\
+You're saying he fled inside of that\n\
+small trinket?\n\
+@7F60B4FFIt's not just a trinket...\n\
+Inside, there's an entire pocket\n\
+dimension filled with lost souls.\n\
+@7F60B4FFThat's where he was getting\n\
+the spirits he bound to dolls in his\n\
+attempts to recreate... me...\n\
+@7F60B4FFIf he's in there, it means he could\n\
+continue binding souls and trapping them!\n\
+\n\
+@FF75DFFFHold on a second...\n\
+You said he was trying to create life, right?\n\
+Didn't he accomplish it with this then?\n\
+@7F60B4FFNo... Every single soul he bound\n\
+turned out to be a failure. The results...\n\
+They were hardly alive. More like zombies.\n\
+@7F60B4FFHe wasn't satisfied, and so,\n\
+many souls were trapped in dolls...\n\
+This... can't continue.\n\
+@FF0202FFWell, if you wanna stop him,\n\
+that thing looks like it's locked.\n\
+I could try to bust it open...\n\
+@7F60B4FFDon't! Who knows what could happen?\n\
+Listen... He found this artifact within a shrine\n\
+built in a universe of its own...\n\
+@7F60B4FFWe may be able to find another key there.\n\
+Mario, there should be a gate to it somewhere here...\n\
+But you'll need more star power to reopen it.\n\
+@7F60B4FFThankfully, there are more portals here...\n\
+But these areas are quite scary.\n\
+Be careful if you collect star power here...\n\
+@FF0202FFSo you're saying I gotta wait on Mario AGAIN!?\n\
+Well, Peach is waiting here with me so it's\n\
+actually very nice! Haha!"))
+
+DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 3, 30, 200, _("\
+@7F60B4FFSo... this is it.\n\
+Thank you so much, Mario.\n\
+It means a lot that you did this for me.\n\
+@7F60B4FFI... can't imagine what The Patchmaker\n\
+is doing in there. I'm scared for the\n\
+souls wandering inside.\n\
+@7F60B4FFThe power of the stars you collected\n\
+should keep you safe from the strong\n\
+energy there. Otherwise it would tear you apart...\n\
+@FF0202FFGrr...\n\
+I want to pummel him SO BAD!!!\n\
+Mario! You better be ruthless for me!\n\
+@FF75DFFFPlease be careful, Mario...\n\
+I know you can do this, but don't\n\
+push yourself. This is scary territory.\n\
+@7F60B4FFDon't hold back, Mario... Please...\n\
+That man in there... He isn't my father.\n\
+None of my father is left in him.\n\
+@7F60B4FFI'm scared to know what this pocket realm\n\
+has done to his physical form...\n\
+If he's even alive still.\n\
+@7F60B4FFBut I need to know that nobody else\n\
+will be hurt.\n\
+\n\
+@7F60B4FFSo please... for the memory of my father.\n\
+Please defeat him once and for all."))
+
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_1, 1, 3, 30, 200, _("\
+@FF75DFFF...up.\n\
+\n\
+\n\
+@FF75DFFF...wake up...\n\
+\n\
+\n\
+@FF75DFFFMario, please! Wake up!"))
+
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_2, 1, 3, 30, 200, _("\
+@FF75DFFFThank goodness!\n\
+You're ok!!!\n\
+\n\
+@FF0202FFHrmph! Please...\n\
+I TOLD you he'd be fine.\n\
+He's not easy to get rid of...\n\
+@7F60B4FFMario... Welcome back.\n\
+I'm so glad you're okay...\n\
+Look over here...\n\
+@7F60B4FFThe souls in the lockbox\n\
+are being freed.\n\
+The Patchmaker can't hurt them any more...\n\
+@FF75DFFFThey're beautiful...\n\
+I can't imagine how sad they felt\n\
+being half-bound to dolls...\n\
+@7F60B4FFYeah...\n\
+\n\
+\n\
+@FF75DFFFSewnia, what's wrong?\n\
+Are you... thinking about him?\n\
+\n\
+@7F60B4FFMhm... He's finally free, too.\n\
+The memories I cherished can't be\n\
+tarnished any more...\n\
+@7F60B4FFI'll never forget the incredible\n\
+man he used to be. Even if what he became\n\
+was a mad, unforgivable monster.\n\
+@FF0202FFBuck up, kid.\n\
+I'm sure your pops would have been\n\
+real proud of you for toughing this out.\n\
+@7F60B4FFI just...\n\
+What...\n\
+What now?\n\
+@7F60B4FFThis place was my entire life.\n\
+But now... I have no reason to stay here...\n\
+What do I even do now?\n\
+@FF75DFFFAh...\n\
+Don't worry, Sewnia. You'll figure it out.\n\
+There is so much to see in this world.\n\
+@FF75DFFFYou are more than welcome\n\
+to stay at my castle while you\n\
+figure it all out.\n\
+@7F60B4FFThank...\n\
+Thank you, Peach.\n\
+\n\
+@FF0202FFFine, since nobody else is saying it,\n\
+can we FINALLY leave this place? I'll NEVER\n\
+get this mustiness off my shell at this rate!\n\
+@FF75DFFFI agree with Bowser!\n\
+A pleasant walk will help you take a breath\n\
+and think about what to do next.\n\
+@FF75DFFFSewnia, can you show us the way?\n\
+\n\
+\n\
+@7F60B4FFOf course... Follow me."))
 
 DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
 Hey! Knock it off! That's\n\

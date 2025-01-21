@@ -1844,7 +1844,7 @@ DEFINE_DIALOG(DIALOG_163, 1, 5, 30, 200, _("\
 まってろよ！\n\
 　ガハハッ！"))
 
-DEFINE_DIALOG(DIALOG_164, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTERING_THIRD_HUB, 1, 4, 30, 200, _("\
 しばらく　やすんでたので\n\
 こんなにみごとに、\n\
 ふとっちゃいました。\n\
@@ -1860,7 +1860,7 @@ DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 4, 30, 200, _("\
 めをまわしても\n\
 しりません。"))
 
-DEFINE_DIALOG(DIALOG_166, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_1, 1, 6, 30, 200, _("\
 きょうは　トレーニングで\n\
 るすに　してるッス！\n\
 オイラに　ちょーせん\n\
@@ -1878,7 +1878,7 @@ DEFINE_DIALOG(DIALOG_166, 1, 6, 30, 200, _("\
 　もういちどおすと\n\
 　　　　『なげる』"
 
-DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_2, 1, 4, 30, 200, _("\
 『ピーチの　おしろ』\n\
 　　　　　すぐそこ\n"\
 A_BUTTON_ACT \
