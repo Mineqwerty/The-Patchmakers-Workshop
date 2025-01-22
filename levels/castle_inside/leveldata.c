@@ -127,3 +127,7 @@
 #include "levels/castle_inside/twilight_veil/model.inc.c"
 #include "levels/castle_inside/hub_barrier/collision.inc.c"
 #include "levels/castle_inside/hub_barrier/model.inc.c"
+#include "levels/castle_inside/corr_lift/collision.inc.c"
+#include "levels/castle_inside/corr_lift/model.inc.c"
+#include "levels/castle_inside/ts_warp_platform/collision.inc.c"
+#include "levels/castle_inside/ts_warp_platform/model.inc.c"

@@ -820,3 +820,5 @@ extern const BehaviorScript bhvPmThrownNeedle[];
 extern const BehaviorScript bhvStringBreakController[];
 extern const BehaviorScript bhvSewniaBody[];
 extern const BehaviorScript bhvSewniaHead[];
+extern const BehaviorScript bhvCorrLift[];
+extern const BehaviorScript bhvTsWarpPlatform[];

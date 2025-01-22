@@ -572,6 +572,8 @@
 #define MODEL_HELD_M_PATCH                  0x116
 #define MODEL_TWILIGHT_VEIL                  0x117
 #define MODEL_HUB_BARRIER                  0x118
+#define MODEL_CORR_LIFT                  0x119
+#define MODEL_TS_WARP_PLATFORM                  0x11A
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

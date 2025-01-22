@@ -73,4 +73,10 @@ extern const LevelScript level_main_menu_entry_act_select[];
 
 #include "levels/menu/tfp_diorama/geo_header.h"
 
+#include "levels/menu/ea_diorama/geo_header.h"
+
+#include "levels/menu/corr_diorama/geo_header.h"
+
+#include "levels/menu/ts_diorama/geo_header.h"
+
 #endif

@@ -401,6 +401,11 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
 s32 act_waiting_for_dialog(struct MarioState *m) {
     set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
                                               : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
+
+    if (gCurrLevelNum == LEVEL_CASTLE && gCurrAreaIndex == 3) {
+        stop_and_set_height_to_floor(m);
+    }
+
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     return FALSE;

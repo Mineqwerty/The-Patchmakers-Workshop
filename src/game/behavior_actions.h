@@ -1150,3 +1150,7 @@ void bhv_sewnia_body_init(void);
 void bhv_sewnia_body_loop(void);
 void bhv_sewnia_head_init(void);
 void bhv_sewnia_head_loop(void);
+void bhv_corr_lift_init(void);
+void bhv_corr_lift_loop(void);
+void bhv_ts_warp_platform_init(void);
+void bhv_ts_warp_platform_loop(void);

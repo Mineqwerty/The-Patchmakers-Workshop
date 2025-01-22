@@ -3759,6 +3759,9 @@ void update_camera(struct Camera *c) {
     profiler_update(PROFILER_TIME_CAMERA, profiler_get_delta(PROFILER_DELTA_COLLISION) - first);
 }
 
+u16 starSelectCameraDistXZ = 3000;
+u16 starSelectCameraDistY = 4000;
+
 void update_star_select_camera(struct Camera *c, Vec3f rotateCoords) {
     gCamera = c;
     //set_cam_angle(CAM_ANGLE_LAKITU);
@@ -3779,16 +3782,33 @@ void update_star_select_camera(struct Camera *c, Vec3f rotateCoords) {
         c->nextYaw = gLakituState.nextYaw;
         c->camTimer += 1;
 
-       
+    if (gCurrLevelNum == LEVEL_TTM) {
+        gLakituState.pos[0] = -2300;
+        gLakituState.pos[1] = 6000;
+        gLakituState.pos[2] = 6500;
+        gLakituState.focus[0] = -2300;
+        gLakituState.focus[1] = 3100;
+        gLakituState.focus[2] = 0;
+        return;
+    }
 
     if (gSelectedStarCoords[0] != 0 && gStarSelectDisturbed == 1) {
-         gLakituState.pos[0] = 3000 * sins(0x20 * gGlobalTimer) + gSelectedStarCoords[0];
-        gLakituState.pos[1] = 4000 + gSelectedStarCoords[1];
-        gLakituState.pos[2] = 3000 * coss(0x20 * gGlobalTimer) + gSelectedStarCoords[2];
+         gLakituState.pos[0] = approach_f32_asymptotic(
+            gLakituState.pos[0], 
+            starSelectCameraDistXZ * sins(0x20 * gGlobalTimer) + gSelectedStarCoords[0],
+            0.09f);
+        gLakituState.pos[1] = approach_f32_asymptotic(
+            gLakituState.pos[1],
+            4000 + gSelectedStarCoords[1],
+            0.09f);
+        gLakituState.pos[2] = approach_f32_asymptotic(
+            gLakituState.pos[2],
+            starSelectCameraDistXZ * coss(0x20 * gGlobalTimer) + gSelectedStarCoords[2],
+            0.09f);
 
-        gLakituState.focus[0] = gSelectedStarCoords[0];
-        gLakituState.focus[1] = gSelectedStarCoords[1];
-        gLakituState.focus[2] = gSelectedStarCoords[2];
+        gLakituState.focus[0] = approach_f32_asymptotic(gLakituState.focus[0], gSelectedStarCoords[0], 0.09f);
+        gLakituState.focus[1] = approach_f32_asymptotic(gLakituState.focus[1], gSelectedStarCoords[1], 0.09f);
+        gLakituState.focus[2] = approach_f32_asymptotic(gLakituState.focus[2], gSelectedStarCoords[2], 0.09f);
     }
     else {
          gLakituState.pos[0] = 8000 * sins(0x20 * gGlobalTimer) - 4000;

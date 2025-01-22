@@ -156,15 +156,15 @@ void spawn_stage_diorama(void) {
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_THE_FAR_PLANE_SELECT), 0);
         break;
         case LEVEL_SL:
-            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_EA_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EMPYREAN_ABYSS_SELECT), 0);
         break;
         case LEVEL_WDW:
-            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_CORR_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_CITY_OF_RECONSTRUCTED_RUIN), 0);
         break;
         case LEVEL_TTM:
-            //spawn_object_abs_with_rot(o, 0, MODEL_GSS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
+            spawn_object_abs_with_rot(o, 0, MODEL_TS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_TIMELESS_SHRINE_SELECT), 0);
         break;
     }
@@ -356,6 +356,10 @@ void bhv_act_selector_loop(void) {
     s8 i;
     u8 starIndexCounter;
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum));
+
+    if (o->oTimer == 30) {
+        gStarSelectDisturbed = 1;
+    }
 
     if (sObtainedStars != 6) {
         // Sometimes, stars are not selectable even if they appear on the screen.

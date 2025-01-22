@@ -55,6 +55,8 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HELD_M_PATCH, held_m_patch_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TWILIGHT_VEIL, twilight_veil_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_HUB_BARRIER, hub_barrier_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_CORR_LIFT, corr_lift_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TS_WARP_PLATFORM, ts_warp_platform_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -223,6 +225,9 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x44, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -3624, 1621, -6725, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_CORR_LIFT, 10407, 1851, -3690, 0, 0, 0, 0x00000000, bhvCorrLift),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 9946, 659, -3690, 0, 0, 0, (45 << 24) | (6 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_TS_WARP_PLATFORM, 5944, 2693, 202, 0, 0, 0, 0x00000000, bhvTsWarpPlatform),
 		TERRAIN(castle_inside_area_3_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_3_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_3_macro_objs),

@@ -233,4 +233,12 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/hub_barrier/geo_header.h"
 
+#include "levels/castle_inside/corr_lift/collision_header.h"
+
+#include "levels/castle_inside/corr_lift/geo_header.h"
+
+#include "levels/castle_inside/ts_warp_platform/collision_header.h"
+
+#include "levels/castle_inside/ts_warp_platform/geo_header.h"
+
 #endif

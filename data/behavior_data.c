@@ -8985,3 +8985,24 @@ const BehaviorScript bhvSewniaHead[] = {
         CALL_NATIVE(bhv_sewnia_head_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvCorrLift[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(corr_lift_collision),
+    CALL_NATIVE(bhv_corr_lift_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_corr_lift_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTsWarpPlatform[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(ts_warp_platform_collision),
+    CALL_NATIVE(bhv_ts_warp_platform_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ts_warp_platform_loop),
+    END_LOOP(),
+};

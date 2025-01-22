@@ -49,3 +49,5 @@
 #include "levels/castle_inside/held_m_patch/geo.inc.c"
 #include "levels/castle_inside/twilight_veil/geo.inc.c"
 #include "levels/castle_inside/hub_barrier/geo.inc.c"
+#include "levels/castle_inside/corr_lift/geo.inc.c"
+#include "levels/castle_inside/ts_warp_platform/geo.inc.c"

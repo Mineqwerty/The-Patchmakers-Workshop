@@ -64,7 +64,7 @@ const LevelScript level_main_menu_entry_act_select_exit[] = {
 const LevelScript level_main_menu_entry_act_select[] = {
     
     /* 0*/ CALL(/*arg*/ 0, /*func*/ lvl_set_current_level),
-    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 64)), // goto L1 (exit)
+    /* 2*/ JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE, (level_main_menu_entry_act_select + 70)), // goto L1 (exit)
     /* 5*/ INIT_LEVEL(),
     /* 6*/ LOAD_GODDARD(),
     /*10*/ LOAD_LEVEL_DATA(menu),
@@ -80,6 +80,9 @@ const LevelScript level_main_menu_entry_act_select[] = {
     LOAD_MODEL_FROM_GEO(MODEL_HVH_DIORAMA,      hvh_diorama_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TVW_DIORAMA,      tvw_diorama_geo),
     LOAD_MODEL_FROM_GEO(MODEL_TFP_DIORAMA,      tfp_diorama_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_EA_DIORAMA,      ea_diorama_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_CORR_DIORAMA,      corr_diorama_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_TS_DIORAMA,      ts_diorama_geo),
 
     AREA(/*index*/ 2, geo_menu_act_selector_strings),
         OBJECT(/*model*/ MODEL_NONE, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behParam*/ BP(0x04, 0x00, 0x00, 0x00), /*beh*/ bhvActSelector),
