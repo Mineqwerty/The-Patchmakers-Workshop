@@ -25,3 +25,9 @@
 #include "levels/bowser_3/falling_platform_10/geo.inc.c"
 #include "levels/bowser_3/areas/1/bomb_stand/geo.inc.c"
 #include "levels/bowser_3/areas/1/geo.inc.c"
+
+#include "levels/bowser_3/mantle_of_madness/geo.inc.c"
+#include "levels/bowser_3/geo.inc.c"
+#include "levels/bowser_3/mantle_of_madness_hurt/geo.inc.c"
+#include "levels/bowser_3/mad_laser_turret/geo.inc.c"
+#include "levels/bowser_3/mad_laser/geo.inc.c"

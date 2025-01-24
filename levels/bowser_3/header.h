@@ -45,4 +45,14 @@ extern const Collision bowser_3_seg7_collision_07005038[];
 // script
 extern const LevelScript level_bowser_3_entry[];
 
+#include "levels/bowser_3/mantle_of_madness/geo_header.h"
+
+
+#include "levels/bowser_3/header.inc.h"
+#include "levels/bowser_3/mantle_of_madness_hurt/geo_header.h"
+
+#include "levels/bowser_3/mad_laser_turret/geo_header.h"
+
+#include "levels/bowser_3/mad_laser/geo_header.h"
+
 #endif

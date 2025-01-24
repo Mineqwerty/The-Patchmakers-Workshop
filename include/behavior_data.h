@@ -822,3 +822,6 @@ extern const BehaviorScript bhvSewniaBody[];
 extern const BehaviorScript bhvSewniaHead[];
 extern const BehaviorScript bhvCorrLift[];
 extern const BehaviorScript bhvTsWarpPlatform[];
+extern const BehaviorScript bhvMantleOfMadness[];
+extern const BehaviorScript bhvMadLaserTurret[];
+extern const BehaviorScript bhvMadLaser[];

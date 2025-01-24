@@ -1,0 +1,3 @@
+extern void scroll_gfx_mat_mantle_of_madness_hurt_butter_layer4();
+extern void scroll_gfx_mat_mantle_of_madness_hurt_butter_001_layer4();
+extern void scroll_bowser_3_level_geo_mantle_of_madness_hurt();

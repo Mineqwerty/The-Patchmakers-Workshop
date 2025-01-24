@@ -1,0 +1,14 @@
+extern const GeoLayout mad_laser_turret_geo[];
+extern u8 mad_laser_turret_castlefelt_ci8[];
+extern u8 mad_laser_turret_castlefelt_pal_rgba16[];
+extern u8 mad_laser_turret_jellyoveralay_i8[];
+extern Vtx mad_laser_turret_Sphere_mesh_layer_1_vtx_cull[8];
+extern Vtx mad_laser_turret_Sphere_mesh_layer_1_vtx_0[115];
+extern Gfx mad_laser_turret_Sphere_mesh_layer_1_tri_0[];
+extern Vtx mad_laser_turret_Sphere_mesh_layer_1_vtx_1[152];
+extern Gfx mad_laser_turret_Sphere_mesh_layer_1_tri_1[];
+extern Gfx mat_mad_laser_turret_f3dlite_material_014[];
+extern Gfx mat_revert_mad_laser_turret_f3dlite_material_014[];
+extern Gfx mat_mad_laser_turret_f3dlite_material[];
+extern Gfx mat_revert_mad_laser_turret_f3dlite_material[];
+extern Gfx mad_laser_turret_Sphere_mesh_layer_1[];

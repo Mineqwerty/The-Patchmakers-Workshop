@@ -404,3 +404,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/sewnia_body.inc.c"
 #include "behaviors/corr_lift.inc.c"
 #include "behaviors/ts_warp_platform.inc.c"
+#include "behaviors/mantle_of_madness.inc.c"
+#include "behaviors/mad_laser_turret.inc.c"

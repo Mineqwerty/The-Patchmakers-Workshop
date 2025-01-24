@@ -9006,3 +9006,33 @@ const BehaviorScript bhvTsWarpPlatform[] = {
         CALL_NATIVE(bhv_ts_warp_platform_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMantleOfMadness[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mantle_of_madness_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mantle_of_madness_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMadLaserTurret[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_laser_turret_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_laser_turret_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMadLaser[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_laser_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_laser_loop),
+    END_LOOP(),
+};

@@ -32,3 +32,9 @@
 #include "levels/bowser_3/falling_platform_8/collision.inc.c"
 #include "levels/bowser_3/falling_platform_9/collision.inc.c"
 #include "levels/bowser_3/falling_platform_10/collision.inc.c"
+
+#include "levels/bowser_3/mantle_of_madness/model.inc.c"
+#include "levels/bowser_3/leveldata.inc.c"
+#include "levels/bowser_3/mantle_of_madness_hurt/model.inc.c"
+#include "levels/bowser_3/mad_laser_turret/model.inc.c"
+#include "levels/bowser_3/mad_laser/model.inc.c"
