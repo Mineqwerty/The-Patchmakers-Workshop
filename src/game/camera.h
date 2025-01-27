@@ -835,6 +835,7 @@ void set_fov_function(u8 func);
 void cutscene_set_fov_shake_preset(u8 preset);
 void set_fov_shake_from_point_preset(u8 preset, f32 posX, f32 posY, f32 posZ);
 void obj_rotate_towards_point(struct Object *obj, Vec3f point, s16 pitchOff, s16 yawOff, s16 pitchDiv, s16 yawDiv);
+s8 hitbox_radius_inside_xz_quad(Vec3f a, Vec3f b, Vec3f c, Vec3f d, struct Object *hitboxObj);
 
 Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context);
 

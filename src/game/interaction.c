@@ -52,7 +52,7 @@ u32 interact_spiny_walking (struct MarioState *m, u32 interactType, struct Objec
 u32 interact_damage        (struct MarioState *m, u32 interactType, struct Object *obj);
 
 u32 interact_breakable     (struct MarioState *m, u32 interactType, struct Object *obj);
-u32 interact_koopa_shell   (struct MarioState *m, u32 interactType, struct Object *obj);
+u32 interact_mantle_of_madness   (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_pole          (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_hoot          (struct MarioState *m, u32 interactType, struct Object *obj);
 u32 interact_cap           (struct MarioState *m, u32 interactType, struct Object *obj);
@@ -92,7 +92,7 @@ static struct InteractionHandler sInteractionHandlers[] = {
     { INTERACT_HOOT,           interact_hoot },
     { INTERACT_BREAKABLE,      interact_breakable },
     { INTERACT_KOOPA,          interact_bounce_top },
-    { INTERACT_KOOPA_SHELL,    interact_koopa_shell },
+    { INTERACT_MANTLE_OF_MADNESS,    interact_mantle_of_madness },
     { INTERACT_SPINY_WALKING,  interact_spiny_walking },
     { INTERACT_CAP,            interact_cap },
     { INTERACT_GRABBABLE,      interact_grabbable },
@@ -275,6 +275,11 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
         if (!obj_is_one_hp_enemy(obj)) {
             obj->oHealth -= damage;
         }
+
+        if (obj->oFlags & OBJ_FLAG_DAMAGE_PARENT) {
+            obj->parentObj->oHealth -= damage;
+        }
+
         struct Object *particle;
 
         if (damage < 10) {
@@ -286,13 +291,13 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
             }
         }
         else {
-            for (int i = 0; i < damage/2; i++) {
+            for (int i = 0; i < damage/10; i++) {
                 particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
                 particle->oMoveAngleYaw = random_u16();
                 particle->oBehParams = 0x01000000;
                 particle->oVelY = random_u16()%5;
             }
-            if (damage % 2 == 1) {
+            for (int i = 0; i < damage%10; i++) {
                 particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
                 particle->oMoveAngleYaw = random_u16();
                 particle->oBehParams = 0x03000000;
@@ -1600,7 +1605,7 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_ABOVE) {
-            if (m->equippedPatch == PATCH_CHILLSTEP) {
+            if (m->equippedPatch == PATCH_CHILLSTEP && !obj_has_behavior(obj, bhvMantleOfMadness)) {
             freeze_enemy(m, obj, interaction);
             return TRUE;
         }
@@ -1701,27 +1706,23 @@ u32 interact_breakable(struct MarioState *m, UNUSED u32 interactType, struct Obj
     return FALSE;
 }
 
-u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
-    if (!(m->action & ACT_FLAG_RIDING_SHELL)) {
-        u32 interaction = determine_interaction(m, obj);
+u32 interact_mantle_of_madness(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
+    u32 interaction;
 
-        if (interaction == INT_HIT_FROM_ABOVE || m->action == ACT_WALKING
-            || m->action == ACT_HOLD_WALKING) {
-            m->interactObj = obj;
-            m->usedObj = obj;
-            m->riddenObj = obj;
+    if ((obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) && obj->oEnemyInvincibilityTimer > 0) {
+        push_mario_out_of_object(m, obj, -5.0f);
+        return FALSE;
+    }
+    interaction = determine_interaction(m, obj);
 
-            attack_object(obj, interaction, 0);
-            update_mario_sound_and_camera(m);
-            play_shell_music();
-            mario_drop_held_object(m);
+    if (interaction & INT_ATTACK_NOT_FROM_BELOW) {
 
-            //! Puts Mario in ground action even when in air, making it easy to
-            // escape air actions into crouch slide (shell cancel)
-            return set_mario_action(m, ACT_RIDING_SHELL_GROUND, 0);
-        }
-
-        push_mario_out_of_object(m, obj, 2.0f);
+        attack_object(obj, interaction, 1);
+        bounce_back_from_attack(m, interaction);
+        
+    } 
+    else {
+        push_mario_out_of_object(m, obj, -5.0f);
     }
 
     return FALSE;

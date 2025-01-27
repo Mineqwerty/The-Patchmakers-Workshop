@@ -971,8 +971,18 @@ struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 heig
             if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED
                 && obj != sourceObj && !obj_shouldnt_be_attacked(obj)) {
 
-                if ((point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) || point_inside_xz_tri(&obj->oPosVec, pointB, pointC, pointD))
-                    && absf(obj->oPosY - sourceObj->oPosY - (height/2)) < height) {
+                    u8 attacked = FALSE;
+                    if (obj->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) {
+                        attacked = hitbox_radius_inside_xz_quad(pointA, pointB, pointC, pointD, obj) 
+                        && (sourceObj->oPosY > obj->oPosY - obj->hitboxDownOffset - 100.0f)
+                        && (sourceObj->oPosY < obj->oPosY - obj->hitboxDownOffset + obj->hitboxHeight + 100.0f);
+                    }
+                    else {
+                        attacked = (point_inside_xz_tri(&obj->oPosVec, pointA, pointB, pointC) || point_inside_xz_tri(&obj->oPosVec, pointB, pointC, pointD))
+                    && absf(obj->oPosY - sourceObj->oPosY - (height/2)) < height;
+                    }
+
+                if (attacked) {
                     attack_object(obj, interaction, damage);
                 }
             }

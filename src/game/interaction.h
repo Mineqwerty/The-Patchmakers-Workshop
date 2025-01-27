@@ -26,7 +26,7 @@ enum ObjInteractTypes {
     INTERACT_WATER_RING           = /* 0x00010000 */ (1 << 16),
     INTERACT_BULLY                = /* 0x00020000 */ (1 << 17),
     INTERACT_FLAME                = /* 0x00040000 */ (1 << 18),
-    INTERACT_KOOPA_SHELL          = /* 0x00080000 */ (1 << 19),
+    INTERACT_MANTLE_OF_MADNESS          = /* 0x00080000 */ (1 << 19),
     INTERACT_BOUNCE_TOP2          = /* 0x00100000 */ (1 << 20),
     INTERACT_MR_BLIZZARD          = /* 0x00200000 */ (1 << 21),
     INTERACT_HIT_FROM_BELOW       = /* 0x00400000 */ (1 << 22),

@@ -3208,6 +3208,20 @@ s8 point_inside_xz_tri(Vec3f marioPos, Vec3f a, Vec3f b, Vec3f c) {
     return TRUE;
 }
 
+s8 hitbox_radius_inside_xz_quad(Vec3f a, Vec3f b, Vec3f c, Vec3f d, struct Object *hitboxObj) {
+    Vec3f bcMidpoint;
+    bcMidpoint[0] = (b[0] + c[0]) / 2.0f;
+    bcMidpoint[2] = (b[2] + c[2]) / 2.0f;
+
+    Vec3f closestHitboxPoint;
+    s16 angleDiff = atan2s(hitboxObj->oPosZ - bcMidpoint[2], hitboxObj->oPosX - bcMidpoint[0]);
+
+    closestHitboxPoint[0] = hitboxObj->oPosX + -sins(angleDiff) * hitboxObj->hitboxRadius;
+    closestHitboxPoint[2] = hitboxObj->oPosZ + -coss(angleDiff) * hitboxObj->hitboxRadius;
+
+    return point_inside_xz_tri(closestHitboxPoint, a, b, c) || point_inside_xz_tri(closestHitboxPoint, b, c, d);
+}
+
 s16 course_volume_loop_through(s16 initValue, s16 maxValue, Vec3f array[]) {
 
     for (int i = initValue; i < maxValue; i++) {
