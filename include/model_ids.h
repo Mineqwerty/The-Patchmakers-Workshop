@@ -793,6 +793,7 @@
 #define MODEL_MANTLE_OF_MADNESS_HURT                   0x101
 #define MODEL_MAD_LASER_TURRET                   0x102
 #define MODEL_MAD_LASER                   0x103
+#define MODEL_MAD_SPIKE_WALL                   0x104
 
 
 //New File Select

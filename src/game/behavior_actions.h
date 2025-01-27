@@ -1160,3 +1160,5 @@ void bhv_mad_laser_turret_init(void);
 void bhv_mad_laser_turret_loop(void);
 void bhv_mad_laser_init(void);
 void bhv_mad_laser_loop(void);
+void bhv_mad_spike_wall_init(void);
+void bhv_mad_spike_wall_loop(void);

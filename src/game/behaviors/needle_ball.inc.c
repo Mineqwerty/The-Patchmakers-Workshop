@@ -25,7 +25,7 @@ void bhv_needle_ball_loop(void) {
     o->oPosY += o->oVelY;
 
     o->oMoveAngleYaw = o->oAngleToMario + 0x400*sins(o->oTimer * 0x50);
-    o->oForwardVel = 20.0f + 10 * sins(o->oTimer * 0x333);
+    o->oForwardVel = approach_f32(o->oForwardVel, 20.0f + 10 * sins(o->oTimer * 0x333), 5, 5);
     o->oFaceAngleYaw += 0x231;
     o->oFaceAnglePitch += 0x331;
     o->oFaceAngleRoll += 0x131;

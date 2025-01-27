@@ -31,3 +31,4 @@
 #include "levels/bowser_3/mantle_of_madness_hurt/geo.inc.c"
 #include "levels/bowser_3/mad_laser_turret/geo.inc.c"
 #include "levels/bowser_3/mad_laser/geo.inc.c"
+#include "levels/bowser_3/mad_spike_wall/geo.inc.c"

@@ -1,0 +1,13 @@
+extern const GeoLayout mad_spike_wall_geo[];
+extern u8 mad_spike_wall_clay_i8[];
+extern u8 mad_spike_wall_wavewallpoaper_ia8[];
+extern Vtx mad_spike_wall_Cube_mesh_layer_1_vtx_cull[8];
+extern Vtx mad_spike_wall_Cube_mesh_layer_1_vtx_0[51];
+extern Gfx mad_spike_wall_Cube_mesh_layer_1_tri_0[];
+extern Vtx mad_spike_wall_Cube_mesh_layer_1_vtx_1[283];
+extern Gfx mad_spike_wall_Cube_mesh_layer_1_tri_1[];
+extern Gfx mat_mad_spike_wall_f3dlite_material_005[];
+extern Gfx mat_revert_mad_spike_wall_f3dlite_material_005[];
+extern Gfx mat_mad_spike_wall_f3dlite_material[];
+extern Gfx mat_revert_mad_spike_wall_f3dlite_material[];
+extern Gfx mad_spike_wall_Cube_mesh_layer_1[];

@@ -1715,7 +1715,7 @@ u32 interact_mantle_of_madness(struct MarioState *m, UNUSED u32 interactType, st
     }
     interaction = determine_interaction(m, obj);
 
-    if (interaction & INT_ATTACK_NOT_FROM_BELOW) {
+    if (interaction & ((INT_GROUND_POUND_OR_TWIRL | INT_PUNCH | INT_KICK | INT_TRIP))) {
 
         attack_object(obj, interaction, 1);
         bounce_back_from_attack(m, interaction);

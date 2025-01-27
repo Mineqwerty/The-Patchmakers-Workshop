@@ -56,6 +56,7 @@
 #include "levels/ccm/header.h"
 #include "levels/pss/header.h"
 #include "levels/new_file_select/header.h"
+#include "levels/bowser_3/header.h"
 
 #include "make_const_nonconst.h"
 #include "behavior_data.h"
@@ -9034,5 +9035,17 @@ const BehaviorScript bhvMadLaser[] = {
     CALL_NATIVE(bhv_mad_laser_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_mad_laser_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMadSpikeWall[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(mad_spike_wall_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_spike_wall_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_spike_wall_loop),
+        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };

@@ -33,6 +33,7 @@ const LevelScript level_bowser_3_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MANTLE_OF_MADNESS_HURT, mantle_of_madness_hurt_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MAD_LASER_TURRET, mad_laser_turret_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MAD_LASER, mad_laser_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MAD_SPIKE_WALL, mad_spike_wall_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -43,10 +44,7 @@ const LevelScript level_bowser_3_entry[] = {
 		MARIO_POS(0x01, 0, -2914, 1200, 0),
 		OBJECT(MODEL_NONE, -2914, 1200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_MANTLE_OF_MADNESS, 2268, 1199, 0, 0, 0, 0, 0x00000000, bhvMantleOfMadness),
-		OBJECT(MODEL_MAD_LASER_TURRET, 379, 1351, -818, 0, 0, 0, 0x00000000, bhvMadLaserTurret),
-		OBJECT(MODEL_MAD_LASER_TURRET, 379, 1351, 853, 0, 0, 0, (1 << 16), bhvMadLaserTurret),
-		OBJECT(MODEL_MAD_LASER_TURRET, -1121, 1351, 853, 0, 0, 0, (2 << 16), bhvMadLaserTurret),
-		OBJECT(MODEL_MAD_LASER_TURRET, -1121, 1351, -797, 0, 0, 0, (3 << 16), bhvMadLaserTurret),
+		OBJECT(MODEL_MAD_SPIKE_WALL, -581, 1199, 0, 0, 0, 0, 0x00000000, bhvMadSpikeWall),
 		TERRAIN(bowser_3_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_3_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_3_area_1_macro_objs),

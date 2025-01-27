@@ -38,3 +38,5 @@
 #include "levels/bowser_3/mantle_of_madness_hurt/model.inc.c"
 #include "levels/bowser_3/mad_laser_turret/model.inc.c"
 #include "levels/bowser_3/mad_laser/model.inc.c"
+#include "levels/bowser_3/mad_spike_wall/collision.inc.c"
+#include "levels/bowser_3/mad_spike_wall/model.inc.c"

@@ -878,9 +878,9 @@ void cur_obj_update(void) {
 
     u8 blinkFrame = 0;
 
-    if (o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM && o->oEnemyInvincibilityTimer > 0) {
+    if ((o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM) && o->oEnemyInvincibilityTimer > 0) {
         o->oEnemyInvincibilityTimer--;
-        if (gGlobalTimer % 3 == 1) {
+        if (gGlobalTimer % 3 == 1 && !obj_has_behavior(o, bhvMantleOfMadness)) {
             blinkFrame = 1;
         }
     }

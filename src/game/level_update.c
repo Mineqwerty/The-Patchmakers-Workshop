@@ -882,7 +882,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 sDelayedWarpTimer = 48;
                 sSourceWarpNodeId = WARP_NODE_DEATH;
                 play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, sDelayedWarpTimer, 0x00, 0x00, 0x00);
-                play_sound(SOUND_MENU_BOWSER_LAUGH, gGlobalSoundSource);
+                
 #ifdef PREVENT_DEATH_LOOP
                 m->isDead = TRUE;
 #endif
