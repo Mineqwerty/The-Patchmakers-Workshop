@@ -28,5 +28,45 @@ void bhv_mad_spike_wall_loop(void) {
             gMarioState->faceAngle[1] = o->oAngleToMario + 0x8000;
         }
     }
+
+    switch (o->oAction) {
+        case 0:
+            o->oPosY += 40.0f;
+            if (o->oTimer % 15 == 0) {
+            cur_obj_shake_screen(4);
+            }
+
+            if (o->oTimer % 4 == 0) {
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+            }
+
+            if (o->oTimer == 30) {
+                o->oAction++;
+            }
+
+            o->oFaceAngleYaw = o->oAngleToMario;
+        break;
+        case 1:
+            if (o->oTimer == 30) {
+                o->oAction++;
+            }
+        break;
+        case 2:
+            o->oForwardVel = 30.0f + o->oTimer / 2;
+            o->oMoveAngleYaw = o->oFaceAngleYaw;
+            cur_obj_move_xz_using_fvel_and_yaw();
+
+            if (o->oTimer > 30) {
+                o->oPosY -= 10;
+                if (o->oTimer % 4 == 0) {
+                    cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+                }
+            }
+
+            if (o->oTimer > 90)  {
+                obj_mark_for_deletion(o);
+            }
+        break;
+    }
 }
 

@@ -342,6 +342,10 @@ s32 update_objects_during_time_stop(struct ObjectNode *objList, struct ObjectNod
                 & (ACTIVE_FLAG_UNIMPORTANT | ACTIVE_FLAG_INITIATED_TIME_STOP)) {
                 unfrozen = TRUE;
             }
+
+            if (obj_has_behavior(gCurrentObject, bhvMantleOfMadness) || obj_has_behavior(gCurrentObject, bhvMadLaserTurret)) {
+                unfrozen = TRUE;
+            }
         }
 
         // Only update if unfrozen

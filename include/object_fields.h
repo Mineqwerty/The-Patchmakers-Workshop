@@ -1491,6 +1491,8 @@
 
 //mantle of madness
 #define oTwitchFrames           OBJECT_FIELD_S32(0x1B)
+#define oMantleOfMadnessPhase           OBJECT_FIELD_S32(0x1C)
+#define oMantleOfMadnessRageLevel           OBJECT_FIELD_S32(0x1D)
 
 /*Custom general defines:
 

@@ -10,6 +10,8 @@ struct ObjectHitbox sMantleOfMadnessHitbox = {
     /* hurtboxHeight:     */ 2990,
 };
 
+#define MANTLE_OF_MADNESS_MAX_HP 300
+
 enum MantleOfMadnessPhases {
     MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT,
     MANTLE_OF_MADNESS_PHASE_LASER_TURRETS,
@@ -22,7 +24,10 @@ enum MantleOfMadnessActions {
     MANTLE_OF_MADNESS_ACT_IDLE,
     MANTLE_OF_MADNESS_ACT_NEEDLE_BALL_STORM,
     MANTLE_OF_MADNESS_ACT_NEEDLE_BARRAGE,
-    MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL
+    MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL,
+    MANTLE_OF_MADNESS_ACT_APPROACHING_LASER,
+
+    MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS
 };
 
 void mantle_of_madness_control_face_twitch(void) {
@@ -41,9 +46,26 @@ void mantle_of_madness_control_face_twitch(void) {
     }
 }
 
-void mantle_of_madness_act_idle() {
+void mantle_of_madness_phase_transition(void) {
+    //i might change HP later so i'm making it percentage based for now
+    switch (o->oMantleOfMadnessPhase) {
+        case MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT:
+            if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.98f) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS;
+                o->oMantleOfMadnessPhase++;
+            }
+        break;
+        case MANTLE_OF_MADNESS_PHASE_LASER_TURRETS:
+            if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.7f) {
+                o->oMantleOfMadnessPhase++;
+            }
+        break;
+    }
+}
+
+void mantle_of_madness_act_idle(void) {
     if (o->oTimer == 90) {
-        o->oAction = MANTLE_OF_MADNESS_ACT_NEEDLE_BARRAGE;
+        o->oAction = MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL;
     }
 }
 
@@ -60,7 +82,7 @@ void mantle_of_madness_act_needle_ball_storm(void) {
 
 void mantle_of_madness_act_needle_barrage(void) {
     if (o->oTimer % 2 == 0) {
-        struct Object *needleBall = spawn_object_relative(0, -500, 100, random_u16()%300 - 150,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
+        struct Object *needleBall = spawn_object_relative(0, -1000, 100, random_u16()%300 - 150,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
         //needleBall->oTimer = 28;
     }
 
@@ -69,18 +91,78 @@ void mantle_of_madness_act_needle_barrage(void) {
     }
 }
 
+void spawn_spike_wall(struct Object *originObj) {
+    s16 randomAngle = random_u16();
+    //maybe make mario the parent for difficulty
+    struct Object *spikeWall =
+        spawn_object_relative(0, 1000 * sins(randomAngle), -1200, 1000 * coss(randomAngle), originObj,
+                              MODEL_MAD_SPIKE_WALL, bhvMadSpikeWall);
+    spikeWall->oPosY = -50;
+}
+
+void mantle_of_madness_act_raise_spike_wall(void) {
+    if (o->oTimer == 5) {
+        spawn_spike_wall(o);
+    }
+    if (o->oMantleOfMadnessRageLevel >= 1 && o->oTimer == 15) {
+        spawn_spike_wall(o);
+    }
+    if (o->oMantleOfMadnessRageLevel >= 2 && o->oTimer == 25) {
+        spawn_spike_wall(gMarioState->marioObj);
+    }
+
+    if (o->oTimer == 30) {
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+}
+
+void mantle_of_madness_act_spawn_laser_turrets(void) {
+    enable_time_stop_including_mario();
+    gCamera->cutscene = 1;
+    gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX - 800, 90.0f);
+    gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 1200, 90.0f);
+    gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ, 90.0f);
+    
+    gLakituState.goalFocus[0] = approach_f32_symmetric(gLakituState.goalFocus[0], 0, 140.0f);
+    gLakituState.goalFocus[1] = approach_f32_symmetric(gLakituState.goalFocus[1], 1200, 130.0f);
+    gLakituState.goalFocus[2] = approach_f32_symmetric(gLakituState.goalFocus[2], 0, 140.0f);
+
+    if (o->oTimer == 45) {
+        for (int i = 0; i < 4; i++) {
+            struct Object *laser = spawn_object_abs_with_rot(o, 0, MODEL_MAD_LASER_TURRET, bhvMadLaserTurret, 
+            400 + 800.0f * (1 - 2*(i%2)), 1250, 800.0f * (1 - 2*(i/2)),
+            0, 0, 0);
+
+            laser->oBehParams2ndByte = i;
+
+            spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvMistParticleSpawner, 
+            250.0f * (1 - 2*(i%2)), 1250, 250.0f * (1 - 2*(i/2)),
+            0, 0, 0);
+
+        }
+    }
+
+    if (o->oTimer == 75) {
+        gCamera->cutscene = 0;
+        disable_time_stop_including_mario();
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+}
+
 
 void bhv_mantle_of_madness_init(void) {
     obj_set_hitbox(o, &sMantleOfMadnessHitbox);
-    o->oHealth = 300;
-    gBossMaxHealth = 300;
-    gBossHealth = 300;
+    o->oHealth = MANTLE_OF_MADNESS_MAX_HP;
+    gBossMaxHealth = MANTLE_OF_MADNESS_MAX_HP;
+    gBossHealth = MANTLE_OF_MADNESS_MAX_HP;
     o->oTwitchFrames = 0;
+    o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT;
     o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    o->oMantleOfMadnessRageLevel = 0;
 }
 
 void bhv_mantle_of_madness_loop(void) {
-
+    mantle_of_madness_phase_transition();
     switch (o->oAction) {
         case MANTLE_OF_MADNESS_ACT_IDLE:
             mantle_of_madness_act_idle();
@@ -90,6 +172,14 @@ void bhv_mantle_of_madness_loop(void) {
         break;
         case MANTLE_OF_MADNESS_ACT_NEEDLE_BARRAGE:
             mantle_of_madness_act_needle_barrage();
+        break;
+        case MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL:
+            mantle_of_madness_act_raise_spike_wall();
+        break;
+
+
+        case MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS:
+            mantle_of_madness_act_spawn_laser_turrets();
         break;
     }
 

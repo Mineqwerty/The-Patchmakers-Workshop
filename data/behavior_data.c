@@ -9040,7 +9040,7 @@ const BehaviorScript bhvMadLaser[] = {
 
 const BehaviorScript bhvMadSpikeWall[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
     LOAD_COLLISION_DATA(mad_spike_wall_collision),
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_mad_spike_wall_init),

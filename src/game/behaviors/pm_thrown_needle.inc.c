@@ -27,7 +27,7 @@ void bhv_pm_thrown_needle_loop(void) {
                 obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
                 obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
                 obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
-            if (o->oTimer == 20) {
+            if (o->oTimer == 20 + 20*(gCurrLevelNum == LEVEL_BOWSER_3)) {
                 
                 o->oAction  = 2;
             }
