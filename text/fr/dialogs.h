@@ -2075,7 +2075,7 @@ J'peux en avoir d'autres.\n\
 Allez, à la prochaine...\n\
 Cool, Abdoul."))
 
-DEFINE_DIALOG(DIALOG_153, 1, 1, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_1, 1, 1, 30, 200, _("\
 Hé! Qui va là?\n\
 Qui me grimpe dessus?\n\
 Une mouche?\n\
@@ -2084,7 +2084,7 @@ Un cafard?\n\
 T'as intérêt à dégager!\n\
 Sinon j'te souffle dessus!"))
 
-DEFINE_DIALOG(DIALOG_154, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_2, 1, 5, 30, 200, _("\
 Accroche-toi à ta\n\
 casquette! Si jamais tu\n\
 la perds, retourne la\n\
@@ -2104,7 +2104,7 @@ Heu... Tu savais qu'il\n\
 existe aussi des niveaux\n\
 dans les murs, hein?"))
 
-DEFINE_DIALOG(DIALOG_155, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_3, 1, 5, 30, 200, _("\
 Grâce au pouvoir des\n\
 étoiles, le château revient\n\
 peu à peu à la vie...\n\
@@ -2121,7 +2121,7 @@ le niveau Trempé-Séché\n\
 \n\
 Allez, courage camarade!"))
 
-DEFINE_DIALOG(DIALOG_156, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 3, 30, 200, _("\
 Le niveau de la pendule\n\
 est étrange...\n\
 \n\
@@ -2129,7 +2129,7 @@ Fais attention à la\n\
 grande aiguille lorsque\n\
 tu rentres dans l'horloge."))
 
-DEFINE_DIALOG(DIALOG_157, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_2, 1, 5, 30, 200, _("\
 Attention aux sables\n\
 mouvants!\n\
 Si vous vous faites\n\
@@ -2140,7 +2140,7 @@ des trous sans fond...\n\
 Alors, prudence jeune\n\
 aventurier..."))
 
-DEFINE_DIALOG(DIALOG_158, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_HUB_2, 1, 6, 30, 200, _("\
 1. Si vous sautez de\n\
 façon répétée, vous\n\
 sauterez de plus en plus\n\
@@ -2154,7 +2154,7 @@ Grâce à cette technique,\n\
 vous pourrez accéder à\n\
 des lieux en hauteur."))
 
-DEFINE_DIALOG(DIALOG_159, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_1, 1, 4, 30, 200, _("\
 3. En vous arrêtant, en\n\
 appuyant sur [Z] et en\n\
 sautant, vous ferez un\n\
@@ -2163,7 +2163,7 @@ Pour faire un Saut en\n\
 Longueur, courez, appuyez\n\
 sur [Z], puis sautez."))
 
-DEFINE_DIALOG(DIALOG_160, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_2, 1, 3, 30, 200, _("\
 Appuyez sur [B] lorsque\n\
 vous courez pour faire\n\
 une attaque en glissade.\n\
@@ -2171,7 +2171,7 @@ Pour vous remettre\n\
 debout, appuyez sur [A] ou\n\
 sur [B]."))
 
-DEFINE_DIALOG(DIALOG_161, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_3, 1, 4, 30, 200, _("\
 Mario!?!?!\n\
 C'est toi? Vraiment toi?\n\
 Ça fait un bout de temps\n\
@@ -2205,7 +2205,7 @@ A bientôt et merci!\n\
 --Les créateurs de\n\
 /Mario 64..."))
 
-DEFINE_DIALOG(DIALOG_162, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS, 1, 2, 30, 200, _("\
 Oh, non!\n\
 Encore toi?\n\
 T'es amoureux, ou quoi?\n\
@@ -2223,7 +2223,7 @@ Ah... Autre chose...\n\
 LACHE-MOI!!!!!\n\
 GRANDE BRUTE!!!!!"))
 
-DEFINE_DIALOG(DIALOG_163, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_LOCKBOX_KEY_FOUND, 1, 4, 30, 200, _("\
 NoOoOoOoOoOoOoOon!!!\n\
 Tu...tu...tu m'as battu?\n\
 Moi?!? C'est illogique!\n\

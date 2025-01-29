@@ -65,7 +65,7 @@ void mantle_of_madness_phase_transition(void) {
 
 void mantle_of_madness_act_idle(void) {
     if (o->oTimer == 90) {
-        o->oAction = MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL;
+        o->oAction = MANTLE_OF_MADNESS_ACT_APPROACHING_LASER;
     }
 }
 
@@ -95,7 +95,7 @@ void spawn_spike_wall(struct Object *originObj) {
     s16 randomAngle = random_u16();
     //maybe make mario the parent for difficulty
     struct Object *spikeWall =
-        spawn_object_relative(0, 1000 * sins(randomAngle), -1200, 1000 * coss(randomAngle), originObj,
+        spawn_object_relative(0, -200/*1000 * sins(randomAngle)*/, -1200, 1000 * coss(randomAngle), originObj,
                               MODEL_MAD_SPIKE_WALL, bhvMadSpikeWall);
     spikeWall->oPosY = -50;
 }
@@ -116,6 +116,20 @@ void mantle_of_madness_act_raise_spike_wall(void) {
     }
 }
 
+void mantle_of_madness_act_approaching_laser(void) {
+    if (o->oTimer % 4 == 0) {
+        cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+    }
+
+    if (o->oTimer == 30) {
+        struct Object *laser = spawn_object_relative(0, 300, 2000, 0, o, MODEL_MAD_LASER, bhvTrackMarioLaser);
+        laser->oFaceAngleYaw -= 0x4000;
+    }
+    if (o->oTimer == 150) {
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+}
+
 void mantle_of_madness_act_spawn_laser_turrets(void) {
     enable_time_stop_including_mario();
     gCamera->cutscene = 1;
@@ -130,7 +144,7 @@ void mantle_of_madness_act_spawn_laser_turrets(void) {
     if (o->oTimer == 45) {
         for (int i = 0; i < 4; i++) {
             struct Object *laser = spawn_object_abs_with_rot(o, 0, MODEL_MAD_LASER_TURRET, bhvMadLaserTurret, 
-            400 + 800.0f * (1 - 2*(i%2)), 1250, 800.0f * (1 - 2*(i/2)),
+            -400 + 800.0f * (1 - 2*(i%2)), 1250, 800.0f * (1 - 2*(i/2)),
             0, 0, 0);
 
             laser->oBehParams2ndByte = i;
@@ -175,6 +189,9 @@ void bhv_mantle_of_madness_loop(void) {
         break;
         case MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL:
             mantle_of_madness_act_raise_spike_wall();
+        break;
+        case MANTLE_OF_MADNESS_ACT_APPROACHING_LASER:
+            mantle_of_madness_act_approaching_laser();
         break;
 
 

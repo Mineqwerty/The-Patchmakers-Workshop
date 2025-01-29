@@ -1162,3 +1162,5 @@ void bhv_mad_laser_init(void);
 void bhv_mad_laser_loop(void);
 void bhv_mad_spike_wall_init(void);
 void bhv_mad_spike_wall_loop(void);
+void bhv_track_mario_laser_init(void);
+void bhv_track_mario_laser_loop(void);

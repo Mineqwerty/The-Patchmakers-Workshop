@@ -826,3 +826,4 @@ extern const BehaviorScript bhvMantleOfMadness[];
 extern const BehaviorScript bhvMadLaserTurret[];
 extern const BehaviorScript bhvMadLaser[];
 extern const BehaviorScript bhvMadSpikeWall[];
+extern const BehaviorScript bhvTrackMarioLaser[];

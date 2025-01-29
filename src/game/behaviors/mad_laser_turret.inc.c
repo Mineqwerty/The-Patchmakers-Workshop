@@ -2,7 +2,7 @@ struct ObjectHitbox sMadLaserTurretHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 50,
     /* damageOrCoinValue: */ 2,
-    /* health:            */ 20,
+    /* health:            */ 12,
     /* numLootCoins:      */ 2,
     /* radius:            */ 100,
     /* height:            */ 100,
@@ -90,7 +90,7 @@ void bhv_mad_laser_loop(void) {
         f32 hitHeight = o->oPosY + o->oDistanceToMario * -sins(o->oFaceAnglePitch);
         if (absf(hitHeight - gMarioState->pos[1] + 60) < 100 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
             gMarioState->action = ACT_BACKWARD_AIR_KB;
-            o->oDamageOrCoinValue = 3;
+            o->oDamageOrCoinValue = 2;
             take_damage_and_knock_back(gMarioState, o);
             gMarioState->vel[1] = 5;
             gMarioState->forwardVel = 0.0f;

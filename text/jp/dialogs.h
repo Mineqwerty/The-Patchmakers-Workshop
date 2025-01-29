@@ -1698,13 +1698,13 @@ DEFINE_DIALOG(DIALOG_152, 1, 5, 30, 200, _("\
 あー、なんだか　きもちが\n\
 おちついてきたです。"))
 
-DEFINE_DIALOG(DIALOG_153, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_1, 1, 4, 30, 200, _("\
 わしの　カラダに\n\
 のぼっては　いかーん！\n\
 そういうヤツは　みんな\n\
 ふきっとばしちまうぞー！"))
 
-DEFINE_DIALOG(DIALOG_154, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_2, 1, 5, 30, 200, _("\
 ぼうしを　なくすと\n\
 ダメージがおおくなるので\n\
 だいじに　してください。\n\
@@ -1721,7 +1721,7 @@ DEFINE_DIALOG(DIALOG_154, 1, 5, 30, 200, _("\
 あります。\n\
 よーく、しらべてください。"))
 
-DEFINE_DIALOG(DIALOG_155, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_3, 1, 5, 30, 200, _("\
 パワースターのおかげで\n\
 おしろに、げんきが\n\
 もどってきました。\n\
@@ -1737,13 +1737,13 @@ DEFINE_DIALOG(DIALOG_155, 1, 5, 30, 200, _("\
 によって、まちをすっかり\n\
 みずびたしに　できます。"))
 
-DEFINE_DIALOG(DIALOG_156, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 4, 30, 200, _("\
 とけいがとても　へんです。\n\
 とけいに　はいるとき、\n\
 ながいはりの　ばしょに\n\
 ちゅういしてください！"))
 
-DEFINE_DIALOG(DIALOG_157, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_2, 1, 5, 30, 200, _("\
 ながれる『すな』に\n\
 ながされないように\n\
 きをつけて！\n\
@@ -1755,7 +1755,7 @@ DEFINE_DIALOG(DIALOG_157, 1, 5, 30, 200, _("\
 とくに　キケン！！\n\
 そこなしの　じごくです！"))
 
-DEFINE_DIALOG(DIALOG_158, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_HUB_2, 1, 5, 30, 200, _("\
 ジャンプのテクニック\n\
 その１\n\
 タイミングよく、\n\
@@ -1772,7 +1772,7 @@ DEFINE_DIALOG(DIALOG_158, 1, 5, 30, 200, _("\
 『カベキック』といって、\n\
 たかいところにのぼれます。"))
 
-DEFINE_DIALOG(DIALOG_159, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_1, 1, 5, 30, 200, _("\
 ジャンプのテクニック\n\
 その３　　Ｚボタンわざ\n\
 たちどまって　しゃがんで\n\
@@ -1783,7 +1783,7 @@ DEFINE_DIALOG(DIALOG_159, 1, 5, 30, 200, _("\
 とおくまで　とべる。\n\
 『はばとび』です。"))
 
-DEFINE_DIALOG(DIALOG_160, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_2, 1, 4, 30, 200, _("\
 はやく　はしりながら\n\
 Ｂボタンをおすと\n\
 『ボディアタック』が\n\
@@ -1793,7 +1793,7 @@ DEFINE_DIALOG(DIALOG_160, 1, 4, 30, 200, _("\
 Ａ・Ｂどちらのボタンでも\n\
 おきあがることができます。"))
 
-DEFINE_DIALOG(DIALOG_161, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_3, 1, 5, 30, 200, _("\
 いやー　すごいです！！\n\
 ここにいれば　あえると\n\
 きいてたけど、ほんとに\n\
@@ -1805,7 +1805,7 @@ DEFINE_DIALOG(DIALOG_161, 1, 5, 30, 200, _("\
 うけとって　ください。』\n\
 -マリオ・スタッフより-"))
 
-DEFINE_DIALOG(DIALOG_162, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS, 1, 5, 30, 200, _("\
 イテテ　あいかわらず\n\
 らんぼうなひとだな。\n\
 このスターは　べつに\n\
@@ -1817,7 +1817,7 @@ DEFINE_DIALOG(DIALOG_162, 1, 5, 30, 200, _("\
 これで　ほんとに\n\
 さいごだよ！　　ホイ！"))
 
-DEFINE_DIALOG(DIALOG_163, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_LOCKBOX_KEY_FOUND, 1, 5, 30, 200, _("\
 あああっ・・またこんども\n\
 キサマのかちか　マリオ！\n\
 キサマはな、わがはいが\n\

@@ -21,7 +21,7 @@ void bhv_mad_spike_wall_loop(void) {
         f32 hitHeight = o->oPosY + o->oDistanceToMario * -sins(o->oFaceAnglePitch);
         if (absf(o->oPosY - gMarioState->pos[1]) < 700 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
             gMarioState->action = ACT_BACKWARD_AIR_KB;
-            o->oDamageOrCoinValue = 3;
+            o->oDamageOrCoinValue = 2;
             take_damage_and_knock_back(gMarioState, o);
             gMarioState->vel[1] = 5;
             gMarioState->forwardVel = 0.0f;

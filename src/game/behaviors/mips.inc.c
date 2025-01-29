@@ -215,7 +215,7 @@ void bhv_mips_held(void) {
         if (o->oBehParams2ndByte == MIPS_BP_STAR_1) {
             dialogID = DIALOG_084;
         } else {
-            dialogID = DIALOG_162;
+            dialogID = DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS;
         }
 
         if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT) == MARIO_DIALOG_STATUS_SPEAK) {

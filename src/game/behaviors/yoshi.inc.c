@@ -85,7 +85,7 @@ void yoshi_talk_loop(void) {
         cur_obj_init_animation(0);
         if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT) == MARIO_DIALOG_STATUS_SPEAK) {
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            if (cutscene_object_with_dialog(CUTSCENE_DIALOG, o, DIALOG_161) != 0) {
+            if (cutscene_object_with_dialog(CUTSCENE_DIALOG, o, DIALOG_SEWNIA_FLAVOR_HUB_3_3) != 0) {
                 o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
                 o->oInteractStatus = INT_STATUS_NONE;
                 o->oHomeX = sYoshiHomeLocations[2];

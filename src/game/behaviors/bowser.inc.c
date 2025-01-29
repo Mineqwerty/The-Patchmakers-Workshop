@@ -1425,7 +1425,7 @@ s32 bowser_dead_final_stage_ending(void) {
         if (gHudDisplay.stars < 120) {
             dialogID = DIALOG_121;
         } else {
-            dialogID = DIALOG_163;
+            dialogID = DIALOG_SEWNIA_FLAVOR_LOCKBOX_KEY_FOUND;
         }
         // Lower music volume
         if (o->oBowserTimer == 0) {

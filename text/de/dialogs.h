@@ -1832,7 +1832,7 @@ durch das Loch in der\n\
 Decke ansehen, wann\n\
 immer ich möchte."))
 
-DEFINE_DIALOG(DIALOG_153, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_1, 1, 4, 30, 200, _("\
 Hey, wer ist da? Wer\n\
 meint, auf mir 'rumlaufen\n\
 zu müssen? Ein Eisfloh\n\
@@ -1842,7 +1842,7 @@ jeden Fall stört es mich.\n\
 Aber mein Eisatem wird\n\
 mich davon befreien!"))
 
-DEFINE_DIALOG(DIALOG_154, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_2, 1, 6, 30, 200, _("\
 Paß gut auf Deine Mütze\n\
 auf - ohne sie bist Du\n\
 leicht verletzbar!\n\
@@ -1850,7 +1850,7 @@ Wenn Du sie verloren hast,\n\
 findest Du sie in\n\
 derselben Welt wieder."))
 
-DEFINE_DIALOG(DIALOG_155, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_3, 1, 3, 30, 200, _("\
 Hi, Mario! Ich erzähle\n\
 Dir einige Geheimnisse\n\
 des Schlosses:\n\
@@ -1873,13 +1873,13 @@ Am besten schaust Du Dir\n\
 die Wirkung direkt im\n\
 Gemälde an!"))
 
-DEFINE_DIALOG(DIALOG_156, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 4, 30, 200, _("\
 Diese Uhr ist wirklich\n\
 ungewöhnlich. Ihr Inneres\n\
 verändert sich im Laufe\n\
 der Zeit."))
 
-DEFINE_DIALOG(DIALOG_157, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_2, 1, 5, 30, 200, _("\
 Achte auf den Treibsand!\n\
 Solltest Du einmal darin\n\
 versinken, findet Dein\n\
@@ -1891,7 +1891,7 @@ das Gemälde neu betreten\n\
 müssen, wenn Du in eines\n\
 dieser Löcher hineinfällst."))
 
-DEFINE_DIALOG(DIALOG_158, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_HUB_2, 1, 6, 30, 200, _("\
 Mit dem richtigen Timing\n\
 kannst Du sehr hoch\n\
 springen. Den Dreisprung\n\
@@ -1905,7 +1905,7 @@ Springe an eine Wand.\n\
 Sobald Du sie berührst,\n\
 mußt Du erneut springen!"))
 
-DEFINE_DIALOG(DIALOG_159, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_1, 1, 4, 30, 200, _("\
 Gehst Du in die Hocke und\n\
 drückst den Sprungknopf,\n\
 kannst Du einen\n\
@@ -1915,7 +1915,7 @@ Weitsprung, wenn Du im\n\
 Rennen den [Z]-Knopf\n\
 drückst und springst."))
 
-DEFINE_DIALOG(DIALOG_160, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_2, 1, 6, 30, 200, _("\
 Drücke im Rennen den\n\
 [B]-Knopf, um einen\n\
 Hechtsprung zu machen.\n\
@@ -1923,7 +1923,7 @@ Mit dem [A]- oder [B]-Knopf\n\
 kommt Mario auf die Füße\n\
 zurück."))
 
-DEFINE_DIALOG(DIALOG_161, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_3, 1, 5, 30, 200, _("\
 Hey... Mario!!! Seit\n\
 unserem letzten Abenteuer\n\
 ist viel Zeit vergangen.\n\
@@ -1965,7 +1965,7 @@ machst, die Dir bis jetzt\n\
 verborgen geblieben sind.\n\
 Das Super Mario 64 Team"))
 
-DEFINE_DIALOG(DIALOG_162, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS, 1, 4, 30, 200, _("\
 Nein, nein, nein! Nicht\n\
 Du schon wieder! Ich habe\n\
 jetzt wirklich keine Zeit,\n\
@@ -1975,7 +1975,7 @@ mich runter. Ich habe noch\n\
 wichtige Geschäfte zu\n\
 erledigen!"))
 
-DEFINE_DIALOG(DIALOG_163, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_LOCKBOX_KEY_FOUND, 1, 5, 30, 200, _("\
 Ich glaub's nicht! Du hast\n\
 mich besiegt...wie konnte\n\
 das nur geschehen. Meine\n\

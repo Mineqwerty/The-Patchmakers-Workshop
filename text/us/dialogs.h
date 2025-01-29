@@ -1659,96 +1659,77 @@ They make me feel...\n\
 ...peaceful. Please, come\n\
 back and visit anytime."))
 
-DEFINE_DIALOG(DIALOG_153, 1, 4, 30, 200, _("\
-Hey! Who's there?\n\
-What's climbing on me?\n\
-Is it an ice ant?\n\
-A snow flea?\n\
-Whatever it is, it's\n\
-bugging me! I think I'll\n\
-blow it away!"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_1, 1, 3, 30, 200, _("\
+@7F60B4FFI used to love this place, you know.\n\
+The Patchmaker, after creating me, decided he\n\
+would make this area a sort of kids' museum.\n\
+@7F60B4FFI always gave him honest feedback on\n\
+what I thought was wonderful and inspiring.\n\
+I hoped one day to make a bunch of friends here.\n\
+@7F60B4FFNow, I'm friends with you and Mr. Bowser!"))
 
-DEFINE_DIALOG(DIALOG_154, 1, 5, 30, 200, _("\
-Hold on to your hat! If\n\
-you lose it, you'll be\n\
-easily injured. If you\n\
-lose it, look for it in the\n\
-course where you lost it.\n\
-Speaking of lost, the\n\
-Princess is still stuck in\n\
-the walls somewhere.\n\
-Please help, Mario!\n\
-\n\
-Oh, you know that there\n\
-are secret worlds in the\n\
-walls as well as in the\n\
-paintings, right?"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_2, 1, 4, 30, 200, _("\
+@7F60B4FFI'm still a little shaken up from\n\
+the encounter with The Patchmaker...\n\
+I know you did all the confrontation, but\n\
+I still hated seeing him like that.\n\
+@7F60B4FFI'm a little scared of what would happen\n\
+if he saw me again. I've been hiding from him\n\
+for a long time. His insanity only gets\n\
+worse when he sees me..."))
 
-DEFINE_DIALOG(DIALOG_155, 1, 6, 30, 200, _("\
-Thanks to the power of\n\
-the Stars, life is\n\
-returning to the castle.\n\
-Please, Mario, you have\n\
-to give Bowser the boot!\n\
-\n\
-Here, let me tell you a\n\
-little something about the\n\
-castle. In the room with\n\
-the mirrors, look carefully\n\
-for anything that's not\n\
-reflected in the mirror.\n\
-And when you go to the\n\
-water town, you can flood\n\
-it with a high jump into\n\
-the painting."))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_3, 1, 3, 30, 200, _("\
+@7F60B4FFI really hope we can find Princess Peach's\n\
+thread. It's lucky that I even found Mr. Bowser's.\n\
+It was just lying around in a box.\n\
+@7F60B4FFThe Patchmaker did always have a spot for\n\
+beautiful things though... If Princess Peach is like\n\
+what you describe, her thread may be out somewhere."))
 
-DEFINE_DIALOG(DIALOG_156, 1, 5, 30, 200, _("\
-The world inside the\n\
-clock is so strange!\n\
-When you jump inside,\n\
-watch the position of\n\
-the big hand!"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 5, 30, 200, _("\
+@7F60B4FFHow have the worlds around here been treating you?\n\
+Unlike the last area, these worlds were reached\n\
+with better destination intent.\n\
+@7F60B4FFThe Patchmaker wanted to find any method of\n\
+creating life, so he followed any lead he\n\
+could think of...\n\
+@7F60B4FFWhether that be the sea, through spirits,\n\
+or places that may only exist in fiction..."))
 
-DEFINE_DIALOG(DIALOG_157, 1, 5, 30, 200, _("\
-Watch out! Don't let\n\
-yourself be swallowed by\n\
-quicksand.\n\
-\n\
-\n\
-If you sink into the sand,\n\
-you won't be able to\n\
-jump, and if your head\n\
-goes under, you'll be\n\
-smothered.\n\
-The dark areas are\n\
-bottomless pits."))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_2, 1, 3, 30, 200, _("\
+@7F60B4FFYou know, Bowser really has been looking\n\
+hard for Princess Peach's thread.\n\
+He must care about her a lot...\n\
+@7F60B4FFThough... he has told me what he's\n\
+done to try and woo her over in the past.\n\
+His methods are... uh...\n\
+@7F60B4FF...Anyways, I know why you two\n\
+fight so much now."))
 
-DEFINE_DIALOG(DIALOG_158, 1, 6, 30, 200, _("\
-1. If you jump repeatedly\n\
-and time it right, you'll\n\
-jump higher and higher.\n\
-If you run really fast and\n\
-time three jumps right,\n\
-you can do a Triple Jump.\n\
-2. Jump into a solid wall,\n\
-then jump again when you\n\
-hit the wall. You can\n\
-bounce to a higher level\n\
-using this Wall Kick."))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_HUB_2, 1, 2, 30, 200, _("\
+@7F60B4FFWow... I can practically feel\n\
+the star power radiating off of you!\n\
+@7F60B4FFI think this is more than enough to\n\
+shatter the barrier!"))
 
-DEFINE_DIALOG(DIALOG_159, 1, 6, 30, 200, _("\
-3. If you stop, press [Z]\n\
-to crouch, then jump, you\n\
-can perform a Backward\n\
-Somersault. To do a Long\n\
-Jump, run fast, press [Z],\n\
-then jump."))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_1, 1, 3, 30, 200, _("\
+@7F60B4FFI have a horrid feeling...\n\
+I'm really scared about what The Patchmaker\n\
+is doing, Mario.\n\
+@7F60B4FFHe can't be thinking coherently anymore,\n\
+if at all...\n\
+Which means he could be doing anything.\n\
+@7F60B4FFHe's only scary now.\n\
+This image of him is...\n\
+Destroying the past."))
 
-DEFINE_DIALOG(DIALOG_160, 1, 4, 30, 200, _("\
-Press [B] while running\n\
-fast to do a Body Slide\n\
-attack. To stand while\n\
-sliding, press [A] or [B]."))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_2, 1, 3, 30, 200, _("\
+@7F60B4FFThe last time I stepped foot in here,\n\
+it was horrifying.\n\
+I'd rather not discuss it...\n\
+@7F60B4FFIt seems at the very least,\n\
+he got rid of them.\n\
+I'm scared to know where they are now..."))
 
 #ifdef VERSION_EU
 #define KEEP_ON_PLAYING ".."
@@ -1761,71 +1742,28 @@ We hope that you like it!\n\
 Enjoy!!!"
 #endif
 
-DEFINE_DIALOG(DIALOG_161, 1, 4, 30, 200, _("\
-Mario!!!\n\
-It that really you???\n\
-It has been so long since\n\
-our last adventure!\n\
-They told me that I might\n\
-see you if I waited here,\n\
-but I'd just about given\n\
-up hope!\n\
-Is it true? Have you\n\
-really beaten Bowser? And\n\
-restored the Stars to the\n\
-castle?\n\
-And saved the Princess?\n\
-I knew you could do it!\n\
-Now I have a very special\n\
-message for you.\n\
-『Thanks for playing Super\n\
-Mario 64! This is the\n\
-end of the game, but not\n\
-the end of the fun." \
-KEEP_ON_PLAYING "』\n\
-\n\
-The Super Mario 64 Team"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_3_3, 1, 3, 30, 200, _("\
+@7F60B4FFPrincess Peach really has been trying\n\
+hard to cheer me up.\n\
+It's been nice...\n\
+@7F60B4FFBut... I just can't stop\n\
+thinking about what happened.\n\
+I feel so scared...\n\
+@7F60B4FFPlease, Mario...\n\
+Put an end to The Patchmaker soon..."))
 
-DEFINE_DIALOG(DIALOG_162, 1, 4, 30, 200, _("\
-No, no, no! Not you\n\
-again! I'm in a great\n\
-hurry, can't you see?\n\
-\n\
-I've no time to squabble\n\
-over Stars. Here, have it.\n\
-I never meant to hide it\n\
-from you...\n\
-It's just that I'm in such\n\
-a rush. That's it, that's\n\
-all. Now, I must be off.\n\
-Owww! Let me go!"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS, 1, 3, 30, 200, _("\
+@7F60B4FFI think you would be able to enter\n\
+the dimension the lockbox came from with\n\
+that much star power...\n\
+@7F60B4FFIt might be hard to find,\n\
+but I'm positive a key exists there.\n\
+Keep an eye out, Mario."))
 
-DEFINE_DIALOG(DIALOG_163, 1, 5, 30, 200, _("\
-Noooo! You've really\n\
-beaten me this time,\n\
-Mario! I can't stand\n\
-losing to you!\n\
-\n\
-My troops...worthless!\n\
-They've turned over all\n\
-the Power Stars! What?!\n\
-There are 120 in all???\n\
-\n\
-Amazing! There were some\n\
-in the castle that I\n\
-missed??!!\n\
-\n\
-\n\
-Now I see peace\n\
-returning to the world...\n\
-Oooo! I really hate that!\n\
-I can't watch--\n\
-I'm outta here!\n\
-Just you wait until next\n\
-time. Until then, keep\n\
-that Control Stick\n\
-smokin'!\n\
-Buwaa ha ha!"))
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_LOCKBOX_KEY_FOUND, 1, 3, 30, 200, _("\
+@7F60B4FFCongratulations on finding the key...\n\
+Whenever you're ready, the lockbox\n\
+should open for you."))
 
 DEFINE_DIALOG(DIALOG_ENTERING_THIRD_HUB, 1, 3, 30, 200, _("\
 @FF0202FFWoah!\n\
@@ -1857,7 +1795,7 @@ continue binding souls and trapping them!\n\
 \n\
 @FF75DFFFHold on a second...\n\
 You said he was trying to create life, right?\n\
-Didn't he accomplish it with this then?\n\
+Didn't he accomplish it with this, then?\n\
 @7F60B4FFNo... Every single soul he bound\n\
 turned out to be a failure. The results...\n\
 They were hardly alive. More like zombies.\n\
