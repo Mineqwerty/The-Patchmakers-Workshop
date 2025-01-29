@@ -101,6 +101,8 @@
 #define TEXT_CAM_INFO_FASTEST _("CAM SPEED: FASTEST")
 #endif
 
+#define TEXT_C_LEFT_PROMPT _("[C]<")
+
 #if defined(VERSION_JP) || defined(VERSION_SH)
 
 /**

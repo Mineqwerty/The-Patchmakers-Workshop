@@ -531,4 +531,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "fortune_teleporter_pedestal/geo_header.h"
 
+#include "menu_secret_stars/header.h"
+
 #endif

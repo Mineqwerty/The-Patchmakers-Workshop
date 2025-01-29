@@ -127,3 +127,4 @@
 #include "fortune_teleporter/anims/table.inc.c"
 #include "fortune_teleporter_pedestal/collision.inc.c"
 #include "fortune_teleporter_pedestal/model.inc.c"
+#include "menu_secret_stars/model.inc.c"

@@ -107,6 +107,8 @@ u8 textCamInfoFast[] = { TEXT_CAM_INFO_FAST};
 u8 textCamInfoFastest[] = { TEXT_CAM_INFO_FASTEST };
 #endif
 
+u8 textCLeftPrompt[] = { TEXT_C_LEFT_PROMPT };
+
 extern u8 gLastCompletedCourseNum;
 extern u8 gLastCompletedStarNum;
 
@@ -204,6 +206,9 @@ s8 gPatchIndexY = 0;
 s16 gPatchMenuTimer = 0;
 
 u16 gShakeOffset;
+
+s16 gSecretStarMenuPosX = SCREEN_WIDTH*2;
+s8 gDisplaySecretStarMenu = FALSE;
 
 s16 gNewStarIconCoordsX;
 s16 gNewStarIconCoordsY;
@@ -662,15 +667,15 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
     u8 index = 0;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
-        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
-        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        if ((gPlayer1Controller->rawStickY >  60)) index++;
+        if ((gPlayer1Controller->rawStickY < -60)) index += 2;
         
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
-        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS | R_JPAD))) {
+        if ((gPlayer1Controller->rawStickX >  60)) {
             index += 2;
              gStarSelectDisturbed = 1;
         }
-        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS | L_JPAD))) {
+        if ((gPlayer1Controller->rawStickX < -60)) {
             index++;
             gStarSelectDisturbed = 1;
         }
@@ -3067,6 +3072,97 @@ void render_patch_selection() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
+const char starHints[24][48] = {
+    "Metal in the cliffs",
+    "Abandoned well's gaps",
+    "Grappling into the dark",
+    "A challenge divine",
+    "Making waves",
+    "Devoured in shadow",
+    "From one to another",
+    "Gone with the wind",
+    "Journey across space",
+    "Ribbons of malice",
+    "Extending your abilities",
+    "Walking on thin air"
+};
+
+u8 secretStarPatchRequirements[24] = {
+    PATCH_TRANSMUTATION,
+    PATCH_MARINE
+};
+
+u32 courseToOrderedIndex[13] = {
+    COURSE_NONE,
+    COURSE_BOB,
+    COURSE_WF,
+    COURSE_JRB,
+    COURSE_CCM,
+    9,
+    5,
+    7,
+    6,
+    8,
+    10,
+    11,
+    12
+};
+
+void render_course_hint_text(void) {
+    print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
+        starHints[2*(courseToOrderedIndex[gCurrCourseNum] - 1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+    print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y + 15, 
+        starHints[1 + 2*(courseToOrderedIndex[gCurrCourseNum] -1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+}
+
+void render_hint_display(void) {
+    if (gDisplaySecretStarMenu) {
+        gSecretStarMenuPosX = approach_s16_asymptotic(gSecretStarMenuPosX, SCREEN_CENTER_X, 4);
+    }
+    else if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
+        gSecretStarMenuPosX = approach_s16_asymptotic(gSecretStarMenuPosX, SCREEN_WIDTH + 80, 5);
+    }
+    else {
+        gSecretStarMenuPosX = approach_s16_asymptotic(gSecretStarMenuPosX, SCREEN_WIDTH * 2, 5);
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, gSecretStarMenuPosX, SCREEN_CENTER_Y, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+    gSPDisplayList(gDisplayListHead++, menu_secret_stars_Plane_021_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (gDisplaySecretStarMenu || gSecretStarMenuPosX < SCREEN_WIDTH + 60) {
+        render_course_hint_text();
+    }
+    else {
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+        gDPSetEnvColor(gDisplayListHead++, 0,0, 0, gDialogTextAlpha);
+        print_generic_string(SCREEN_WIDTH-19, SCREEN_CENTER_Y-11, textCLeftPrompt);
+
+        gDPSetEnvColor(gDisplayListHead++, 185,169, 213, gDialogTextAlpha);
+        print_generic_string(SCREEN_WIDTH-20, SCREEN_CENTER_Y-10, textCLeftPrompt);
+
+        gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+    }
+
+    extern const u8 patch_textures_dma[];
+    extern u8 menu_secret_stars_stone_patch_rgba16_rgba16[];
+    u8 *patchTexture1 = segmented_to_virtual(&menu_secret_stars_stone_patch_rgba16_rgba16);
+    extern u8 menu_secret_stars_chillstep_patch_rgba16_rgba16[];
+    u8 *patchTexture2 = segmented_to_virtual(&menu_secret_stars_chillstep_patch_rgba16_rgba16);
+
+    dma_read(patchTexture1, 
+        (secretStarPatchRequirements[2*(courseToOrderedIndex[gCurrCourseNum] - 1)]*2048) + patch_textures_dma, 
+        (secretStarPatchRequirements[2*(courseToOrderedIndex[gCurrCourseNum] - 1)]*2048) + patch_textures_dma + 2048);
+
+    dma_read(patchTexture2, 
+        (secretStarPatchRequirements[1 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1)]*2048) + patch_textures_dma, 
+        (secretStarPatchRequirements[1 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1)]*2048) + patch_textures_dma + 2048);
+            
+
+}
+
 void render_pause_screen_felt() {
     s8 approachX = (gFeltGoalX - gFeltPosX) / 3;
     s8 approachY = (gFeltGoalY - gFeltPosY) / 3;
@@ -3180,6 +3276,18 @@ void render_pause_screen_felt() {
 
     render_submenu_toggle(-102, 82, &gSubMenuIndex, 66);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if ((save_file_get_flags() & SAVE_FLAG_BEAT_GAME) && gCurrLevelNum != LEVEL_CASTLE) {
+        render_hint_display();
+
+        if (gPlayer1Controller->buttonPressed & (L_CBUTTONS)) {
+            gDisplaySecretStarMenu = TRUE;
+        }
+        else if (gPlayer1Controller->buttonPressed & (R_CBUTTONS)) {
+            gDisplaySecretStarMenu = FALSE;
+        }
+    }
+    
 }
 
 #define NUM_MENU_SONGS 20

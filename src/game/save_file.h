@@ -134,7 +134,7 @@ enum SaveProgressFlags {
     SAVE_FLAG_UNLOCKED_COURSE_HVH      = (1 << 13), /* 0x00002000 */
     SAVE_FLAG_UNLOCKED_COURSE_CORR    = (1 << 14), /* 0x00004000 */
     SAVE_FLAG_UNLOCKED_COURSE_TS    = (1 << 15), /* 0x00008000 */
-    SAVE_FLAG_CAP_ON_GROUND          = (1 << 16), /* 0x00010000 */
+    SAVE_FLAG_BEAT_GAME          = (1 << 16), /* 0x00010000 */
     SAVE_FLAG_CAP_ON_KLEPTO          = (1 << 17), /* 0x00020000 */
     SAVE_FLAG_CAP_ON_UKIKI           = (1 << 18), /* 0x00040000 */
     SAVE_FLAG_CAP_ON_MR_BLIZZARD     = (1 << 19), /* 0x00080000 */
@@ -231,8 +231,6 @@ u32 save_file_get_patch_button(void);
 void save_file_set_camera_correction(u8 mode);
 void save_file_set_patch_button(u8 mode);
 void save_file_set_cannon_unlocked(void);
-void save_file_set_cap_pos(s16 x, s16 y, s16 z);
-s32 save_file_get_cap_pos(Vec3s capPos);
 void save_file_set_sound_mode(u16 mode);
 u32 save_file_get_sound_mode(void);
 #ifdef WIDE
@@ -243,7 +241,6 @@ void save_file_set_widescreen_mode(u8 mode);
 u8 save_file_get_camera_speed(void);
 void save_file_set_camera_speed(u8 speed);
 #endif
-void save_file_move_cap_to_default_location(void);
 
 void disable_warp_checkpoint(void);
 void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode);

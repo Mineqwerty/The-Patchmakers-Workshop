@@ -197,30 +197,6 @@ void bhv_normal_cap_init(void) {
     o->oFriction = 0.89f;
     o->oBuoyancy = 0.9f;
     o->oOpacity = 255;
-
-    save_file_set_cap_pos(o->oPosX, o->oPosY, o->oPosZ);
-}
-
-void normal_cap_set_save_flags(void) {
-    save_file_clear_flags(SAVE_FLAG_CAP_ON_GROUND);
-
-    switch (gCurrCourseNum) {
-        case COURSE_SSL:
-            save_file_set_flags(SAVE_FLAG_CAP_ON_KLEPTO);
-            break;
-
-        case COURSE_SL:
-            save_file_set_flags(SAVE_FLAG_CAP_ON_MR_BLIZZARD);
-            break;
-
-        case COURSE_TTM:
-            save_file_set_flags(SAVE_FLAG_CAP_ON_UKIKI);
-            break;
-
-        default:
-            save_file_set_flags(SAVE_FLAG_CAP_ON_KLEPTO);
-            break;
-    }
 }
 
 void normal_cap_act_0(void) {
@@ -253,18 +229,6 @@ void bhv_normal_cap_loop(void) {
             object_step();
             cap_sink_quicksand();
             break;
-    }
-
-    if ((s32) o->oForwardVel != 0) {
-        save_file_set_cap_pos(o->oPosX, o->oPosY, o->oPosZ);
-    }
-
-    if (o->activeFlags == ACTIVE_FLAG_DEACTIVATED) {
-        normal_cap_set_save_flags();
-    }
-
-    if (cap_set_hitbox() == TRUE) {
-        save_file_clear_flags(SAVE_FLAG_CAP_ON_GROUND);
     }
 }
 
