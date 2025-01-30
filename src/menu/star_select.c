@@ -361,6 +361,69 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
             }
         break;
 
+        case LEVEL_DDD:
+            switch (starIndex) {
+                case 0: coords[0] = -614.0f; coords[1] = 750.0f; coords[2] = -6618.0f;
+                break;
+                case 1: coords[0] = -2252.0f; coords[1] = 950.0f; coords[2] = -12288.0f;
+                break;
+                case 2: coords[0] = -5150.0f; coords[1] = 70.0f; coords[2] = -8130.0f;
+                break;
+                case 3: coords[0] = 4048.0f; coords[1] = 470.0f; coords[2] = -6114.0f;
+                break;
+                case 4: coords[0] = -9434.0f; coords[1] = 810.0f; coords[2] = -10524.0f;
+                break;
+                case 5: coords[0] = -8100.0f; coords[1] = 860.0f; coords[2] = -11000.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_SSL:
+            switch (starIndex) {
+                case 0: coords[0] = 1506.0f; coords[1] = 1330.0f; coords[2] = -4172.0f;
+                break;
+                case 1: coords[0] = -5402.0f; coords[1] = 590.0f; coords[2] = -13110.0f;
+                break;
+                case 2: coords[0] = -2540.0f; coords[1] = 910.0f; coords[2] = -11111.0f;
+                break;
+                case 3: coords[0] = -1910.0f; coords[1] = 1350.0f; coords[2] = -6630.0f;
+                break;
+                case 4: coords[0] = -9434.0f; coords[1] = -500.0f; coords[2] = -10524.0f;
+                break;
+                case 5: coords[0] = -2910.0f; coords[1] = 1350.0f; coords[2] = -6930.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 0.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_BBH:
+            switch (starIndex) {
+                case 0: coords[0] = -488.0f; coords[1] = 850.0f; coords[2] = -10520.0f;
+                break;
+                case 1: coords[0] = -2378.0f; coords[1] = 550.0f; coords[2] = -16902.0f;
+                break;
+                case 2: coords[0] = 3958.0f; coords[1] = 550.0f; coords[2] = -2571.0f;
+                break;
+                case 3: coords[0] = 52.0f; coords[1] = 550.0f; coords[2] = -15540.0f;
+                break;
+                case 4: coords[0] = -3890.0f; coords[1] = 550.0f; coords[2] = -6388.0f;
+                break;
+                case 5: coords[0] = 2570.0f; coords[1] = 550.0f; coords[2] = -9218.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 2500.0f, -7500.0f);
+                break;
+            }
+        break;
+
         default: coords[0] = 377.0f; coords[1] = 1470.0f; coords[2] = -9855.0f;
         break;
     }
