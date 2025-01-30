@@ -794,6 +794,8 @@
 #define MODEL_MAD_LASER_TURRET                   0x102
 #define MODEL_MAD_LASER                   0x103
 #define MODEL_MAD_SPIKE_WALL                   0x104
+#define MODEL_MAD_SLAMMING_HAND                   0x105
+#define MODEL_MAD_SLAMMING_HAND_SHADOW                   0x106
 
 
 //New File Select

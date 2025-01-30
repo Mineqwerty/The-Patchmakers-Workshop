@@ -16,6 +16,15 @@ struct SpawnParticlesInfo ThornPass = {
 };
 
 void get_surface_normal_oo(f32 normal[4], struct Surface *surf) {
+
+    if (surf == NULL) {
+        normal[0] = 0;
+        normal[1] = 1;
+        normal[2] = 0;
+        normal[3] = 0;
+        return;
+    }
+
     f32 nx, ny, nz;
     f32 mag;
     register s32 x1, y1, z1;
@@ -45,6 +54,14 @@ void get_surface_normal_oo(f32 normal[4], struct Surface *surf) {
     normal[3] = -(nx * x1 + ny * y1 + nz * z1);
 }
 void get_surface_normal(f32 normal[3], struct Surface *surf) {
+
+    if (surf == NULL) {
+        normal[0] = 0;
+        normal[1] = 1;
+        normal[2] = 0;
+        return;
+    }
+
     f32 nx, ny, nz;
     f32 mag;
     register s32 x1, y1, z1;

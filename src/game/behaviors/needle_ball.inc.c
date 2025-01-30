@@ -35,7 +35,9 @@ void bhv_needle_ball_loop(void) {
     vec3f_get_lateral_dist(&o->oPosVec, gMarioState->pos, &dist);
 
     if (dist < 50 || o->oHealth <= 0 || o->oTimer > 500) {
-        o->parentObj->oPatchmakerNeedleBallObj = NULL;
+        if (gCurrLevelNum != LEVEL_BOWSER_3) {
+            o->parentObj->oPatchmakerNeedleBallObj = NULL;
+        }
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         obj_mark_for_deletion(o);
     }

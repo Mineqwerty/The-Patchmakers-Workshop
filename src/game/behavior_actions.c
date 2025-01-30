@@ -407,3 +407,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/mantle_of_madness.inc.c"
 #include "behaviors/mad_spike_wall.inc.c"
 #include "behaviors/track_mario_laser.inc.c"
+#include "behaviors/mad_slamming_hand.inc.c"

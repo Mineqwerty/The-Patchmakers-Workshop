@@ -63,30 +63,73 @@ void mantle_of_madness_phase_transition(void) {
     }
 }
 
+void mantle_of_madness_phase_update(void) {
+    //i might change HP later so i'm making it percentage based for now
+    switch (o->oMantleOfMadnessPhase) {
+        case MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT:
+            o->oMantleOfMadnessRageLevel = 1;
+        break;
+        case MANTLE_OF_MADNESS_PHASE_LASER_TURRETS:;
+            s32 turretCount = count_objects_with_behavior(bhvMadLaserTurret);
+            if (turretCount == 0) {
+                o->oMantleOfMadnessRageLevel = 2;
+            }
+            else if (turretCount <= 2) {
+                o->oMantleOfMadnessRageLevel = 1;
+            }
+            else {
+                o->oMantleOfMadnessRageLevel = 0;
+            }
+        break;
+    }
+}
+
 void mantle_of_madness_act_idle(void) {
-    if (o->oTimer == 90) {
-        o->oAction = MANTLE_OF_MADNESS_ACT_APPROACHING_LASER;
+    u16 nextActionTime = 180;
+    if (o->oMantleOfMadnessRageLevel >= 1) {
+        nextActionTime = 150;
+    }
+    if (o->oMantleOfMadnessRageLevel >= 3) {
+        nextActionTime = 120;
+    }
+
+    if (o->oTimer >= nextActionTime) {
+        mantle_of_madness_choose_attack();
+        o->oMantleOfMadnessAttackCounter = 0;
     }
 }
 
 void mantle_of_madness_act_needle_ball_storm(void) {
-    if (o->oTimer % 4 == 0) {
-        struct Object *needleBall = spawn_object_relative(0, 0, 600, 0, o, MODEL_NEEDLE_BALL, bhvNeedleBall);
-        needleBall->oForwardVel = 100;
+    if (o->oTimer <= 30 || o->oTimer > 60) {
+        if (o->oTimer % 4 == 0) {
+            struct Object *needleBall = spawn_object_relative(0, 0, 600, 0, o, MODEL_NEEDLE_BALL, bhvNeedleBall);
+            needleBall->oForwardVel = 100;
+        }
     }
 
-    if (o->oTimer == 30) {
+    if (o->oTimer >= 30 && o->oMantleOfMadnessAttackCounter == 0) {
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+    if (o->oTimer >= 90) {
+        o->oMantleOfMadnessAttackCounter = 0;
         o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
     }
 }
 
 void mantle_of_madness_act_needle_barrage(void) {
-    if (o->oTimer % 2 == 0) {
-        struct Object *needleBall = spawn_object_relative(0, -1000, 100, random_u16()%300 - 150,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
-        //needleBall->oTimer = 28;
+    
+    if (o->oTimer <= 30 || o->oTimer > 60) {
+        if (o->oTimer % 2 == 0) {
+            struct Object *needleBall = spawn_object_relative(0, -1000, 100, random_u16()%300 - 150,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
+            //needleBall->oTimer = 28;
+        }
     }
 
-    if (o->oTimer == 30) {
+    if (o->oTimer >= 30 && o->oMantleOfMadnessAttackCounter == 0) {
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+    if (o->oTimer >= 70) {
+        o->oMantleOfMadnessAttackCounter = 0;
         o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
     }
 }
@@ -104,9 +147,7 @@ void mantle_of_madness_act_raise_spike_wall(void) {
     if (o->oTimer == 5) {
         spawn_spike_wall(o);
     }
-    if (o->oMantleOfMadnessRageLevel >= 1 && o->oTimer == 15) {
-        spawn_spike_wall(o);
-    }
+    
     if (o->oMantleOfMadnessRageLevel >= 2 && o->oTimer == 25) {
         spawn_spike_wall(gMarioState->marioObj);
     }
@@ -124,6 +165,7 @@ void mantle_of_madness_act_approaching_laser(void) {
     if (o->oTimer == 30) {
         struct Object *laser = spawn_object_relative(0, 300, 2000, 0, o, MODEL_MAD_LASER, bhvTrackMarioLaser);
         laser->oFaceAngleYaw -= 0x4000;
+        laser->oFaceAnglePitch = 0x3000;
     }
     if (o->oTimer == 150) {
         o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
@@ -163,6 +205,36 @@ void mantle_of_madness_act_spawn_laser_turrets(void) {
     }
 }
 
+void mantle_of_madness_choose_attack(void) {
+    u32 attack;
+    why_am_i_using_goto:
+    switch (random_u16()%4) {
+        case 0:
+            attack = MANTLE_OF_MADNESS_ACT_NEEDLE_BALL_STORM;
+        break;
+        case 1:
+            attack = MANTLE_OF_MADNESS_ACT_NEEDLE_BARRAGE;
+        break;
+        case 2:
+            attack = MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL;
+        break;
+        case 3:
+            attack = MANTLE_OF_MADNESS_ACT_APPROACHING_LASER;
+        break;
+
+    }
+
+    if (o->oMantleOfMadnessRageLevel >= 2) {
+        o->oMantleOfMadnessAttackCounter = 1;
+    }
+
+    if (attack == o->oMantleOfMadnessLastAttack) {
+        goto why_am_i_using_goto;
+    }
+
+    o->oAction = attack;
+}
+
 
 void bhv_mantle_of_madness_init(void) {
     obj_set_hitbox(o, &sMantleOfMadnessHitbox);
@@ -176,7 +248,9 @@ void bhv_mantle_of_madness_init(void) {
 }
 
 void bhv_mantle_of_madness_loop(void) {
+    
     mantle_of_madness_phase_transition();
+    mantle_of_madness_phase_update();
     switch (o->oAction) {
         case MANTLE_OF_MADNESS_ACT_IDLE:
             mantle_of_madness_act_idle();
@@ -202,6 +276,10 @@ void bhv_mantle_of_madness_loop(void) {
 
     mantle_of_madness_control_face_twitch();
     o->oInteractStatus = 0;
+
+    if (o->oAction != MANTLE_OF_MADNESS_ACT_IDLE) {
+        o->oMantleOfMadnessLastAttack = o->oAction;
+    }
 
     gBossHealth = o->oHealth;
 

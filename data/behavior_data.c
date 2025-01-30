@@ -9059,3 +9059,24 @@ const BehaviorScript bhvTrackMarioLaser[] = {
         CALL_NATIVE(bhv_track_mario_laser_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMadSlammingHand[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_COLLISION_DATA(mad_slamming_hand_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_slamming_hand_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_slamming_hand_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMadSlammingHandShadow[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_slamming_hand_shadow_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_slamming_hand_shadow_loop),
+    END_LOOP(),
+};

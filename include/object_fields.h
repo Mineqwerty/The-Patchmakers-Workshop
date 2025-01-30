@@ -1493,6 +1493,12 @@
 #define oTwitchFrames           OBJECT_FIELD_S32(0x1B)
 #define oMantleOfMadnessPhase           OBJECT_FIELD_S32(0x1C)
 #define oMantleOfMadnessRageLevel           OBJECT_FIELD_S32(0x1D)
+#define oMantleOfMadnessLastAttack           OBJECT_FIELD_S32(0x1E)
+#define oMantleOfMadnessAttackCounter           OBJECT_FIELD_S32(0x1F)
+
+//mad slamming hand
+#define oMadSlammingHandShadow           OBJECT_FIELD_OBJ(0x1B)
+
 
 /*Custom general defines:
 

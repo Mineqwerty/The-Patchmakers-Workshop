@@ -59,4 +59,10 @@ extern const LevelScript level_bowser_3_entry[];
 
 #include "levels/bowser_3/mad_spike_wall/geo_header.h"
 
+#include "levels/bowser_3/mad_slamming_hand/collision_header.h"
+
+#include "levels/bowser_3/mad_slamming_hand/geo_header.h"
+
+#include "levels/bowser_3/mad_slamming_hand_shadow/geo_header.h"
+
 #endif

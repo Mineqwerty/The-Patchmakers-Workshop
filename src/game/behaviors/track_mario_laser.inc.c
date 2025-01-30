@@ -5,7 +5,7 @@ void bhv_track_mario_laser_init(void) {
 void bhv_track_mario_laser_loop(void) {
     if (o->oTimer < 80) {
         obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x40);
-        obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x40);
+        obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x80);
     }
     else {
         cur_obj_scale(1.0f - ((f32)(o->oTimer-80) / 10.0f));
@@ -29,7 +29,6 @@ void bhv_track_mario_laser_loop(void) {
 
             find_surface_on_ray(originPos, raydir, &surf, hitpos, 1U, 1);
             if (surf != NULL && o->oTimer % 10 == 0) {
-                dbp(213);
                 spawn_object_abs_with_rot(o, 0, MODEL_EXPLOSION, bhvExplosion, 
                 hitpos[0], hitpos[1] + 50, hitpos[2],
                 0, 0, 0);

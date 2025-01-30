@@ -4,7 +4,7 @@ extern const MacroObject bowser_3_area_1_macro_objs[];
 extern u8 bowser_3_dl_brinknest_ia8[];
 extern u8 bowser_3_dl_nosiehell_rgba16[];
 extern Vtx bowser_3_dl_Plane_mesh_layer_1_vtx_cull[8];
-extern Vtx bowser_3_dl_Plane_mesh_layer_1_vtx_0[8];
+extern Vtx bowser_3_dl_Plane_mesh_layer_1_vtx_0[32];
 extern Gfx bowser_3_dl_Plane_mesh_layer_1_tri_0[];
 extern Gfx mat_bowser_3_dl_f3dlite_material_layer1[];
 extern Gfx mat_revert_bowser_3_dl_f3dlite_material_layer1[];

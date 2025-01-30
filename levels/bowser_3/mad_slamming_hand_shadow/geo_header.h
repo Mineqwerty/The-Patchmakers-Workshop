@@ -1,0 +1,7 @@
+extern const GeoLayout mad_slamming_hand_shadow_geo[];
+extern Vtx mad_slamming_hand_shadow_Circle_001_mesh_layer_6_vtx_cull[8];
+extern Vtx mad_slamming_hand_shadow_Circle_001_mesh_layer_6_vtx_0[52];
+extern Gfx mad_slamming_hand_shadow_Circle_001_mesh_layer_6_tri_0[];
+extern Gfx mat_mad_slamming_hand_shadow_f3dlite_material[];
+extern Gfx mat_revert_mad_slamming_hand_shadow_f3dlite_material[];
+extern Gfx mad_slamming_hand_shadow_Circle_001_mesh_layer_6[];

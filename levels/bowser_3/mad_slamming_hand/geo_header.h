@@ -1,0 +1,13 @@
+extern const GeoLayout mad_slamming_hand_geo[];
+extern u8 mad_slamming_hand_planet_ci8[];
+extern u8 mad_slamming_hand_planet_pal_rgba16[];
+extern Vtx mad_slamming_hand_Plane_005_mesh_layer_1_vtx_cull[8];
+extern Vtx mad_slamming_hand_Plane_005_mesh_layer_1_vtx_0[340];
+extern Gfx mad_slamming_hand_Plane_005_mesh_layer_1_tri_0[];
+extern Vtx mad_slamming_hand_Plane_005_mesh_layer_1_vtx_1[88];
+extern Gfx mad_slamming_hand_Plane_005_mesh_layer_1_tri_1[];
+extern Gfx mat_mad_slamming_hand_f3dlite_material_001[];
+extern Gfx mat_revert_mad_slamming_hand_f3dlite_material_001[];
+extern Gfx mat_mad_slamming_hand_brain[];
+extern Gfx mat_revert_mad_slamming_hand_brain[];
+extern Gfx mad_slamming_hand_Plane_005_mesh_layer_1[];

@@ -40,3 +40,6 @@
 #include "levels/bowser_3/mad_laser/model.inc.c"
 #include "levels/bowser_3/mad_spike_wall/collision.inc.c"
 #include "levels/bowser_3/mad_spike_wall/model.inc.c"
+#include "levels/bowser_3/mad_slamming_hand/collision.inc.c"
+#include "levels/bowser_3/mad_slamming_hand/model.inc.c"
+#include "levels/bowser_3/mad_slamming_hand_shadow/model.inc.c"

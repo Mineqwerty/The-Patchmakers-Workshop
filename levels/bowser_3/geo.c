@@ -32,3 +32,5 @@
 #include "levels/bowser_3/mad_laser_turret/geo.inc.c"
 #include "levels/bowser_3/mad_laser/geo.inc.c"
 #include "levels/bowser_3/mad_spike_wall/geo.inc.c"
+#include "levels/bowser_3/mad_slamming_hand/geo.inc.c"
+#include "levels/bowser_3/mad_slamming_hand_shadow/geo.inc.c"
