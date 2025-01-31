@@ -17,18 +17,30 @@ void bhv_generic_npc_init(void) {
     if (cur_obj_has_model(MODEL_ROSEDRIFT)) {
         o->oAnimations = (struct Animation **) rosedrift_anims;
         cur_obj_init_animation(0);
+        if (gCurrAreaIndex == 1) {
+            bhv_init_room();
+        }
     }
     if (cur_obj_has_model(MODEL_TALOTAK)) {
         o->oAnimations = (struct Animation **) talotak_anims;
         cur_obj_init_animation(0);
+        if (gCurrAreaIndex == 1) {
+            bhv_init_room();
+        }
     }
     if (cur_obj_has_model(MODEL_BUTLERGEIST)) {
         o->oAnimations = (struct Animation **) butlergeist_anims;
         cur_obj_init_animation(0);
+        if (gCurrAreaIndex == 1) {
+            bhv_init_room();
+        }
     }
     if (cur_obj_has_model(MODEL_PHANTASMAID)) {
         o->oAnimations = (struct Animation **) phantasmaid_anims;
         cur_obj_init_animation(0);
+        if (gCurrAreaIndex == 1) {
+            bhv_init_room();
+        }
     }
     if (cur_obj_has_model(MODEL_CASHEW_MAN) || cur_obj_has_model(MODEL_PECAN_MAN)) {
         o->oAnimations = (struct Animation **) cashew_man_anims;
