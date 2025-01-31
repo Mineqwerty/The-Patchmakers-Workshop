@@ -2,15 +2,17 @@
 #include "src/game/cutscene.h"
 
 void bhv_hub_barrier_init(void) {
-    if (save_file_get_flags() & (SAVE_FLAG_UNLOCKED_HUB_3_DOOR)) {
-        //obj_mark_for_deletion(o);
+    if (save_file_get_flags() & (SAVE_FLAG_ENTERED_THIRD_HUB)) {
+        obj_mark_for_deletion(o);
     }
+
+    o->parentObj = cur_obj_find_object_with_bparam_2nd_byte(bhvStarUnlockPlatform, 5);
 }
 
 void bhv_hub_barrier_loop(void) {
     switch (o->oAction) {
         case 0:
-            if (o->oTimer > 30 && (save_file_get_flags() & (SAVE_FLAG_UNLOCKED_HUB_3_DOOR))) {
+            if (o->oTimer > 30 && (o->parentObj && o->parentObj->oAction == 4)) {
                 o->oAction = 1;
                 begin_cutscene_event(CUTSCENE_EVENT_LEAVING_SECOND_HUB);
             }

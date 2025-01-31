@@ -124,9 +124,9 @@ enum SaveProgressFlags {
     SAVE_FLAG_HAVE_VANISH_CAP        = (1 <<  3), /* 0x00000008 */
     SAVE_FLAG_HAVE_KEY_1             = (1 <<  4), /* 0x00000010 */
     SAVE_FLAG_HAVE_KEY_2             = (1 <<  5), /* 0x00000020 */
-    SAVE_FLAG_UNLOCKED_HUB_2_DOOR = (1 <<  6), /* 0x00000040 */
-    SAVE_FLAG_UNLOCKED_HUB_3_DOOR = (1 <<  7), /* 0x00000080 */
-    SAVE_FLAG_DDD_MOVED_BACK         = (1 <<  8), /* 0x00000100 */
+    SAVE_FLAG_ENTERED_SECOND_HUB = (1 <<  6), /* 0x00000040 */
+    SAVE_FLAG_ENTERED_THIRD_HUB = (1 <<  7), /* 0x00000080 */
+    SAVE_FLAG_UNLOCKED_CLC_SHORTCUT         = (1 <<  8), /* 0x00000100 */
     SAVE_FLAG_MOAT_DRAINED           = (1 <<  9), /* 0x00000200 */
     SAVE_FLAG_UNLOCKED_COURSE_RDR      = (1 << 10), /* 0x00000400 */
     SAVE_FLAG_UNLOCKED_COURSE_STC       = (1 << 11), /* 0x00000800 */

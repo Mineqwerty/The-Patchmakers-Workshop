@@ -191,23 +191,21 @@ And it can be found anywhere? Lucky!\n\
 @7F60B4FFLeaving the workshop isn't a good idea, but\n\
 I think I know how to help! Follow me!"))
 
-DEFINE_DIALOG(DIALOG_025, 1, 4, 95, 200, _("\
-It takes the power of\n\
-3 Stars to open this\n\
-door. You need [%] more\n\
-Stars."))
+DEFINE_DIALOG(DIALOG_NEED_10_STARS, 1, 4, 95, 200, _("\
+@FEFEFEFFIt seems the power of\n\
+10 stars can break the\n\
+seal. You need [%] more\n\
+stars."))
 
-DEFINE_DIALOG(DIALOG_026, 1, 4, 95, 200, _("\
-It takes the power of\n\
-8 Stars to open this\n\
-door. You need [%] more\n\
-Stars."))
+DEFINE_DIALOG(DIALOG_NEED_35_STARS, 1, 4, 95, 200, _("\
+@FEFEFEFFIt seems the power of\n\
+35 stars can break the\n\
+seal. You need [%] more\n\
+stars."))
 
-DEFINE_DIALOG(DIALOG_027, 1, 4, 95, 200, _("\
-It takes the power of\n\
-30 Stars to open this\n\
-door. You need [%] more\n\
-Stars."))
+DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 2, 95, 200, _("\
+@FEFEFEFF...It seems that the door is locked\n\
+from the other side."))
 
 DEFINE_DIALOG(DIALOG_028, 1, 4, 95, 200, _("\
 It takes the power of\n\
@@ -259,7 +257,7 @@ hand over this Star to\n\
 the winner of the race.\n\
 Congrats, Mario!"))
 
-DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_NERVOUS, 1, 3, 30, 200, _("\
 A... A guest! H-How did you...?\n\
 \n\
 \n\
@@ -269,7 +267,7 @@ spirits were in the main chamber...\n\
 ...What? You say it's safe? Are you sure?\n\
 \n\
 \n\
-Well, you are alive so I suppose there is no\n\
+Well, you ARE alive... so I suppose there is no\n\
 reason to doubt you. Alright, I released the\n\
 lock. I apologize deeply for any trouble it caused."))
 
@@ -341,9 +339,9 @@ It would be best not to provoke them, as they\n\
 dislike being looked at directly."))
 
 DEFINE_DIALOG(DIALOG_038, 1, 3, 95, 200, _("\
-Reacting to the Star\n\
-power, the door slowly\n\
-opens."))
+@FEFEFEFFWith the seal broken, Mario ventures into\n\
+the dark, musty hallway ahead, with Sewnia following\n\
+closely behind..."))
 
 DEFINE_DIALOG(DIALOG_039, 0b10, 3, 30, 200, _("\
 Another fallen to the wastes...\n\

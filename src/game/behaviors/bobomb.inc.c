@@ -1,5 +1,8 @@
 // bobomb.inc.c
 
+#include "include/dialog_ids.h"
+#include "src/game/save_file.h"
+
 static struct ObjectHitbox sBobombHitbox = {
     /* interactType:      */ INTERACT_GRABBABLE,
     /* downOffset:        */ 0,
@@ -372,6 +375,10 @@ void bobomb_buddy_act_talk(void) {
                     != BOBOMB_BUDDY_BP_STYPE_GENERIC) {
                     set_mario_npc_dialog(MARIO_DIALOG_STOP);
 
+                    if (o->oBehParams2ndByte == DIALOG_PHANTASMAID_NERVOUS) {
+                        save_file_set_flags(SAVE_FLAG_UNLOCKED_CLC_SHORTCUT);
+                    }
+
                     o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
                     o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
                     o->oInteractStatus = INT_STATUS_NONE;
@@ -433,7 +440,7 @@ void bobomb_buddy_actions(void) {
 void bhv_bobomb_buddy_loop(void) {
     bobomb_buddy_actions();
 
-    curr_obj_random_blink(&o->oBobombBuddyBlinkTimer);
+    //curr_obj_random_blink(&o->oBobombBuddyBlinkTimer);
 
     o->oInteractStatus = INT_STATUS_NONE;
 }

@@ -8839,7 +8839,6 @@ const BehaviorScript bhvBowserNpc[] = {
     LOAD_ANIMATIONS(oAnimations, bowser_seg6_anims_06057690),
     SET_HITBOX(/*Radius*/ 400, /*Height*/ 400),
     SET_INTERACT_TYPE(INTERACT_TEXT),
-    SET_FLOAT(oDrawingDistance, 32000),
     ANIMATE(0),
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_bowser_npc_init),
@@ -8919,7 +8918,7 @@ const BehaviorScript bhvFortuneTeleporterPedestal[] = {
 };
 
 const BehaviorScript bhvHubBarrier[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     LOAD_COLLISION_DATA(hub_barrier_collision),
     SET_FLOAT(oDrawingDistance, 30000),

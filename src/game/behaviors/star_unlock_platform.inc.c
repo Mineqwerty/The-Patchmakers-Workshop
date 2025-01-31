@@ -24,7 +24,7 @@ u32 star_unlock_get_course_flag(void) {
             courseFlag = SAVE_FLAG_UNLOCKED_COURSE_HVH;
         break;
         case 5:
-            courseFlag = SAVE_FLAG_UNLOCKED_HUB_3_DOOR;
+            courseFlag = SAVE_FLAG_ENTERED_THIRD_HUB;
         break;
         case 6:
             courseFlag = SAVE_FLAG_UNLOCKED_COURSE_CORR;
@@ -66,7 +66,9 @@ void bhv_star_unlock_platform_loop(void) {
             if (gMarioState->numStars >= GET_BPARAM1(o->oBehParams)) {
                 spawn_object(gMarioObject, MODEL_STAR, bhvUnlockDoorStar);
                 o->oAction = STAR_UNLOCK_ACTION_UNLOCK_COURSE_ENTRY;
-                save_file_set_flags(star_unlock_get_course_flag());
+                if (star_unlock_get_course_flag() != SAVE_FLAG_ENTERED_THIRD_HUB) {
+                    save_file_set_flags(star_unlock_get_course_flag());
+                }
             }
         break;
         case STAR_UNLOCK_ACTION_LOWER_NUMBER:

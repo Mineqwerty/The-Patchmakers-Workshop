@@ -687,19 +687,19 @@ s16 sewnia_determine_flavor_text() {
 
     s16 flavorText = 0;
 
-    if (gMarioState->numStars >= 55 && (save_file_get_flags() & SAVE_FLAG_UNLOCKED_HUB_3_DOOR)) {
+    if (gMarioState->numStars >= 55 && (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB)) {
         flavorText = DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_TS;
     }
-    else if (save_file_get_flags() & SAVE_FLAG_UNLOCKED_HUB_3_DOOR) {
+    else if (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB) {
         flavorText = DIALOG_SEWNIA_FLAVOR_HUB_3_1 + (flavorStart%3);
     }
-    else if (gMarioState->numStars >= 36 && (save_file_get_flags() & SAVE_FLAG_UNLOCKED_HUB_2_DOOR)) {
+    else if (gMarioState->numStars >= 36 && (save_file_get_flags() & SAVE_FLAG_ENTERED_SECOND_HUB)) {
         flavorText = DIALOG_SEWNIA_FLAVOR_ENOUGH_STARS_HUB_2;
     }
-    else if (gMarioState->numStars >= 25 && (save_file_get_flags() & SAVE_FLAG_UNLOCKED_HUB_2_DOOR)) {
+    else if (gMarioState->numStars >= 25 && (save_file_get_flags() & SAVE_FLAG_ENTERED_SECOND_HUB)) {
         flavorText = DIALOG_SEWNIA_FLAVOR_25_STARS_1 + (flavorStart%2);
     }
-    else if (save_file_get_flags() & SAVE_FLAG_UNLOCKED_HUB_2_DOOR) {
+    else if (save_file_get_flags() & SAVE_FLAG_ENTERED_SECOND_HUB) {
         flavorText = DIALOG_SEWNIA_FLAVOR_HUB_2_1 + (flavorStart%3);
     }
     else if (gMarioState->numStars >= 10) {

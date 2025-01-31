@@ -471,13 +471,13 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
 
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:
-            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_HUB_2_DOOR))) {
+            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_ENTERED_SECOND_HUB))) {
                 save_file_set_flags(SAVE_FLAG_HAVE_KEY_1);
             }
             break;
 
         case LEVEL_BOWSER_2:
-            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_HUB_3_DOOR))) {
+            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_ENTERED_THIRD_HUB))) {
                 save_file_set_flags(SAVE_FLAG_HAVE_KEY_2);
             }
             break;
@@ -587,9 +587,9 @@ u32 save_file_get_flags(void) {
             SAVE_FLAG_HAVE_WING_CAP          |
             SAVE_FLAG_HAVE_METAL_CAP         |
             SAVE_FLAG_HAVE_VANISH_CAP        |
-            SAVE_FLAG_UNLOCKED_HUB_2_DOOR |
-            SAVE_FLAG_UNLOCKED_HUB_3_DOOR |
-            SAVE_FLAG_DDD_MOVED_BACK         |
+            SAVE_FLAG_ENTERED_SECOND_HUB |
+            SAVE_FLAG_ENTERED_THIRD_HUB |
+            SAVE_FLAG_UNLOCKED_CLC_SHORTCUT         |
             SAVE_FLAG_MOAT_DRAINED           |
             SAVE_FLAG_UNLOCKED_COURSE_RDR      |
             SAVE_FLAG_UNLOCKED_COURSE_STC       |

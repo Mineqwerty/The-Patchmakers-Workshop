@@ -290,19 +290,19 @@ Stern, um diese Tür zu\n\
 öffnen. Untersuche doch\n\
 einmal die Wandgemälde!"))
 
-DEFINE_DIALOG(DIALOG_025, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_10_STARS, 1, 4, 95, 200, _("\
 Zum Öffnen dieser Tür\n\
 benötigst Du drei Sterne.\n\
 Du mußt also noch [%]\n\
 von ihnen finden!"))
 
-DEFINE_DIALOG(DIALOG_026, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_35_STARS, 1, 4, 95, 200, _("\
 Zum Öffnen dieser Tür\n\
 benötigst Du acht Sterne.\n\
 Du mußt also noch [%]\n\
 von ihnen finden!"))
 
-DEFINE_DIALOG(DIALOG_027, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 4, 95, 200, _("\
 Zum Öffnen dieser Tür\n\
 benötigst Du 30 Sterne.\n\
 Du mußt also noch [%]\n\

@@ -277,21 +277,21 @@ DEFINE_DIALOG(DIALOG_MEET_SEWNIA_3, 1, 3, 95, 200, _("\
 なかの　モンスターから\n\
 とりもどしてきてください"))
 
-DEFINE_DIALOG(DIALOG_025, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_10_STARS, 1, 3, 95, 200, _("\
 このドアを　ひらくには\n\
 スター３まいの　パワーが\n\
 ひつようです。\n\
 あと[%]まいの　スターが\n\
 ひつようです。"))
 
-DEFINE_DIALOG(DIALOG_026, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_35_STARS, 1, 3, 95, 200, _("\
 このドアを　ひらくには\n\
 スター８まいの　パワーが\n\
 ひつようです。\n\
 あと[%]まいの　スターが\n\
 ひつようです。"))
 
-DEFINE_DIALOG(DIALOG_027, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 3, 95, 200, _("\
 このドアを　ひらくには\n\
 スター３０まいのパワーが\n\
 ひつようです。\n\

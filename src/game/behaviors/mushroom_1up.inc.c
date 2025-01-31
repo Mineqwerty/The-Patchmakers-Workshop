@@ -30,11 +30,11 @@ void bhv_1up_init(void) {
     bhv_1up_common_init();
 #ifndef UNLOCK_ALL
     if (o->oBehParams2ndByte == MUSHROOM_BP_REQUIRES_BOWSER_1) {
-        if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_HUB_2_DOOR))) {
+        if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_ENTERED_SECOND_HUB))) {
             o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
         }
     } else if (o->oBehParams2ndByte == MUSHROOM_BP_REQUIRES_BOWSER_2) {
-        if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_HUB_3_DOOR))) {
+        if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_ENTERED_THIRD_HUB))) {
             o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
         }
     }

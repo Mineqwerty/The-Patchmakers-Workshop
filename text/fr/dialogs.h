@@ -331,19 +331,19 @@ Récupérez des étoiles en\n\
 combattant des ennemis à\n\
 l'intérieur des tableaux..."))
 
-DEFINE_DIALOG(DIALOG_025, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_10_STARS, 1, 4, 95, 200, _("\
 Vous avez besoin de 3\n\
 étoiles pour ouvrir cette\n\
 porte. Il vous manque\n\
 encore [%] étoile(s)."))
 
-DEFINE_DIALOG(DIALOG_026, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_NEED_35_STARS, 1, 4, 95, 200, _("\
 Vous avez besoin de 8\n\
 étoiles pour ouvrir cette\n\
 porte. Il vous manque\n\
 encore [%] étoile(s)."))
 
-DEFINE_DIALOG(DIALOG_027, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 4, 95, 200, _("\
 Vous avez besoin de 30\n\
 étoiles pour ouvrir cette\n\
 porte. Il vous manque\n\
