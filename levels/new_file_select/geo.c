@@ -17,3 +17,4 @@
 #include "levels/new_file_select/geo.inc.c"
 
 #include "levels/new_file_select/patchmaker_title_screen/geo.inc.c"
+#include "levels/new_file_select/yarn_selector_circle/geo.inc.c"

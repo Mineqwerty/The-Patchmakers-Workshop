@@ -7,6 +7,8 @@
 #define NEW_FILE_SELECT_CAM_FILES   2
 #define NEW_FILE_SELECT_LOADING_FILE   3
 
+u8 gSelectedFile = 0;
+
 void set_initial_game_variables(void) {
     s8 dpadMap[4] = {-1, -1, -1, -1};
     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
@@ -18,6 +20,7 @@ void bhv_new_file_select_manager_init(void) {
     gMarioState->action = ACT_WAITING_FOR_DIALOG;
     gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
     gSpecialHudElementAlpha = 0;
+    spawn_object_relative(0, 0,0, 0, o, MODEL_YARN_SELECTOR_CIRCLE,bhvYarnCircleSelector);
 }
 
 void bhv_new_file_select_manager_loop(void) {
@@ -69,6 +72,17 @@ void bhv_new_file_select_manager_loop(void) {
             ;
             gSpecialHudElementAlpha = CLAMP_U8(255 - o->oTimer * 6);
             if (o->oTimer >= 50) {
+
+                handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &gSelectedFile, 0, 3);
+                f32 dist;
+                struct Object *selector = cur_obj_find_nearest_object_with_behavior(bhvYarnCircleSelector, &dist);
+
+                if (selector) {
+                    selector->oF4 = gSelectedFile;
+                }
+
+                gCurrSaveFileNum = gSelectedFile;
+
                 gSpecialHudRender = 0;
                 if (gPlayer1Controller->buttonPressed & (B_BUTTON)) {
                     o->oAction = NEW_FILE_SELECT_CAM_LOGO;
@@ -80,7 +94,7 @@ void bhv_new_file_select_manager_loop(void) {
                     o->oAction = NEW_FILE_SELECT_LOADING_FILE;
                 }
             }
-            Vec3f goalFilePos = {634, 280, -175};
+            Vec3f goalFilePos = {634, 250, -175};
             Vec3f goalFileFoc = {638, 0, -175};
             f32 approachSpeed = 0.02f + (((f32)o->oTimer) / 3000.0f);
                 approach_vec3f_asymptotic(gLakituState.goalPos, goalFilePos, approachSpeed, approachSpeed, approachSpeed);
@@ -95,5 +109,32 @@ void bhv_new_file_select_manager_loop(void) {
             }
         break;
     }
+}
+
+void bhv_file_controller_init(void) {
+    if (save_file_exists(o->oBehParams2ndByte - 1)) {
+        s16 starCount = save_file_get_total_star_count(o->oBehParams2ndByte - 1, COURSE_MIN - 1, COURSE_MAX - 1);
+        u8 inHundreds = starCount/100;
+        u8 inTenths = CLAMP(starCount/10, 0, 1);
+
+        spawn_object_relative(10, 6, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+
+        if (inHundreds) {
+            spawn_object_relative((starCount/100)%10, 4, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+            spawn_object_relative((starCount/10)%10, 2, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+            spawn_object_relative((starCount)%10, 0, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+        }
+        else if (inTenths) {
+            spawn_object_relative((starCount/10)%10, 4, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+            spawn_object_relative((starCount)%10, 2, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+        }
+        else {
+            spawn_object_relative((starCount)%10, 4, 2, 0, o, MODEL_NUMBER, bhvNewFileSelectStarCountNumber);
+        }
+    }
+}
+
+void bhv_file_controller_loop(void) {
+
 }
 

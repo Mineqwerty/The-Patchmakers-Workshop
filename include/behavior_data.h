@@ -829,3 +829,6 @@ extern const BehaviorScript bhvMadSpikeWall[];
 extern const BehaviorScript bhvTrackMarioLaser[];
 extern const BehaviorScript bhvMadSlammingHand[];
 extern const BehaviorScript bhvMadSlammingHandShadow[];
+extern const BehaviorScript bhvNewFileSelectStarCountNumber[];
+extern const BehaviorScript bhvFileController[];
+extern const BehaviorScript bhvYarnCircleSelector[];

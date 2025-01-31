@@ -3169,7 +3169,7 @@ void render_hint_display(void) {
     if (gDisplaySecretStarMenu || gSecretStarMenuPosX < SCREEN_WIDTH + 60) {
         render_course_hint_text();
     }
-    else {
+    else if (gSecretStarMenuPosX < SCREEN_WIDTH + 90) {
         gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
         gDPSetEnvColor(gDisplayListHead++, 0,0, 0, gDialogTextAlpha);
         print_generic_string(SCREEN_WIDTH-19, SCREEN_CENTER_Y-11, textCLeftPrompt);

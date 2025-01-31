@@ -9079,3 +9079,30 @@ const BehaviorScript bhvMadSlammingHandShadow[] = {
         CALL_NATIVE(bhv_mad_slamming_hand_shadow_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvNewFileSelectStarCountNumber[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_new_file_select_star_count_number_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_new_file_select_star_count_number_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFileController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_file_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_file_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvYarnCircleSelector[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_yarn_circle_selector_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_yarn_circle_selector_loop),
+    END_LOOP(),
+};

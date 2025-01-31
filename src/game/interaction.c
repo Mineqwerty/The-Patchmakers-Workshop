@@ -1194,9 +1194,9 @@ u32 get_door_save_file_flag(struct Object *door) {
 
 u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     s16 requiredNumStars = (obj->oBehParams >> 24);
-#ifndef UNLOCK_ALL
+
     s16 numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
-#endif
+
     s32 condition = (requiredNumStars == 100 ? (save_file_get_flags() & SAVE_FLAG_UNLOCKED_CLC_SHORTCUT) : numStars >= requiredNumStars);
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING) {
 #ifndef UNLOCK_ALL

@@ -800,6 +800,7 @@
 
 //New File Select
 #define MODEL_PATCHMAKER_SHADOW                   0x100
+#define MODEL_YARN_SELECTOR_CIRCLE                   0x101
 
 #define MODEL_PATCHMAKER                   0x130
 #define MODEL_THROWN_STRING                   0x131

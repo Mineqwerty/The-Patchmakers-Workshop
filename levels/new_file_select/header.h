@@ -15,4 +15,6 @@ extern const LevelScript level_new_file_select_entry[];
 
 #include "levels/new_file_select/tpw_logo/header.h"
 
+#include "levels/new_file_select/yarn_selector_circle/geo_header.h"
+
 #endif
