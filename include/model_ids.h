@@ -574,6 +574,7 @@
 #define MODEL_HUB_BARRIER                  0x118
 #define MODEL_CORR_LIFT                  0x119
 #define MODEL_TS_WARP_PLATFORM                  0x11A
+#define MODEL_MEMORY_CLOUD                  0x11B
 
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100

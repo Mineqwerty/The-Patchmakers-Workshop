@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_memory_cloud_f3dlite_material();
+extern void scroll_castle_inside_level_geo_memory_cloud();

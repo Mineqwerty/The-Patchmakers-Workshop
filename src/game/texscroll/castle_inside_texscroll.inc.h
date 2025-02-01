@@ -1,3 +1,4 @@
+#include "levels/castle_inside/memory_cloud/texscroll.inc.h"
 #include "levels/castle_inside/hub_barrier/texscroll.inc.h"
 #include "levels/castle_inside/twilight_veil/texscroll.inc.h"
 #include "levels/castle_inside/hvh_book_active/texscroll.inc.h"

@@ -1150,7 +1150,7 @@ Dépêchez-vous de les\n\
 attraper, sinon elles\n\
 disparaîtront!"))
 
-DEFINE_DIALOG(DIALOG_079, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTER_MEMORY, 1, 2, 30, 200, _("\
 GNIIIIIIIII!!!\n\
 LACHE-MOI!\n\
 Je blaguais! Tu n'as\n\

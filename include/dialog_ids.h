@@ -82,7 +82,7 @@ enum DialogId {
     DIALOG_076,
     DIALOG_077,
     DIALOG_078,
-    DIALOG_079,
+    DIALOG_ENTER_MEMORY,
     DIALOG_080,
     DIALOG_081,
     DIALOG_082,

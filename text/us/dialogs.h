@@ -821,18 +821,11 @@ The coins will disappear\n\
 if you're not quick to\n\
 collect them! Too bad."))
 
-DEFINE_DIALOG(DIALOG_079, 1, 4, 30, 200, _("\
-Owwwuu! Let me go!\n\
-Uukee-kee! I was only\n\
-teasing! Can't you take\n\
-a joke?\n\
-I'll tell you what, let's\n\
-trade. If you let me go,\n\
-I'll give you something\n\
-really good.\n\
-So, how about it?\n\
-\n\
-//Free him/ Hold on"))
+DEFINE_DIALOG(DIALOG_ENTER_MEMORY, 1, 4, 30, 200, _("\
+@FEFEFEFFA memory of an encounter\n\
+appears in front of you...\n\
+Revisit the encounter?\n\
+//Yes    / No"))
 
 DEFINE_DIALOG(DIALOG_080, 1, 1, 30, 200, _("\
 Eeeh hee hee hee!"))
@@ -2204,7 +2197,7 @@ Although, I can't tell you much to be honest. The Patchmaker stopped\n\
 telling me about his journeys around this point...\n\
 @7F60B4FF...I really wish things had turned out different.\n\
 I never did find that grove, by the way.\n\
-And as much as I wish I could, I don't think it's possible to anymore."))
+And as much as I wish I could, I don't think it's possible anymore."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_TFP, 1, 3, 30, 200, _("\
 @7F60B4FFThis place... The Far Plane...\n\
@@ -2689,7 +2682,7 @@ Oh...\n\
 Sorry, is this better?\n\
 @7F60B4FFYes... Thank you, Bowser.\n\
 Mario... make sure you keep my\n\
-back straight, alright?\n\
+arms straight, alright?\n\
 \n\
 @7F60B4FFThis is already hard enough...\n\
 \n\
@@ -2697,7 +2690,7 @@ back straight, alright?\n\
 \n\
 @FF0202FF...Does it hurt?\n\
 That was absolutely ruthless...\n\
-I wish I had gotten up faster.\n\
+I wish I had woke up faster.\n\
 \n\
 @7F60B4FFIt's alright... I'm just glad you saved us.\n\
 And no... It doesn't hurt at all.\n\
@@ -2765,7 +2758,7 @@ I um...\n\
 \n\
 "))
 
-DEFINE_DIALOG(DIALOG_PEACH_REVIVED_4, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_REVIVED_3, 1, 3, 30, 200, _("\
 @7F60B4FFHow... how could he do that to me?\n\
 Why would he do that to me?\n\
 Does he... does he really hate me that much?\n\
@@ -2784,7 +2777,7 @@ Being a king, a father... A soulless husk like that\n\
 who only causes suffering ticks me off!\n\
 @7F60B4FFIt's alright, Princess Peach...\n\
 I thought I would just get in the way of rescuing\n\
-everyone, so I tried my hardest not to say anything...\n\
+everyone, so I tried my hardest not to be a burden...\n\
 But even then... Why did things turn out this way?\n\
 @7F60B4FFWhy him? Why did he have to lose himself?\n\
 He was all I ever knew, all I ever had...\n\
@@ -2865,7 +2858,7 @@ I am about to say... But a man recently\n\
 traveled here in pursuit of eldritch secrets.\n\
 @4C2ABDFFHe was already nearing his breaking point,\n\
 and this realm is what seemed to have\n\
-made his mind cross some point...\n\
+made his mind cross some line...\n\
 @4C2ABDFFWhen he first arrived here, I met him.\n\
 I told him plainly, his quest was in vain.\n\
 The secrets of life were not his to hold.\n\
@@ -2889,7 +2882,7 @@ You, Mario, will confront this man soon.\n\
 When that time comes, will you be in control?\n\
 @4C2ABDFFSo... Prove it to me, Mario.\n\
 If you can maintain control over a long\n\
-battle, the patch is yours to keep.\n\
+fight, the patch is yours to keep.\n\
 @4C2ABDFFA useful tool... Or demise.\n\
 We shall commence a battle to see which\n\
 path you take!"))

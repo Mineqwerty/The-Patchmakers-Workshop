@@ -57,6 +57,7 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_HUB_BARRIER, hub_barrier_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CORR_LIFT, corr_lift_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TS_WARP_PLATFORM, ts_warp_platform_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MEMORY_CLOUD, memory_cloud_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -80,6 +81,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x43, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_GSS_WINDOW_LIGHT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindowLight),
 		OBJECT(MODEL_GSS_WINDOW_LIT, -2293, 2122, 590, 0, 0, 0, 0x00000000, bhvGssWindow),
+		OBJECT(MODEL_MEMORY_CLOUD, 5659, 765, -1655, 0, 0, 0, 0x00000000, bhvMemoryCloud),
 		OBJECT(MODEL_NONE, -2014, 100, -1225, 0, 0, 0, 0x051F0000, bhvPaintingDeathWarp),
 		OBJECT(MODEL_STC_DOOR_RIGHT, 3889, 554, 2488, 0, 0, 0, 0x00000000, bhvStcDoor),
 		OBJECT(MODEL_STC_DOOR_LEFT, 3889, 554, 2906, 0, 0, 0, (1 << 16), bhvStcDoor),

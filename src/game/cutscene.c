@@ -1290,6 +1290,33 @@ s32 event_patchmaker_breaking_point[] = {
 
 };
 
+s32 event_revive_peach[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 195,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 196,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_BEFORE_REVIVE_PEACH,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 197,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 198,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 59,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 60,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 199,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 200,
+
+
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_END_CUTSCENE,
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1315,7 +1342,8 @@ s32 *eventList[] = {
     event_leaving_second_hub,
     event_before_second_patchmaker_fight,
     //20
-    event_patchmaker_breaking_point
+    event_patchmaker_breaking_point,
+    event_revive_peach
 };
 
 s32 *splineList[] = {
@@ -1553,6 +1581,13 @@ s32 *splineList[] = {
     bowser_2_area_1_spline_BreakingPointPos24,
     bowser_2_area_1_spline_BreakingPointFocus24,
     //195
+    castle_inside_area_1_spline_PeachRevivePos1,
+    castle_inside_area_1_spline_PeachReviveFocus1,
+    castle_inside_area_1_spline_PeachRevivePos2,
+    castle_inside_area_1_spline_PeachReviveFocus2,
+    castle_inside_area_1_spline_PeachRevivePos3,
+    //200 holy fucking shit i am so tired
+    castle_inside_area_1_spline_PeachReviveFocus3,
 
 };
 

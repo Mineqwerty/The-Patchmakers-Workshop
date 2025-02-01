@@ -1174,3 +1174,5 @@ void bhv_file_controller_init(void);
 void bhv_file_controller_loop(void);
 void bhv_yarn_circle_selector_init(void);
 void bhv_yarn_circle_selector_loop(void);
+void bhv_memory_cloud_init(void);
+void bhv_memory_cloud_loop(void);

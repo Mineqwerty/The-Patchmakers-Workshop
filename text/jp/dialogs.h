@@ -934,7 +934,7 @@ DEFINE_DIALOG(DIALOG_078, 1, 5, 30, 200, _("\
 でも　じかんがたつと\n\
 きえてしまう・・ザンネン"))
 
-DEFINE_DIALOG(DIALOG_079, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTER_MEMORY, 1, 5, 30, 200, _("\
 いててて！\n\
 はなしてくれよ。\n\
 ウッキッキー！\n\

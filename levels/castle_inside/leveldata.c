@@ -131,3 +131,4 @@
 #include "levels/castle_inside/corr_lift/model.inc.c"
 #include "levels/castle_inside/ts_warp_platform/collision.inc.c"
 #include "levels/castle_inside/ts_warp_platform/model.inc.c"
+#include "levels/castle_inside/memory_cloud/model.inc.c"

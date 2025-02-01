@@ -1,0 +1,15 @@
+extern const GeoLayout memory_cloud_geo[];
+extern u8 memory_cloud_fragment_ci8[];
+extern u8 memory_cloud_fragment_pal_rgba16[];
+extern u8 memory_cloud_rushwater_ci4[];
+extern u8 memory_cloud_rushwater_pal_rgba16[];
+extern Vtx memory_cloud_Sphere_003_mesh_layer_5_vtx_cull[8];
+extern Vtx memory_cloud_Sphere_003_mesh_layer_5_vtx_0[142];
+extern Gfx memory_cloud_Sphere_003_mesh_layer_5_tri_0[];
+extern Vtx memory_cloud_Sphere_003_mesh_layer_5_vtx_1[10];
+extern Gfx memory_cloud_Sphere_003_mesh_layer_5_tri_1[];
+extern Gfx mat_memory_cloud_f3dlite_material_003[];
+extern Gfx mat_revert_memory_cloud_f3dlite_material_003[];
+extern Gfx mat_memory_cloud_f3dlite_material[];
+extern Gfx mat_revert_memory_cloud_f3dlite_material[];
+extern Gfx memory_cloud_Sphere_003_mesh_layer_5[];

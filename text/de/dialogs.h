@@ -1079,7 +1079,7 @@ beeilen, denn die blauen\n\
 Münzen erscheinen nur\n\
 für kurze Zeit."))
 
-DEFINE_DIALOG(DIALOG_079, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_ENTER_MEMORY, 1, 4, 30, 200, _("\
 Auuuuuaaa! Hey, laß mich\n\
 los! Das war doch nur\n\
 Spaß! Du hast wohl keinen\n\

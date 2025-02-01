@@ -9106,3 +9106,13 @@ const BehaviorScript bhvYarnCircleSelector[] = {
         CALL_NATIVE(bhv_yarn_circle_selector_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMemoryCloud[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_memory_cloud_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_memory_cloud_loop),
+    END_LOOP(),
+};

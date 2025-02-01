@@ -1233,7 +1233,51 @@ s32 play_mode_paused(void) {
             set_play_mode(PLAY_MODE_NORMAL);
             level_trigger_warp(gMarioState, WARP_OP_DEATH);
 #else
-            initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAG_EXIT_COURSE, 0);
+            u8 exitArea = 1;
+            switch (gCurrLevelNum) {
+                case LEVEL_BOB:
+                FALL_THROUGH
+                case LEVEL_WF:
+                FALL_THROUGH
+                case LEVEL_JRB:
+                FALL_THROUGH
+                case LEVEL_CCM:
+                FALL_THROUGH
+                case LEVEL_BITDW:
+                FALL_THROUGH
+                case LEVEL_BOWSER_1:
+                exitArea = 1;
+                break;
+
+                case LEVEL_HMC:
+                FALL_THROUGH
+                case LEVEL_LLL:
+                FALL_THROUGH
+                case LEVEL_DDD:
+                FALL_THROUGH
+                case LEVEL_SSL:
+                FALL_THROUGH
+                case LEVEL_BITFS:
+                FALL_THROUGH
+                case LEVEL_BOWSER_2:
+                exitArea = 2;
+                break;
+
+                case LEVEL_BBH:
+                FALL_THROUGH
+                case LEVEL_SL:
+                FALL_THROUGH
+                case LEVEL_WDW:
+                FALL_THROUGH
+                case LEVEL_TTM:
+                FALL_THROUGH
+                case LEVEL_BITS:
+                FALL_THROUGH
+                case LEVEL_BOWSER_3:
+                exitArea = 3;
+                break;
+            }
+            initiate_warp(EXIT_COURSE_LEVEL, exitArea, EXIT_COURSE_NODE, WARP_FLAG_EXIT_COURSE, 0);
             fade_into_special_warp(WARP_SPECIAL_NONE, 0);
             gSavedCourseNum = COURSE_NONE;
 #endif

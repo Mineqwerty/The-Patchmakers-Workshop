@@ -241,4 +241,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/ts_warp_platform/geo_header.h"
 
+#include "levels/castle_inside/memory_cloud/geo_header.h"
+
 #endif

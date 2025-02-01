@@ -502,7 +502,7 @@ void cage_ukiki_held_loop(void) {
         switch (o->oUkikiTextState) {
             case UKIKI_TEXT_DEFAULT:
                 if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_UP) == MARIO_DIALOG_STATUS_SPEAK) {
-                    create_dialog_box_with_response(DIALOG_079);
+                    create_dialog_box_with_response(DIALOG_ENTER_MEMORY);
                     o->oUkikiTextState = UKIKI_TEXT_CAGE_TEXTBOX;
                 }
                 break;
