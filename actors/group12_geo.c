@@ -26,3 +26,4 @@
 #include "pm_thrown_needle/geo.inc.c"
 #include "sewnia_body/geo.inc.c"
 #include "sewnia_head/geo.inc.c"
+#include "peach/geo.inc.c"

@@ -50,3 +50,7 @@ UNUSED static const u64 binid_5 = 5;
 #include "sewnia_head/model.inc.c"
 #include "sewnia_head/anims/data.inc.c"
 #include "sewnia_head/anims/table.inc.c"
+
+#include "peach/model.inc.c"
+#include "peach/anims/data.inc.c"
+#include "peach/anims/table.inc.c"

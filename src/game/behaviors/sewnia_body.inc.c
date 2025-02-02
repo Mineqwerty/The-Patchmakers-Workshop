@@ -5,7 +5,12 @@ void bhv_sewnia_body_init(void) {
         case LEVEL_BOWSER_2:
             cur_obj_init_animation(0);
         break;
+        case LEVEL_CASTLE:
+            cur_obj_init_animation(1);
+        break;
     }
+
+    o->oSewniaFaceState = 0;
 }
 
 void bhv_sewnia_body_loop(void) {
@@ -17,7 +22,11 @@ void bhv_sewnia_head_init(void) {
         case LEVEL_BOWSER_2:
             cur_obj_init_animation(0);
         break;
+        case LEVEL_CASTLE:
+            cur_obj_init_animation(2);
+        break;
     }
+    o->oSewniaFaceState = 0;
 }
 
 void bhv_sewnia_head_loop(void) {

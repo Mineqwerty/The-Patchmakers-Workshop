@@ -203,6 +203,26 @@ Gfx *geo_switch_peach_eyes(s32 callContext, struct GraphNode *node, UNUSED s32 c
     return NULL;
 }
 
+Gfx *geo_switch_peach_lips(s32 callContext, struct GraphNode *node, UNUSED s32 context) {
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
+    s16 timer;
+
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (sPeachManualBlinkTime == 0) {
+            timer = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
+            if (timer < 7) {
+                switchCase->selectedCase = sPeachIsBlinking * 4 + sPeachBlinkTimes[timer];
+            } else {
+                switchCase->selectedCase = sPeachIsBlinking * 4 + 1;
+            }
+        } else {
+            switchCase->selectedCase = sPeachIsBlinking * 4 + sPeachManualBlinkTime - 1;
+        }
+    }
+
+    return NULL;
+}
+
 /**
  * get_star_collection_dialog: Determine what dialog should show when Mario
  * collects a star.

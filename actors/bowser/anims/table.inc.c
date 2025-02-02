@@ -1,5 +1,5 @@
 // 0x06057690
-const struct Animation *const bowser_seg6_anims_06057690[] = {
+const struct Animation *const bowser_anims[] = {
 	&bowser_anim_0__Stand_up_,
 	&bowser_anim_1__Stand_up__unused__,
 	&bowser_anim_2__Shaking_,
@@ -32,5 +32,6 @@ const struct Animation *const bowser_seg6_anims_06057690[] = {
 	&bowser_anim_S_29_tremble_after_stomp,
 	&bowser_anim_T_30_look_at_peach,
 	&bowser_anim_U_31_Amgry_scream,
+	&bowser_anim_holdSewniaHead,
 	NULL,
 };
