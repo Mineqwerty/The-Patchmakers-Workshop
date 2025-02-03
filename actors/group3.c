@@ -6,10 +6,20 @@
 #include "types.h"
 #include "make_const_nonconst.h"
 
-#include "king_bobomb/model.inc.c"
-#include "king_bobomb/anims/data.inc.c"
-#include "king_bobomb/anims/table.inc.c"
-UNUSED static const u64 binid_0 = 0;
+#include "the_patchmaker/model.inc.c"
+#include "the_patchmaker/anims/data.inc.c"
+#include "the_patchmaker/anims/table.inc.c"
+#include "thrown_string/model.inc.c"
+#include "thrown_string/anims/data.inc.c"
+#include "thrown_string/anims/table.inc.c"
+#include "patchmaker_string/model.inc.c"
+#include "patchmaker_string/anims/data.inc.c"
+#include "patchmaker_string/anims/table.inc.c"
+#include "string_bundle/model.inc.c"
+#include "thread_bundle/model.inc.c"
+#include "needle_ball/model.inc.c"
 
-#include "water_bubble/model.inc.c"
-UNUSED static const u64 binid_1 = 1;
+
+#include "bowser_thread/model.inc.c"
+#include "pm_shockwave/model.inc.c"
+#include "pm_thrown_needle/model.inc.c"

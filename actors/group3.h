@@ -3,39 +3,29 @@
 
 #include "types.h"
 
-// king_bobomb
-extern const GeoLayout king_bobomb_geo[];
-extern const Gfx king_bobomb_seg5_dl_0500A4B8[];
-extern const Gfx king_bobomb_seg5_dl_0500A4F0[];
-extern const Gfx king_bobomb_seg5_dl_0500A5A0[];
-extern const Gfx king_bobomb_seg5_dl_0500A5D8[];
-extern const Gfx king_bobomb_seg5_dl_0500A688[];
-extern const Gfx king_bobomb_seg5_dl_0500A6C0[];
-extern const Gfx king_bobomb_seg5_dl_0500A770[];
-extern const Gfx king_bobomb_seg5_dl_0500A7A8[];
-extern const Gfx king_bobomb_seg5_dl_0500A858[];
-extern const Gfx king_bobomb_seg5_dl_0500A890[];
-extern const Gfx king_bobomb_seg5_dl_0500A940[];
-extern const Gfx king_bobomb_seg5_dl_0500A978[];
-extern const Gfx king_bobomb_seg5_dl_0500ABC0[];
-extern const Gfx king_bobomb_seg5_dl_0500AD08[];
-extern const Gfx king_bobomb_seg5_dl_0500AF20[];
-extern const Gfx king_bobomb_seg5_dl_0500B068[];
-extern const Gfx king_bobomb_seg5_sub_dl_body_left_side[];
-extern const Gfx king_bobomb_seg5_sub_dl_body_right_side[];
-extern const Gfx king_bobomb_seg5_dl_body[];
-extern const Gfx king_bobomb_seg5_dl_eyes[];
-extern const Gfx king_bobomb_seg5_dl_eyes_blink[];
-extern const Gfx king_bobomb_seg5_dl_0500B3C8[];
-extern const Gfx king_bobomb_seg5_dl_0500B418[];
-extern const Gfx king_bobomb_seg5_dl_0500B5F0[];
-extern const Gfx king_bobomb_seg5_dl_0500B6C0[];
-extern const struct Animation *const king_bobomb_seg5_anims_0500FE30[];
+#include "the_patchmaker/geo_header.h"
 
-// water_bubble
-extern const GeoLayout water_bomb_geo[];
-extern const GeoLayout water_bomb_shadow_geo[];
-extern const Gfx water_bubble_seg5_dl_05010D30[];
-extern const Gfx water_bubble_seg5_dl_05011000[];
+
+#include "the_patchmaker/anim_header.h"
+#include "thrown_string/geo_header.h"
+
+
+#include "thrown_string/anim_header.h"
+#include "patchmaker_string/geo_header.h"
+
+
+#include "patchmaker_string/anim_header.h"
+#include "string_bundle/geo_header.h"
+
+#include "thread_bundle/geo_header.h"
+
+#include "needle_ball/geo_header.h"
+
+
+#include "bowser_thread/geo_header.h"
+
+#include "pm_shockwave/geo_header.h"
+
+#include "pm_thrown_needle/geo_header.h"
 
 #endif

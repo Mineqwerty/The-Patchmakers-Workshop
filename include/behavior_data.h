@@ -834,4 +834,5 @@ extern const BehaviorScript bhvNewFileSelectStarCountNumber[];
 extern const BehaviorScript bhvFileController[];
 extern const BehaviorScript bhvYarnCircleSelector[];
 extern const BehaviorScript bhvMemoryCloud[];
+extern const BehaviorScript bhvPeachNpc[];
 extern const BehaviorScript bhvMadSlammingHandEyeball[];

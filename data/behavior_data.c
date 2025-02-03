@@ -522,7 +522,7 @@ const BehaviorScript bhvCapSwitch[] = {
 const BehaviorScript bhvKingBobomb[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    LOAD_ANIMATIONS(oAnimations, king_bobomb_seg5_anims_0500FE30),
+    //LOAD_ANIMATIONS(oAnimations, king_bobomb_seg5_anims_0500FE30),
     SET_INT(oInteractType, INTERACT_GRABBABLE),
     SET_HITBOX(/*Radius*/ 100, /*Height*/ 100),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -50, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
@@ -1429,7 +1429,7 @@ const BehaviorScript bhvEndToad[] = {
 const BehaviorScript bhvEndPeach[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    LOAD_ANIMATIONS(oAnimations, peach_seg5_anims_0501C41C),
+    LOAD_ANIMATIONS(oAnimations, peach_anims),
     ANIMATE(PEACH_ANIM_0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_end_peach_loop),
@@ -2093,7 +2093,7 @@ const BehaviorScript bhvBowser[] = {
     SET_HITBOX(/*Radius*/ 400, /*Height*/ 400),
     DROP_TO_FLOOR(),
     SET_HOME(),
-    LOAD_ANIMATIONS(oAnimations, bowser_seg6_anims_06057690),
+    LOAD_ANIMATIONS(oAnimations, bowser_anims),
     SPAWN_CHILD(/*Model*/ MODEL_NONE, /*Behavior*/ bhvBowserBodyAnchor),
     SPAWN_CHILD(/*Model*/ MODEL_BOWSER_BOMB_CHILD_OBJ, /*Behavior*/ bhvBowserFlameSpawn),
     SPAWN_OBJ(/*Model*/ MODEL_NONE, /*Behavior*/ bhvBowserTailAnchor),
@@ -6167,7 +6167,7 @@ const BehaviorScript bhvBeginningLakitu[] = {
 const BehaviorScript bhvBeginningPeach[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    LOAD_ANIMATIONS(oAnimations, peach_seg5_anims_0501C41C),
+    LOAD_ANIMATIONS(oAnimations, peach_anims),
     ANIMATE(PEACH_ANIM_0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_intro_peach_loop),
@@ -8852,7 +8852,7 @@ const BehaviorScript bhvThreadOfLife[] = {
 const BehaviorScript bhvBowserNpc[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
-    LOAD_ANIMATIONS(oAnimations, bowser_seg6_anims_06057690),
+    LOAD_ANIMATIONS(oAnimations, bowser_anims),
     SET_HITBOX(/*Radius*/ 400, /*Height*/ 400),
     SET_INTERACT_TYPE(INTERACT_TEXT),
     ANIMATE(0),
@@ -9140,5 +9140,15 @@ const BehaviorScript bhvMadSlammingHandEyeball[] = {
     CALL_NATIVE(bhv_mad_slamming_hand_eyeball_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_mad_slamming_hand_eyeball_loop),
+    END_LOOP(),
+};
+const BehaviorScript bhvPeachNpc[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, peach_anims),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_peach_npc_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_peach_npc_loop),
     END_LOOP(),
 };

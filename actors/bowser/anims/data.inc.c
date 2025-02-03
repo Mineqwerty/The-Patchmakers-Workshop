@@ -57,3 +57,4 @@
 #include "anim_S_29_tremble_after_stomp.inc.c"
 #include "anim_T_30_look_at_peach.inc.c"
 #include "anim_U_31_Amgry_scream.inc.c"
+#include "anim_holdSewniaHead.inc.c"

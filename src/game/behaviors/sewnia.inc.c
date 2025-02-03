@@ -1472,6 +1472,9 @@ void bhv_sewnia_loop(void) {
         else if (gCurCutscene == CUTSCENE_EVENT_PATCHMAKER_BREAKING_POINT) {
             o->oAction = SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE;
         }
+        else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_PEACH) {
+            obj_mark_for_deletion(o);
+        }
     }
 
     switch (o->oAction) {

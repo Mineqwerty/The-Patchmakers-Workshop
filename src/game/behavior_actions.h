@@ -1176,5 +1176,7 @@ void bhv_yarn_circle_selector_init(void);
 void bhv_yarn_circle_selector_loop(void);
 void bhv_memory_cloud_init(void);
 void bhv_memory_cloud_loop(void);
+void bhv_peach_npc_init(void);
+void bhv_peach_npc_loop(void);
 void bhv_mad_slamming_hand_eyeball_init(void);
 void bhv_mad_slamming_hand_eyeball_loop(void);
