@@ -27,23 +27,7 @@ UNUSED static const u64 binid_4 = 4;
 #include "impact_smoke/model.inc.c"
 UNUSED static const u64 binid_5 = 5;
 
-#include "the_patchmaker/model.inc.c"
-#include "the_patchmaker/anims/data.inc.c"
-#include "the_patchmaker/anims/table.inc.c"
-#include "thrown_string/model.inc.c"
-#include "thrown_string/anims/data.inc.c"
-#include "thrown_string/anims/table.inc.c"
-#include "patchmaker_string/model.inc.c"
-#include "patchmaker_string/anims/data.inc.c"
-#include "patchmaker_string/anims/table.inc.c"
-#include "string_bundle/model.inc.c"
-#include "thread_bundle/model.inc.c"
-#include "needle_ball/model.inc.c"
 
-
-#include "bowser_thread/model.inc.c"
-#include "pm_shockwave/model.inc.c"
-#include "pm_thrown_needle/model.inc.c"
 #include "sewnia_body/model.inc.c"
 #include "sewnia_body/anims/data.inc.c"
 #include "sewnia_body/anims/table.inc.c"

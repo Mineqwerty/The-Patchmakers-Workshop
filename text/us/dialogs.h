@@ -2692,7 +2692,7 @@ arms straight, alright?\n\
 That was absolutely ruthless...\n\
 I wish I had woke up faster.\n\
 \n\
-@7F60B4FFIt's alright... I'm just glad you saved us.\n\
+@7F60B4FFIt's alright... I'm just glad you're ok.\n\
 And no... It doesn't hurt at all.\n\
 To be honest, it's a miracle I can still\n\
 move...\n\

@@ -2341,10 +2341,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         perform_patch_action(gMarioState);
     }
 
-    if (gPlayer1Controller->buttonPressed & D_JPAD) {
-        spawn_object_relative(0, 0, 0, 0, o, MODEL_SEWNIA_BODY, bhvSewniaBody);
-    }
-
     //obj_attack_in_radius(gMarioObject, 500.0f, 2, 2);
 
     patch_update(gMarioState);

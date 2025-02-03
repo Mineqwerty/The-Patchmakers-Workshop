@@ -57,34 +57,13 @@ extern const GeoLayout bowser_1_yellow_sphere_geo[];
 extern const Gfx yellow_sphere_seg6_dl_0601F388[];
 extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
-#include "the_patchmaker/geo_header.h"
 
-
-#include "the_patchmaker/anim_header.h"
 #include "bowser/geo_header.h"
 
 
 #include "bowser/anim_header.h"
-#include "thrown_string/geo_header.h"
 
 
-#include "thrown_string/anim_header.h"
-#include "patchmaker_string/geo_header.h"
-
-
-#include "patchmaker_string/anim_header.h"
-#include "string_bundle/geo_header.h"
-
-#include "thread_bundle/geo_header.h"
-
-#include "needle_ball/geo_header.h"
-
-
-#include "bowser_thread/geo_header.h"
-
-#include "pm_shockwave/geo_header.h"
-
-#include "pm_thrown_needle/geo_header.h"
 
 #include "sewnia_body/geo_header.h"
 

@@ -13,7 +13,7 @@ void bhv_story_cutscene_manager_hub1_init(void) {
         case 1:
             //begin_cutscene_event(CUTSCENE_EVENT_SEWNIA_REVIVE_MARIO);
             //begin_cutscene_event(CUTSCENE_EVENT_REVIVE_BOWSER);
-            //begin_cutscene_event(CUTSCENE_EVENT_REVIVE_PEACH);
+            begin_cutscene_event(CUTSCENE_EVENT_REVIVE_PEACH);
         break;
         case 2:
             //begin_cutscene_event(CUTSCENE_EVENT_SECOND_HUB_ARRIVAL);

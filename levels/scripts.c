@@ -272,9 +272,13 @@ const LevelScript script_func_global_3[] = {
 };
 
 const LevelScript script_func_global_4[] = {
-    LOAD_MODEL_FROM_GEO(MODEL_WATER_BOMB,              water_bomb_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_WATER_BOMB_SHADOW,       water_bomb_shadow_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_KING_BOBOMB,             king_bobomb_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_THROWN_STRING,        patchmaker_string_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER,        the_patchmaker_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_THREAD_BUNDLE,        thread_bundle_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_NEEDLE_BALL,        needle_ball_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_BOWSER_THREAD_OF_LIFE,                    bowser_thread_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_SHOCKWAVE,        pm_shockwave_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_NEEDLE,        pm_thrown_needle_geo),
     RETURN(),
 };
 
@@ -353,13 +357,7 @@ const LevelScript script_func_global_13[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER,                  bowser_geo),
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_FLAMES,           bowser_flames_geo),
     //LOAD_MODEL_FROM_GEO(MODEL_BOWSER_NO_SHADOW,        bowser_geo_no_shadow),
-    LOAD_MODEL_FROM_GEO(MODEL_THROWN_STRING,        patchmaker_string_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_PATCHMAKER,        the_patchmaker_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_THREAD_BUNDLE,        thread_bundle_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_NEEDLE_BALL,        needle_ball_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_BOWSER_THREAD_OF_LIFE,                    bowser_thread_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_PM_SHOCKWAVE,        pm_shockwave_geo),
-    LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_NEEDLE,        pm_thrown_needle_geo),
+
     LOAD_MODEL_FROM_GEO(MODEL_SEWNIA_BODY,        sewnia_body_geo),
     LOAD_MODEL_FROM_GEO(MODEL_SEWNIA_HEAD,        sewnia_head_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PEACH,        peach_geo),

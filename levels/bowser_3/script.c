@@ -21,6 +21,8 @@
 const LevelScript level_bowser_3_entry[] = {
 	INIT_LEVEL(),
 	LOAD_YAY0(0x07, _bowser_3_segment_7SegmentRomStart, _bowser_3_segment_7SegmentRomEnd), 
+	LOAD_YAY0(0x05, _group3_yay0SegmentRomStart, _group3_yay0SegmentRomEnd), 
+	LOAD_RAW(0x0C, _group3_geoSegmentRomStart, _group3_geoSegmentRomEnd), 
 	LOAD_YAY0(0x06, _group12_yay0SegmentRomStart, _group12_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0D, _group12_geoSegmentRomStart, _group12_geoSegmentRomEnd), 
 	LOAD_YAY0(0x0A, _bits_skybox_yay0SegmentRomStart, _bits_skybox_yay0SegmentRomEnd), 
@@ -28,6 +30,7 @@ const LevelScript level_bowser_3_entry[] = {
 	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
+	JUMP_LINK(script_func_global_4), 
 	JUMP_LINK(script_func_global_13), 
 	LOAD_MODEL_FROM_GEO(MODEL_MANTLE_OF_MADNESS, mantle_of_madness_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MANTLE_OF_MADNESS_HURT, mantle_of_madness_hurt_geo), 

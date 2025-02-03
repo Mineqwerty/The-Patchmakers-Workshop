@@ -11,3 +11,5 @@
 #include "anim_0501B328.inc.c"
 #include "anim_0501C404.inc.c"
 #include "anim__0___Listen_Everybody.inc.c"
+#include "anim_wakingUp.inc.c"
+#include "anim_idle.inc.c"

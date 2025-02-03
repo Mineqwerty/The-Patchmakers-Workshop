@@ -200,6 +200,9 @@ void bowser_npc_act_revive_peach_cutscene(void) {
                 o->oSubAction = 1;
             }
         break;
+        case 1:
+            o->oPosZ = -200;
+        break;
     }
 }
 

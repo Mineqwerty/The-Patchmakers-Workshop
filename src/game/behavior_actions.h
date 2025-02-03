@@ -1176,3 +1176,5 @@ void bhv_yarn_circle_selector_init(void);
 void bhv_yarn_circle_selector_loop(void);
 void bhv_memory_cloud_init(void);
 void bhv_memory_cloud_loop(void);
+void bhv_peach_npc_init(void);
+void bhv_peach_npc_loop(void);
