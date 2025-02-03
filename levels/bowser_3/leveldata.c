@@ -43,3 +43,4 @@
 #include "levels/bowser_3/mad_slamming_hand/collision.inc.c"
 #include "levels/bowser_3/mad_slamming_hand/model.inc.c"
 #include "levels/bowser_3/mad_slamming_hand_shadow/model.inc.c"
+#include "levels/bowser_3/mad_slamming_hand_eyeball/model.inc.c"

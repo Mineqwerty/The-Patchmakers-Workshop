@@ -12,6 +12,7 @@ static struct ObjectHitbox sPMNeedleHitbox = {
 
 void bhv_pm_thrown_needle_init(void) {
     obj_set_hitbox(o, &sPMNeedleHitbox);
+    o->oInteractionSubtype = INT_SUBTYPE_BREAK_STONE_PATCH;
 }
 
 void bhv_pm_thrown_needle_loop(void) {

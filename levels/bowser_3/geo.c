@@ -34,3 +34,4 @@
 #include "levels/bowser_3/mad_spike_wall/geo.inc.c"
 #include "levels/bowser_3/mad_slamming_hand/geo.inc.c"
 #include "levels/bowser_3/mad_slamming_hand_shadow/geo.inc.c"
+#include "levels/bowser_3/mad_slamming_hand_eyeball/geo.inc.c"

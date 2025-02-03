@@ -36,6 +36,7 @@ const LevelScript level_bowser_3_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MAD_SPIKE_WALL, mad_spike_wall_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MAD_SLAMMING_HAND, mad_slamming_hand_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MAD_SLAMMING_HAND_SHADOW, mad_slamming_hand_shadow_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MAD_SLAMMING_HAND_EYEBALL, mad_slamming_hand_eyeball_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -46,7 +47,6 @@ const LevelScript level_bowser_3_entry[] = {
 		MARIO_POS(0x01, 0, -2914, 1200, 0),
 		OBJECT(MODEL_NONE, -2914, 1200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_MANTLE_OF_MADNESS, 2268, 1199, 0, 0, 0, 0, 0x00000000, bhvMantleOfMadness),
-		OBJECT(MODEL_MAD_SLAMMING_HAND, 397, 1199, 0, 0, 0, 0, 0x00000000, bhvMadSlammingHand),
 		TERRAIN(bowser_3_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_3_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_3_area_1_macro_objs),

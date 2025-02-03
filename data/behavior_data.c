@@ -4025,6 +4025,22 @@ const BehaviorScript bhvExplosion[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvDecorativeExplosion[] = {
+    BEGIN(OBJ_LIST_DESTRUCTIVE),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    SET_INTERACT_TYPE(INTERACT_NONE),
+    SET_INT(oDamageOrCoinValue, 0),
+    SET_INT(oIntangibleTimer, 0),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 150, /*Height*/ 150, /*Downwards offset*/ 150),
+    SET_INT(oAnimState, OBJ_ANIM_STATE_INIT_ANIM),
+    CALL_NATIVE(bhv_explosion_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_explosion_loop),
+        ADD_INT(oAnimState, 1),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvBobombBullyDeathSmoke[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, (OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -9114,5 +9130,15 @@ const BehaviorScript bhvMemoryCloud[] = {
     CALL_NATIVE(bhv_memory_cloud_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_memory_cloud_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMadSlammingHandEyeball[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM | OBJ_FLAG_DAMAGE_PARENT)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mad_slamming_hand_eyeball_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mad_slamming_hand_eyeball_loop),
     END_LOOP(),
 };

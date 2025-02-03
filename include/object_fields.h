@@ -1498,6 +1498,8 @@
 
 //mad slamming hand
 #define oMadSlammingHandShadow           OBJECT_FIELD_OBJ(0x1B)
+#define oMadSlammingHandEyeball           OBJECT_FIELD_OBJ(0x1C)
+#define oMarioLandedFirstTime           OBJECT_FIELD_S32(0x1D)
 
 
 /*Custom general defines:

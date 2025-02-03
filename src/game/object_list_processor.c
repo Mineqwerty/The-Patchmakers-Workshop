@@ -343,7 +343,11 @@ s32 update_objects_during_time_stop(struct ObjectNode *objList, struct ObjectNod
                 unfrozen = TRUE;
             }
 
-            if (obj_has_behavior(gCurrentObject, bhvMantleOfMadness) || obj_has_behavior(gCurrentObject, bhvMadLaserTurret)) {
+            if (obj_has_behavior(gCurrentObject, bhvMantleOfMadness) 
+                || obj_has_behavior(gCurrentObject, bhvMadLaserTurret)
+                || obj_has_behavior(gCurrentObject, bhvMadSlammingHand)
+                || obj_has_behavior(gCurrentObject, bhvMadSlammingHandEyeball)
+                || obj_has_behavior(gCurrentObject, bhvMadSlammingHandShadow)) {
                 unfrozen = TRUE;
             }
         }

@@ -27,7 +27,8 @@ enum MantleOfMadnessActions {
     MANTLE_OF_MADNESS_ACT_RAISE_SPIKE_WALL,
     MANTLE_OF_MADNESS_ACT_APPROACHING_LASER,
 
-    MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS
+    MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS,
+    MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND
 };
 
 void mantle_of_madness_control_face_twitch(void) {
@@ -57,6 +58,7 @@ void mantle_of_madness_phase_transition(void) {
         break;
         case MANTLE_OF_MADNESS_PHASE_LASER_TURRETS:
             if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.7f) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND;
                 o->oMantleOfMadnessPhase++;
             }
         break;
@@ -81,6 +83,18 @@ void mantle_of_madness_phase_update(void) {
                 o->oMantleOfMadnessRageLevel = 0;
             }
         break;
+        case MANTLE_OF_MADNESS_PHASE_CRUSHING_HANDS:
+            if (o->oDistanceToMario < 500.0f) {
+                o->oMantleOfMadnessRageLevel = 3;
+            }
+            else if (o->oHealth < (MANTLE_OF_MADNESS_MAX_HP * 0.6f)) {
+                o->oMantleOfMadnessRageLevel = 1;
+            }
+            else {
+                o->oMantleOfMadnessRageLevel = 0;
+            }
+            
+        break;
     }
 }
 
@@ -90,7 +104,7 @@ void mantle_of_madness_act_idle(void) {
         nextActionTime = 150;
     }
     if (o->oMantleOfMadnessRageLevel >= 3) {
-        nextActionTime = 120;
+        nextActionTime = 90;
     }
 
     if (o->oTimer >= nextActionTime) {
@@ -205,6 +219,44 @@ void mantle_of_madness_act_spawn_laser_turrets(void) {
     }
 }
 
+void mantle_of_madness_act_spawn_mad_hand(void) {
+    enable_time_stop_including_mario();
+    gCamera->cutscene = 1;
+
+    if (o->oTimer < 45) {
+        gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX - 800, 90.0f);
+        gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 1200, 90.0f);
+        gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ, 90.0f);
+        
+        gLakituState.goalFocus[0] = approach_f32_symmetric(gLakituState.goalFocus[0], 0, 140.0f);
+        gLakituState.goalFocus[1] = approach_f32_symmetric(gLakituState.goalFocus[1], 1200, 130.0f);
+        gLakituState.goalFocus[2] = approach_f32_symmetric(gLakituState.goalFocus[2], 0, 140.0f);
+    }
+    else {
+        gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX - 1800, 90.0f);
+        gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 2800, 90.0f);
+        gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ, 90.0f);
+        
+        gLakituState.goalFocus[0] = approach_f32_symmetric(gLakituState.goalFocus[0], 0, 140.0f);
+        gLakituState.goalFocus[1] = approach_f32_symmetric(gLakituState.goalFocus[1], 1100, 130.0f);
+        gLakituState.goalFocus[2] = approach_f32_symmetric(gLakituState.goalFocus[2], 0, 140.0f);
+    }
+
+    if (o->oTimer == 5) {
+            struct Object *madHand = spawn_object_relative(0, -2500, 3000, 0, o, MODEL_MAD_SLAMMING_HAND, bhvMadSlammingHand);
+
+            madHand->oAction = 8;
+            madHand->oFaceAngleYaw = -0x4000;
+            madHand->oVelY = -20;
+    }
+
+    if (o->oTimer == 95) {
+        gCamera->cutscene = 0;
+        disable_time_stop_including_mario();
+        o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    }
+}
+
 void mantle_of_madness_choose_attack(void) {
     u32 attack;
     why_am_i_using_goto:
@@ -245,6 +297,9 @@ void bhv_mantle_of_madness_init(void) {
     o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT;
     o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
     o->oMantleOfMadnessRageLevel = 0;
+
+    o->oMantleOfMadnessPhase = 1;
+    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.72f;
 }
 
 void bhv_mantle_of_madness_loop(void) {
@@ -271,6 +326,9 @@ void bhv_mantle_of_madness_loop(void) {
 
         case MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS:
             mantle_of_madness_act_spawn_laser_turrets();
+        break;
+        case MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND:
+            mantle_of_madness_act_spawn_mad_hand();
         break;
     }
 

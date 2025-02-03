@@ -1,0 +1,7 @@
+extern const GeoLayout mad_slamming_hand_eyeball_geo[];
+extern Vtx mad_slamming_hand_eyeball_Plane_007_mesh_layer_1_vtx_cull[8];
+extern Vtx mad_slamming_hand_eyeball_Plane_007_mesh_layer_1_vtx_0[88];
+extern Gfx mad_slamming_hand_eyeball_Plane_007_mesh_layer_1_tri_0[];
+extern Gfx mat_mad_slamming_hand_eyeball_brain[];
+extern Gfx mat_revert_mad_slamming_hand_eyeball_brain[];
+extern Gfx mad_slamming_hand_eyeball_Plane_007_mesh_layer_1[];

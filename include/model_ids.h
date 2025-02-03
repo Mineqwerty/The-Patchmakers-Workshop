@@ -797,6 +797,7 @@
 #define MODEL_MAD_SPIKE_WALL                   0x104
 #define MODEL_MAD_SLAMMING_HAND                   0x105
 #define MODEL_MAD_SLAMMING_HAND_SHADOW                   0x106
+#define MODEL_MAD_SLAMMING_HAND_EYEBALL                   0x107
 
 
 //New File Select
