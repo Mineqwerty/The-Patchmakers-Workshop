@@ -9142,6 +9142,7 @@ const BehaviorScript bhvMadSlammingHandEyeball[] = {
         CALL_NATIVE(bhv_mad_slamming_hand_eyeball_loop),
     END_LOOP(),
 };
+
 const BehaviorScript bhvPeachNpc[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
