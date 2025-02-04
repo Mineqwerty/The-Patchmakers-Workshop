@@ -23,6 +23,8 @@
 #include "game/main.h"
 #include "include/seq_ids.h"
 
+#include "src/game/cutscene.h"
+
 /**
  * @file star_select.c
  * This file implements how the star select screen (act selector) function.
@@ -168,6 +170,9 @@ void spawn_stage_diorama(void) {
             play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_TIMELESS_SHRINE_SELECT), 0);
         break;
     }
+
+    sFOVState.fovFunc = CAM_FOV_DEFAULT;
+    gCutsceneFOV = -1;
 }
 
 /**

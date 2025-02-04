@@ -1,5 +1,7 @@
 // door.inc.c
 
+#include "src/game/save_file.h"
+
 struct DoorAction {
     u32 flag;
     ObjAction32 action;
@@ -129,6 +131,14 @@ void bhv_door_init(void) {
     ) {
         gDoorAdjacentRooms[o->oDoorSelfRoom].forwardRoom  = o->oDoorForwardRoom;
         gDoorAdjacentRooms[o->oDoorSelfRoom].backwardRoom = o->oDoorBackwardRoom;
+    }
+
+    if (gCurrLevelNum == LEVEL_CASTLE && gCurrAreaIndex == 1) {
+        if (GET_BPARAM1(o->oBehParams) == 1 && (save_file_get_flags() & SAVE_FLAG_ENTERED_SECOND_HUB)) {
+            SET_BPARAM1(o->oBehParams, 0);
+            SET_BPARAM2(o->oBehParams, 0x10);
+            o->oBehParams2ndByte = 0x10;
+        }
     }
 }
 

@@ -2308,7 +2308,15 @@ void mario_handle_special_floors(struct MarioState *m) {
                 break;
 
             case SURFACE_WARP:
-                level_trigger_warp(m, WARP_OP_WARP_FLOOR);
+                if (gCurrLevelNum == LEVEL_CASTLE && gCurrAreaIndex == 2 && m->floor->force == 0x11) {
+                    //sorry guys you aren't BLJing to the third hub immediately
+                    if (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB) {
+                        level_trigger_warp(m, WARP_OP_WARP_FLOOR);
+                    }
+                }
+                else {
+                    level_trigger_warp(m, WARP_OP_WARP_FLOOR);
+                }
                 break;
 
             case SURFACE_TIMER_START:
@@ -2363,6 +2371,16 @@ void mario_handle_special_floors(struct MarioState *m) {
             case SURFACE_CLC_WARP:
                 if (!(m->action & (ACT_FLAG_AIR))) {
                     set_mario_action(m, ACT_WARP_RDR, 1);
+                }
+            break;
+            case SURFACE_TFP_WARP:
+                if (!(m->action & (ACT_FLAG_AIR))) {
+                    set_mario_action(m, ACT_WARP_TTC, 2);
+                }
+            break;
+            case SURFACE_EA_WARP:
+                if (!(m->action & (ACT_FLAG_AIR))) {
+                    set_mario_action(m, ACT_WARP_RDR, 2);
                 }
             break;
 

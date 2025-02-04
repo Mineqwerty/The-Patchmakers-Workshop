@@ -28,6 +28,8 @@
 #include "sound_init.h"
 #include "rumble_init.h"
 
+#include "src/game/cutscene.h"
+
 static struct Object *sIntroWarpPipeObj;
 static struct Object *sEndPeachObj;
 static struct Object *sEndRightToadObj;
@@ -480,6 +482,30 @@ s32 act_warp_ttc(struct MarioState *m) {
                 initiate_warp(LEVEL_HMC, 1, 0x0A, 0, 0);
             }
         break;
+        case 2:;
+            set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+                                                : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
+        vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+        gCamera->cutscene = 1;
+
+        m->actionTimer++;
+
+        if (m->actionTimer == 1) {
+            play_sound(SOUND_PORTAL_OUT, gGlobalSoundSource);
+        }
+
+        sFOVState.fovFunc = CAM_FOV_SET_CUSTOM;
+        gCutsceneFOV = 45 + m->actionTimer;
+
+        if (m->actionTimer == 30) {
+            play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+        }
+        if (m->actionTimer == 59) {
+            initiate_warp(LEVEL_BBH, 1, 0x0A, 0, 0);
+        }
+        break;
         }
     return FALSE;
 }
@@ -533,6 +559,29 @@ s32 act_warp_rdr(struct MarioState *m) {
             if (m->actionTimer == 59) {
                 initiate_warp(LEVEL_LLL, 1, 0x0A, 0, 0);
             }
+        break;
+        case 2:
+            if (m->actionState == ACT_STATE_QUICKSAND_DEATH_INIT) {
+                set_mario_animation(m, MARIO_ANIM_DYING_IN_QUICKSAND);
+                set_anim_to_frame(m, 60);
+                m->actionState = ACT_STATE_QUICKSAND_DEATH_SINK;
+            }
+            if (m->actionState == ACT_STATE_QUICKSAND_DEATH_SINK) {
+                m->quicksandDepth += 5.0f;
+                if (m->quicksandDepth >= 100.0f) {
+                    play_sound_if_no_flag(m, SOUND_MARIO_WAAAOOOW, MARIO_ACTION_SOUND_PLAYED);
+                    play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+                    m->actionState = 2;
+                }
+            }
+            if (m->actionState == 2) {
+                
+                if ((m->quicksandDepth += 5.0f) >= 220.0f) {
+                    initiate_warp(LEVEL_SL, 1, 0x0A, 0, 0);
+                }
+            }
+            stationary_ground_step(m);
+            play_sound(SOUND_MOVING_QUICKSAND_DEATH, m->marioObj->header.gfx.cameraToObject);
         break;
 
     }

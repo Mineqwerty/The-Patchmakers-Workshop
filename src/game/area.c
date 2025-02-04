@@ -144,7 +144,7 @@ u32 get_mario_spawn_type(struct Object *obj) {
     s32 i;
     const BehaviorScript *behavior = virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, obj->behavior);
 
-    for (i = 0; i < 21; i++) {
+    for (i = 0; i < 22; i++) {
         if (sWarpBhvSpawnTable[i] == behavior) {
             return sSpawnTypeFromWarpBhv[i];
         }
