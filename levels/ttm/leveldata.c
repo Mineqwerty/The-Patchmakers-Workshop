@@ -96,3 +96,8 @@
 #include "levels/ttm/taste_switch_inactive/collision.inc.c"
 #include "levels/ttm/taste_door/collision.inc.c"
 #include "levels/ttm/taste_door/model.inc.c"
+#include "levels/ttm/shrine_shape_1/model.inc.c"
+#include "levels/ttm/shrine_shape_2/model.inc.c"
+#include "levels/ttm/shrine_shape_3/model.inc.c"
+#include "levels/ttm/shrine_shape_4/model.inc.c"
+#include "levels/ttm/shrine_shape_5/model.inc.c"

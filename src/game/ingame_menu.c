@@ -3311,7 +3311,7 @@ void render_pause_screen_felt() {
     render_submenu_toggle(-102, 82, &gSubMenuIndex, 66);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    if ((save_file_get_flags() & SAVE_FLAG_BEAT_GAME) && gCurrLevelNum != LEVEL_CASTLE) {
+    if ((save_file_get_flags() & SAVE_FLAG_HAVE_LOCKBOX_KEY) && gCurrLevelNum != LEVEL_CASTLE) {
         render_hint_display();
 
         if (gPlayer1Controller->buttonPressed & (L_CBUTTONS)) {

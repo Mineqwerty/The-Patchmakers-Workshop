@@ -1486,7 +1486,7 @@ Aktiviere einen der\n\
 Richtungspfeile, um die\n\
 Plattform zu bewegen."))
 
-DEFINE_DIALOG(DIALOG_125, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_RECOVERED_KEY, 1, 3, 30, 200, _("\
 Rechts ist der Ausgang\n\
 des Nebellabyrinths. Bitte\n\
 Eingang links benutzen!"))

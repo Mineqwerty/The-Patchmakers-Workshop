@@ -1265,10 +1265,13 @@ Elevator continues in the\n\
 direction of the arrow\n\
 activated."))
 
-DEFINE_DIALOG(DIALOG_125, 1, 3, 30, 200, _("\
-Hazy Maze-Exit\n\
-Danger! Closed.\n\
-Turn back now."))
+DEFINE_DIALOG(DIALOG_RECOVERED_KEY, 1, 3, 30, 200, _("\
+@FEFEFEFFYou've recovered a key to the lockbox.\n\
+With the key in hand, Mario feels\n\
+a flow of secrets in his head...\n\
+@FEFEFEFFThe Patchmaker awaits within\n\
+the realm of betweens...\n\
+You now have access to The Brink."))
 
 DEFINE_DIALOG(DIALOG_126, 2, 3, 30, 200, _("\
 Up: Black Hole\n\

@@ -4,6 +4,7 @@ const GeoLayout ttm_area_2_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_019_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, ttm_dl_Plane_019_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_020_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),

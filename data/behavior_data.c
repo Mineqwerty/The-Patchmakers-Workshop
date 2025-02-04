@@ -9153,3 +9153,32 @@ const BehaviorScript bhvPeachNpc[] = {
         CALL_NATIVE(bhv_peach_npc_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvShrineShape[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_shrine_shape_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shrine_shape_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvShrineShapeController[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_HOME(),
+    CALL_NATIVE(bhv_shrine_shape_controller_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_shrine_shape_controller_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvLockboxKey[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_lockbox_key_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lockbox_key_loop),
+    END_LOOP(),
+};

@@ -49,6 +49,11 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_TASTE_SWITCH_INACTIVE, taste_switch_inactive_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TASTE_SWITCH_ACTIVE, taste_switch_active_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TASTE_DOOR, taste_door_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN, shrine_shape_1_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+1, shrine_shape_2_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+2, shrine_shape_3_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+3, shrine_shape_4_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+4, shrine_shape_5_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -195,7 +200,9 @@ const LevelScript level_ttm_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 7536, 6097, 8645, 0, 0, 0, 0x00000000, bhvShrineShapeController),
 		OBJECT(MODEL_NONE, 0, 791, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_LOCKBOX_KEY, 14681, 6342, 8645, 0, 0, 0, 0x00000000, bhvLockboxKey),
 		OBJECT(MODEL_NONE, 7033, 5758, 11927, 0, 0, 0, 0x00000000, bhvHiddenRedCoinStar),
 		OBJECT(MODEL_RED_COIN, 1423, 1133, -8, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 5717, 1696, 3018, 0, 0, 0, 0x00000000, bhvRedCoin),

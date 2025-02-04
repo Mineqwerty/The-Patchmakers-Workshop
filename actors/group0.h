@@ -533,4 +533,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "menu_secret_stars/header.h"
 
+#include "lockbox_key/geo_header.h"
+
 #endif

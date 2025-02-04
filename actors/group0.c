@@ -128,3 +128,4 @@
 #include "fortune_teleporter_pedestal/collision.inc.c"
 #include "fortune_teleporter_pedestal/model.inc.c"
 #include "menu_secret_stars/model.inc.c"
+#include "lockbox_key/model.inc.c"

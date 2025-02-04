@@ -61,3 +61,8 @@
 #include "levels/ttm/taste_switch_active/geo.inc.c"
 #include "levels/ttm/taste_switch_inactive/geo.inc.c"
 #include "levels/ttm/taste_door/geo.inc.c"
+#include "levels/ttm/shrine_shape_1/geo.inc.c"
+#include "levels/ttm/shrine_shape_2/geo.inc.c"
+#include "levels/ttm/shrine_shape_3/geo.inc.c"
+#include "levels/ttm/shrine_shape_4/geo.inc.c"
+#include "levels/ttm/shrine_shape_5/geo.inc.c"

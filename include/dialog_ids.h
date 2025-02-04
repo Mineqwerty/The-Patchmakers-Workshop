@@ -128,7 +128,7 @@ enum DialogId {
     DIALOG_122,
     DIALOG_123,
     DIALOG_124,
-    DIALOG_125,
+    DIALOG_RECOVERED_KEY,
     DIALOG_126,
     DIALOG_127,
     DIALOG_128,

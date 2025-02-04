@@ -1,0 +1,14 @@
+extern const GeoLayout lockbox_key_geo[];
+extern u8 lockbox_key_hvh_etnran_rgba16[];
+extern Vtx lockbox_key_Cube_001_mesh_layer_1_vtx_cull[8];
+extern Vtx lockbox_key_Cube_001_mesh_layer_1_vtx_0[115];
+extern Gfx lockbox_key_Cube_001_mesh_layer_1_tri_0[];
+extern Vtx lockbox_key_Cube_001_mesh_layer_5_vtx_cull[8];
+extern Vtx lockbox_key_Cube_001_mesh_layer_5_vtx_0[24];
+extern Gfx lockbox_key_Cube_001_mesh_layer_5_tri_0[];
+extern Gfx mat_lockbox_key_f3dlite_material_013[];
+extern Gfx mat_revert_lockbox_key_f3dlite_material_013[];
+extern Gfx mat_lockbox_key_f3dlite_material[];
+extern Gfx mat_revert_lockbox_key_f3dlite_material[];
+extern Gfx lockbox_key_Cube_001_mesh_layer_1[];
+extern Gfx lockbox_key_Cube_001_mesh_layer_5[];

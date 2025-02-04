@@ -33,7 +33,7 @@ void water_level_pillar_undrained(void) {
             if (otherWaterPillar != NULL) {
                 if (otherWaterPillar->oAction > 1) {
                     o->oAction++;
-                    save_file_set_flags(SAVE_FLAG_MOAT_DRAINED);
+                    save_file_set_flags(SAVE_FLAG_HAVE_LOCKBOX_KEY);
                     play_puzzle_jingle();
                 }
             }
@@ -71,7 +71,7 @@ void bhv_water_level_pillar_init(void) {
 #ifdef UNLOCK_ALL
     o->oWaterLevelPillarDrained = TRUE;
 #else
-    if (save_file_get_flags() & SAVE_FLAG_MOAT_DRAINED) {
+    if (save_file_get_flags() & SAVE_FLAG_HAVE_LOCKBOX_KEY) {
         o->oWaterLevelPillarDrained = TRUE;
     }
 #endif

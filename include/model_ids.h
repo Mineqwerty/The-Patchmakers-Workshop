@@ -779,6 +779,8 @@
 #define MODEL_TASTE_SWITCH_ACTIVE                  0x10E
 #define MODEL_TASTE_DOOR                  0x10F
 
+#define MODEL_SHRINE_SHAPE_BEGIN                  0x110
+
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
 
@@ -867,6 +869,7 @@
 #define MODEL_YARN_SCUTTLEBUG                  0x1AF
 #define MODEL_FORTUNE_TELEPORTER                  0x1B0
 #define MODEL_FORTUNE_TELEPORTER_PEDESTAL                  0x1B1
+#define MODEL_LOCKBOX_KEY                  0x1B2
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

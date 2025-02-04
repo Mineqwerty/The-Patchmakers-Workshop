@@ -590,7 +590,7 @@ u32 save_file_get_flags(void) {
             SAVE_FLAG_ENTERED_SECOND_HUB |
             SAVE_FLAG_ENTERED_THIRD_HUB |
             SAVE_FLAG_UNLOCKED_CLC_SHORTCUT         |
-            SAVE_FLAG_MOAT_DRAINED           |
+            SAVE_FLAG_HAVE_LOCKBOX_KEY           |
             SAVE_FLAG_UNLOCKED_COURSE_RDR      |
             SAVE_FLAG_UNLOCKED_COURSE_STC       |
             SAVE_FLAG_UNLOCKED_COURSE_CLC      |

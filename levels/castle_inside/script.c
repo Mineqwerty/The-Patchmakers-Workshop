@@ -229,6 +229,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -3624, 1621, -6725, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_CORR_LIFT, 10407, 1851, -3690, 0, 0, 0, 0x00000000, bhvCorrLift),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 9946, 659, -3690, 0, 0, 0, (45 << 24) | (6 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_NONE, -3145, 1740, -5118, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_TS_WARP_PLATFORM, 5944, 2693, 202, 0, 0, 0, 0x00000000, bhvTsWarpPlatform),
 		TERRAIN(castle_inside_area_3_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_3_collision_materials),

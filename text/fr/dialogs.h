@@ -1642,7 +1642,7 @@ la plate-forme, retournez\n\
 là où vous l'avez vue pour\n\
 la première fois."))
 
-DEFINE_DIALOG(DIALOG_125, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_RECOVERED_KEY, 1, 3, 30, 200, _("\
 Sortie du Labyrinthe\n\
 toxique... Fermée!\n\
 Faites demi-tour!"))

@@ -1363,7 +1363,7 @@ DEFINE_DIALOG(DIALOG_124, 1, 5, 30, 200, _("\
 おりると　もとのばしょに\n\
 もどります。"))
 
-DEFINE_DIALOG(DIALOG_125, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_RECOVERED_KEY, 1, 5, 30, 200, _("\
 -ケムリめいろ・でぐち-\n\
 \n\
 キケン！　ヘイサちゅう。\n\

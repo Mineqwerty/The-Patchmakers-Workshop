@@ -127,7 +127,7 @@ enum SaveProgressFlags {
     SAVE_FLAG_ENTERED_SECOND_HUB = (1 <<  6), /* 0x00000040 */
     SAVE_FLAG_ENTERED_THIRD_HUB = (1 <<  7), /* 0x00000080 */
     SAVE_FLAG_UNLOCKED_CLC_SHORTCUT         = (1 <<  8), /* 0x00000100 */
-    SAVE_FLAG_MOAT_DRAINED           = (1 <<  9), /* 0x00000200 */
+    SAVE_FLAG_HAVE_LOCKBOX_KEY           = (1 <<  9), /* 0x00000200 */
     SAVE_FLAG_UNLOCKED_COURSE_RDR      = (1 << 10), /* 0x00000400 */
     SAVE_FLAG_UNLOCKED_COURSE_STC       = (1 << 11), /* 0x00000800 */
     SAVE_FLAG_UNLOCKED_COURSE_CLC      = (1 << 12), /* 0x00001000 */
