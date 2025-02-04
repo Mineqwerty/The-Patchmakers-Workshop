@@ -17,7 +17,7 @@ void bhv_sewnia_body_loop(void) {
     switch (gCurrLevelNum) {
         case LEVEL_CASTLE:
             if (cExternalCutsceneTrigger >= 1) {
-                o->oPosZ = -200;
+                o->oPosZ = -400;
             }
         break;
     }
@@ -44,7 +44,7 @@ void bhv_sewnia_head_loop(void) {
         break;
         case LEVEL_CASTLE:
             if (cExternalCutsceneTrigger >= 1) {
-                o->oPosZ = -200;
+                o->oPosZ = -400;
             }
         break;
     }
