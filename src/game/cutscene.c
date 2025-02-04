@@ -1327,7 +1327,7 @@ s32 event_revive_peach[] = {
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_FADE_INTO_COLOR, 30, 255, 255, 255,
     EVENT_WAIT, 60,
-    EVENT_SET_MARIO_POSITION, 29, 100, 827,
+    EVENT_SET_MARIO_POSITION, 29, 100, 627,
     EVENT_SET_EXTERNAL_TRIGGER, 1,
     EVENT_FADE_FROM_COLOR, 10, 255, 255, 255,
     EVENT_HUD_SET_EFFECT, 2,
@@ -1337,8 +1337,10 @@ s32 event_revive_peach[] = {
     EVENT_DIALOG_USER_ADVANCE, DIALOG_PEACH_REVIVED_1,
     EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
     EVENT_SPAWN_OBJECT, 0, 100, 1000, 0, 0x8000, 0, 1, bhvPeachNpc, MODEL_PEACH,
-    EVENT_CAMERA_POSITION_SPLINE_DATA, 99,
-    EVENT_CAMERA_FOCUS_SPLINE_DATA, 100,
+    EVENT_SET_EXTERNAL_TRIGGER, 3,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 201,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 202,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
@@ -1617,6 +1619,8 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_PeachRevivePos3,
     //200 holy fucking shit i am so tired
     castle_inside_area_1_spline_PeachReviveFocus3,
+    castle_inside_area_1_spline_PeachRevivePos4,
+    castle_inside_area_1_spline_PeachReviveFocus4,
 
 };
 

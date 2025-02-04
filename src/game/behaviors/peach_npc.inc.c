@@ -21,7 +21,12 @@ enum PeachNPCActions {
 void peach_npc_act_revive_cutscene(void) {
     switch (o->oSubAction) {
         case 0:
-            cur_obj_init_animation(1);
+            if (cExternalCutsceneTrigger >= 3) {
+                o->oSubAction++;
+            }
+        break;
+        case 1:
+        cur_obj_init_animation(1);
             if (cur_obj_check_if_near_animation_end()) {
                 cur_obj_init_animation(2);
                 o->oSubAction++;
@@ -31,11 +36,12 @@ void peach_npc_act_revive_cutscene(void) {
 }
 
 void bhv_peach_npc_init(void) {
-   
+    obj_set_hitbox(o, &sPeachNPCHitbox);
+    cur_obj_init_animation(2);
 }
 
 void bhv_peach_npc_loop(void) {
-    if (gCurCutscene == CUTSCENE_EVENT_REVIVE_BOWSER) {
+    if (gCurCutscene == CUTSCENE_EVENT_REVIVE_PEACH) {
         o->oAction = PEACH_NPC_ACT_REVIVE_CUTSCENE;
     }
 

@@ -53,7 +53,7 @@ const LevelScript level_bowser_3_entry[] = {
 		TERRAIN(bowser_3_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_3_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_3_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_GRASS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_BOSS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

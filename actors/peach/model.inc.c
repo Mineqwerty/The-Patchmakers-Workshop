@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Gfx peach_peach_dress_rgba16_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 peach_peach_dress_rgba16_ci8[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -1388,29 +1403,6 @@ Gfx peach_dress_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx peach_neck_mesh_layer_1_vtx_0[10] = {
-	{{ {96, 28, 1}, 0, {230, 2060}, {11, 127, 255, 255} }},
-	{{ {152, 8, 22}, 0, {28, 1504}, {12, 39, 120, 255} }},
-	{{ {152, 23, 1}, 0, {180, 1504}, {11, 127, 254, 255} }},
-	{{ {96, 9, 27}, 0, {42, 2060}, {11, 38, 121, 255} }},
-	{{ {152, -16, 14}, 0, {-218, 1502}, {12, 153, 74, 255} }},
-	{{ {96, -20, 17}, 0, {-260, 2058}, {12, 154, 75, 255} }},
-	{{ {152, -16, -11}, 0, {-218, 1502}, {12, 153, 182, 255} }},
-	{{ {96, -21, -14}, 0, {-262, 2058}, {13, 152, 184, 255} }},
-	{{ {152, 8, -19}, 0, {26, 1504}, {11, 38, 135, 255} }},
-	{{ {96, 9, -24}, 0, {42, 2060}, {12, 37, 135, 255} }},
-};
-
-Gfx peach_neck_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_neck_mesh_layer_1_vtx_0 + 0, 10, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(3, 4, 1, 0, 3, 5, 4, 0),
-	gsSP2Triangles(5, 6, 4, 0, 5, 7, 6, 0),
-	gsSP2Triangles(7, 8, 6, 0, 7, 9, 8, 0),
-	gsSP2Triangles(9, 2, 8, 0, 9, 0, 2, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx peach_torso_mesh_layer_1_vtx_0[50] = {
 	{{ {20, 69, 40}, 0, {664, -148}, {210, 106, 53, 255} }},
 	{{ {36, 73, 19}, 0, {558, -226}, {248, 122, 35, 255} }},
@@ -1533,6 +1525,219 @@ Gfx peach_torso_mesh_layer_1_tri_2[] = {
 	gsSPVertex(peach_torso_mesh_layer_1_vtx_2 + 0, 5, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP1Triangle(2, 4, 3, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_left_shoulder_mesh_layer_1_vtx_0[21] = {
+	{{ {-32, 28, 30}, 0, {296, -1346}, {152, 49, 53, 255} }},
+	{{ {-12, 51, -18}, 0, {396, -1578}, {228, 116, 213, 255} }},
+	{{ {-35, 28, -17}, 0, {284, -1346}, {147, 50, 215, 255} }},
+	{{ {-10, 51, 28}, 0, {410, -1576}, {232, 116, 46, 255} }},
+	{{ {-9, 27, 52}, 0, {412, -1340}, {235, 46, 117, 255} }},
+	{{ {-33, -19, 30}, 0, {292, -872}, {150, 212, 54, 255} }},
+	{{ {-42, 4, 6}, 0, {248, -1112}, {129, 2, 7, 255} }},
+	{{ {-36, -19, -17}, 0, {278, -874}, {144, 212, 215, 255} }},
+	{{ {-15, -19, -42}, 0, {382, -868}, {220, 212, 142, 255} }},
+	{{ {-14, 27, -42}, 0, {386, -1342}, {222, 46, 143, 255} }},
+	{{ {32, 20, -33}, 0, {622, -1272}, {90, 31, 172, 255} }},
+	{{ {33, 38, -15}, 0, {628, -1450}, {93, 78, 218, 255} }},
+	{{ {35, 38, 20}, 0, {638, -1450}, {96, 79, 27, 255} }},
+	{{ {36, 20, 38}, 0, {640, -1270}, {98, 30, 75, 255} }},
+	{{ {35, -15, 38}, 0, {636, -914}, {96, 220, 74, 255} }},
+	{{ {-10, -19, 52}, 0, {408, -866}, {232, 212, 117, 255} }},
+	{{ {-12, -43, 28}, 0, {398, -630}, {226, 142, 47, 255} }},
+	{{ {-15, -43, -18}, 0, {384, -632}, {221, 142, 213, 255} }},
+	{{ {31, -15, -33}, 0, {616, -916}, {87, 219, 171, 255} }},
+	{{ {33, -33, 20}, 0, {630, -736}, {92, 172, 27, 255} }},
+	{{ {31, -32, -15}, 0, {620, -736}, {88, 173, 219, 255} }},
+};
+
+Gfx peach_left_shoulder_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_left_shoulder_mesh_layer_1_vtx_0 + 0, 21, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(4, 3, 0, 0, 5, 4, 0, 0),
+	gsSP2Triangles(6, 5, 0, 0, 0, 2, 6, 0),
+	gsSP2Triangles(6, 2, 7, 0, 2, 8, 7, 0),
+	gsSP2Triangles(2, 9, 8, 0, 2, 1, 9, 0),
+	gsSP2Triangles(9, 1, 10, 0, 1, 11, 10, 0),
+	gsSP2Triangles(12, 11, 1, 0, 1, 3, 12, 0),
+	gsSP2Triangles(13, 12, 3, 0, 13, 3, 4, 0),
+	gsSP2Triangles(14, 13, 4, 0, 15, 14, 4, 0),
+	gsSP2Triangles(5, 15, 4, 0, 15, 5, 16, 0),
+	gsSP2Triangles(17, 16, 5, 0, 7, 17, 5, 0),
+	gsSP2Triangles(7, 5, 6, 0, 8, 17, 7, 0),
+	gsSP2Triangles(18, 17, 8, 0, 9, 18, 8, 0),
+	gsSP2Triangles(9, 10, 18, 0, 19, 18, 10, 0),
+	gsSP2Triangles(19, 10, 11, 0, 11, 14, 19, 0),
+	gsSP2Triangles(11, 13, 14, 0, 11, 12, 13, 0),
+	gsSP2Triangles(16, 19, 14, 0, 17, 19, 16, 0),
+	gsSP2Triangles(17, 20, 19, 0, 18, 20, 17, 0),
+	gsSP2Triangles(19, 20, 18, 0, 15, 16, 14, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_left_arm_mesh_layer_1_vtx_0[13] = {
+	{{ {52, 12, 18}, 0, {-16, -16}, {7, 63, 110, 255} }},
+	{{ {51, -9, 21}, 0, {-16, -16}, {6, 199, 114, 255} }},
+	{{ {101, -9, 16}, 0, {-16, -16}, {52, 201, 102, 255} }},
+	{{ {51, -20, 0}, 0, {-16, -16}, {5, 129, 254, 255} }},
+	{{ {101, -18, 0}, 0, {-16, -16}, {49, 139, 0, 255} }},
+	{{ {51, -9, -19}, 0, {-16, -16}, {7, 198, 143, 255} }},
+	{{ {101, -9, -16}, 0, {-16, -16}, {51, 201, 153, 255} }},
+	{{ {52, 12, -17}, 0, {-16, -16}, {6, 59, 144, 255} }},
+	{{ {102, 12, -14}, 0, {-16, -16}, {58, 59, 160, 255} }},
+	{{ {52, 26, 0}, 0, {-16, -16}, {7, 127, 255, 255} }},
+	{{ {102, 21, 0}, 0, {-16, -16}, {61, 112, 1, 255} }},
+	{{ {102, 12, 14}, 0, {-16, -16}, {58, 60, 96, 255} }},
+	{{ {115, -2, 0}, 0, {-16, -16}, {126, 243, 0, 255} }},
+};
+
+Gfx peach_left_arm_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_left_arm_mesh_layer_1_vtx_0 + 0, 13, 0),
+	gsSP2Triangles(0, 1, 2, 0, 3, 2, 1, 0),
+	gsSP2Triangles(3, 4, 2, 0, 5, 4, 3, 0),
+	gsSP2Triangles(5, 6, 4, 0, 5, 7, 6, 0),
+	gsSP2Triangles(7, 8, 6, 0, 9, 8, 7, 0),
+	gsSP2Triangles(9, 10, 8, 0, 0, 10, 9, 0),
+	gsSP2Triangles(0, 11, 10, 0, 2, 11, 0, 0),
+	gsSP2Triangles(2, 12, 11, 0, 12, 2, 4, 0),
+	gsSP2Triangles(4, 6, 12, 0, 8, 12, 6, 0),
+	gsSP2Triangles(12, 8, 10, 0, 10, 11, 12, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_left_arm_mesh_layer_1_vtx_1[12] = {
+	{{ {52, 26, 0}, 0, {1052, -1698}, {7, 127, 255, 255} }},
+	{{ {23, 13, 18}, 0, {364, -1442}, {1, 63, 110, 255} }},
+	{{ {52, 12, 18}, 0, {1034, -1392}, {7, 63, 110, 255} }},
+	{{ {23, 27, 0}, 0, {378, -1746}, {5, 127, 255, 255} }},
+	{{ {52, 12, -17}, 0, {1030, -1396}, {6, 59, 144, 255} }},
+	{{ {23, 13, -18}, 0, {360, -1446}, {6, 61, 145, 255} }},
+	{{ {51, -9, -19}, 0, {1002, -896}, {7, 198, 143, 255} }},
+	{{ {23, -10, -20}, 0, {332, -898}, {5, 195, 145, 255} }},
+	{{ {51, -20, 0}, 0, {996, -640}, {5, 129, 254, 255} }},
+	{{ {22, -21, 0}, 0, {320, -650}, {4, 129, 255, 255} }},
+	{{ {51, -9, 21}, 0, {1006, -892}, {6, 199, 114, 255} }},
+	{{ {23, -10, 20}, 0, {334, -894}, {254, 193, 110, 255} }},
+};
+
+Gfx peach_left_arm_mesh_layer_1_tri_1[] = {
+	gsSPVertex(peach_left_arm_mesh_layer_1_vtx_1 + 0, 12, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
+	gsSP2Triangles(5, 4, 6, 0, 6, 7, 5, 0),
+	gsSP2Triangles(8, 7, 6, 0, 8, 9, 7, 0),
+	gsSP2Triangles(10, 9, 8, 0, 10, 11, 9, 0),
+	gsSP2Triangles(1, 11, 10, 0, 10, 2, 1, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_left_elbow_mesh_layer_1_vtx_0[14] = {
+	{{ {77, -6, 12}, 0, {-16, -16}, {43, 194, 102, 255} }},
+	{{ {94, 0, 0}, 0, {-16, -16}, {127, 251, 4, 255} }},
+	{{ {77, 7, 12}, 0, {-16, -16}, {45, 56, 105, 255} }},
+	{{ {77, -12, 0}, 0, {-16, -16}, {41, 136, 4, 255} }},
+	{{ {1, -9, 18}, 0, {-16, -16}, {219, 197, 106, 255} }},
+	{{ {1, 13, 19}, 0, {-16, -16}, {219, 57, 107, 255} }},
+	{{ {-4, 24, 0}, 0, {-16, -16}, {202, 115, 1, 255} }},
+	{{ {77, 15, 0}, 0, {-16, -16}, {47, 118, 4, 255} }},
+	{{ {77, 7, -14}, 0, {-16, -16}, {47, 58, 153, 255} }},
+	{{ {77, -6, -14}, 0, {-16, -16}, {46, 192, 156, 255} }},
+	{{ {-5, -20, 0}, 0, {-16, -16}, {198, 143, 3, 255} }},
+	{{ {-18, 2, 0}, 0, {-16, -16}, {129, 1, 2, 255} }},
+	{{ {0, 13, -19}, 0, {-16, -16}, {216, 59, 151, 255} }},
+	{{ {0, -9, -19}, 0, {-16, -16}, {215, 199, 150, 255} }},
+};
+
+Gfx peach_left_elbow_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_left_elbow_mesh_layer_1_vtx_0 + 0, 14, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(3, 0, 4, 0, 4, 0, 2, 0),
+	gsSP2Triangles(4, 2, 5, 0, 6, 5, 2, 0),
+	gsSP2Triangles(6, 2, 7, 0, 2, 1, 7, 0),
+	gsSP2Triangles(7, 1, 8, 0, 8, 1, 9, 0),
+	gsSP2Triangles(1, 3, 9, 0, 10, 9, 3, 0),
+	gsSP2Triangles(3, 4, 10, 0, 10, 4, 11, 0),
+	gsSP2Triangles(5, 11, 4, 0, 11, 5, 6, 0),
+	gsSP2Triangles(6, 12, 11, 0, 7, 12, 6, 0),
+	gsSP2Triangles(7, 8, 12, 0, 12, 8, 9, 0),
+	gsSP2Triangles(12, 9, 13, 0, 10, 13, 9, 0),
+	gsSP2Triangles(11, 13, 10, 0, 13, 11, 12, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_left_hand_mesh_layer_1_vtx_0[23] = {
+	{{ {51, -16, 0}, 0, {-16, -16}, {40, 171, 171, 255} }},
+	{{ {87, -10, 0}, 0, {-16, -16}, {78, 175, 197, 255} }},
+	{{ {47, -17, 19}, 0, {-16, -16}, {21, 173, 94, 255} }},
+	{{ {42, 26, 2}, 0, {-16, -16}, {29, 111, 201, 255} }},
+	{{ {30, -23, -10}, 0, {-16, -16}, {37, 136, 20, 255} }},
+	{{ {7, -15, 16}, 0, {-16, -16}, {217, 176, 91, 255} }},
+	{{ {45, 21, 19}, 0, {-16, -16}, {19, 76, 100, 255} }},
+	{{ {87, 10, 6}, 0, {-16, -16}, {107, 54, 43, 255} }},
+	{{ {90, -4, 5}, 0, {-16, -16}, {121, 238, 33, 255} }},
+	{{ {82, 14, 0}, 0, {-16, -16}, {55, 86, 180, 255} }},
+	{{ {5, 21, 16}, 0, {-16, -16}, {214, 80, 89, 255} }},
+	{{ {5, 24, -6}, 0, {-16, -16}, {226, 113, 206, 255} }},
+	{{ {26, 9, -12}, 0, {-16, -16}, {55, 61, 159, 255} }},
+	{{ {52, -19, -32}, 0, {-16, -16}, {120, 27, 224, 255} }},
+	{{ {50, -30, -32}, 0, {-16, -16}, {86, 165, 232, 255} }},
+	{{ {44, -29, -34}, 0, {-16, -16}, {239, 170, 165, 255} }},
+	{{ {7, -19, -19}, 0, {-16, -16}, {193, 170, 187, 255} }},
+	{{ {-10, -7, 9}, 0, {-16, -16}, {157, 203, 59, 255} }},
+	{{ {-11, 12, 9}, 0, {-16, -16}, {154, 49, 57, 255} }},
+	{{ {-11, 12, -11}, 0, {-16, -16}, {161, 54, 191, 255} }},
+	{{ {17, -3, -23}, 0, {-16, -16}, {231, 43, 139, 255} }},
+	{{ {43, -15, -34}, 0, {-16, -16}, {11, 52, 141, 255} }},
+	{{ {-10, -7, -11}, 0, {-16, -16}, {153, 207, 200, 255} }},
+};
+
+Gfx peach_left_hand_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_left_hand_mesh_layer_1_vtx_0 + 0, 23, 0),
+	gsSP2Triangles(0, 1, 2, 0, 3, 1, 0, 0),
+	gsSP2Triangles(0, 4, 3, 0, 2, 4, 0, 0),
+	gsSP2Triangles(2, 5, 4, 0, 6, 5, 2, 0),
+	gsSP2Triangles(7, 6, 2, 0, 2, 8, 7, 0),
+	gsSP2Triangles(1, 8, 2, 0, 7, 8, 1, 0),
+	gsSP2Triangles(7, 1, 9, 0, 3, 9, 1, 0),
+	gsSP2Triangles(6, 9, 3, 0, 10, 6, 3, 0),
+	gsSP2Triangles(10, 3, 11, 0, 12, 11, 3, 0),
+	gsSP2Triangles(4, 12, 3, 0, 4, 13, 12, 0),
+	gsSP2Triangles(4, 14, 13, 0, 15, 14, 4, 0),
+	gsSP2Triangles(16, 15, 4, 0, 5, 16, 4, 0),
+	gsSP2Triangles(16, 5, 17, 0, 10, 17, 5, 0),
+	gsSP2Triangles(6, 10, 5, 0, 10, 18, 17, 0),
+	gsSP2Triangles(19, 18, 10, 0, 11, 19, 10, 0),
+	gsSP2Triangles(19, 11, 20, 0, 20, 11, 12, 0),
+	gsSP2Triangles(12, 21, 20, 0, 12, 13, 21, 0),
+	gsSP2Triangles(13, 15, 21, 0, 13, 14, 15, 0),
+	gsSP2Triangles(21, 15, 16, 0, 20, 21, 16, 0),
+	gsSP2Triangles(20, 16, 19, 0, 16, 22, 19, 0),
+	gsSP2Triangles(17, 22, 16, 0, 17, 19, 22, 0),
+	gsSP2Triangles(17, 18, 19, 0, 6, 7, 9, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx peach_neck_mesh_layer_1_vtx_0[10] = {
+	{{ {-6, 28, 1}, 0, {230, 2060}, {11, 127, 255, 255} }},
+	{{ {50, 8, 22}, 0, {28, 1504}, {12, 39, 120, 255} }},
+	{{ {50, 23, 1}, 0, {180, 1504}, {11, 127, 254, 255} }},
+	{{ {-6, 9, 27}, 0, {42, 2060}, {11, 38, 121, 255} }},
+	{{ {50, -16, 14}, 0, {-218, 1502}, {12, 153, 74, 255} }},
+	{{ {-6, -20, 17}, 0, {-260, 2058}, {12, 154, 75, 255} }},
+	{{ {50, -16, -11}, 0, {-218, 1502}, {12, 153, 182, 255} }},
+	{{ {-6, -21, -14}, 0, {-262, 2058}, {13, 152, 184, 255} }},
+	{{ {50, 8, -19}, 0, {26, 1504}, {11, 38, 135, 255} }},
+	{{ {-6, 9, -24}, 0, {42, 2060}, {12, 37, 135, 255} }},
+};
+
+Gfx peach_neck_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_neck_mesh_layer_1_vtx_0 + 0, 10, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(3, 4, 1, 0, 3, 5, 4, 0),
+	gsSP2Triangles(5, 6, 4, 0, 5, 7, 6, 0),
+	gsSP2Triangles(7, 8, 6, 0, 7, 9, 8, 0),
+	gsSP2Triangles(9, 2, 8, 0, 9, 0, 2, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -1901,196 +2106,6 @@ Gfx peach_head_mesh_layer_1_tri_5[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx peach_left_arm_mesh_layer_1_vtx_0[13] = {
-	{{ {52, 12, 18}, 0, {-16, -16}, {7, 63, 110, 255} }},
-	{{ {51, -9, 21}, 0, {-16, -16}, {6, 199, 114, 255} }},
-	{{ {101, -9, 16}, 0, {-16, -16}, {52, 201, 102, 255} }},
-	{{ {51, -20, 0}, 0, {-16, -16}, {5, 129, 254, 255} }},
-	{{ {101, -18, 0}, 0, {-16, -16}, {49, 139, 0, 255} }},
-	{{ {51, -9, -19}, 0, {-16, -16}, {7, 198, 143, 255} }},
-	{{ {101, -9, -16}, 0, {-16, -16}, {51, 201, 153, 255} }},
-	{{ {52, 12, -17}, 0, {-16, -16}, {6, 59, 144, 255} }},
-	{{ {102, 12, -14}, 0, {-16, -16}, {58, 59, 160, 255} }},
-	{{ {52, 26, 0}, 0, {-16, -16}, {7, 127, 255, 255} }},
-	{{ {102, 21, 0}, 0, {-16, -16}, {61, 112, 1, 255} }},
-	{{ {102, 12, 14}, 0, {-16, -16}, {58, 60, 96, 255} }},
-	{{ {115, -2, 0}, 0, {-16, -16}, {126, 243, 0, 255} }},
-};
-
-Gfx peach_left_arm_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_left_arm_mesh_layer_1_vtx_0 + 0, 13, 0),
-	gsSP2Triangles(0, 1, 2, 0, 3, 2, 1, 0),
-	gsSP2Triangles(3, 4, 2, 0, 5, 4, 3, 0),
-	gsSP2Triangles(5, 6, 4, 0, 5, 7, 6, 0),
-	gsSP2Triangles(7, 8, 6, 0, 9, 8, 7, 0),
-	gsSP2Triangles(9, 10, 8, 0, 0, 10, 9, 0),
-	gsSP2Triangles(0, 11, 10, 0, 2, 11, 0, 0),
-	gsSP2Triangles(2, 12, 11, 0, 12, 2, 4, 0),
-	gsSP2Triangles(4, 6, 12, 0, 8, 12, 6, 0),
-	gsSP2Triangles(12, 8, 10, 0, 10, 11, 12, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx peach_left_arm_mesh_layer_1_vtx_1[12] = {
-	{{ {52, 26, 0}, 0, {1052, -1698}, {7, 127, 255, 255} }},
-	{{ {23, 13, 18}, 0, {364, -1442}, {1, 63, 110, 255} }},
-	{{ {52, 12, 18}, 0, {1034, -1392}, {7, 63, 110, 255} }},
-	{{ {23, 27, 0}, 0, {378, -1746}, {5, 127, 255, 255} }},
-	{{ {52, 12, -17}, 0, {1030, -1396}, {6, 59, 144, 255} }},
-	{{ {23, 13, -18}, 0, {360, -1446}, {6, 61, 145, 255} }},
-	{{ {51, -9, -19}, 0, {1002, -896}, {7, 198, 143, 255} }},
-	{{ {23, -10, -20}, 0, {332, -898}, {5, 195, 145, 255} }},
-	{{ {51, -20, 0}, 0, {996, -640}, {5, 129, 254, 255} }},
-	{{ {22, -21, 0}, 0, {320, -650}, {4, 129, 255, 255} }},
-	{{ {51, -9, 21}, 0, {1006, -892}, {6, 199, 114, 255} }},
-	{{ {23, -10, 20}, 0, {334, -894}, {254, 193, 110, 255} }},
-};
-
-Gfx peach_left_arm_mesh_layer_1_tri_1[] = {
-	gsSPVertex(peach_left_arm_mesh_layer_1_vtx_1 + 0, 12, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
-	gsSP2Triangles(5, 4, 6, 0, 6, 7, 5, 0),
-	gsSP2Triangles(8, 7, 6, 0, 8, 9, 7, 0),
-	gsSP2Triangles(10, 9, 8, 0, 10, 11, 9, 0),
-	gsSP2Triangles(1, 11, 10, 0, 10, 2, 1, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx peach_left_shoulder_mesh_layer_1_vtx_0[21] = {
-	{{ {-32, 28, 30}, 0, {296, -1346}, {152, 49, 53, 255} }},
-	{{ {-12, 51, -18}, 0, {396, -1578}, {228, 116, 213, 255} }},
-	{{ {-35, 28, -17}, 0, {284, -1346}, {147, 50, 215, 255} }},
-	{{ {-10, 51, 28}, 0, {410, -1576}, {232, 116, 46, 255} }},
-	{{ {-9, 27, 52}, 0, {412, -1340}, {235, 46, 117, 255} }},
-	{{ {-33, -19, 30}, 0, {292, -872}, {150, 212, 54, 255} }},
-	{{ {-42, 4, 6}, 0, {248, -1112}, {129, 2, 7, 255} }},
-	{{ {-36, -19, -17}, 0, {278, -874}, {144, 212, 215, 255} }},
-	{{ {-15, -19, -42}, 0, {382, -868}, {220, 212, 142, 255} }},
-	{{ {-14, 27, -42}, 0, {386, -1342}, {222, 46, 143, 255} }},
-	{{ {32, 20, -33}, 0, {622, -1272}, {90, 31, 172, 255} }},
-	{{ {33, 38, -15}, 0, {628, -1450}, {93, 78, 218, 255} }},
-	{{ {35, 38, 20}, 0, {638, -1450}, {96, 79, 27, 255} }},
-	{{ {36, 20, 38}, 0, {640, -1270}, {98, 30, 75, 255} }},
-	{{ {35, -15, 38}, 0, {636, -914}, {96, 220, 74, 255} }},
-	{{ {-10, -19, 52}, 0, {408, -866}, {232, 212, 117, 255} }},
-	{{ {-12, -43, 28}, 0, {398, -630}, {226, 142, 47, 255} }},
-	{{ {-15, -43, -18}, 0, {384, -632}, {221, 142, 213, 255} }},
-	{{ {31, -15, -33}, 0, {616, -916}, {87, 219, 171, 255} }},
-	{{ {33, -33, 20}, 0, {630, -736}, {92, 172, 27, 255} }},
-	{{ {31, -32, -15}, 0, {620, -736}, {88, 173, 219, 255} }},
-};
-
-Gfx peach_left_shoulder_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_left_shoulder_mesh_layer_1_vtx_0 + 0, 21, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(4, 3, 0, 0, 5, 4, 0, 0),
-	gsSP2Triangles(6, 5, 0, 0, 0, 2, 6, 0),
-	gsSP2Triangles(6, 2, 7, 0, 2, 8, 7, 0),
-	gsSP2Triangles(2, 9, 8, 0, 2, 1, 9, 0),
-	gsSP2Triangles(9, 1, 10, 0, 1, 11, 10, 0),
-	gsSP2Triangles(12, 11, 1, 0, 1, 3, 12, 0),
-	gsSP2Triangles(13, 12, 3, 0, 13, 3, 4, 0),
-	gsSP2Triangles(14, 13, 4, 0, 15, 14, 4, 0),
-	gsSP2Triangles(5, 15, 4, 0, 15, 5, 16, 0),
-	gsSP2Triangles(17, 16, 5, 0, 7, 17, 5, 0),
-	gsSP2Triangles(7, 5, 6, 0, 8, 17, 7, 0),
-	gsSP2Triangles(18, 17, 8, 0, 9, 18, 8, 0),
-	gsSP2Triangles(9, 10, 18, 0, 19, 18, 10, 0),
-	gsSP2Triangles(19, 10, 11, 0, 11, 14, 19, 0),
-	gsSP2Triangles(11, 13, 14, 0, 11, 12, 13, 0),
-	gsSP2Triangles(16, 19, 14, 0, 17, 19, 16, 0),
-	gsSP2Triangles(17, 20, 19, 0, 18, 20, 17, 0),
-	gsSP2Triangles(19, 20, 18, 0, 15, 16, 14, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx peach_left_elbow_mesh_layer_1_vtx_0[14] = {
-	{{ {77, -6, 12}, 0, {-16, -16}, {43, 194, 102, 255} }},
-	{{ {94, 0, 0}, 0, {-16, -16}, {127, 251, 4, 255} }},
-	{{ {77, 7, 12}, 0, {-16, -16}, {45, 56, 105, 255} }},
-	{{ {77, -12, 0}, 0, {-16, -16}, {41, 136, 4, 255} }},
-	{{ {1, -9, 18}, 0, {-16, -16}, {219, 197, 106, 255} }},
-	{{ {1, 13, 19}, 0, {-16, -16}, {219, 57, 107, 255} }},
-	{{ {-4, 24, 0}, 0, {-16, -16}, {202, 115, 1, 255} }},
-	{{ {77, 15, 0}, 0, {-16, -16}, {47, 118, 4, 255} }},
-	{{ {77, 7, -14}, 0, {-16, -16}, {47, 58, 153, 255} }},
-	{{ {77, -6, -14}, 0, {-16, -16}, {46, 192, 156, 255} }},
-	{{ {-5, -20, 0}, 0, {-16, -16}, {198, 143, 3, 255} }},
-	{{ {-18, 2, 0}, 0, {-16, -16}, {129, 1, 2, 255} }},
-	{{ {0, 13, -19}, 0, {-16, -16}, {216, 59, 151, 255} }},
-	{{ {0, -9, -19}, 0, {-16, -16}, {215, 199, 150, 255} }},
-};
-
-Gfx peach_left_elbow_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_left_elbow_mesh_layer_1_vtx_0 + 0, 14, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(3, 0, 4, 0, 4, 0, 2, 0),
-	gsSP2Triangles(4, 2, 5, 0, 6, 5, 2, 0),
-	gsSP2Triangles(6, 2, 7, 0, 2, 1, 7, 0),
-	gsSP2Triangles(7, 1, 8, 0, 8, 1, 9, 0),
-	gsSP2Triangles(1, 3, 9, 0, 10, 9, 3, 0),
-	gsSP2Triangles(3, 4, 10, 0, 10, 4, 11, 0),
-	gsSP2Triangles(5, 11, 4, 0, 11, 5, 6, 0),
-	gsSP2Triangles(6, 12, 11, 0, 7, 12, 6, 0),
-	gsSP2Triangles(7, 8, 12, 0, 12, 8, 9, 0),
-	gsSP2Triangles(12, 9, 13, 0, 10, 13, 9, 0),
-	gsSP2Triangles(11, 13, 10, 0, 13, 11, 12, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx peach_left_hand_mesh_layer_1_vtx_0[23] = {
-	{{ {51, -16, 0}, 0, {-16, -16}, {40, 171, 171, 255} }},
-	{{ {87, -10, 0}, 0, {-16, -16}, {78, 175, 197, 255} }},
-	{{ {47, -17, 19}, 0, {-16, -16}, {21, 173, 94, 255} }},
-	{{ {42, 26, 2}, 0, {-16, -16}, {29, 111, 201, 255} }},
-	{{ {30, -23, -10}, 0, {-16, -16}, {37, 136, 20, 255} }},
-	{{ {7, -15, 16}, 0, {-16, -16}, {217, 176, 91, 255} }},
-	{{ {45, 21, 19}, 0, {-16, -16}, {19, 76, 100, 255} }},
-	{{ {87, 10, 6}, 0, {-16, -16}, {107, 54, 43, 255} }},
-	{{ {90, -4, 5}, 0, {-16, -16}, {121, 238, 33, 255} }},
-	{{ {82, 14, 0}, 0, {-16, -16}, {55, 86, 180, 255} }},
-	{{ {5, 21, 16}, 0, {-16, -16}, {214, 80, 89, 255} }},
-	{{ {5, 24, -6}, 0, {-16, -16}, {226, 113, 206, 255} }},
-	{{ {26, 9, -12}, 0, {-16, -16}, {55, 61, 159, 255} }},
-	{{ {52, -19, -32}, 0, {-16, -16}, {120, 27, 224, 255} }},
-	{{ {50, -30, -32}, 0, {-16, -16}, {86, 165, 232, 255} }},
-	{{ {44, -29, -34}, 0, {-16, -16}, {239, 170, 165, 255} }},
-	{{ {7, -19, -19}, 0, {-16, -16}, {193, 170, 187, 255} }},
-	{{ {-10, -7, 9}, 0, {-16, -16}, {157, 203, 59, 255} }},
-	{{ {-11, 12, 9}, 0, {-16, -16}, {154, 49, 57, 255} }},
-	{{ {-11, 12, -11}, 0, {-16, -16}, {161, 54, 191, 255} }},
-	{{ {17, -3, -23}, 0, {-16, -16}, {231, 43, 139, 255} }},
-	{{ {43, -15, -34}, 0, {-16, -16}, {11, 52, 141, 255} }},
-	{{ {-10, -7, -11}, 0, {-16, -16}, {153, 207, 200, 255} }},
-};
-
-Gfx peach_left_hand_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_left_hand_mesh_layer_1_vtx_0 + 0, 23, 0),
-	gsSP2Triangles(0, 1, 2, 0, 3, 1, 0, 0),
-	gsSP2Triangles(0, 4, 3, 0, 2, 4, 0, 0),
-	gsSP2Triangles(2, 5, 4, 0, 6, 5, 2, 0),
-	gsSP2Triangles(7, 6, 2, 0, 2, 8, 7, 0),
-	gsSP2Triangles(1, 8, 2, 0, 7, 8, 1, 0),
-	gsSP2Triangles(7, 1, 9, 0, 3, 9, 1, 0),
-	gsSP2Triangles(6, 9, 3, 0, 10, 6, 3, 0),
-	gsSP2Triangles(10, 3, 11, 0, 12, 11, 3, 0),
-	gsSP2Triangles(4, 12, 3, 0, 4, 13, 12, 0),
-	gsSP2Triangles(4, 14, 13, 0, 15, 14, 4, 0),
-	gsSP2Triangles(16, 15, 4, 0, 5, 16, 4, 0),
-	gsSP2Triangles(16, 5, 17, 0, 10, 17, 5, 0),
-	gsSP2Triangles(6, 10, 5, 0, 10, 18, 17, 0),
-	gsSP2Triangles(19, 18, 10, 0, 11, 19, 10, 0),
-	gsSP2Triangles(19, 11, 20, 0, 20, 11, 12, 0),
-	gsSP2Triangles(12, 21, 20, 0, 12, 13, 21, 0),
-	gsSP2Triangles(13, 15, 21, 0, 13, 14, 15, 0),
-	gsSP2Triangles(21, 15, 16, 0, 20, 21, 16, 0),
-	gsSP2Triangles(20, 16, 19, 0, 16, 22, 19, 0),
-	gsSP2Triangles(17, 22, 16, 0, 17, 19, 22, 0),
-	gsSP2Triangles(17, 18, 19, 0, 6, 7, 9, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx peach_lower_hair_mesh_layer_1_vtx_0[54] = {
 	{{ {229, -45, 49}, 0, {-16, -16}, {66, 73, 79, 255} }},
 	{{ {239, -84, 59}, 0, {-16, -16}, {96, 174, 7, 255} }},
@@ -2192,6 +2207,54 @@ Gfx peach_lower_hair_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
+Vtx peach_right_shoulder_mesh_layer_1_vtx_0[21] = {
+	{{ {-12, -43, -27}, 0, {398, -630}, {226, 142, 209, 255} }},
+	{{ {-33, -19, -29}, 0, {292, -872}, {150, 212, 202, 255} }},
+	{{ {-10, -19, -51}, 0, {408, -868}, {232, 212, 139, 255} }},
+	{{ {-15, -43, 19}, 0, {384, -632}, {221, 142, 43, 255} }},
+	{{ {33, -33, -19}, 0, {630, -736}, {92, 172, 229, 255} }},
+	{{ {35, -15, -37}, 0, {636, -914}, {96, 220, 182, 255} }},
+	{{ {-9, 27, -51}, 0, {412, -1340}, {235, 46, 139, 255} }},
+	{{ {-32, 28, -29}, 0, {296, -1346}, {152, 49, 203, 255} }},
+	{{ {-42, 4, -5}, 0, {248, -1112}, {129, 2, 249, 255} }},
+	{{ {-36, -19, 18}, 0, {278, -874}, {144, 212, 41, 255} }},
+	{{ {-15, -19, 43}, 0, {382, -868}, {220, 212, 114, 255} }},
+	{{ {31, -15, 34}, 0, {618, -914}, {87, 219, 85, 255} }},
+	{{ {31, -32, 16}, 0, {620, -736}, {88, 173, 37, 255} }},
+	{{ {32, 20, 34}, 0, {622, -1272}, {90, 31, 84, 255} }},
+	{{ {33, 38, 16}, 0, {628, -1450}, {93, 78, 38, 255} }},
+	{{ {36, 20, -37}, 0, {640, -1272}, {98, 30, 181, 255} }},
+	{{ {-10, 51, -27}, 0, {410, -1578}, {232, 116, 210, 255} }},
+	{{ {-12, 51, 19}, 0, {396, -1578}, {228, 116, 43, 255} }},
+	{{ {-35, 28, 18}, 0, {284, -1346}, {147, 50, 41, 255} }},
+	{{ {-14, 27, 43}, 0, {386, -1342}, {222, 46, 113, 255} }},
+	{{ {35, 38, -19}, 0, {638, -1450}, {96, 79, 229, 255} }},
+};
+
+Gfx peach_right_shoulder_mesh_layer_1_tri_0[] = {
+	gsSPVertex(peach_right_shoulder_mesh_layer_1_vtx_0 + 0, 21, 0),
+	gsSP2Triangles(0, 1, 2, 0, 1, 0, 3, 0),
+	gsSP2Triangles(0, 4, 3, 0, 5, 4, 0, 0),
+	gsSP2Triangles(5, 0, 2, 0, 6, 5, 2, 0),
+	gsSP2Triangles(6, 2, 1, 0, 7, 6, 1, 0),
+	gsSP2Triangles(7, 1, 8, 0, 8, 1, 9, 0),
+	gsSP2Triangles(1, 3, 9, 0, 9, 3, 10, 0),
+	gsSP2Triangles(10, 3, 11, 0, 3, 12, 11, 0),
+	gsSP2Triangles(4, 12, 3, 0, 11, 12, 4, 0),
+	gsSP2Triangles(13, 11, 4, 0, 14, 13, 4, 0),
+	gsSP2Triangles(4, 5, 14, 0, 5, 15, 14, 0),
+	gsSP2Triangles(6, 15, 5, 0, 6, 16, 15, 0),
+	gsSP2Triangles(7, 16, 6, 0, 17, 16, 7, 0),
+	gsSP2Triangles(18, 17, 7, 0, 8, 18, 7, 0),
+	gsSP2Triangles(9, 18, 8, 0, 9, 10, 18, 0),
+	gsSP2Triangles(10, 19, 18, 0, 10, 11, 19, 0),
+	gsSP2Triangles(11, 13, 19, 0, 13, 17, 19, 0),
+	gsSP2Triangles(13, 14, 17, 0, 17, 14, 20, 0),
+	gsSP2Triangles(15, 20, 14, 0, 16, 20, 15, 0),
+	gsSP2Triangles(20, 16, 17, 0, 19, 17, 18, 0),
+	gsSPEndDisplayList(),
+};
+
 Vtx peach_right_arm_mesh_layer_1_vtx_0[13] = {
 	{{ {52, 26, 0}, 0, {-16, -16}, {8, 127, 253, 255} }},
 	{{ {102, 21, 1}, 0, {-16, -16}, {60, 112, 255, 255} }},
@@ -2245,54 +2308,6 @@ Gfx peach_right_arm_mesh_layer_1_tri_1[] = {
 	gsSP2Triangles(8, 7, 6, 0, 9, 7, 8, 0),
 	gsSP2Triangles(8, 10, 9, 0, 11, 9, 10, 0),
 	gsSP2Triangles(2, 11, 10, 0, 1, 11, 2, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx peach_right_shoulder_mesh_layer_1_vtx_0[21] = {
-	{{ {-12, -43, -27}, 0, {398, -630}, {226, 142, 209, 255} }},
-	{{ {-33, -19, -29}, 0, {292, -872}, {150, 212, 202, 255} }},
-	{{ {-10, -19, -51}, 0, {408, -868}, {232, 212, 139, 255} }},
-	{{ {-15, -43, 19}, 0, {384, -632}, {221, 142, 43, 255} }},
-	{{ {33, -33, -19}, 0, {630, -736}, {92, 172, 229, 255} }},
-	{{ {35, -15, -37}, 0, {636, -914}, {96, 220, 182, 255} }},
-	{{ {-9, 27, -51}, 0, {412, -1340}, {235, 46, 139, 255} }},
-	{{ {-32, 28, -29}, 0, {296, -1346}, {152, 49, 203, 255} }},
-	{{ {-42, 4, -5}, 0, {248, -1112}, {129, 2, 249, 255} }},
-	{{ {-36, -19, 18}, 0, {278, -874}, {144, 212, 41, 255} }},
-	{{ {-15, -19, 43}, 0, {382, -868}, {220, 212, 114, 255} }},
-	{{ {31, -15, 34}, 0, {618, -914}, {87, 219, 85, 255} }},
-	{{ {31, -32, 16}, 0, {620, -736}, {88, 173, 37, 255} }},
-	{{ {32, 20, 34}, 0, {622, -1272}, {90, 31, 84, 255} }},
-	{{ {33, 38, 16}, 0, {628, -1450}, {93, 78, 38, 255} }},
-	{{ {36, 20, -37}, 0, {640, -1272}, {98, 30, 181, 255} }},
-	{{ {-10, 51, -27}, 0, {410, -1578}, {232, 116, 210, 255} }},
-	{{ {-12, 51, 19}, 0, {396, -1578}, {228, 116, 43, 255} }},
-	{{ {-35, 28, 18}, 0, {284, -1346}, {147, 50, 41, 255} }},
-	{{ {-14, 27, 43}, 0, {386, -1342}, {222, 46, 113, 255} }},
-	{{ {35, 38, -19}, 0, {638, -1450}, {96, 79, 229, 255} }},
-};
-
-Gfx peach_right_shoulder_mesh_layer_1_tri_0[] = {
-	gsSPVertex(peach_right_shoulder_mesh_layer_1_vtx_0 + 0, 21, 0),
-	gsSP2Triangles(0, 1, 2, 0, 1, 0, 3, 0),
-	gsSP2Triangles(0, 4, 3, 0, 5, 4, 0, 0),
-	gsSP2Triangles(5, 0, 2, 0, 6, 5, 2, 0),
-	gsSP2Triangles(6, 2, 1, 0, 7, 6, 1, 0),
-	gsSP2Triangles(7, 1, 8, 0, 8, 1, 9, 0),
-	gsSP2Triangles(1, 3, 9, 0, 9, 3, 10, 0),
-	gsSP2Triangles(10, 3, 11, 0, 3, 12, 11, 0),
-	gsSP2Triangles(4, 12, 3, 0, 11, 12, 4, 0),
-	gsSP2Triangles(13, 11, 4, 0, 14, 13, 4, 0),
-	gsSP2Triangles(4, 5, 14, 0, 5, 15, 14, 0),
-	gsSP2Triangles(6, 15, 5, 0, 6, 16, 15, 0),
-	gsSP2Triangles(7, 16, 6, 0, 17, 16, 7, 0),
-	gsSP2Triangles(18, 17, 7, 0, 8, 18, 7, 0),
-	gsSP2Triangles(9, 18, 8, 0, 9, 10, 18, 0),
-	gsSP2Triangles(10, 19, 18, 0, 10, 11, 19, 0),
-	gsSP2Triangles(11, 13, 19, 0, 13, 17, 19, 0),
-	gsSP2Triangles(13, 14, 17, 0, 17, 14, 20, 0),
-	gsSP2Triangles(15, 20, 14, 0, 16, 20, 15, 0),
-	gsSP2Triangles(20, 16, 17, 0, 19, 17, 18, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -2384,8 +2399,8 @@ Gfx peach_right_hand_mesh_layer_1_tri_0[] = {
 
 
 Gfx mat_peach_upper_dress_color[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2402,8 +2417,8 @@ Gfx mat_revert_peach_upper_dress_color[] = {
 
 Gfx mat_peach_dress[] = {
 	gsSPGeometryMode(G_CULL_BACK, 0),
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2428,26 +2443,9 @@ Gfx mat_revert_peach_dress[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_peach_skin_color[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
-	gsDPSetAlphaDither(G_AD_NOISE),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetPrimColor(0, 0, 255, 230, 164, 255),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_peach_skin_color[] = {
-	gsDPPipeSync(),
-	gsDPSetAlphaDither(G_AD_DISABLE),
-	gsSPEndDisplayList(),
-};
-
 Gfx mat_peach_jewel[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2472,8 +2470,8 @@ Gfx mat_revert_peach_jewel[] = {
 };
 
 Gfx mat_peach_collar[] = {
-	gsSPLightColor(LIGHT_1, 0xC498ABFF),
-	gsSPLightColor(LIGHT_2, 0x6C545FFF),
+    gsSPLightColor(LIGHT_1, 0xc498abff),
+    gsSPLightColor(LIGHT_2, 0x6c545fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2488,9 +2486,42 @@ Gfx mat_revert_peach_collar[] = {
 	gsSPEndDisplayList(),
 };
 
+Gfx mat_peach_gloves[] = {
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_peach_gloves[] = {
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_peach_skin_color[] = {
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetPrimColor(0, 0, 255, 230, 164, 255),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_peach_skin_color[] = {
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
 Gfx mat_peach_eye_mostly_open[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2515,8 +2546,8 @@ Gfx mat_revert_peach_eye_mostly_open[] = {
 };
 
 Gfx mat_peach_hair[] = {
-	gsSPLightColor(LIGHT_1, 0xF3B616FF),
-	gsSPLightColor(LIGHT_2, 0x7F5F0CFF),
+    gsSPLightColor(LIGHT_1, 0xf3b616ff),
+    gsSPLightColor(LIGHT_2, 0x7f5f0cff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2531,8 +2562,8 @@ Gfx mat_revert_peach_hair[] = {
 };
 
 Gfx mat_peach_lips[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2557,8 +2588,8 @@ Gfx mat_revert_peach_lips[] = {
 };
 
 Gfx mat_peach_nostrils[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2583,8 +2614,8 @@ Gfx mat_revert_peach_nostrils[] = {
 };
 
 Gfx mat_peach_crown[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2609,8 +2640,8 @@ Gfx mat_revert_peach_crown[] = {
 };
 
 Gfx mat_peach_earings[] = {
-	gsSPLightColor(LIGHT_1, 0x1431C1FF),
-	gsSPLightColor(LIGHT_2, 0x0B1A67FF),
+    gsSPLightColor(LIGHT_1, 0x1431c1ff),
+    gsSPLightColor(LIGHT_2, 0xb1a67ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2625,8 +2656,8 @@ Gfx mat_revert_peach_earings[] = {
 };
 
 Gfx mat_peach_eye_mostly_closed[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2651,8 +2682,8 @@ Gfx mat_revert_peach_eye_mostly_closed[] = {
 };
 
 Gfx mat_peach_eye_closed[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2677,8 +2708,8 @@ Gfx mat_revert_peach_eye_closed[] = {
 };
 
 Gfx mat_peach_lips_scrunched[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
+    gsSPLightColor(LIGHT_1, 0xf3f3f3ff),
+    gsSPLightColor(LIGHT_2, 0x797979ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -2702,22 +2733,6 @@ Gfx mat_revert_peach_lips_scrunched[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_peach_gloves[] = {
-	gsSPLightColor(LIGHT_1, 0xF3F3F3FF),
-	gsSPLightColor(LIGHT_2, 0x797979FF),
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
-	gsDPSetAlphaDither(G_AD_NOISE),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_peach_gloves[] = {
-	gsDPPipeSync(),
-	gsDPSetAlphaDither(G_AD_DISABLE),
-	gsSPEndDisplayList(),
-};
-
 Gfx peach_root_mesh_layer_1[] = {
 	gsSPDisplayList(mat_peach_upper_dress_color),
 	gsSPDisplayList(peach_root_mesh_layer_1_tri_0),
@@ -2732,13 +2747,6 @@ Gfx peach_dress_mesh_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx peach_neck_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_skin_color),
-	gsSPDisplayList(peach_neck_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_skin_color),
-	gsSPEndDisplayList(),
-};
-
 Gfx peach_torso_mesh_layer_1[] = {
 	gsSPDisplayList(mat_peach_upper_dress_color),
 	gsSPDisplayList(peach_torso_mesh_layer_1_tri_0),
@@ -2749,6 +2757,44 @@ Gfx peach_torso_mesh_layer_1[] = {
 	gsSPDisplayList(mat_peach_collar),
 	gsSPDisplayList(peach_torso_mesh_layer_1_tri_2),
 	gsSPDisplayList(mat_revert_peach_collar),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_left_shoulder_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_upper_dress_color),
+	gsSPDisplayList(peach_left_shoulder_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_upper_dress_color),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_left_arm_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_gloves),
+	gsSPDisplayList(peach_left_arm_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_gloves),
+	gsSPDisplayList(mat_peach_skin_color),
+	gsSPDisplayList(peach_left_arm_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_peach_skin_color),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_left_elbow_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_gloves),
+	gsSPDisplayList(peach_left_elbow_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_gloves),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_left_hand_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_gloves),
+	gsSPDisplayList(peach_left_hand_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_gloves),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_neck_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_skin_color),
+	gsSPDisplayList(peach_neck_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_skin_color),
 	gsSPEndDisplayList(),
 };
 
@@ -2862,41 +2908,45 @@ Gfx peach_head_mesh_layer_1_mat_override_lips_scrunched_3[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx peach_left_arm_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_gloves),
-	gsSPDisplayList(peach_left_arm_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_gloves),
-	gsSPDisplayList(mat_peach_skin_color),
-	gsSPDisplayList(peach_left_arm_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_peach_skin_color),
-	gsSPEndDisplayList(),
-};
-
-Gfx peach_left_shoulder_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_upper_dress_color),
-	gsSPDisplayList(peach_left_shoulder_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_upper_dress_color),
-	gsSPEndDisplayList(),
-};
-
-Gfx peach_left_elbow_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_gloves),
-	gsSPDisplayList(peach_left_elbow_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_gloves),
-	gsSPEndDisplayList(),
-};
-
-Gfx peach_left_hand_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_gloves),
-	gsSPDisplayList(peach_left_hand_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_gloves),
-	gsSPEndDisplayList(),
-};
-
 Gfx peach_lower_hair_mesh_layer_1[] = {
 	gsSPDisplayList(mat_peach_hair),
 	gsSPDisplayList(peach_lower_hair_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_peach_hair),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_lower_hair_mesh_layer_1_mat_override_eye_mostly_open_0[] = {
+	gsSPDisplayList(mat_peach_hair),
+	gsSPDisplayList(peach_lower_hair_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_hair),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_lower_hair_mesh_layer_1_mat_override_eye_mostly_closed_1[] = {
+	gsSPDisplayList(mat_peach_hair),
+	gsSPDisplayList(peach_lower_hair_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_hair),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_lower_hair_mesh_layer_1_mat_override_eye_closed_2[] = {
+	gsSPDisplayList(mat_peach_hair),
+	gsSPDisplayList(peach_lower_hair_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_hair),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_lower_hair_mesh_layer_1_mat_override_lips_scrunched_3[] = {
+	gsSPDisplayList(mat_peach_hair),
+	gsSPDisplayList(peach_lower_hair_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_hair),
+	gsSPEndDisplayList(),
+};
+
+Gfx peach_right_shoulder_mesh_layer_1[] = {
+	gsSPDisplayList(mat_peach_upper_dress_color),
+	gsSPDisplayList(peach_right_shoulder_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_peach_upper_dress_color),
 	gsSPEndDisplayList(),
 };
 
@@ -2907,13 +2957,6 @@ Gfx peach_right_arm_mesh_layer_1[] = {
 	gsSPDisplayList(mat_peach_skin_color),
 	gsSPDisplayList(peach_right_arm_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_peach_skin_color),
-	gsSPEndDisplayList(),
-};
-
-Gfx peach_right_shoulder_mesh_layer_1[] = {
-	gsSPDisplayList(mat_peach_upper_dress_color),
-	gsSPDisplayList(peach_right_shoulder_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_upper_dress_color),
 	gsSPEndDisplayList(),
 };
 
