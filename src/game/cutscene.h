@@ -30,6 +30,12 @@ enum CutsceneTitles {
     CUTSCENE_EVENT_REVIVE_PEACH
 };
 
+enum CUTSCENE_GAME_STATES {
+    CUTSCENE_GAME_STATE_DEFAULT,
+    CUTSCENE_GAME_STATE_REVIVE_BOWSER,
+    CUTSCENE_GAME_STATE_REVIVE_PEACH
+};
+
 #define EXTERNAL_TRIGGER_CUTSCENE_SKIPPED   201
 
 extern u8 cCutsceneActive;
@@ -42,6 +48,7 @@ extern s16 gCurCutscene;
 extern f32 gCutsceneFOV;
 extern s16 cSkipCutsceneState;
 extern s16 cSkipCutsceneTimer;
+extern s16 gCutsceneGameState;
 
 void begin_cutscene_event(s32 event);
 void event_handler(void);

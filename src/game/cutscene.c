@@ -32,6 +32,7 @@
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
 f32 gCutsceneApproachFOV = -1;
+s16 gCutsceneGameState = 0;
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
@@ -137,6 +138,7 @@ enum cutscene_events {
     EVENT_STONE_PATCH_EQUIPPED,
     EVENT_STONE_PATCH_BREAK_OUT,
 
+    EVENT_SET_CUTSCENE_GAME_STATE,
     EVENT_START_CUTSCENE,
     EVENT_END_CUTSCENE,
 };
@@ -840,6 +842,7 @@ s32 event_patchmaker_first_fight_defeated[] = {
     EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_NOD_HEAD,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_SET_CUTSCENE_GAME_STATE, CUTSCENE_GAME_STATE_REVIVE_BOWSER,
     EVENT_CANCEL_DIALOG,
     EVENT_FADE_INTO_COLOR, 45, 0, 0, 0,
     EVENT_WAIT, 45,
@@ -916,6 +919,8 @@ s32 event_revive_bowser[] = {
     EVENT_CAMERA_POSITION_SPLINE_DATA, 117,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 118,
     EVENT_WAIT, 100,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
     EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
     EVENT_WAIT, 30,
     EVENT_INITIATE_WARP, LEVEL_CASTLE, 2, 0x0A,
@@ -1280,12 +1285,15 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 194,
 
 
-
-
     EVENT_WAIT_FOR_DIALOG_END,
-    EVENT_SET_MARIO_ACTION, ACT_IDLE,
-    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_SET_CUTSCENE_GAME_STATE, CUTSCENE_GAME_STATE_REVIVE_PEACH,
+    EVENT_FADE_INTO_COLOR, 45, 0, 0, 0,
+    EVENT_WAIT, 45,
     EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_INITIATE_WARP, LEVEL_CASTLE, 1, 0x0A,
     EVENT_END_CUTSCENE,
 
 };
@@ -1950,6 +1958,10 @@ void event_handler(void) {
                 case EVENT_UNLOCK_MARIO_ANIM_FRAME:
                     cMarioAnimLockFrame = 0;
                     cCutsceneIndex += 1;
+                break;
+                case EVENT_SET_CUTSCENE_GAME_STATE:
+                    gCutsceneGameState = param1;
+                    cCutsceneIndex += 2;
                 break;
 
                 case EVENT_STONE_PATCH_PICKED_UP:
