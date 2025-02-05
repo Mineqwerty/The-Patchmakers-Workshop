@@ -2,6 +2,7 @@
 #include "src/game/patch_tutorial_dialog.h"
 #include "src/game/ingame_menu.h"
 #include "src/game/save_file.h"
+#include "src/game/cutscene.h"
 
 void bhv_text_volume_init(void) {
     if (gCurrLevelNum != LEVEL_CASTLE && save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & (1 << 1)) {
@@ -12,7 +13,8 @@ void bhv_text_volume_init(void) {
 void bhv_text_volume_loop(void) {
 
     if (gCurrLevelNum != LEVEL_CASTLE) {
-        if (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrLevelNum]))) {
+        if (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum]))
+        || gCurCutscene > -1) {
             return;
         }
     }

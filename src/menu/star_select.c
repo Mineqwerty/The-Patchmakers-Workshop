@@ -234,7 +234,7 @@ void bhv_act_selector_init(void) {
         sStarSelectorModels[i]->oStarSelectorSize = 1.0f;
     }
     //note: disable menu scrolling when using this
-    spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
+    //spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
     spawn_stage_diorama();
     render_100_coin_star(stars);
 }

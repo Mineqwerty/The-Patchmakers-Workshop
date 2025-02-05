@@ -642,6 +642,7 @@ s32 act_warp_gss(struct MarioState *m) {
     return FALSE;
 }
 
+//only God can forgive me for creating this horrid, horrid cutscene
 s32 act_collecting_patch(struct MarioState *m) {
     switch (m->actionArg) {
         case 0:
@@ -703,7 +704,12 @@ s32 act_collecting_patch(struct MarioState *m) {
     }
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    if (m->actionArg != 1) {
         vec3s_set(m->marioObj->header.gfx.angle, marioCutsceneFaceAngleRoll, m->faceAngle[1], marioCutsceneFaceAnglePitch);
+    }
+    else {
+        vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    }
     return FALSE;
 }
 
