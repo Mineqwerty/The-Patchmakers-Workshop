@@ -9,11 +9,14 @@ void bhv_story_cutscene_manager_loop(void) {
    
 }
 
+u8 playedIntro = 0;
+
 void bhv_story_cutscene_manager_hub1_init(void) {
     switch (gCurrAreaIndex) {
         case 1:
-            if (!save_file_exists(gCurrSaveFileNum - 1)) {
+            if (!save_file_exists(gCurrSaveFileNum - 1) && !playedIntro) {
                 begin_cutscene_event(CUTSCENE_EVENT_SEWNIA_REVIVE_MARIO);
+                playedIntro = 1;
             }
             else if (gCutsceneGameState == CUTSCENE_GAME_STATE_REVIVE_BOWSER) {
                 begin_cutscene_event(CUTSCENE_EVENT_REVIVE_BOWSER);

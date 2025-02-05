@@ -2322,9 +2322,16 @@ void check_and_change_patch_dpad(u32 dir) {
             case L_JPAD: mapID = 3; break;
         }
 
-        common_patch_cancel(gMarioState);
+
+        
         s8 dpadMap[4]; 
         save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+
+        if (dpadMap[mapID] == -1) {
+            return;
+        }
+
+        common_patch_cancel(gMarioState);
         gMarioState->equippedPatch = dpadMap[mapID];
         gMarioState->updatePatch = 1;
         play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gGlobalSoundSource);
@@ -2346,7 +2353,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    gMarioState->numStars = 41;
+    //gMarioState->numStars = 41;
 
     if (gCurrLevelNum == LEVEL_BOWSER_3 && gGlobalTimer > 90 && gGlobalTimer % 10 == 0) {
         extern u8 bowser_3_dl_nosiehell_rgba16[];

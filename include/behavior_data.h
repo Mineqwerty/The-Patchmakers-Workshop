@@ -839,3 +839,4 @@ extern const BehaviorScript bhvMadSlammingHandEyeball[];
 extern const BehaviorScript bhvShrineShape[];
 extern const BehaviorScript bhvShrineShapeController[];
 extern const BehaviorScript bhvLockboxKey[];
+extern const BehaviorScript bhvBeginningHubBarrier[];

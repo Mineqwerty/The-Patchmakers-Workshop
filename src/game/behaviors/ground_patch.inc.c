@@ -7,6 +7,8 @@ void bhv_ground_patch_init(void) {
         obj_mark_for_deletion(o);
     }
 
+    cur_obj_set_model(MODEL_GLOBAL_GROUND_PATCH);
+
     if (cur_obj_has_model(MODEL_GLOBAL_GROUND_PATCH)) {
         extern u8 global_ground_patch_grapple_patch_rgba16_rgba16[];
         extern const u8 patch_textures_dma[];

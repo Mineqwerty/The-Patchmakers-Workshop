@@ -90,6 +90,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BOWSER_PLUSH, -295, 181, 1431, 0, 170, 0, (1 << 16), bhvCharacterPlush),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvBeginningHubBarrier),
 		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, (1 << 24) | (15 << 16), bhvWorkshopDoorWarp),
 		OBJECT(MODEL_MARIO_PLUSH, -9, 181, 1378, 0, -180, 0, 0x00000000, bhvCharacterPlush),
 		OBJECT(MODEL_MEMORY_CLOUD, 5659, 765, -1655, 0, 0, 0, 0x00000000, bhvMemoryCloud),

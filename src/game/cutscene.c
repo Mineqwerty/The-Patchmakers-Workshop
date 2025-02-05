@@ -225,6 +225,7 @@ s32 event_rosedrift_cliff[] = {
 s32 event_find_stone_patch[] = {
     EVENT_WAIT, 1,
     EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_YAW, 0,
     EVENT_SONG_PRIMARY, SEQ_STONE_PATCH_CUTSCENE,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 18,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 19,
@@ -588,7 +589,24 @@ s32 event_meet_sewnia[] = {
     EVENT_WAIT, 1,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
-    EVENT_END_CUTSCENE
+    EVENT_END_CUTSCENE,
+
+    
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0, 
+    EVENT_WAIT, 30,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_SET_MARIO_POSITION, -170, 100, 1020,
+    EVENT_ENABLE_MARIO_RENDER,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_SET_EXTERNAL_TRIGGER, EXTERNAL_TRIGGER_CUTSCENE_SKIPPED,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_WAIT, 1,
+    
+    EVENT_END_CUTSCENE,
+
 };
 
 s32 event_sewnia_revive_mario[] = {
@@ -673,6 +691,7 @@ s32 event_sewnia_revive_mario[] = {
     EVENT_WAIT, 1,
     EVENT_FADE_FROM_COLOR, 1, 255, 255, 255,
     EVENT_WAIT, 60,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
     EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
     EVENT_WAIT, 90,
     EVENT_SET_EXTERNAL_TRIGGER, 0,
@@ -1675,6 +1694,7 @@ void begin_cutscene_event(s32 event) {
     cEventPointer = eventList[event];
     cMarioMoveDownTimer = 0;
     cMarioAnimLockFrame = 0;
+    cCameraDownVel = 0;
 }
 
 void event_handler(void) {
@@ -1909,6 +1929,7 @@ void event_handler(void) {
                     cExternalCutsceneTrigger = 0;
                     cSkipCutsceneState = 0;
                     cSkipCutsceneTimer = 0;
+                    cCameraDownVel = 0;
                 break;
                 case EVENT_SHOW_BOSS_TITLE:
                     gHudDisplay.flags |= HUD_DISPLAY_BOSS_INTRO;

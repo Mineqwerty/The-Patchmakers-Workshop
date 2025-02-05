@@ -880,8 +880,20 @@ void sewnia_act_intro_cutscene(void) {
             //if (cExternalCutsceneTrigger == 5){
                 o->oAction = SEWNIA_ACT_RUN_TO_NODE;
                 o->oSewniaApproachSpecificNode = 30;
+                o->oFaceAngleYaw = 0x8000;
+                o->oMoveAngleYaw = 0x8000;
             //}
         break;
+    }
+
+    
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+                o->oAction = SEWNIA_ACT_RUN_TO_NODE;
+                o->oSewniaApproachSpecificNode = 30;
+                o->oFaceAngleYaw = 0x8000;
+                o->oMoveAngleYaw = 0x8000;
+                cur_obj_unhide();
     }
 }
 
@@ -916,13 +928,33 @@ void sewnia_act_run_to_node(void) {
                 obj_turn_toward_position(o, -2170, 0, -1130, O_MOVE_ANGLE_YAW_INDEX, 0x300);
             }
         }
+        else if (o->oSewniaApproachSpecificNode == 30) {
+                cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
+            
+            o->oForwardVel = 20.0f;
+            sewnia_update_movement();
+            if (o->oPosZ > -1300) {
+                obj_turn_toward_position(o, -200, 0, -1350, O_MOVE_ANGLE_YAW_INDEX, 0x300);
+            }
+            else if (o->oPosX < 5500) {
+                obj_turn_toward_position(o, 6039, 0, -1350, O_MOVE_ANGLE_YAW_INDEX, 0x300);
+            }
+            else {
+                
+                o->oSewniaCurrentNodeIndex = nodeLimit;
+            }
+        }
         else {
             cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
             follow_along_waypoints();
         }
+    
+    o->oInteractType = INTERACT_PUSH_OUT;
     }
+    
     else {
-        //cur_obj_init_animation(SEWNIA_ANIM_CUTSCENE_IDLE_1);
+        
+        o->oInteractType = INTERACT_TEXT;
         o->oAction = SEWNIA_ACT_BEGINNING_CUTSCENE_AT_COURSE_ENTRANCE;
     }
 }

@@ -12,6 +12,7 @@ u8 gSelectedFile = 0;
 void set_initial_game_variables(void) {
     s8 dpadMap[4] = {-1, -1, -1, -1};
     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
+    update_dl_dpad_patches();
 }
 
 void bhv_new_file_select_manager_init(void) {
@@ -81,13 +82,13 @@ void bhv_new_file_select_manager_loop(void) {
                     selector->oF4 = gSelectedFile;
                 }
 
-                gCurrSaveFileNum = gSelectedFile;
-
                 gSpecialHudRender = 0;
                 if (gPlayer1Controller->buttonPressed & (B_BUTTON)) {
                     o->oAction = NEW_FILE_SELECT_CAM_LOGO;
                 }
                 else if (gPlayer1Controller->buttonPressed & (A_BUTTON)) {
+
+                    gCurrSaveFileNum = (s16)gSelectedFile + 1;
                     if (!save_file_exists(gCurrSaveFileNum - 1)) {
                         set_initial_game_variables();
                     }

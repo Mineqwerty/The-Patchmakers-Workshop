@@ -599,22 +599,32 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
                 }
             }
         }
+        s8 dpadMap[4]; 
+        save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
 
-        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[3], 0);
-        gSPDisplayList(gDisplayListHead++, &menu_patch_left_icon_Plane_007_mesh);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        if (dpadMap[3] != -1) {
+            create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[3], 0);
+            gSPDisplayList(gDisplayListHead++, &menu_patch_left_icon_Plane_007_mesh);
+            gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        }
 
-        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[1], 0);
-        gSPDisplayList(gDisplayListHead++, &menu_patch_right_icon_Plane_008_mesh);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        if (dpadMap[1] != -1) {
+            create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[1], 0);
+            gSPDisplayList(gDisplayListHead++, &menu_patch_right_icon_Plane_008_mesh);
+            gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        }
 
-        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[2], 0);
-        gSPDisplayList(gDisplayListHead++, &menu_patch_down_icon_Plane_006_mesh);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        if (dpadMap[2] != -1) {
+            create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[2], 0);
+            gSPDisplayList(gDisplayListHead++, &menu_patch_down_icon_Plane_006_mesh);
+            gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        }
 
-        create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[0], 0);
-        gSPDisplayList(gDisplayListHead++, &menu_patch_up_icon_Plane_005_mesh);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        if (dpadMap[0] != -1) {
+            create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[0], 0);
+            gSPDisplayList(gDisplayListHead++, &menu_patch_up_icon_Plane_005_mesh);
+            gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        }
     
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -635,10 +645,18 @@ void update_dl_dpad_patches(void) {
         u8 *downTexture = segmented_to_virtual(&menu_patch_down_icon_nothing_rgba16);
         u8 *upTexture = segmented_to_virtual(&menu_patch_up_icon_nothing_rgba16);
 
-        dma_read(leftTexture, (dpadMap[3]*2048) + patch_textures_dma, (dpadMap[3]*2048) + patch_textures_dma + 2048);
-        dma_read(rightTexture, (dpadMap[1]*2048) + patch_textures_dma, (dpadMap[1]*2048) + patch_textures_dma + 2048);
-        dma_read(downTexture, (dpadMap[2]*2048) + patch_textures_dma, (dpadMap[2]*2048) + patch_textures_dma + 2048);
-        dma_read(upTexture, (dpadMap[0]*2048) + patch_textures_dma, (dpadMap[0]*2048) + patch_textures_dma + 2048);
+        if (dpadMap[3] != -1) {
+            dma_read(leftTexture, (dpadMap[3]*2048) + patch_textures_dma, (dpadMap[3]*2048) + patch_textures_dma + 2048);
+        }
+        if (dpadMap[1] != -1) {
+            dma_read(rightTexture, (dpadMap[1]*2048) + patch_textures_dma, (dpadMap[1]*2048) + patch_textures_dma + 2048);
+        }
+        if (dpadMap[2] != -1) {
+            dma_read(downTexture, (dpadMap[2]*2048) + patch_textures_dma, (dpadMap[2]*2048) + patch_textures_dma + 2048);
+        }
+        if (dpadMap[0] != -1) {
+            dma_read(upTexture, (dpadMap[0]*2048) + patch_textures_dma, (dpadMap[0]*2048) + patch_textures_dma + 2048);
+        }
 }
 
 #ifdef BREATH_METER

@@ -243,4 +243,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/memory_cloud/geo_header.h"
 
+#include "levels/castle_inside/beginning_ttc_barrier/collision_header.h"
+
 #endif

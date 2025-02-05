@@ -1186,3 +1186,5 @@ void bhv_shrine_shape_controller_init(void);
 void bhv_shrine_shape_controller_loop(void);
 void bhv_lockbox_key_init(void);
 void bhv_lockbox_key_loop(void);
+void bhv_beginning_hub_barrier_init(void);
+void bhv_beginning_hub_barrier_loop(void);

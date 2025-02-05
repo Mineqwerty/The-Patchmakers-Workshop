@@ -3134,9 +3134,9 @@ u32 courseToOrderedIndex[13] = {
     COURSE_CCM,
     9,
     5,
-    7,
     6,
     8,
+    7,
     10,
     11,
     12

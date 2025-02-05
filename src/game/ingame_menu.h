@@ -67,6 +67,7 @@ extern s8 gPatchChallengeIndex;
 extern u32 patchChallengeTimes[12];
 extern s32 gCourseDoneMenuTimer;
 extern void *languageTable[][3];
+extern u32 courseToOrderedIndex[13];
 
 struct DialogEntry {
     /*0x00*/ u32 flags;

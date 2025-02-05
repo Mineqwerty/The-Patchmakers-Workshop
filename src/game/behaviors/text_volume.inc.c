@@ -1,11 +1,22 @@
 #include "src/game/puppyprint.h"
 #include "src/game/patch_tutorial_dialog.h"
+#include "src/game/ingame_menu.h"
+#include "src/game/save_file.h"
 
 void bhv_text_volume_init(void) {
-
+    if (gCurrLevelNum != LEVEL_CASTLE && save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & (1 << 1)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_text_volume_loop(void) {
+
+    if (gCurrLevelNum != LEVEL_CASTLE) {
+        if (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrLevelNum]))) {
+            return;
+        }
+    }
+
     if (gMarioState->pos[0] < (o->oPosX + (o->oBehParams2ndByte * 100)) 
         && gMarioState->pos[0] > (o->oPosX - (o->oBehParams2ndByte * 100)) 
         && gMarioState->pos[1] < (o->oPosY + (o->oBehParams2ndByte * 100)) 
