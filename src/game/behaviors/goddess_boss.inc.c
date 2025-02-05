@@ -255,7 +255,7 @@ void goddess_act_fly_up(void) {
 }
 
 void goddess_act_banish(void) {
-    o->oHealth = 2;
+    //o->oHealth = 2;
     switch (o->oSubAction) {
         case 0:
             if (cur_obj_init_animation_and_check_if_near_end(3)) {

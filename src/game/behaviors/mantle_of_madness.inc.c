@@ -299,7 +299,7 @@ void bhv_mantle_of_madness_init(void) {
     o->oMantleOfMadnessRageLevel = 0;
 
     o->oMantleOfMadnessPhase = 1;
-    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.72f;
+    //o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.72f;
 }
 
 void bhv_mantle_of_madness_loop(void) {

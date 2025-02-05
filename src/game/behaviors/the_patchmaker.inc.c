@@ -663,7 +663,7 @@ void patchmaker_act_throw_needles(void) {
     if (cur_obj_check_if_at_animation_end()) {
         patchmaker_transition_to_next_action();
     }
-    o->oHealth = 1;
+    //o->oHealth = 1;
 }
 
 void patchmaker_act_first_fight_defeated(void) {
