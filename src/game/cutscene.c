@@ -16,6 +16,7 @@
 #include "src/game/hud.h"
 #include "include/dialog_ids.h"
 #include "include/mario_animation_ids.h"
+#include "src/game/save_file.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -139,6 +140,7 @@ enum cutscene_events {
     EVENT_STONE_PATCH_BREAK_OUT,
 
     EVENT_SET_CUTSCENE_GAME_STATE,
+    EVENT_SET_SAVE_FLAG,
     EVENT_START_CUTSCENE,
     EVENT_END_CUTSCENE,
 };
@@ -1014,6 +1016,7 @@ s32 event_second_hub_arrival[] = {
     EVENT_WAIT, 1,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_CANCEL_SPLINE_DATA,
+    EVENT_SET_SAVE_FLAG, SAVE_FLAG_ENTERED_SECOND_HUB,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_END_CUTSCENE
 };
@@ -1381,6 +1384,7 @@ s32 event_enter_third_hub[] = {
     EVENT_DIALOG_USER_ADVANCE, DIALOG_ENTERING_THIRD_HUB,
 
     EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SET_SAVE_FLAG, SAVE_FLAG_ENTERED_THIRD_HUB,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_CANCEL_SPLINE_DATA,
@@ -1780,6 +1784,10 @@ void event_handler(void) {
                         cWaiting = 6;
                     }
                     
+                break;
+                case EVENT_SET_SAVE_FLAG:
+                    save_file_set_flags(param1);
+                    cCutsceneIndex += 2;
                 break;
                 case EVENT_DIALOG_AUTO:
                     create_automatic_dialog_box(param1);
