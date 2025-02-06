@@ -1,5 +1,6 @@
 void bhv_portal_puzzle_barrier_init(void) {
-   
+    //lol
+    gMarioState->boostTimer = 0;
 }
 
 void bhv_portal_puzzle_barrier_loop(void) {

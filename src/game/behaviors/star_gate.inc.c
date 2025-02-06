@@ -20,6 +20,8 @@ void bhv_star_gate_loop(void) {
             gMarioState->specialWarpTransitionOperation = 2;
         }
 
+        gMarioState->boostTimer = 0;
+
         f32 x = o->oPosX - gMarioState->pos[0];
         f32 y = o->oPosY - gMarioState->pos[1];
         f32 z = o->oPosZ - gMarioState->pos[2];

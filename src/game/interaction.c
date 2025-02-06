@@ -2316,6 +2316,11 @@ void mario_handle_special_floors(struct MarioState *m) {
                 else {
                     level_trigger_warp(m, WARP_OP_WARP_FLOOR);
                 }
+                
+                //carrying a little speed into areas feels very nice
+                if (gMarioState->boostTimer > 45) {
+                    gMarioState->boostTimer = 45;
+                }
                 break;
 
             case SURFACE_TIMER_START:

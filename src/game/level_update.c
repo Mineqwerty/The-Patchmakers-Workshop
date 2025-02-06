@@ -1194,7 +1194,7 @@ s32 play_mode_normal(void) {
 s32 play_mode_paused(void) {
     if (gMenuOptSelectIndex == MENU_OPT_NONE) {
         set_menu_mode(MENU_MODE_RENDER_PAUSE_SCREEN);
-    } else if (gMenuOptSelectIndex == MENU_OPT_DEFAULT) {
+    } else if (gMenuOptSelectIndex == MENU_OPT_DEFAULT || gCurrLevelNum == LEVEL_CASTLE) {
         raise_background_noise(1);
         gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
         set_play_mode(PLAY_MODE_NORMAL);
