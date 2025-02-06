@@ -91,7 +91,7 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_NONE, -7035, -1333, -6958, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
 		OBJECT(MODEL_NONE, 7185, -1054, 617, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
 		OBJECT(MODEL_NONE, -2240, 10553, 3957, 0, 150, 0, 0x00000000, bhvFewBlueFishSpawner),
-		OBJECT(MODEL_NONE, -4195, -536, 6959, 0, 0, 0, 0x00000000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, -4195, -536, 6959, 0, 0, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12407, 4642, 5259, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12555, 4397, 4102, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),
 		OBJECT(MODEL_FLOATING_TILTING_GEM, -12125, 4362, 2881, 0, 0, 0, 0x00000000, bhvFloatingTiltingGem),

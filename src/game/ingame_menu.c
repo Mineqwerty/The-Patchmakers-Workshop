@@ -4455,8 +4455,14 @@ s32 render_menus_and_dialogs(void) {
                 render_patch_challenge_menu();
             break;
             case MENU_MODE_PLACING_PORTAL:
-                render_placing_portal_menu();
-                gSlowdownCount = 8;
+                if (gMarioState->equippedPatch == PATCH_PORTAL) {
+                    render_placing_portal_menu();
+                    gSlowdownCount = 8;
+                }
+                else {
+                    gMenuMode = MENU_MODE_NONE;
+                    gSlowdownCount = 0;
+                }
             break;
             
         }

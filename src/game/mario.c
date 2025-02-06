@@ -2079,6 +2079,13 @@ void common_patch_cancel(struct MarioState *m) {
             m->curPatch = PATCH_NONE;
             //gMarioState->patchChildObj = NULL;
         break;
+        case PATCH_PORTAL:
+            if (gMenuMode == MENU_MODE_PLACING_PORTAL) {
+                gMenuMode = MENU_MODE_NONE;
+                gSlowdownCount = 0;
+            }
+            m->curPatch = PATCH_NONE;
+        break;
         case PATCH_SKYBRIDGE:
             m->curPatch = PATCH_NONE;
         break;
@@ -2645,6 +2652,8 @@ void init_mario(void) {
     gMarioState->overrideGravity = FALSE;
     
     update_dl_dpad_patches();
+
+    spawn_initial_patch_object(gMarioState);
 
     gDialogBoxState = 0;
                 gMenuMode = MENU_MODE_NONE;
