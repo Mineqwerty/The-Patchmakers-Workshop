@@ -7,7 +7,7 @@ char *tutorialDialogs[] = {
     "Mario will slide and fall much faster in stone form.",
     "To change patches, press start and navigate \nto the Patches tab. Patches can also be mapped to\nthe D-Pad for quick access.",
 //5
-    "The patches Mario finds are made to traverse \ntheir respective locations much easier. This patch causes anything\nunder Mario's feet to freeze.",
+    "The patches Mario finds are made to traverse \ntheir respective locations much easier. This patch \ncauses anything under Mario's feet to freeze.",
     "Walking on water is helpful, but enemies can also\nbe frozen to serve as platforms.",
     "Some patches have passive effects rather than an active one.\nWhile this patch is equipped, performing a ground-pound\ncauses icy spikes to erupt.",
     "Remember to switch patches for what the situation needs.\nSometimes, exploring an area is easier with the\naid of these abilities.",

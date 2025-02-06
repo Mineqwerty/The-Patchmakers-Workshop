@@ -51,6 +51,7 @@ void bhv_text_volume_loop(void) {
         case 2:
             print_set_envcolour(255, 255, 255, 255);
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_HEIGHT - 40, tutorialDialogs[GET_BPARAM1(o->oBehParams)], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            gHudDisplay.flags |= HUD_DISPLAY_FLAG_HIDE_DPAD;
         break;
         case 3:
             print_set_envcolour(255, 255, 255, CLAMP(255 - (o->oTimer * 17), 20, 255));
