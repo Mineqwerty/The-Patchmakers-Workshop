@@ -554,8 +554,12 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     //translate it when a cutscene or dialog is going on
-    if (gDialogID != -1) {
-    guTranslate(mtx, (f32) 35 - (90 - gDialogBoxOpenTimer), (f32) 32, 0);
+    if (gDialogID != -1 || gHudDisplay.flags & HUD_DISPLAY_FLAG_HIDE_DPAD) {
+        f32 xTimer = gDialogBoxOpenTimer;
+        if (gHudDisplay.flags & HUD_DISPLAY_FLAG_HIDE_DPAD) {
+            
+        }
+        guTranslate(mtx, (f32) 35 - (90 - gDialogBoxOpenTimer), (f32) 32, 0);
     }
     else {
         guTranslate(mtx, (f32) 35, (f32) 32, 0);

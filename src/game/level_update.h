@@ -157,6 +157,7 @@ enum HUDDisplayFlag {
     HUD_DISPLAY_FLAG_KEYS             = (1 <<  4), // 0x0010
     HUD_DISPLAY_FLAG_UNKNOWN_0020     = (1 <<  5), // 0x0020
     HUD_DISPLAY_FLAG_TIMER            = (1 <<  6), // 0x0040
+    HUD_DISPLAY_FLAG_HIDE_DPAD            = (1 <<  7), // 0x0040
     HUD_DISPLAY_BOSS_INTRO           = (1 <<  8), // 0x0040
 #ifdef BREATH_METER
     HUD_DISPLAY_FLAG_BREATH_METER     = (1 << 14), // 0x4000

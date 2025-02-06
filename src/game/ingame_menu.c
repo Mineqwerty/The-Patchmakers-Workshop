@@ -178,6 +178,7 @@ u8 gMenuHoldKeyIndex = 0;
 u8 gTopMenuHoldKeyIndex = 0;
 u8 gMenuHoldKeyTimer = 0;
 u8 gTopMenuHoldKeyTimer = 0;
+f32 gDpadHideTimer = 0;
 s32 gDialogResponse = DIALOG_RESPONSE_NONE;
 
 s16 gFeltPosX = 0;
