@@ -145,5 +145,6 @@ u32  get_door_save_file_flag(struct Object *door);
 void mario_process_interactions(struct MarioState *m);
 void mario_handle_special_floors(struct MarioState *m);
 void freeze_enemy(struct MarioState *m, struct Object *obj, u32 interaction);
+s16 attack_patch_object_is_attackable(struct Object *obj);
 
 #endif // INTERACTION_H

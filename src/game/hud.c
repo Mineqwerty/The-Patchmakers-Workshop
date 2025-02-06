@@ -432,9 +432,13 @@ void render_patch_challenge_hold_start(void) {
     }
 
     if (holdStartExitTimer == 60) {
-        //initiate_warp(LEVEL_CASTLE, 2, 0x44, 0, 0);
-        struct Object *outtaWarp = spawn_object_relative(0x44, 0, 0, 0, gMarioState->marioObj, MODEL_NONE, bhvWarp);
-        SET_BPARAM1(outtaWarp->oBehParams,  70);
+        initiate_warp(EXIT_COURSE_LEVEL, 2, 0x44, WARP_FLAG_EXIT_COURSE, 0);
+            fade_into_special_warp(WARP_SPECIAL_NONE, 0);
+            gSavedCourseNum = COURSE_NONE;
+            holdStartExitTimer = 0;
+        //initiate_warp(LEVEL_CASTLE, 2, 0x0A, WARP_FLAG_EXIT_COURSE, 0);
+        //struct Object *outtaWarp = spawn_object_relative(0x45, 0, 0, 0, gMarioState->marioObj, MODEL_NONE, bhvWarp);
+        //SET_BPARAM1(outtaWarp->oBehParams,  70);
     }
 }
 

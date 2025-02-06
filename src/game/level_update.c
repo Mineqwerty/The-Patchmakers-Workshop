@@ -737,7 +737,7 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
         sWarpDest.type = WARP_TYPE_SAME_AREA;
     }
 
-    if (gCurrLevelNum == LEVEL_PSS && portalID == 0) {
+    if (destLevel == LEVEL_PSS && gCurrLevelNum == LEVEL_PSS && portalID == 0) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
         gMarioState->onOffState = 1;
     }
@@ -747,30 +747,6 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     sWarpDest.nodeId = destWarpNode;
     sWarpDest.arg = warpFlags;
     sWarpDest.portalID = portalID;
-#if defined(PUPPYCAM) || defined(PUPPYLIGHTS)
-    s32 i = 0;
-#endif
-#ifdef PUPPYCAM
-    if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
-    {
-        for (i = 0; i < gPuppyVolumeCount; i++)
-        {
-            mem_pool_free(gPuppyMemoryPool, sPuppyVolumeStack[i]);
-        }
-        gPuppyVolumeCount = 0;
-    }
-#endif
-#ifdef PUPPYLIGHTS
-    if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
-    {
-        for (i = 0; i < gNumLights; i++)
-        {
-            mem_pool_free(gLightsPool, gPuppyLights[i]);
-        }
-        gNumLights = 0;
-        levelAmbient = FALSE;
-    }
-#endif
 }
 
 // From Surface 0xD3 to 0xFC
@@ -1573,6 +1549,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
 	if (gCurrLevelNum == LEVEL_BITFS) return 0;
 			if (gCurrLevelNum == LEVEL_NEW_FILE_SELECT) return 0;
 					if (gCurrLevelNum == LEVEL_BITDW) return 0;
+					if (gCurrLevelNum == LEVEL_PSS) return 0;
 
     if (gCurrDemoInput != NULL || gCurrCreditsEntry != NULL || gCurrCourseNum == COURSE_NONE) {
         return FALSE;

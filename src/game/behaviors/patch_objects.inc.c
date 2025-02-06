@@ -4,6 +4,7 @@
 #include "actors/group0.h"
 #include "src/game/level_update.h"
 #include "src/game/camera.h"
+#include "src/game/interaction.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -55,7 +56,7 @@ void bhv_ice_spikes_loop(void) {
     for (int i = 0; i < o->numCollidedObjs; i++) {
         struct Object *other = o->collidedObjs[i];
 
-        if (other != gMarioObject) {
+        if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
             // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
             // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
             attack_object(other, 8, 4);
@@ -332,7 +333,7 @@ void bhv_grapple_hook_loop(void) {
             for (int i = 0; i < o->numCollidedObjs; i++) {
                 struct Object *other = o->collidedObjs[i];
 
-                if (other != gMarioObject) {
+                if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
                     s16 health = other->oHealth;
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
                     if ((attack_object(other, 2, 3) != 0) && (other->oHealth < health)) {
@@ -627,7 +628,7 @@ void bhv_halo_loop(void) {
     for (int i = 0; i < o->numCollidedObjs; i++) {
         struct Object *other = o->collidedObjs[i];
         
-        if (other != gMarioObject) {
+        if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
             
             s16 health = other->oHealth;
             if ((attack_object(other, 1, 1) != 0) && (other->oHealth < health)) {

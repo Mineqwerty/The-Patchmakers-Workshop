@@ -61,5 +61,6 @@ extern const u8 power_beads_textures_dma[];
 extern u8 gSpecialHudRender;
 extern u8 gSpecialHudElementAlpha;
 extern struct HudBead hudBeads[8];
+extern s16 holdStartExitTimer;
 
 #endif // HUD_H

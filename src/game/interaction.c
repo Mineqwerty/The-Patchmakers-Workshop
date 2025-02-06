@@ -311,6 +311,14 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
     return attackType;
 }
 
+s16 attack_patch_object_is_attackable(struct Object *obj) {
+    return (obj->oInteractType != INTERACT_TEXT
+        && obj->oInteractType != INTERACT_BBH_ENTRANCE
+        && obj->oInteractType != INTERACT_POLE
+        && obj->oInteractType != INTERACT_WARP_DOOR
+        && obj->oInteractType != INTERACT_DOOR);
+}
+
 void mario_stop_riding_object(struct MarioState *m) {
     if (m->riddenObj != NULL) {
         m->riddenObj->oInteractStatus = INT_STATUS_STOP_RIDING;
