@@ -115,7 +115,7 @@ const LevelScript level_castle_inside_entry[] = {
 		TERRAIN(castle_inside_area_1_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_1_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_1_macro_objs),
-		//SET_BACKGROUND_MUSIC(0x00, SEQ_WORKSHOP_HUB),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_WORKSHOP_HUB),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -246,6 +246,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 9218, 965, -3716, 0, -90, 0, (0x32 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_NONE, 5957, 2635, -683, 0, -180, 0, (0x33 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 9946, 659, -3690, 0, 0, 0, (45 << 24) | (6 << 16), bhvStarUnlockPlatform),
+		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 5971, 2380, -394, 0, 0, 0, (55 << 24) | (7 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_NONE, -3145, 1740, -5118, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_TS_WARP_PLATFORM, 5944, 2693, 202, 0, 0, 0, 0x00000000, bhvTsWarpPlatform),
 		OBJECT(MODEL_WORKSHOP_DOOR, -4579, 1621, -8222, 0, 0, 0, (0 << 24) | (17 << 16), bhvWorkshopDoorWarp),
