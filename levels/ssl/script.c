@@ -186,7 +186,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 11841, 559, -5, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 12374, 771, -1792, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GRAY_MUSHROOM, 3198, 3950, -6135, 0, 0, 0, 0x00000000, bhvVTWMushroom),
-		OBJECT(MODEL_GROUND_PATCH, 10592, 675, -12, -90, 0, 0, (8 << 16), bhvGroundPatch),
+		OBJECT(MODEL_GROUND_PATCH, 10592, 675, -12, -90, 0, 0, (7 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, 3119, 5387, -8619, 0, 0, 0, (1 << 24), bhvStar),
 		TERRAIN(ssl_area_2_collision),
 		TERRAIN_MAT_LUT(ssl_area_2_collision_materials),

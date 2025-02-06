@@ -181,6 +181,7 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_NONE, 581, 8000, 6215, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -824, -506, 157, 0, 0, 0, 0x00000000, bhvCorrWindController),
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 2095, 0, 2339, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
+		OBJECT(MODEL_GROUND_PATCH, -1237, -12, 5763, -90, 0, 0, (10 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, -1312, 7689, 5011, 0, 0, 0, (1 << 24), bhvStar),
 		TERRAIN(wdw_area_2_collision),
 		TERRAIN_MAT_LUT(wdw_area_2_collision_materials),

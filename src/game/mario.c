@@ -2623,7 +2623,7 @@ void init_mario(void) {
             gMarioState->patchChildSecondaryObj = spawn_object_abs_with_rot(gMarioObject, 0, MODEL_PORTAL, bhvPortal, gMarioState->portal2Position[0], gMarioState->portal2Position[1], gMarioState->portal2Position[2], 0, 0, 0);
             gMarioState->patchChildSecondaryObj->oBehParams2ndByte = 1;
         }
-
+        
     #ifdef UNLOCK_ALL
 
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));

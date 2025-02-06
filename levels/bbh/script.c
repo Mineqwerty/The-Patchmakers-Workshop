@@ -217,7 +217,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 1000, -1102, 4952, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 1271, -3719, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 2342, -5667, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
-		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (5 << 16), bhvGroundPatch),
+		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (8 << 16), bhvGroundPatch),
 		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, 842, 1469, -2363, 0, 90, 0, 0x00000000, bhvTfpPuzzleBox),
 		OBJECT(MODEL_STAR, -948, 3847, -6576, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_PURPLE_SWITCH, 831, 743, 3559, 0, 0, 0, 0x00000000, bhvFloorSwitchHardcodedModel),
