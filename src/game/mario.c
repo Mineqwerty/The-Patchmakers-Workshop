@@ -2360,7 +2360,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    //gMarioState->numStars = 41;
+    gMarioState->numStars = 41;
 
     if (gCurrLevelNum == LEVEL_BOWSER_3 && gGlobalTimer > 90 && gGlobalTimer % 10 == 0) {
         extern u8 bowser_3_dl_nosiehell_rgba16[];

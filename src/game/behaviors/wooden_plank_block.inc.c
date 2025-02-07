@@ -25,7 +25,7 @@ void bhv_wooden_plank_block_loop(void) {
                 fragment->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
                 cur_obj_hide();
                 o->oAction = 2;
-                gSlowdownCount = 2;
+                //gSlowdownCount = 2;
             }
         break;
         case 1:;
@@ -39,7 +39,7 @@ void bhv_wooden_plank_block_loop(void) {
         break;
         case 2:
             if (o->oTimer >= 2) {
-                gSlowdownCount = 0;
+                //gSlowdownCount = 0;
                 obj_mark_for_deletion(o);
             }
         break;

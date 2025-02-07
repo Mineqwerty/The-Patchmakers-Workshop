@@ -280,28 +280,32 @@ u32 attack_object(struct Object *obj, s32 interaction, u16 damage) {
             obj->parentObj->oHealth -= damage;
         }
 
-        struct Object *particle;
+        if (!obj_is_one_hp_enemy(obj) || obj->oAction < 100) {
+            struct Object *particle;
 
-        if (damage < 10) {
-            for (int i = 0; i < damage; i++) {
-                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
-                particle->oMoveAngleYaw = random_u16();
-                particle->oBehParams = 0x03000000;
-                particle->oVelY = random_u16()%5;
-            }
-        }
-        else {
-            for (int i = 0; i < damage/10; i++) {
-                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
-                particle->oMoveAngleYaw = random_u16();
-                particle->oBehParams = 0x01000000;
-                particle->oVelY = random_u16()%5;
-            }
-            for (int i = 0; i < damage%10; i++) {
-                particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR, bhvPoundTinyStarParticle);
-                particle->oMoveAngleYaw = random_u16();
-                particle->oBehParams = 0x03000000;
-                particle->oVelY = random_u16()%5;
+            if (damage < 10) {
+                for (int i = 0; i < damage; i++) {
+                    particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR,
+                                                     bhvPoundTinyStarParticle);
+                    particle->oMoveAngleYaw = random_u16();
+                    particle->oBehParams = 0x03000000;
+                    particle->oVelY = random_u16() % 5;
+                }
+            } else {
+                for (int i = 0; i < damage / 10; i++) {
+                    particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR,
+                                                     bhvPoundTinyStarParticle);
+                    particle->oMoveAngleYaw = random_u16();
+                    particle->oBehParams = 0x01000000;
+                    particle->oVelY = random_u16() % 5;
+                }
+                for (int i = 0; i < damage % 10; i++) {
+                    particle = spawn_object_relative(0, 0, 50, 0, obj, MODEL_CARTOON_STAR,
+                                                     bhvPoundTinyStarParticle);
+                    particle->oMoveAngleYaw = random_u16();
+                    particle->oBehParams = 0x03000000;
+                    particle->oVelY = random_u16() % 5;
+                }
             }
         }
 
