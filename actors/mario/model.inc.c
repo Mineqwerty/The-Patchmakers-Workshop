@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 Gfx mario_mario_button_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 mario_mario_button_rgba16[] = {
 	0xff, 0xfe, 0xff, 0xfe, 0xff, 0xfe, 0xff, 0xfe, 
@@ -6070,13 +6057,13 @@ Gfx mario_000_displaylist_005_mesh_layer_1_tri_0[] = {
 
 
 Gfx mat_mario_body_v3_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xffff),
-    gsSPLightColor(LIGHT_2, 0x7fff),
+	gsSPLightColor(LIGHT_1, 0x0000FFFF),
+	gsSPLightColor(LIGHT_2, 0x00007FFF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_button_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6090,7 +6077,7 @@ Gfx mat_revert_mario_body_v3_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
@@ -6116,13 +6103,13 @@ Gfx mat_revert_mario_metal_v3_001[] = {
 };
 
 Gfx mat_mario_cap_v3_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xff0000ff),
-    gsSPLightColor(LIGHT_2, 0x7f0000ff),
+	gsSPLightColor(LIGHT_1, 0xFF0000FF),
+	gsSPLightColor(LIGHT_2, 0x7F0000FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_cap_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6136,18 +6123,18 @@ Gfx mat_revert_mario_cap_v3_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_0___eye_open_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_face_1_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6161,18 +6148,18 @@ Gfx mat_revert_mario_face_0___eye_open_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_mustache_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_mustache_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6186,13 +6173,13 @@ Gfx mat_revert_mario_mustache_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_hair_v3_001[] = {
-    gsSPLightColor(LIGHT_1, 0x730600ff),
-    gsSPLightColor(LIGHT_2, 0x360100ff),
+	gsSPLightColor(LIGHT_1, 0x730600FF),
+	gsSPLightColor(LIGHT_2, 0x360100FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -6207,13 +6194,13 @@ Gfx mat_revert_mario_hair_v3_001[] = {
 };
 
 Gfx mat_mario_sideburns_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_sideburn_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6227,18 +6214,18 @@ Gfx mat_revert_mario_sideburns_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_1___eye_half_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_face_2_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6252,18 +6239,18 @@ Gfx mat_revert_mario_face_1___eye_half_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_2___eye_closed_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_face_3_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6277,18 +6264,18 @@ Gfx mat_revert_mario_face_2___eye_closed_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_7___eye_X_v3_001_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, mario_mario_face_4_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6302,19 +6289,19 @@ Gfx mat_revert_mario_face_7___eye_X_v3_001_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_0___eye_wince_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_mario_eyes_wince_rgba16_pal_rgba16),
 	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6332,18 +6319,18 @@ Gfx mat_revert_mario_face_0___eye_wince_layer1[] = {
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_mario_face_9___eye_full_wince_layer1[] = {
-    gsSPLightColor(LIGHT_1, 0xfec179ff),
-    gsSPLightColor(LIGHT_2, 0x7f5f39ff),
+	gsSPLightColor(LIGHT_1, 0xFEC179FF),
+	gsSPLightColor(LIGHT_2, 0x7F5F39FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, COMBINED, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, mario_mario_eyes_full_wince_rgba16_ia8),
 	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
@@ -6357,7 +6344,7 @@ Gfx mat_revert_mario_face_9___eye_full_wince_layer1[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	//gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
@@ -6404,8 +6391,8 @@ Gfx mat_revert_mario_wing_1_v3_001[] = {
 };
 
 Gfx mat_mario_gloves_v3_001[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPLightColor(LIGHT_1, 0xFFFFFFFF),
+	gsSPLightColor(LIGHT_2, 0x7F7F7FFF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -6420,8 +6407,8 @@ Gfx mat_revert_mario_gloves_v3_001[] = {
 };
 
 Gfx mat_mario_shoes_v3_001[] = {
-    gsSPLightColor(LIGHT_1, 0x721c0eff),
-    gsSPLightColor(LIGHT_2, 0x350803ff),
+	gsSPLightColor(LIGHT_1, 0x721C0EFF),
+	gsSPLightColor(LIGHT_2, 0x350803FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, SHADE, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
