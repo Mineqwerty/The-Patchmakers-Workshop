@@ -117,6 +117,8 @@ s32 gSpecialHudElementTimer = 0;
 f32 gSpecialHudElementValue = 0;
 f32 gSpecialHudElementScale = 1.0f;
 
+u8 gSaveTextAlpha = 0;
+
 #ifdef BREATH_METER
 static s16 sBreathMeterStoredValue;
 static struct PowerMeterHUD sBreathMeterHUD = {
@@ -1030,6 +1032,22 @@ void render_hud_boss_intro(void) {
     }
 }
 
+void render_hud_save_text(void) {
+    if (gSaveTextIndicatorTimer > 30) {
+        gSaveTextAlpha = CLAMP(gSaveTextAlpha + 9, 0, 255);
+    }
+    else {
+        gSaveTextAlpha = CLAMP(gSaveTextAlpha - 9, 0, 255);
+    }
+
+    print_set_envcolour(0, 0, 0, CLAMP(gSaveTextAlpha, 1, 255));
+    print_small_text(SCREEN_WIDTH-10, SCREEN_HEIGHT-30, "Saved.", PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, FONT_VANILLA);
+    print_set_envcolour(255, 255, 255, CLAMP(gSaveTextAlpha, 1, 255));
+    print_small_text(SCREEN_WIDTH-9, SCREEN_HEIGHT-29, "Saved.", PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, FONT_VANILLA);
+
+    gSaveTextIndicatorTimer--;
+}
+
 /**
  * Render HUD strings using hudDisplayFlags with it's render functions,
  * excluding the cannon reticle which detects a camera preset for it.
@@ -1104,6 +1122,10 @@ void render_hud(void) {
 
         if (gBossMaxHealth > 0) {
             render_boss_health();
+        }
+
+        if (gSaveTextIndicatorTimer > 0) {
+            render_hud_save_text();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {

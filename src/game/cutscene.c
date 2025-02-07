@@ -123,6 +123,7 @@ enum cutscene_events {
     //EVENT_HUD_ENABLE,
     EVENT_SHOW_BOSS_TITLE,
     EVENT_HUD_SET_EFFECT,
+    EVENT_HUD_CLEAR_EFFECT,
     EVENT_FADE_INTO_COLOR,
     EVENT_FADE_FROM_COLOR,
 
@@ -596,6 +597,7 @@ s32 event_meet_sewnia[] = {
     
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
     EVENT_CANCEL_DIALOG,
+    EVENT_HUD_CLEAR_EFFECT,
     EVENT_FADE_INTO_COLOR, 30, 0, 0, 0, 
     EVENT_WAIT, 30,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
@@ -1919,6 +1921,10 @@ void event_handler(void) {
                 case EVENT_HUD_SET_EFFECT:
                     gSpecialHudRender = param1;
                     cCutsceneIndex += 2;
+                break;
+                case EVENT_HUD_CLEAR_EFFECT:
+                    gSpecialHudRender = 0;
+                    cCutsceneIndex += 1;
                 break;
                 case EVENT_FADE_INTO_COLOR:
                     play_transition(WARP_TRANSITION_FADE_INTO_COLOR, param1, param2, param3, cEventPointer[cCutsceneIndex + 4]);

@@ -248,6 +248,8 @@ s32 check_warp_checkpoint(struct WarpNode *warpNode);
 void save_file_set_patch_challenge_time(s32 fileIndex, s8 patchChallenge, u32 frames);
 u32 save_file_get_patch_challenge_time(s32 fileIndex, s8 patchChallenge);
 
+extern s16 gSaveTextIndicatorTimer;
+
 #if MULTILANG
 enum EuLanguages {
     LANGUAGE_ENGLISH,

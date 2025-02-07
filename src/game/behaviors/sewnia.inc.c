@@ -1290,6 +1290,9 @@ void sewnia_act_follow_mario(void) {
         
 
     }
+    else {
+        cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+    }
     
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED) {

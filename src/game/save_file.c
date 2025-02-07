@@ -37,6 +37,8 @@ struct WarpCheckpoint gWarpCheckpoint;
 s8 gMainMenuDataModified;
 s8 gSaveFileModified;
 
+s16 gSaveTextIndicatorTimer;
+
 u8 gLastCompletedCourseNum = COURSE_NONE;
 u8 gLastCompletedStarNum = 0;
 s8 sUnusedGotGlobalCoinHiScore = FALSE;
@@ -316,8 +318,10 @@ void save_file_do_save(s32 fileIndex) {
         write_eeprom_data(&gSaveBuffer.files[fileIndex], sizeof(gSaveBuffer.files[fileIndex]));
 
         gSaveFileModified = FALSE;
-    }
 
+        
+    }
+    gSaveTextIndicatorTimer = 120;
     save_main_menu_data();
 }
 
