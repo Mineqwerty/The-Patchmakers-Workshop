@@ -1141,7 +1141,13 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
         if (warpDoorId == WARP_DOOR_ID_HUB_1_2 && (!(saveFlags & SAVE_FLAG_ENTERED_SECOND_HUB) && (!openedHub2Door || (saveFlags & SAVE_FLAG_ENTERED_SECOND_HUB)))) {
             if (gMarioState->numStars < 10) {
                 if (!sDisplayingDoorText) {
-                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, DIALOG_NEED_10_STARS);
+                    s16 requiredNumStars = 10;
+
+                    s16 numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
+
+                    u32 numStarsArg = (DIALOG_NEED_10_STARS << 16);
+                    numStarsArg += requiredNumStars - numStars;
+                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, numStarsArg);
                 }
                 sDisplayingDoorText = TRUE;
 
