@@ -456,7 +456,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
     if (starIndex >= 8) {
         //Later patch challenge stars also have manual id override. Dont ask me why i did this im really tired
         if (gCurrLevelNum == LEVEL_PSS) {
-            starByte = COURSE_NUM_TO_INDEX(COURSE_BITS + (starIndex / 7));
+            starByte = COURSE_NUM_TO_INDEX(COURSE_BITS);
             starFlag = 1 << (starIndex % 7);
         }
         else {

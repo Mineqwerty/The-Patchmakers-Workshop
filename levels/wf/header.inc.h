@@ -287,6 +287,8 @@ extern Gfx wf_area_1_collision_real_non_slip_001_layer_1[];
 extern Gfx wf_area_1_collision_real_non_slip_001_layer_1_revert[];
 extern Gfx wf_area_1_collision_stalk_002_layer_1[];
 extern Gfx wf_area_1_collision_stalk_002_layer_1_revert[];
+extern Gfx wf_area_1_collision_f3d_material_003_layer_1[];
+extern Gfx wf_area_1_collision_f3d_material_003_layer_1_revert[];
 extern Gfx wf_area_1_collision_stalkleaf_002_layer_4[];
 extern Gfx wf_area_1_collision_stalkleaf_002_layer_4_revert[];
 extern const Collision wf_area_1_collision[];

@@ -2184,6 +2184,15 @@ void patch_update(struct MarioState *m ) {
 
 void late_patch_update(struct MarioState *m ) {
     switch (m->curPatch) {
+        case PATCH_STONE:
+            //GOODBYE FOREVER STONE PATCH WALKING!!!
+            if (gMarioState->action != ACT_STONE_PATCH_AIR_LAND && gMarioState->action != ACT_STONE_PATCH_GROUNDED && gMarioState->action != ACT_STONE_PATCH_AIRBORNE) {
+                m->curPatch = PATCH_NONE;
+                o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+                cur_obj_spawn_particles(&StoneBreak);
+                play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
+            }
+        break;
         case PATCH_HALO:
         if (m->patchChildObj && m->patchChildObj->oAction == 0) {
             m->patchChildObj->oPosX = m->pos[0];
@@ -2360,7 +2369,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    gMarioState->numStars = 41;
+    //gMarioState->numStars = 41;
 
     if (gCurrLevelNum == LEVEL_BOWSER_3 && gGlobalTimer > 90 && gGlobalTimer % 10 == 0) {
         extern u8 bowser_3_dl_nosiehell_rgba16[];
