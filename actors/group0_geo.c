@@ -62,3 +62,4 @@
 #include "fortune_teleporter/geo.inc.c"
 #include "fortune_teleporter_pedestal/geo.inc.c"
 #include "lockbox_key/geo.inc.c"
+#include "skybridge_ring/geo.inc.c"

@@ -1188,3 +1188,5 @@ void bhv_lockbox_key_init(void);
 void bhv_lockbox_key_loop(void);
 void bhv_beginning_hub_barrier_init(void);
 void bhv_beginning_hub_barrier_loop(void);
+void bhv_skybridge_ring_init(void);
+void bhv_skybridge_ring_loop(void);

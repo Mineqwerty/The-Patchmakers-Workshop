@@ -8775,6 +8775,8 @@ sound_ref .sound_shadowchomp_chomp
 sound_ref .sound_transmutation_cone
 sound_ref .sound_transmutation_swish
 sound_ref .sound_skybridge_break
+sound_ref .sound_skybridge_on
+sound_ref .sound_skybridge_off
 
 .sound_stone_patch_break:
 chan_setbank 11
@@ -8869,6 +8871,18 @@ chan_end
 .sound_skybridge_break:
 chan_setbank 11
 chan_setinstr 15
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_skybridge_on:
+chan_setbank 11
+chan_setinstr 16
+chan_setlayer 0, .layer_AAAA
+chan_end
+
+.sound_skybridge_off:
+chan_setbank 11
+chan_setinstr 17
 chan_setlayer 0, .layer_AAAA
 chan_end
 

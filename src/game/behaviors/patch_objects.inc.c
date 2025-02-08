@@ -1512,6 +1512,8 @@ void bhv_skybridge_init(void) {
         gMarioState->lastStoodOnFloorHeight = gMarioState->pos[1];
     }
 
+    o->oSkybridgeRing = spawn_object_relative(0, 0, 0, 0, o, MODEL_SKYBRIDGE_RING, bhvSkybridgeRing);
+
     o->oFaceAngleYaw = 0;
     o->oFaceAngleRoll = 0;
     o->oFaceAnglePitch = 0;
@@ -1519,7 +1521,10 @@ void bhv_skybridge_init(void) {
 
 void bhv_skybridge_loop(void) {
 
-    if (((o->oAction == 1 && o->oTimer >= 90) || (gMarioState->action == ACT_GROUND_POUND_LAND && gMarioState->marioObj->platform == o)) || (o->oAction == 1 && check_skybridge_oob())) {
+    if (((o->oAction == 1 && o->oTimer >= 90) 
+    || (gMarioState->action == ACT_GROUND_POUND_LAND && gMarioState->marioObj->platform == o)) 
+    || (o->oAction == 1 && check_skybridge_oob())
+    || (gMarioState->hidSkybridge == 1 && gMarioState->marioObj->platform == o)) {
         gMarioState->curPatch = PATCH_NONE;
         gMarioState->lastStoodOnFloorHeight = -11000;
         cur_obj_play_sound_2(SOUND_SKYBRIDGE_BREAK);
@@ -1535,8 +1540,10 @@ void bhv_skybridge_loop(void) {
     }
     
     if (gMarioState->curPatch == PATCH_SKYBRIDGE && gMarioState->equippedPatch == PATCH_SKYBRIDGE && o->oAction != 2) {
-        cur_obj_unhide();
-        load_object_collision_model();
+        if (gMarioState->hidSkybridge == 0) {
+            cur_obj_unhide();
+            load_object_collision_model();
+        }
         o->oAction = 1;
 
         if ((gMarioState->marioObj->platform != o) && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
@@ -1564,6 +1571,9 @@ void bhv_skybridge_loop(void) {
         if (gMarioState->patchChildObj == o) {
             gMarioState->patchChildObj = NULL;
         }
+        if (o->oSkybridgeRing) {
+            obj_mark_for_deletion(o->oSkybridgeRing);
+        }
         obj_mark_for_deletion(o);
     }
 
@@ -1572,5 +1582,59 @@ void bhv_skybridge_loop(void) {
     }
 
     
+}
+
+void bhv_skybridge_ring_init(void) {
+    o->oSkybridgeRingFade = 1;
+}
+
+void bhv_skybridge_ring_loop(void) {
+    o->oPosX = gMarioState->pos[0];
+    o->oPosY = (o->parentObj->oAction == 1 ? approach_f32_symmetric(o->oPosY, o->parentObj->oPosY, 10.0f) : gMarioState->pos[1]);
+    o->oPosZ = gMarioState->pos[2];
+
+    switch (o->oAction) {
+        case 0:
+            SET_BPARAM1(o->oPrimColorParams, 180);
+            SET_BPARAM2(o->oPrimColorParams, 120);
+            SET_BPARAM3(o->oPrimColorParams, 255);
+            cur_obj_scale(1.0f);
+
+            if (o->parentObj->oAction == 1) {
+                o->oAction = 1;
+            }
+            cur_obj_unhide();
+            if (gMarioState->hidSkybridge == 0) {
+                o->oSkybridgeRingFade = approach_s32_symmetric(o->oSkybridgeRingFade, 120, 8);
+            }
+            else {
+                o->oSkybridgeRingFade = approach_s32_symmetric(o->oSkybridgeRingFade, 1, 8);
+            }
+
+        break;
+        case 1:
+            obj_scale_xyz(o, (90.0f - (f32)o->parentObj->oTimer)/90.0f, 1.0f, (90.0f - (f32)o->parentObj->oTimer)/90.0f);
+            o->oSkybridgeRingFade = approach_s32_symmetric(o->oSkybridgeRingFade, 120, 8);
+
+            if (o->parentObj->oAction == 0) {
+                o->oAction = 0;
+                o->oSkybridgeRingFade = 1;
+            }
+            else if (o->parentObj->oTimer == 89) {
+                o->oAction = 2;
+            }
+        break;
+        case 2:
+            cur_obj_hide();
+            o->oSkybridgeRingFade = 1;
+            if (o->parentObj->oAction == 0) {
+                o->oAction = 0;
+                o->oSkybridgeRingFade = 1;
+            }
+        break;
+    }
+
+    
+    SET_BPARAM4(o->oPrimColorParams, 255 - o->oSkybridgeRingFade);
 }
 

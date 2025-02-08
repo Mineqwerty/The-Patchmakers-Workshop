@@ -2054,6 +2054,18 @@ void perform_patch_action(struct MarioState *m) {
                 gMarioState->patchChildObj->oMaterialLayer = extendWall->materialIndex;
             }
         break;
+
+        case PATCH_SKYBRIDGE:
+            m->hidSkybridge = (m->hidSkybridge + 1)%2;
+            switch (m->hidSkybridge) {
+                case 0:
+                    cur_obj_play_sound_1(SOUND_SKYBRIDGE_ON);
+                break;
+                case 1:
+                    cur_obj_play_sound_1(SOUND_SKYBRIDGE_OFF);
+                break;
+            }
+        break;
         }
 }
 
@@ -2293,6 +2305,7 @@ void spawn_initial_patch_object(struct MarioState *m ) {
                 m->patchChildObj = NULL;
             }
             m->patchChildObj = spawn_object_relative(0, 0, 0, 0, gMarioObject, MODEL_SKYBRIDGE, bhvSkybridge);
+            m->hidSkybridge = 0;
         break;
 
     }

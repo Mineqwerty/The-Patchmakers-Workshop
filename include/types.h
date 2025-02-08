@@ -538,6 +538,7 @@ struct MarioState {
     u16 patchFlags;
     s8 usedStonePatch;
     u8 grappleCooldownTimer;
+    u8 hidSkybridge;
     u8 specialWarpTransitionOperation;
     u8 haloCaptureType;
     u8 miasmaSoulCount;

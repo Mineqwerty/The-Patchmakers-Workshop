@@ -129,3 +129,4 @@
 #include "fortune_teleporter_pedestal/model.inc.c"
 #include "menu_secret_stars/model.inc.c"
 #include "lockbox_key/model.inc.c"
+#include "skybridge_ring/model.inc.c"

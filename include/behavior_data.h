@@ -840,3 +840,4 @@ extern const BehaviorScript bhvShrineShape[];
 extern const BehaviorScript bhvShrineShapeController[];
 extern const BehaviorScript bhvLockboxKey[];
 extern const BehaviorScript bhvBeginningHubBarrier[];
+extern const BehaviorScript bhvSkybridgeRing[];
