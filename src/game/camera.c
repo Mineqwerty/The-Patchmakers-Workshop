@@ -3361,6 +3361,10 @@ void handle_course_volumes(struct Camera *c) {
                         gMarioState->area = gCurrentArea;
                         
                         gMarioState->area->camera->yaw = cameraAngle;
+                        struct Surface *floor;
+                        f32 floorHeight = find_floor(gMarioState->pos[0], gMarioState->pos[1], gMarioState->pos[2], &floor);
+                        
+                        set_mario_floor(gMarioState, floor, floorHeight);
                     break;
                     case 6:
                        gMarioState->specialWarpFlags = 1;

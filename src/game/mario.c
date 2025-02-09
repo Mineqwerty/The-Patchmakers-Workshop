@@ -2628,7 +2628,7 @@ void init_mario(void) {
     gMarioState->framesSinceA = 0xFF;
     gMarioState->framesSinceB = 0xFF;
 
-    if (gCurrLevelNum != LEVEL_BBH && gCurrAreaIndex != 3) {
+    if (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 3) {
         gReonucamState.overhead = 0;
     }
     else if (gReonucamState.overhead == 2) {

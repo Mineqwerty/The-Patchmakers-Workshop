@@ -42,6 +42,7 @@ void bhv_fortune_teleporter_loop(void) {
         case 1:
             cur_obj_init_animation(1);
             if (o->oTimer == 30) {
+                gReonucamState.overhead = 0;
                 initiate_warp(gCurrLevelNum, 1, 0xEF, WARP_FLAG_FORTUNE_TELEPORTER, 0);
             }
         break;
