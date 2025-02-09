@@ -1,3 +1,4 @@
+#include "levels/ccm/fling_ring/texscroll.inc.h"
 #include "levels/ccm/texscroll.inc.h"
 #include "levels/ccm/gold_spike_ball/texscroll.inc.h"
 #include "levels/ccm/seraphim/texscroll.inc.h"

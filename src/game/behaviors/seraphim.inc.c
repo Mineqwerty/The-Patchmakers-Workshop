@@ -23,12 +23,16 @@ switch (o->oAction) {
     case 1:
         o->oPosY = approach_f32_asymptotic(o->oPosY, o->oHomeY, 0.4f);
         cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
-        approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(gMarioState->faceAngle[1]), 0.09f);
-        approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(gMarioState->faceAngle[1]), 0.09f);
+        approach_f32_asymptotic_bool(&o->oPosX, gMarioState->pos[0] + 600 * sins(0x8000 + gMarioState->faceAngle[1]), 0.09f);
+        approach_f32_asymptotic_bool(&o->oPosZ, gMarioState->pos[2] + 600 * coss(0x8000 + gMarioState->faceAngle[1]), 0.09f);
         obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
         if (o->oTimer == 119 && o->oDistanceToMario < 1000.0f) {
             o->oAction = 2;
             cur_obj_init_animation(1);
+        }
+
+        if (gMarioState->pos[1] > o->oPosY + 100) {
+            o->oAction = 3;
         }
     break;
     case 2:
@@ -52,8 +56,13 @@ switch (o->oAction) {
             //}
             cur_obj_init_animation(0);
         }
+
+        if (gMarioState->pos[1] > o->oPosY + 100) {
+            o->oAction = 3;
+        }
     break;
     case 3:
+    cur_obj_init_animation(0);
         approach_f32_asymptotic_bool(&o->oPosX, o->oHomeX, 0.02f);
         approach_f32_asymptotic_bool(&o->oPosZ, o->oHomeZ, 0.02f);
         if (o->oTimer >= 60) {

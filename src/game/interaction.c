@@ -2248,6 +2248,10 @@ void check_gss_cloud_warp(struct MarioState *m) {
                     
                     
         }
+
+        if (m->pos[1] < m->floorHeight + 100) {
+            m->pos[1] = m->floorHeight + 100;
+        }
     }
 }
 
@@ -2324,6 +2328,7 @@ void mario_handle_special_floors(struct MarioState *m) {
                     }
                 }
                 else {
+                    
                     level_trigger_warp(m, WARP_OP_WARP_FLOOR);
                 }
                 

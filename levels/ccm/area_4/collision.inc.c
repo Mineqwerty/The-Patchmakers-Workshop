@@ -1,6 +1,5 @@
 Gfx ccm_area_4_collision_f3dlite_material_016_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff9382ff),
-    gsSPLightColor(LIGHT_2, 0x7f463eff),
+	gsSPSetLights1(ccm_dl_f3dlite_material_016_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

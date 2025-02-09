@@ -310,9 +310,29 @@ void get_environment_level_color(u8 rgbColors[3]) {
             
         break;
         case LEVEL_CCM:
-            rgbColors[0] = 245;
-            rgbColors[1] = 233;
-            rgbColors[2] = 169;
+            switch (gCurrAreaIndex) {
+                case 1:
+                    rgbColors[0] = 245;
+                    rgbColors[1] = 233;
+                    rgbColors[2] = 169;
+                break;
+                case 2:
+                    rgbColors[0] = 199;
+                    rgbColors[1] = 199;
+                    rgbColors[2] = 199;
+                break;
+                case 3:
+                    rgbColors[0] = 228;
+                    rgbColors[1] = 255;
+                    rgbColors[2] = 238;
+                break;
+                case 4:
+                    rgbColors[0] = 245;
+                    rgbColors[1] = 233;
+                    rgbColors[2] = 209;
+                break;
+            }
+            
         break;
         case LEVEL_LLL:
             rgbColors[0] = 237;

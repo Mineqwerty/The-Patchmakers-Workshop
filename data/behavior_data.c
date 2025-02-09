@@ -7099,6 +7099,7 @@ const BehaviorScript bhvWingSurface[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(wing_surface_collision),
     CALL_NATIVE(bhv_wing_surface_init),
+    SET_FLOAT(oDrawingDistance, 30000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_wing_surface_loop),
         CALL_NATIVE(load_object_collision_model),

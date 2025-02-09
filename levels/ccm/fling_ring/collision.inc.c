@@ -1,3 +1,6 @@
+const Gfx* fling_ring_collision_materials[] = {
+};
+
 const Collision fling_ring_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(28),

@@ -1,3 +1,6 @@
+const Gfx* wing_surface_collision_materials[] = {
+};
+
 const Collision wing_surface_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(12),
@@ -13,7 +16,7 @@ const Collision wing_surface_collision[] = {
 	COL_VERTEX(965, 2358, 5795),
 	COL_VERTEX(-965, 2745, 7031),
 	COL_VERTEX(965, 2745, 7031),
-	COL_TRI_INIT(SURFACE_NOT_SLIPPERY, 10),
+	COL_TRI_INIT(SURFACE_DEFAULT, 10),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
 	COL_TRI(1, 0, 4),

@@ -48,6 +48,10 @@
 
 #include "levels/ccm/leveldata.inc.c"
 
+ALIGNED8 const Texture texture_gss_transition[] = {
+    #include "levels/ccm/cloudtransition.rgba16.inc.c"  
+};
+
 #include "levels/ccm/gss_skybox/model.inc.c"
 #include "levels/ccm/gold_cloud/model.inc.c"
 #include "levels/ccm/gold_cloud/collision.inc.c"

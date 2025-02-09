@@ -667,7 +667,6 @@ void check_instant_warp(void) {
                 gMarioObject->header.gfx.pos[2] = gMarioState->pos[2];
 
                 cameraAngle = gMarioState->area->camera->yaw;
-
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
 
@@ -679,6 +678,22 @@ void check_instant_warp(void) {
                 warp_camera(warp->displacement[0], warp->displacement[1], warp->displacement[2]);
 
                 gMarioState->area->camera->yaw = cameraAngle;
+
+                if (gMarioState->action == ACT_HOLD_BEGIN_SLIDING
+                || gMarioState->action == ACT_HOLD_BUTT_SLIDE
+                || gMarioState->action == ACT_HOLD_BUTT_SLIDE_AIR
+                || gMarioState->action == ACT_HOLD_BUTT_SLIDE_STOP
+                || gMarioState->action == ACT_HOLD_CUTSCENE
+                || gMarioState->action == ACT_HOLD_DECELERATING
+                || gMarioState->action == ACT_HOLD_FREEFALL
+                || gMarioState->action == ACT_HOLD_FREEFALL_LAND
+                || gMarioState->action == ACT_HOLD_FREEFALL_LAND_STOP
+                || gMarioState->action == ACT_HOLD_JUMP
+                || gMarioState->action == ACT_HOLD_JUMP_LAND
+                || gMarioState->action == ACT_HOLD_JUMP_LAND_STOP
+                || gMarioState->action == ACT_HOLD_WALKING) {
+                    set_mario_action(gMarioState, ACT_FREEFALL, 0);
+                }
             }
         }
     }

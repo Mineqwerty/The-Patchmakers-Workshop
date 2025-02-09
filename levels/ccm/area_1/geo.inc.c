@@ -10,6 +10,7 @@ const GeoLayout ccm_area_1_geo[] = {
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_ALPHA, ccm_dl_Cube_007_mesh_layer_4),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, ccm_dl_Cube_007_mesh_layer_6),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ccm_dl_Cube_007_mesh_layer_5),
 		GEO_CLOSE_NODE(),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 12, 4142, 8530, ccm_dl_Cube_011_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1130, -94, -381, ccm_dl_Plane_011_mesh_layer_1),

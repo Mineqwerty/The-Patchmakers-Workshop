@@ -14,6 +14,8 @@
 #include "sm64.h"
 #include "src/game/level_update.h"
 
+#include "levels/ccm/header.h"
+
 u8 sTransitionFadeTimer = 0;
 u16 sTransitionTextureAngle = 0;
 
@@ -227,9 +229,7 @@ s32 render_gss_cloud_transition(s8 fadeTimer, s8 transTime, struct WarpTransitio
         sTransitionTextureFadeCount[fadeTimer] += transData->texTimer;
     }
     */
-   ALIGNED8 static const Texture texture_gss_transition[] = {
-        //#include "levels/ccm/cloudtransition.rgba16.inc.c"  
-    };
+   
 
         gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
 

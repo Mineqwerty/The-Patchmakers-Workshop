@@ -1,4 +1,17 @@
+#include "src/game/ingame_menu.h"
+
 void bhv_star_gate_loop(void) {
+
+    if ((o->oBehParams2ndByte == 0x10) || (GET_BPARAM1(o->oBehParams) == 0x10)) {
+        SET_BPARAM1(o->oPrimColorParams, 255);
+        SET_BPARAM2(o->oPrimColorParams, 30);
+        SET_BPARAM3(o->oPrimColorParams, 30);
+    }
+    else {
+        SET_BPARAM1(o->oPrimColorParams, 200);
+        SET_BPARAM2(o->oPrimColorParams, 160);
+        SET_BPARAM3(o->oPrimColorParams, 0);
+    }
 
     if (o->oBehParams2ndByte > 0) {
 
@@ -10,6 +23,9 @@ void bhv_star_gate_loop(void) {
 
         if (o->oDistanceToMario < 400.0f) {
             o->oAction = 1;
+            if (gDialogID > -1) {
+                gDialogBoxState = 3;
+            }
         }
     }
 
@@ -29,7 +45,7 @@ void bhv_star_gate_loop(void) {
         gMarioState->pos[0] += x / 10;
         gMarioState->pos[1] += y / 2;
         gMarioState->pos[2] += z / 10;
-        gMarioState->action = ACT_SPAWN_SPIN_AIRBORNE;
+        drop_and_set_mario_action(gMarioState, ACT_SPAWN_SPIN_AIRBORNE, 0);
     }
     }
 }
