@@ -229,7 +229,7 @@ void update_air_without_turn(struct MarioState *m) {
         }
 
         //! Uncapped air speed. Net positive when moving forward.
-        if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+        if (m->action == ACT_BREEZE_PATCH_BOUNCING || m->action == ACT_BREEZE_PATCH_GROUNDED) {
             if (m->forwardVel > 68) {
                 m->forwardVel = approach_f32(m->forwardVel, 68.0f, 0.05f, 3.35f);
             }
@@ -422,7 +422,7 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                 else {
                     set_custom_mario_animation(m, animation);
                     if (stepResult == AIR_STEP_HIT_CEILING) {
-                        m->vel[1] -= 2.0f;
+                        m->vel[1] -= 6.0f;
                     }
                 }
                 
@@ -450,7 +450,12 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
             break;
 
         case AIR_STEP_HIT_WALL:
-            set_mario_animation(m, animation);
+            if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+                set_custom_mario_animation(m, animation);
+            }
+            else {
+                set_mario_animation(m, animation);
+            }
 
             if (m->forwardVel > 16.0f) {
 #if ENABLE_RUMBLE
@@ -1090,6 +1095,8 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
         else {
             cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
         }
+
+        check_mario_floor_checkpoint(m);
         
         
         if (m->floor != NULL && m->floorNormal[1] < 0.6f) {
@@ -1100,7 +1107,18 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
         else if (m->floor != NULL && m->floorNormal[1] < 0.8f) {
             m->forwardVel *= m->floorNormal[1];
             m->vel[1] *= 1.0f + (1.0f-m->floorNormal[1]);
-            
+            //set_mario_action(m, ACT_BREEZE_PATCH_GROUNDED, 1);
+        }
+        if (m->breezeSlopeTimer > 0) {
+            m->vel[1] = 50.0f;
+        }
+        m->breezeSlopeTimer = 3;
+
+        
+    }
+    else {
+        if (m->breezeSlopeTimer > 0) {
+            m->breezeSlopeTimer--;
         }
     }
 

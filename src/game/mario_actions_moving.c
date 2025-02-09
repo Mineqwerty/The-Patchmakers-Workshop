@@ -2160,6 +2160,58 @@ s32 act_transmuting(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_breeze_patch_grounded(struct MarioState *m) {
+
+    m->faceAngle[1] =
+        m->intendedYaw - approach_s32((s16)(m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
+
+        update_air_without_turn(m);
+
+    switch (perform_ground_step(m)) {
+        case GROUND_STEP_LEFT_GROUND:
+            drop_and_set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, 0);
+            break;
+
+        case GROUND_STEP_HIT_WALL:
+            if (m->forwardVel > 10.0f) {
+                mario_set_forward_vel(m, 10.0f);
+            }
+            break;
+    }
+
+    s32 animation;
+
+    if (is_anim_at_end(m)) {
+            animation = (m->actionArg == 0)
+            ? MARIO_CUSTOM_ANIM_BREEZE_JUMP_1
+            : MARIO_CUSTOM_ANIM_BREEZE_JUMP_2;
+            m->actionArg = (m->actionArg + 1) % 2;
+
+            if (m->input & INPUT_A_DOWN && m->actionArg < 2) {
+                m->actionArg = 2;
+            }
+
+            for (u8 i = 0; i < 6; i++) {
+                spawn_object_relative(0, 0, random_u16()%20, 0, m->marioObj, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+            }
+            if (m->actionArg >= 2) {
+                cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
+            }
+            else {
+                cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
+            }
+
+            set_custom_mario_animation(m, animation);
+
+            if (m->floorNormal[1] >= 0.8f) {
+                set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, m->actionArg);
+            }
+    }
+
+    
+    return FALSE;
+}
+
 s32 check_common_moving_cancels(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
         return set_water_plunge_action(m);
@@ -2238,6 +2290,7 @@ s32 mario_execute_moving_action(struct MarioState *m) {
         case ACT_STONE_PATCH_GROUNDED:           cancel = act_stone_patch_grounded(m);           break;
         case ACT_MOVE_IN_CUTSCENE:           cancel = act_move_in_cutscene(m);           break;
         case ACT_TRANSMUTING:           cancel = act_transmuting(m);           break;
+        case ACT_BREEZE_PATCH_GROUNDED: cancel = act_breeze_patch_grounded(m);
     }
     /* clang-format on */
 

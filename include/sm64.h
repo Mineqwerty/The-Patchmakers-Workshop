@@ -326,7 +326,7 @@ enum MarioActionFlags {
 #define ACT_BURNING_GROUND             0x00020449 // (0x049 | ACT_FLAG_MOVING | ACT_FLAG_INVULNERABLE)
 #define ACT_DECELERATING               0x0400044A // (0x04A | ACT_FLAG_MOVING | ACT_FLAG_ALLOW_FIRST_PERSON)
 #define ACT_HOLD_DECELERATING          0x0000044B // (0x04B | ACT_FLAG_MOVING)
-#define ACT_UNUSED_04C                 0x0000004C // (0x04C)
+#define ACT_BREEZE_PATCH_GROUNDED      (0x04C | ACT_FLAG_MOVING)
 #define ACT_UNUSED_04D                 0x0000004D // (0x04D)
 #define ACT_UNUSED_04E                 0x0000004E // (0x04E)
 #define ACT_UNUSED_04F                 0x0000004F // (0x04F)

@@ -1460,7 +1460,7 @@ u8 check_skybridge_oob(void) {
 
             
     //perform raycasts to find walls so it doesnt shatter when approaching a wall with OOB behind it
-    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ + 150, &floor) <= -11000 + 1) {
         vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
         vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
         raydir[0] = 160;
@@ -1592,7 +1592,7 @@ void bhv_skybridge_ring_init(void) {
 
 void bhv_skybridge_ring_loop(void) {
     o->oPosX = gMarioState->pos[0];
-    o->oPosY = (o->parentObj->oAction == 1 ? approach_f32_symmetric(o->oPosY, o->parentObj->oPosY, 10.0f) : gMarioState->pos[1]);
+    o->oPosY = (o->parentObj->oAction == 1 ? approach_f32_symmetric(o->oPosY, o->parentObj->oPosY, 20.0f) : gMarioState->pos[1]);
     o->oPosZ = gMarioState->pos[2];
 
     switch (o->oAction) {

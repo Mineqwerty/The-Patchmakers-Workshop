@@ -1979,7 +1979,6 @@ void perform_patch_action(struct MarioState *m) {
         case PATCH_BREEZE:
             if ((m->action & ACT_FLAG_MOVING || m->action & ACT_FLAG_STATIONARY) 
             && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT) 
-            && (gMarioState->action & ACT_GROUP_MASK) != ACT_GROUP_CUTSCENE
             && gMarioState->health > 255) {
                 drop_and_set_mario_action(m, ACT_BREEZE_PATCH_BOUNCING, 2);
                 m->curPatch = PATCH_BREEZE;
