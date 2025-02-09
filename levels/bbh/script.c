@@ -58,6 +58,9 @@ const LevelScript level_bbh_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, ground_patch_portal_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BBH_HAUNTED_DOOR, haunted_door_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_REALITY_CRACKS, reality_cracks_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_RED_PUZZLE_BOX, red_puzzle_box_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_GREEN_PUZZLE_BOX, green_puzzle_box_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_BLUE_PUZZLE_BOX, blue_puzzle_box_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -217,7 +220,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 1000, -1102, 4952, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 1271, -3719, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
 		OBJECT(MODEL_TFP_GROWING_BLOCK, -948, 2342, -5667, 0, 0, 0, 0x00000000, bhvTfpGrowingBlock),
-		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (8 << 16), bhvGroundPatch),
+		OBJECT(MODEL_GROUND_PATCH, -520, -1090, 7687, -90, 0, 0, (5 << 16), bhvGroundPatch),
 		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, 842, 1469, -2363, 0, 90, 0, 0x00000000, bhvTfpPuzzleBox),
 		OBJECT(MODEL_STAR, -948, 3847, -6576, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_PURPLE_SWITCH, 831, 743, 3559, 0, 0, 0, 0x00000000, bhvFloorSwitchHardcodedModel),
@@ -227,7 +230,7 @@ const LevelScript level_bbh_entry[] = {
 		TERRAIN(bbh_area_2_collision),
 		TERRAIN_MAT_LUT(bbh_area_2_collision_materials),
 		MACRO_OBJECTS(bbh_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_STONE_TERRACE_CITY),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -241,10 +244,10 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_BOX_BASKET, 61, 566, 5634, 0, 0, 0, (2 << 16), bhvBoxBasket),
 		OBJECT(MODEL_BOX_BASKET, -12037, -4894, 9394, 0, 0, 0, (1 << 16), bhvBoxBasket),
 		OBJECT(MODEL_BOX_BASKET, -2037, 7106, 9394, 0, 0, 0, (1 << 16), bhvBoxBasket),
-		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, 7924, 484, 5040, 0, 0, 0, (3 << 16), bhvTfpPuzzleBox),
+		OBJECT(MODEL_BLUE_PUZZLE_BOX, 7924, 484, 5040, 0, 0, 0, (3 << 16), bhvTfpBluePuzzleBox),
 		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, 9670, -6405, 5378, 0, 0, 0, (2 << 16), bhvTfpPuzzleBox),
-		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, -10330, 5595, 5378, 0, 0, 0, (2 << 16), bhvTfpPuzzleBox),
-		OBJECT(MODEL_GRABBABLE_PUZZLE_BOX, -3510, 3390, 7405, 0, 0, 0, (1 << 16), bhvTfpPuzzleBox),
+		OBJECT(MODEL_GREEN_PUZZLE_BOX, -10330, 5595, 5378, 0, 0, 0, (2 << 16), bhvTfpGreenPuzzleBox),
+		OBJECT(MODEL_RED_PUZZLE_BOX, -3510, 3390, 7405, 0, 0, 0, (1 << 16), bhvTfpPuzzleBox),
 		OBJECT(MODEL_NONE, -11442, 9235, 6610, 0, 0, 0, 0x00000000, bhvBoxCounter),
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, -2955, 1828, 5341, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		TERRAIN(bbh_area_3_collision),
@@ -261,7 +264,7 @@ const LevelScript level_bbh_entry[] = {
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x03, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x03, 0x40, WARP_NO_CHECKPOINT),
 		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
-		OBJECT(MODEL_NONE, 2250, 1533, -5433, 0, 0, 0, 0x07500000, bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, 2250, 1533, -5433, 0, 0, 0, 0x00AE0000, bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -1074, 1211, -458, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BBH_HAUNTED_DOOR, -1404, 1211, -370, 0, -90, 0, (11 << 16), bhvDoorWarp),
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 679, 1211, 1153, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
@@ -295,7 +298,7 @@ const LevelScript level_bbh_entry[] = {
 		TERRAIN(bbh_area_5_collision),
 		TERRAIN_MAT_LUT(bbh_area_5_collision_materials),
 		MACRO_OBJECTS(bbh_area_5_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

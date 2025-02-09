@@ -1,0 +1,13 @@
+extern const GeoLayout blue_puzzle_box_geo[];
+extern Lights1 blue_puzzle_box_f3dlite_material_023_lights;
+extern Lights1 blue_puzzle_box_f3dlite_material_070_lights;
+extern u8 blue_puzzle_box_3526857921_rgba16[];
+extern Vtx blue_puzzle_box_Cube_010_mesh_layer_1_vtx_0[24];
+extern Gfx blue_puzzle_box_Cube_010_mesh_layer_1_tri_0[];
+extern Vtx blue_puzzle_box_Cube_010_mesh_layer_1_vtx_1[144];
+extern Gfx blue_puzzle_box_Cube_010_mesh_layer_1_tri_1[];
+extern Gfx mat_blue_puzzle_box_f3dlite_material_023[];
+extern Gfx mat_revert_blue_puzzle_box_f3dlite_material_023[];
+extern Gfx mat_blue_puzzle_box_f3dlite_material_070[];
+extern Gfx mat_revert_blue_puzzle_box_f3dlite_material_070[];
+extern Gfx blue_puzzle_box_Cube_010_mesh_layer_1[];

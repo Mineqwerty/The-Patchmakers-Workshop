@@ -13,7 +13,19 @@ void bhv_box_basket_init(void) {
 }
 
 void bhv_box_basket_loop(void) {
-    struct Object *nearBox = cur_obj_find_object_with_bparam_2nd_byte(bhvTfpPuzzleBox, o->oBehParams2ndByte);
+    struct Object *nearBox;
+    f32 objDist;
+    switch (o->oBehParams2ndByte) {
+        case 1:
+            nearBox = cur_obj_find_nearest_object_with_behavior(bhvTfpPuzzleBox, &objDist);
+        break;
+        case 2:
+            nearBox = cur_obj_find_nearest_object_with_behavior(bhvTfpGreenPuzzleBox, &objDist);
+        break;
+        case 3:
+            nearBox = cur_obj_find_nearest_object_with_behavior(bhvTfpBluePuzzleBox, &objDist);
+        break;
+    } 
     f32 dist;
     if (nearBox && o->oAction == 0) {
         

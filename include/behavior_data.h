@@ -841,3 +841,5 @@ extern const BehaviorScript bhvShrineShapeController[];
 extern const BehaviorScript bhvLockboxKey[];
 extern const BehaviorScript bhvBeginningHubBarrier[];
 extern const BehaviorScript bhvSkybridgeRing[];
+extern const BehaviorScript bhvTfpGreenPuzzleBox[];
+extern const BehaviorScript bhvTfpBluePuzzleBox[];

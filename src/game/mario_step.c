@@ -516,7 +516,7 @@ struct Surface *check_ledge_grab(struct MarioState *m, struct Surface *prevWall,
     ledgePos[1] = find_floor(ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], ledgeFloor);
 
     if (ledgeFloor) {
-        get_surface_normal(floorNormal, ledgeFloor);
+        get_surface_normal(floorNormal, *ledgeFloor);
     }
 
     if (ledgeFloor == NULL

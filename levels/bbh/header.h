@@ -186,4 +186,10 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/reality_cracks/collision_header.h"
 
+#include "levels/bbh/red_puzzle_box/geo_header.h"
+
+#include "levels/bbh/green_puzzle_box/geo_header.h"
+
+#include "levels/bbh/blue_puzzle_box/geo_header.h"
+
 #endif

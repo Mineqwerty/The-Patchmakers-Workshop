@@ -46,3 +46,6 @@
 #include "levels/bbh/tfp_skybox_squares/geo.inc.c"
 #include "levels/bbh/tfp_skybox_web/geo.inc.c"
 #include "levels/bbh/reality_cracks/geo.inc.c"
+#include "levels/bbh/red_puzzle_box/geo.inc.c"
+#include "levels/bbh/green_puzzle_box/geo.inc.c"
+#include "levels/bbh/blue_puzzle_box/geo.inc.c"

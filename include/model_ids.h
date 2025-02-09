@@ -737,6 +737,9 @@
 #define MODEL_TFP_SKYBOX_SQUARES                   0x110
 #define MODEL_TFP_SKYBOX_WEB                   0x111
 #define MODEL_REALITY_CRACKS                   0x112
+#define MODEL_RED_PUZZLE_BOX                   0x113
+#define MODEL_GREEN_PUZZLE_BOX                   0x114
+#define MODEL_BLUE_PUZZLE_BOX                   0x115
 
 //Empyrean Abyss
 #define MODEL_FLOATING_TILTING_GEM                   0x100

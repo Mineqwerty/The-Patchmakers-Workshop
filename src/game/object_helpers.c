@@ -396,7 +396,7 @@ void obj_set_held_state(struct Object *obj, const BehaviorScript *heldBehavior) 
     obj->parentObj = o;
 
     if (obj->oFlags & OBJ_FLAG_HOLDABLE) {
-        if (heldBehavior == bhvCarrySomethingHeld   ) {
+        if (heldBehavior == bhvCarrySomethingHeld) {
             obj->oHeldState = HELD_HELD;
         }
 
