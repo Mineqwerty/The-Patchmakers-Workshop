@@ -118,7 +118,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_shatteredcastlestone_layer1_area1[] =
 
 Gfx ccm_area_1_collision_f3dlite_material_006_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPSetLights1(ccm_dl_f3dlite_material_006_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -151,7 +152,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_006_layer1_area1[] =
 
 Gfx ccm_area_1_collision_f3dlite_material_014_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPSetLights1(ccm_dl_f3dlite_material_014_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -179,7 +181,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_014_layer1_area1[] =
 
 Gfx ccm_area_1_collision_f3dlite_material_001_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG | G_TEXTURE_GEN),
-	gsSPSetLights1(ccm_dl_f3dlite_material_001_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -211,7 +214,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_001_layer1_area1[] =
 };
 
 Gfx ccm_area_1_collision_f3dlite_material_005_layer_1[] = {
-	gsSPSetLights1(ccm_dl_f3dlite_material_005_lights),
+    gsSPLightColor(LIGHT_1, 0xff7044ff),
+    gsSPLightColor(LIGHT_2, 0x7f341dff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -226,7 +230,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_005[] = {
 };
 
 Gfx ccm_area_1_collision_f3dlite_material_009_layer_1[] = {
-	gsSPSetLights1(ccm_dl_f3dlite_material_009_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -252,7 +257,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_009[] = {
 
 Gfx ccm_area_1_collision_f3dlite_material_008_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPSetLights1(ccm_dl_f3dlite_material_008_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -280,7 +286,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_008_layer1_area1[] =
 
 Gfx ccm_area_1_collision_envmetal_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG | G_TEXTURE_GEN),
-	gsSPSetLights1(ccm_dl_envmetal_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -312,7 +319,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_envmetal_layer1_area1[] = {
 };
 
 Gfx ccm_area_1_collision_f3dlite_material_010_layer_1[] = {
-	gsSPSetLights1(ccm_dl_f3dlite_material_010_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -377,7 +385,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_030[] = {
 };
 
 Gfx ccm_area_1_collision_warp_a4_layer_1[] = {
-	gsSPSetLights1(ccm_dl_warp_a4_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -392,7 +401,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_warp_a4[] = {
 };
 
 Gfx ccm_area_1_collision_f3dlite_material_012_layer_1[] = {
-	gsSPSetLights1(ccm_dl_f3dlite_material_012_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -407,7 +417,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_f3dlite_material_012[] = {
 };
 
 Gfx ccm_area_1_collision_slipps_layer_1[] = {
-	gsSPSetLights1(ccm_dl_slipps_lights),
+    gsSPLightColor(LIGHT_1, 0xfff6afff),
+    gsSPLightColor(LIGHT_2, 0x7f7b55ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -423,7 +434,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_slipps[] = {
 
 Gfx ccm_area_1_collision_envcloud_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG | G_TEXTURE_GEN),
-	gsSPSetLights1(ccm_dl_envcloud_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),
@@ -456,7 +468,8 @@ Gfx ccm_area_1_collision_mat_revert_ccm_dl_envcloud_layer1_area1[] = {
 
 Gfx ccm_area_1_collision_darkgold_layer_1[] = {
 	gsSPSetGeometryMode(G_FOG | G_TEXTURE_GEN),
-	gsSPSetLights1(ccm_dl_darkgold_layer1_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 129, 20, 255),

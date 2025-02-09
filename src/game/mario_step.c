@@ -509,14 +509,20 @@ struct Surface *check_ledge_grab(struct MarioState *m, struct Surface *prevWall,
     }
 
     Vec3f normal;
+    Vec3f floorNormal;
     get_surface_normal(normal, wall);
     ledgePos[0] = nextPos[0] - (normal[0] * 60.0f);
     ledgePos[2] = nextPos[2] - (normal[2] * 60.0f);
     ledgePos[1] = find_floor(ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], ledgeFloor);
 
+    if (ledgeFloor) {
+        get_surface_normal(floorNormal, ledgeFloor);
+    }
+
     if (ledgeFloor == NULL
         || (*ledgeFloor) == NULL
         || ledgePos[1] < nextPos[1] + 100.0f
+        || floorNormal[1] < COS25
     ) {
         return NULL;
     }

@@ -374,8 +374,10 @@ void bhv_grapple_hook_loop(void) {
             vec3f_set(adjustedPos, o->oPosX, o->oPosY + 50, o->oPosZ);
             approach_vec3f_asymptotic(gMarioState->pos, adjustedPos, 0.5f, 0.5f, 0.5f);
             if (o->oTimer == 4) {
-                gMarioState->faceAngle[1] += 0x8000;
-                set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
+                if ((gMarioState->action & ACT_GROUP_MASK) != ACT_GROUP_CUTSCENE) {
+                    gMarioState->faceAngle[1] += 0x8000;
+                    set_mario_action(gMarioState, ACT_GRAPPLE_WALL, 0);
+                }
                 gMarioState->patchChildObj = NULL;
                 gMarioState->curPatch = PATCH_NONE;
                 obj_mark_for_deletion(o->oGrappleLine);
