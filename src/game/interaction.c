@@ -1128,7 +1128,8 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
 enum WarpDoorIDs {
     WARP_DOOR_ID_NONE,
     WARP_DOOR_ID_HUB_1_2,
-    DOOR_ID_CLC_SHORTCUT
+    DOOR_ID_CLC_SHORTCUT,
+    DOOR_ID_MASTER_CHAMBERS
 };
 
 u8 openedHub2Door = 0;
@@ -1159,6 +1160,16 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
             }
             openedHub2Door = 1;
             doorAction = ACT_UNLOCKING_STAR_DOOR;
+        }
+        if (warpDoorId == DOOR_ID_MASTER_CHAMBERS && gCurrActNum != 6) {
+            if (!sDisplayingDoorText) {
+
+                u32 numStarsArg = (DIALOG_CLC_MASTER_DOOR << 16);
+                set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, numStarsArg);
+            }
+            sDisplayingDoorText = TRUE;
+
+            return FALSE;
         }
 #endif
 
@@ -1245,7 +1256,7 @@ u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *
                 case  3: text = DIALOG_NEED_10_STARS << 16; break;
                 case  8: text = DIALOG_NEED_35_STARS << 16; break;
                 case 30: text = DIALOG_CLC_DOOR_LOCKED << 16; break;
-                case 50: text = DIALOG_028 << 16; break;
+                case 50: text = DIALOG_CLC_MASTER_DOOR << 16; break;
                 case 70: text = DIALOG_029 << 16; break;
                 case 100: text = DIALOG_CLC_DOOR_LOCKED << 16; break;
             }

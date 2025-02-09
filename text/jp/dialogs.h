@@ -298,7 +298,7 @@ DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 3, 95, 200, _("\
 スターがあと\n\
 [%]まいひつようです。"))
 
-DEFINE_DIALOG(DIALOG_028, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_MASTER_DOOR, 1, 3, 95, 200, _("\
 このドアを　ひらくには\n\
 スター５０まいのパワーが\n\
 ひつようです。\n\

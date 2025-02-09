@@ -308,7 +308,7 @@ benötigst Du 30 Sterne.\n\
 Du mußt also noch [%]\n\
 von ihnen finden."))
 
-DEFINE_DIALOG(DIALOG_028, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_MASTER_DOOR, 1, 4, 95, 200, _("\
 Zum Öffnen dieser Tür\n\
 benötigst Du 50 Sterne.\n\
 Du mußt also noch [%]\n\

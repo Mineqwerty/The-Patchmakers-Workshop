@@ -59,6 +59,7 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -162,7 +163,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_STAR, 6453, 7313, -2966, 0, 119, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_TILTING_STONE_BRIDGE, 10259, 4226, -10280, 0, 119, 0, 0x00000000, bhvBbhTiltingTrapPlatform),
 		OBJECT(MODEL_NONE, 7441, 2745, 9090, 0, 0, 0, (80 << 24) | (11 << 16), bhvWarp),
-		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (50 << 24) | (12 << 16), bhvWarp),
+		OBJECT(MODEL_NONE, -10173, -3658, -8838, 0, 0, 0, (70 << 24) | (12 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -9040, -5345, -8838, 0, 0, 0, (13 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_WATER_RING, 8564, -8131, 836, 0, -148, 0, 0x00000000, bhvSubSeaWaterRing),
 		OBJECT(MODEL_NONE, 6542, -8799, -42, 0, 119, 0, 0x00000000, bhvSubSeaWaterRingManager),

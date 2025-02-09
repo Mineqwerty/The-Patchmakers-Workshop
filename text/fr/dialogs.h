@@ -349,7 +349,7 @@ Vous avez besoin de 30\n\
 porte. Il vous manque\n\
 encore [%] étoile(s)."))
 
-DEFINE_DIALOG(DIALOG_028, 1, 4, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_CLC_MASTER_DOOR, 1, 4, 95, 200, _("\
 Vous avez besoin de 50\n\
 étoiles pour ouvrir cette\n\
 porte. Il vous manque\n\

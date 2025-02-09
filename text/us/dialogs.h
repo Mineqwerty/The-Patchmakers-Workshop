@@ -207,11 +207,10 @@ DEFINE_DIALOG(DIALOG_CLC_DOOR_LOCKED, 1, 2, 95, 200, _("\
 @FEFEFEFF...It seems that the door is locked\n\
 from the other side."))
 
-DEFINE_DIALOG(DIALOG_028, 1, 4, 95, 200, _("\
-It takes the power of\n\
-50 Stars to open this\n\
-door. You need [%] more\n\
-Stars."))
+DEFINE_DIALOG(DIALOG_CLC_MASTER_DOOR, 1, 4, 95, 200, _("\
+@FEFEFEFF...It's best to leave this door\n\
+alone until you are invited to the\n\
+Master's chamber..."))
 
 DEFINE_DIALOG(DIALOG_029, 1, 5, 95, 200, _("\
 To open the door that\n\
