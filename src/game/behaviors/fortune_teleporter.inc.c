@@ -1,4 +1,5 @@
 #include "include/dialog_ids.h"
+#include "src/game/camera.h"
 
 void bhv_fortune_teleporter_init(void) {
     
@@ -64,6 +65,7 @@ void bhv_fortune_teleporter_loop(void) {
             o->oPosY = gMarioState->pos[1] + 200;
             o->oPosZ = gMarioState->pos[2];
         }
+        set_camera_mode(gCamera, CAMERA_MODE_8_DIRECTIONS, 2);
             elastic_approach(&o->oPotogooApproachXZ, &o->oPotogooVelXZ, 1.0f, 0.1f, 0.3f);
             elastic_approach(&o->oPotogooApproachY, &o->oPotogooVelY, 1.0f, 0.1f, 0.3f);
             

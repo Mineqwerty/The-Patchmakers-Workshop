@@ -582,15 +582,42 @@ void print_act_selector_strings(void) {
     currLevelName = segmented_to_virtual(levelNameTbl[COURSE_NUM_TO_INDEX(gCurrCourseNum)]);
 #endif
 
+if (sVisibleStars != 0) {
+    selectedActName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gCurrCourseNum) * 6 + sSelectedActIndex]);
 
+#if MULTILANG
+    print_menu_generic_string(get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f), 81, selectedActName);
+#else
+    actNameX = get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f);
+    lvlNameX = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
+    #endif
+}
+
+if (sVisibleStars != 0) {
+    gDPSetEnvColor(gDisplayListHead++, 180, 180, 180, 180);
+    create_dl_translation_matrix(MENU_MTX_PUSH, lvlNameX - 12, 50.0f, 0);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 2.0f * (SCREEN_CENTER_X - (lvlNameX - 12)) / 130.0f, 0.21f, 1.0f);
+
+    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    gDPSetEnvColor(gDisplayListHead++, 180, 180, 180, 180);
+    create_dl_translation_matrix(MENU_MTX_PUSH, actNameX - 12.0f, 26.0f, 0);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 2.0f * (SCREEN_CENTER_X - (actNameX - 12)) / 130.0f, 0.21f, 1.0f);
+
+    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
+    
 
 #if MULTILANG
     print_generic_string(get_str_x_pos_from_center(160, (currLevelName + 3), 10.0f), 33, currLevelName + 3);
 #else
-    lvlNameX = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
+if (sVisibleStars != 0) {
     print_generic_string(lvlNameX, 33, currLevelName + 3);
+}
 #endif
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -605,14 +632,7 @@ void print_act_selector_strings(void) {
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     // Print the name of the selected act.
     if (sVisibleStars != 0) {
-        selectedActName = segmented_to_virtual(actNameTbl[COURSE_NUM_TO_INDEX(gCurrCourseNum) * 6 + sSelectedActIndex]);
-
-#if MULTILANG
-        print_menu_generic_string(get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f), 81, selectedActName);
-#else
-        actNameX = get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f);
         print_menu_generic_string(actNameX, 220, selectedActName);
-#endif
     }
 
     // Print the numbers above each star.

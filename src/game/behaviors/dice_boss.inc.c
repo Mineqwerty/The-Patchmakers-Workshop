@@ -121,6 +121,7 @@ void bhv_dice_boss_loop(void) {
                     o->oDiceBossDieObj = spawn_object_relative(0, 0, 200, 0, o, MODEL_D20, bhvD20);
                 break;
                 case 5:
+                    SET_BPARAM1(o->oBehParams, 5);
                     spawn_default_star(o->oPosX, o->oPosY + 300, o->oPosZ);
                     gBossHealth = 0;
                     gBossMaxHealth = 0;

@@ -2,9 +2,9 @@ void scroll_gfx_mat_bob_dl_y_water_layer5_area1() {
 	Gfx *mat = segmented_to_virtual(mat_bob_dl_y_water_layer5_area1);
 
 
-	shift_t(mat, 12, PACK_TILESIZE(0, 2));
-	shift_s(mat, 17, PACK_TILESIZE(0, 1));
-	shift_t(mat, 17, PACK_TILESIZE(0, 3));
+	shift_t(mat, 12, PACK_TILESIZE(0, 3));
+	shift_s(mat, 17, PACK_TILESIZE(0, 2));
+	shift_t(mat, 17, PACK_TILESIZE(0, 4));
 
 };
 
