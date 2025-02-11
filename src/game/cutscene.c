@@ -25,6 +25,7 @@
 #include "levels/ddd/header.inc.h"
 #include "levels/sl/header.inc.h"
 #include "levels/bitdw/header.inc.h"
+#include "levels/bitfs/header.inc.h"
 
 #include "levels/castle_inside/header.inc.h"
 #include "levels/bowser_1/header.inc.h"
@@ -1322,6 +1323,31 @@ s32 event_patchmaker_breaking_point[] = {
 
 };
 
+s32 event_second_memory[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 203,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 204,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_2,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 90, 255, 0, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 205,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 206,
+    EVENT_SOUND, SOUND_NEW_MEMORY_END,
+    EVENT_WAIT, 90,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_FADE_INTO_COLOR, 1, 0, 0, 0,
+    EVENT_WAIT, 60,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, -14700, 400, 0,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_FADE_FROM_COLOR, 10, 0, 0, 0,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
 s32 event_revive_peach[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
@@ -1435,6 +1461,8 @@ s32 *eventList[] = {
     event_revive_peach,
     event_enter_third_hub,
     event_enter_brink,
+    event_second_memory,
+    //25
 
 };
 
@@ -1682,6 +1710,11 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_PeachReviveFocus3,
     castle_inside_area_1_spline_PeachRevivePos4,
     castle_inside_area_1_spline_PeachReviveFocus4,
+    bitfs_area_1_spline_SecondMemoryPos1,
+    bitfs_area_1_spline_SecondMemoryFocus1,
+    //205
+    bitfs_area_1_spline_SecondMemoryPos2,
+    bitfs_area_1_spline_SecondMemoryFocus2,
 
 };
 

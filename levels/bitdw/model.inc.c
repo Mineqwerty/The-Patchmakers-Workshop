@@ -1,6 +1,18 @@
+Lights1 bitdw_dl_f3dlite_material_015_lights = gdSPDefLights1(
+	0x2B, 0x21, 0x19,
+	0x5D, 0x4B, 0x3C, 0x49, 0x49, 0x49);
 
+Lights1 bitdw_dl_hurt_floor_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
+Lights1 bitdw_dl_f3dlite_material_021_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
+Lights1 bitdw_dl_f3dlite_material_030_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx bitdw_dl_bigthorn_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 bitdw_dl_bigthorn_ci4[] = {
@@ -44534,7 +44546,7 @@ Gfx bitdw_dl_Cube_009_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[527] = {
+Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[530] = {
 	{{ {-10480, 553, 4015}, 0, {-2873, -4212}, {194, 194, 194, 194} }},
 	{{ {-9651, 553, 4161}, 0, {-3131, -2757}, {255, 255, 255, 0} }},
 	{{ {-9781, 553, 4015}, 0, {-2874, -2985}, {194, 194, 194, 194} }},
@@ -44992,8 +45004,6 @@ Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[527] = {
 	{{ {14524, -3877, 3013}, 0, {1286, 4865}, {188, 188, 188, 255} }},
 	{{ {12003, -3877, 4553}, 0, {-939, 6224}, {0, 0, 0, 255} }},
 	{{ {14524, -3877, 4553}, 0, {1286, 6224}, {0, 0, 0, 255} }},
-	{{ {12003, -3877, 5455}, 0, {-939, 6224}, {0, 0, 0, 255} }},
-	{{ {14524, -3877, 5455}, 0, {1286, 7022}, {0, 0, 0, 255} }},
 	{{ {-15430, 678, -525}, 0, {21584, 831}, {255, 255, 255, 0} }},
 	{{ {-15430, 678, 525}, 0, {16751, 831}, {255, 255, 255, 0} }},
 	{{ {-16283, 678, 525}, 0, {16751, 831}, {0, 0, 0, 0} }},
@@ -45010,13 +45020,13 @@ Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[527] = {
 	{{ {-9740, 553, 4325}, 0, {29562, -13769}, {255, 255, 255, 0} }},
 	{{ {-9598, 449, 4350}, 0, {29741, -13290}, {0, 0, 0, 0} }},
 	{{ {-9598, 553, 4350}, 0, {29509, -13320}, {255, 255, 255, 0} }},
-	{{ {-9598, 553, 4350}, 0, {29509, -13320}, {255, 255, 255, 0} }},
 	{{ {-9483, 449, 4447}, 0, {29657, -12917}, {0, 0, 0, 0} }},
-	{{ {-9598, 449, 4350}, 0, {29741, -13290}, {0, 0, 0, 0} }},
 	{{ {-9483, 553, 4447}, 0, {29447, -12851}, {255, 255, 255, 0} }},
 	{{ {-9302, 449, 4356}, 0, {29915, -12589}, {0, 0, 0, 0} }},
 	{{ {-9302, 553, 4356}, 0, {29749, -12449}, {255, 255, 255, 0} }},
+	{{ {-9302, 553, 4356}, 0, {29749, -12449}, {255, 255, 255, 0} }},
 	{{ {-9162, 449, 4361}, 0, {29977, -12305}, {0, 0, 0, 0} }},
+	{{ {-9302, 449, 4356}, 0, {29915, -12589}, {0, 0, 0, 0} }},
 	{{ {-9162, 553, 4361}, 0, {29942, -12128}, {255, 255, 255, 0} }},
 	{{ {-9250, 449, 4213}, 0, {30228, -12406}, {0, 0, 0, 0} }},
 	{{ {-9250, 553, 4213}, 0, {30223, -12293}, {255, 255, 255, 0} }},
@@ -45031,7 +45041,10 @@ Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[527] = {
 	{{ {-941, 449, 4475}, 0, {29230, 8330}, {0, 0, 0, 0} }},
 	{{ {-1040, 553, 4280}, 0, {29413, 8058}, {255, 255, 255, 0} }},
 	{{ {-1147, 553, 4531}, 0, {28878, 7870}, {255, 255, 255, 0} }},
+	{{ {-1040, 553, 4280}, 0, {29413, 8058}, {255, 255, 255, 0} }},
+	{{ {-1040, 449, 4280}, 0, {29534, 8004}, {0, 0, 0, 0} }},
 	{{ {-1147, 449, 4531}, 0, {29004, 7846}, {0, 0, 0, 0} }},
+	{{ {-1040, -2223, 4280}, 0, {29534, 8004}, {0, 0, 0, 0} }},
 	{{ {-1147, -2223, 4531}, 0, {29004, 7846}, {0, 0, 0, 0} }},
 	{{ {-1301, 449, 4225}, 0, {29542, 7355}, {0, 0, 0, 0} }},
 	{{ {-1301, -2223, 4225}, 0, {29542, 7355}, {0, 0, 0, 0} }},
@@ -45041,6 +45054,8 @@ Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[527] = {
 	{{ {-1492, -2223, 3975}, 0, {29985, 6852}, {0, 0, 0, 0} }},
 	{{ {-761, 449, 3975}, 0, {30427, 8508}, {0, 0, 0, 0} }},
 	{{ {-761, -2223, 3975}, 0, {30427, 8508}, {0, 0, 0, 0} }},
+	{{ {-941, 449, 4475}, 0, {29230, 8330}, {0, 0, 0, 0} }},
+	{{ {-941, -2223, 4475}, 0, {29230, 8330}, {0, 0, 0, 0} }},
 	{{ {-816, 553, 4128}, 0, {30131, 8568}, {255, 255, 255, 0} }},
 	{{ {-761, 449, 3975}, 0, {30427, 8508}, {0, 0, 0, 0} }},
 	{{ {-941, 449, 4475}, 0, {29230, 8330}, {0, 0, 0, 0} }},
@@ -45386,7 +45401,7 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 445, 14, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 445, 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -45395,20 +45410,22 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(7, 8, 9, 0),
 	gsSP1Triangle(9, 8, 10, 0),
 	gsSP1Triangle(9, 10, 11, 0),
-	gsSP1Triangle(11, 10, 12, 0),
-	gsSP1Triangle(11, 12, 13, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 459, 16, 0),
+	gsSP1Triangle(12, 13, 14, 0),
+	gsSP1Triangle(12, 14, 15, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 461, 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 2, 3, 0),
-	gsSP1Triangle(4, 5, 6, 0),
-	gsSP1Triangle(7, 8, 9, 0),
-	gsSP1Triangle(8, 10, 9, 0),
-	gsSP1Triangle(8, 11, 10, 0),
+	gsSP1Triangle(3, 4, 5, 0),
+	gsSP1Triangle(4, 6, 5, 0),
+	gsSP1Triangle(4, 7, 6, 0),
+	gsSP1Triangle(7, 8, 6, 0),
+	gsSP1Triangle(7, 9, 8, 0),
+	gsSP1Triangle(9, 10, 8, 0),
+	gsSP1Triangle(9, 11, 10, 0),
 	gsSP1Triangle(11, 12, 10, 0),
 	gsSP1Triangle(11, 13, 12, 0),
 	gsSP1Triangle(13, 14, 12, 0),
 	gsSP1Triangle(13, 15, 14, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 475, 15, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 477, 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(3, 4, 1, 0),
@@ -45418,18 +45435,16 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(7, 8, 6, 0),
 	gsSP1Triangle(7, 9, 8, 0),
 	gsSP1Triangle(9, 10, 8, 0),
-	gsSP1Triangle(9, 11, 10, 0),
-	gsSP1Triangle(11, 12, 10, 0),
-	gsSP1Triangle(11, 13, 12, 0),
-	gsSP1Triangle(13, 14, 12, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 490, 16, 0),
+	gsSP1Triangle(11, 12, 13, 0),
+	gsSP1Triangle(11, 14, 12, 0),
+	gsSP1Triangle(15, 14, 11, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 493, 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 3, 1, 0),
-	gsSP1Triangle(4, 3, 0, 0),
-	gsSP1Triangle(5, 4, 0, 0),
-	gsSP1Triangle(5, 0, 6, 0),
-	gsSP1Triangle(6, 0, 2, 0),
-	gsSP1Triangle(6, 2, 7, 0),
+	gsSP1Triangle(0, 2, 3, 0),
+	gsSP1Triangle(3, 2, 4, 0),
+	gsSP1Triangle(3, 4, 5, 0),
+	gsSP1Triangle(6, 3, 5, 0),
+	gsSP1Triangle(6, 5, 7, 0),
 	gsSP1Triangle(8, 6, 7, 0),
 	gsSP1Triangle(8, 7, 9, 0),
 	gsSP1Triangle(10, 8, 9, 0),
@@ -45438,9 +45453,7 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 11, 13, 0),
 	gsSP1Triangle(14, 12, 13, 0),
 	gsSP1Triangle(14, 13, 15, 0),
-	gsSP1Triangle(3, 14, 15, 0),
-	gsSP1Triangle(3, 15, 1, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 506, 15, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 509, 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(3, 4, 1, 0),
@@ -45454,7 +45467,7 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 12, 11, 0),
 	gsSP1Triangle(2, 13, 0, 0),
 	gsSP1Triangle(14, 13, 2, 0),
-	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 521, 6, 0),
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_0 + 524, 6, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 2, 1, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -48372,6 +48385,20 @@ Gfx bitdw_dl_Plane_mesh_layer_1_tri_16[] = {
 	gsSPEndDisplayList(),
 };
 
+Vtx bitdw_dl_Plane_mesh_layer_1_vtx_17[4] = {
+	{{ {14524, -3877, 4553}, 0, {1286, 6224}, {0, 0, 0, 255} }},
+	{{ {12003, -3877, 4553}, 0, {-939, 6224}, {0, 0, 0, 255} }},
+	{{ {12003, -3877, 5455}, 0, {-939, 6224}, {0, 0, 0, 255} }},
+	{{ {14524, -3877, 5455}, 0, {1286, 7022}, {0, 0, 0, 255} }},
+};
+
+Gfx bitdw_dl_Plane_mesh_layer_1_tri_17[] = {
+	gsSPVertex(bitdw_dl_Plane_mesh_layer_1_vtx_17 + 0, 4, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 2, 3, 0),
+	gsSPEndDisplayList(),
+};
+
 Vtx bitdw_dl_Plane_mesh_layer_5_vtx_0[38] = {
 	{{ {-2523, 553, 6509}, 0, {3985, -7319}, {255, 255, 255, 111} }},
 	{{ {-5582, 553, 6509}, 0, {-3141, -7319}, {255, 255, 255, 111} }},
@@ -50345,8 +50372,7 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_018[] = {
 
 Gfx mat_bitdw_dl_f3dlite_material_015[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-    gsSPLightColor(LIGHT_1, 0x5d4b3cff),
-    gsSPLightColor(LIGHT_2, 0x2b2119ff),
+	gsSPSetLights1(bitdw_dl_f3dlite_material_015_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -50536,8 +50562,7 @@ Gfx mat_revert_bitdw_dl_safe[] = {
 };
 
 Gfx mat_bitdw_dl_hurt_floor[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(bitdw_dl_hurt_floor_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -50832,6 +50857,27 @@ Gfx mat_revert_bitdw_dl_slipp[] = {
 	gsSPEndDisplayList(),
 };
 
+Gfx mat_bitdw_dl_floorwarp[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, bitdw_dl_floorboards_rgba16),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 2047, 128),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 124),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_bitdw_dl_floorwarp[] = {
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
 Gfx mat_bitdw_dl_f3dlite_material_029[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
@@ -50877,8 +50923,7 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_019[] = {
 
 Gfx mat_bitdw_dl_f3dlite_material_021[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(bitdw_dl_f3dlite_material_021_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -50894,8 +50939,7 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_021[] = {
 };
 
 Gfx mat_bitdw_dl_f3dlite_material_030[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(bitdw_dl_f3dlite_material_030_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -51317,6 +51361,9 @@ Gfx bitdw_dl_Plane_mesh_layer_1[] = {
 	gsSPDisplayList(mat_bitdw_dl_slipp),
 	gsSPDisplayList(bitdw_dl_Plane_mesh_layer_1_tri_16),
 	gsSPDisplayList(mat_revert_bitdw_dl_slipp),
+	gsSPDisplayList(mat_bitdw_dl_floorwarp),
+	gsSPDisplayList(bitdw_dl_Plane_mesh_layer_1_tri_17),
+	gsSPDisplayList(mat_revert_bitdw_dl_floorwarp),
 	gsSPEndDisplayList(),
 };
 

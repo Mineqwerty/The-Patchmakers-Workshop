@@ -38,7 +38,10 @@ void bhv_scuttlebug_loop(void) {
     switch (o->oSubAction) {
         case 0:
             if (o->oMoveFlags & OBJ_MOVE_LANDED) {
-                cur_obj_play_sound_2(SOUND_OBJ_GOOMBA_ALERT);
+                //stupid check to make the sound not play in memory 2
+                if (gCurrLevelNum != LEVEL_BITFS || o->oTimer >= 30) {
+                    cur_obj_play_sound_2(SOUND_OBJ_GOOMBA_ALERT);
+                }
             }
             if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND) {
                 vec3f_copy(&o->oHomeVec, &o->oPosVec);

@@ -1,4 +1,5 @@
 #include "config.h"
+#include "src/game/cutscene.h"
 
 // bowser.c.inc
 /**
@@ -1704,6 +1705,11 @@ void bowser_free_update(void) {
     gMarioState->faceAngle[1] = o->oFaceAngleYaw;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
 
+    if (gCurCutscene != -1) {
+        return;
+    }
+
+
 #ifdef PLATFORM_DISPLACEMENT_2
     s16 tmpOFaceAngleYaw = (s16) o->oFaceAngleYaw;
     if ((platform = o->platform) != NULL) {
@@ -1722,6 +1728,12 @@ void bowser_free_update(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_call_action_function(sBowserActions);
     cur_obj_move_standard(-78);
+
+    if (o->oFloor->type == SURFACE_WARP) {
+        m->floor = o->oFloor;
+        level_trigger_warp(gMarioState, WARP_OP_WARP_FLOOR);
+    }
+
     // Jump on stage if Bowser has fallen off
     if (bowser_check_fallen_off_stage()) {
         o->oPosX = 0;

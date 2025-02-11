@@ -3044,7 +3044,7 @@ You... just got back.\n\
 Aren't you... tired?\n\
 @5C5C5CFFYes. I am.\n\
 The burning desire to create life\n\
-once more is motivation enough though.\n\
+once more is motivation enough, though.\n\
 @5C5C5CFFSewnia... you know, I'm doing\n\
 this for you, right?\n\
 Creating a sister...\n\

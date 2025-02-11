@@ -1,7 +1,14 @@
 #include "src/game/cutscene.h"
 
 void bhv_memory_cutscene_controller_init(void) {
-    begin_cutscene_event(CUTSCENE_EVENT_FIRST_MEMORY);
+    switch (gCurrLevelNum) {
+        case LEVEL_BITDW:
+            begin_cutscene_event(CUTSCENE_EVENT_FIRST_MEMORY);
+        break;
+        case LEVEL_BITFS:
+            begin_cutscene_event(CUTSCENE_EVENT_SECOND_MEMORY);
+        break;
+    }
 }
 
 void bhv_memory_cutscene_controller_loop(void) {
