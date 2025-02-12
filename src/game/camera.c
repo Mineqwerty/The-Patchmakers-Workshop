@@ -1813,6 +1813,9 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     vec3f_get_yaw(gMarioState->pos, &obj->oPosVec, &angleDiff);
     c->approachAngleOffsetBossCam = approach_s16_symmetric(c->approachAngleOffsetBossCam, angleDiff, 0x400);
 
+    f32 lateralDist;
+    vec3f_get_lateral_dist(gMarioState->pos, &obj->oPosVec, &lateralDist);
+
     if (gCurrLevelNum == LEVEL_BOB) {
         f32 xDiff = secondFocus[0] - gMarioState->pos[0] / 3.0f;
         if (xDiff > 600) xDiff = 600;
@@ -1829,8 +1832,21 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         c->pos[1] += 300.0f;
     }
     else if (gCurrLevelNum == LEVEL_CCM) {
-        approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
-        approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
+
+        if (lateralDist < 500) {
+            Vec3f radiusOffsetPos;
+            radiusOffsetPos[0] = 500*sins(angleDiff);
+            radiusOffsetPos[1] = gMarioState->pos[1];
+            radiusOffsetPos[2] = 500*coss(angleDiff);
+
+            approach_camera_x(c, radiusOffsetPos[0] + (3000 * -sins(angleDiff)), 200.0f);
+            approach_camera_z(c, radiusOffsetPos[2] + (3000 * -coss(angleDiff)), 200.0f);
+        }
+        else {
+            approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
+            approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
+        }
+        focusDistance += yaw;
     }
     else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
 

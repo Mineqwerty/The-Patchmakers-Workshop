@@ -1730,7 +1730,7 @@ void bowser_free_update(void) {
     cur_obj_move_standard(-78);
 
     if (o->oFloor->type == SURFACE_WARP) {
-        m->floor = o->oFloor;
+        gMarioState->floor = o->oFloor;
         level_trigger_warp(gMarioState, WARP_OP_WARP_FLOOR);
     }
 

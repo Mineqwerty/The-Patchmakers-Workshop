@@ -385,6 +385,12 @@ void goddess_act_death(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        if (o->oSubAction < 5) {
+            o->oSubAction = 5;
+        }
+    }
 }
 
 void goddess_act_cutscene(void) {
@@ -438,6 +444,16 @@ void goddess_act_cutscene(void) {
             
 
             break;
+    }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        o->oAction = GODDESS_ACT_IDLE_FLIGHT;
+                cur_obj_init_animation(0);
+                gSecondCameraFocus = o;
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_BOSS_FIGHT, 1);
+                o->oHealth = 100;
+                gBossMaxHealth = 100;
+                gBossHealth = 100;
     }
 }
 
