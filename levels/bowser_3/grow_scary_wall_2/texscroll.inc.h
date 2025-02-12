@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_grow_scary_wall_2_f3dlite_material_009_layer1();
+extern void scroll_bowser_3_level_geo_grow_scary_wall_2();

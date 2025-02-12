@@ -67,4 +67,20 @@ extern const LevelScript level_bowser_3_entry[];
 
 #include "levels/bowser_3/mad_slamming_hand_eyeball/geo_header.h"
 
+#include "levels/bowser_3/grow_scary_wall_1/geo_header.h"
+
+#include "levels/bowser_3/grow_scary_wall_2/geo_header.h"
+
+#include "levels/bowser_3/crazy_block_1/collision_header.h"
+
+#include "levels/bowser_3/crazy_block_1/geo_header.h"
+
+#include "levels/bowser_3/crazy_block_2/collision_header.h"
+
+#include "levels/bowser_3/crazy_block_2/geo_header.h"
+
+#include "levels/bowser_3/crazy_block_3/collision_header.h"
+
+#include "levels/bowser_3/crazy_block_3/geo_header.h"
+
 #endif

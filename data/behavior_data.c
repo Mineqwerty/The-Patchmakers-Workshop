@@ -9232,3 +9232,15 @@ const BehaviorScript bhvSkybridgeRing[] = {
         CALL_NATIVE(bhv_skybridge_ring_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvCrazyBlock[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_COLLISION_DATA(crazy_block_1_collision),
+    SET_FLOAT(oDrawingDistance, 20000),
+    SET_HOME(),
+    CALL_NATIVE(bhv_crazy_block_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_crazy_block_loop),
+    END_LOOP(),
+};

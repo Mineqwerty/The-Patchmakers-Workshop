@@ -35,3 +35,8 @@
 #include "levels/bowser_3/mad_slamming_hand/geo.inc.c"
 #include "levels/bowser_3/mad_slamming_hand_shadow/geo.inc.c"
 #include "levels/bowser_3/mad_slamming_hand_eyeball/geo.inc.c"
+#include "levels/bowser_3/grow_scary_wall_1/geo.inc.c"
+#include "levels/bowser_3/grow_scary_wall_2/geo.inc.c"
+#include "levels/bowser_3/crazy_block_1/geo.inc.c"
+#include "levels/bowser_3/crazy_block_2/geo.inc.c"
+#include "levels/bowser_3/crazy_block_3/geo.inc.c"

@@ -2394,7 +2394,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             randomNoise[i] = random_u16();
         }
 
-        bcopy(randomNoise, segmented_to_virtual(bowser_3_dl_nosiehell_rgba16), 2048);
+        //bcopy(randomNoise, segmented_to_virtual(bowser_3_dl_nosiehell_rgba16), 2048);
     }
 
     

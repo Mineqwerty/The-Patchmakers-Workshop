@@ -1470,7 +1470,7 @@ u8 check_skybridge_oob(void) {
                 outOfBounds = 1;
             } 
     }
-    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+    if (find_floor(o->oPosX + 150, o->oPosY + 150, o->oPosZ - 150, &floor) <= -11000 + 1) {
         vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
         vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
         raydir[0] = 160;
@@ -1480,7 +1480,7 @@ u8 check_skybridge_oob(void) {
                 outOfBounds = 1;
             } 
     }
-    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ + 150, &floor) < -10000) {
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ + 150, &floor) <= -11000 + 1) {
        vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
         vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
         raydir[0] = -160;
@@ -1490,7 +1490,7 @@ u8 check_skybridge_oob(void) {
                 outOfBounds = 1;
             } 
     }
-    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ - 150, &floor) < -10000) {
+    if (find_floor(o->oPosX - 150, o->oPosY + 150, o->oPosZ - 150, &floor) <= -11000 + 1) {
         vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
         vec3f_set(originPos, o->oPosX, o->oPosY, o->oPosZ);
         raydir[0] = -160;

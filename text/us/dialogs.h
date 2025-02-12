@@ -136,7 +136,7 @@ secrets within his library that\n\
 may help..."))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 5, 30, 200, _("\
-RDR"))
+@FEFEFEFF"))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 4, 30, 200, _("\
 STC"))

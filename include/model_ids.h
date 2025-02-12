@@ -802,6 +802,11 @@
 #define MODEL_MAD_SLAMMING_HAND                   0x105
 #define MODEL_MAD_SLAMMING_HAND_SHADOW                   0x106
 #define MODEL_MAD_SLAMMING_HAND_EYEBALL                   0x107
+#define MODEL_GROW_SCARY_WALLS_1                   0x108
+#define MODEL_GROW_SCARY_WALLS_2                   0x109
+#define MODEL_CRAZY_BLOCK_1                   0x10A
+#define MODEL_CRAZY_BLOCK_2                   0x10B
+#define MODEL_CRAZY_BLOCK_3                   0x10C
 
 
 //New File Select
