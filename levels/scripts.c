@@ -166,6 +166,7 @@ const LevelScript level_main_scripts_entry[] = {
         LOAD_MODEL_FROM_GEO(MODEL_FORTUNE_TELEPORTER_PEDESTAL, fortune_teleporter_pedestal_geo),
         LOAD_MODEL_FROM_GEO(MODEL_LOCKBOX_KEY, lockbox_key_geo),
         LOAD_MODEL_FROM_GEO(MODEL_SKYBRIDGE_RING, skybridge_ring_geo),
+        LOAD_MODEL_FROM_GEO(MODEL_GLOBAL_GROUND_BOOK, global_ground_book_geo),
         
     LOAD_MODEL_FROM_GEO(MODEL_SEWNIA,                    sewnia_geo),
     

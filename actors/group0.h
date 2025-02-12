@@ -537,4 +537,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "skybridge_ring/geo_header.h"
 
+#include "global_ground_book/geo_header.h"
+
 #endif

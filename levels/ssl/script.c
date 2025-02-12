@@ -58,12 +58,14 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0D, LEVEL_SSL, 0x04, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x043, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -169,6 +171,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 6766, 742, 11810, 0, 0, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 10080, 854, 13754, 0, 0, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -3195, 1753, 6518, 0, 0, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, 2539, 4900, 8024, 0, -120, 0, (50 << 24) | (13 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, 1571, 605, -6542, 0, 0, 0, (40 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -1616, 5584, -917, 0, 0, 0, (40 << 24) | (12 << 16), bhvWarp),
 		TERRAIN(ssl_area_1_collision),
@@ -208,6 +211,22 @@ const LevelScript level_ssl_entry[] = {
 		TERRAIN(ssl_area_3_collision),
 		TERRAIN_MAT_LUT(ssl_area_3_collision_materials),
 		MACRO_OBJECTS(ssl_area_3_macro_objs),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_STREAMED_CRICKETS),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
+	AREA(4, ssl_area_4),
+		WARP_NODE(0x0A, LEVEL_SSL, 0x01, 0x0D, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0B, LEVEL_SSL, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0C, LEVEL_SSL, 0x03, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_CASTLE, 0x02, 0x33, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x43, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 102, 1253, -148, 0, 156, 0, (50 << 24) | (10 << 16), bhvWarp),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 1086, 1535, -2548, 0, -180, 0, (22 << 24) | (3 << 16), bhvReadableBook),
+		TERRAIN(ssl_area_4_collision),
+		TERRAIN_MAT_LUT(ssl_area_4_collision_materials),
+		MACRO_OBJECTS(ssl_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_STREAMED_CRICKETS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */

@@ -1,0 +1,13 @@
+extern const GeoLayout global_ground_book_geo[];
+extern u8 global_ground_book_dird_ci4[];
+extern u8 global_ground_book_dird_pal_rgba16[];
+extern Vtx global_ground_book_Cube_021_mesh_layer_1_vtx_cull[8];
+extern Vtx global_ground_book_Cube_021_mesh_layer_1_vtx_0[52];
+extern Gfx global_ground_book_Cube_021_mesh_layer_1_tri_0[];
+extern Vtx global_ground_book_Cube_021_mesh_layer_1_vtx_1[12];
+extern Gfx global_ground_book_Cube_021_mesh_layer_1_tri_1[];
+extern Gfx mat_global_ground_book_f3dlite_material_011[];
+extern Gfx mat_revert_global_ground_book_f3dlite_material_011[];
+extern Gfx mat_global_ground_book_f3dlite_material_012[];
+extern Gfx mat_revert_global_ground_book_f3dlite_material_012[];
+extern Gfx global_ground_book_Cube_021_mesh_layer_1[];
