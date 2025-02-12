@@ -2684,6 +2684,11 @@ s32 cur_obj_set_hitbox_and_knock_back_if_attacked(struct ObjectHitbox *hitbox, s
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
             if (o->oHealth <= 0) {
+                if (gMarioState->equippedPatch == PATCH_MIASMA && gMarioState->miasmaSoulCount < 5) {
+                    gMarioState->miasmaSoulCount++;
+                    struct Object *mote = spawn_object_relative(gMarioState->miasmaSoulCount, 0, 20, 0, o, MODEL_SOUL_MOTE, bhvSoulMote);
+                    mote->parentObj = gMarioState->marioObj;
+                }
                 spawn_mist_particles();
                 obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
                 obj_mark_for_deletion(o);
