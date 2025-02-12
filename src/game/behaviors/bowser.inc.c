@@ -1729,6 +1729,10 @@ void bowser_free_update(void) {
     cur_obj_call_action_function(sBowserActions);
     cur_obj_move_standard(-78);
 
+    if (o->oAction != BOWSER_ACT_QUICK_JUMP) {
+        o->oPosY = o->oFloorHeight;
+    }
+
     if (o->oFloor->type == SURFACE_WARP) {
         gMarioState->floor = o->oFloor;
         level_trigger_warp(gMarioState, WARP_OP_WARP_FLOOR);

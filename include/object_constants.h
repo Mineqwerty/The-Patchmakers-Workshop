@@ -59,6 +59,7 @@ enum ObjFlags {
     OBJ_FLAG_COMPUTE_DIST_TO_GRAPPLE_HOOK      = (1 << 24), // 0x01000000
     OBJ_FLAG_NEW_DAMAGE_SYSTEM                 = (1 << 25), // 0x02000000
     OBJ_FLAG_DAMAGE_PARENT                 = (1 << 26), // 0x02000000
+    OBJ_FLAG_RESPAWN_OVER_DISTANCE                 = (1 << 27), // 0x02000000
     OBJ_FLAG_HITBOX_WAS_SET                    = (1 << 30), // 0x40000000
 };
 

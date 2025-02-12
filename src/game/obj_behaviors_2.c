@@ -511,7 +511,13 @@ static void obj_die_if_health_non_positive(void) {
         // This doesn't do anything
         obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
 
-        if ((o->oHealth < 0) && !(o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM)) {
+        if (o->oFlags & OBJ_FLAG_RESPAWN_OVER_DISTANCE) {
+            cur_obj_hide();
+            cur_obj_become_intangible();
+            o->oNumLootCoins = 0;
+            o->oAction = 90;
+        }
+        else if ((o->oHealth < 0) && !(o->oFlags & OBJ_FLAG_NEW_DAMAGE_SYSTEM)) {
             cur_obj_hide();
             cur_obj_become_intangible();
         } else {

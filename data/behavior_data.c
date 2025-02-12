@@ -7888,7 +7888,7 @@ const BehaviorScript bhvAbyssSwimmer[] = {
 
 const BehaviorScript bhvAbyssUrchin[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM | OBJ_FLAG_RESPAWN_OVER_DISTANCE)),
     CALL_NATIVE(bhv_abyss_urchin_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_abyss_urchin_loop),
