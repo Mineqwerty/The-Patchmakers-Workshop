@@ -24,7 +24,8 @@ enum SewniaActions {
     SEWNIA_ACT_REVIVE_BOWSER,
     SEWNIA_ACT_ENTER_SECOND_HUB,
     SEWNIA_ACT_LEAVING_SECOND_HUB,
-    SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE
+    SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
+    SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE
 };
 
 enum SewniaAnims {
@@ -1484,6 +1485,28 @@ void sewnia_act_second_patchmaker_fight_cutscene(void) {
     }
 }
 
+void sewnia_act_enter_third_hub_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -4807;
+            o->oPosY = 1622;
+            o->oPosZ = -7500;
+            o->oMoveAngleYaw = 0x2000;
+            cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oPosX = -3469;
+                o->oPosY = 1621;
+                o->oPosZ = -5193;
+                o->oSubAction++;
+                o->oFaceAngleYaw = 0x1200;
+            }
+        break;
+    }
+}
+
 void bhv_sewnia_loop(void) {
 
     //print_text_fmt_int(200, 80, "sewnia %d", o->oSewniaSourceNode);
@@ -1509,6 +1532,9 @@ void bhv_sewnia_loop(void) {
         }
         else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_PEACH) {
             obj_mark_for_deletion(o);
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_THIRD_HUB_ARRIVAL) {
+            o->oAction = SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE;
         }
     }
 
@@ -1557,6 +1583,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE:
             sewnia_act_second_patchmaker_fight_cutscene();
+        break;
+        case SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE:
+            sewnia_act_enter_third_hub_cutscene();
         break;
     }
 

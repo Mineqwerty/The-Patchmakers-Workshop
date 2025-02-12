@@ -1853,7 +1853,8 @@ But these areas are quite scary.\n\
 Be careful if you collect star power here...\n\
 @FF0202FFSo you're saying I gotta wait on Mario AGAIN!?\n\
 Well, Peach is waiting here with me so it's\n\
-actually very nice! Haha!"))
+actually very nice! Bwahaha!\n\
+@FF75DFFF..."))
 
 DEFINE_DIALOG(DIALOG_ENTERING_BRINK, 1, 3, 30, 200, _("\
 @7F60B4FFSo... this is it.\n\

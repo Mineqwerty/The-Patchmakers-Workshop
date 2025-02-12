@@ -34,14 +34,14 @@ void bhv_story_cutscene_manager_hub1_init(void) {
             }
         break;
         case 3:
-            if (gCutsceneGameState == CUTSCENE_GAME_STATE_ENTER_THIRD_HUB) {
+            //if (gCutsceneGameState == CUTSCENE_GAME_STATE_ENTER_THIRD_HUB) {
                 begin_cutscene_event(CUTSCENE_EVENT_THIRD_HUB_ARRIVAL);
                 gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
-            }
-            else if (gCutsceneGameState == CUTSCENE_GAME_STATE_COLLECTED_KEY) {
-                o->oAction = 1;
-                gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
-            }
+            //}
+            //else if (gCutsceneGameState == CUTSCENE_GAME_STATE_COLLECTED_KEY) {
+            //    o->oAction = 1;
+            //    gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
+            //}
         break;
     }
 }

@@ -160,8 +160,7 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_141_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(castle_inside_dl_f3dlite_material_141_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -176,8 +175,7 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_140_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsSPSetLights1(castle_inside_dl_f3dlite_material_140_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -354,8 +352,7 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_143_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(castle_inside_dl_f3dlite_material_143_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -412,8 +409,7 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_145_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff000dff),
-    gsSPLightColor(LIGHT_2, 0x7f0003ff),
+	gsSPSetLights1(castle_inside_dl_f3dlite_material_145_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -1154,17 +1150,17 @@ const Collision castle_inside_area_3_collision[] = {
 	COL_VERTEX(-3184, 1675, -5162),
 	COL_VERTEX(-3274, 1703, -5111),
 	COL_VERTEX(-3230, 1703, -5209),
-	COL_VERTEX(-3274, 1740, -5111),
-	COL_VERTEX(-3230, 1740, -5209),
+	COL_VERTEX(-3274, 1707, -5111),
+	COL_VERTEX(-3230, 1707, -5209),
 	COL_VERTEX(-3133, 1703, -5254),
-	COL_VERTEX(-3133, 1740, -5254),
-	COL_VERTEX(-3230, 1740, -5014),
+	COL_VERTEX(-3133, 1707, -5254),
+	COL_VERTEX(-3230, 1707, -5014),
 	COL_VERTEX(-3036, 1703, -5209),
-	COL_VERTEX(-3036, 1740, -5209),
-	COL_VERTEX(-3133, 1740, -5111),
-	COL_VERTEX(-2991, 1740, -5111),
-	COL_VERTEX(-3133, 1740, -4969),
-	COL_VERTEX(-3036, 1740, -5014),
+	COL_VERTEX(-3036, 1707, -5209),
+	COL_VERTEX(-3133, 1707, -5111),
+	COL_VERTEX(-2991, 1707, -5111),
+	COL_VERTEX(-3133, 1707, -4969),
+	COL_VERTEX(-3036, 1707, -5014),
 	COL_VERTEX(-4480, 1925, -8919),
 	COL_VERTEX(-4686, 1925, -8919),
 	COL_VERTEX(834, 1621, -9679),

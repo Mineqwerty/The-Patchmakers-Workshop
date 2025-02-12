@@ -91,6 +91,20 @@ extern const Trajectory castle_inside_area_2_spline_SewniaPath2[];
 extern const GeoLayout castle_inside_area_3_geo[];
 extern const GeoLayout castle_inside_area_3[];
 extern const MacroObject castle_inside_area_3_macro_objs[];
+#include "src/game/camera.h"
+
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus1[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus2[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus3[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus4[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus5[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubFocus6[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos1[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos2[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos3[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos4[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos5[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterThirdHubPos6[];
 extern Lights1 castle_inside_dl_f3dlite_material_038_lights;
 extern Lights1 castle_inside_dl_f3d_material_012_lights;
 extern Lights1 castle_inside_dl_f3d_material_014_lights;

@@ -21,7 +21,8 @@ enum BowserNPCActions {
     BOWSER_NPC_ACT_ENTER_SECOND_HUB,
     BOWSER_NPC_ACT_LEAVING_SECOND_HUB,
     BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
-    BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE
+    BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE,
+    BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -206,6 +207,28 @@ void bowser_npc_act_revive_peach_cutscene(void) {
     }
 }
 
+void bowser_npc_act_enter_third_hub_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -5039;
+            o->oPosY = 1622;
+            o->oPosZ = -8021;
+            cur_obj_init_animation(12);
+            o->oSubAction++;
+            o->oFaceAngleYaw = 0x2000;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oPosX = -3807;
+                o->oPosY = 1621;
+                o->oPosZ = -4942;
+                o->oSubAction++;
+                o->oFaceAngleYaw = 0x4800;
+            }
+        break;
+    }
+}
+
 void bowser_npc_find_spot(void) {
     switch (gCurrAreaIndex) {
         case 2:;
@@ -251,6 +274,9 @@ void bhv_bowser_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_PEACH) {
         o->oAction = BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_THIRD_HUB_ARRIVAL) {
+        o->oAction = BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE;
+    }
 
     switch (o->oAction) {
         case BOWSER_NPC_ACT_FIND_SPOT:
@@ -273,6 +299,9 @@ void bhv_bowser_npc_loop(void) {
         break;
         case BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE:
             bowser_npc_act_revive_peach_cutscene();
+        break;
+        case BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE:
+            bowser_npc_act_enter_third_hub_cutscene();
         break;
     }
 
