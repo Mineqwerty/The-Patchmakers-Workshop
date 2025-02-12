@@ -1948,7 +1948,9 @@ and think about what to do next.\n\
 @FF75DFFFSewnia, can you show us the way?\n\
 \n\
 \n\
-@7F60B4FFOf course... Follow me."))
+@7F60B4FFOf course... Follow me.\n\
+Let's see outside after all we've accomplished.\n\
+Coming, Mario?"))
 
 DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
 Hey! Knock it off! That's\n\

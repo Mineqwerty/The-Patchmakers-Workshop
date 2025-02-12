@@ -848,6 +848,13 @@ void pushpin_pokey_cutscene(void) {
     if (o->oTimer == 450) {
         cur_obj_init_animation(1);
     }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        o->oAction = POKEY_ACT_IDLE;
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+        o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 1000, o->oPosZ);
+        if (o->oCamFocus) obj_mark_for_deletion(o->oCamFocus);
+    }
 }
 
 
