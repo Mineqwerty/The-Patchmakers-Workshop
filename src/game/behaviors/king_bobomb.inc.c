@@ -33,7 +33,7 @@ void king_bobomb_act_inactive(void) { // act 0
             seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
         }
     } else if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP,
-        DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_017)) {
+        DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_JOURNAL_EA)) {
         o->oAction = KING_BOBOMB_ACT_ACTIVE;
         o->oFlags |= OBJ_FLAG_HOLDABLE;
     }

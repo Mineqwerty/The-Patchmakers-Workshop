@@ -9727,7 +9727,7 @@ void cutscene_cap_switch_press_pan_left(struct Camera *c) {
  * Create a dialog box with the cap switch's text.
  */
 void cutscene_cap_switch_press_create_dialog(UNUSED struct Camera *c) {
-    create_dialog_box_with_response(gCutsceneFocus->oBehParams2ndByte + DIALOG_010);
+    create_dialog_box_with_response(gCutsceneFocus->oBehParams2ndByte + DIALOG_JOURNAL_HVH);
 }
 
 static UNUSED void unused_cap_switch_retrieve_info(struct Camera *c) {

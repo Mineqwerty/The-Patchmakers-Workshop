@@ -61,8 +61,8 @@ struct KoopaTheQuickProperties {
  * Properties for the BoB race and the THI race.
  */
 static struct KoopaTheQuickProperties sKoopaTheQuickProperties[] = {
-    { DIALOG_005, DIALOG_007, bob_seg7_trajectory_koopa, { 3030, 4500, -4600 } },
-    { DIALOG_009, DIALOG_031, thi_seg7_trajectory_koopa, { 7100, -1300, -6000 } },
+    { DIALOG_JOURNAL_RDR, DIALOG_JOURNAL_GSS, bob_seg7_trajectory_koopa, { 3030, 4500, -4600 } },
+    { DIALOG_JOURNAL_CLC, DIALOG_031, thi_seg7_trajectory_koopa, { 7100, -1300, -6000 } },
 };
 
 /**
@@ -700,7 +700,7 @@ static void koopa_the_quick_act_after_race(void) {
                 if (o->parentObj->oKoopaRaceEndpointRaceStatus == KOOPA_RACE_ENDPOINT_STATUS_MARIO_CHEATED) {
                     // Mario cheated
                     o->parentObj->oKoopaRaceEndpointRaceStatus = KOOPA_RACE_ENDPOINT_STATUS_KOOPA_WON;
-                    o->parentObj->oKoopaRaceEndpointDialog = DIALOG_006;
+                    o->parentObj->oKoopaRaceEndpointDialog = DIALOG_JOURNAL_STC;
                 } else {
                     // Mario won
                     o->parentObj->oKoopaRaceEndpointDialog =

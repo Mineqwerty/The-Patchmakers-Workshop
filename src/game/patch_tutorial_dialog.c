@@ -28,5 +28,10 @@ char *tutorialDialogs[] = {
     "\"The Futility of Defining Life\"",
     "\"Ticking Clock\"",
     "\"The Living Doll\"",
+    "\"Of Roses and Thorns\"",
+    "\"Ceaseless Rain\"",
+    "\"City of Secrets\"",
+    "\"Burning Beauty\"",
+    "\"Reflection of Water and Self\""
 
 };

@@ -77,7 +77,7 @@ Sprich mit ihnen und\n\
 Du darfst bestimmt ihre\n\
 Kanonen benutzen."))
 
-DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TTC, 1, 3, 95, 200, _("\
 Wir sind friedliebende\n\
 Bob-Ombs und mögen keine\n\
 Kanonen.\n\
@@ -88,7 +88,7 @@ Alle Kanonen dieses Kurses\n\
 sind für Dich präpariert.\n\
 Guten Flug!!!"))
 
-DEFINE_DIALOG(DIALOG_005, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_RDR, 1, 4, 30, 200, _("\
 Hey Mario! Stimmt es,\n\
 daß Du König Bob-Omb\n\
 während eines harten\n\
@@ -110,7 +110,7 @@ Fertig...?\n\
 \n\
 //Los!/// Später!"))
 
-DEFINE_DIALOG(DIALOG_006, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_STC, 1, 3, 30, 200, _("\
 Hey!!! Willst Du mich\n\
 auf den Arm nehmen?\n\
 Abkürzen gilt nicht!\n\
@@ -118,14 +118,14 @@ Am besten versuchst Du's\n\
 später nochmal unter\n\
 fairen Bedingungen."))
 
-DEFINE_DIALOG(DIALOG_007, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_GSS, 1, 5, 30, 200, _("\
 Hmmmmpff...pffff...hach!\n\
 Boah! Du...hast...mich...\n\
 geschlagen! Das grenzt an\n\
 ein Wunder! Hier, Du hast\n\
 ihn Dir verdient!"))
 
-DEFINE_DIALOG(DIALOG_008, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_SS, 1, 5, 30, 200, _("\
 BISSIGER KETTENHUND!\n\
 Nähere Dich ihm langsam,\n\
 und benutze die [C]-Knöpfe,\n\
@@ -137,7 +137,7 @@ Du erhältst einen Stern,\n\
 wenn Du acht dieser\n\
 Münzen sammelst."))
 
-DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 5, 30, 200, _("\
 Lang, lang ist's her!\n\
 Du scheinst noch schneller\n\
 geworden zu sein. Hast Du\n\
@@ -154,7 +154,7 @@ Fertig?\n\
 \n\
 //Los!/// Später!"))
 
-DEFINE_DIALOG(DIALOG_010, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 4, 30, 200, _("\
 Du hast den roten\n\
 Schalter aktiviert.\n\
 Ab jetzt kannst Du die\n\
@@ -168,7 +168,7 @@ Spielstand speichern?\n\
 \n\
 //Ja!////Nein!"))
 
-DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 4, 30, 200, _("\
 Du hast den grünen\n\
 Schalter aktiviert.\n\
 Ab jetzt kannst Du die\n\
@@ -222,13 +222,13 @@ Tritt auszuführen.\n\
 Gegenstände kannst Du\n\
 mit [B] nehmen und werfen."))
 
-DEFINE_DIALOG(DIALOG_016, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 4, 30, 200, _("\
 Springe auf den\n\
 funkelnden Panzer!\n\
 Der Krötensurf eröffnet\n\
 ungeahnte Möglichkeiten!"))
 
-DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
 Ich bin König Bob-Omb,\n\
 Herrscher über alle\n\
 Bomben und Gebieter der\n\
@@ -250,13 +250,13 @@ Meinung, Du könntest\n\
 mich von hinten packen\n\
 und besiegen? Niemals!!!"))
 
-DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
 Schlafende Gefahren\n\
 sollte man nicht wecken.\n\
 Die schleichende Weisheit\n\
 verleiht längeres Leben!"))
 
-DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 2, 30, 200, _("\
 Vorsicht, die Fliesen\n\
 sind frisch gebohnert!"))
 

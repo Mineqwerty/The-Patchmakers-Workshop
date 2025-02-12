@@ -103,7 +103,7 @@ t'attendent. Si tu leur\n\
 parles, ils te prépareront\n\
 de jolis canons!"))
 
-DEFINE_DIALOG(DIALOG_004, 1, 6, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TTC, 1, 6, 95, 200, _("\
 Nous sommes des\n\
 Bob-ombs pacifiques, nous\n\
 n'utilisons pas de canons.\n\
@@ -117,7 +117,7 @@ nous ferons une joie de te\n\
 préparer tous les canons\n\
 de ce niveau. Bon voyage!"))
 
-DEFINE_DIALOG(DIALOG_005, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_RDR, 1, 5, 30, 200, _("\
 Hé, Mario! C'est vrai ce\n\
 qu'on raconte? Tu as\n\
 vraiment battu le Roi\n\
@@ -139,7 +139,7 @@ Prêt...\n\
 \n\
 //Partez!//Heu, non."))
 
-DEFINE_DIALOG(DIALOG_006, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_STC, 1, 4, 30, 200, _("\
 Hé! Tu te moques de moi,\n\
 p'tit nain pas beau?\n\
 Tu dois courir du début\n\
@@ -148,14 +148,14 @@ A plus tard. Reviens me\n\
 voir lorsque tu arrêteras\n\
 de tricher..."))
 
-DEFINE_DIALOG(DIALOG_007, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_GSS, 1, 5, 30, 200, _("\
 Heuufff...fff...peufff...\n\
 Whoa! Tu...es...vraiment\n\
 rapide...pour un nabot!\n\
 Tu viens de l'espace?\n\
 Tiens, tu l'as méritée!"))
 
-DEFINE_DIALOG(DIALOG_008, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_SS, 1, 5, 30, 200, _("\
 ATTENTION AU CHOMP\n\
 ENCHAINE!!!\n\
 Danger! Approchez-vous\n\
@@ -170,7 +170,7 @@ une étoile apparaîtra\n\
 dans le pré de l'autre\n\
 côté du pont..."))
 
-DEFINE_DIALOG(DIALOG_009, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 4, 30, 200, _("\
 Ça fait longtemps qu'on\n\
 ne s'était pas vu, Mario!\n\
 Fouiii! Tu es devenu super\n\
@@ -192,7 +192,7 @@ Prêt...\n\
 \n\
 //Partez!// Heu, non."))
 
-DEFINE_DIALOG(DIALOG_010, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 4, 30, 200, _("\
 Vous venez d'actionner\n\
 l'interrupteur des\n\
 casquettes ailées...\n\
@@ -209,7 +209,7 @@ Voulez-vous sauvegarder?\n\
 \n\
 //Oui////Non."))
 
-DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 4, 30, 200, _("\
 Vous venez d'actionner\n\
 l'interrupteur des\n\
 casquettes-métal!\n\
@@ -272,13 +272,13 @@ chose. Pour lancer ce que\n\
 vous portez, appuyez sur\n\
 [B] à nouveau."))
 
-DEFINE_DIALOG(DIALOG_016, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 4, 30, 200, _("\
 Si vous sautez sur une\n\
 carapace brillante, vous\n\
 pourrez aller n'importe où\n\
 et détruire vos ennemis!"))
 
-DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
 Je suis le Roi Bob-omb,\n\
 seigneur des explosions.\n\
 Je te félicite d'être\n\
@@ -291,13 +291,13 @@ Es-tu capable de soulever\n\
 mon royal fessier?\n\
 En garde, moucheron!"))
 
-DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
 SILENCE! Je dors!\n\
 Gare à l'imprudent qui\n\
 oserait me reveiller...\n\
 Marchez doucement, sinon!"))
 
-DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 2, 30, 200, _("\
 CHUT! Marchez doucement\n\
 dans les couloirs!!!"))
 

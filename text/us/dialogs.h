@@ -51,53 +51,97 @@ DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 6, 95, 200, _("\
      About this stage\n\
      Toggle following"))
 
-DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
-You should make the\n\
-fucking romhack\n\
-bitch."))
+DEFINE_DIALOG(DIALOG_JOURNAL_TTC, 0b100, 3, 95, 200, _("\
+@FEFEFEFFMy first attempt at portal technology\n\
+had led me to a pleasant cliffside full of\n\
+plant life, bustling with energy.\n\
+@FEFEFEFFA plant-like race resides here. They were quite\n\
+friendly greeting me, and to think I was\n\
+nervous to bring Sewnia with me...\n\
+@FEFEFEFFApparently, they have a related cousin\n\
+species known as a Spindrift in a far-off\n\
+land called the Mushroom Kingdom.\n\
+@FEFEFEFFRegardless, I must remain cautious. Even though\n\
+I doubt I'll find anything of use here, there are\n\
+rumors of a large burrowing creature beneath...\n\
+@FEFEFEFFIf it were to attack me, I wonder how I\n\
+could defend myself..."))
 
-DEFINE_DIALOG(DIALOG_005, 1, 3, 30, 200, _("\
-This place...\n\
-What a sad, forgotten part of the workshop.\n\
-There's a somewhat comforting atmosphere to it though...\n\
-It might be hard to believe, but the rest of\n\
-the workshop beyond the sealed door is much more\n\
-interesting than this section.\n\
-It makes me wonder why The Patchmaker took\n\
-you and your friends down here to begin with...\n\
-"))
+DEFINE_DIALOG(DIALOG_JOURNAL_RDR, 0b100, 3, 30, 200, _("\
+@FEFEFEFFMy portals are still quite aimless...\n\
+Now I have ended up in a rural roadside, one\n\
+that has seemingly endless rain.\n\
+@FEFEFEFFI'm unsure at the moment if my portals are\n\
+connecting to far-away places in this world,\n\
+or if they are traveling to other worlds entirely.\n\
+@FEFEFEFFStill, like the last place I traveled to,\n\
+this place is brimming with life and nature.\n\
+A mute mud-people even reside here.\n\
+@FEFEFEFFI won't find what I'm looking for here, but\n\
+perhaps if I explore, I could find out\n\
+why the portal led to here in the first place..."))
 
-DEFINE_DIALOG(DIALOG_006, 1, 3, 30, 200, _("\
-I would like to but you\n\
-haven't added that\n\
-behavior yet bitch"))
+DEFINE_DIALOG(DIALOG_JOURNAL_STC, 0b100, 3, 30, 200, _("\
+@FEFEFEFFImagine my shock to see a vast, open sky when\n\
+I emerged from this portal!\n\
+Not only that, but under my feet were buildings!\n\
+@FEFEFEFFThis is no ordinary city. It is an ancient one.\n\
+And yet, the buildings pierce the clouds...\n\
+This is a place of secret technology.\n\
+@FEFEFEFFI could certainly find something interesting here...\n\
+But will it be what I desire to find?\n\
+Likely not. But I am patient.\n\
+@FEFEFEFFAn interesting development is that I believe I\n\
+know why the portal led here... While opening it,\n\
+I was thinking much of the past.\n\
+@FEFEFEFFWith my head in the clouds like that, it's no\n\
+wonder I ended up here... But now, I must\n\
+imagine a place that has secrets of life.\n\
+@FEFEFEFFMy first thought is to visit a place\n\
+past life itself... an afterlife of sorts?\n\
+Perhaps there I could gain knowledge..."))
 
-DEFINE_DIALOG(DIALOG_007, 1, 9, 30, 200, _("\
-big\n\
-textbox\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-yeah"))
+DEFINE_DIALOG(DIALOG_JOURNAL_GSS, 0b100, 3, 30, 200, _("\
+@FEFEFEFFI have been wounded...\n\
+I was a fool for coming here.\n\
+Even with a patch of divinity, I lost.\n\
+@FEFEFEFFWhen I entered the palace in the sky,\n\
+a strikingly beautiful goddess met me.\n\
+I was hesitant when the room smelled of burning flesh...\n\
+@FEFEFEFFBut despite my fear, I asked her to reveal the\n\
+secrets of fabricating life to me.\n\
+And she laughed.\n\
+@FEFEFEFFI then realized that the scent of burning was from\n\
+her. The gold that adorned her realm was a blood curse,\n\
+meant to keep her suffering and weak.\n\
+@FEFEFEFFShe attacked me with vengeance, to kill.\n\
+I had no choice but to escape after I could\n\
+not defend myself enough.\n\
+@FEFEFEFFSewnia will be terrified to see me like this...\n\
+I doubt normal medicine will heal these burns.\n\
+Perhaps... a portal to a healing place will help."))
 
-DEFINE_DIALOG(DIALOG_008, 1, 3, 30, 200, _("\
-Oh! I know this place well! This pot leads to\n\
-Thorn Thicket Cliffs! It's the first place\n\
-The Patchmaker made a portal to.\n\
-The area has a bunch of cool plants!\n\
-Some are even alive! But not all of them\n\
-are super friendly..."))
+DEFINE_DIALOG(DIALOG_JOURNAL_SS, 1, 3, 30, 200, _("\
+@FEFEFEFFAs I lay in these saline waters, my burns healing,\n\
+I can't help but reconsider my journey.\n\
+Sewnia was a miracle. Maybe I'm a fool for this...\n\
+@FEFEFEFFWould I be satisfied giving up now?\n\
+...No. I wouldn't. I want to know how she was created.\n\
+She seemed so excited at the thought of a sister...\n\
+@FEFEFEFFStill, I must return to her.\n\
+I can't lose my life over this.\n\
+I must be more careful from now on.\n\
+@FEFEFEFFPerhaps my good friend has some\n\
+secrets within his library that\n\
+may help..."))
 
-DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 5, 30, 200, _("\
 RDR"))
 
-DEFINE_DIALOG(DIALOG_010, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 4, 30, 200, _("\
 STC"))
 
-DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 4, 30, 200, _("\
 GSS"))
 
 DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
@@ -117,16 +161,16 @@ DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
 Activate the Obelisk? \n\
 //Yes    //No      "))
 
-DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 3, 30, 200, _("\
 HVH"))
 
-DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
 VTF"))
 
-DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
 TFP"))
 
-DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 2, 30, 200, _("\
 C10"))
 
 DEFINE_DIALOG(DIALOG_020, 1, 6, 95, 150, _("\

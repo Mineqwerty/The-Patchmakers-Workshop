@@ -13,7 +13,7 @@ const MacroObject bob_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_wooden_post,               /*yaw*/   0, /*pos*/ -6500,   768,  3000),
     MACRO_OBJECT(/*preset*/ macro_wooden_post,               /*yaw*/   0, /*pos*/ -5500,   768,  3000),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/ 270, /*pos*/ -4000,     0,  6050, /*behParam*/ DIALOG_OBELISK),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  1230,   768,  3258, /*behParam*/ DIALOG_008),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  1230,   768,  3258, /*behParam*/ DIALOG_JOURNAL_SS),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_cannon_closed,             /*yaw*/   0, /*pos*/ -5018,  1332, -3533, /*behParam*/ 0x00),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_cannon_closed,             /*yaw*/   0, /*pos*/  6349,  2080, -7066, /*behParam*/ 0xC0),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_cannon_closed,             /*yaw*/   0, /*pos*/  4243,  3071, -2451, /*behParam*/ 0xC0),

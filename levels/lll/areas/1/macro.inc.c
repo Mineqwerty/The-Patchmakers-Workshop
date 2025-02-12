@@ -9,7 +9,7 @@ const MacroObject lll_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ -5800,   220,  1750),
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ -5800,   220,  1000),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/   0, /*pos*/ -3728,   154,  6057, /*behParam*/ DIALOG_068),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 315, /*pos*/  1350,   154,  5942, /*behParam*/ DIALOG_016),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 315, /*pos*/  1350,   154,  5942, /*behParam*/ DIALOG_JOURNAL_TFP),
     MACRO_OBJECT(/*preset*/ macro_coin_line_horizontal_flying, /*yaw*/   0, /*pos*/ -5760,   100,  3040),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_hidden_1up,                  /*yaw*/   0, /*pos*/ -5100,   540, -4070, /*behParam*/ 4),
     MACRO_OBJECT(/*preset*/ macro_hidden_1up_trigger,          /*yaw*/   0, /*pos*/ -5400,   320, -4070),

@@ -77,7 +77,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_OPTIONS, 1, 5, 95, 200, _("\
 いつでも　たいほうを\n\
 じゅんびしますよ。"))
 
-DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TTC, 1, 3, 95, 200, _("\
 ぼくたちは　へいわを\n\
 ねがっています。　だから\n\
 たいほうは　つかいません。\n\
@@ -88,7 +88,7 @@ DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
 あかボムぐん　たいほうを\n\
 つかえるように　します。"))
 
-DEFINE_DIALOG(DIALOG_005, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_RDR, 1, 4, 30, 200, _("\
 なーんだ、マリオさんじゃ\n\
 ないッスか！\n\
 ボムキングやっつけたって\n\
@@ -109,13 +109,13 @@ DEFINE_DIALOG(DIALOG_005, 1, 4, 30, 200, _("\
 \n\
 　　　ドン！　　やめる"))
 
-DEFINE_DIALOG(DIALOG_006, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_STC, 1, 4, 30, 200, _("\
 ははっ　ズルッコは\n\
 なしッス！　マリオさん。\n\
 またこんど\n\
 あそびましょうね。"))
 
-DEFINE_DIALOG(DIALOG_007, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_GSS, 1, 6, 30, 200, _("\
 ハア　ハア　ハア\n\
 いやーまいったッス！\n\
 ほんと　はえーッスね！\n\
@@ -123,7 +123,7 @@ DEFINE_DIALOG(DIALOG_007, 1, 6, 30, 200, _("\
 これ、あげるッス。\n\
 ホイ！"))
 
-DEFINE_DIALOG(DIALOG_008, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_SS, 1, 5, 30, 200, _("\
 もうけんワンワン　キケン\n\
 Ｃボタンの　うえをおして\n\
 『マリオのちかく』から\n\
@@ -135,7 +135,7 @@ DEFINE_DIALOG(DIALOG_008, 1, 5, 30, 200, _("\
 わたったひだりのはやしに\n\
 スターがでます。"))
 
-DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 5, 30, 200, _("\
 ひっさしぶりッス！　いま\n\
 ちょーどかえったとこッス。\n\
 パワースターのせいか\n\
@@ -152,7 +152,7 @@ DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
 　ヨーーーイ！\n\
 　　　ドン！　　やめる"))
 
-DEFINE_DIALOG(DIALOG_010, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 3, 30, 200, _("\
 そらを　じゆうにとべる\n\
 『はねのぼうし』の\n\
 スイッチを　ふみました。\n\
@@ -163,7 +163,7 @@ DEFINE_DIALOG(DIALOG_010, 1, 3, 30, 200, _("\
 \n\
 　　　はい　　　いいえ"))
 
-DEFINE_DIALOG(DIALOG_011, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 3, 30, 200, _("\
 むてきの　からだになれる\n\
 『メタルのぼうし』の\n\
 スイッチを　ふみました。\n\
@@ -217,13 +217,13 @@ DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
 『なげる』は　もういちど\n\
 Ｂボタンをおしてください。"))
 
-DEFINE_DIALOG(DIALOG_016, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 4, 30, 200, _("\
 キラキラひかったコウラに\n\
 のると、どんなところも\n\
 スイスイすすめる！\n\
 てきをけちらし　すすめ！"))
 
-DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
 ワシがボムキング、つまり\n\
 ばくだんの　おうさまだ。\n\
 よくここまできた。その\n\
@@ -237,13 +237,13 @@ DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
 うしろから　かつげるか？\n\
 さあ、かかってこい！"))
 
-DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
 ねむいので、ねています。\n\
 おこすと　おこります。\n\
 \n\
 しずかに　あるきましょう。"))
 
-DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 2, 30, 200, _("\
 ろうかは　しずかに\n\
 あるきましょう。"))
 
