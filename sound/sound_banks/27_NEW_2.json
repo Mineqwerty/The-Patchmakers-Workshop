@@ -70,6 +70,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "speaker_sewnia_choking"
+    },
+    "inst_speaker_peach": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "speaker_peach"
     }
   },
   "instrument_list": [
@@ -84,6 +89,7 @@
     "inst_speaker_patchmaker",
     "inst_speaker_bowser",
     "inst_speaker_book",
-    "inst_speaker_sewnia_choking"
+    "inst_speaker_sewnia_choking",
+    "inst_speaker_peach"
   ]
 }

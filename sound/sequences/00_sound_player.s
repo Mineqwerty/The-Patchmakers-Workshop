@@ -9263,6 +9263,17 @@ sound_ref .sound_speaker_patchmaker
 sound_ref .sound_speaker_bowser
 sound_ref .sound_speaker_book
 sound_ref .sound_speaker_sewnia_choking
+sound_ref .sound_speaker_peach
+
+.sound_speaker_peach:
+chan_setbank 13
+chan_setinstr 12
+chan_setlayer 0, .layer_speaker_peach
+chan_end
+
+.layer_speaker_peach:
+layer_note1 39, 0x10, 127
+layer_end
 
 .sound_speaker_sewnia_choking:
 chan_setbank 13
