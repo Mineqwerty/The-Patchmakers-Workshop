@@ -1589,6 +1589,12 @@ void bhv_sewnia_loop(void) {
         break;
     }
 
+    if (o->oAction <= SEWNIA_ACT_EMOTE) {
+        if (gCurrAreaIndex == 3 || (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB)) {
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+        }
+    }
+
 }
 
 Gfx *geo_switch_doll_mouth(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {
