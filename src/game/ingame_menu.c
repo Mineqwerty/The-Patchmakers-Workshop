@@ -1536,6 +1536,9 @@ s16 get_speaker_from_color(ColorRGBA rgbaColors, struct DialogEntry *dialog) {
     else if (rgbaColors[0] == 0x5F && rgbaColors[1] == 0x40 && rgbaColors[2] == 0x94) {
         return SPEAKER_SOUND_SEWNIA_CHOKING;
     }
+    else if (rgbaColors[0] == 0xFF && rgbaColors[1] == 0x75 && rgbaColors[2] == 0xDF) {
+        return SPEAKER_SOUND_PEACH;
+    }
     return SPEAKER_SOUND_NONE;
 }
 
@@ -1564,6 +1567,9 @@ void play_speaker_sound(void) {
         break;
         case SPEAKER_SOUND_SEWNIA_CHOKING:
             play_sound(SOUND_NEW_2_SPEAKER_SEWNIA_CHOKING, gGlobalSoundSource);
+        break;
+        case SPEAKER_SOUND_PEACH:
+            play_sound(SOUND_NEW_2_SPEAKER_PEACH, gGlobalSoundSource);
         break;
         default:
             play_sound(SOUND_NEW_2_SPEAKER_DEFAULT, gGlobalSoundSource);
