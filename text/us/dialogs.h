@@ -121,7 +121,7 @@ not defend myself enough.\n\
 I doubt normal medicine will heal these burns.\n\
 Perhaps... a portal to a healing place will help."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_SS, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_SS, 0b100, 3, 30, 200, _("\
 @FEFEFEFFAs I lay in these saline waters, my burns healing,\n\
 I can't help but reconsider my journey.\n\
 Sewnia was a miracle. Maybe I'm a fool for this...\n\
@@ -135,14 +135,62 @@ I must be more careful from now on.\n\
 secrets within his library that\n\
 may help..."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 1, 5, 30, 200, _("\
-@FEFEFEFF"))
+DEFINE_DIALOG(DIALOG_JOURNAL_CLC, 0b100, 3, 30, 200, _("\
+@FEFEFEFFAs I understand it, life exists in\n\
+different states, whether that may be\n\
+the life I possess, or the ones of the ghosts here.\n\
+@FEFEFEFFTo the dismay of the Master and Mistress,\n\
+I have asked a few of the spirits here how\n\
+they came to be... apparently it is a sensitive topic.\n\
+@FEFEFEFFAsking to experiment on them was a terrible\n\
+thing to do of me. Even though they are ghosts,\n\
+they should still be treated as living creatures.\n\
+@FEFEFEFFHow mad would I have to be to harm beings such as them?\n\
+The Master and Mistress are good friends of mine.\n\
+I would never do something to tarnish that relationship.\n\
+@FEFEFEFFStill... it appears I am at another dead-end.\n\
+I wonder, just what places will I have to visit\n\
+to get any answers at all?"))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 1, 4, 30, 200, _("\
-STC"))
+DEFINE_DIALOG(DIALOG_JOURNAL_HVH, 0b100, 3, 30, 200, _("\
+@FEFEFEFFNever in a thousand years did I think I would\n\
+travel here. This place is... fictional. It must be.\n\
+I was thinking of a fictional place with the portal.\n\
+@FEFEFEFFAnd yet, if I am here, am I fictional?\n\
+Of course not. And yet, the book was not written of\n\
+reality, either. So then, have I made this real?\n\
+@FEFEFEFFI doubt it. Even if my wishes gave rise to this\n\
+place, I could never hope to consider myself its creator.\n\
+A fiction that resides in many minds is close to real, anyways.\n\
+@FEFEFEFFHa...\n\
+My head is spinning just thinking about it.\n\
+I'm sure Sewnia would love to hear about this.\n\
+@FEFEFEFFI wonder, just how much does this place\n\
+obey reality? Perhaps then I can determine its\n\
+status."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 4, 30, 200, _("\
-GSS"))
+DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 0b100, 3, 30, 200, _("\
+@FEFEFEFFIn fiction I've walked, and in dreams I now stand.\n\
+A place that I warped to, yet not by my hand.\n\
+This dream is not mine, 'tis not my own land.\n\
+@FEFEFEFFWhy is it that a dream realm such as this\n\
+does not fulfill mine? Perhaps it is\n\
+a selfish notion, after all.\n\
+@FEFEFEFFI feel this place would be a good time\n\
+to end my journey. The soothing scent of flowers\n\
+relaxes my worries like nothing else.\n\
+@FEFEFEFFI can imagine it now...\n\
+Returning to the workshop, going back to small\n\
+projects, raising Sewnia ever more.\n\
+@FEFEFEFFI'm feeling nostalgic just imagining it.\n\
+But... I know I'll never forgive myself for giving up.\n\
+I... promised Sewnia, after all.\n\
+@FEFEFEFF...\n\
+\n\
+\n\
+@FEFEFEFFOne more try. Just one more.\n\
+Next time, I'll warp somewhere that\n\
+WILL give me this knowledge."))
 
 DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
 SS"))
@@ -162,7 +210,7 @@ Activate the Obelisk? \n\
 //Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 3, 30, 200, _("\
-HVH"))
+@FEFEFEFFI've made a horrible mistake."))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
 VTF"))
