@@ -5,7 +5,6 @@ const GeoLayout bowser_3_area_1_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bowser_3_dl_colonly_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bowser_3_dl_Plane_mesh_layer_1),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, bowser_3_dl_Plane_008_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

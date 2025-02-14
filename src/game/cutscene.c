@@ -30,11 +30,14 @@
 #include "levels/castle_inside/header.inc.h"
 #include "levels/bowser_1/header.inc.h"
 #include "levels/bowser_2/header.inc.h"
+#include "levels/bowser_3/header.inc.h"
 
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
 f32 gCutsceneApproachFOV = -1;
 s16 gCutsceneGameState = 0;
+
+s16 cCameraRollCircleProgress = 0;
 
 u8 cCutsceneActive;
 int cCutsceneIndex;
@@ -92,6 +95,7 @@ enum cutscene_events {
     EVENT_CANCEL_SPLINE_DATA,
     EVENT_CAMERA_SHAKE,
     EVENT_CAMERA_DOWN_VEL,
+    EVENT_CAMERA_ROLL_CIRCLE,
 
     EVENT_DISABLE_MARIO_RENDER,
     EVENT_ENABLE_MARIO_RENDER,
@@ -1508,6 +1512,28 @@ s32 event_enter_brink[] = {
 
 };
 
+s32 event_mantle_of_madness_platforming[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_FADE_INTO_COLOR, 30, 255, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 219,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 220,
+    EVENT_SET_MARIO_POSITION, -15000, -6303, 0,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_FADE_FROM_COLOR, 30, 255, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_CAMERA_ROLL_CIRCLE,
+    EVENT_WAIT, 150,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_END_CUTSCENE,
+
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1539,6 +1565,7 @@ s32 *eventList[] = {
     event_enter_brink,
     event_second_memory,
     //25
+    event_mantle_of_madness_platforming
 
 };
 
@@ -1805,6 +1832,9 @@ s32 *splineList[] = {
     castle_inside_area_3_spline_EnterThirdHubFocus5,
     castle_inside_area_3_spline_EnterThirdHubPos6,
     castle_inside_area_3_spline_EnterThirdHubFocus6,
+    bowser_3_area_1_spline_ZoomPlatformingPhasePos1,
+    //220
+    bowser_3_area_1_spline_ZoomPlatformingPhaseFocus1,
 
 };
 
@@ -1823,6 +1853,7 @@ void begin_cutscene_event(s32 event) {
     cMarioMoveDownTimer = 0;
     cMarioAnimLockFrame = 0;
     cCameraDownVel = 0;
+    cCameraRollCircleProgress = 0;
 }
 
 void event_handler(void) {
@@ -1831,7 +1862,8 @@ void event_handler(void) {
         struct Object *eventObj;
         f32 dist;
 
-        if (gPlayer1Controller->buttonPressed & START_BUTTON) {
+        if ((gPlayer1Controller->buttonPressed & START_BUTTON)
+            && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING) {
             if (cSkipCutsceneState == 0) {
                 cSkipCutsceneState = 1;
                 cSkipCutsceneTimer = 90;
@@ -1942,6 +1974,10 @@ void event_handler(void) {
                     gCamera->focus[2] = param3;
                     cMarioFocusSpeed = 0;
                     cCutsceneIndex += 4;
+                break;
+                case EVENT_CAMERA_ROLL_CIRCLE:
+                    cCameraRollCircleProgress = 1;
+                    cCutsceneIndex += 1;
                 break;
                 case EVENT_CAMERA_SET_MARIO_AS_FOCUS:
                     cMarioFocusSpeed = param1;
@@ -2237,6 +2273,15 @@ void event_handler(void) {
 
         if (cEyeStateOverride != -1) {
             gMarioState->marioBodyState->eyeState = cEyeStateOverride;
+        }
+
+        if (cCameraRollCircleProgress > 0) {
+            gLakituState.keyDanceRoll = 546 * cCameraRollCircleProgress;
+            cCameraRollCircleProgress++;
+            if (cCameraRollCircleProgress >= 120) {
+                gLakituState.keyDanceRoll = 0;
+                cCameraRollCircleProgress = 0;
+            }
         }
 
         if (cMarioFocusSpeed > 0) {

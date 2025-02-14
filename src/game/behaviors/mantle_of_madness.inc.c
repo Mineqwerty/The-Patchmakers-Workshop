@@ -1,3 +1,5 @@
+#include "src/game/cutscene.h"
+
 struct ObjectHitbox sMantleOfMadnessHitbox = {
     /* interactType:      */ INTERACT_MANTLE_OF_MADNESS,
     /* downOffset:        */ 150,
@@ -16,7 +18,9 @@ enum MantleOfMadnessPhases {
     MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT,
     MANTLE_OF_MADNESS_PHASE_LASER_TURRETS,
     MANTLE_OF_MADNESS_PHASE_CRUSHING_HANDS,
-    MANTLE_OF_MADNESS_PHASE_FIRE_WALLS
+    MANTLE_OF_MADNESS_PHASE_PLATFORMING,
+    MANTLE_OF_MADNESS_PHASE_HAND_AND_EYES,
+    MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE,
 };
 
 enum MantleOfMadnessActions {
@@ -28,7 +32,10 @@ enum MantleOfMadnessActions {
     MANTLE_OF_MADNESS_ACT_APPROACHING_LASER,
 
     MANTLE_OF_MADNESS_ACT_SPAWN_LASER_TURRETS,
-    MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND
+    MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND,
+    MANTLE_OF_MADNESS_ACT_TRANSITION_TO_PLATFORMING,
+    MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES,
+    MANTLE_OF_MADNESS_ACT_BIG_NEEDLE
 };
 
 void mantle_of_madness_control_face_twitch(void) {
@@ -59,6 +66,25 @@ void mantle_of_madness_phase_transition(void) {
         case MANTLE_OF_MADNESS_PHASE_LASER_TURRETS:
             if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.7f) {
                 o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND;
+                o->oMantleOfMadnessPhase++;
+            }
+        break;
+        case MANTLE_OF_MADNESS_PHASE_CRUSHING_HANDS:
+            if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.5f) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_TRANSITION_TO_PLATFORMING;
+                o->oMantleOfMadnessPhase++;
+            }
+        break;
+        case MANTLE_OF_MADNESS_PHASE_PLATFORMING:
+            if ((f32)o->oHealth / (f32)MANTLE_OF_MADNESS_MAX_HP < 0.25f) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES;
+                o->oMantleOfMadnessPhase++;
+            }
+        break;
+        case MANTLE_OF_MADNESS_PHASE_HAND_AND_EYES:
+            if (o->oHealth <= 1) {
+                o->oHealth = 1;
+                o->oAction = MANTLE_OF_MADNESS_ACT_BIG_NEEDLE;
                 o->oMantleOfMadnessPhase++;
             }
         break;
@@ -94,6 +120,30 @@ void mantle_of_madness_phase_update(void) {
                 o->oMantleOfMadnessRageLevel = 0;
             }
             
+        break;
+        case MANTLE_OF_MADNESS_PHASE_PLATFORMING:
+            if (o->oDistanceToMario < 3000.0f) {
+                o->oMantleOfMadnessRageLevel = 2;
+            }
+            else {
+                o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+                o->oTimer = 0;
+            }
+        break;
+        case MANTLE_OF_MADNESS_PHASE_HAND_AND_EYES:
+            if (o->oDistanceToMario < 500.0f) {
+                o->oMantleOfMadnessRageLevel = 3;
+            }
+            else if (o->oHealth < (MANTLE_OF_MADNESS_MAX_HP * 0.1f)) {
+                o->oMantleOfMadnessRageLevel = 1;
+            }
+            else {
+                o->oMantleOfMadnessRageLevel = 0;
+            }
+            
+        break;
+        case MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE:
+            o->oHealth = 1;
         break;
     }
 }
@@ -257,6 +307,111 @@ void mantle_of_madness_act_spawn_mad_hand(void) {
     }
 }
 
+void mantle_of_madness_act_transition_to_platforming(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger == 1) {
+                o->oPosY = -6303;
+                o->oPosX = 15277;
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (gCurCutscene == -1) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+            }
+        break;
+    }
+}
+
+void mantle_of_madness_act_spawn_hand_and_eyes(void) {
+
+    switch (o->oSubAction) {
+        case 0:
+            if (o->oTimer == 1) {
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 60, 255, 0, 0);
+            }
+            if (o->oTimer == 60) {
+                o->oTimer = 0;
+                o->oPosX = o->oHomeX;
+                o->oPosY = o->oHomeY;
+                gMarioState->pos[0] = -2887;
+                gMarioState->pos[1] = 1200;
+                gMarioState->pos[2] = 0;
+                o->oSubAction++;
+            }
+        break;
+        case 1:
+            if (o->oTimer == 1) {
+                play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 30, 255, 0, 0);
+            }
+
+            if (o->oTimer == 45)  {
+                o->oTimer = 0;
+                o->oSubAction++;
+            }
+
+        break;
+        case 2:
+        enable_time_stop_including_mario();
+        gCamera->cutscene = 1;
+    
+        if (o->oTimer < 45) {
+            gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX - 800, 90.0f);
+            gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 1200, 90.0f);
+            gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ, 90.0f);
+            
+            gLakituState.goalFocus[0] = approach_f32_symmetric(gLakituState.goalFocus[0], 0, 140.0f);
+            gLakituState.goalFocus[1] = approach_f32_symmetric(gLakituState.goalFocus[1], 1200, 130.0f);
+            gLakituState.goalFocus[2] = approach_f32_symmetric(gLakituState.goalFocus[2], 0, 140.0f);
+        }
+        else {
+            gLakituState.goalPos[0] = approach_f32_symmetric(gLakituState.goalPos[0], o->oPosX - 1800, 90.0f);
+            gLakituState.goalPos[1] = approach_f32_symmetric(gLakituState.goalPos[1], o->oPosY + 2800, 90.0f);
+            gLakituState.goalPos[2] = approach_f32_symmetric(gLakituState.goalPos[2], o->oPosZ, 90.0f);
+            
+            gLakituState.goalFocus[0] = approach_f32_symmetric(gLakituState.goalFocus[0], 0, 140.0f);
+            gLakituState.goalFocus[1] = approach_f32_symmetric(gLakituState.goalFocus[1], 1100, 130.0f);
+            gLakituState.goalFocus[2] = approach_f32_symmetric(gLakituState.goalFocus[2], 0, 140.0f);
+        }
+    
+        if (o->oTimer == 5) {
+                struct Object *madHand = spawn_object_relative(0, -2500, 3000, 0, o, MODEL_MAD_SLAMMING_HAND, bhvMadSlammingHand);
+    
+                madHand->oAction = 8;
+                madHand->oFaceAngleYaw = -0x4000;
+                madHand->oVelY = -20;
+        }
+
+        if (o->oTimer == 45) {
+            for (int i = 0; i < 4; i++) {
+                struct Object *laser = spawn_object_abs_with_rot(o, 0, MODEL_MAD_LASER_TURRET, bhvMadLaserTurret, 
+                -400 + 800.0f * (1 - 2*(i%2)), 1250, 800.0f * (1 - 2*(i/2)),
+                0, 0, 0);
+    
+                laser->oBehParams2ndByte = i;
+    
+                spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvMistParticleSpawner, 
+                250.0f * (1 - 2*(i%2)), 1250, 250.0f * (1 - 2*(i/2)),
+                0, 0, 0);
+    
+            }
+        }
+    
+        if (o->oTimer == 95) {
+            gCamera->cutscene = 0;
+            disable_time_stop_including_mario();
+            o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+        }
+        break;
+    }
+    
+}
+
 void mantle_of_madness_choose_attack(void) {
     u32 attack;
     why_am_i_using_goto:
@@ -298,8 +453,8 @@ void bhv_mantle_of_madness_init(void) {
     o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
     o->oMantleOfMadnessRageLevel = 0;
 
-    o->oMantleOfMadnessPhase = 1;
-    //o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.72f;
+    o->oMantleOfMadnessPhase = 2;
+    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.26f;
 }
 
 void bhv_mantle_of_madness_loop(void) {
@@ -329,6 +484,12 @@ void bhv_mantle_of_madness_loop(void) {
         break;
         case MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND:
             mantle_of_madness_act_spawn_mad_hand();
+        break;
+        case MANTLE_OF_MADNESS_ACT_TRANSITION_TO_PLATFORMING:
+            mantle_of_madness_act_transition_to_platforming();
+        break;
+        case MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES:
+            mantle_of_madness_act_spawn_hand_and_eyes();
         break;
     }
 

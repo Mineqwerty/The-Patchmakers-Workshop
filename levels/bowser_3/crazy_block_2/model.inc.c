@@ -618,7 +618,7 @@ Gfx crazy_block_2_crazy_001_mesh_layer_1_tri_0[] = {
 };
 
 
-Gfx mat_crazy_block_2_scarydark_layer1[] = {
+Gfx mat_crazy_block_2_nonsafe_layer1[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, TEXEL1, TEXEL0, TEXEL1, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -639,7 +639,7 @@ Gfx mat_crazy_block_2_scarydark_layer1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_crazy_block_2_scarydark_layer1[] = {
+Gfx mat_revert_crazy_block_2_nonsafe_layer1[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -653,9 +653,9 @@ Gfx crazy_block_2_crazy_001_mesh_layer_1[] = {
 	gsSPVertex(crazy_block_2_crazy_001_mesh_layer_1_vtx_cull + 0, 8, 0),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPCullDisplayList(0, 7),
-	gsSPDisplayList(mat_crazy_block_2_scarydark_layer1),
+	gsSPDisplayList(mat_crazy_block_2_nonsafe_layer1),
 	gsSPDisplayList(crazy_block_2_crazy_001_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_crazy_block_2_scarydark_layer1),
+	gsSPDisplayList(mat_revert_crazy_block_2_nonsafe_layer1),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

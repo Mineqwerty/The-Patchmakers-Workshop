@@ -18,6 +18,11 @@ void bhv_mad_laser_turret_init(void) {
 }
 
 void bhv_mad_laser_turret_loop(void) {
+
+    if (o->parentObj && o->parentObj->oMantleOfMadnessPhase != 1 && o->parentObj->oMantleOfMadnessPhase != 4) {
+        o->oHealth = 0;
+    }
+
     switch (o->oAction) {
         case 0:
             if (o->oTimer == 240) {

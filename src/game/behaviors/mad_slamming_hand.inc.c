@@ -22,6 +22,11 @@ void bhv_mad_slamming_hand_init(void) {
 }
 
 void bhv_mad_slamming_hand_loop(void) {
+
+    if (o->parentObj && o->parentObj->oMantleOfMadnessPhase != 2 && o->parentObj->oMantleOfMadnessPhase != 4) {
+        o->oAction = 4;
+    }
+
     switch (o->oAction) {
         case 0:
             if (gMarioState->marioObj->platform == o && o->oMarioLandedFirstTime == 0) {

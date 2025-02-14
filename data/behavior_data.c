@@ -9055,7 +9055,8 @@ const BehaviorScript bhvTsWarpPlatform[] = {
 const BehaviorScript bhvMantleOfMadness[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
-    SET_FLOAT(oDrawingDistance, 30000),
+    SET_FLOAT(oDrawingDistance, 31300),
+    SET_HOME(),
     CALL_NATIVE(bhv_mantle_of_madness_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_mantle_of_madness_loop),
