@@ -1,0 +1,12 @@
+extern const GeoLayout final_needle_geo[];
+extern u8 final_needle_vent_ia8[];
+extern Vtx final_needle_Circle_002_mesh_layer_1_vtx_cull[8];
+extern Vtx final_needle_Circle_002_mesh_layer_1_vtx_0[31];
+extern Gfx final_needle_Circle_002_mesh_layer_1_tri_0[];
+extern Vtx final_needle_Circle_002_mesh_layer_1_vtx_1[64];
+extern Gfx final_needle_Circle_002_mesh_layer_1_tri_1[];
+extern Gfx mat_final_needle_f3dlite_material_017[];
+extern Gfx mat_revert_final_needle_f3dlite_material_017[];
+extern Gfx mat_final_needle_f3dlite_material[];
+extern Gfx mat_revert_final_needle_f3dlite_material[];
+extern Gfx final_needle_Circle_002_mesh_layer_1[];

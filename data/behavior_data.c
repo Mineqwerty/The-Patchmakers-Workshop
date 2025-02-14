@@ -9245,3 +9245,13 @@ const BehaviorScript bhvCrazyBlock[] = {
         CALL_NATIVE(bhv_crazy_block_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFinalNeedle[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_final_needle_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_final_needle_loop),
+    END_LOOP(),
+};

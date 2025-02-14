@@ -83,4 +83,6 @@ extern const LevelScript level_bowser_3_entry[];
 
 #include "levels/bowser_3/crazy_block_3/geo_header.h"
 
+#include "levels/bowser_3/final_needle/geo_header.h"
+
 #endif

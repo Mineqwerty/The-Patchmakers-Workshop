@@ -40,3 +40,4 @@
 #include "levels/bowser_3/crazy_block_1/geo.inc.c"
 #include "levels/bowser_3/crazy_block_2/geo.inc.c"
 #include "levels/bowser_3/crazy_block_3/geo.inc.c"
+#include "levels/bowser_3/final_needle/geo.inc.c"

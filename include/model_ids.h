@@ -807,6 +807,7 @@
 #define MODEL_CRAZY_BLOCK_1                   0x10A
 #define MODEL_CRAZY_BLOCK_2                   0x10B
 #define MODEL_CRAZY_BLOCK_3                   0x10C
+#define MODEL_FINAL_NEEDLE                   0x10D
 
 
 //New File Select

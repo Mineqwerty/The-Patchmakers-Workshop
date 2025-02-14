@@ -1192,3 +1192,5 @@ void bhv_skybridge_ring_init(void);
 void bhv_skybridge_ring_loop(void);
 void bhv_crazy_block_init(void);
 void bhv_crazy_block_loop(void);
+void bhv_final_needle_init(void);
+void bhv_final_needle_loop(void);

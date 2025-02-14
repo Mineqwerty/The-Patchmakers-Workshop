@@ -794,7 +794,7 @@ Vtx bowser_3_dl_colonly_mesh_layer_1_vtx_cull[8] = {
 	{{ {15277, -11920, -5158}, 0, {0, 0}, {0, 0, 0, 0} }},
 };
 
-Vtx bowser_3_dl_colonly_mesh_layer_1_vtx_0[380] = {
+Vtx bowser_3_dl_colonly_mesh_layer_1_vtx_0[384] = {
 	{{ {9281, -10330, 4681}, 0, {8850, 2331}, {87, 87, 87, 255} }},
 	{{ {8830, -10330, 3292}, 0, {8488, 1773}, {87, 87, 87, 255} }},
 	{{ {10011, -10330, 2434}, 0, {9437, 1428}, {87, 87, 87, 255} }},
@@ -1175,6 +1175,10 @@ Vtx bowser_3_dl_colonly_mesh_layer_1_vtx_0[380] = {
 	{{ {12659, -11118, 3268}, 0, {5152, 2227}, {57, 57, 57, 255} }},
 	{{ {12659, -6287, 3268}, 0, {5152, 286}, {213, 213, 213, 255} }},
 	{{ {12381, -6287, 3646}, 0, {4848, 286}, {213, 213, 213, 255} }},
+	{{ {15277, -3401, 5158}, 0, {-1513, -2302}, {87, 87, 87, 255} }},
+	{{ {-16224, -3401, 5158}, 0, {-1513, 3294}, {87, 87, 87, 255} }},
+	{{ {-16224, -3401, -5158}, 0, {2152, 3294}, {87, 87, 87, 255} }},
+	{{ {15277, -3401, -5158}, 0, {2152, -2302}, {87, 87, 87, 255} }},
 };
 
 Gfx bowser_3_dl_colonly_mesh_layer_1_tri_0[] = {
@@ -1278,7 +1282,7 @@ Gfx bowser_3_dl_colonly_mesh_layer_1_tri_0[] = {
 	gsSP2Triangles(20, 21, 22, 0, 20, 22, 23, 0),
 	gsSP2Triangles(24, 25, 26, 0, 24, 26, 27, 0),
 	gsSP2Triangles(28, 29, 30, 0, 30, 31, 28, 0),
-	gsSPVertex(bowser_3_dl_colonly_mesh_layer_1_vtx_0 + 352, 28, 0),
+	gsSPVertex(bowser_3_dl_colonly_mesh_layer_1_vtx_0 + 352, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 3, 4, 5, 0),
 	gsSP2Triangles(5, 6, 3, 0, 5, 7, 6, 0),
 	gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
@@ -1286,6 +1290,7 @@ Gfx bowser_3_dl_colonly_mesh_layer_1_tri_0[] = {
 	gsSP2Triangles(16, 17, 18, 0, 16, 18, 19, 0),
 	gsSP2Triangles(20, 21, 22, 0, 20, 22, 23, 0),
 	gsSP2Triangles(24, 25, 26, 0, 24, 26, 27, 0),
+	gsSP2Triangles(28, 29, 30, 0, 28, 30, 31, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -1547,7 +1552,7 @@ Gfx mat_revert_bowser_3_dl_scarydark_layer1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_bowser_3_dl_f3dlite_material[] = {
+Gfx mat_bowser_3_dl_f3dlite_material_010[] = {
     gsSPLightColor(LIGHT_1, 0xff),
     gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
@@ -1557,7 +1562,7 @@ Gfx mat_bowser_3_dl_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_bowser_3_dl_f3dlite_material[] = {
+Gfx mat_revert_bowser_3_dl_f3dlite_material_010[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -1590,9 +1595,9 @@ Gfx bowser_3_dl_colonly_mesh_layer_1[] = {
 	gsSPDisplayList(mat_bowser_3_dl_scarydark_layer1),
 	gsSPDisplayList(bowser_3_dl_colonly_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_bowser_3_dl_scarydark_layer1),
-	gsSPDisplayList(mat_bowser_3_dl_f3dlite_material),
+	gsSPDisplayList(mat_bowser_3_dl_f3dlite_material_010),
 	gsSPDisplayList(bowser_3_dl_colonly_mesh_layer_1_tri_2),
-	gsSPDisplayList(mat_revert_bowser_3_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_bowser_3_dl_f3dlite_material_010),
 	gsSPEndDisplayList(),
 };
 

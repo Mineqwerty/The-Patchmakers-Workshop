@@ -58,7 +58,7 @@ Gfx bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material_007_layer1
 	gsSPEndDisplayList(),
 };
 
-Gfx bowser_3_area_1_collision_f3dlite_material_layer_1[] = {
+Gfx bowser_3_area_1_collision_f3dlite_material_010_layer_1[] = {
     gsSPLightColor(LIGHT_1, 0xff),
     gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
@@ -68,7 +68,7 @@ Gfx bowser_3_area_1_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material[] = {
+Gfx bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material_010[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -95,8 +95,8 @@ const Gfx* bowser_3_area_1_collision_materials[] = {
 	&bowser_3_area_1_collision_mat_revert_bowser_3_dl_scarydark_layer1,
 	&bowser_3_area_1_collision_f3dlite_material_007_layer_1,
 	&bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material_007_layer1,
-	&bowser_3_area_1_collision_f3dlite_material_layer_1,
-	&bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material,
+	&bowser_3_area_1_collision_f3dlite_material_010_layer_1,
+	&bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material_010,
 	&bowser_3_area_1_collision_f3dlite_material_009_layer_1,
 	&bowser_3_area_1_collision_mat_revert_bowser_3_dl_f3dlite_material_009,
 };
@@ -323,7 +323,7 @@ const Collision bowser_3_area_1_collision[] = {
 	COL_TRI_SPECIAL(26, 28, 29, 0x0FCE),
 	COL_TRI_SPECIAL(15, 16, 27, 0x0FCE),
 	COL_TRI_SPECIAL(15, 27, 26, 0x0FCE),
-	COL_TRI_MAT_INIT(SURFACE_DEFAULT, 2, 3, 1, 218),
+	COL_TRI_MAT_INIT(SURFACE_DEFAULT, 2, 3, 1, 220),
 	COL_TRI_SPECIAL(30, 31, 32, 0x0FCE),
 	COL_TRI_SPECIAL(32, 33, 34, 0x0FCE),
 	COL_TRI_SPECIAL(32, 34, 30, 0x0FCE),
@@ -516,6 +516,8 @@ const Collision bowser_3_area_1_collision[] = {
 	COL_TRI_SPECIAL(143, 145, 149, 0x0FCE),
 	COL_TRI_SPECIAL(140, 144, 148, 0x0FCE),
 	COL_TRI_SPECIAL(140, 148, 147, 0x0FCE),
+	COL_TRI_SPECIAL(2, 7, 6, 0x0FCE),
+	COL_TRI_SPECIAL(2, 6, 3, 0x0FCE),
 	COL_TRI_SPECIAL(150, 151, 152, 0x0FCE),
 	COL_TRI_SPECIAL(150, 152, 153, 0x0FCE),
 	COL_TRI_SPECIAL(154, 155, 156, 0x0FCE),

@@ -48,6 +48,7 @@ const LevelScript level_bowser_3_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CRAZY_BLOCK_1, crazy_block_1_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CRAZY_BLOCK_2, crazy_block_2_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CRAZY_BLOCK_3, crazy_block_3_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_FINAL_NEEDLE, final_needle_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -81,7 +82,6 @@ const LevelScript level_bowser_3_entry[] = {
 		OBJECT(MODEL_YARN_GOOMBA, -9281, -6359, 2624, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_YARN_GOOMBA, -5793, -5055, -3445, 0, 0, 0, 0x00000000, bhvGoomba),
 		OBJECT(MODEL_YARN_GOOMBA, 82, -7271, 301, 0, 0, 0, 0x00000000, bhvGoomba),
-		OBJECT(MODEL_MANTLE_OF_MADNESS, 2268, 1199, 0, 0, 0, 0, 0x00000000, bhvMantleOfMadness),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 930, -7271, -205, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, -2062, -4726, 2177, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 9649, -6711, -338, 0, 0, 0, 0x00000000, bhvScuttlebug),
@@ -92,6 +92,7 @@ const LevelScript level_bowser_3_entry[] = {
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 13861, -6304, -2667, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 14682, -6304, 4099, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 13592, -6304, 2102, 0, 0, 0, 0x00000000, bhvScuttlebug),
+		OBJECT(MODEL_FINAL_NEEDLE, 153, 1529, 138, 0, 0, 0, 0x00000000, bhvFinalNeedle),
 		TERRAIN(bowser_3_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_3_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_3_area_1_macro_objs),

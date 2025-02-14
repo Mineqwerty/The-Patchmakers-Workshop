@@ -52,3 +52,4 @@
 #include "levels/bowser_3/crazy_block_2/model.inc.c"
 #include "levels/bowser_3/crazy_block_3/collision.inc.c"
 #include "levels/bowser_3/crazy_block_3/model.inc.c"
+#include "levels/bowser_3/final_needle/model.inc.c"
