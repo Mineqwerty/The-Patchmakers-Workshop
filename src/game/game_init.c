@@ -64,6 +64,7 @@ s16 gBossMaxHealth;
 u32 gTatumCount;
 u8 gTatumStall;
 u8 gSewniaFollowing = 1;
+f32 gFinalNeedleProgress = 0;
 s16 portalSelectorSide;
 s16 gDestroyedCrackInReality = 0;
 u8 gFBE = FALSE;

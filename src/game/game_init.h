@@ -63,6 +63,7 @@ extern u8 gTatumStall;
 extern u32 gPatchChallengeTimer;
 extern s16 portalSelectorSide;
 extern s16 gDestroyedCrackInReality;
+extern f32 gFinalNeedleProgress;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif

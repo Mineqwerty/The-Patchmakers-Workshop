@@ -1495,11 +1495,13 @@
 #define oMantleOfMadnessRageLevel           OBJECT_FIELD_S32(0x1D)
 #define oMantleOfMadnessLastAttack           OBJECT_FIELD_S32(0x1E)
 #define oMantleOfMadnessAttackCounter           OBJECT_FIELD_S32(0x1F)
+#define oMantleOfMadnessFinalNeedleProgress           OBJECT_FIELD_S32(0x20)
 
 //mad slamming hand
 #define oMadSlammingHandShadow           OBJECT_FIELD_OBJ(0x1B)
 #define oMadSlammingHandEyeball           OBJECT_FIELD_OBJ(0x1C)
 #define oMarioLandedFirstTime           OBJECT_FIELD_S32(0x1D)
+
 
 //shrine shape controller
 #define oShrineShapeStep           OBJECT_FIELD_S32(0x1B)

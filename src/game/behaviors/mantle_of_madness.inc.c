@@ -88,6 +88,11 @@ void mantle_of_madness_phase_transition(void) {
                 o->oMantleOfMadnessPhase++;
             }
         break;
+        case MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE:
+            if (o->oHealth <= 1) {
+                o->oHealth = 1;
+            }
+        break;
     }
 }
 
@@ -412,6 +417,55 @@ void mantle_of_madness_act_spawn_hand_and_eyes(void) {
     
 }
 
+u8 mario_holding_down_all_needle_inputs(void) {
+
+    u64 inputs = 1;
+
+    if (o->oMantleOfMadnessFinalNeedleProgress >= 1) {
+        inputs *= gPlayer1Controller->buttonDown & A_BUTTON;
+    }
+    if (o->oMantleOfMadnessFinalNeedleProgress >= 2) {
+        inputs *= gPlayer1Controller->buttonDown & B_BUTTON;
+    }
+    if (o->oMantleOfMadnessFinalNeedleProgress >= 3) {
+        inputs *= gPlayer1Controller->buttonDown & Z_TRIG;
+    }
+
+    return (inputs) && (gPlayer1Controller->rawStickY < -6);
+}
+
+void mantle_of_madness_act_big_needle(void) {
+    f32 gainFactor = -0.005f;
+
+    if (gFinalNeedleProgress >= 0.15f) {
+        if (o->oMantleOfMadnessFinalNeedleProgress < 1) {
+            o->oMantleOfMadnessFinalNeedleProgress = 1;
+        }
+    }
+    if (gFinalNeedleProgress >= 0.25f) {
+        if (o->oMantleOfMadnessFinalNeedleProgress < 2) {
+            o->oMantleOfMadnessFinalNeedleProgress = 2;
+        }
+    }
+    if (gFinalNeedleProgress >= 0.50f) {
+        if (o->oMantleOfMadnessFinalNeedleProgress < 3) {
+            o->oMantleOfMadnessFinalNeedleProgress = 3;
+        }
+    }
+    if (gFinalNeedleProgress >= 0.75f) {
+        if (o->oMantleOfMadnessFinalNeedleProgress < 4) {
+            o->oMantleOfMadnessFinalNeedleProgress = 4;
+        }
+    }
+
+    if (mario_holding_down_all_needle_inputs()) {
+        gainFactor = 0.005f;
+    }
+    gFinalNeedleProgress = CLAMP(gFinalNeedleProgress + gainFactor, 0.0f, 1.0f);
+
+    dbp((int)(o->oMantleOfMadnessFinalNeedleProgress));
+}
+
 void mantle_of_madness_choose_attack(void) {
     u32 attack;
     why_am_i_using_goto:
@@ -452,9 +506,11 @@ void bhv_mantle_of_madness_init(void) {
     o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT;
     o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
     o->oMantleOfMadnessRageLevel = 0;
+    o->oMantleOfMadnessFinalNeedleProgress = 0;
 
-    o->oMantleOfMadnessPhase = 2;
-    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.26f;
+    o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE;
+    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.01f;
+    o->oAction = MANTLE_OF_MADNESS_ACT_BIG_NEEDLE;
 }
 
 void bhv_mantle_of_madness_loop(void) {
@@ -490,6 +546,9 @@ void bhv_mantle_of_madness_loop(void) {
         break;
         case MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES:
             mantle_of_madness_act_spawn_hand_and_eyes();
+        break;
+        case MANTLE_OF_MADNESS_ACT_BIG_NEEDLE:
+            mantle_of_madness_act_big_needle();
         break;
     }
 
