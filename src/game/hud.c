@@ -1301,7 +1301,7 @@ void render_hud(void) {
         }
     }
 
-    if (gRenderFinalNeedlePrompts) {
+    if (gRenderFinalNeedlePrompts && gFinalNeedleStage < 6) {
         create_dl_ortho_matrix();
         render_hud_final_needle_prompts();
     }

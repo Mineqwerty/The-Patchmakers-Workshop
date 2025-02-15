@@ -1194,3 +1194,5 @@ void bhv_crazy_block_init(void);
 void bhv_crazy_block_loop(void);
 void bhv_final_needle_init(void);
 void bhv_final_needle_loop(void);
+void bhv_mantle_death_ray_init(void);
+void bhv_mantle_death_ray_loop(void);

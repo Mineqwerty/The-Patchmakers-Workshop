@@ -59,3 +59,4 @@
 #include "levels/bowser_3/prompt_r_trig/model.inc.c"
 #include "levels/bowser_3/prompt_joystick_back/model.inc.c"
 #include "levels/bowser_3/prompt_joystick/model.inc.c"
+#include "levels/bowser_3/mantle_death_ray/model.inc.c"

@@ -591,7 +591,7 @@ enum MarioActionFlags {
 #define ACT_LEDGE_CLIMB_FAST           0x0000054F // (0x14F | ACT_FLAG_MOVING)
 #define ACT_CAUGHT_BY_STRING                 0x00000150 // (0x150)
 #define ACT_PULLING_FINAL_NEEDLE             (0x151 | ACT_FLAG_INTANGIBLE)
-#define ACT_UNUSED_152                 0x00000152 // (0x152)
+#define ACT_RELEASED_FINAL_NEEDLE             (0x152 | ACT_FLAG_INTANGIBLE)
 #define ACT_UNUSED_153                 0x00000153 // (0x153)
 #define ACT_UNUSED_154                 0x00000154 // (0x154)
 #define ACT_UNUSED_155                 0x00000155 // (0x155)

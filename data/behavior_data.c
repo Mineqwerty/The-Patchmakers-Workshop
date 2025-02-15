@@ -9255,3 +9255,13 @@ const BehaviorScript bhvFinalNeedle[] = {
         CALL_NATIVE(bhv_final_needle_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvMantleDeathRay[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_mantle_death_ray_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mantle_death_ray_loop),
+    END_LOOP(),
+};

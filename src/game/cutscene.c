@@ -1534,6 +1534,29 @@ s32 event_mantle_of_madness_platforming[] = {
 
 };
 
+s32 event_mantle_of_madness_final_needle[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_LOOK_DOWN_AT_PATCHMAKER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 221,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 222,
+    EVENT_SET_MARIO_POSITION, -1000, 1199, 0,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_WAIT, 60,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 223,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 224,
+    EVENT_WAIT, 10,
+    EVENT_MARIO_APPROACH_POINT, 0, 1199, 0,
+    EVENT_WAIT, 60,
+    EVENT_SET_MARIO_ACTION, ACT_PULLING_FINAL_NEEDLE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, -300, 1330, 200,
+    EVENT_CAMERA_FOCUS, 0, 1190, 0,
+    EVENT_END_CUTSCENE,
+
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1565,7 +1588,8 @@ s32 *eventList[] = {
     event_enter_brink,
     event_second_memory,
     //25
-    event_mantle_of_madness_platforming
+    event_mantle_of_madness_platforming,
+    event_mantle_of_madness_final_needle
 
 };
 
@@ -1835,6 +1859,11 @@ s32 *splineList[] = {
     bowser_3_area_1_spline_ZoomPlatformingPhasePos1,
     //220
     bowser_3_area_1_spline_ZoomPlatformingPhaseFocus1,
+    bowser_3_area_1_spline_FinalNeedleCutscenePos1,
+    bowser_3_area_1_spline_FinalNeedleCutsceneFocus1,
+    bowser_3_area_1_spline_FinalNeedleCutscenePos2,
+    bowser_3_area_1_spline_FinalNeedleCutsceneFocus2,
+    //225
 
 };
 

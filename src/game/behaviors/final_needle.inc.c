@@ -1,5 +1,8 @@
 void bhv_final_needle_init(void) {
     o->oFaceAngleYaw = 0x4000;
+    o->oPosX = -30;
+    o->oPosY = 3000;
+    o->oPosZ = 0;
 }
 
 u8 finalNeedleTopLeftVtx[8] = {
@@ -68,7 +71,13 @@ void bhv_final_needle_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            o->oPosY -= 10 + o->oTimer;
+            if (o->oPosY <= 1300) {
+                o->oPosY = 1300;
+                cur_obj_shake_screen(SHAKE_POS_LARGE);
+            }
+            else {
+                o->oPosY -= 10 + o->oTimer;
+            }
             if (o->oTimer == 60) {
                 o->oAction++;
             }
@@ -79,6 +88,26 @@ void bhv_final_needle_loop(void) {
             
             o->oPosX = -30 + -800 * gFinalNeedleProgress;
             o->oFaceAnglePitch = -3000 * gFinalNeedleProgress;
+
+            if (gFinalNeedleStage == 6) {
+                o->oAction++;
+            }
+        break;
+        case 2:
+            o->oPosY += 80;
+            o->oPosX += 140;
+            if (o->oTimer == 10) {
+                o->oAction++;
+                o->oPosY = 1400;
+                o->oPosX = -1000;
+            }
+        break;
+        case 3:
+            o->oPosY += 120;
+            o->oPosX += 200;
+            if (o->oTimer == 10) {
+                o->oAction++;
+            }
         break;
     }
 

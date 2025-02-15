@@ -417,3 +417,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/beginning_hub_barrier.inc.c"
 #include "behaviors/crazy_block.inc.c"
 #include "behaviors/final_needle.inc.c"
+#include "behaviors/mantle_death_ray.inc.c"

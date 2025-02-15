@@ -1,5 +1,6 @@
 #include "src/game/cutscene.h"
 #include "levels/bowser_3/header.h"
+#include "src/game/camera.h"
 
 struct ObjectHitbox sMantleOfMadnessHitbox = {
     /* interactType:      */ INTERACT_MANTLE_OF_MADNESS,
@@ -36,10 +37,17 @@ enum MantleOfMadnessActions {
     MANTLE_OF_MADNESS_ACT_SPAWN_MAD_HAND,
     MANTLE_OF_MADNESS_ACT_TRANSITION_TO_PLATFORMING,
     MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES,
-    MANTLE_OF_MADNESS_ACT_BIG_NEEDLE
+    MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE,
+    MANTLE_OF_MADNESS_ACT_BIG_NEEDLE,
+    MANTLE_OF_MADNESS_ACT_GETTING_STABBED
 };
 
 void mantle_of_madness_control_face_twitch(void) {
+
+    if (o->oAction == MANTLE_OF_MADNESS_ACT_GETTING_STABBED) {
+        return;
+    }
+
     if (random_u16()%10 == 0) {
         o->oTwitchFrames = random_u16()%3 + 1;
     }
@@ -418,6 +426,23 @@ void mantle_of_madness_act_spawn_hand_and_eyes(void) {
     
 }
 
+void mantle_of_madness_act_spawn_final_needle(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_MANTLE_OF_MADNESS_FINAL_NEEDLE);
+            if (!o->oMantleOfMadnessFinalNeedle) {
+                o->oMantleOfMadnessFinalNeedle = spawn_object_relative(0, 0, 0, 0, o, MODEL_FINAL_NEEDLE, bhvFinalNeedle);
+            }
+            o->oSubAction = 1;
+        break;
+        case 1:
+            if (gCurCutscene == -1) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_BIG_NEEDLE;
+            }
+        break;
+    }
+}
+
 u8 mario_holding_down_all_needle_inputs(void) {
 
     u64 inputs = 1;
@@ -446,7 +471,7 @@ f32 mmFocusSplineProgress = 0;
 
 void mantle_of_madness_act_big_needle(void) {
 
-    cur_obj_hide();
+    
     gMarioState->action = ACT_PULLING_FINAL_NEEDLE;
 
     f32 gainFactor = -0.004f;
@@ -488,6 +513,9 @@ void mantle_of_madness_act_big_needle(void) {
     gRenderFinalNeedlePrompts = 1;
     gCamera->cutscene = 1;
 
+    
+    gCutsceneFOV = 45 + 30*gFinalNeedleProgress;;
+
     if (gFinalNeedleProgress > 0 && gFinalNeedleProgress < 1 && gFinalNeedleStage < 5) {
         move_point_along_spline_with_direction(gCamera->pos, segmented_to_virtual(bowser_3_area_1_spline_FinalNeedleSplinePos), &mmPositionSplineSegment,
                             &mmPositionSplineProgress, (gainFactor >= 0 ? 1 : -1));
@@ -502,6 +530,42 @@ void mantle_of_madness_act_big_needle(void) {
         gLakituState.goalFocus[0] = gCamera->focus[0];
         gLakituState.goalFocus[1] = gCamera->focus[1];
         gLakituState.goalFocus[2] = gCamera->focus[2];
+    }
+    else {
+        if (!mario_holding_down_all_needle_inputs()) {
+            o->oMantleOfMadnessFinalNeedleProgress = 6;
+            gFinalNeedleStage = 6;
+            gMarioState->action = ACT_RELEASED_FINAL_NEEDLE;
+            o->oAction = MANTLE_OF_MADNESS_ACT_GETTING_STABBED;
+        }
+    }
+}
+
+void mantle_of_madness_act_getting_stabbed(void) {
+    gCamera->cutscene = 1;
+    gRenderFinalNeedlePrompts = 0;
+    
+    if (o->oTimer == 20) {
+        cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+    }
+    if (o->oTimer > 10) {
+        gLakituState.goalPos[0] = 100;
+        gLakituState.goalPos[1] = 3000;
+        gLakituState.goalPos[2] = 500;
+        gLakituState.goalFocus[0] = 1200;
+        gLakituState.goalFocus[1] = 2900;
+        gLakituState.goalFocus[2] = 100;
+    }
+
+    if (o->oTimer == 30) {
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 120, 255, 255, 255);
+    }
+
+    if (o->oTimer > 30 && o->oTimer % 10 == 0) {
+        struct Object *deathRay = spawn_object_relative(0, 0, 1000, 0, o, MODEL_MANTLE_DEATH_RAY, bhvMantleDeathRay);
+
+        deathRay->oFaceAngleYaw = random_u16();
+        deathRay->oFaceAnglePitch = -(random_u16() / 2);
     }
 }
 
@@ -549,7 +613,7 @@ void bhv_mantle_of_madness_init(void) {
 
     o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE;
     o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.01f;
-    o->oAction = MANTLE_OF_MADNESS_ACT_BIG_NEEDLE;
+    o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE;
 }
 
 void bhv_mantle_of_madness_loop(void) {
@@ -586,8 +650,14 @@ void bhv_mantle_of_madness_loop(void) {
         case MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES:
             mantle_of_madness_act_spawn_hand_and_eyes();
         break;
+        case MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE:
+            mantle_of_madness_act_spawn_final_needle();
+        break;
         case MANTLE_OF_MADNESS_ACT_BIG_NEEDLE:
             mantle_of_madness_act_big_needle();
+        break;
+        case MANTLE_OF_MADNESS_ACT_GETTING_STABBED:
+            mantle_of_madness_act_getting_stabbed();
         break;
     }
 

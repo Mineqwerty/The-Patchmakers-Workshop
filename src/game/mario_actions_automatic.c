@@ -864,13 +864,21 @@ s32 act_tornado_twirling(struct MarioState *m) {
 s32 act_pulling_final_needle(struct MarioState *m) {
     set_mario_animation(m, MARIO_ANIM_GRAB_BOWSER);
     m->faceAngle[1] = 0x4000;
-    m->pos[0] = -60 - 800*gFinalNeedleProgress;
+    m->pos[0] = (m->actionTimer++ > 30 ? -90 : -120 + m->actionTimer) - 800*gFinalNeedleProgress;
     m->pos[1] = m->floorHeight;
     m->pos[2] = 0;
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     if (gFinalNeedleDelta > 0) {
         m->marioObj->header.gfx.pos[1] += random_u16()%7 - 3;
     }
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    return FALSE;
+}
+
+s32 act_released_final_needle(struct MarioState *m) {
+    set_mario_animation(m, MARIO_ANIM_RELEASE_BOWSER);
+    m->faceAngle[1] = 0x4000;
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     return FALSE;
 }
@@ -913,6 +921,7 @@ s32 mario_execute_automatic_action(struct MarioState *m) {
         case ACT_IN_CANNON:              cancel = act_in_cannon(m);              break;
         case ACT_TORNADO_TWIRLING:       cancel = act_tornado_twirling(m);       break;
         case ACT_PULLING_FINAL_NEEDLE:       cancel = act_pulling_final_needle(m);       break;
+        case ACT_RELEASED_FINAL_NEEDLE:       cancel = act_released_final_needle(m);       break;
     }
     /* clang-format on */
 

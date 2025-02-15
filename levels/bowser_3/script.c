@@ -49,6 +49,7 @@ const LevelScript level_bowser_3_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CRAZY_BLOCK_2, crazy_block_2_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CRAZY_BLOCK_3, crazy_block_3_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FINAL_NEEDLE, final_needle_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MANTLE_DEATH_RAY, mantle_death_ray_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -93,11 +94,10 @@ const LevelScript level_bowser_3_entry[] = {
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 13861, -6304, -2667, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 14682, -6304, 4099, 0, 0, 0, 0x00000000, bhvScuttlebug),
 		OBJECT(MODEL_YARN_SCUTTLEBUG, 13592, -6304, 2102, 0, 0, 0, 0x00000000, bhvScuttlebug),
-		OBJECT(MODEL_FINAL_NEEDLE, 153, 1529, 138, 0, 0, 0, 0x00000000, bhvFinalNeedle),
 		TERRAIN(bowser_3_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_3_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_3_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_GRASS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_BOSS_KOOPA_FINAL),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

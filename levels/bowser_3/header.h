@@ -97,4 +97,6 @@ extern const LevelScript level_bowser_3_entry[];
 
 #include "levels/bowser_3/prompt_joystick/header.h"
 
+#include "levels/bowser_3/mantle_death_ray/geo_header.h"
+
 #endif
