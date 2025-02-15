@@ -64,6 +64,9 @@ extern u32 gPatchChallengeTimer;
 extern s16 portalSelectorSide;
 extern s16 gDestroyedCrackInReality;
 extern f32 gFinalNeedleProgress;
+extern f32 gFinalNeedleDelta;
+extern u8 gRenderFinalNeedlePrompts;
+extern s32 gFinalNeedleStage;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif

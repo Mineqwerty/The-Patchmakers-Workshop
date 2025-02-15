@@ -85,4 +85,16 @@ extern const LevelScript level_bowser_3_entry[];
 
 #include "levels/bowser_3/final_needle/geo_header.h"
 
+#include "levels/bowser_3/prompt_a_button/header.h"
+
+#include "levels/bowser_3/prompt_b_button/header.h"
+
+#include "levels/bowser_3/prompt_z_trig/header.h"
+
+#include "levels/bowser_3/prompt_r_trig/header.h"
+
+#include "levels/bowser_3/prompt_joystick_back/header.h"
+
+#include "levels/bowser_3/prompt_joystick/header.h"
+
 #endif

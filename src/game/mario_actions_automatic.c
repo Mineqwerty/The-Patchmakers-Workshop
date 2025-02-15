@@ -16,6 +16,7 @@
 #include "camera.h"
 #include "level_table.h"
 #include "rumble_init.h"
+#include "src/game/game_init.h"
 
 #include "config.h"
 
@@ -860,6 +861,20 @@ s32 act_tornado_twirling(struct MarioState *m) {
     return FALSE;
 }
 
+s32 act_pulling_final_needle(struct MarioState *m) {
+    set_mario_animation(m, MARIO_ANIM_GRAB_BOWSER);
+    m->faceAngle[1] = 0x4000;
+    m->pos[0] = -60 - 800*gFinalNeedleProgress;
+    m->pos[1] = m->floorHeight;
+    m->pos[2] = 0;
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    if (gFinalNeedleDelta > 0) {
+        m->marioObj->header.gfx.pos[1] += random_u16()%7 - 3;
+    }
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
+    return FALSE;
+}
+
 s32 check_common_automatic_cancels(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
         return set_water_plunge_action(m);
@@ -897,6 +912,7 @@ s32 mario_execute_automatic_action(struct MarioState *m) {
         case ACT_GRABBED:                cancel = act_grabbed(m);                break;
         case ACT_IN_CANNON:              cancel = act_in_cannon(m);              break;
         case ACT_TORNADO_TWIRLING:       cancel = act_tornado_twirling(m);       break;
+        case ACT_PULLING_FINAL_NEEDLE:       cancel = act_pulling_final_needle(m);       break;
     }
     /* clang-format on */
 

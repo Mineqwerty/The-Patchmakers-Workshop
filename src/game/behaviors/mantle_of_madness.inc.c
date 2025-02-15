@@ -1,4 +1,5 @@
 #include "src/game/cutscene.h"
+#include "levels/bowser_3/header.h"
 
 struct ObjectHitbox sMantleOfMadnessHitbox = {
     /* interactType:      */ INTERACT_MANTLE_OF_MADNESS,
@@ -430,12 +431,25 @@ u8 mario_holding_down_all_needle_inputs(void) {
     if (o->oMantleOfMadnessFinalNeedleProgress >= 3) {
         inputs *= gPlayer1Controller->buttonDown & Z_TRIG;
     }
+    if (o->oMantleOfMadnessFinalNeedleProgress >= 4) {
+        inputs *= gPlayer1Controller->buttonDown & R_TRIG;
+    }
 
     return (inputs) && (gPlayer1Controller->rawStickY < -6);
 }
 
+s16 mmPositionSplineSegment = 0;
+f32 mmPositionSplineProgress = 0;
+
+s16 mmFocusSplineSegment = 0;
+f32 mmFocusSplineProgress = 0;
+
 void mantle_of_madness_act_big_needle(void) {
-    f32 gainFactor = -0.005f;
+
+    cur_obj_hide();
+    gMarioState->action = ACT_PULLING_FINAL_NEEDLE;
+
+    f32 gainFactor = -0.004f;
 
     if (gFinalNeedleProgress >= 0.15f) {
         if (o->oMantleOfMadnessFinalNeedleProgress < 1) {
@@ -459,11 +473,36 @@ void mantle_of_madness_act_big_needle(void) {
     }
 
     if (mario_holding_down_all_needle_inputs()) {
-        gainFactor = 0.005f;
+        gainFactor = 0.004f;
     }
     gFinalNeedleProgress = CLAMP(gFinalNeedleProgress + gainFactor, 0.0f, 1.0f);
 
-    dbp((int)(o->oMantleOfMadnessFinalNeedleProgress));
+    if (gFinalNeedleProgress == 1) {
+        o->oMantleOfMadnessFinalNeedleProgress = 5;
+    }
+
+    gFinalNeedleDelta = gainFactor;
+    gFinalNeedleStage = o->oMantleOfMadnessFinalNeedleProgress;
+    
+
+    gRenderFinalNeedlePrompts = 1;
+    gCamera->cutscene = 1;
+
+    if (gFinalNeedleProgress > 0 && gFinalNeedleProgress < 1 && gFinalNeedleStage < 5) {
+        move_point_along_spline_with_direction(gCamera->pos, segmented_to_virtual(bowser_3_area_1_spline_FinalNeedleSplinePos), &mmPositionSplineSegment,
+                            &mmPositionSplineProgress, (gainFactor >= 0 ? 1 : -1));
+        move_point_along_spline_with_direction(gCamera->focus, segmented_to_virtual(bowser_3_area_1_spline_FinalNeedleSplineFocus), &mmFocusSplineSegment,
+                            &mmFocusSplineProgress, (gainFactor >= 0 ? 1 : -1));
+    }
+
+    if (gFinalNeedleStage < 5) {
+        gLakituState.goalPos[0] = gCamera->pos[0];
+        gLakituState.goalPos[1] = gCamera->pos[1];
+        gLakituState.goalPos[2] = gCamera->pos[2];
+        gLakituState.goalFocus[0] = gCamera->focus[0];
+        gLakituState.goalFocus[1] = gCamera->focus[1];
+        gLakituState.goalFocus[2] = gCamera->focus[2];
+    }
 }
 
 void mantle_of_madness_choose_attack(void) {

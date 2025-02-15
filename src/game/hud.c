@@ -24,6 +24,7 @@
 #include "levels/pss/header.h"
 #include "include/behavior_data.h"
 #include "actors/group0.h"
+#include "levels/bowser_3/header.h"
 
 #include "config.h"
 #include "src/game/cutscene.h"
@@ -1048,6 +1049,133 @@ void render_hud_save_text(void) {
     gSaveTextIndicatorTimer--;
 }
 
+u8 buttonAlphas[5] = {0,0,0,0,0};
+f32 joystickOffset = 0;
+
+void render_hud_final_needle_prompts() {
+
+    gHudDisplay.flags = 0;
+
+    Mtx *mtx = alloc_display_list(sizeof(Mtx));
+
+    if (mtx == NULL) {
+        return;
+    }
+
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    u8 r, g, b = 0;
+
+    //update button alphas
+    if (gFinalNeedleStage == 5) {
+        for (int i = 0; i < 5; i++) {
+            if (buttonAlphas[i] > 0) {
+                buttonAlphas[i] = CLAMP (buttonAlphas[i] - 20, 0, 255);
+            }
+        }
+    }
+    else {
+        for (int i = 0; i <= gFinalNeedleStage; i++) {
+            if (buttonAlphas[i] < 255) {
+                buttonAlphas[i] = CLAMP (buttonAlphas[i] + 10, 0, 255);
+            }
+        }
+    }
+
+    //joystick
+    if (gPlayer1Controller->rawStickY < -6 || (gFinalNeedleStage == 5)) {
+        r = 0;
+        g = 255;
+        b = 0;
+    }
+    else {
+        r = g = b = (((gGlobalTimer / 15) % 2 == 0) ? 255 : 200);
+    }
+
+    //move joystick once full alpha
+    if (buttonAlphas[0] == 255) {
+        joystickOffset = approach_f32_asymptotic(joystickOffset, -10.0f, 0.04f);
+    }
+
+    gDPSetEnvColor(gDisplayListHead++, r, g, b, buttonAlphas[0]);
+    create_dl_translation_matrix(MENU_MTX_PUSH, 80, 120, 0);
+        gSPDisplayList(gDisplayListHead++, &prompt_joystick_back_buttonmesh_002_mesh);
+        create_dl_translation_matrix(MENU_MTX_PUSH, 0, joystickOffset, 0);
+            gSPDisplayList(gDisplayListHead++, &prompt_joystick_buttonmesh_003_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    //a button
+    if (gFinalNeedleStage >= 1) {
+        if ((gPlayer1Controller->buttonDown & A_BUTTON) || (gFinalNeedleStage == 5)) {
+            r = 0;
+            g = 255;
+            b = 0;
+        }
+        else {
+            r = g = b = (((gGlobalTimer / 15) % 2 == 0) ? 255 : 200);
+        }
+    
+        gDPSetEnvColor(gDisplayListHead++, r, g, b, buttonAlphas[1]);
+        create_dl_translation_matrix(MENU_MTX_PUSH, 200, 120, 0);
+            gSPDisplayList(gDisplayListHead++, &prompt_a_button_buttonmesh_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+
+    //b button
+    if (gFinalNeedleStage >= 2) {
+        if ((gPlayer1Controller->buttonDown & B_BUTTON) || (gFinalNeedleStage == 5)) {
+            r = 0;
+            g = 255;
+            b = 0;
+        }
+        else {
+            r = g = b = (((gGlobalTimer / 15) % 2 == 0) ? 255 : 200);
+        }
+    
+        gDPSetEnvColor(gDisplayListHead++, r, g, b, buttonAlphas[2]);
+        create_dl_translation_matrix(MENU_MTX_PUSH, 240, 160, 0);
+            gSPDisplayList(gDisplayListHead++, &prompt_b_button_buttonmesh_001_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+
+    //z trigger
+    if (gFinalNeedleStage >= 3) {
+        if ((gPlayer1Controller->buttonDown & Z_TRIG) || (gFinalNeedleStage == 5)) {
+            r = 0;
+            g = 255;
+            b = 0;
+        }
+        else {
+            r = g = b = (((gGlobalTimer / 15) % 2 == 0) ? 255 : 200);
+        }
+    
+        gDPSetEnvColor(gDisplayListHead++, r, g, b, buttonAlphas[3]);
+        create_dl_translation_matrix(MENU_MTX_PUSH, 70, 200, 0);
+            gSPDisplayList(gDisplayListHead++, &prompt_z_trig_buttonmesh_004_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+
+    //r trigger
+    if (gFinalNeedleStage >= 4) {
+        if ((gPlayer1Controller->buttonDown & R_TRIG) || (gFinalNeedleStage == 5)) {
+            r = 0;
+            g = 255;
+            b = 0;
+        }
+        else {
+            r = g = b = (((gGlobalTimer / 15) % 2 == 0) ? 255 : 200);
+        }
+    
+        gDPSetEnvColor(gDisplayListHead++, r, g, b, buttonAlphas[4]);
+        create_dl_translation_matrix(MENU_MTX_PUSH, 250, 100, 0);
+            gSPDisplayList(gDisplayListHead++, &prompt_r_trig_buttonmesh_005_mesh);
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    }
+
+    
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+}
+
 /**
  * Render HUD strings using hudDisplayFlags with it's render functions,
  * excluding the cannon reticle which detects a camera preset for it.
@@ -1159,6 +1287,8 @@ void render_hud(void) {
 #endif
     }
 
+    
+
     if (gSpecialHudRender > 0) {
         create_dl_ortho_matrix();
         switch (gSpecialHudRender) {
@@ -1169,5 +1299,10 @@ void render_hud(void) {
                 render_hud_eye_effect();
             break;
         }
+    }
+
+    if (gRenderFinalNeedlePrompts) {
+        create_dl_ortho_matrix();
+        render_hud_final_needle_prompts();
     }
 }

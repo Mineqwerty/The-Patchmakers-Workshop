@@ -4266,6 +4266,58 @@ s32 move_point_along_spline(Vec3f p, struct CutsceneSplinePoint spline[], s16 *s
     return finished;
 }
 
+s32 move_point_along_spline_with_direction(Vec3f p, struct CutsceneSplinePoint spline[], s16 *splineSegment,
+    f32 *progress, s16 direction) {
+s32 finished = FALSE;
+Vec3f controlPoints[4];
+s32 i = 0;
+f32 u = *progress;
+f32 progressChange;
+f32 firstSpeed = 0;
+f32 secondSpeed = 0;
+s32 segment = *splineSegment;
+
+if (*splineSegment < 0) {
+segment = 0;
+u = 0;
+}
+if (spline[segment].index == -1 || spline[segment + 1].index == -1
+|| spline[segment + 2].index == -1) {
+return 1;
+}
+
+for (i = 0; i < 4; i++) {
+controlPoints[i][0] = spline[segment + i].point[0];
+controlPoints[i][1] = spline[segment + i].point[1];
+controlPoints[i][2] = spline[segment + i].point[2];
+}
+evaluate_cubic_spline(u, p, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
+
+if (spline[*splineSegment + 1].speed != 0) {
+firstSpeed = direction * 1.0f / spline[*splineSegment + 1].speed;
+}
+if (spline[*splineSegment + 2].speed != 0) {
+secondSpeed = direction * 1.0f / spline[*splineSegment + 2].speed;
+}
+progressChange = (secondSpeed - firstSpeed) * *progress + firstSpeed;
+
+if (0 > (*progress += progressChange) && direction < 0) {
+    if (*splineSegment > 0) {
+        (*splineSegment)--;
+        (*progress)++;
+        }
+}
+else if (1 <= (*progress)) {
+(*splineSegment)++;
+if (spline[*splineSegment + 3].index == -1) {
+*splineSegment = 0;
+finished = 1;
+}
+(*progress)--;
+}
+return finished;
+}
+
 /**
  * If `selection` is 0, just get the current selection
  * If `selection` is 1, select 'Mario' as the alt mode.

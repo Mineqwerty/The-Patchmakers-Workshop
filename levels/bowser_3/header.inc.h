@@ -3,6 +3,8 @@ extern const GeoLayout bowser_3_area_1[];
 extern const MacroObject bowser_3_area_1_macro_objs[];
 #include "src/game/camera.h"
 
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleSplineFocus[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleSplinePos[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_ZoomPlatformingPhaseFocus1[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_ZoomPlatformingPhasePos1[];
 extern Lights1 bowser_3_dl_f3dlite_material_010_lights;

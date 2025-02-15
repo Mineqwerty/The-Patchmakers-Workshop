@@ -2688,6 +2688,7 @@ void init_mario(void) {
                 gBossHealth = 0;
                 gBossDrainHealthDisplay = 0;
                 gBossHealthDisplay = 0;
+                gRenderFinalNeedlePrompts = 0;
 
     
 

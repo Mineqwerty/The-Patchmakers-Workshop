@@ -74,9 +74,11 @@ void bhv_final_needle_loop(void) {
             }
         break;
         case 1:
-            o->oPosY = 1200;
+            o->oPosY = 1300;
+            o->oPosZ = 0;
             
-            o->oPosX = -300 * gFinalNeedleProgress;
+            o->oPosX = -30 + -800 * gFinalNeedleProgress;
+            o->oFaceAnglePitch = -3000 * gFinalNeedleProgress;
         break;
     }
 
