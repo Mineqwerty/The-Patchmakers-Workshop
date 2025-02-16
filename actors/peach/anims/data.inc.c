@@ -13,3 +13,4 @@
 #include "anim__0___Listen_Everybody.inc.c"
 #include "anim_wakingUp.inc.c"
 #include "anim_idle.inc.c"
+#include "anim_sitFixSewnia.inc.c"

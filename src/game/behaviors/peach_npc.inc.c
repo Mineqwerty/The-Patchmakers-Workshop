@@ -33,6 +33,16 @@ void peach_npc_act_revive_cutscene(void) {
                 o->oSubAction++;
             }
         break;
+        case 2:
+            
+            if (cExternalCutsceneTrigger >= 4) {
+                o->oPosX = -30;
+                o->oPosY = 130;
+                o->oPosZ = 1231;
+                cur_obj_init_animation(3);
+                o->oSubAction++;
+            }
+        break;
     }
 }
 

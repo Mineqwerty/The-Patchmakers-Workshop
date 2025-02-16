@@ -2813,11 +2813,11 @@ These two have said a lot of nice things\n\
 about you...\n\
 Hi... I'm Sewnia.\n\
 @FF75DFFFAww! What a cute little doll!\n\
-What happened to your body, though?\n\
+What happened to you, though?\n\
 Wait just a minute...\n\
 \n\
-@7F60B4FFUm... It's right there.\n\
-That's not important though...\n\
+@7F60B4FFUm...\n\
+That's not important right now...\n\
 I have to tell you what's-\n\
 ...Huh?\n\
 @FF75DFFFSorry, dear... I couldn't bear to see you\n\

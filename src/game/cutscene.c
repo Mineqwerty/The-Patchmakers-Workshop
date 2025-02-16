@@ -1441,6 +1441,25 @@ s32 event_revive_peach[] = {
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 201,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 202,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 225,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 226,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 227,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 228,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 229,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 230,
+
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
+    EVENT_WAIT, 60,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PEACH_REVIVED_2,
+
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
     EVENT_SET_CUTSCENE_GAME_STATE, CUTSCENE_GAME_STATE_ENTER_THIRD_HUB,
@@ -1864,6 +1883,13 @@ s32 *splineList[] = {
     bowser_3_area_1_spline_FinalNeedleCutscenePos2,
     bowser_3_area_1_spline_FinalNeedleCutsceneFocus2,
     //225
+    castle_inside_area_1_spline_PeachRevivePos5,
+    castle_inside_area_1_spline_PeachReviveFocus5,
+    castle_inside_area_1_spline_PeachRevivePos6,
+    castle_inside_area_1_spline_PeachReviveFocus6,
+    castle_inside_area_1_spline_PeachRevivePos7,
+    //230
+    castle_inside_area_1_spline_PeachReviveFocus7,
 
 };
 
@@ -1892,7 +1918,8 @@ void event_handler(void) {
         f32 dist;
 
         if ((gPlayer1Controller->buttonPressed & START_BUTTON)
-            && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING) {
+            && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING
+            && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_FINAL_NEEDLE) {
             if (cSkipCutsceneState == 0) {
                 cSkipCutsceneState = 1;
                 cSkipCutsceneTimer = 90;

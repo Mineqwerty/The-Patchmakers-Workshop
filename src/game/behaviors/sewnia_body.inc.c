@@ -16,8 +16,17 @@ void bhv_sewnia_body_init(void) {
 void bhv_sewnia_body_loop(void) {
     switch (gCurrLevelNum) {
         case LEVEL_CASTLE:
-            if (cExternalCutsceneTrigger >= 1) {
+            if (cExternalCutsceneTrigger >= 4) {
+                o->oPosZ = 0;
+                cur_obj_init_animation(3);
+            }
+            else if (cExternalCutsceneTrigger >= 1) {
                 o->oPosZ = -400;
+                cur_obj_init_animation(2);
+            }
+
+            if (cExternalCutsceneTrigger >= 5) {
+                obj_mark_for_deletion(o);
             }
         break;
     }
@@ -43,8 +52,17 @@ void bhv_sewnia_head_loop(void) {
             }
         break;
         case LEVEL_CASTLE:
-            if (cExternalCutsceneTrigger >= 1) {
+            if (cExternalCutsceneTrigger >= 4) {
+                o->oPosZ = 0;
+                cur_obj_init_animation(3);
+            }
+            else if (cExternalCutsceneTrigger >= 1) {
                 o->oPosZ = -400;
+            }
+
+            
+            if (cExternalCutsceneTrigger >= 5) {
+                obj_mark_for_deletion(o);
             }
         break;
     }

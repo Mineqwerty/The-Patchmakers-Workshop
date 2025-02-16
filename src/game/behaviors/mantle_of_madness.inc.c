@@ -93,7 +93,7 @@ void mantle_of_madness_phase_transition(void) {
         case MANTLE_OF_MADNESS_PHASE_HAND_AND_EYES:
             if (o->oHealth <= 1) {
                 o->oHealth = 1;
-                o->oAction = MANTLE_OF_MADNESS_ACT_BIG_NEEDLE;
+                o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE;
                 o->oMantleOfMadnessPhase++;
             }
         break;
@@ -139,7 +139,7 @@ void mantle_of_madness_phase_update(void) {
             if (o->oDistanceToMario < 3000.0f) {
                 o->oMantleOfMadnessRageLevel = 2;
             }
-            else {
+            else if (o->oAction != MANTLE_OF_MADNESS_ACT_TRANSITION_TO_PLATFORMING) {
                 o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
                 o->oTimer = 0;
             }
@@ -325,6 +325,7 @@ void mantle_of_madness_act_transition_to_platforming(void) {
     switch (o->oSubAction) {
         case 0:
             begin_cutscene_event(CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING);
+            cExternalCutsceneTrigger = 0;
             o->oSubAction++;
         break;
         case 1:
@@ -338,6 +339,8 @@ void mantle_of_madness_act_transition_to_platforming(void) {
             if (gCurCutscene == -1) {
                 o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
             }
+            o->oPosY = -6303;
+            o->oPosX = 15277;
         break;
     }
 }
@@ -611,9 +614,9 @@ void bhv_mantle_of_madness_init(void) {
     o->oMantleOfMadnessRageLevel = 0;
     o->oMantleOfMadnessFinalNeedleProgress = 0;
 
-    o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE;
-    o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.01f;
-    o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE;
+    //o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BIG_NEEDLE;
+    //o->oHealth = MANTLE_OF_MADNESS_MAX_HP*0.01f;
+    //o->oAction = MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE;
 }
 
 void bhv_mantle_of_madness_loop(void) {

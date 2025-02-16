@@ -203,6 +203,11 @@ void bowser_npc_act_revive_peach_cutscene(void) {
         break;
         case 1:
             o->oPosZ = -400;
+            if (cExternalCutsceneTrigger >= 5) {
+                o->oPosZ = 0;
+                cur_obj_init_animation(33);
+                o->oSubAction = 2;
+            }
         break;
     }
 }

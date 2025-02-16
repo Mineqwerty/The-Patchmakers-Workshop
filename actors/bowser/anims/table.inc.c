@@ -33,5 +33,6 @@ const struct Animation *const bowser_anims[] = {
 	&bowser_anim_T_30_look_at_peach,
 	&bowser_anim_U_31_Amgry_scream,
 	&bowser_anim_holdSewniaHead,
+	&bowser_anim_hearingPeachTalk,
 	NULL,
 };
