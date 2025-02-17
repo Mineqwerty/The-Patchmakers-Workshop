@@ -210,16 +210,68 @@ Activate the Obelisk? \n\
 //Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 3, 30, 200, _("\
-@FEFEFEFFI've made a horrible mistake."))
+@FEFEFEFFI've made a horrible mistake.\n\
+I'm lost. Terribly lost.\n\
+I know not how long it has been.\n\
+@FEFEFEFFEvery attempt I've made at opening\n\
+a portal back home has led me to an\n\
+even more twisted, confusing space.\n\
+@FEFEFEFFI'm sorry. I'm so sorry, Sewnia.\n\
+I should have listened to you.\n\
+I should have stayed.\n\
+@FEFEFEFFI feel my mind slipping from me.\n\
+It's terrifying.\n\
+I'm scared.\n\
+@FEFEFEFFWriting like this has always kept me sane when alone,\n\
+but this time I fear it is not enough.\n\
+Would I truly exist if my mind was not my own?\n\
+@FEFEFEFF...I need to escape here. Before it is too late.\n\
+Before I emerge a different man."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 4, 30, 200, _("\
-VTF"))
+DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 3, 30, 200, _("\
+@5C5C5CFFThe pages of the journal are all torn apart...\n\
+The only parts that can be made out contain words\n\
+of spite and hatred, with little coherence..."))
 
 DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
-TFP"))
+@FEFEFEFFThe snow helps me feel as though I am in my\n\
+own flesh again... It's a nice feeling.\n\
+A nice feeling. Yes, it is.\n\
+@FEFEFEFFI used to love writing these, did I not?\n\
+I must have, considering I always have a journal\n\
+on me. My memory of the last few I wrote is fuzzy.\n\
+@FEFEFEFFWhy... why did I come here again?\n\
+My goal... a sister for Sewnia, right.\n\
+Why... did I think it would be here?\n\
+@FEFEFEFFIt's cold. Haha...\n\
+I met a man here. He was moving away from this\n\
+section of the city to meet his family again.\n\
+@FEFEFEFFIt's quite sad how much hope remains here.\n\
+The snow is never going to stop, the buildings will never\n\
+stay upright for long, so why bother?\n\
+@FEFEFEFFFamily... I want to see my family.\n\
+Why am I not with Sewnia? Did I even...\n\
+tell her I was leaving?\n\
+@FEFEFEFFI'm not well. If I could just...\n\
+If I could finally find the secrets for life,\n\
+my entire life would be fixed. Healed.\n\
+@FEFEFEFFThe snow feels nice. I hope that,\n\
+once I find the secrets to life,\n\
+things can just go back to normal."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 2, 30, 200, _("\
-C10"))
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 3, 30, 200, _("\
+@FEFEFEFFThey're here. The secrets are here.\n\
+I know not if this realm appeared from my pleas,\n\
+or if it always existed, but life itself is here.\n\
+@FEFEFEFFMy mind is refocused with determination.\n\
+One that tells me things can still return to normal.\n\
+I can still fix everything, Sewnia.\n\
+@FEFEFEFFI'll return with the secrets. I'll make you\n\
+a sister. And then, we can live a happy life\n\
+as a family. I'll feel complete, accomplished.\n\
+@FEFEFEFFThings cannot be fixed without me returning\n\
+with the secrets of life. So I must.\n\
+I will not return empty-handed."))
 
 DEFINE_DIALOG(DIALOG_020, 1, 6, 95, 150, _("\
 C11"))
