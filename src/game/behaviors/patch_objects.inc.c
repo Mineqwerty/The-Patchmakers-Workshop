@@ -1367,6 +1367,43 @@ void check_extension_corners_and_push(void) {
     
 }
 
+u8 check_extension_height_limit(void) {
+    u8 hitCeil = 0;
+    struct Surface *surf;
+    Vec3f originPos;
+    Vec3f hitpos;
+    Vec3f raydir;
+
+    raydir[0] = 0;
+    raydir[1] = 200.0f;
+    raydir[2] = 0;
+
+    vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
+
+    vec3f_set(originPos, o->oPosX + 150, o->oPosY + 200 * o->header.gfx.scale[1], o->oPosZ + 150);
+    find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
+    if (surf) {
+        hitCeil = 1;
+    }
+    vec3f_set(originPos, o->oPosX + 150, o->oPosY + 200 * o->header.gfx.scale[1], o->oPosZ - 150);
+    find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
+    if (surf) {
+        hitCeil = 1;
+    }
+    vec3f_set(originPos, o->oPosX - 150, o->oPosY + 200 * o->header.gfx.scale[1], o->oPosZ - 150);
+    find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
+    if (surf) {
+        hitCeil = 1;
+    }
+    vec3f_set(originPos, o->oPosX - 150, o->oPosY + 200 * o->header.gfx.scale[1], o->oPosZ + 150);
+    find_surface_on_ray(originPos, raydir, &surf, hitpos, 4U, 1);
+    if (surf) {
+        hitCeil = 1;
+    }
+
+    return hitCeil;
+}
+
 
 void bhv_extension_block_init(void) {
 
@@ -1383,6 +1420,8 @@ void bhv_extension_block_init(void) {
         o->oRevertIndex = gMarioState->floor->matRevertPointer;
         o->oMaterialLayer = gMarioState->floor->materialIndex;
     }
+
+    o->oStoppedEarly = 0;
 
     cur_obj_spawn_particles(&sExtensionRubble);
     cur_obj_shake_screen(SHAKE_POS_SMALL);
@@ -1408,6 +1447,13 @@ void bhv_extension_block_loop(void) {
                 //cur_obj_shake_screen(SHAKE_POS_SMALL);
                 o->oAction = EXT_BLOCK_ACT_STOPPED;
             }
+            else if (check_extension_height_limit()) {
+                o->oStoppedEarly = 1;
+                cur_obj_spawn_particles(&sExtensionDust);
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
+                //cur_obj_shake_screen(SHAKE_POS_SMALL);
+                o->oAction = EXT_BLOCK_ACT_STOPPED;
+            }
         break;
         case EXT_BLOCK_ACT_EXTEND_SIDE:
             obj_scale_xyz(o, 1.0f, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f));
@@ -1425,7 +1471,7 @@ void bhv_extension_block_loop(void) {
             if (o->oBehParams2ndByte == 1) {
                 obj_scale_xyz(o, 1.0f, 1.0f, 3.0f);
             }
-            else {
+            else if (!o->oStoppedEarly) {
                 obj_scale_xyz(o, 1.0f, 3.0f, 1.0f);
             }
         break;

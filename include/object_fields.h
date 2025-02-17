@@ -1466,6 +1466,8 @@
 #define oMaterialLayer           OBJECT_FIELD_S32(0x1D)
 #define oExtendSetting           OBJECT_FIELD_S32(0x1E)
 #define oOutOfBounds           OBJECT_FIELD_S32(0x1F)
+#define oStoppedEarly           OBJECT_FIELD_S32(0x20)
+
 
 //power breaker controller
 #define oClosestMarioBreakerDistance           OBJECT_FIELD_F32(0x1B)

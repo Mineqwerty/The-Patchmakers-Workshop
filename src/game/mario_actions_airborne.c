@@ -951,6 +951,14 @@ s32 act_marine_patch_airborne(struct MarioState *m) {
     m->marioObj->header.gfx.angle[2] += 0x2000;
     m->marioObj->header.gfx.angle[0] = -0x80 * m->vel[1];
 
+    if (m->actionArg == 1) {
+        m->slideVelX = m->forwardVel * sins(m->faceAngle[1]);
+        m->slideVelZ = m->forwardVel * coss(m->faceAngle[1]);
+
+        m->vel[0] = m->slideVelX;
+        m->vel[2] = m->slideVelZ;
+    }
+
     switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB)) {
         case AIR_STEP_LANDED:
             set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);

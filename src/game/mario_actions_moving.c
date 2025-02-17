@@ -1105,7 +1105,17 @@ s32 act_turning_around(struct MarioState *m) {
     }
 
     if (m->input & INPUT_A_PRESSED) {
-        return set_jumping_action(m, ACT_SIDE_FLIP, 0);
+        if (m->equippedPatch == PATCH_MARINE) {
+            m->pos[1] += 5;
+            m->vel[1] = 40.0f;
+            m->forwardVel = 50.0f;
+            m->faceAngle[1] += 0x8000;
+            return set_jumping_action(m, ACT_MARINE_PATCH_AIRBORNE, 1);
+        }
+        else {
+            return set_jumping_action(m, ACT_SIDE_FLIP, 0);
+        }
+        
     }
 
     if (m->input & INPUT_IDLE) {
@@ -1156,7 +1166,15 @@ s32 act_finish_turning_around(struct MarioState *m) {
     }
 
     if (m->input & INPUT_A_PRESSED) {
-        return set_jumping_action(m, ACT_SIDE_FLIP, 0);
+        if (m->equippedPatch == PATCH_MARINE) {
+            m->pos[1] += 5;
+            m->vel[1] = 40.0f;
+            m->forwardVel = 40.0f;
+            return set_jumping_action(m, ACT_MARINE_PATCH_AIRBORNE, 1);
+        }
+        else {
+            return set_jumping_action(m, ACT_SIDE_FLIP, 0);
+        }
     }
 
 #ifdef RESET_DIRECTION_WHEN_TURNING_AROUND

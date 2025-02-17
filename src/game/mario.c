@@ -965,6 +965,12 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             
             break;
 
+            case ACT_MARINE_PATCH_AIRBORNE:
+            if (m->action == ACT_TURNING_AROUND || m->action == ACT_FINISH_TURNING_AROUND) {
+                m->forwardVel = 40.0f;
+            }
+            break;
+
         default:
             jumpStart = 0;
         break;
