@@ -150,10 +150,23 @@ const GeoLayout sewnia_Head_switch_opt10[] = {
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout sewnia_geo[] = {
-	GEO_CULLING_RADIUS(0x7FFF),
+const GeoLayout sewnia_Head_switch_opt11[] = {
+	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-	GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 80),
+		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 51, 0, sewnia_Head_mesh_layer_1_mat_override_sewniaFaceCrying_10),
+		GEO_OPEN_NODE(),
+			GEO_DISPLAY_LIST(LAYER_ALPHA, sewnia_Head_mesh_layer_4_mat_override_sewniaFaceCrying_10),
+			GEO_DISPLAY_LIST(LAYER_OPAQUE, sewnia_Hair_skinned_mesh_layer_1_mat_override_sewniaFaceCrying_10),
+			GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 0, 3, -25, 0, -90, 171),
+			GEO_OPEN_NODE(),
+				GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, sewnia_Hair_mesh_layer_1_mat_override_sewniaFaceCrying_10),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout sewnia_geo[] = {
+	GEO_CULLING_RADIUS(13107),
 	GEO_OPEN_NODE(),
 		GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
 		GEO_OPEN_NODE(),
@@ -186,6 +199,7 @@ const GeoLayout sewnia_geo[] = {
 						GEO_BRANCH(1, sewnia_Head_switch_opt8),
 						GEO_BRANCH(1, sewnia_Head_switch_opt9),
 						GEO_BRANCH(1, sewnia_Head_switch_opt10),
+						GEO_BRANCH(1, sewnia_Head_switch_opt11),
 					GEO_CLOSE_NODE(),
 					GEO_DISPLAY_LIST(LAYER_OPAQUE, sewnia_LeftUpperArm_skinned_mesh_layer_1),
 					GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, -18, 41, 0, 0, -2, 95),
@@ -252,7 +266,6 @@ const GeoLayout sewnia_geo[] = {
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-	GEO_CLOSE_NODE(),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

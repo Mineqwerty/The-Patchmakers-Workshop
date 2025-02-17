@@ -906,10 +906,16 @@ s16 find_patch_menu_valid_scroll(s8 direction) {
             u8 balls;
         }
         else {
-            currentIndex = CLAMP(currentIndex + direction, 0, 15);
+            if (currentIndex >= 8 && currentIndex <= 11 && direction == 4) {
+                currentIndex = 12;
+            }
+            else {
+                currentIndex = CLAMP(currentIndex + direction, 0, 15);
+            }
+            
         }
 
-        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << currentIndex))) {
+        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << ((currentIndex+1) % 12)))) {
             if (currentIndex / 4 == 0 && direction == -4) {
                 currentIndex = gPatchIndex;
                 break;
@@ -919,13 +925,13 @@ s16 find_patch_menu_valid_scroll(s8 direction) {
                 break;
             } 
             else if (currentIndex == 0 && direction == -1) {
-                currentIndex = 15;
+                currentIndex = 12;
             }
-            else if (currentIndex == 15 && direction == 1) {
+            else if (currentIndex == 12 && direction == 1) {
                 currentIndex = 0;
             }
             else {
-                currentIndex = CLAMP(currentIndex + direction, 0, 15);
+                currentIndex = CLAMP(currentIndex + direction, 0, 12);
             }
         }
 
@@ -942,16 +948,16 @@ void handle_patch_menu_scrolling(s8 *currentIndex, u16 patchFlags) {
     //patch menu timer will be positive for X and negative for Y
 
     if (gPatchMenuTimer == 0) {
-        if ((gPlayer1Controller->rawStickY >  60) || (gPlayer1Controller->buttonDown & (U_CBUTTONS))) {
+        if ((gPlayer1Controller->rawStickY >  60)) {
             indexChanged = find_patch_menu_valid_scroll(-4);
             direction = 1;
         }
-        if ((gPlayer1Controller->rawStickY < -60) || (gPlayer1Controller->buttonDown & (D_CBUTTONS))) {
+        if ((gPlayer1Controller->rawStickY < -60)) {
             indexChanged = find_patch_menu_valid_scroll(4);
             direction = 1;
         }
-        if ((gPlayer1Controller->rawStickX >  60) || (gPlayer1Controller->buttonDown & (R_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(1);
-        if ((gPlayer1Controller->rawStickX < -60) || (gPlayer1Controller->buttonDown & (L_CBUTTONS))) indexChanged = find_patch_menu_valid_scroll(-1);
+        if ((gPlayer1Controller->rawStickX >  60)) indexChanged = find_patch_menu_valid_scroll(1);
+        if ((gPlayer1Controller->rawStickX < -60)) indexChanged = find_patch_menu_valid_scroll(-1);
     }
     
     if (gPlayer1Controller->rawStickX < 60 && gPlayer1Controller->rawStickX > -60 && gPatchMenuTimer > 0) {
@@ -2997,42 +3003,69 @@ void render_patch_selection() {
     gDPSetRenderMode(gDisplayListHead++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
 
     u16 patchFlags = save_file_get_patch_flags(gCurrSaveFileNum - 1);
-    gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_mesh);
+    gSPDisplayList(gDisplayListHead++, menu_patch_mario_patch_mario_003_mesh);
 
     if (patchFlags & (1 << PATCH_STONE)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_stone_patch_stone_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_stone_patch_stone_003_mesh);
     }
     if (patchFlags & (1 << PATCH_CHILLSTEP)) {
         gSPDisplayList(gDisplayListHead++, menu_patch_chillstep_patch_chillstep_mesh);
     }
     if (patchFlags & (1 << PATCH_GRAPPLE)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_grapple_patch_grapple_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_grapple_patch_grapple_001_mesh);
     }
     if (patchFlags & (1 << PATCH_HALO)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_halo_patch_halo_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_halo_patch_halo_001_mesh);
     }
     if (patchFlags & (1 << PATCH_MARINE)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_marine_patch_chillstep_001_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_marine_patch_marine_mesh);
     }
     if (patchFlags & (1 << PATCH_SHADOWCHOMP)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_shadowchomp_patch_stone_002_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_shadowchomp_patch_shadowchomp_mesh);
     }
     if (patchFlags & (1 << PATCH_TRANSMUTATION)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_transmutation_patch_transmutation_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_transmutation_patch_transmutation_001_mesh);
+    }
+    if (patchFlags & (1 << PATCH_BREEZE)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_breeze_patch_breeze_mesh);
     }
     if (patchFlags & (1 << PATCH_PORTAL)) {
-        gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_stone_001_mesh);
+        gSPDisplayList(gDisplayListHead++, menu_patch_portal_patch_portal_mesh);
     }
+    if (patchFlags & (1 << PATCH_MIASMA)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_miasma_patch_miasma_mesh);
+    }
+    if (patchFlags & (1 << PATCH_EXTENSION)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_extension_patch_extension_mesh);
+    }
+    if (patchFlags & (1 << PATCH_SKYBRIDGE)) {
+        gSPDisplayList(gDisplayListHead++, menu_patch_skybridge_patch_skybridge_mesh);
+    }
+
+    
 
     //selector
     if (gSubMenuIndex == 2) {
+        if (patchFlags == 0) {
+            gPatchIndex = 13;
+        }
     handle_patch_menu_scrolling(gPatchIndex, patchFlags);
+    if (patchFlags == 0) {
+        gPatchIndex = 13;
+    }
     gPatchIndexX = gPatchIndex % 4;
     gPatchIndexY = gPatchIndex / 4;
+    
+    }
+
+    f32 patchIndexXFloat = (f32)gPatchIndexX;
+
+    if (gPatchIndexY == 3) {
+        patchIndexXFloat = 1.5f;
     }
 
     //main translation mtx
-    create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * gPatchIndexX), 42 - (40 * gPatchIndexY), 6);
+    create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * patchIndexXFloat), 42 - (40 * gPatchIndexY), 6);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, (f32) 0.6, (f32) 0.6, (f32) 0);
 
     //gDPSetCombineMode(gDisplayListHead++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
@@ -3857,7 +3890,7 @@ s32 render_pause_courses_and_castle(void) {
                 }
 
                 if (mapID >= 0) {
-                    check_if_patch_on_dpad_and_switch(gPatchIndex, mapID, dpadMap);
+                    check_if_patch_on_dpad_and_switch( (gPatchIndex + 1) % 13, mapID, dpadMap);
                     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
                     play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
                     update_dl_dpad_patches();
@@ -3905,7 +3938,7 @@ s32 render_pause_courses_and_castle(void) {
 
             else if (gSubMenuIndex == 2) {
                 common_patch_cancel(gMarioState);
-                gMarioState->equippedPatch = gPatchIndex;
+                gMarioState->equippedPatch = (gPatchIndex + 1) % 13;
                 gMarioState->updatePatch = 1;
                 update_mario_equipped_patch();
                 play_sound(SOUND_MENU_READ_A_SIGN, gGlobalSoundSource);

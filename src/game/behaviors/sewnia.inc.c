@@ -25,7 +25,8 @@ enum SewniaActions {
     SEWNIA_ACT_ENTER_SECOND_HUB,
     SEWNIA_ACT_LEAVING_SECOND_HUB,
     SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
-    SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE
+    SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE,
+    SEWNIA_ACT_REVIVE_PEACH
 };
 
 enum SewniaAnims {
@@ -68,7 +69,8 @@ enum SewniaFaceStates {
     SEWNIA_FACE_STATE_SURPRISED_BLINK,
     SEWNIA_FACE_STATE_SCARED,
     SEWNIA_FACE_STATE_SCARED_GRIMACE,
-    SEWNIA_FACE_STATE_BLINK_GRIMACE
+    SEWNIA_FACE_STATE_BLINK_GRIMACE,
+    SEWNIA_FACE_STATE_CRYING
 };
 
 static struct ObjectHitbox sSewniaHitbox = {
@@ -1507,6 +1509,62 @@ void sewnia_act_enter_third_hub_cutscene(void) {
     }
 }
 
+void sewnia_act_revive_peach_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            if (cExternalCutsceneTrigger < 6) {
+                obj_mark_for_deletion(o);
+            }
+            else {
+                cur_obj_init_animation(26);
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 1:
+        if (o->oTimer < 40) {
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+        }
+        else {
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+        }
+        if (cExternalCutsceneTrigger >= 7) {
+            cur_obj_init_animation(27);
+            o->oSubAction++;
+            o->oTimer = 0;
+        }
+        break;
+        case 2:
+
+            if (o->oTimer < 30) {
+                
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            }
+            else if (o->oTimer < 90) {
+                
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
+            }
+            else {
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            }
+
+            if (cExternalCutsceneTrigger >= 8) {
+                o->oSubAction++;
+            }
+        break;
+        case 3:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_CRYING;
+            if (cExternalCutsceneTrigger >= 9) {
+                o->oSubAction++;
+                cur_obj_init_animation(28);
+            }
+        break;
+        case 4:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+        break;
+    }
+}
+
 void bhv_sewnia_loop(void) {
 
     //print_text_fmt_int(200, 80, "sewnia %d", o->oSewniaSourceNode);
@@ -1531,7 +1589,7 @@ void bhv_sewnia_loop(void) {
             o->oAction = SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE;
         }
         else if (gCurCutscene == CUTSCENE_EVENT_REVIVE_PEACH) {
-            obj_mark_for_deletion(o);
+            o->oAction = SEWNIA_ACT_REVIVE_PEACH;
         }
         else if (gCurCutscene == CUTSCENE_EVENT_THIRD_HUB_ARRIVAL) {
             o->oAction = SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE;
@@ -1586,6 +1644,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE:
             sewnia_act_enter_third_hub_cutscene();
+        break;
+        case SEWNIA_ACT_REVIVE_PEACH:
+            sewnia_act_revive_peach_cutscene();
         break;
     }
 

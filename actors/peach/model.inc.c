@@ -2843,9 +2843,9 @@ Gfx peach_head_mesh_layer_1_mat_override_eye_mostly_open_0[] = {
 };
 
 Gfx peach_head_mesh_layer_1_mat_override_eye_mostly_closed_1[] = {
-	gsSPDisplayList(mat_peach_eye_mostly_open),
+	gsSPDisplayList(mat_peach_eye_mostly_closed),
 	gsSPDisplayList(peach_head_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_eye_mostly_open),
+	gsSPDisplayList(mat_revert_peach_eye_mostly_closed),
 	gsSPDisplayList(mat_peach_hair),
 	gsSPDisplayList(peach_head_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_peach_hair),
@@ -2865,9 +2865,9 @@ Gfx peach_head_mesh_layer_1_mat_override_eye_mostly_closed_1[] = {
 };
 
 Gfx peach_head_mesh_layer_1_mat_override_eye_closed_2[] = {
-	gsSPDisplayList(mat_peach_eye_mostly_open),
+	gsSPDisplayList(mat_peach_eye_closed),
 	gsSPDisplayList(peach_head_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_peach_eye_mostly_open),
+	gsSPDisplayList(mat_revert_peach_eye_closed),
 	gsSPDisplayList(mat_peach_hair),
 	gsSPDisplayList(peach_head_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_peach_hair),

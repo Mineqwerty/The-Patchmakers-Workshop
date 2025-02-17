@@ -128,6 +128,7 @@ enum EndToadAnimIndex {
 };
 
 extern ModelID32 gStarModelLastCollected;
+extern s8 sPeachManualBlinkTime;
 
 void print_displaying_credits_entry(void);
 void bhv_end_peach_loop(void);

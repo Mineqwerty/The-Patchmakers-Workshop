@@ -26,3 +26,6 @@
 #include "anim_walkBackScared.inc.c"
 #include "anim_grabbedByPatchmaker.inc.c"
 #include "anim_grabbedByPatchmakerIdle.inc.c"
+#include "anim_afterBeingFixed.inc.c"
+#include "anim_huggedByPeach.inc.c"
+#include "anim_idleAfterHug.inc.c"

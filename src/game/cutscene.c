@@ -1456,9 +1456,29 @@ s32 event_revive_peach[] = {
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
     EVENT_WAIT, 60,
+    EVENT_SET_EXTERNAL_TRIGGER, 6,
+    EVENT_SPAWN_OBJECT, 0, 100, 0, 0, 0, 0, 1, bhvSewnia, MODEL_SEWNIA,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 231,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 232,
     EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
     EVENT_WAIT, 30,
     EVENT_DIALOG_USER_ADVANCE, DIALOG_PEACH_REVIVED_2,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 233,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 234,
+    EVENT_SET_EXTERNAL_TRIGGER, 7,
+
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_WAIT, 30,
+    EVENT_SET_EXTERNAL_TRIGGER, 8,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_PEACH_REVIVED_3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 235,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 236,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 3,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 237,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 238,
+    EVENT_SET_MARIO_POSITION, -131, 100, 375,
+    EVENT_SET_EXTERNAL_TRIGGER, 9,
 
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
@@ -1890,6 +1910,15 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_PeachRevivePos7,
     //230
     castle_inside_area_1_spline_PeachReviveFocus7,
+    castle_inside_area_1_spline_PeachRevivePos9,
+    castle_inside_area_1_spline_PeachReviveFocus9,
+    castle_inside_area_1_spline_PeachRevivePos10,
+    castle_inside_area_1_spline_PeachReviveFocus10,
+    //235
+    castle_inside_area_1_spline_PeachRevivePos11,
+    castle_inside_area_1_spline_PeachReviveFocus11,
+    castle_inside_area_1_spline_PeachRevivePos8,
+    castle_inside_area_1_spline_PeachReviveFocus8,
 
 };
 

@@ -131,3 +131,7 @@
 #include "lockbox_key/model.inc.c"
 #include "skybridge_ring/model.inc.c"
 #include "global_ground_book/model.inc.c"
+#include "menu_patch_breeze/model.inc.c"
+#include "menu_patch_miasma/model.inc.c"
+#include "menu_patch_extension/model.inc.c"
+#include "menu_patch_skybridge/model.inc.c"

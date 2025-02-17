@@ -14,3 +14,4 @@
 #include "anim_wakingUp.inc.c"
 #include "anim_idle.inc.c"
 #include "anim_sitFixSewnia.inc.c"
+#include "anim_hugSewnia.inc.c"

@@ -1,4 +1,5 @@
 #include "src/game/cutscene.h"
+#include "src/game/mario_actions_cutscene.h"
 static struct ObjectHitbox sPeachNPCHitbox = {
     /* interactType:      */ INTERACT_TEXT,
     /* downOffset:        */ 0,
@@ -24,11 +25,23 @@ void peach_npc_act_revive_cutscene(void) {
         case 0:
             if (cExternalCutsceneTrigger >= 3) {
                 o->oSubAction++;
+                o->oTimer = 0;
             }
         break;
         case 1:
         cur_obj_init_animation(1);
-            if (cur_obj_check_if_near_animation_end()) {
+        
+        if (o->oTimer <= 30) {
+            sPeachManualBlinkTime = 2;
+
+        }
+        else if (o->oTimer > 30 && o->oTimer < 60) {
+            sPeachManualBlinkTime = 3;
+        }
+        else {
+            sPeachManualBlinkTime = 0;
+        }
+            if (cur_obj_check_if_near_animation_end() || cExternalCutsceneTrigger >= 4) {
                 cur_obj_init_animation(2);
                 o->oSubAction++;
             }
@@ -40,8 +53,44 @@ void peach_npc_act_revive_cutscene(void) {
                 o->oPosY = 130;
                 o->oPosZ = 1231;
                 cur_obj_init_animation(3);
+                sPeachManualBlinkTime = 3;
                 o->oSubAction++;
             }
+        break;
+        case 3:
+            
+            if (cExternalCutsceneTrigger >= 6) {
+                o->oPosX = 30;
+                o->oPosY = 100;
+                o->oPosZ = 1031;
+                o->oFaceAngleYaw = -0x3600;
+                
+                sPeachManualBlinkTime = 0;
+                cur_obj_init_animation(2);
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+            
+            if (cExternalCutsceneTrigger >= 7) {
+                cur_obj_init_animation(4);
+                o->oPosX = -33;
+                o->oSubAction++;
+            }
+        break;
+        case 5:
+            if (o->oTimer > 30) {
+                sPeachManualBlinkTime = 3;
+            }
+            if (cExternalCutsceneTrigger >= 9) {
+                o->oSubAction++;
+                o->oFaceAngleYaw = -0x7600;
+                cur_obj_init_animation(2);
+                sPeachManualBlinkTime = 0;
+            }
+        break;
+        case 6:
+
         break;
     }
 }

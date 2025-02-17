@@ -2850,12 +2850,12 @@ It's all okay now...\n\
 I um...\n\
 \n\
 \n\
-...\n\
+@7F60B4FF...\n\
 \n\
 \n\
 "))
 
-DEFINE_DIALOG(DIALOG_PEACH_REVIVED_3, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_REVIVED_3, 1, 4, 30, 200, _("\
 @7F60B4FFHow... how could he do that to me?\n\
 Why would he do that to me?\n\
 Does he... does he really hate me that much?\n\
@@ -2908,7 +2908,7 @@ let my father keep going on like this.\n\
 And whatever is left of him is suffering...\n\
 Which is why...\n\
 We need to find and defeat him.\n\
-@7F60B4FFBwahaha! Now THAT is a plan, Sewnia!\n\
+@FF0202FFBwahaha! Now THAT is a plan, Sewnia!\n\
 I'll make this guy pay!\n\
 \n\
 \n\

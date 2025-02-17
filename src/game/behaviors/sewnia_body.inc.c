@@ -25,7 +25,7 @@ void bhv_sewnia_body_loop(void) {
                 cur_obj_init_animation(2);
             }
 
-            if (cExternalCutsceneTrigger >= 5) {
+            if (cExternalCutsceneTrigger >= 6) {
                 obj_mark_for_deletion(o);
             }
         break;
@@ -61,7 +61,7 @@ void bhv_sewnia_head_loop(void) {
             }
 
             
-            if (cExternalCutsceneTrigger >= 5) {
+            if (cExternalCutsceneTrigger >= 6) {
                 obj_mark_for_deletion(o);
             }
         break;

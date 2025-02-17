@@ -539,4 +539,12 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "global_ground_book/geo_header.h"
 
+#include "menu_patch_breeze/header.h"
+
+#include "menu_patch_miasma/header.h"
+
+#include "menu_patch_extension/header.h"
+
+#include "menu_patch_skybridge/header.h"
+
 #endif

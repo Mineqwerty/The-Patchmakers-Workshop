@@ -50,7 +50,7 @@ Vp sEndCutsceneVp = {
 struct CreditsEntry *sDispCreditsEntry = NULL;
 
 // related to peach gfx?
-static s8 sPeachManualBlinkTime = 0;
+s8 sPeachManualBlinkTime = 0;
 static s8 sPeachIsBlinking = FALSE;
 static s8 sPeachBlinkTimes[7] = { 2, 3, 2, 1, 2, 3, 2 };
 
@@ -198,7 +198,7 @@ Gfx *geo_switch_peach_eyes(s32 callContext, struct GraphNode *node, UNUSED s32 c
                 switchCase->selectedCase = sPeachIsBlinking * 4 + 1;
             }
         } else {
-            switchCase->selectedCase = sPeachIsBlinking * 4 + sPeachManualBlinkTime - 1;
+            switchCase->selectedCase = sPeachManualBlinkTime;
         }
     }
 

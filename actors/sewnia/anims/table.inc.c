@@ -27,5 +27,8 @@ const struct Animation *const sewnia_anims[] = {
 	&sewnia_anim_walkBackScared,
 	&sewnia_anim_grabbedByPatchmaker,
 	&sewnia_anim_grabbedByPatchmakerIdle,
+	&sewnia_anim_afterBeingFixed,
+	&sewnia_anim_huggedByPeach,
+	&sewnia_anim_idleAfterHug,
 	NULL,
 };

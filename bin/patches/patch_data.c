@@ -6,69 +6,35 @@
 ALIGNED8 const u8 patch_textures_dma[] = {
     #include "actors/amp/mario_cap.rgba16.inc.c" 
     ,
-    #include "actors/amp/stone_patch.rgba16.inc.c"
+    #include "actors/amp/patch_stone.rgba16.inc.c"
     ,
-    #include "actors/amp/chillstep_patch.rgba16.inc.c"
+    #include "actors/amp/patch_chillstep.rgba16.inc.c"
     ,
-    #include "actors/amp/grapple_patch.rgba16.inc.c"
+    #include "actors/amp/patch_grapple.rgba16.inc.c"
     ,
-    #include "actors/amp/halo_patch.rgba16.inc.c"
+    #include "actors/amp/patch_halo.rgba16.inc.c"
     ,
-    #include "actors/amp/marine_patch.rgba16.inc.c"
+    #include "actors/amp/patch_marine.rgba16.inc.c"
     ,
-    #include "actors/amp/shadowchomp_patch.rgba16.inc.c"
+    #include "actors/amp/patch_shadowchomp.rgba16.inc.c"
     ,
-    #include "actors/amp/transmutation_patch.rgba16.inc.c"
+    #include "actors/amp/patch_transmutation.rgba16.inc.c"
     ,
-    #include "actors/amp/breeze_patch.rgba16.inc.c"
+    #include "actors/amp/patch_breeze.rgba16.inc.c"
     ,
-    #include "actors/amp/portal_patch.rgba16.inc.c"
+    #include "actors/amp/patch_portal.rgba16.inc.c"
     ,
-    #include "actors/amp/miasma_patch.rgba16.inc.c"
+    #include "actors/amp/patch_miasma.rgba16.inc.c"
     ,
-    #include "actors/amp/extension_patch.rgba16.inc.c"
+    #include "actors/amp/patch_extension.rgba16.inc.c"
     ,
-    #include "actors/amp/skybridge_patch.rgba16.inc.c"
+    #include "actors/amp/patch_skybridge.rgba16.inc.c"
 
-};
-
-ALIGNED8 static const Texture texture_menu_stone_patch[] = {
-#include "actors/amp/mario_cap.rgba16.inc.c" 
-};
-ALIGNED8 static const Texture texture_menu_chillstep_patch[] = {
-#include "actors/amp/chillstep_patch.rgba16.inc.c"
-};
-ALIGNED8 static const Texture texture_menu_grapple_patch[] = {
-#include "actors/amp/grapple_patch.rgba16.inc.c"
-};
-ALIGNED8 static const Texture texture_menu_halo_patch[] = {
-#include "actors/amp/halo_patch.rgba16.inc.c"
-};
-ALIGNED8 static const Texture texture_menu_marine_patch[] = {
-#include "actors/amp/marine_patch.rgba16.inc.c"
-};
-ALIGNED8 static const Texture texture_menu_portal_patch[] = {
-#include "actors/amp/portal_patch.rgba16.inc.c"
 };
 
 
 // 0x030293E0
 const Texture *const patch_textures_lut[] = {
-    texture_menu_stone_patch,
-    texture_menu_chillstep_patch,
-    texture_menu_grapple_patch,
-    texture_menu_halo_patch,
-    texture_menu_marine_patch,
-    texture_menu_portal_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch,
-    texture_menu_stone_patch
 };
 
 ALIGNED8 const u8 tfp_tile_textures_dma[] = {

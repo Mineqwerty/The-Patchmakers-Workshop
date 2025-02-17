@@ -1,5 +1,5 @@
-Gfx menu_patch_mario_mario_cap_ci8_aligner[] = {gsSPEndDisplayList()};
-u8 menu_patch_mario_mario_cap_ci8[] = {
+Gfx menu_patch_mario_mario_cap_rgba16_ci8_aligner[] = {gsSPEndDisplayList()};
+u8 menu_patch_mario_mario_cap_rgba16_ci8[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -131,8 +131,8 @@ u8 menu_patch_mario_mario_cap_ci8[] = {
 	
 };
 
-Gfx menu_patch_mario_mario_cap_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 menu_patch_mario_mario_cap_ci8_pal_rgba16[] = {
+Gfx menu_patch_mario_mario_cap_rgba16_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 menu_patch_mario_mario_cap_rgba16_pal_rgba16[] = {
 	0xff, 0xfe, 0xf7, 0xbd, 0xf6, 0xb5, 0xf5, 0xaf, 
 	0xec, 0xe9, 0xf5, 0xef, 0xf5, 0x2b, 0xf5, 0x29, 
 	0xf0, 0x01, 0xf3, 0xe1, 0xf7, 0x3b, 0xf3, 0x19, 
@@ -145,54 +145,64 @@ u8 menu_patch_mario_mario_cap_ci8_pal_rgba16[] = {
 	0xf7, 0xbc, 
 };
 
-Vtx menu_patch_mario_patch_mario_mesh_vtx_0[4] = {
-	{{{-83, 29, 4},0, {-16, 1008},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{-57, 29, 4},0, {1008, 1008},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{-57, 55, 4},0, {1008, -16},{0x0, 0x0, 0x7F, 0xFF}}},
-	{{{-83, 55, 4},0, {-16, -16},{0x0, 0x0, 0x7F, 0xFF}}},
+Vtx menu_patch_mario_patch_mario_003_mesh_vtx_cull[8] = {
+	{{ {-17, -85, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-17, -85, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-17, -53, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-17, -53, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {15, -85, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {15, -85, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {15, -53, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {15, -53, 4}, 0, {0, 0}, {0, 0, 0, 0} }},
 };
 
-Gfx menu_patch_mario_patch_mario_mesh_tri_0[] = {
-	gsSPVertex(menu_patch_mario_patch_mario_mesh_vtx_0 + 0, 4, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 2, 3, 0),
+Vtx menu_patch_mario_patch_mario_003_mesh_vtx_0[4] = {
+	{{ {-17, -85, 4}, 0, {-16, 1008}, {0, 0, 127, 0} }},
+	{{ {15, -85, 4}, 0, {1008, 1008}, {0, 0, 127, 0} }},
+	{{ {15, -53, 4}, 0, {1008, -16}, {0, 0, 127, 0} }},
+	{{ {-17, -53, 4}, 0, {-16, -16}, {0, 0, 127, 0} }},
+};
+
+Gfx menu_patch_mario_patch_mario_003_mesh_tri_0[] = {
+	gsSPVertex(menu_patch_mario_patch_mario_003_mesh_vtx_0 + 0, 4, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_menu_patch_mario_patch_mario[] = {
+Gfx mat_menu_patch_mario_patch_mario_003[] = {
+	gsSPGeometryMode(G_CULL_BACK, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, ENVIRONMENT, 0),
-	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, menu_patch_mario_mario_cap_ci8_pal_rgba16),
-	gsDPTileSync(),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadSync(),
-	gsDPLoadTLUTCmd(7, 36),
-	gsDPPipeSync(),
-	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, menu_patch_mario_mario_cap_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
-	gsDPLoadSync(),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, menu_patch_mario_mario_cap_rgba16_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 36),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, menu_patch_mario_mario_cap_rgba16_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
-	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_menu_patch_mario_patch_mario[] = {
+Gfx mat_revert_menu_patch_mario_patch_mario_003[] = {
+	gsSPGeometryMode(0, G_CULL_BACK),
 	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_CULL_BACK),
+	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
-Gfx menu_patch_mario_patch_mario_mesh[] = {
-	gsSPDisplayList(mat_menu_patch_mario_patch_mario),
-	gsSPDisplayList(menu_patch_mario_patch_mario_mesh_tri_0),
-	gsSPDisplayList(mat_revert_menu_patch_mario_patch_mario),
+Gfx menu_patch_mario_patch_mario_003_mesh[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPVertex(menu_patch_mario_patch_mario_003_mesh_vtx_cull + 0, 8, 0),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPCullDisplayList(0, 7),
+	gsSPDisplayList(mat_menu_patch_mario_patch_mario_003),
+	gsSPDisplayList(menu_patch_mario_patch_mario_003_mesh_tri_0),
+	gsSPDisplayList(mat_revert_menu_patch_mario_patch_mario_003),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
