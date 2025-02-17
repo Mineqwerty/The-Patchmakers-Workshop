@@ -647,6 +647,10 @@ static s32 act_breaststroke(struct MarioState *m) {
         return set_mario_action(m, (m->equippedPatch == PATCH_MARINE) ? ACT_MARINE_PATCH_SPIN : ACT_WATER_PUNCH, 0);
     }
 
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && m->equippedPatch == PATCH_MARINE) {
+        return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
+    }
+
     if (++m->actionTimer == 14) {
         return set_mario_action(m, ACT_FLUTTER_KICK, 0);
     }
@@ -704,6 +708,10 @@ static s32 act_swimming_end(struct MarioState *m) {
 
     if (m->input & INPUT_B_PRESSED) {
         return set_mario_action(m, (m->equippedPatch == PATCH_MARINE) ? ACT_MARINE_PATCH_SPIN : ACT_WATER_PUNCH, 0);
+    }
+
+    if (gPlayer1Controller->buttonPressed & patch_button_input() && m->equippedPatch == PATCH_MARINE) {
+        return set_mario_action(m, ACT_MARINE_PATCH_SPIN, 0);
     }
 
     if (m->actionTimer >= 15) {
@@ -981,7 +989,10 @@ static s32 act_marine_patch_spin(struct MarioState *m) {
     cur_obj_play_sound_1(m->marioObj, SOUND_ACTION_WATER_JUMP);
             set_custom_mario_animation(m, MARIO_CUSTOM_ANIM_MARINE_SPIN);
             if (m->actionTimer == 30) {
-                if ((m->input & INPUT_B_DOWN) && m->curPatch == PATCH_MARINE) {
+                if ((m->input & INPUT_B_DOWN) && m->equippedPatch == PATCH_MARINE) {
+                    m->actionTimer = 0;
+                }
+                else if ((gPlayer1Controller->buttonPressed & patch_button_input()) && m->equippedPatch == PATCH_MARINE) {
                     m->actionTimer = 0;
                 }
                 else if (m->input & INPUT_A_DOWN) {

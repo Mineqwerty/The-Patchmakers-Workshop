@@ -574,7 +574,6 @@
 #define MODEL_CORR_LIFT                  0x119
 #define MODEL_TS_WARP_PLATFORM                  0x11A
 #define MODEL_MEMORY_CLOUD                  0x11B
-
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
 #define MODEL_LIFT_CLOUD                  0x101
@@ -885,6 +884,7 @@
 #define MODEL_LOCKBOX_KEY                  0x1B2
 #define MODEL_SKYBRIDGE_RING                  0x1B3
 #define MODEL_GLOBAL_GROUND_BOOK                  0x1B4
+#define MODEL_LOCKBOX                  0x1B5
 
 #define MODEL_STAR_MARKER                      0x54
 #define MODEL_BLUE_STAR_MARKER                      0x55

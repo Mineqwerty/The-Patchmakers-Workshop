@@ -237,6 +237,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, -3624, 1621, -6725, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BOWSER, -190, 1621, -6156, 0, 0, 0, 0x00000000, bhvBowserNpc),
 		OBJECT(MODEL_CORR_LIFT, 10407, 1851, -3690, 0, 0, 0, 0x00000000, bhvCorrLift),
+		OBJECT(MODEL_LOCKBOX, -3145, 1731, -5118, 0, 0, 0, 0x00000000, bhvLockbox),
 		OBJECT(MODEL_MEMORY_CLOUD, -3139, 1881, -5112, 0, 0, 0, 0x00000000, bhvMemoryCloud),
 		OBJECT(MODEL_NONE, 2218, 1927, 351, 0, -121, 0, (0x40 << 16), bhvPaintingDeathWarp),
 		OBJECT(MODEL_NONE, -97, -325, -9945, 0, -180, 0, (0x41 << 16), bhvPaintingDeathWarp),

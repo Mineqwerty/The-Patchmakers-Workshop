@@ -9275,3 +9275,14 @@ const BehaviorScript bhvTriangleTornado[] = {
         CALL_NATIVE(bhv_triangle_tornado_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvLockbox[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, lockbox_anims),
+    ANIMATE(0),
+    CALL_NATIVE(bhv_lockbox_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lockbox_loop),
+    END_LOOP(),
+};

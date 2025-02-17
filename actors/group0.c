@@ -135,3 +135,6 @@
 #include "menu_patch_miasma/model.inc.c"
 #include "menu_patch_extension/model.inc.c"
 #include "menu_patch_skybridge/model.inc.c"
+#include "lockbox/model.inc.c"
+#include "lockbox/anims/data.inc.c"
+#include "lockbox/anims/table.inc.c"

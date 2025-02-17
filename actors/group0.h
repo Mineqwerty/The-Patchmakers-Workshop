@@ -547,4 +547,8 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 #include "menu_patch_skybridge/header.h"
 
+#include "lockbox/geo_header.h"
+
+
+#include "lockbox/anim_header.h"
 #endif
