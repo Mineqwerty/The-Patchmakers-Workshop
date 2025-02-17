@@ -793,6 +793,9 @@
 #define MODEL_WOODEN_PLANK_RIGHT                   0x102
 #define MODEL_BURNABLE_ROPE_NET                   0x103
 
+//The Brink
+#define MODEL_TRIANGLE_TORNADO                   0x100
+
 //Final Battle
 #define MODEL_MANTLE_OF_MADNESS                   0x100
 #define MODEL_MANTLE_OF_MADNESS_HURT                   0x101

@@ -846,3 +846,4 @@ extern const BehaviorScript bhvTfpBluePuzzleBox[];
 extern const BehaviorScript bhvCrazyBlock[];
 extern const BehaviorScript bhvFinalNeedle[];
 extern const BehaviorScript bhvMantleDeathRay[];
+extern const BehaviorScript bhvTriangleTornado[];

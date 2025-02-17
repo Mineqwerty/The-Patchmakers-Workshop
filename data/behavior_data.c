@@ -9265,3 +9265,13 @@ const BehaviorScript bhvMantleDeathRay[] = {
         CALL_NATIVE(bhv_mantle_death_ray_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvTriangleTornado[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_triangle_tornado_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_triangle_tornado_loop),
+    END_LOOP(),
+};

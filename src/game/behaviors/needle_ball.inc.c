@@ -34,7 +34,7 @@ void bhv_needle_ball_loop(void) {
     f32 dist = 1000;
     vec3f_get_lateral_dist(&o->oPosVec, gMarioState->pos, &dist);
 
-    if (dist < 50 || o->oHealth <= 0 || o->oTimer > 500) {
+    if (dist < 50 || (gMarioState->curPatch == PATCH_STONE && dist < 150) || o->oHealth <= 0 || o->oTimer > 500) {
         if (gCurrLevelNum != LEVEL_BOWSER_3) {
             o->parentObj->oPatchmakerNeedleBallObj = NULL;
         }

@@ -56,3 +56,7 @@
 #include "levels/bits/areas/1/30/collision.inc.c"
 #include "levels/bits/areas/1/31/collision.inc.c"
 #include "levels/bits/areas/1/32/collision.inc.c"
+
+#include "levels/bits/leveldata.inc.c"
+#include "levels/bits/brink_skybox/model.inc.c"
+#include "levels/bits/triangle_tornado/model.inc.c"

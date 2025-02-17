@@ -1196,3 +1196,5 @@ void bhv_final_needle_init(void);
 void bhv_final_needle_loop(void);
 void bhv_mantle_death_ray_init(void);
 void bhv_mantle_death_ray_loop(void);
+void bhv_triangle_tornado_init(void);
+void bhv_triangle_tornado_loop(void);

@@ -2413,6 +2413,9 @@ void mario_handle_special_floors(struct MarioState *m) {
                     set_mario_action(m, ACT_WARP_RDR, 2);
                 }
             break;
+            case SURFACE_OVERHEAD_CAM:
+                gReonucamState.overhead = 3;
+            break;
 
             default:
                 m->flags &= ~(MARIO_TRANSPARENT);

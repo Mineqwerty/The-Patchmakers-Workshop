@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_triangle_tornado_nobackcull_layer1();
+extern void scroll_bits_level_geo_triangle_tornado();
