@@ -634,6 +634,19 @@ struct CutsceneSplinePoint castle_inside_area_1_spline_PeachReviveFocus11[] = {
 	{ 9, 20, { -221, 234, 1112 }},
 	{ -1, 20, { -221, 234, 1114 }},
 };
+struct CutsceneSplinePoint castle_inside_area_1_spline_PeachReviveFocus12[] = {
+	{ 0, 20, { -193, 215, 205 }},
+	{ 1, 20, { -193, 215, 206 }},
+	{ 2, 20, { -193, 215, 207 }},
+	{ 3, 20, { -193, 215, 210 }},
+	{ 4, 20, { -193, 215, 212 }},
+	{ 5, 20, { -193, 215, 213 }},
+	{ 6, 20, { -193, 215, 215 }},
+	{ 7, 20, { -193, 215, 217 }},
+	{ 8, 20, { -193, 215, 219 }},
+	{ 9, 20, { -193, 215, 220 }},
+	{ -1, 20, { -193, 215, 222 }},
+};
 struct CutsceneSplinePoint castle_inside_area_1_spline_PeachReviveFocus2[] = {
 	{ 0, 20, { 68, 261, -1575 }},
 	{ 1, 20, { 60, 261, -1513 }},
@@ -791,6 +804,19 @@ struct CutsceneSplinePoint castle_inside_area_1_spline_PeachRevivePos11[] = {
 	{ 8, 20, { -20, 235, 870 }},
 	{ 9, 20, { -20, 235, 871 }},
 	{ -1, 20, { -20, 235, 871 }},
+};
+struct CutsceneSplinePoint castle_inside_area_1_spline_PeachRevivePos12[] = {
+	{ 0, 20, { 541, 312, 885 }},
+	{ 1, 20, { 541, 312, 886 }},
+	{ 2, 20, { 541, 312, 887 }},
+	{ 3, 20, { 541, 312, 889 }},
+	{ 4, 20, { 541, 312, 891 }},
+	{ 5, 20, { 541, 312, 893 }},
+	{ 6, 20, { 541, 312, 894 }},
+	{ 7, 20, { 541, 312, 897 }},
+	{ 8, 20, { 541, 312, 899 }},
+	{ 9, 20, { 541, 312, 900 }},
+	{ -1, 20, { 541, 312, 901 }},
 };
 struct CutsceneSplinePoint castle_inside_area_1_spline_PeachRevivePos2[] = {
 	{ 0, 20, { -760, 326, -1534 }},

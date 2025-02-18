@@ -32,3 +32,4 @@
 #include "anim_getUpFromBeingBlaster.inc.c"
 #include "anim_lookToDecapitatedSewnia.inc.c"
 #include "anim_holdingSewniaBody.inc.c"
+#include "anim_lookToBowser.inc.c"

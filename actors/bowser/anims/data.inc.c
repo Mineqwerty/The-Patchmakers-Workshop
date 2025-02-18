@@ -59,3 +59,5 @@
 #include "anim_U_31_Amgry_scream.inc.c"
 #include "anim_holdSewniaHead.inc.c"
 #include "anim_hearingPeachTalk.inc.c"
+#include "anim_bowserCrossArms.inc.c"
+#include "anim_nodHeadAfterCross.inc.c"

@@ -2964,7 +2964,7 @@ We need to find and defeat him.\n\
 I'll make this guy pay!\n\
 \n\
 \n\
-@FF75DFFFMario and I agree as well.\n\
+@FF75DFFFI agree as well.\n\
 If you're truly set on this, we'll\n\
 see it through to the end for you!\n\
 Even if we have just met.\n\

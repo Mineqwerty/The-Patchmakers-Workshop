@@ -91,6 +91,9 @@ void peach_npc_act_revive_cutscene(void) {
         break;
         case 6:
 
+            if (cExternalCutsceneTrigger >= 11) {
+                cur_obj_init_animation(5);
+            }
         break;
     }
 }

@@ -29,5 +29,6 @@ const struct Animation *const mario_anims[] = {
 	&mario_anim_getUpFromBeingBlaster,
 	&mario_anim_lookToDecapitatedSewnia,
 	&mario_anim_holdingSewniaBody,
+	&mario_anim_lookToBowser,
 	NULL,
 };

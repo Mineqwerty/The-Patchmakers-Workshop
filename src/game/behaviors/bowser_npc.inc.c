@@ -209,6 +209,30 @@ void bowser_npc_act_revive_peach_cutscene(void) {
                 o->oSubAction = 2;
             }
         break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 10) {
+                //cur_obj_init_animation(27);
+                o->oSubAction = 3;
+            }
+        break;
+        case 3:
+            if (cExternalCutsceneTrigger >= 12) {
+                cur_obj_init_animation(34);
+                o->oSubAction = 4;
+            }
+        break;
+        case 4:
+            if (cExternalCutsceneTrigger >= 13) {
+                cur_obj_init_animation(35);
+                o->oSubAction = 5;
+            }
+        break;
+        case 5:
+            if (cExternalCutsceneTrigger >= 14) {
+                cur_obj_init_animation(12);
+                o->oSubAction = 6;
+            }
+        break;
     }
 }
 

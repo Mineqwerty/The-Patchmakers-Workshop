@@ -1560,7 +1560,19 @@ void sewnia_act_revive_peach_cutscene(void) {
             }
         break;
         case 4:
-            o->oSewniaFaceState = SEWNIA_FACE_STATE_BLINK_GRIMACE;
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN_BLINK;
+            if (cExternalCutsceneTrigger >= 11) {
+                o->oSubAction++;
+            }
+        break;
+        case 5:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_CRYING;
+            if (cExternalCutsceneTrigger >= 12) {
+                o->oSubAction++;
+            }
+        break;
+        case 6:
+            o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
         break;
     }
 }
