@@ -2208,36 +2208,36 @@ a friendly person called a Rosedrift there.\n\
 I was a little nervous, so I came back here.\n\
 I'm sure you'll be able to talk better, Mario.\n\
 @7F60B4FFRight, anyways. Watch out for the thorny ground there!\n\
-The Patchmaker had a special tool when he explored which let him\n\
+The Patchmaker had a special tool that let him\n\
 bypass thorns, so if you haven't found it yet, keep an eye out!\n\
 @7F60B4FFWhen he was giving hints on where he hid it, he may have\n\
 underestimated my ability to figure it out a little...\n\
-I believe it's hidden down a secret path near the top of the cliffs!"))
+I believe it's hidden in a path near the top of the cliffs!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_RDR, 1, 4, 30, 200, _("\
 @7F60B4FFEvery time I opened this door, I could always\n\
-hear the distant pitter-patter of raindrops... Sometimes\n\
+hear a distant pitter-patter of raindrops... Sometimes\n\
 I would sit here for hours just listening, smelling\n\
-the damp musk carried on the cool, wet breeze blowing in.\n\
+the damp musk on the cool, wet breeze blowing in.\n\
 @7F60B4FFThis door leads to a place called Rainy Day Roadside.\n\
-Despite what you may think, it isn't actually right outside.\n\
-At some point, you'll pass through a magical portal to the\n\
-muddy farmland that lies along a road.\n\
+Despite what you may think, it isn't actually right here.\n\
+At a point, you'll pass through a magical portal to the\n\
+muddy farmland that lies along a long road.\n\
 @7F60B4FFI haven't been to any other places, so I can only \n\
-tell you what The Patchmaker has told me about this place.\n\
+relay what The Patchmaker has told me about this place.\n\
 Apparently, there's a rushing river that will sweep you away\n\
 if you aren't careful navigating around it.\n\
 @7F60B4FFBut if you're brave enough to cross it, there's a hidden\n\
-cave along its side. In there, you'll find a patch that will ease\n\
+cave along its side. In there is a patch that will ease\n\
 your worries about falling into the river!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_STC, 1, 4, 30, 200, _("\
 @7F60B4FFI haven't ever opened this door...\n\
 After seeing the way it closes, I always got scared of being\n\
 caught in between the doors and squeezed between them until I\n\
-popped into a pile of stuffing...\n\
+burst into a pile of stuffing...\n\
 @7F60B4FFAh! Sorry! I shouldn't have said that!\n\
-I watched The Patchmaker enter here many times, it's perfectly\n\
+I watched The Patchmaker enter here many times, it's\n\
 safe as long as you wait to close it until you're inside!\n\
 I'm only being a little scared for no reason here...\n\
 @7F60B4FFAnyways, the mechanical clicks of gears echo even with\n\
@@ -2289,11 +2289,11 @@ Truthfully, there was once a portal that was out in the open\n\
 like the others. It went to a place called Candlelit Chamber.\n\
 @7F60B4FFThis place was a little special to The Patchmaker.\n\
 Within it, the Master and Mistress of the place were very\n\
-good friends of his. Apparently, they visited here to see his works often.\n\
+good friends of his. Apparently, they visited here often.\n\
 @7F60B4FFAfter he... lost himself... The Patchmaker visited there\n\
-once again. I don't know what happened, but I watched from a distance\n\
-as he moved the warp tile to another room, looking tired and beaten up.\n\
-@7F60B4FFI... didn't want to ask why, but it almost looked like guilt was painted\n\
+once again. I don't know what happened, but I watched\n\
+as he moved the warp tile, looking tired and beaten up.\n\
+@7F60B4FFI... didn't want to ask why, but it almost looked like guilt was\n\
 on his face. It made me want to believe that he wasn't completely\n\
 lost yet, but at the same time... What could he have done?\n\
 @7F60B4FFSorry... Anyways, if you find the warp in here, watch out.\n\
@@ -2302,17 +2302,17 @@ It also has many secrets hidden high up above..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_HVH, 1, 4, 30, 200, _("\
 @7F60B4FFMario, what do you think is defined as real?\n\
-I'm sure that line is a little blurred for you with the places you've been...\n\
-The Patchmaker talked often about defining reality with words, but\n\
-always came to the conclusion that it was not possible.\n\
+I'm sure that line is a little blurred...\n\
+The Patchmaker talked often about defining reality with words\n\
+but came to the conclusion that it was not possible.\n\
 @7F60B4FFI think this book was the reason why.\n\
-When powered up, it seems to be a warp to somewhere far away, but\n\
-the people and land there are almost identical to what the book describes.\n\
-It's possible that it could be an entire world contained within the book.\n\
+It seems to be a warp to somewhere far away, but\n\
+everything there is identical to what the book describes.\n\
+It could be an entire world contained within that book...\n\
 @7F60B4FFHe wondered how real it ever was, and if it had the\n\
-secrets to the creation of life... But he found that even if it was a\n\
-fabricated world, in the end it wasn't any different from everything outside of it.\n\
-If people could enter and exit, then how was it any different from reality?\n\
+secrets to the creation of life... But even if it was a\n\
+fabricated world, in the end it wasn't any different from outside.\n\
+If people could enter and exit, how was it any different from reality?\n\
 @7F60B4FFSomething you might want to know is that the author was\n\
 mysterious. He finished the book on his deathbed, minutes before he passed.\n\
 Apparently, this meant that some ends were left untied, and for the\n\
@@ -2369,13 +2369,13 @@ DEFINE_DIALOG(DIALOG_SEWNIA_EA, 1, 4, 30, 200, _("\
 @7F60B4FFHaha...\n\
 Oh, sorry. I was just thinking a little about how foolish I was.\n\
 I should have known what was happening to The Patchmaker at this point...\n\
-How could I have hid in denial with what he made after he went here, after all.\n\
-@7F60B4FFSee the covered painting over there? He painted it after coming back here.\n\
+How could I have hid in denial with how he acted after he went here, after all.\n\
+@7F60B4FFHe painted something after coming back here.\n\
 The whole time, I hid and watched as he vigorously scratched on the canvas,\n\
 a horrid malice in his eyes that conveyed frustration ink could not.\n\
-It... scared me, so I covered the painting up after he left.\n\
-@7F60B4FFIf... If you think it would help to see the painting, I won't stop you\n\
-from peeking... After he finished, The Patchmaker tried talking to me,\n\
+It... scared me, so I hid the painting after he left.\n\
+@7F60B4FFI'd rather not go looking for it again...\n\
+After he finished, The Patchmaker tried talking to me,\n\
 assuring me he would create a sister for me. He told me not to worry with a smile,\n\
 but this smile hit piles of wrath and weariness for his failures thus far.\n\
 @7F60B4FFI think that this was the first time I felt fear in my life.\n\
@@ -2442,15 +2442,15 @@ DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_1, 1, 3, 30, 200, _("\
 @7F60B4FFOh, you want to know about this part of the workshop?\n\
 Well, as somebody who explored this place through and through,\n\
 I'd be glad to tell you!\n\
-@7F60B4FFSo, this part is actually pretty old and forgotten, even\n\
-more so than most areas here. It was the very first part of the workshop\n\
+@7F60B4FFSo, this part is actually pretty forgotten, even\n\
+more than most areas here. It was the first part of the workshop\n\
 that was built, after all. It has a slight nostalgic feeling...\n\
 @7F60B4FFThe Patchmaker used magic to build a lot of the workshop, but\n\
 this area was all built by hand.\n\
 It's sure showing its neglect, huh?\n\
 @7F60B4FFUm... what else...\n\
 Oh! The window in the attic! It might seem dull and dark,\n\
-but I would check on it when you get a decent amount of star power!"))
+but check on it when you get a decent amount of star power!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_2, 1, 5, 30, 200, _("\
 @7F60B4FFThis part of the workshop could be better \n\
@@ -2473,7 +2473,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_3, 1, 3, 30, 200, _("\
 @7F60B4FFThis... is where The Patchmaker had spent most of his\n\
 time before everything recent happened.\n\
 I have bad memories of this place...\n\
-@7F60B4FFI'm sure you can tell by everything around you just how obsessed he became.\n\
+@7F60B4FFI'm sure you can tell by everything just how obsessed he became.\n\
 I really had hoped to not be coming back here, but...\n\
 Um... Something is missing. Something that was here before.\n\
 @7F60B4FF...Huh? You asked what it was?\n\
