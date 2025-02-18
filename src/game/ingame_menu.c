@@ -2737,7 +2737,7 @@ void render_pause_my_score_coins(void) {
         print_generic_string(ACT_NAME_X - 180, 20, actName);
         print_generic_string(LVL_NAME_X - 180, 37, &courseName[3]);
     } else {
-        print_generic_string(SECRET_LVL_NAME_X, 37, &courseName[3]);
+        print_generic_string(SECRET_LVL_NAME_X - 180, 37, &courseName[3]);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
@@ -2814,7 +2814,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     print_generic_string(x + 10, y - 17, LANGUAGE_ARRAY(textExitCourse));
 
     if (*index != MENU_OPT_CAMERA_ANGLE_R && *index != 0) {
-        print_generic_string(x + 10, y - 33, LANGUAGE_ARRAY(textCameraAngleR));
+        //print_generic_string(x + 10, y - 33, LANGUAGE_ARRAY(textCameraAngleR));
         gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 
         create_dl_translation_matrix(MENU_MTX_PUSH, x - X_VAL8, (y - ((*index - 1) * yIndex)) - Y_VAL8, 0);
@@ -3351,7 +3351,15 @@ void render_pause_screen_felt() {
     render_submenu_toggle(-102, 82, &gSubMenuIndex, 66);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    if ((save_file_get_flags() & SAVE_FLAG_HAVE_LOCKBOX_KEY) && gCurrLevelNum != LEVEL_CASTLE) {
+    if ((save_file_get_flags() & SAVE_FLAG_HAVE_LOCKBOX_KEY) 
+        && gCurrLevelNum != LEVEL_CASTLE
+        && gCurrLevelNum != LEVEL_PSS
+        && gCurrLevelNum != LEVEL_BITDW
+        && gCurrLevelNum != LEVEL_BITFS
+        && gCurrLevelNum != LEVEL_BITS
+        && gCurrLevelNum != LEVEL_BOWSER_1
+        && gCurrLevelNum != LEVEL_BOWSER_2 
+        && gCurrLevelNum != LEVEL_BOWSER_3) {
         render_hint_display();
 
         if (gPlayer1Controller->buttonPressed & (L_CBUTTONS)) {
