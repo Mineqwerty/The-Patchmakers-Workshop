@@ -1269,8 +1269,23 @@ void sewnia_check_warp_to_mario(void) {
     }
 }
 
+u8 sewnia_should_not_follow_mario(void) {
+    return (gMarioState->floor && (
+        gMarioState->floor->type == SURFACE_WARP
+        || gMarioState->floor->type == SURFACE_NO_SEWNIA_FOLLOW
+    || gMarioState->floor->type == SURFACE_TTC_WARP
+    || gMarioState->floor->type == SURFACE_RDR_WARP
+    || gMarioState->floor->type == SURFACE_STC_WARP
+    || gMarioState->floor->type == SURFACE_GSS_WARP
+    || gMarioState->floor->type == SURFACE_SS_WARP
+    || gMarioState->floor->type == SURFACE_CLC_WARP
+    || gMarioState->floor->type == SURFACE_TFP_WARP
+    || gMarioState->floor->type == SURFACE_EA_WARP
+    || gMarioState->floor->object));
+}
+
 void sewnia_act_follow_mario(void) {
-    if (gSewniaFollowing) {
+    if (gSewniaFollowing && !sewnia_should_not_follow_mario()) {
         switch (o->oSubAction) {
             case 0:
                 sewnia_update_movement();

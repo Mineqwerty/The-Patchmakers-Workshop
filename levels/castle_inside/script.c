@@ -249,7 +249,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 9218, 965, -3716, 0, -90, 0, (0x32 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_NONE, 5957, 2635, -683, 0, -180, 0, (0x33 << 16), bhvPaintingStarCollectWarp),
 		OBJECT(MODEL_PEACH, -190, 1621, -6483, 0, 0, 0, 0x00000000, bhvPeachNpc),
-		//OBJECT(MODEL_SEWNIA, -4561, 1621, -6773, 0, 0, 0, 0x00000000, bhvSewnia),
+		OBJECT(MODEL_SEWNIA, -4561, 1621, -6773, 0, 0, 0, 0x00000000, bhvSewnia),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 9946, 659, -3690, 0, 0, 0, (45 << 24) | (6 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_STAR_UNLOCK_PLATFORM, 5971, 2380, -394, 0, 0, 0, (55 << 24) | (7 << 16), bhvStarUnlockPlatform),
 		OBJECT(MODEL_NONE, -3145, 1740, -5118, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
