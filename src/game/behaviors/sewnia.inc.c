@@ -1260,6 +1260,15 @@ void sewnia_act_idle(void) {
     
 }
 
+void sewnia_check_warp_to_mario(void) {
+    
+    if (gMarioState->floor && gMarioState->floor->type == SURFACE_SEWNIA_WARP_TO_MARIO && o->oFloor && o->oFloor->type != SURFACE_SEWNIA_WARP_TO_MARIO) {
+        o->oPosX = gLakituState.pos[0];
+        o->oPosY = gMarioState->pos[1];
+        o->oPosZ = gLakituState.pos[2];
+    }
+}
+
 void sewnia_act_follow_mario(void) {
     if (gSewniaFollowing) {
         switch (o->oSubAction) {
@@ -1291,7 +1300,8 @@ void sewnia_act_follow_mario(void) {
         else if (o->oForwardVel > 1.0f) {
             cur_obj_init_animation_with_accel_and_sound(SEWNIA_ANIM_WALK, 1.5f);
         }
-        
+
+        sewnia_check_warp_to_mario();
 
     }
     else {
