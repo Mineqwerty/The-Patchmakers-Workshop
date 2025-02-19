@@ -30,6 +30,8 @@ void bhv_sewnia_body_loop(void) {
             }
         break;
     }
+
+    
 }
 
 void bhv_sewnia_head_init(void) {
@@ -50,6 +52,7 @@ void bhv_sewnia_head_loop(void) {
             if (cExternalCutsceneTrigger >= 17) {
                 cur_obj_init_animation(1);
             }
+            o->oSewniaFaceState = 9;
         break;
         case LEVEL_CASTLE:
             if (cExternalCutsceneTrigger >= 4) {
@@ -64,7 +67,9 @@ void bhv_sewnia_head_loop(void) {
             if (cExternalCutsceneTrigger >= 6) {
                 obj_mark_for_deletion(o);
             }
+            o->oSewniaFaceState = 5;
         break;
     }
+    
 }
 

@@ -17,7 +17,8 @@ enum PeachNPCActions {
     PEACH_NPC_ACT_IDLE_END = 3,
     PEACH_NPC_ACT_FIND_SPOT = 4,
     PEACH_NPC_ACT_REVIVE_CUTSCENE,
-    PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE
+    PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE,
+    PEACH_NPC_ACT_ENTER_BRINK
 };
 
 void peach_npc_act_revive_cutscene(void) {
@@ -120,6 +121,19 @@ void peach_npc_act_enter_third_hub_cutscene(void) {
     }
 }
 
+void peach_npc_act_enter_brink(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -3224;
+            o->oPosY = 1622;
+            o->oPosZ = -4460;
+            cur_obj_init_animation(2);
+            o->oFaceAngleYaw = -0x7500;
+            o->oSubAction++;
+        break;
+    }
+}
+
 void bhv_peach_npc_init(void) {
     obj_set_hitbox(o, &sPeachNPCHitbox);
     cur_obj_init_animation(2);
@@ -131,6 +145,9 @@ void bhv_peach_npc_loop(void) {
     }
     else if (gCurCutscene == CUTSCENE_EVENT_THIRD_HUB_ARRIVAL) {
         o->oAction = PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE;
+    }
+    else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
+        o->oAction = PEACH_NPC_ACT_ENTER_BRINK;
     }
 
     switch (o->oAction) {
@@ -145,6 +162,9 @@ void bhv_peach_npc_loop(void) {
         break;
         case PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE:
             peach_npc_act_enter_third_hub_cutscene();
+        break;
+        case PEACH_NPC_ACT_ENTER_BRINK:
+            peach_npc_act_enter_brink();
         break;
     }
 

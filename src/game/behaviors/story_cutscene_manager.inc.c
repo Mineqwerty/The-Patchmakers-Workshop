@@ -22,10 +22,10 @@ void bhv_story_cutscene_manager_hub1_init(void) {
                 begin_cutscene_event(CUTSCENE_EVENT_REVIVE_BOWSER);
                 gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
             }
-            //else if (gCutsceneGameState == CUTSCENE_GAME_STATE_REVIVE_PEACH) {
+            else if (gCutsceneGameState == CUTSCENE_GAME_STATE_REVIVE_PEACH) {
                 begin_cutscene_event(CUTSCENE_EVENT_REVIVE_PEACH);
                 gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
-            //}
+            }
         break;
         case 2:
             if (gCutsceneGameState == CUTSCENE_GAME_STATE_ENTER_SECOND_HUB) {
@@ -53,6 +53,12 @@ void bhv_story_cutscene_manager_hub1_loop(void) {
                 set_mario_npc_dialog(MARIO_DIALOG_STOP);
                 o->oAction = 0;
                 }
+    }
+
+    
+    if (gCutsceneGameState == CUTSCENE_GAME_STATE_ENTER_BRINK) {
+        begin_cutscene_event(CUTSCENE_EVENT_ENTER_BRINK);
+        gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
     }
 }
 

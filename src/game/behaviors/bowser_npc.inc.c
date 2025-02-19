@@ -22,7 +22,8 @@ enum BowserNPCActions {
     BOWSER_NPC_ACT_LEAVING_SECOND_HUB,
     BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
     BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE,
-    BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE
+    BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE,
+    BOWSER_NPC_ACT_ENTER_BRINK
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -258,6 +259,19 @@ void bowser_npc_act_enter_third_hub_cutscene(void) {
     }
 }
 
+void bowser_npc_act_enter_brink(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -2863;
+            o->oPosY = 1622;
+            o->oPosZ = -4581;
+            cur_obj_init_animation(12);
+            o->oSubAction++;
+            o->oFaceAngleYaw = -0x7000;
+        break;
+    }
+}
+
 void bowser_npc_find_spot(void) {
     switch (gCurrAreaIndex) {
         case 2:;
@@ -306,6 +320,9 @@ void bhv_bowser_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_THIRD_HUB_ARRIVAL) {
         o->oAction = BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
+        o->oAction = BOWSER_NPC_ACT_ENTER_BRINK;
+    }
 
     switch (o->oAction) {
         case BOWSER_NPC_ACT_FIND_SPOT:
@@ -331,6 +348,9 @@ void bhv_bowser_npc_loop(void) {
         break;
         case BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE:
             bowser_npc_act_enter_third_hub_cutscene();
+        break;
+        case BOWSER_NPC_ACT_ENTER_BRINK:
+            bowser_npc_act_enter_brink();
         break;
     }
 

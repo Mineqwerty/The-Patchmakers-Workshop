@@ -1571,13 +1571,43 @@ s32 event_enter_brink[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
-
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_GENERIC_CUTSCENE_IDLE,
+    EVENT_SET_MARIO_POSITION, -3584, 1621, -5425,
+    EVENT_SET_MARIO_YAW, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 241,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 242,
     EVENT_DIALOG_USER_ADVANCE, DIALOG_ENTERING_BRINK,
 
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 243,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 244,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 245,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 246,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 5,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 247,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 248,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 6,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 243,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 244,
     EVENT_WAIT_FOR_DIALOG_END,
-    EVENT_SET_MARIO_ACTION, ACT_IDLE,
-    EVENT_CAMERA_DISABLE_CUTSCENE,
-    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 249,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 250,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_NOD_HEAD,
+
+    EVENT_WAIT, 60,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_DISABLE_MARIO_RENDER,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 251,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 252,
+    EVENT_WAIT, 60,
+
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 90, 255, 255, 255,
+    EVENT_WAIT, 90,
+
+    EVENT_INITIATE_WARP, LEVEL_BITS, 1, 0x0A,
     EVENT_END_CUTSCENE,
 
 };
@@ -1953,6 +1983,20 @@ s32 *splineList[] = {
     castle_inside_area_1_spline_PeachRevivePos12,
     //240
     castle_inside_area_1_spline_PeachReviveFocus12,
+    castle_inside_area_3_spline_EnterBrinkPos1,
+    castle_inside_area_3_spline_EnterBrinkFocus1,
+    castle_inside_area_3_spline_EnterBrinkPos2,
+    castle_inside_area_3_spline_EnterBrinkFocus2,
+    //245
+    castle_inside_area_3_spline_EnterBrinkPos3,
+    castle_inside_area_3_spline_EnterBrinkFocus3,
+    castle_inside_area_3_spline_EnterBrinkPos4,
+    castle_inside_area_3_spline_EnterBrinkFocus4,
+    castle_inside_area_3_spline_EnterBrinkPos5,
+    //250
+    castle_inside_area_3_spline_EnterBrinkFocus5,
+    castle_inside_area_3_spline_EnterBrinkPos6,
+    castle_inside_area_3_spline_EnterBrinkFocus6,
 
 };
 

@@ -70,5 +70,7 @@ char *tutorialDialogs[] = {
     "This patch lets Mario extend terrain around him.\nGround-pound a floor to create an upward\npillar beneath you, if the floor is stationary.",
     "Pressing @ when above and facing away from a wall\ninstead extends the terrain outward.\nYou can only have one pillar at a time.",
 //56
-    "The skybridge patch allows Mario to walk on air.\nThe bridge is created at the height of the\nlast floor he stood on temporarily."
+    "The skybridge patch allows Mario to walk on air.\nThe bridge is created at the height of the\nlast floor he stood on temporarily.",
+//57    
+    "\"A World Without You\"",
 };
