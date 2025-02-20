@@ -3260,6 +3260,14 @@ DEFINE_DIALOG(DIALOG_MEMORY_3_4, 1, 3, 30, 200, _("\
 @7E5FB3FFFather, I..."))
 
 DEFINE_DIALOG(DIALOG_MEMORY_3_5, 1, 2, 30, 200, _("\
+@5C5C5CFF...I have crossed a line no person should.\n\
+In my pursuit of life, I've desecrated life itself.\n\
+@5C5C5CFFThe terror on her face was too much to bear for me.\n\
+The madness that plagued my mind then had a momentary pause.\n\
+@5C5C5CFFAnd in that brief moment, before the madness\n\
+took me away once and for all...\n\
+@5C5C5CFFI drove my needle through my head.\n\
+\n\
 @5C5C5CFF...But a needle thin enough to sew life\n\
 itself would never be enough to take my own.\n\
 @5C5C5CFFAnd so... through the guilt,\n\
