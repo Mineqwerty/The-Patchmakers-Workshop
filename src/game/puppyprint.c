@@ -1641,7 +1641,7 @@ void print_small_text(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 f
         get_char_from_byte(&textX, &textPos[0], str[i], &widthX, &spaceX, &offsetY, font);
         s32 goddamnJMeasure = textX == 256 ? 1 : 0; // Hack to fix a rendering bug.
         if (str[i] != ' ' && str[i] != '\t') {
-            if (str[i] == '$') {
+            if (str[i] == '@') {
                 if (gConfig.patchButtonAlternate) {
                     get_char_from_byte(&textX, &textPos[0], 'R', &widthX, &spaceX, &offsetY, font);
                 }

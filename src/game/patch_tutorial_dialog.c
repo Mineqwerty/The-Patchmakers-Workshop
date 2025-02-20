@@ -1,9 +1,9 @@
 #include "src/game/patch_tutorial_dialog.h" 
 
 char *tutorialDialogs[] = {
-    "This patch contains a powerful new ability.\nPress $ to turn into stone.",
+    "This patch contains a powerful new ability.\nPress @ to turn into stone.",
     "Mario's stone form can pass through thorns\nand blocks most damage.",
-    "It can also be used in midair too.\nPressing $ again will cancel it and give\nMario a small boost.",
+    "It can also be used in midair too.\nPressing @ again will cancel it and give\nMario a small boost.",
     "Mario will slide and fall much faster in stone form.",
     "To change patches, press start and navigate \nto the Patches tab. Patches can also be mapped to\nthe D-Pad for quick access.",
 //5
@@ -12,7 +12,7 @@ char *tutorialDialogs[] = {
     "Some patches have passive effects rather than an active one.\nWhile this patch is equipped, performing a ground-pound\ncauses icy spikes to erupt.",
     "Remember to switch patches for what the situation needs.\nSometimes, exploring an area is easier with the\naid of these abilities.",
 //9
-    "The Grapple Patch hides a hook up Mario's sleeve.\nPressing $ shoots it out, attaching to any wall it comes\ninto contact with.",
+    "The Grapple Patch hides a hook up Mario's sleeve.\nPressing @ shoots it out, attaching to any wall it comes\ninto contact with.",
     "In practice, this allows Mario to hold onto both\nstationary and moving walls. Beware though,\nthe walls must be flat to grapple onto.",
     "This patch is also able to attack enemies,\nscoring a powerful blow should you land\nthe attack.",
 //12

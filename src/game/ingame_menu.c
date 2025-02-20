@@ -3495,7 +3495,12 @@ void print_song_name_list(s16 x, s16 y) {
         print_set_envcolour(color[0], color[1], color[2], color[3]);
 
         if (((i + gSongMenuIndex) >= 0) && ((i + gSongMenuIndex) < (NUM_MENU_SONGS))) {
-            print_small_text(x, y + i*15, songNames[gSongMenuIndex + i], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+            if (save_file_is_song_unlocked(gCurrSaveFileNum-1, songList[gSongMenuIndex + i])) {
+                print_small_text(x, y + i*15, songNames[gSongMenuIndex + i], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+            }
+            else {
+                print_small_text(x, y + i*15, "???", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+            }
         }
     }
 }
@@ -3587,11 +3592,13 @@ void render_sound_menu() {
         print_set_envcolour(0, 0, 0, 255);
         print_small_text(SCREEN_WIDTH - 106 ,SCREEN_CENTER_Y + 67, composerNames[gSongMenuIndex], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
 
-        if (cur_song_has_versions()) {
+        if (cur_song_has_versions() && save_file_is_song_unlocked(gCurrSaveFileNum-1, songList[gSongMenuIndex])) {
             print_song_version_selector();
         }
 
-        if (gPlayer1Controller->buttonPressed & (A_BUTTON) && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
+        if (gPlayer1Controller->buttonPressed & (A_BUTTON)
+        && save_file_is_song_unlocked(gCurrSaveFileNum-1, songList[gSongMenuIndex])
+        && ((gSongMenuIndex != gCurrSoundMenuSong || gCurrentDynamicScroll != gScrollSongVersion))) {
 
             set_song_music_dynamics(songList[gSongMenuIndex]);
 

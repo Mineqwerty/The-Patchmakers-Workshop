@@ -2669,7 +2669,6 @@ void init_mario(void) {
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 10));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 11));
     save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 12));
-    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 13));
 
     #endif
     

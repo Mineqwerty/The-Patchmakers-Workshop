@@ -25,11 +25,6 @@ struct SaveBlockSignature {
 };
 
 struct SaveFile {
-    // Location of lost cap.
-    // Note: the coordinates get set, but are never actually used, since the
-    // cap can always be found in a fixed spot within the course
-    u8 capLevel;
-    u8 capArea;
 
     // 48 bits
     u16 patchFlags;
@@ -42,10 +37,7 @@ struct SaveFile {
     // cannon is open.
     u8 courseStars[COURSE_COUNT-1]; // 200 bits
 
-    u32 collectedPatchUpgrades; // 32 bits
-    u32 upgradedPatches; // 32 bits
-
-    u8 filler[6]; // 56 bits
+    u32 unlockedSongs[4]; // 128 bits
 
     u32 patchChallengeFrames[12]; // 384 bits
 
@@ -247,6 +239,8 @@ void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode);
 s32 check_warp_checkpoint(struct WarpNode *warpNode);
 void save_file_set_patch_challenge_time(s32 fileIndex, s8 patchChallenge, u32 frames);
 u32 save_file_get_patch_challenge_time(s32 fileIndex, s8 patchChallenge);
+u32 save_file_is_song_unlocked(s32 fileIndex, u8 seqID);
+void save_file_set_collected_song(s32 fileIndex, u8 seqID);
 
 extern s16 gSaveTextIndicatorTimer;
 

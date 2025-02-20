@@ -1634,6 +1634,8 @@ static void seq_player_play_sequence(u8 player, u8 seqId, u16 arg2) {
     u8 targetVolume;
     u8 i;
 
+    save_file_set_collected_song(gCurrSaveFileNum-1, seqId);
+
     if (player == SEQ_PLAYER_LEVEL) {
         sCurrentBackgroundMusicSeqId = seqId & SEQ_BASE_ID;
         sBackgroundMusicForDynamics = SEQUENCE_NONE;

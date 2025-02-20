@@ -660,13 +660,25 @@ void save_file_set_dpad_map(s32 fileIndex, s8 dpadMap[4]) {
 
 u32 save_file_get_collected_patch_upgrades(s32 fileIndex) {
     u32 patchUpgrades;
-    patchUpgrades = gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades;
+    //patchUpgrades = gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades;
 
     return patchUpgrades;
 }
 
 void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades) {
-    gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades = patchUpgrades;
+    //gSaveBuffer.files[fileIndex][0].collectedPatchUpgrades = patchUpgrades;
+}
+
+u32 save_file_is_song_unlocked(s32 fileIndex, u8 seqID) {
+    #ifdef UNLOCK_ALL
+    return 1;
+    #else
+    return gSaveBuffer.files[fileIndex][0].unlockedSongs[seqID / 32] & (1 << (seqID%32));
+    #endif
+}
+
+void save_file_set_collected_song(s32 fileIndex, u8 seqID) {
+    gSaveBuffer.files[fileIndex][0].unlockedSongs[seqID / 32] |= (1 << (seqID%32));
 }
 
 /**
