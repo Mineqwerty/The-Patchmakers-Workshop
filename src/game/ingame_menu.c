@@ -2967,8 +2967,8 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
     if (gDialogLineNum <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)) { // Main courses
-        courseName = segmented_to_virtual(courseNameTbl[gDialogLineNum]);
-        render_pause_castle_course_stars(x, y, gCurrSaveFileNum - 1, gDialogLineNum);
+        courseName = segmented_to_virtual(courseNameTbl[indexToCourseSlot[gDialogLineNum]]);
+        render_pause_castle_course_stars(x, y, gCurrSaveFileNum - 1, indexToCourseSlot[gDialogLineNum]);
         print_generic_string(x + 34, y - 5, textCoin);
         //int_to_str(save_file_get_course_coin_score(gCurrSaveFileNum - 1, gDialogLineNum), strVal);
         //print_generic_string(x + 54, y - 5, strVal);
@@ -3182,6 +3182,22 @@ u32 courseToOrderedIndex[13] = {
     12
 };
 
+u32 indexToCourseSlot[13] = {
+    COURSE_NONE,
+    COURSE_BOB,
+    COURSE_WF,
+    COURSE_JRB,
+    COURSE_CCM,
+    COURSE_HMC,
+    COURSE_LLL,
+    COURSE_DDD,
+    COURSE_SSL,
+    COURSE_BBH,
+    10,
+    11,
+    12
+};
+
 void render_course_hint_text(void) {
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
         starHints[2*(courseToOrderedIndex[gCurrCourseNum] - 1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
@@ -3327,8 +3343,11 @@ void render_pause_screen_felt() {
 
     if (gMenuMode != MENU_MODE_FELT_GOING_UP) {
         if (gCurrLevelNum == LEVEL_CASTLE) {
-            render_pause_castle_menu_box(0, 83);
-            render_pause_castle_main_strings(-66, 0); 
+            //course behavior at 0 stars is odd, might as well just disable it
+            if (gMarioState->numStars > 0) {
+                render_pause_castle_menu_box(0, 83);
+                render_pause_castle_main_strings(-66, 0);
+            }
         }
         else {
             render_pause_my_score_coins();
