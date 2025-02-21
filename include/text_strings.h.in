@@ -63,7 +63,7 @@
 #define TEXT_ZERO _("0")
 #define TEXT_COIN _("$")
 #define TEXT_STAR _("★")
-#define TEXT_COIN_X _("$×")
+#define TEXT_COIN_X _("$×100")
 #define TEXT_STAR_X _("★×")
 #define TEXT_VARIABLE_X _("×")
 #define TEXT_UNFILLED_STAR _("☆")

@@ -240,6 +240,7 @@ s32 check_warp_checkpoint(struct WarpNode *warpNode);
 void save_file_set_patch_challenge_time(s32 fileIndex, s8 patchChallenge, u32 frames);
 u32 save_file_get_patch_challenge_time(s32 fileIndex, s8 patchChallenge);
 u32 save_file_is_song_unlocked(s32 fileIndex, u8 seqID);
+u32 save_file_is_secret_star_collected(s32 fileIndex, s16 starIndex);
 void save_file_set_collected_song(s32 fileIndex, u8 seqID);
 
 extern s16 gSaveTextIndicatorTimer;

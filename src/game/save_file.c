@@ -506,6 +506,15 @@ s32 save_file_exists(s32 fileIndex) {
     return (gSaveBuffer.files[fileIndex][0].flags & SAVE_FLAG_FILE_EXISTS) != 0;
 }
 
+u32 save_file_is_secret_star_collected(s32 fileIndex, s16 starIndex) {
+    s32 starFlag;
+    s32 starByte;
+    starByte = COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7));
+    starFlag = 1 << (starIndex % 7);
+
+    return save_file_get_star_flags(fileIndex, starByte) & starFlag;
+}
+
 /**
  * Get the maximum coin score across all files for a course. The lower 16 bits
  * of the returned value are the score, and the upper 16 bits are the file number

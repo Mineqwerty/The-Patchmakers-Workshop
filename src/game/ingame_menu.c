@@ -2894,10 +2894,23 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
 
     u16 nextStar = 0;
 
+    u8 textCoin[] = { TEXT_COIN_X };
+
     if (starFlags & STAR_FLAG_ACT_100_COINS) {
         starCount--;
-        print_generic_string(x + 89, y - 5, textStar);
+        print_generic_string(x + 14, y - 5, textStar);
+        print_generic_string(x + 24, y - 5, textCoin);
     }
+
+    
+    gDPSetEnvColor(gDisplayListHead++, 0, 255, 255, gDialogTextAlpha);
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[courseIndex] - 1))) {
+        print_generic_string(x + 76, y - 5, textStar);
+    }
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[courseIndex] - 1))) {
+        print_generic_string(x + 90, y - 5, textStar);
+    }
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
     while (hasStar != starCount) {
         if (starFlags & (1 << nextStar)) {
@@ -2940,7 +2953,7 @@ u32 indexToCourseSlot[13] = {
 void render_pause_castle_main_strings(s16 x, s16 y) {
     void **courseNameTbl = segmented_to_virtual(languageTable[gInGameLanguage][1]);
 
-    u8 textCoin[] = { TEXT_COIN_X };
+    
 
     void *courseName;
 
@@ -2981,10 +2994,10 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
-    if (gDialogLineNum <= COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX)) { // Main courses
+    if (gDialogLineNum <= COURSE_NUM_TO_INDEX(12)) { // Main courses
         courseName = segmented_to_virtual(courseNameTbl[indexToCourseSlot[gDialogLineNum]]);
         render_pause_castle_course_stars(x, y, gCurrSaveFileNum - 1, indexToCourseSlot[gDialogLineNum]);
-        print_generic_string(x + 34, y - 5, textCoin);
+        
         //int_to_str(save_file_get_course_coin_score(gCurrSaveFileNum - 1, gDialogLineNum), strVal);
         //print_generic_string(x + 54, y - 5, strVal);
     } else { // Castle secret stars
@@ -3200,8 +3213,23 @@ u32 courseToOrderedIndex[13] = {
 
 
 void render_course_hint_text(void) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1))) {
+        print_set_envcolour(0, 255, 0, 255);
+    }
+    else {
+        print_set_envcolour(255, 255, 255, 255);
+    }
+    
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
         starHints[2*(courseToOrderedIndex[gCurrCourseNum] - 1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
+        
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1))) {
+        print_set_envcolour(0, 255, 0, 255);
+    }
+    else {
+        print_set_envcolour(255, 255, 255, 255);
+    }
+
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y + 15, 
         starHints[1 + 2*(courseToOrderedIndex[gCurrCourseNum] -1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
 }
