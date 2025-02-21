@@ -3266,7 +3266,7 @@ In my pursuit of life, I've desecrated life itself.\n\
 The madness that plagued my mind then had a momentary pause.\n\
 @5C5C5CFFAnd in that brief moment, before the madness\n\
 took me away once and for all...\n\
-@5C5C5CFFI drove my needle through my head.\n\
+@5C5C5CFFI drove a needle through my head.\n\
 \n\
 @5C5C5CFF...But a needle thin enough to sew life\n\
 itself would never be enough to take my own.\n\
