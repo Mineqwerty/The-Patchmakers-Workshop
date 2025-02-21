@@ -181,7 +181,7 @@ const GeoLayout geo_menu_act_selector_strings[] = {
       GEO_CLOSE_NODE(),
       GEO_ZBUFFER(1),
       GEO_OPEN_NODE(),
-         GEO_CAMERA_FRUSTUM(45, 100, 25000),
+         GEO_CAMERA_FRUSTUM(45, 100, 35000),
          GEO_OPEN_NODE(),
             GEO_CAMERA(CAMERA_MODE_8_DIRECTIONS, 0, 0, 0, 0, -100, 0, geo_camera_main),
             GEO_OPEN_NODE(),

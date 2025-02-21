@@ -186,6 +186,9 @@ void bhv_act_selector_init(void) {
     s32 selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum));
     gStarSelectDisturbed = 0;
+    starSelectCameraDistXZ = STAR_SELECT_CAM_INIT_XZ;
+    starSelectCameraDistY = STAR_SELECT_CAM_INIT_Y;
+    freeCamActive = FALSE;
 
 
     sVisibleStars = 0;

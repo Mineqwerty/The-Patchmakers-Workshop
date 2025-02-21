@@ -741,6 +741,13 @@ extern struct CutsceneVariable sCutsceneVars[10];
 extern u8 gRecentCutscene;
 extern s16 s8DirModeYawOffset;
 
+#define STAR_SELECT_CAM_INIT_XZ 4000
+#define STAR_SELECT_CAM_INIT_Y 4000
+
+extern u16 starSelectCameraDistXZ;
+extern u16 starSelectCameraDistY;
+extern u8 freeCamActive;
+
 extern struct CameraFOVStatus sFOVState;
 
 extern struct CutsceneSplinePoint gIntroLakituStartToPipeFocus[];
