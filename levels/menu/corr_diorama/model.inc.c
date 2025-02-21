@@ -1063,17 +1063,6 @@ u8 corr_diorama_felt_pal_rgba16[] = {
 	
 };
 
-Vtx corr_diorama_Plane_007_mesh_layer_1_vtx_cull[8] = {
-	{{ {-16343, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-};
-
 Vtx corr_diorama_Plane_007_mesh_layer_1_vtx_0[1040] = {
 	{{ {2312, 849, 8024}, 0, {-771, 5350}, {121, 136, 134, 255} }},
 	{{ {2901, 2994, 4588}, 0, {1392, 2649}, {157, 157, 157, 255} }},
@@ -2803,17 +2792,6 @@ Gfx corr_diorama_Plane_007_mesh_layer_1_tri_2[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx corr_diorama_Plane_007_mesh_layer_5_vtx_cull[8] = {
-	{{ {-16343, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-};
-
 Vtx corr_diorama_Plane_007_mesh_layer_5_vtx_0[20] = {
 	{{ {5206, -141, 485}, 0, {-529, 495}, {196, 180, 83, 255} }},
 	{{ {5179, -141, 400}, 0, {-529, 495}, {159, 180, 224, 255} }},
@@ -2957,17 +2935,6 @@ Gfx corr_diorama_Plane_007_mesh_layer_5_tri_1[] = {
 	gsSP2Triangles(20, 8, 18, 0, 18, 8, 10, 0),
 	gsSP1Triangle(18, 10, 13, 0),
 	gsSPEndDisplayList(),
-};
-
-Vtx corr_diorama_Plane_007_mesh_layer_4_vtx_cull[8] = {
-	{{ {-16343, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-16343, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, 14988}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, 8495, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {16499, -431, -16952}, 0, {0, 0}, {0, 0, 0, 0} }},
 };
 
 Vtx corr_diorama_Plane_007_mesh_layer_4_vtx_0[124] = {
@@ -3308,10 +3275,6 @@ Gfx mat_revert_corr_diorama_fadeoutfelt_001[] = {
 };
 
 Gfx corr_diorama_Plane_007_mesh_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(corr_diorama_Plane_007_mesh_layer_1_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_corr_diorama_f3dlite_material_091),
 	gsSPDisplayList(corr_diorama_Plane_007_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_corr_diorama_f3dlite_material_091),
@@ -3332,10 +3295,6 @@ Gfx corr_diorama_Plane_007_mesh_layer_1[] = {
 };
 
 Gfx corr_diorama_Plane_007_mesh_layer_5[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(corr_diorama_Plane_007_mesh_layer_5_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_corr_diorama_f3dlite_material_092),
 	gsSPDisplayList(corr_diorama_Plane_007_mesh_layer_5_tri_0),
 	gsSPDisplayList(mat_revert_corr_diorama_f3dlite_material_092),
@@ -3353,10 +3312,6 @@ Gfx corr_diorama_Plane_007_mesh_layer_5[] = {
 };
 
 Gfx corr_diorama_Plane_007_mesh_layer_4[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(corr_diorama_Plane_007_mesh_layer_4_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_corr_diorama_scaffolddloor_003_layer4),
 	gsSPDisplayList(corr_diorama_Plane_007_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_corr_diorama_scaffolddloor_003_layer4),

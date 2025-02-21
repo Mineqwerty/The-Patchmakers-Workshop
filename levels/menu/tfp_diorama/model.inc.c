@@ -2387,17 +2387,6 @@ u8 tfp_diorama_stonegoopus_ia8[] = {
 	
 };
 
-Vtx tfp_diorama_Cube_002_mesh_layer_1_vtx_cull[8] = {
-	{{ {-12421, 511, 11028}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-12421, 1941, 11028}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-12421, 1941, -13014}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-12421, 511, -13014}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {11618, 511, 11028}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {11618, 1941, 11028}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {11618, 1941, -13014}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {11618, 511, -13014}, 0, {0, 0}, {0, 0, 0, 0} }},
-};
-
 Vtx tfp_diorama_Cube_002_mesh_layer_1_vtx_0[804] = {
 	{{ {-3485, 1166, -1869}, 0, {-32069, -26712}, {224, 159, 0, 255} }},
 	{{ {-3485, 1177, -1895}, 0, {-24056, 402041}, {224, 159, 0, 255} }},
@@ -11564,7 +11553,7 @@ Gfx mat_revert_tfp_diorama_f3dlite_material_074[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_tfp_diorama_f3dlite_material_layer1[] = {
+Gfx mat_tfp_diorama_f3dlite_material_078_layer1[] = {
 	gsSPGeometryMode(0, G_TEXTURE_GEN),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, ENVIRONMENT, COMBINED, 0, SHADE_ALPHA, 0, 0, 0, 0, ENVIRONMENT),
@@ -11581,7 +11570,7 @@ Gfx mat_tfp_diorama_f3dlite_material_layer1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_tfp_diorama_f3dlite_material_layer1[] = {
+Gfx mat_revert_tfp_diorama_f3dlite_material_078_layer1[] = {
 	gsSPGeometryMode(G_TEXTURE_GEN, 0),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -11612,10 +11601,6 @@ Gfx mat_revert_tfp_diorama_f3dlite_material_067[] = {
 };
 
 Gfx tfp_diorama_Cube_002_mesh_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(tfp_diorama_Cube_002_mesh_layer_1_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_tfp_diorama_f3dlite_material_069),
 	gsSPDisplayList(tfp_diorama_Cube_002_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_tfp_diorama_f3dlite_material_069),
@@ -11640,9 +11625,9 @@ Gfx tfp_diorama_Cube_002_mesh_layer_1[] = {
 	gsSPDisplayList(mat_tfp_diorama_f3dlite_material_074),
 	gsSPDisplayList(tfp_diorama_Cube_002_mesh_layer_1_tri_7),
 	gsSPDisplayList(mat_revert_tfp_diorama_f3dlite_material_074),
-	gsSPDisplayList(mat_tfp_diorama_f3dlite_material_layer1),
+	gsSPDisplayList(mat_tfp_diorama_f3dlite_material_078_layer1),
 	gsSPDisplayList(tfp_diorama_Cube_002_mesh_layer_1_tri_8),
-	gsSPDisplayList(mat_revert_tfp_diorama_f3dlite_material_layer1),
+	gsSPDisplayList(mat_revert_tfp_diorama_f3dlite_material_078_layer1),
 	gsSPDisplayList(mat_tfp_diorama_f3dlite_material_067),
 	gsSPDisplayList(tfp_diorama_Cube_002_mesh_layer_1_tri_9),
 	gsSPDisplayList(mat_revert_tfp_diorama_f3dlite_material_067),

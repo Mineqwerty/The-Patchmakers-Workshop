@@ -432,6 +432,48 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
             }
         break;
 
+        case LEVEL_SL:
+            switch (starIndex) {
+                case 0: coords[0] = -6266.0f; coords[1] = 6790.0f; coords[2] = -8049.0f;
+                break;
+                case 1: coords[0] = 2302.0f; coords[1] = 1550.0f; coords[2] = -8413.0f;
+                break;
+                case 2: coords[0] = -1496.0f; coords[1] = 6970.0f; coords[2] = -6885.0f;
+                break;
+                case 3: coords[0] = -5430.0f; coords[1] = 4230.0f; coords[2] = -14129.0f;
+                break;
+                case 4: coords[0] = 3562.0f; coords[1] = 6290.0f; coords[2] = -6049.0f;
+                break;
+                case 5: coords[0] = -3584.0f; coords[1] = 0.0f; coords[2] = -7323.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 2500.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_WDW:
+            switch (starIndex) {
+                case 0: coords[0] = 3058.0f; coords[1] = 4230.0f; coords[2] = -7648.0f;
+                break;
+                case 1: coords[0] = -362.0f; coords[1] = 1250.0f; coords[2] = -12808.0f;
+                break;
+                case 2: coords[0] = -3878.0f; coords[1] = 7050.0f; coords[2] = -13195.0f;
+                break;
+                case 3: coords[0] = 2572.0f; coords[1] = 6890.0f; coords[2] = -1339.0f;
+                break;
+                case 4: coords[0] = -7616.0f; coords[1] = 470.0f; coords[2] = -2369.0f;
+                break;
+                case 5: coords[0] = 4768.0f; coords[1] = 710.0f; coords[2] = -13489.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 2500.0f, -7500.0f);
+                break;
+            }
+        break;
+
         default: coords[0] = 377.0f; coords[1] = 1470.0f; coords[2] = -9855.0f;
         break;
     }

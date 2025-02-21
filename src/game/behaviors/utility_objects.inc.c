@@ -24,6 +24,10 @@ void bhv_coordinate_controller_loop(void) {
         o->oPosY = o->oHomeY;
         o->oPosZ = o->oHomeZ;
     }
+
+    gSelectedStarCoords[0] = o->oPosX;
+    gSelectedStarCoords[1] = o->oPosY;
+    gSelectedStarCoords[2] = o->oPosZ;
 }
 
 void bhv_background_object_loop(void) {

@@ -1977,17 +1977,6 @@ u8 ea_diorama_slugfin_rgba16[] = {
 	
 };
 
-Vtx ea_diorama_Circle_003_mesh_layer_1_vtx_cull[8] = {
-	{{ {-115798, -2949, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, 8775, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, 8775, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, -2949, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, -2949, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, 8775, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, 8775, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, -2949, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-};
-
 Vtx ea_diorama_Circle_003_mesh_layer_1_vtx_0[144] = {
 	{{ {-455, 546, -8091}, 0, {-16, 1008}, {0, 127, 1, 255} }},
 	{{ {-3523, 546, -7481}, 0, {-16, 1008}, {0, 127, 1, 255} }},
@@ -4488,17 +4477,6 @@ Gfx ea_diorama_Circle_003_mesh_layer_1_tri_2[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx ea_diorama_Circle_003_mesh_layer_4_vtx_cull[8] = {
-	{{ {-115798, -2949, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, 8775, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, 8775, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {-115798, -2949, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, -2949, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, 8775, 13722}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, 8775, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-	{{ {13342, -2949, -13871}, 0, {0, 0}, {0, 0, 0, 0} }},
-};
-
 Vtx ea_diorama_Circle_003_mesh_layer_4_vtx_0[120] = {
 	{{ {-6181, 409, 2283}, 0, {-16, 4080}, {255, 255, 255, 255} }},
 	{{ {-5730, 409, 2283}, 0, {496, 4080}, {255, 255, 255, 255} }},
@@ -5013,7 +4991,7 @@ Gfx mat_revert_ea_diorama_f3dlite_material_081[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_ea_diorama_f3dlite_material[] = {
+Gfx mat_ea_diorama_f3dlite_material_089[] = {
 	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0),
@@ -5032,7 +5010,7 @@ Gfx mat_ea_diorama_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_ea_diorama_f3dlite_material[] = {
+Gfx mat_revert_ea_diorama_f3dlite_material_089[] = {
 	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -5118,10 +5096,6 @@ Gfx mat_revert_ea_diorama_f3dlite_material_088[] = {
 };
 
 Gfx ea_diorama_Circle_003_mesh_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(ea_diorama_Circle_003_mesh_layer_1_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_ea_diorama_f3dlite_material_079),
 	gsSPDisplayList(ea_diorama_Circle_003_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_ea_diorama_f3dlite_material_079),
@@ -5142,16 +5116,12 @@ Gfx ea_diorama_Circle_003_mesh_layer_1[] = {
 };
 
 Gfx ea_diorama_Circle_003_mesh_layer_4[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(ea_diorama_Circle_003_mesh_layer_4_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
 	gsSPDisplayList(mat_ea_diorama_f3dlite_material_080),
 	gsSPDisplayList(ea_diorama_Circle_003_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_ea_diorama_f3dlite_material_080),
-	gsSPDisplayList(mat_ea_diorama_f3dlite_material),
+	gsSPDisplayList(mat_ea_diorama_f3dlite_material_089),
 	gsSPDisplayList(ea_diorama_Circle_003_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_ea_diorama_f3dlite_material),
+	gsSPDisplayList(mat_revert_ea_diorama_f3dlite_material_089),
 	gsSPDisplayList(mat_ea_diorama_f3dlite_material_083),
 	gsSPDisplayList(ea_diorama_Circle_003_mesh_layer_4_tri_2),
 	gsSPDisplayList(mat_revert_ea_diorama_f3dlite_material_083),

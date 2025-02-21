@@ -34,6 +34,7 @@ void bhv_generic_npc_init(void) {
         if (gCurrAreaIndex == 1) {
             bhv_init_room();
         }
+        o->oFlags |= OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM;
     }
     if (cur_obj_has_model(MODEL_PHANTASMAID)) {
         o->oAnimations = (struct Animation **) phantasmaid_anims;
@@ -41,6 +42,7 @@ void bhv_generic_npc_init(void) {
         if (gCurrAreaIndex == 1) {
             bhv_init_room();
         }
+        o->oFlags |= OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM;
     }
     if (cur_obj_has_model(MODEL_CASHEW_MAN) || cur_obj_has_model(MODEL_PECAN_MAN)) {
         o->oAnimations = (struct Animation **) cashew_man_anims;
