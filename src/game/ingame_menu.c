@@ -2922,6 +2922,21 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
     print_generic_string(x + 14, y + 13, str);
 }
 
+u32 indexToCourseSlot[13] = {
+    COURSE_BOB-1,
+    COURSE_WF-1,
+    COURSE_JRB-1,
+    COURSE_CCM-1,
+    COURSE_HMC-1,
+    COURSE_LLL-1,
+    COURSE_DDD-1,
+    COURSE_SSL-1,
+    COURSE_BBH-1,
+    COURSE_SL-1,
+    COURSE_WDW-1,
+    COURSE_TTM-1
+};
+
 void render_pause_castle_main_strings(s16 x, s16 y) {
     void **courseNameTbl = segmented_to_virtual(languageTable[gInGameLanguage][1]);
 
@@ -3182,21 +3197,7 @@ u32 courseToOrderedIndex[13] = {
     12
 };
 
-u32 indexToCourseSlot[13] = {
-    COURSE_NONE,
-    COURSE_BOB,
-    COURSE_WF,
-    COURSE_JRB,
-    COURSE_CCM,
-    COURSE_HMC,
-    COURSE_LLL,
-    COURSE_DDD,
-    COURSE_SSL,
-    COURSE_BBH,
-    10,
-    11,
-    12
-};
+
 
 void render_course_hint_text(void) {
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
