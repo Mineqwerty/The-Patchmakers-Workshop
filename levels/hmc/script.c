@@ -60,6 +60,7 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -197,6 +198,9 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, 3365, 0, 0, 0, (7 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -733, 0, 0, 0, (4 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -4225, 0, 0, 0, (2 << 16), bhvUnderwaterStoneDoor),
+		OBJECT(MODEL_NONE, 96, 3254, 7751, -90, 0, 0, (39 << 24) | (6 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -6347, 3328, 982, -90, 0, 0, (40 << 24) | (6 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 63, 3082, -2206, -90, 0, 0, (41 << 24) | (6 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 43, 2941, -7459, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_2_collision),
 		TERRAIN_MAT_LUT(hmc_area_2_collision_materials),
@@ -216,7 +220,6 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, 8731, 4, -6408, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 3525, -1611, -9392, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 3361, 1651, -6966, 0, 119, 0, (2 << 16), bhvCoinFormation),
-		OBJECT(MODEL_NONE, 3258, 5395, -335, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 2711, 5395, -1131, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 2916, 5395, -2074, 0, 119, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2243, 3726, -4263, 0, 119, 0, 0x00000000, bhvGeyser),
@@ -225,6 +228,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -2255, 5691, -5864, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2246, 5781, -3906, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_NONE, -2258, 2976, -4740, 0, 119, 0, 0x00000000, bhvGeyser),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 3291, 5395, -474, 0, -90, 0, (28 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_STAR, -4238, 7131, -4812, 0, 119, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_TRANSMUTATION_STAR, -4276, 5986, -13795, 0, 119, 0, (19 << 24), bhvTransmutationStar),
 		OBJECT(MODEL_NONE, 7213, -1330, -7986, 0, 119, 0, (1 << 16), bhvCoinFormation),

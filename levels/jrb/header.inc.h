@@ -129,7 +129,7 @@ extern Vtx jrb_dl_Plane_006_mesh_layer_5_vtx_0[9];
 extern Gfx jrb_dl_Plane_006_mesh_layer_5_tri_0[];
 extern Vtx jrb_dl_Plane_007_mesh_layer_5_vtx_0[198];
 extern Gfx jrb_dl_Plane_007_mesh_layer_5_tri_0[];
-extern Vtx jrb_dl_Plane_011_mesh_layer_1_vtx_0[533];
+extern Vtx jrb_dl_Plane_011_mesh_layer_1_vtx_0[581];
 extern Gfx jrb_dl_Plane_011_mesh_layer_1_tri_0[];
 extern Vtx jrb_dl_Plane_011_mesh_layer_1_vtx_1[14];
 extern Gfx jrb_dl_Plane_011_mesh_layer_1_tri_1[];

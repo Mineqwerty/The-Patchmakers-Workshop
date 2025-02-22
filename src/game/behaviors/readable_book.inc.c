@@ -75,6 +75,10 @@ void bhv_readable_book_loop(void) {
                     dialog = DIALOG_BOOK_SEWNIA;
                 break;
             }
+
+            if (gCurrLevelNum != LEVEL_CASTLE) {
+                dialog = DIALOG_JOURNAL_TTC - 1 + courseToOrderedIndex[gCurrCourseNum];
+            }
             
             if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_DOWN) == MARIO_DIALOG_STATUS_SPEAK 
                 && cutscene_object_with_dialog(CUTSCENE_DIALOG, o, dialog)) {

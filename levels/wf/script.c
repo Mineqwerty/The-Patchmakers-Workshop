@@ -62,6 +62,7 @@ const LevelScript level_wf_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wf_area_1),
@@ -117,6 +118,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, 9936, 46, -6625, 0, 10, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 4534, -1553, -13001, 0, 10, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2413, 550, 1180, 0, 27, 0, (239 << 16), bhvSpinAirborneWarp),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, -13496, -2009, 13584, 0, 0, 0, (25 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_NONE, -125, 314, 121, 0, 27, 0, 0x00000000, bhvRainSoundManager),
 		OBJECT(MODEL_RED_COIN, 11563, -235, -3504, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_NONE, 7259, 381, -5086, 0, 0, 0, (2 << 24), bhvHiddenRedCoinStar),

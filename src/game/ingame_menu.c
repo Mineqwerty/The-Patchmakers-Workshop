@@ -3117,7 +3117,7 @@ void render_patch_selection() {
     gSPDisplayList(gDisplayListHead++, menu_patch_name_patch_skybridge_001_mesh);
 
     //main translation mtx
-    create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * patchIndexXFloat), 42 - (40 * gPatchIndexY), 6);
+    create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * patchIndexXFloat), 42 - (38 * gPatchIndexY), 6);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, (f32) 0.6, (f32) 0.6, (f32) 0);
 
     //gDPSetCombineMode(gDisplayListHead++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);

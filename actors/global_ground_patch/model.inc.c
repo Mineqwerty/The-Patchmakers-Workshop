@@ -259,20 +259,125 @@ u8 global_ground_patch_grapple_patch_rgba16_rgba16[] = {
 	
 };
 
-Vtx global_ground_patch_Plane_012_mesh_layer_4_vtx_0[4] = {
+Vtx global_ground_patch_billboard_mesh_mesh_layer_5_vtx_0[40] = {
+	{{ {-27, 50, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {18, 105, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {-53, 76, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {18, 68, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {0, 24, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {-8, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {-45, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {-82, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {-27, -39, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {-53, -65, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {18, -58, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {18, -95, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {62, -39, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {89, -65, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {81, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {118, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {62, 50, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {81, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {118, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {89, 76, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {18, 68, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {18, 105, 8}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+	{{ {18, 31, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {36, 24, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {44, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {18, -20, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {-8, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {0, 24, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {0, -13, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {-45, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {-27, -39, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {18, -58, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {36, -13, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {18, -20, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {18, -58, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {62, -39, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {44, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {81, 5, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+	{{ {36, 24, 8}, 0, {-16, 1008}, {255, 255, 255, 75} }},
+	{{ {62, 50, 8}, 0, {-16, 1008}, {255, 255, 255, 29} }},
+};
+
+Gfx global_ground_patch_billboard_mesh_mesh_layer_5_tri_0[] = {
+	gsSPVertex(global_ground_patch_billboard_mesh_mesh_layer_5_vtx_0 + 0, 16, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 3, 1, 0),
+	gsSP1Triangle(4, 3, 0, 0),
+	gsSP1Triangle(5, 4, 0, 0),
+	gsSP1Triangle(5, 0, 6, 0),
+	gsSP1Triangle(6, 0, 2, 0),
+	gsSP1Triangle(6, 2, 7, 0),
+	gsSP1Triangle(8, 6, 7, 0),
+	gsSP1Triangle(8, 7, 9, 0),
+	gsSP1Triangle(10, 8, 9, 0),
+	gsSP1Triangle(10, 9, 11, 0),
+	gsSP1Triangle(12, 10, 11, 0),
+	gsSP1Triangle(12, 11, 13, 0),
+	gsSP1Triangle(14, 12, 13, 0),
+	gsSP1Triangle(14, 13, 15, 0),
+	gsSPVertex(global_ground_patch_billboard_mesh_mesh_layer_5_vtx_0 + 16, 16, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 2, 3, 0),
+	gsSP1Triangle(4, 0, 3, 0),
+	gsSP1Triangle(4, 3, 5, 0),
+	gsSP1Triangle(6, 0, 4, 0),
+	gsSP1Triangle(6, 7, 0, 0),
+	gsSP1Triangle(8, 7, 6, 0),
+	gsSP1Triangle(9, 8, 6, 0),
+	gsSP1Triangle(6, 10, 9, 0),
+	gsSP1Triangle(6, 11, 10, 0),
+	gsSP1Triangle(11, 6, 4, 0),
+	gsSP1Triangle(10, 12, 9, 0),
+	gsSP1Triangle(12, 10, 13, 0),
+	gsSP1Triangle(12, 13, 14, 0),
+	gsSP1Triangle(9, 12, 14, 0),
+	gsSP1Triangle(9, 14, 15, 0),
+	gsSPVertex(global_ground_patch_billboard_mesh_mesh_layer_5_vtx_0 + 32, 8, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 2, 3, 0),
+	gsSP1Triangle(4, 0, 3, 0),
+	gsSP1Triangle(4, 3, 5, 0),
+	gsSP1Triangle(6, 4, 5, 0),
+	gsSP1Triangle(6, 5, 7, 0),
+	gsSP1Triangle(1, 0, 4, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx global_ground_patch_mesh_mesh_layer_4_vtx_0[4] = {
 	{{ {40, -13, 17}, 0, {-16, 1008}, {0, 0, 129, 255} }},
 	{{ {3, -13, 17}, 0, {1008, 1008}, {0, 0, 129, 255} }},
 	{{ {3, 24, 17}, 0, {1008, -16}, {0, 0, 129, 255} }},
 	{{ {40, 24, 17}, 0, {-16, -16}, {0, 0, 129, 255} }},
 };
 
-Gfx global_ground_patch_Plane_012_mesh_layer_4_tri_0[] = {
-	gsSPVertex(global_ground_patch_Plane_012_mesh_layer_4_vtx_0 + 0, 4, 0),
+Gfx global_ground_patch_mesh_mesh_layer_4_tri_0[] = {
+	gsSPVertex(global_ground_patch_mesh_mesh_layer_4_vtx_0 + 0, 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
+
+Gfx mat_global_ground_patch_f3dlite_material[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetPrimColor(0, 0, 253, 255, 177, 255),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_global_ground_patch_f3dlite_material[] = {
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
 
 Gfx mat_global_ground_patch_f3dlite_material_011[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
@@ -296,9 +401,23 @@ Gfx mat_revert_global_ground_patch_f3dlite_material_011[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx global_ground_patch_Plane_012_mesh_layer_4[] = {
+Gfx global_ground_patch_billboard_mesh_mesh_layer_5[] = {
+	gsSPDisplayList(mat_global_ground_patch_f3dlite_material),
+	gsSPDisplayList(global_ground_patch_billboard_mesh_mesh_layer_5_tri_0),
+	gsSPDisplayList(mat_revert_global_ground_patch_f3dlite_material),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
+	gsSPEndDisplayList(),
+};
+
+Gfx global_ground_patch_mesh_mesh_layer_4[] = {
 	gsSPDisplayList(mat_global_ground_patch_f3dlite_material_011),
-	gsSPDisplayList(global_ground_patch_Plane_012_mesh_layer_4_tri_0),
+	gsSPDisplayList(global_ground_patch_mesh_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_global_ground_patch_f3dlite_material_011),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),

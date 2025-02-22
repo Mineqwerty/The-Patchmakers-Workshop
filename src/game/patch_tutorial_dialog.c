@@ -35,6 +35,7 @@ char *tutorialDialogs[] = {
     "\"Burning Beauty\"",
     "\"Reflection of Water and Self\"",
     "\"Bonds and Respect\"",
+//30
     "\"Defining Reality\"",
     "\"A Dream Not Mine\"",
     "\"Endlessness\"",

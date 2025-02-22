@@ -81,6 +81,7 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -210,6 +211,9 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, -1734, 473, -2300, 0, 90, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_NONE, -2035, 4645, 1077, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_GROUND_PATCH, -166, 589, -73, -90, 0, 0, (2 << 16), bhvGroundPatch),
+		OBJECT(MODEL_NONE, -166, 589, -73, -90, 0, 0, (9 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -997, 1782, -100, -90, 0, 0, (10 << 24) | (3 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 792, 2757, -44, -90, 0, 0, (11 << 24) | (3 << 16), bhvTextVolume),
 		TERRAIN(jrb_area_2_collision),
 		TERRAIN_MAT_LUT(jrb_area_2_collision_materials),
 		MACRO_OBJECTS(jrb_area_2_macro_objs),
@@ -246,6 +250,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GEAR, -2933, 4546, 2537, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, -2873, 983, -2564, 0, -135, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, -1289, 983, -2564, 0, -135, 0, 0x00000000, bhvStoneGear),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, -2702, 5707, -1086, 0, -90, 0, (26 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_GRAPPLE_STONE, 1370, 1603, 2083, 0, -90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 1370, 1603, 800, 0, -90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, -2741, 3419, 2659, 0, -90, 0, (1 << 16), bhvGrappleStone),
