@@ -380,17 +380,20 @@ static Gfx *make_gfx_mario_alpha(struct GraphNodeGenerated *node, s16 alpha) {
 
     if (alpha == 255) {
         SET_GRAPH_NODE_LAYER(node->fnNode.node.flags, LAYER_OPAQUE);
-        gfxHead = alloc_display_list(2 * sizeof(*gfxHead));
+        gfxHead = alloc_display_list(4 * sizeof(*gfxHead));
         gfx = gfxHead;
+        gDPSetRenderMode(gfx++, G_RM_PASS, G_RM_AA_ZB_OPA_SURF2);
+        gDPSetAlphaDither(gfx++, G_AD_DISABLE);
     } else {
         SET_GRAPH_NODE_LAYER(node->fnNode.node.flags, LAYER_TRANSPARENT);
-        gfxHead = alloc_display_list(3 * sizeof(*gfxHead));
+        gfxHead = alloc_display_list(4 * sizeof(*gfxHead));
         gfx = gfxHead;
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_TELEPORTING)) {
             gDPSetAlphaCompare(gfx++, G_AC_DITHER);
         } else {
             gDPSetAlphaCompare(gfx++, G_AC_NONE);
         }
+        //gDPSetRenderMode(gfx++, G_RM_PASS, G_RM_XLU_SURF2);
     }
 
     u8 rgbColors[3];
@@ -735,5 +738,21 @@ Gfx *geo_mirror_mario_backface_culling(s32 callContext, struct GraphNode *node, 
         }
         SET_GRAPH_NODE_LAYER(asGenerated->fnNode.node.flags, LAYER_OPAQUE);
     }
+    else if (callContext == GEO_CONTEXT_RENDER && asGenerated->parameter != 0) {
+        gfx = alloc_display_list(3 * sizeof(*gfx));
+        struct MarioBodyState *bodyState = &gBodyStates[asGenerated->parameter];
+        s16 alpha = (bodyState->modelState & MODEL_STATE_ALPHA) ? (bodyState->modelState & MODEL_STATE_MASK) : 0xFF;
+        if (alpha == 0xFF) {
+            gDPSetRenderMode(&gfx[0], G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+        }
+        else {
+            gDPSetRenderMode(&gfx[0], G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
+
+        }
+        gDPSetCycleType(&gfx[1], G_CYC_1CYCLE);
+        gSPEndDisplayList(&gfx[2]);
+    }
+
+    
     return gfx;
 }
