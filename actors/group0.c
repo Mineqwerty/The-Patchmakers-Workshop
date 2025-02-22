@@ -138,3 +138,4 @@
 #include "lockbox/model.inc.c"
 #include "lockbox/anims/data.inc.c"
 #include "lockbox/anims/table.inc.c"
+#include "menu_patch_name/model.inc.c"

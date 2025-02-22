@@ -935,6 +935,10 @@ s16 find_patch_menu_valid_scroll(s8 direction) {
             }
         }
 
+        if (currentIndex > 12) {
+            currentIndex = 12;
+        }
+
         indexChanged = !(gPatchIndex == currentIndex);
         gPatchIndex = currentIndex;
         return indexChanged;
@@ -3002,11 +3006,11 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
         //print_generic_string(x + 54, y - 5, strVal);
     } else { // Castle secret stars
         u8 textStarX[] = { TEXT_STAR_X };
-        courseName = segmented_to_virtual(courseNameTbl[COURSE_MAX]);
+        courseName = "Patch Challenge";
         print_generic_string(x + 40, y + 13, textStarX);
         int_to_str(save_file_get_total_star_count(gCurrSaveFileNum - 1,
-                                                  COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES),
-                                                  COURSE_NUM_TO_INDEX(COURSE_MAX)),
+                                                  COURSE_NUM_TO_INDEX(COURSE_BITS),
+                                                  COURSE_NUM_TO_INDEX(COURSE_PSS)),
                                                   strVal);
         print_generic_string(x + 60, y + 13, strVal);
     }
@@ -3070,6 +3074,8 @@ void render_patch_selection() {
         gSPDisplayList(gDisplayListHead++, menu_patch_skybridge_patch_skybridge_mesh);
     }
 
+
+
     
 
     //selector
@@ -3089,8 +3095,26 @@ void render_patch_selection() {
     f32 patchIndexXFloat = (f32)gPatchIndexX;
 
     if (gPatchIndexY == 3) {
-        patchIndexXFloat = 1.5f;
+        //patchIndexXFloat = 1.5f;
     }
+
+    //patch name
+    
+    extern const u8 patch_name_textures_dma[];
+    extern u8 menu_patch_name_patch_name_mario_ia8[];
+    u8 *patchTexture = segmented_to_virtual(&menu_patch_name_patch_name_mario_ia8);
+
+    dma_read(patchTexture, (((gPatchIndex+1)%13) * 4096) + patch_name_textures_dma,
+             (((gPatchIndex+1)%13) * 4096) + patch_name_textures_dma + 4096);
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, 1, -1, 0);
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
+    gSPDisplayList(gDisplayListHead++, menu_patch_name_patch_skybridge_001_mesh);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    gSPDisplayList(gDisplayListHead++, menu_patch_name_patch_skybridge_001_mesh);
 
     //main translation mtx
     create_dl_translation_matrix(MENU_MTX_PUSH, -70 + (45 * patchIndexXFloat), 42 - (40 * gPatchIndexY), 6);

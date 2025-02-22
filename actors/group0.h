@@ -551,4 +551,6 @@ extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 
 #include "lockbox/anim_header.h"
+#include "menu_patch_name/header.h"
+
 #endif

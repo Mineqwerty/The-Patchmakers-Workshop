@@ -32,6 +32,35 @@ ALIGNED8 const u8 patch_textures_dma[] = {
 
 };
 
+ALIGNED8 const u8 patch_name_textures_dma[] = {
+    #include "actors/amp/patch_name_mario.ia8.inc.c" 
+    ,
+    #include "actors/amp/patch_name_stone.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_chillstep.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_grapple.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_halo.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_marine.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_shadowchomp.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_transmutation.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_breeze.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_portal.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_miasma.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_extension.ia8.inc.c"
+    ,
+    #include "actors/amp/patch_name_skybridge.ia8.inc.c"
+
+};
+
 
 // 0x030293E0
 const Texture *const patch_textures_lut[] = {
