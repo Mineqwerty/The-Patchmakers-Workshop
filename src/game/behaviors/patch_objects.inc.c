@@ -1295,6 +1295,9 @@ void bhv_transmutation_cone_loop(void) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_KOOPA_WITH_SHELL, bhvKoopa);
                         obj_mark_for_deletion(target);
                     }
+                    else if (obj_has_behavior(target, bhvNeedleBall)) {
+                        target->oBehParams2ndByte = 1;
+                    }
 
                     else if (obj_has_behavior(target, bhvD4) || obj_has_behavior(target, bhvD6) || obj_has_behavior(target, bhvD8) || obj_has_behavior(target, bhvD12) || obj_has_behavior(target, bhvD20)) {
                         attack_object(target, 32, 5);
