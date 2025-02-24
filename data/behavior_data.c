@@ -8987,6 +8987,7 @@ const BehaviorScript bhvHubBarrier[] = {
 const BehaviorScript bhvLightningSentry[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    BILLBOARD(),
     CALL_NATIVE(bhv_lightning_sentry_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_lightning_sentry_loop),
