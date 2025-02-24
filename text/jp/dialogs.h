@@ -1891,7 +1891,7 @@ DEFINE_DIALOG(DIALOG_168, 1, 4, 30, 200, _("\
 ハナチャン　かんぜんに\n\
 おこったです！"))
 
-DEFINE_DIALOG(DIALOG_169, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OMIY, 1, 5, 30, 200, _("\
 かってに　はいるな！\n\
 この『どうくつ』に\n\
 むだんで　はいるものには、\n\
