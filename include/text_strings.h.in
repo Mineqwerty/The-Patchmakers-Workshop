@@ -282,6 +282,8 @@
 #define TEXT_CLEAR _("CLEAR")
 #define TEXT_HUD_HI_SCORE _("HI SCORE")
 
+#define TEXT_MANTLE_FLAVOR _("He had a great life, one of \nfamily and joy.\nBut he forsook life itself, seeing \nit as a toy\nHis mind is of the past now, \nhis essence no more.\nAll that remains, a \nMantle of Madness, the core")
+
 // Save Options
 #define TEXT_SAVE_AND_CONTINUE _("SAVE & CONTINUE")
 #define TEXT_SAVE_AND_QUIT _("SAVE & QUIT")

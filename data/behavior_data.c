@@ -9297,3 +9297,24 @@ const BehaviorScript bhvLockbox[] = {
         CALL_NATIVE(bhv_lockbox_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvTsPanel[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_ts_panel_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ts_panel_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvTsDoor[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_COLLISION_DATA(ts_final_door_collision),
+    CALL_NATIVE(bhv_ts_door_init),
+    BEGIN_LOOP(),
+    CALL_NATIVE(load_object_collision_model),
+        CALL_NATIVE(bhv_ts_door_loop),
+    END_LOOP(),
+};

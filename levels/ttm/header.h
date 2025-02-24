@@ -173,4 +173,18 @@ extern const LevelScript level_ttm_entry[];
 
 #include "levels/ttm/shrine_shape_5/geo_header.h"
 
+#include "levels/ttm/ts_panel_sight/geo_header.h"
+
+#include "levels/ttm/ts_panel_scent/geo_header.h"
+
+#include "levels/ttm/ts_panel_touch/geo_header.h"
+
+#include "levels/ttm/ts_panel_sound/geo_header.h"
+
+#include "levels/ttm/ts_panel_taste/geo_header.h"
+
+#include "levels/ttm/ts_final_door/collision_header.h"
+
+#include "levels/ttm/ts_final_door/geo_header.h"
+
 #endif

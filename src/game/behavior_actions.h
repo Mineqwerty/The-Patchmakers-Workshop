@@ -1200,3 +1200,7 @@ void bhv_triangle_tornado_init(void);
 void bhv_triangle_tornado_loop(void);
 void bhv_lockbox_init(void);
 void bhv_lockbox_loop(void);
+void bhv_ts_panel_init(void);
+void bhv_ts_panel_loop(void);
+void bhv_ts_door_init(void);
+void bhv_ts_door_loop(void);

@@ -34,3 +34,4 @@
 #include "anim_holdingSewniaBody.inc.c"
 #include "anim_lookToBowser.inc.c"
 #include "anim_genericCutsceneIdle.inc.c"
+#include "anim_ClimbHorizontal.inc.c"

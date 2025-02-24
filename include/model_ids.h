@@ -781,7 +781,13 @@
 #define MODEL_TASTE_SWITCH_ACTIVE                  0x10E
 #define MODEL_TASTE_DOOR                  0x10F
 
-#define MODEL_SHRINE_SHAPE_BEGIN                  0x110
+#define MODEL_TS_PANEL_SIGHT                  0x110
+#define MODEL_TS_PANEL_SCENT                  0x111
+#define MODEL_TS_PANEL_SOUND                  0x112
+#define MODEL_TS_PANEL_TASTE                  0x113
+#define MODEL_TS_PANEL_TOUCH                  0x114
+#define MODEL_TS_FINAL_DOOR                  0x115
+#define MODEL_SHRINE_SHAPE_BEGIN                  0x116
 
 //Workshop Recesses
 #define MODEL_DRY_BONES                   0x100
