@@ -3,39 +3,70 @@
 const GeoLayout ttm_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_SWITCH_CASE(4, geo_switch_area),
+		GEO_SWITCH_CASE(7, geo_switch_area),
 		GEO_OPEN_NODE(),
-			GEO_BRANCH(1, ttm_dl_room_1_geo),
-			GEO_BRANCH(1, ttm_dl_room_2_geo),
-			GEO_BRANCH(1, ttm_dl_room_3_geo),
+			GEO_BRANCH(1, ttm_dl_room_1___main_chamber_geo),
+			GEO_BRANCH(1, ttm_dl_room_2___sight_geo),
+			GEO_BRANCH(1, ttm_dl_room_3___scent_geo),
+			GEO_BRANCH(1, ttm_dl_room_4___sound_geo),
+			GEO_BRANCH(1, ttm_dl_room_5___taste_geo),
+			GEO_BRANCH(1, ttm_dl_room_6___touch_geo),
 		GEO_CLOSE_NODE(),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -2298, 1825, -187, ttm_dl_Plane_014_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout ttm_dl_room_1_geo[] = {
+const GeoLayout ttm_dl_room_1___main_chamber_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_nocoltaste_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, ttm_dl_mainchamber_nocol_mesh_layer_4),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_mainchamber_nocol_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_mesh_layer_1),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_Plane_mesh_layer_5),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_ALPHA, -12300, 4100, 5300, ttm_dl_Plane_010_mesh_layer_4),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout ttm_dl_room_2_geo[] = {
+const GeoLayout ttm_dl_room_2___sight_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_013_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_Plane_013_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_sight_nocol_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
-const GeoLayout ttm_dl_room_3_geo[] = {
+const GeoLayout ttm_dl_room_3___scent_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_008_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_ALPHA, -12300, 4100, 5300, ttm_dl_Plane_009_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_scent_room_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_scentroom_nocol_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout ttm_dl_room_4___sound_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_033_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_039_mesh_layer_1),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout ttm_dl_room_5___taste_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_nocoltaste_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_nocoltaste_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_034_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_Plane_034_mesh_layer_5),
+	GEO_CLOSE_NODE(),
+	GEO_RETURN(),
+};
+const GeoLayout ttm_dl_room_6___touch_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_010_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_035_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
