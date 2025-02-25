@@ -1259,6 +1259,10 @@ void bhv_transmutation_cone_loop(void) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_BLUE_COIN, bhvMrIBlueCoin);
                         obj_mark_for_deletion(target);
                     }
+                    else if (obj_has_behavior(target, bhvGoomba)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BLUE_COIN, bhvMrIBlueCoin);
+                        obj_mark_for_deletion(target);
+                    }
                     else if (obj_has_behavior(target, bhvPushableMetalBox)) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_METAL_BOX, bhvMetalBoxSmall);
                         obj_mark_for_deletion(target);

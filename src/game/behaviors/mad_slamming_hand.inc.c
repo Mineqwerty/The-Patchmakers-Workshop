@@ -172,7 +172,7 @@ void bhv_mad_slamming_hand_shadow_loop(void) {
 
     o->oOpacity = CLAMP(255 - 0.2f*(f32)(o->parentObj->oPosY - o->oPosY), 1, 255);
 
-    if (o->parentObj->oAction == 4) {
+    if (o->parentObj->oAction == 4 || !o->parentObj) {
         obj_mark_for_deletion(o);
     }
 }

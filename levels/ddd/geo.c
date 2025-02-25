@@ -48,3 +48,4 @@
 #include "levels/ddd/omiy/geo.inc.c"
 #include "levels/ddd/dice_ground_spike/geo.inc.c"
 #include "levels/ddd/dice_cube_shot/geo.inc.c"
+#include "levels/ddd/d8_shadow/geo.inc.c"

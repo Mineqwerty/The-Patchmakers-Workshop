@@ -115,4 +115,6 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/dice_cube_shot/geo_header.h"
 
+#include "levels/ddd/d8_shadow/geo_header.h"
+
 #endif

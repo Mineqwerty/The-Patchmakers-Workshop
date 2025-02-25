@@ -707,6 +707,7 @@
 #define MODEL_DICE_GROUND_SPIKE                   0x115
 #define MODEL_DICE_CUBE_SHOT                   0x116
 #define MODEL_D20                   0x117
+#define MODEL_D8_SHADOW                   0x118
 
 //Violet Twilit Woods
 #define MODEL_PURPLE_MUSHROOM                   0x100

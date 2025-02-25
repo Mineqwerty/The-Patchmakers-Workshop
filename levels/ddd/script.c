@@ -61,6 +61,7 @@ const LevelScript level_ddd_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_DICE_GROUND_SPIKE, dice_ground_spike_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_DICE_CUBE_SHOT, dice_cube_shot_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_D20, d20_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_D8_SHADOW, d8_shadow_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 

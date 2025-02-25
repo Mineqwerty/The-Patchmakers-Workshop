@@ -204,6 +204,7 @@ void bhv_d4_loop(void) {
             o->oLaser3Obj->oFaceAngleYaw = o->oFaceAngleYaw + 2*0x5555 + 0x2AAA;
 
             o->oFaceAngleYaw += 0x200;
+            cur_obj_play_sound_2(SOUND_ENV_MOVINGSAND);
 
             if (o->oTimer == 120) {
                 o->oAction = 3;
@@ -267,6 +268,10 @@ void bhv_dice_laser_loop(void) {
     else {
         cur_obj_hide();
     }
+
+    if (!o->parentObj) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_d6_init(void) {
@@ -282,13 +287,14 @@ void bhv_d6_loop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTimer == 90) {
-                o->oAction = 1 + random_u16()%2;
+                o->oAction = 1 + (absf(o->oAngleToMario) > 0x2000 && absf(o->oAngleToMario) < 0x6000);
             }
         break;
         case 1:
             o->oPosX = approach_f32_symmetric(o->oPosX, gMarioState->pos[0], 80);
             if (o->oTimer == 60) {
                 o->oAction += 2;
+                cur_obj_play_sound_2(SOUND_ACTION_METAL_HEAVY_LANDING);
                 if (o->oPosZ > gMarioState->pos[2]) {
                     o->oF4 = -1;
                 }
@@ -301,6 +307,7 @@ void bhv_d6_loop(void) {
             o->oPosZ = approach_f32_symmetric(o->oPosZ, gMarioState->pos[2], 80);
             if (o->oTimer == 60) {
                 o->oAction += 2;
+                cur_obj_play_sound_2(SOUND_ACTION_METAL_HEAVY_LANDING);
                 if (o->oPosX > gMarioState->pos[0]) {
                     o->oF4 = -1;
                 }
@@ -352,11 +359,15 @@ void bhv_d8_init(void) {
     spawn_mist_particles();
 }
 
+struct Object *d8Shadow = NULL;
+
 void bhv_d8_loop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTimer == 30) {
                 o->oAction = 1;
+                d8Shadow = spawn_object_relative(0, 0, 0, 0, o, MODEL_D8_SHADOW, bhvMadSlammingHandShadow);
+                
             }
         break;
         case 1:
@@ -387,6 +398,8 @@ void bhv_d8_loop(void) {
 
             if ((o->oPosY < floorHeight) || o->oTimer == 120) {
                 o->oPosY = floorHeight;
+                cur_obj_shake_screen(SHAKE_POS_LARGE);
+                cur_obj_play_sound_2(SOUND_OBJ_POUNDING_LOUD);
                 o->oAction = 4;
             }
 
@@ -404,6 +417,9 @@ void bhv_d8_loop(void) {
     gBossHealth = o->oHealth;
 
     if (o->oHealth <= 0) {
+        if (d8Shadow) {
+            obj_mark_for_deletion(d8Shadow);
+        }
         common_dice_death();
     }
 }
@@ -451,6 +467,8 @@ void bhv_d12_loop(void) {
 
             if ((o->oPosY < floorHeight) || o->oTimer == 120) {
                 o->oPosY = floorHeight;
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_play_sound_2(SOUND_OBJ_POUNDING_LOUD);
                 for (int i = 0; i < 12; i++) {
                     struct Object *stabSpear = spawn_object_relative(0, 0, 0, 0, o, MODEL_DICE_GROUND_SPIKE, bhvDiceGroundSpike);
                     stabSpear->oMoveAngleYaw = 0x1555 * i;
