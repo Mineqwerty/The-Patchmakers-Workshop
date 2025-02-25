@@ -2059,14 +2059,19 @@ nailed me. Now you're\n\
 asking for it, linguine\n\
 breath!"))
 
-DEFINE_DIALOG(DIALOG_169, 1, 4, 30, 200, _("\
-Keep out!\n\
-That means you!\n\
-Arrgghh!\n\
-\n\
-Anyone entering this cave\n\
-without permission will\n\
-meet certain disaster."))
+DEFINE_DIALOG(DIALOG_OMIY, 1, 4, 30, 200, _("\
+Interesting...\n\
+You're not a denizen of this land.\n\
+That means you too know its odd\n\
+state of existence.\n\
+I'm quite familiar with books and magic\n\
+myself, so when I heard about a magical\n\
+land within a book, I had to come\n\
+see it for real...\n\
+You seem busy, so I won't keep you\n\
+longer.\n\
+Oh, but a fair warning...\n\
+Some odd magic is resonating here."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_BEGINNING_1, 1, 3, 30, 200, _("\
 @7F60B4FFI never thought I would see somebody\n\

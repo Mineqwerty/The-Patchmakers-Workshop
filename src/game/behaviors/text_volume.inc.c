@@ -8,7 +8,7 @@
 
 void bhv_text_volume_init(void) {
     if (gCurrLevelNum != LEVEL_CASTLE && save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & (1 << 1)) {
-        //obj_mark_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }
 

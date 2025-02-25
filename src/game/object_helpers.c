@@ -907,6 +907,7 @@ u8 object_behavior_is_transmutable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvTorchHolder)
         || ((obj->behavior == segmented_to_virtual(bhvBounceBulb)) && (obj->oBehParams2ndByte == 0))
         || obj->behavior == segmented_to_virtual(bhvDryBones)
+        || ((obj->behavior == segmented_to_virtual(bhvNeedleBall)) && (obj->oBehParams2ndByte == 0))
 
         || obj->behavior == segmented_to_virtual(bhvD4)
         || obj->behavior == segmented_to_virtual(bhvD6)

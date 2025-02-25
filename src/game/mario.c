@@ -2148,7 +2148,7 @@ void patch_update(struct MarioState *m ) {
                 if (gPlayer1Controller->buttonPressed & L_TRIG) {
                     f32 dist;
                     struct Object *lightningSentry = cur_obj_find_nearest_object_with_behavior(bhvLightningSentry, &dist);
-                    if (lightningSentry) obj_mark_for_deletion(m->patchChildSecondaryObj);
+                    if (lightningSentry) obj_mark_for_deletion(lightningSentry);
                     spawn_object_relative(0, 0, 120, 0, gMarioObject, MODEL_PORTAL, bhvLightningSentry);
                     m->curPatch = PATCH_NONE;
                 }

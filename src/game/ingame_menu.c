@@ -2839,6 +2839,14 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     
 }
 
+void render_pause_mantle_of_madness_flavor(void) {
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
+    u8 textMantleFlavor[] = { TEXT_MANTLE_FLAVOR };
+    print_generic_string(-90 + 10, 40, textMantleFlavor);
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+}
+
 void render_pause_castle_menu_box(s16 x, s16 y) {
     create_dl_translation_matrix(MENU_MTX_PUSH, x - 78, y - 32, 0);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 1.2f, 0.8f, 1.0f);
@@ -2967,19 +2975,19 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     if (gSubMenuIndex == 1) {
     handle_menu_scrolling(
         MENU_SCROLL_VERTICAL, &gDialogLineNum,
-        COURSE_NUM_TO_INDEX(COURSE_MIN) - 1, COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES) + 1
+        COURSE_NUM_TO_INDEX(COURSE_MIN) - 1, 13
     );
     }
 
-    if (gDialogLineNum == COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES) + 1) {
+    if (gDialogLineNum >= 14) {
         gDialogLineNum = COURSE_NUM_TO_INDEX(COURSE_MIN); // Exceeded max, set to min
     }
 
     if (gDialogLineNum == COURSE_NUM_TO_INDEX(COURSE_MIN) - 1) {
-        gDialogLineNum = COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES); // Exceeded min, set to max
+        gDialogLineNum = 13; // Exceeded min, set to max
     }
 
-    if (gDialogLineNum != COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES)) {
+    if (gDialogLineNum != 13) {
         while (save_file_get_course_star_count(gCurrSaveFileNum - 1, gDialogLineNum) == 0) {
             if (gDialogLineNum >= prevCourseIndex) {
                 gDialogLineNum++;
@@ -2989,7 +2997,7 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
 
             if (gDialogLineNum == COURSE_NUM_TO_INDEX(COURSE_STAGES_MAX) + 1
              || gDialogLineNum == COURSE_NUM_TO_INDEX(COURSE_MIN) - 1) {
-                gDialogLineNum = COURSE_NUM_TO_INDEX(COURSE_BONUS_STAGES);
+                gDialogLineNum = 13;
                 break;
             }
         }
@@ -3006,7 +3014,7 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
         //print_generic_string(x + 54, y - 5, strVal);
     } else { // Castle secret stars
         u8 textStarX[] = { TEXT_STAR_X };
-        courseName = "Patch Challenge";
+        courseName = segmented_to_virtual(courseNameTbl[13]);
         print_generic_string(x + 40, y + 13, textStarX);
         int_to_str(save_file_get_total_star_count(gCurrSaveFileNum - 1,
                                                   COURSE_NUM_TO_INDEX(COURSE_BITS),
@@ -3401,6 +3409,9 @@ void render_pause_screen_felt() {
                 render_pause_castle_menu_box(0, 83);
                 render_pause_castle_main_strings(-66, 0);
             }
+        }
+        else if (gCurrLevelNum == LEVEL_BOWSER_3) {
+            render_pause_mantle_of_madness_flavor();
         }
         else {
             render_pause_my_score_coins();

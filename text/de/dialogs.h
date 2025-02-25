@@ -2047,7 +2047,7 @@ Findest Du nicht, daß\n\
 Du bereits genug Schaden\n\
 angerichtet hast?"))
 
-DEFINE_DIALOG(DIALOG_169, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OMIY, 1, 4, 30, 200, _("\
 Dies ist die erste und\n\
 letzte Warnung:\n\
 Das Betreten dieser\n\

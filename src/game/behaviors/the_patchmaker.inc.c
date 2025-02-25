@@ -502,6 +502,12 @@ void patchmaker_act_grab_mario(void) {
 }
 
 void patchmaker_act_throw_string(void) {
+    //when above a certain health, the string attack happens less often
+    if (o->oTimer == 1 && o->oHealth > 40 && random_u16()%2 == 0) {
+        o->oAction = PATCHMAKER_ACT_JUMPS;
+        return;
+    }
+
     if (o->oTimer == 1) {
         cur_obj_init_animation(PATCHMAKER_ANIM_STRING_THROW);
     }

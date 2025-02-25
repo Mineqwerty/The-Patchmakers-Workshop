@@ -2476,8 +2476,13 @@ s32 act_climbing_wall(struct MarioState *m) {
     s32 animSpeed = absf(gPlayer1Controller->rawStickY) * 1950 + 10; 
 
     
-
-    set_custom_mario_animation_with_accel(m, MARIO_CUSTOM_ANIM_CLIMB_VERTICAL, animSpeed, gPlayer1Controller->rawStickY < 0);
+    if (absf(gPlayer1Controller->rawStickX) > absf(gPlayer1Controller->rawStickY)) {
+        animSpeed = absf(gPlayer1Controller->rawStickX) * 1950 + 10; 
+        set_custom_mario_animation_with_accel(m, MARIO_CUSTOM_ANIM_CLIMB_HORIZONTAL, animSpeed, gPlayer1Controller->rawStickX < 0);
+    }
+    else {
+        set_custom_mario_animation_with_accel(m, MARIO_CUSTOM_ANIM_CLIMB_VERTICAL, animSpeed, gPlayer1Controller->rawStickY < 0);
+    }
     
 
     resolve_and_return_wall_collisions(wallPos, 10.0f, 10.0f, &wallCollisionData);

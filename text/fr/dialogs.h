@@ -2289,7 +2289,7 @@ ma tête!\n\
 Tu m'cherches ou quoi?\n\
 Coup d'boule!!!!"))
 
-DEFINE_DIALOG(DIALOG_169, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OMIY, 1, 5, 30, 200, _("\
 Dehors les touristes!\n\
 Cette caverne est très\n\
 dangereuse!!!\n\
