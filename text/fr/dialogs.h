@@ -1731,7 +1731,7 @@ et vers le haut pour\n\
 piquer du nez. Imaginez-\n\
 vous à bord d'un 747!!!"))
 
-DEFINE_DIALOG(DIALOG_132, 1, 1, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB, 1, 1, 30, 200, _("\
 Non, mais?\n\
 Tu...tu...t'es fou?\n\
 Tu triches?\n\
@@ -1739,7 +1739,7 @@ OK! T'es disqualifié!\n\
 Tu l'auras pas volé!\n\
 Houuuuuu! Le tricheur!"))
 
-DEFINE_DIALOG(DIALOG_133, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_WINDOW_GALLERY, 1, 6, 30, 200, _("\
 Mario! C'est toi?\n\
 Comme je suis heureux de\n\
 te voir!\n\
@@ -1771,7 +1771,7 @@ va ouvrir la porte avec la\n\
 grosse étoile: la Princesse\n\
 doit être de l'autre côté!"))
 
-DEFINE_DIALOG(DIALOG_134, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_EMPYREAN, 1, 4, 30, 200, _("\
 Le nom des étoiles inscrit\n\
 au début de chaque monde\n\
 est un indice!\n\
@@ -1792,7 +1792,7 @@ Aide-nous le plus vite\n\
 possible, mon mignon petit\n\
 Mario en sucre..."))
 
-DEFINE_DIALOG(DIALOG_135, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_NO_MIRROR, 1, 6, 30, 200, _("\
 Bowser a volé les étoiles!\n\
 Je l'ai vu!\n\
 De mes propres yeux!\n\
@@ -1817,7 +1817,7 @@ vaincu, sélectionne les\n\
 étoiles en relation avec\n\
 ces ennemis..."))
 
-DEFINE_DIALOG(DIALOG_136, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_PEACH_AVOID, 1, 6, 30, 200, _("\
 Whoa!!! Tu as déjà\n\
 récupéré autant d'étoiles?\n\
 Incroyable! T'es fort, toi!\n\
@@ -1849,7 +1849,7 @@ effectuant une Attaque\n\
 Rodéo juste avant de\n\
 toucher le sol..."))
 
-DEFINE_DIALOG(DIALOG_137, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB, 1, 5, 30, 200, _("\
 Merci Mario!\n\
 Grâce à tes étoiles de\n\
 puissance, Bowser est allé\n\
@@ -1861,7 +1861,7 @@ apparaît à chaque fois\n\
 que tu récupères 100\n\
 pièces dans un niveau?"))
 
-DEFINE_DIALOG(DIALOG_138, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_WINDOW_GALLERY, 1, 6, 30, 200, _("\
 -Ascenseur 2-\n\
 Bas://Lac souterrain.\n\
 Gauche: Trou Noir.\n\
@@ -1869,7 +1869,7 @@ Droite: Labyrinthe\n\
 ////toxique\n\
 ////(fermé)."))
 
-DEFINE_DIALOG(DIALOG_139, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_CORR, 1, 4, 30, 200, _("\
 \n\
 Au dessus:\n\
 Chariot automatique.\n\
@@ -1882,7 +1882,7 @@ Le chariot disparaîtra\n\
 automatiquement lorsque\n\
 vous tomberez..."))
 
-DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 6, 30, 200, _("\
 -Plate-forme de travail-\n\
 Droite: Entrée du\n\
 ////Labyrinthe\n\
@@ -1892,7 +1892,7 @@ Gauche: Trou Noir.\n\
 Flèche: Votre position\n\
 ////actuelle."))
 
-DEFINE_DIALOG(DIALOG_141, 1, 4, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 4, 150, 200, _("\
 Vous avez récupéré une\n\
 des étoiles du château!\n\
 Vous pouvez désormais\n\
@@ -1910,7 +1910,7 @@ sont encore nombreuses!\n\
 Il faut les arrêter à tout\n\
 prix! Courage..."))
 
-DEFINE_DIALOG(DIALOG_142, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_SEWNIA_KID, 1, 5, 150, 200, _("\
 Vous avez récupéré trois\n\
 étoiles de puissance!\n\
 Désormais, vous pouvez\n\

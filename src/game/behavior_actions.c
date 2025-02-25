@@ -422,3 +422,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/lockbox.inc.c"
 #include "behaviors/ts_panel.inc.c"
 #include "behaviors/ts_door.inc.c"
+#include "behaviors/peach_npc_spot.inc.c"

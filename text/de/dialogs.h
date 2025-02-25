@@ -1558,7 +1558,7 @@ nach vorne, um zu sinken,\n\
 und nach hinten, um zu\n\
 steigen!"))
 
-DEFINE_DIALOG(DIALOG_132, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB, 1, 3, 30, 200, _("\
 Tsetsetse...Mario!\n\
 Du versuchst doch nicht\n\
 etwa, mich zu betrügen?\n\
@@ -1566,7 +1566,7 @@ Abkürzungen sind nicht\n\
 erlaubt.\n\
 Du bist disqualifiziert!"))
 
-DEFINE_DIALOG(DIALOG_133, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_WINDOW_GALLERY, 1, 5, 30, 200, _("\
 Ich freue mich, Dich zu\n\
 sehen. Die Prinzessin...\n\
 ich...und alle anderen\n\
@@ -1593,7 +1593,7 @@ Tür mit dem großen Stern\n\
 öffnen. Dahinter befindet\n\
 sich die Prinzessin!"))
 
-DEFINE_DIALOG(DIALOG_134, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_EMPYREAN, 1, 4, 30, 200, _("\
 Am Beginn jeder Welt\n\
 erhältst Du einen Hinweis,\n\
 wo der nächste Stern\n\
@@ -1607,7 +1607,7 @@ Sterne gefunden hast,\n\
 kannst Du Dich in anderen\n\
 Welten umsehen."))
 
-DEFINE_DIALOG(DIALOG_135, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_NO_MIRROR, 1, 5, 30, 200, _("\
 Bowser hat sich die\n\
 Power-Sterne unter den\n\
 Nagel gerissen. In jeder\n\
@@ -1624,7 +1624,7 @@ Welt sehen. Triff besiegte\n\
 Gegner, indem Du erneut\n\
 ihren Stern anwählst."))
 
-DEFINE_DIALOG(DIALOG_136, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_PEACH_AVOID, 1, 4, 30, 200, _("\
 Wow, Du hast bereits so\n\
 viele Sterne gefunden?\n\
 Ich bin sicher, das war\n\
@@ -1650,7 +1650,7 @@ indem Du bei Stürzen im\n\
 letzen Moment eine\n\
 Stampfattacke ausführst."))
 
-DEFINE_DIALOG(DIALOG_137, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB, 1, 5, 30, 200, _("\
 Vielen Dank! Du hast\n\
 schon sehr viele Sterne\n\
 gesammelt und Bowser in\n\
@@ -1662,13 +1662,13 @@ einen geheimen Stern\n\
 erhältst, wenn Du\n\
 100 Münzen sammelst?"))
 
-DEFINE_DIALOG(DIALOG_138, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_WINDOW_GALLERY, 1, 4, 30, 200, _("\
 Unten:/Höhlensee\n\
 Links:/Schwarzes Loch\n\
 Rechts: Nebellabyrinth\n\
 ////(Geschlossen!!!)"))
 
-DEFINE_DIALOG(DIALOG_139, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_CORR, 1, 4, 30, 200, _("\
 Automatische Plattform\n\
 Sobald Du diese Plattform\n\
 betrittst, setzt sie sich\n\
@@ -1678,7 +1678,7 @@ programmierten Kurs und\n\
 verschwindet automatisch,\n\
 wenn Du sie verläßt."))
 
-DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 6, 30, 200, _("\
 Arbeitsplattform\n\
 Rechts: Nebellabyrinth\n\
 ////Eingang\n\
@@ -1686,7 +1686,7 @@ Links:/Schwarzes Loch\n\
 ////Aufzug 1\n\
 Pfeil:/Standort"))
 
-DEFINE_DIALOG(DIALOG_141, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 5, 150, 200, _("\
 Du hast einen der\n\
 gestohlenen Power-Sterne\n\
 gefunden.\n\
@@ -1703,7 +1703,7 @@ Power-Sterne.\n\
 Wir zählen auf Dich und\n\
 drücken Dir die Daumen."))
 
-DEFINE_DIALOG(DIALOG_142, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_SEWNIA_KID, 1, 5, 150, 200, _("\
 Du hast drei magische\n\
 Power-Sterne gesammelt.\n\
 Jetzt kannst Du jede Tür\n\

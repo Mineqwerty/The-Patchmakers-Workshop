@@ -1204,3 +1204,5 @@ void bhv_ts_panel_init(void);
 void bhv_ts_panel_loop(void);
 void bhv_ts_door_init(void);
 void bhv_ts_door_loop(void);
+void bhv_peach_npc_spot_init(void);
+void bhv_peach_npc_spot_loop(void);

@@ -97,6 +97,9 @@ struct PathfindNode *get_area_waypoints() {
         case 2:
             return sewnia_path_area_2;
         break;
+        case 3:
+            return sewnia_path_area_3;
+        break;
     }
 }
 
@@ -679,7 +682,7 @@ void determine_course_dialog(void) {
     f32 dist;
     struct Object *nearPoint = cur_obj_find_nearest_object_with_behavior(bhvSewniaStoppingPoint, &dist);
 
-    if (nearPoint && dist < 200) {
+    if (nearPoint && dist < 200 && nearPoint->oBehParams2ndByte != 30) {
         create_dialog_box(DIALOG_SEWNIA_TTC + nearPoint->oBehParams2ndByte);
     }
     else {

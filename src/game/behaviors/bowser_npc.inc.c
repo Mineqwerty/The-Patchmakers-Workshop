@@ -257,6 +257,16 @@ void bowser_npc_act_enter_third_hub_cutscene(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger >= 4) {
+        struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvBowserNpcSpot, DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB);
+        o->oPosX = spot->oPosX;
+        o->oPosY = spot->oPosY;
+        o->oPosZ = spot->oPosZ;
+        SET_BPARAM2(o->oBehParams, DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB);
+        o->oBehParams2ndByte = DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB;
+        o->oAction = BOWSER_NPC_ACT_IDLE;
+    }
 }
 
 void bowser_npc_act_enter_brink(void) {

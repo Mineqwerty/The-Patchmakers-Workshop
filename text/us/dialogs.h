@@ -1482,169 +1482,111 @@ forward to nose down,\n\
 just as you would when\n\
 flying an airplane."))
 
-DEFINE_DIALOG(DIALOG_132, 1, 4, 30, 200, _("\
-Whoa, Mario, pal, you\n\
-aren't trying to cheat,\n\
-are you? Shortcuts aren't\n\
-allowed.\n\
-Now, I know that you\n\
-know better. You're\n\
-disqualified! Next time,\n\
-play fair!"))
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB, 1, 3, 30, 200, _("\
+@FF0202FF...You're still here?\n\
+Get lost! You have to find those stars!\n\
+I'll keep Peach safe, bwahaha!\n\
+@FF0202FF...Urgh. FINE. I'll tell you, I won't take her.\n\
+This Patchmaker guy has my blood absolutely BOILING.\n\
+I can't leave here until he's dealt with.\n\
+@FF0202FFSo there, I won't kidnap Peach while you're gone.\n\
+Happy now?\n\
+...Oh, but afterward, she's fair game!"))
 
-DEFINE_DIALOG(DIALOG_133, 1, 6, 30, 200, _("\
-Am I glad to see you! The\n\
-Princess...and I...and,\n\
-well, everybody...we're all\n\
-trapped inside the castle\n\
-walls.\n\
-\n\
-Bowser has stolen the\n\
-castle's Stars, and he's\n\
-using their power to\n\
-create his own world in\n\
-the paintings and walls.\n\
-\n\
-Please recover the Power\n\
-Stars! As you find them,\n\
-you can use their power\n\
-to open the doors that\n\
-Bowser has sealed.\n\
-\n\
-There are four rooms on\n\
-the first floor. Start in\n\
-the one with the painting\n\
-of Bob-omb inside. It's\n\
-the only room that Bowser\n\
-hasn't sealed.\n\
-When you collect eight\n\
-Power Stars, you'll be\n\
-able to open the door\n\
-with the big star. The\n\
-Princess must be inside!"))
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_WINDOW_GALLERY, 1, 3, 30, 200, _("\
+@FF0202FFHOW IS THIS SUPPOSED TO BE ART?\n\
+You're telling me a buncha white squares are art?\n\
+You might as well call me a master painter at this rate!\n\
+@FF0202FFI ripped on The Patchmaker's earlier art too much,\n\
+at least that was like, paintings and stuff.\n\
+This crap is just pretentious artist garbage!\n\
+@FF0202FFThough, the emptiness of the room is kind\n\
+of weird. I wonder if that was some intent...?\n\
+BWARGH! NO!!! THIS PLACE IS POISONING ME!!!"))
 
-DEFINE_DIALOG(DIALOG_134, 1, 5, 30, 200, _("\
-The names of the Stars\n\
-are also hints for\n\
-finding them. They are\n\
-displayed at the beginning\n\
-of each course.\n\
-You can collect the Stars\n\
-in any order. You won't\n\
-find some Stars, enemies\n\
-or items unless you select\n\
-a specific Star.\n\
-After you collect some\n\
-Stars, you can try\n\
-another course.\n\
-We're all waiting for\n\
-your help!"))
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_EMPYREAN, 1, 3, 30, 200, _("\
+@FF0202FFBoy, isn't this area sunshine and rainbows.\n\
+All the red has me just brimming with good feelings!\n\
+...What's with that reaction? I'm joking, meatball-face.\n\
+@FF0202FFBetween you and me, Sewnia doesn't like this area.\n\
+I know she's just a kid, but still, she seems a bit scared.\n\
+Something must have happened, huh?"))
 
-DEFINE_DIALOG(DIALOG_135, 1, 5, 30, 200, _("\
-It was Bowser who stole\n\
-the Stars. I saw him with\n\
-my own eyes!\n\
-\n\
-\n\
-He's hidden six Stars in\n\
-each course, but you\n\
-won't find all of them in\n\
-some courses until you\n\
-press the Cap Switches.\n\
-The Stars you've found\n\
-will show on each course's\n\
-starting screen.\n\
-\n\
-\n\
-If you want to see some\n\
-of the enemies you've\n\
-already defeated, select\n\
-the Stars you recovered\n\
-from them."))
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_NO_MIRROR, 1, 3, 30, 200, _("\
+@FF0202FFHa! A world without me, huh?\n\
+Must be a pretty crappy world!\n\
+You should be grateful you're on this side of the mirror!\n\
+@FF0202FFActually, you should be on the other side!\n\
+Now THAT would be two great worlds!\n\
+Haha... This is some really weird art."))
 
-DEFINE_DIALOG(DIALOG_136, 1, 6, 30, 200, _("\
-Wow! You've already\n\
-recovered that many\n\
-Stars? Way to go, Mario!\n\
-I'll bet you'll have us out\n\
-of here in no time!\n\
-\n\
-Be careful, though.\n\
-Bowser and his band\n\
-wrote the book on 『bad.』\n\
-Take my advice: When you\n\
-need to recover from\n\
-injuries, collect coins.\n\
-Yellow Coins refill one\n\
-piece of the Power Meter,\n\
-Red Coins refill two\n\
-pieces, and Blue Coins\n\
-refill five.\n\
-\n\
-To make Blue Coins\n\
-appear, pound on Blue\n\
-Coin Blocks.\n\
-\n\
-\n\
-\n\
-Also, if you fall from\n\
-high places, you'll\n\
-minimize damage if you\n\
-Pound the Ground as you\n\
-land."))
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_PEACH_AVOID, 1, 3, 30, 200, _("\
+@FF0202FFI can't believe it! Peach is avoiding me!\n\
+After all I've done for her, too! Doesn't she\n\
+know that I'M the one who found her thread?\n\
+@FF0202FFYou kidnap a girl once or twice or ten times,\n\
+and suddenly YOU'RE the bad guy?\n\
+I can't understand women.\n\
+@FF0202FFWipe that look off your face, jerk.\n\
+I'm not giving up on her! Not ever! Never ever!\n\
+I'd chase her through hundreds of art exhibits!"))
 
-DEFINE_DIALOG(DIALOG_137, 1, 6, 30, 200, _("\
-Thanks, Mario! The castle\n\
-is recovering its energy\n\
-as you retrieve Power\n\
-Stars, and you've chased\n\
-Bowser right out of here,\n\
-on to some area ahead.\n\
-Oh, by the by, are you\n\
-collecting coins? Special\n\
-Stars appear when you\n\
-collect 100 coins in each\n\
-of the 15 courses!"))
+DEFINE_DIALOG(DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB, 1, 3, 30, 200, _("\
+@FF75DFFFI won't lie, I'm a little nervous.\n\
+For you, for Sewnia, and myself.\n\
+I know Bowser has been helping you, but still...\n\
+@FF75DFFFDon't worry, though! You must focus on\n\
+collecting star power. I'm still a little disoriented,\n\
+but I know how important this is to Sewnia.\n\
+@FF75DFFFI can't imagine how lonely she's been.\n\
+I'm going to keep her company, so don't worry!\n\
+BOWSER, on the other hand...\n\
+@FF75DFFFUgh... He's looking at me now.\n\
+I wish he would just give up already.\n\
+We'll both need some good luck here, Mario."))
 
-DEFINE_DIALOG(DIALOG_138, 1, 3, 30, 200, _("\
-Down: Underground Lake\n\
-Left: Black Hole\n\
-Right: Hazy Maze (Closed)"))
+DEFINE_DIALOG(DIALOG_PEACH_NPC_WINDOW_GALLERY, 1, 3, 30, 200, _("\
+@FF75DFFFOh, how I adore the lighting here!\n\
+It's quite minimalistic and modern!\n\
+One of the windows even has a secret!\n\
+@FF75DFFFI tried stepping into it, but Sewnia\n\
+screamed at me to stop. It left me quite shocked.\n\
+I hadn't expected her to raise her voice so.\n\
+@FF75DFFFShe looked very scared at the thought of\n\
+me entering that window. I suppose it must be\n\
+one of those portals?"))
 
-DEFINE_DIALOG(DIALOG_139, 1, 6, 30, 200, _("\
-Above: Automatic Elevator\n\
-Elevator begins\n\
-automatically and follows\n\
-pre-set course.\n\
-It disappears\n\
-automatically, too."))
+DEFINE_DIALOG(DIALOG_PEACH_NPC_CORR, 1, 3, 30, 200, _("\
+@FF75DFFFHmm... This is quite the sad room.\n\
+Sewnia told me a bit about the land this\n\
+room leads to. It's very depressing.\n\
+@FF75DFFFThe people in the city there just keep rebuilding it.\n\
+It makes no sense, right? Why don't they leave the land?\n\
+Well, if you think about it, it IS their home.\n\
+@FF75DFFFIt says a lot about human nature, that we can defy common\n\
+sense for a concept like a home. Wow,\n\
+this place has me thinking all artsy..."))
 
-DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
-Elevator Area\n\
-Right: Hazy Maze\n\
-/// Entrance\n\
-Left: Black Hole\n\
-///Elevator 1\n\
-Arrow: You are here"))
+DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 6, 30, 200, _("\
+@FF75DFFFMario, you'll never believe me if I say this,\n\
+but I think this exhibit secretly terrifies Bowser.\n\
+It's hard to imagine, right?\n\
+@FF75DFFFHe keeps staring wistfully at it, almost like\n\
+he's scared picturing a world without him.\n\
+I suppose all of us would be troubled by that..."))
 
-DEFINE_DIALOG(DIALOG_141, 1, 5, 150, 200, _("\
-You've recovered one of\n\
-the stolen Power Stars!\n\
-Now you can open some of\n\
-the sealed doors in the\n\
-castle.\n\
-Try the Princess's room\n\
-on the second floor and\n\
-the room with the\n\
-painting of Whomp's\n\
-Fortress on Floor 1.\n\
-Bowser's troops are still\n\
-gaining power, so you\n\
-can't give up. Save us,\n\
-Mario! Keep searching for\n\
-Stars!"))
+DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 5, 150, 200, _("\
+@FF75DFFFI'm getting quite fed up with Bowser.\n\
+He won't leave me alone when you're gone.\n\
+I keep telling him to leave me be, with a raised voice.\n\
+@FF75DFFFPoor Sewnia is just trying to keep the peace.\n\
+I'm doing this for her. I can't tell Bowser that,\n\
+though. He may try to remove any walls to me.\n\
+@FF75DFFFThough... I get a strange sense that he, too, cares.\n\
+Perhaps he sees his own child in her struggles.\n\
+He is a father, at the end of the day."))
 
-DEFINE_DIALOG(DIALOG_142, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_SEWNIA_KID, 1, 5, 150, 200, _("\
 You've recovered three\n\
 Power Stars! Now you can\n\
 open any door with a 3\n\
@@ -3307,12 +3249,17 @@ This stuff makes no sense to me...\n\
 Urgh... I hope Peach's thread isn't in the water..."))
 
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_STAIRS, 1, 3, 30, 200, _("\
-@FF0202FFstairs\n\
-"))
+@FF0202FFHoo... Hrgh...\n\
+MAN I hate stairs.\n\
+These ones are so big...\n\
+@FF0202FFWhat's that look for? Think I'm giving up?\n\
+I won't be dissuaded from Peach by some\n\
+stupid stairs, stupid!"))
 
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_PATCH_CHALLENGE, 1, 3, 30, 200, _("\
-@FF0202FFu suck at patch challenge\n\
-"))
+@FF0202FFWhy would you waste your time with some\n\
+pile of mechanical garbage like this one?\n\
+I can't believe you think a puppet booth is training..."))
 
 DEFINE_DIALOG(DIALOG_BOWSER_SEWNIA_NPC_ANGER, 1, 3, 30, 200, _("\
 @FF0202FFget mad\n\

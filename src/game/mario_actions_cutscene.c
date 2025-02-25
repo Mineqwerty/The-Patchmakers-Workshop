@@ -240,7 +240,7 @@ s32 get_star_collection_dialog(struct MarioState *m) {
     for (i = 0; i < ARRAY_COUNT(sStarsNeededForDialog); i++) {
         numStarsRequired = sStarsNeededForDialog[i];
         if (m->prevNumStarsForDialog < numStarsRequired && m->numStars >= numStarsRequired) {
-            dialogID = i + DIALOG_141;
+            dialogID = i + DIALOG_PEACH_NPC_BOWSER_FOLLOW;
             break;
         }
     }

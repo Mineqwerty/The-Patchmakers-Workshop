@@ -9319,3 +9319,12 @@ const BehaviorScript bhvTsDoor[] = {
         CALL_NATIVE(bhv_ts_door_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPeachNpcSpot[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_peach_npc_spot_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_peach_npc_spot_loop),
+    END_LOOP(),
+};

@@ -1435,14 +1435,14 @@ DEFINE_DIALOG(DIALOG_131, 1, 5, 30, 200, _("\
 てまえにひくと『あがる』\n\
 まずは　おためしを！"))
 
-DEFINE_DIALOG(DIALOG_132, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB, 1, 5, 30, 200, _("\
 ダメダメ！\n\
 それは　きていいはんです。\n\
 『しっかーく！』\n\
 こんどはフェアーに\n\
 いきましょう。"))
 
-DEFINE_DIALOG(DIALOG_133, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_WINDOW_GALLERY, 1, 5, 30, 200, _("\
 ああよかった。\n\
 きてくれたんですね！\n\
 ピーチひめも　ぼくたちも\n\
@@ -1469,7 +1469,7 @@ DEFINE_DIALOG(DIALOG_133, 1, 5, 30, 200, _("\
 きっと　ピーチひめは\n\
 そのなかです！"))
 
-DEFINE_DIALOG(DIALOG_134, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_EMPYREAN, 1, 4, 30, 200, _("\
 コースのはじめにえらべる\n\
 スターのなまえは、\n\
 つぎに　みつけられそうな\n\
@@ -1487,7 +1487,7 @@ DEFINE_DIALOG(DIALOG_134, 1, 4, 30, 200, _("\
 すすんでください。みんな\n\
 たすけを　まっています！"))
 
-DEFINE_DIALOG(DIALOG_135, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_NO_MIRROR, 1, 5, 30, 200, _("\
 クッパがスターをもって\n\
 いっちゃいました。\n\
 ここにかくれてみてました。\n\
@@ -1504,7 +1504,7 @@ DEFINE_DIALOG(DIALOG_135, 1, 5, 30, 200, _("\
 とき、そのほしをえらぶと\n\
 またあえる　てきもいます。"))
 
-DEFINE_DIALOG(DIALOG_136, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOWSER_NPC_PEACH_AVOID, 1, 4, 30, 200, _("\
 ワァすごい！もうそんなに\n\
 スターをもってるんですね。\n\
 もうすぐ　ぼくらのことも\n\
@@ -1522,7 +1522,7 @@ DEFINE_DIALOG(DIALOG_136, 1, 4, 30, 200, _("\
 『ヒップドロップ』すると\n\
 ダメージを　ふせげます。"))
 
-DEFINE_DIALOG(DIALOG_137, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB, 1, 5, 30, 200, _("\
 パワースターが　もどって、\n\
 おしろのちからが\n\
 かいふく　してきました！\n\
@@ -1534,14 +1534,14 @@ DEFINE_DIALOG(DIALOG_137, 1, 5, 30, 200, _("\
 スペシャルスターが\n\
 あらわれます。"))
 
-DEFINE_DIALOG(DIALOG_138, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_WINDOW_GALLERY, 1, 5, 30, 200, _("\
 ・２ごうエレベーター・\n\
 した・・ちていこ\n\
 ひだり・・やみのおおあな\n\
 みぎ・・・ケムリめいろ\n\
 　　　　　へいさちゅう！"))
 
-DEFINE_DIALOG(DIALOG_139, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_CORR, 1, 6, 30, 200, _("\
 このうえ・・じどうリフト\n\
 じどうリフトは　のると\n\
 じどうてきに　うごきだし、\n\
@@ -1549,7 +1549,7 @@ DEFINE_DIALOG(DIALOG_139, 1, 6, 30, 200, _("\
 おりて　ほうっておくと\n\
 きえてしまいます。"))
 
-DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 6, 30, 200, _("\
 -そうさリフトじょう-\n\
 みぎ・・・ケムリめいろ\n\
 　　　　　いりぐち\n\
@@ -1557,7 +1557,7 @@ DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
 　　１ごうエレベーターへ\n\
 やじるし・・げんざいち"))
 
-DEFINE_DIALOG(DIALOG_141, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 5, 150, 200, _("\
 ぬすまれたパワースターを\n\
 とりかえした！\n\
 クッパが　とじてしまった\n\
@@ -1573,7 +1573,7 @@ DEFINE_DIALOG(DIALOG_141, 1, 5, 150, 200, _("\
 いそげ　マリオ！！\n\
 おしろの　いちだいじだ！"))
 
-DEFINE_DIALOG(DIALOG_142, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_SEWNIA_KID, 1, 5, 150, 200, _("\
 ３このスターを\n\
 とりもどしたぞ！　\n\
 そして　スターに『３』の\n\
