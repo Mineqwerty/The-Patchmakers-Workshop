@@ -119,6 +119,16 @@ void peach_npc_act_enter_third_hub_cutscene(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger >= 2) {
+        struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvPeachNpcSpot, DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB);
+        o->oPosX = spot->oPosX;
+        o->oPosY = spot->oPosY;
+        o->oPosZ = spot->oPosZ;
+        SET_BPARAM2(o->oBehParams, DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB);
+        o->oBehParams2ndByte = DIALOG_PEACH_NPC_ARRIVED_AT_THIRD_HUB;
+        o->oAction = PEACH_NPC_ACT_IDLE;
+    }
 }
 
 void peach_npc_act_enter_brink(void) {
@@ -134,8 +144,29 @@ void peach_npc_act_enter_brink(void) {
     }
 }
 
+void peach_npc_find_spot(void) {
+            u8 randSpot = random_u16()%4;
+            struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvPeachNpcSpot, DIALOG_PEACH_NPC_WINDOW_GALLERY + randSpot);
+            o->oPosX = spot->oPosX;
+            o->oPosY = spot->oPosY;
+            o->oPosZ = spot->oPosZ;
+            SET_BPARAM2(o->oBehParams, DIALOG_PEACH_NPC_WINDOW_GALLERY + randSpot);
+            o->oBehParams2ndByte = DIALOG_PEACH_NPC_WINDOW_GALLERY + randSpot;
+}
+
+void peach_npc_act_find_spot(void) {
+    peach_npc_find_spot();
+    o->oAction = PEACH_NPC_ACT_IDLE;
+}
+
+void peach_npc_act_idle(void) {
+    cur_obj_init_animation(2);
+    o->oInteractionSubtype = INT_SUBTYPE_NPC;
+}
+
 void bhv_peach_npc_init(void) {
     obj_set_hitbox(o, &sPeachNPCHitbox);
+    o->oAction = PEACH_NPC_ACT_FIND_SPOT;
     cur_obj_init_animation(2);
 }
 
@@ -152,10 +183,10 @@ void bhv_peach_npc_loop(void) {
 
     switch (o->oAction) {
         case PEACH_NPC_ACT_FIND_SPOT:
-            //bowser_npc_act_find_spot();
+            peach_npc_act_find_spot();
         break;
         case PEACH_NPC_ACT_IDLE:
-            //bowser_npc_act_idle();
+            peach_npc_act_idle();
         break;
         case PEACH_NPC_ACT_REVIVE_CUTSCENE:
             peach_npc_act_revive_cutscene();
