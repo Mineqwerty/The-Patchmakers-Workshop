@@ -1810,7 +1810,7 @@ diesen dämlichen Stern\n\
 gefunden habe. Ich...\n\
 Ich...werde..."))
 
-DEFINE_DIALOG(DIALOG_151, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 1, 5, 30, 200, _("\
 Ich halte das nicht mehr\n\
 aus - zuerst überflutest\n\
 Du meine Wohnung und\n\

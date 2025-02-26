@@ -74,6 +74,9 @@ void bhv_readable_book_loop(void) {
                 case 23:
                     dialog = DIALOG_BOOK_SEWNIA;
                 break;
+                case 58:
+                    dialog = DIALOG_BOOK_MAGIC;
+                break;
             }
 
             if (gCurrLevelNum != LEVEL_CASTLE) {

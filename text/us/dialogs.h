@@ -1715,14 +1715,22 @@ this Star...It's so shiny,\n\
 but it makes me feel...\n\
 strange..."))
 
-DEFINE_DIALOG(DIALOG_151, 1, 4, 30, 200, _("\
-I can't take this\n\
-anymore! First you get\n\
-me all wet, then you\n\
-stomp on me!\n\
-Now I'm really, really,\n\
-REALLY mad!\n\
-Waaaaaaaaaaaaaaaaa!!!"))
+DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 0b100, 3, 30, 200, _("\
+@FEFEFEFFIn a world as vast and differing as this one,\n\
+many forms of magic exist. Some have been used for actions\n\
+such as transfiguration or restoration.\n\
+@FEFEFEFFI myself have studied vast amounts of magic,\n\
+becoming capable of creating works of art employing the\n\
+use of transfiguration and conjuration magic.\n\
+@FEFEFEFFChanging the form of a living thing is possible.\n\
+So is conjuring an inanimate object.\n\
+But one rule I have learned, is on creating life.\n\
+@FEFEFEFFLife has never before been created through magic.\n\
+It is quite the fickle thing. And frankly, I see it\n\
+best that way.\n\
+@FEFEFEFFMagic is a tool. One I use to create articles\n\
+of wonder and amazement.\n\
+It would be best to not pursue other measures."))
 
 DEFINE_DIALOG(DIALOG_152, 1, 3, 30, 200, _("\
 Owwch! Uncle! Uncle!\n\
@@ -2217,9 +2225,11 @@ DEFINE_DIALOG(DIALOG_SEWNIA_SS, 1, 4, 30, 200, _("\
 @7F60B4FFHeehee... This bubble column is a bit different!\n\
 That's because it's a portal! It'll suck you down into\n\
 cavernous depths surrounded by the salty sea.\n\
+\n\
 @7F60B4FFThe place it goes to is called Subterranean Seaway.\n\
 You'll find out that there isn't much to explore without\n\
 plunging into the watery depths...\n\
+\n\
 @7F60B4FFBut don't do it until you find the patch that\n\
 was hidden there! The Patchmaker said that there's\n\
 a strong upward current that prevents anyone but the \n\

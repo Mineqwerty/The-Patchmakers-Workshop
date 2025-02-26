@@ -1,0 +1,13 @@
+extern const GeoLayout speech_bubble_geo[];
+extern u8 speech_bubble_speechbubbletop_rgba16[];
+extern u8 speech_bubble_speechbubblebottom_rgba16[];
+extern Vtx speech_bubble_Plane_042_mesh_layer_4_vtx_cull[8];
+extern Vtx speech_bubble_Plane_042_mesh_layer_4_vtx_0[4];
+extern Gfx speech_bubble_Plane_042_mesh_layer_4_tri_0[];
+extern Vtx speech_bubble_Plane_042_mesh_layer_4_vtx_1[4];
+extern Gfx speech_bubble_Plane_042_mesh_layer_4_tri_1[];
+extern Gfx mat_speech_bubble_f3dlite_material_014[];
+extern Gfx mat_revert_speech_bubble_f3dlite_material_014[];
+extern Gfx mat_speech_bubble_f3dlite_material_041[];
+extern Gfx mat_revert_speech_bubble_f3dlite_material_041[];
+extern Gfx speech_bubble_Plane_042_mesh_layer_4[];

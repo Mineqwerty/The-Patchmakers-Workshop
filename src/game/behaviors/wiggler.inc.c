@@ -266,7 +266,7 @@ static void wiggler_act_walk(void) {
  */
 static void wiggler_act_jumped_on(void) {
     // Text to show on first, second, and third attack.
-    s32 attackText[3] = { DIALOG_152, DIALOG_168, DIALOG_151 };
+    s32 attackText[3] = { DIALOG_152, DIALOG_168, DIALOG_BOOK_MAGIC };
 
     // Shrink until the squish speed becomes 0, then unisquish
     if (approach_f32_ptr(&o->oWigglerSquishSpeed, 0.0f, 0.05f)) {

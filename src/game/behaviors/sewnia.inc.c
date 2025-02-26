@@ -658,6 +658,17 @@ void follow_along_waypoints(void) {
         }
 }
 
+u8 saidCourseDialog[12] = {0};
+
+s32 sewnia_should_spawn_speech_bubble(u8 courseID) {
+    if ((save_file_get_star_flags(gCurrSaveFileNum - 1, indexToCourseSlot[courseID]) == 0) && saidCourseDialog[indexToCourseSlot[courseID]] == 0) {
+        saidCourseDialog[indexToCourseSlot[courseID]] = 1;
+        return 1;
+    }
+
+    return 0;
+}
+
 void stay_near_course_entrance(void) {
     f32 dist;
     struct Object *nearPoint = cur_obj_find_nearest_object_with_behavior(bhvSewniaStoppingPoint, &dist);
@@ -667,6 +678,13 @@ void stay_near_course_entrance(void) {
         o->oForwardVel = 20.0f;
     }
     else {
+        if (!o->oSewniaHasSpawnedSpeechBubble) {
+            if (sewnia_should_spawn_speech_bubble(nearPoint->oBehParams2ndByte)) {
+                o->oSewniaHasSpawnedSpeechBubble = 1;
+                spawn_object_relative(0, 0, 200,  0, o, MODEL_SPEECH_BUBBLE, bhvSpeechBubble);
+            }
+        }
+
         obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
         o->oForwardVel = 0.0f;
         cur_obj_init_animation(0);
@@ -750,7 +768,14 @@ void sewnia_act_talking_to_mario(void) {
 
     switch (o->oSubAction) {
         case SEWNIA_DIALOG_SUB_ACTION_ASKING_QUESTION:
-        if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT)) {
+
+        if (o->oSewniaHasSpawnedSpeechBubble) {
+            o->oSubAction = SEWNIA_DIALOG_SUB_ACTION_COURSE_INFO;
+            o->oSewniaHasSpawnedSpeechBubble = 0;
+            set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT);
+            o->oTimer = 8;
+        }
+        else if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_FRONT)) {
             if (gDialogResponse > 0) {
                 o->oSubAction = gDialogResponse;
                 o->oTimer = 0;
@@ -1252,6 +1277,8 @@ void bhv_sewnia_init(void) {
 
     o->oWallHitboxRadius = 30.0f;
 
+    o->oSewniaHasSpawnedSpeechBubble = 0;
+
     if (sSourceWarpNodeId == 240 || sSourceWarpNodeId == 241) {
         o->oAction = SEWNIA_ACT_START_AT_COURSE;
     }
@@ -1261,7 +1288,7 @@ void bhv_sewnia_init(void) {
     }
 
     if (save_file_get_flags() & SAVE_FLAG_BEAT_GAME) {
-        obj_mark_for_deletion(o);
+        //obj_mark_for_deletion(o);
     }
 }
 
@@ -1304,9 +1331,11 @@ void sewnia_act_follow_mario(void) {
                 sewnia_update_movement();
                 follow_mario_directly();
                 o->oMarioNearestNode = -1;
+                o->oSewniaHasSpawnedSpeechBubble = 0;
             break;
             case 1:
                 follow_along_waypoints();
+                o->oSewniaHasSpawnedSpeechBubble = 0;
             break;
             case 2:
                 sewnia_update_movement();
@@ -1339,7 +1368,9 @@ void sewnia_act_follow_mario(void) {
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED) {
         o->oInteractStatus = 0;
-        create_sewnia_dialog_box(DIALOG_SEWNIA_OPTIONS);
+        if (!o->oSewniaHasSpawnedSpeechBubble) {
+            create_sewnia_dialog_box(DIALOG_SEWNIA_OPTIONS);
+        }
         o->oAction = SEWNIA_ACT_TALKING_TO_MARIO;
     }
     

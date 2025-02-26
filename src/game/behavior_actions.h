@@ -1206,3 +1206,5 @@ void bhv_ts_door_init(void);
 void bhv_ts_door_loop(void);
 void bhv_peach_npc_spot_init(void);
 void bhv_peach_npc_spot_loop(void);
+void bhv_speech_bubble_init(void);
+void bhv_speech_bubble_loop(void);

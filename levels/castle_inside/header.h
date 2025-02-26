@@ -245,4 +245,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/beginning_ttc_barrier/collision_header.h"
 
+#include "levels/castle_inside/speech_bubble/geo_header.h"
+
 #endif

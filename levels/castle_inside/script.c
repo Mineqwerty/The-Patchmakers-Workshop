@@ -58,6 +58,7 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_CORR_LIFT, corr_lift_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TS_WARP_PLATFORM, ts_warp_platform_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MEMORY_CLOUD, memory_cloud_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SPEECH_BUBBLE, speech_bubble_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -92,6 +93,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStoryCutsceneManagerHub1),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvBeginningHubBarrier),
 		OBJECT(MODEL_WORKSHOP_DOOR, 5929, 553, -1308, 0, -90, 0, (1 << 24) | (15 << 16), bhvWorkshopDoorWarp),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, -3845, 1029, 1445, 0, 0, 0, (58 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_MARIO_PLUSH, -9, 181, 1378, 0, -180, 0, 0x00000000, bhvCharacterPlush),
 		OBJECT(MODEL_MEMORY_CLOUD, 5659, 765, -1655, 0, 0, 0, 0x00000000, bhvMemoryCloud),
 		OBJECT(MODEL_NONE, -2972, 286, 2725, 0, 0, 0, (0x40 << 16), bhvPaintingDeathWarp),

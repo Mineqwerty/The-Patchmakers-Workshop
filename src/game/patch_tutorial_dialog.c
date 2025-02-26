@@ -74,4 +74,6 @@ char *tutorialDialogs[] = {
     "The skybridge patch allows Mario to walk on air.\nThe bridge is created at the height of the\nlast floor he stood on temporarily.",
 //57    
     "\"A World Without You\"",
+//58
+    "\"Magic and Fabrication\"",
 };

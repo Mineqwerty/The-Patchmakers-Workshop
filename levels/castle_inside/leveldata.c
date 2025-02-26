@@ -133,3 +133,4 @@
 #include "levels/castle_inside/ts_warp_platform/model.inc.c"
 #include "levels/castle_inside/memory_cloud/model.inc.c"
 #include "levels/castle_inside/beginning_ttc_barrier/collision.inc.c"
+#include "levels/castle_inside/speech_bubble/model.inc.c"

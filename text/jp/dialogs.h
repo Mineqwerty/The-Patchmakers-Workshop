@@ -1680,7 +1680,7 @@ DEFINE_DIALOG(DIALOG_150, 1, 5, 30, 200, _("\
 キチンと　てんじょう\n\
 なおしてもらうです。"))
 
-DEFINE_DIALOG(DIALOG_151, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 1, 4, 30, 200, _("\
 みずをかけられた　つぎは\n\
 ふんづけられました。\n\
 もう　ほんとーに\n\

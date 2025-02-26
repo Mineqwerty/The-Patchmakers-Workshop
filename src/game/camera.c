@@ -10529,7 +10529,7 @@ void cutscene_exit_painting_move_to_floor(struct Camera *c) {
     Vec3f floorHeight;
 
     vec3f_copy(floorHeight, sMarioCamState->pos);
-    floorHeight[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
+    floorHeight[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 200.f,
                                 sMarioCamState->pos[2], &floor);
 
     if (floor != NULL) {
@@ -10540,6 +10540,9 @@ void cutscene_exit_painting_move_to_floor(struct Camera *c) {
             approach_f32_asymptotic_bool(&c->pos[1], floorHeight[1], 0.05f);
         }
     }
+
+    s8DirModeBaseYaw = c->yaw;
+    s8DirModeYawOffset = 0;
 }
 
 /**
@@ -10552,7 +10555,7 @@ void cutscene_exit_painting(struct Camera *c) {
 
     //! Hardcoded position. TTM's painting is close to an opposite wall, so just fix the pos.
     if (gPrevLevel == LEVEL_TTM) {
-        vec3f_set(c->pos, -296.f, 1261.f, 3521.f);
+        //vec3f_set(c->pos, -296.f, 1261.f, 3521.f);
     }
 
     update_camera_yaw(c);

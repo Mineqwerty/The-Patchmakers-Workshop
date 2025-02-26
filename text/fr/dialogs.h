@@ -2059,7 +2059,7 @@ Je suis sûr qu'elle me\n\
 porte la poisse...\n\
 Saleté, va!"))
 
-DEFINE_DIALOG(DIALOG_151, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 1, 6, 30, 200, _("\
 Ah non! Ça suffit!\n\
 D'abord tu me mouilles,\n\
 ensuite tu m'écrases la\n\
