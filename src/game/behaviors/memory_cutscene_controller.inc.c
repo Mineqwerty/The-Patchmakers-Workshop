@@ -13,6 +13,9 @@ void bhv_memory_cutscene_controller_init(void) {
         case LEVEL_BITFS:
             begin_cutscene_event(CUTSCENE_EVENT_SECOND_MEMORY);
         break;
+        case LEVEL_BITS:
+            begin_cutscene_event(CUTSCENE_EVENT_THIRD_MEMORY);
+        break;
     }
 }
 

@@ -26,6 +26,7 @@
 #include "levels/sl/header.inc.h"
 #include "levels/bitdw/header.inc.h"
 #include "levels/bitfs/header.inc.h"
+#include "levels/bits/header.inc.h"
 
 #include "levels/castle_inside/header.inc.h"
 #include "levels/bowser_1/header.inc.h"
@@ -1708,6 +1709,84 @@ s32 event_mantle_of_madness_final_needle[] = {
 
 };
 
+s32 event_third_memory[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 253,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 254,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_3_1,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 255,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 256,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_3_2,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 257,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 258,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_3_3,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 259,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 260,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_3_4,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_WAIT, 15,
+    //red sewnia backdrop
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 261,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 262,
+    EVENT_WAIT, 15,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 263,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 264,
+    EVENT_WAIT, 8,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 265,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 266,
+    EVENT_WAIT, 8,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 267,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 268,
+    EVENT_WAIT, 8,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 269,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 270,
+    EVENT_WAIT, 8,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 271,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 272,
+    EVENT_WAIT, 60,
+    EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 273,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 274,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 30,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_MEMORY_3_5,
+    EVENT_WAIT, 1,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 90, 255, 0, 0,
+    EVENT_SOUND, SOUND_NEW_MEMORY_END,
+    EVENT_WAIT, 90,
+
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
+    EVENT_FADE_INTO_COLOR, 1, 0, 0, 0,
+    EVENT_WAIT, 60,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_CAMERA_POSITION, -14700, 400, 0,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_FADE_FROM_COLOR, 10, 0, 0, 0,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_END_CUTSCENE
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1740,7 +1819,8 @@ s32 *eventList[] = {
     event_second_memory,
     //25
     event_mantle_of_madness_platforming,
-    event_mantle_of_madness_final_needle
+    event_mantle_of_madness_final_needle,
+    event_third_memory,
 
 };
 
@@ -2048,6 +2128,32 @@ s32 *splineList[] = {
     castle_inside_area_3_spline_EnterBrinkFocus5,
     castle_inside_area_3_spline_EnterBrinkPos6,
     castle_inside_area_3_spline_EnterBrinkFocus6,
+    bits_area_1_spline_ThirdMemoryPos1,
+    bits_area_1_spline_ThirdMemoryFocus1,
+    //255
+    bits_area_1_spline_ThirdMemoryPos1_001,
+    bits_area_1_spline_ThirdMemoryFocus1_001,
+    bits_area_1_spline_ThirdMemoryPos1_002,
+    bits_area_1_spline_ThirdMemoryFocus1_002,
+    bits_area_1_spline_ThirdMemoryPos1_003,
+    //260
+    bits_area_1_spline_ThirdMemoryFocus1_003,
+    bits_area_1_spline_ThirdMemoryPos1_004,
+    bits_area_1_spline_ThirdMemoryFocus1_004,
+    bits_area_1_spline_ThirdMemoryPos1_005,
+    bits_area_1_spline_ThirdMemoryFocus1_005,
+    //265
+    bits_area_1_spline_ThirdMemoryPos1_006,
+    bits_area_1_spline_ThirdMemoryFocus1_006,
+    bits_area_1_spline_ThirdMemoryPos1_007,
+    bits_area_1_spline_ThirdMemoryFocus1_007,
+    bits_area_1_spline_ThirdMemoryPos1_008,
+    //270
+    bits_area_1_spline_ThirdMemoryFocus1_008,
+    bits_area_1_spline_ThirdMemoryPos1_009,
+    bits_area_1_spline_ThirdMemoryFocus1_009,
+    bits_area_1_spline_ThirdMemoryPos1_010,
+    bits_area_1_spline_ThirdMemoryFocus1_010,
 
 };
 

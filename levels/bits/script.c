@@ -46,6 +46,7 @@ const LevelScript level_bits_entry[] = {
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_SKYBOX_TEST, 0, 0, 0, 0, 0, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_TRIANGLE_TORNADO, -5990, 281, -294, 0, 0, 0, 0x00000000, bhvTriangleTornado),
+		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvMemoryCutsceneController),
 		MARIO_POS(0x01, 0, 9460, 0, 0),
 		OBJECT(MODEL_NONE, 9460, 0, 0, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(bits_area_1_collision),

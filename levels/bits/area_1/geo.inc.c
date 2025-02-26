@@ -6,6 +6,7 @@ const GeoLayout bits_area_1_geo[] = {
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bits_dl_Cube_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, bits_dl_Cube_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bits_dl_Plane_001_mesh_layer_1),
+		GEO_ROTATION_NODE_WITH_DL(LAYER_OPAQUE, 0, -180, 0, bits_dl_Plane_002_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
