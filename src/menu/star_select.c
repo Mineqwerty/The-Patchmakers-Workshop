@@ -163,7 +163,7 @@ void spawn_stage_diorama(void) {
         break;
         case LEVEL_WDW:
             spawn_object_abs_with_rot(o, 0, MODEL_CORR_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
-            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_CITY_OF_RECONSTRUCTED_RUIN), 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_CITY_OF_RECONSTRUCTED_RUIN_SELECT), 0);
         break;
         case LEVEL_TTM:
             spawn_object_abs_with_rot(o, 0, MODEL_TS_DIORAMA, bhvActSelectorStarType, -2000, -500, -7500, 0, 0, 0);
@@ -743,6 +743,11 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
             } else {
                 sLoadedActNum = sInitSelectedActNum;
             }
+
+            if (gCurrLevelNum == LEVEL_SL && sLoadedActNum == 6) {
+                sWarpDest.areaIdx = 5;
+            }
+
             gDialogCourseActNum = sSelectedActIndex + 1;
         }
     }

@@ -2403,10 +2403,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         //bcopy(randomNoise, segmented_to_virtual(bowser_3_dl_nosiehell_rgba16), 2048);
     }
 
-    
-    //dbp(save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_STC);
-    
-
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);
 
@@ -2713,6 +2709,15 @@ void init_mario(void) {
 
     gMarioState->capTimer = 0;
     gMarioState->quicksandDepth = 0.0f;
+
+    if (gCurrLevelNum != LEVEL_BOWSER_1
+        && gCurrLevelNum != LEVEL_BOWSER_2
+        && gCurrLevelNum != LEVEL_BOWSER_3
+        && gCurrLevelNum != LEVEL_BITDW
+        && gCurrLevelNum != LEVEL_BITFS
+        && gCurrLevelNum != LEVEL_BITS) {
+            gInMemoryStage = 0;
+        }
     
     //if (gMarioState->action != ACT_SPAWN_HOLDING_OBJECT) {
         gMarioState->heldObj = NULL;

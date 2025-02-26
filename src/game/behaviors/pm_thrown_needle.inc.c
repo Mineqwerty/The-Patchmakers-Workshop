@@ -95,7 +95,7 @@ void bhv_pm_thrown_needle_loop(void) {
 
                 halo = cur_obj_find_nearest_object_with_behavior(bhvHalo, &dist);
 
-                if (halo->oAction == 3 && halo->oTimer == 18 && o->oTimer < 18) {
+                if (halo->oAction == 3 && halo->oTimer == 18 && o->oTimer > 18) {
                     o->oAction = 5;
                     if (halo && halo->oHaloCapturedObject == o) {
                         halo->oHaloCapturedObject = NULL;

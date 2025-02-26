@@ -67,7 +67,7 @@ void bhv_memory_cloud_loop(void) {
                         initiate_warp(LEVEL_BITS, 1, 0x0A, 0);
                     break;
                 }
-                
+                gInMemoryStage = 1;
             }
         break;
     }

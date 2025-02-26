@@ -27,7 +27,8 @@ enum SewniaActions {
     SEWNIA_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
     SEWNIA_ACT_ENTER_THIRD_HUB_CUTSCENE,
     SEWNIA_ACT_REVIVE_PEACH,
-    SEWNIA_ACT_ENTER_BRINK
+    SEWNIA_ACT_ENTER_BRINK,
+    SEWNIA_ACT_START_AT_COURSE,
 };
 
 enum SewniaAnims {
@@ -1239,7 +1240,6 @@ void sewnia_act_revive_bowser_cutscene(void) {
 void bhv_sewnia_init(void) {
     obj_set_hitbox(o, &sSewniaHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_NPC;
-    o->oAction = 1;
     o->oGravity = -3.0f;
 
     if (gCurrLevelNum == LEVEL_BOWSER_1) {
@@ -1252,7 +1252,17 @@ void bhv_sewnia_init(void) {
 
     o->oWallHitboxRadius = 30.0f;
 
-    //sewnia_init_area_waypoints();
+    if (sSourceWarpNodeId == 240 || sSourceWarpNodeId == 241) {
+        o->oAction = SEWNIA_ACT_START_AT_COURSE;
+    }
+    else {
+        o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+
+    }
+
+    if (save_file_get_flags() & SAVE_FLAG_BEAT_GAME) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void sewnia_act_idle(void) {
@@ -1620,6 +1630,17 @@ void sewnia_act_enter_brink(void) {
     o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
 }
 
+void sewnia_act_start_at_course(void) {
+    f32 dist;
+    struct Object *nearCourseNode = obj_find_nearest_object_with_behavior(gMarioState->marioObj, bhvSewniaStoppingPoint, &dist);
+    if (nearCourseNode) {
+        o->oPosX = nearCourseNode->oPosX;
+        o->oPosY = nearCourseNode->oPosY;
+        o->oPosZ = nearCourseNode->oPosZ;
+    }
+    o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+}
+
 void bhv_sewnia_loop(void) {
 
     //print_text_fmt_int(200, 80, "sewnia %d", o->oSewniaSourceNode);
@@ -1708,6 +1729,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_ENTER_BRINK:
             sewnia_act_enter_brink();
+        break;
+        case SEWNIA_ACT_START_AT_COURSE:
+            sewnia_act_start_at_course();
         break;
     }
 

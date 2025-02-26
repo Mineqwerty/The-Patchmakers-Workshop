@@ -757,6 +757,12 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
         gMarioState->onOffState = 1;
     }
 
+    if ((destLevel == LEVEL_BOWSER_1 && gCurrLevelNum == LEVEL_BOWSER_1)
+        || (destLevel == LEVEL_BOWSER_2 && gCurrLevelNum == LEVEL_BOWSER_2)
+        || (destLevel == LEVEL_BOWSER_3 && gCurrLevelNum == LEVEL_BOWSER_3)) {
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
+    }
+
     sWarpDest.levelNum = destLevel;
     sWarpDest.areaIdx = destArea;
     sWarpDest.nodeId = destWarpNode;

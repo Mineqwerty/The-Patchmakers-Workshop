@@ -62,6 +62,7 @@ s16 cSkipCutsceneState;
 s16 cSkipCutsceneTimer;
 s16 cMarioMoveDownTimer;
 s16 cMarioAnimLockFrame;
+s16 cDisableCutsceneSkip;
 
 
 
@@ -2057,6 +2058,7 @@ void begin_cutscene_event(s32 event) {
     cWaitTimer = 0;
     cWaiting = 0;
     cCutsceneTimer = 0;
+    cDisableCutsceneSkip = 0;
     cSkipCutsceneState = 0;
     cSkipCutsceneTimer = 0;
     cExternalCutsceneTrigger = 0;
@@ -2075,6 +2077,9 @@ void event_handler(void) {
         f32 dist;
 
         if ((gPlayer1Controller->buttonPressed & START_BUTTON)
+            && cSkipCutsceneState < 2
+            && gInMemoryStage == 0
+            && cDisableCutsceneSkip == 0
             && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_PLATFORMING
             && gCurCutscene != CUTSCENE_EVENT_MANTLE_OF_MADNESS_FINAL_NEEDLE) {
             if (cSkipCutsceneState == 0) {
@@ -2173,6 +2178,7 @@ void event_handler(void) {
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_SKIP_CUTSCENE_JUMP:
+                    cDisableCutsceneSkip = 1;
                     cCutsceneIndex += 4;
                 break;
                 case EVENT_CAMERA_POSITION:

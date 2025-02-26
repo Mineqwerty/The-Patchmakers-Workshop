@@ -59,6 +59,9 @@ enum PatchmakerAnims {
 #define PATCHMAKER_2_MAX_HEALTH 75
 #define PATCHMAKER_SECOND_FIGHT (gCurrLevelNum == LEVEL_BOWSER_2)
 
+u8 firstCutsceneDone = 0;
+u8 secondCutsceneDone = 0;
+
 static struct ObjectHitbox sPatchmakerHitbox = {
     /* interactType:      */ INTERACT_PUSH_OUT,
     /* downOffset:        */ 0,
@@ -202,6 +205,13 @@ void patchmaker_fight_start(void) {
                 gBossHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
                 cur_obj_init_animation(1);
                 patchmaker_set_boss_cam();
+
+                if (PATCHMAKER_SECOND_FIGHT) {
+                    secondCutsceneDone = 1;
+                }
+                else {
+                    firstCutsceneDone = 1;
+                }
 }
 
 void patchmaker_act_first_fight_cutscene(void) {
@@ -798,12 +808,27 @@ void bhv_patchmaker_init(void) {
     obj_set_hitbox(o, &sPatchmakerHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
 
+    if (gInMemoryStage) {
+        patchmaker_fight_start();
+        return;
+    }
+
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:
+        if (firstCutsceneDone) {
+            patchmaker_fight_start();
+        }
+        else {
             o->oAction = PATCHMAKER_ACT_FIRST_CUTSCENE;
+        }
         break;
         case LEVEL_BOWSER_2:
+        if (firstCutsceneDone) {
+            patchmaker_fight_start();
+        }
+        else {
             o->oAction = PATCHMAKER_ACT_SECOND_CUTSCENE;
+        }
         break;
     }
 }
@@ -850,6 +875,12 @@ void bhv_patchmaker_loop(void) {
             else {
                 patchmaker_act_first_fight_defeated();
             }
+
+            if (gInMemoryStage) {
+                if (o->oTimer == 30) {
+                    initiate_warp(LEVEL_CASTLE, PATCHMAKER_SECOND_FIGHT ? 2 : 1, 10, 0, 0);
+                }
+            }
             
         break;
     }
@@ -863,6 +894,10 @@ void bhv_patchmaker_loop(void) {
     if (o->oHealth <= 0 && o->oAction != PATCHMAKER_ACT_DEFEATED) {
         o->oAction = PATCHMAKER_ACT_DEFEATED;
         o->oSubAction = 0;
+        if (gInMemoryStage) {
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+        }
+        
     }
 
     o->oInteractStatus = 0;

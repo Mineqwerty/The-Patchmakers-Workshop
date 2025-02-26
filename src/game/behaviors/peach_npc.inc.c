@@ -168,6 +168,10 @@ void bhv_peach_npc_init(void) {
     obj_set_hitbox(o, &sPeachNPCHitbox);
     o->oAction = PEACH_NPC_ACT_FIND_SPOT;
     cur_obj_init_animation(2);
+
+    if (gCurrAreaIndex == 3 && (save_file_get_flags() & SAVE_FLAG_BEAT_GAME)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_peach_npc_loop(void) {

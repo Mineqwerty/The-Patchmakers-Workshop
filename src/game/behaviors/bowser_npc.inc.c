@@ -1,5 +1,6 @@
 #include "src/game/cutscene.h"
 #include "include/dialog_ids.h"
+#include "src/game/save_file.h"
 
 static struct ObjectHitbox sBowserNPCHitbox = {
     /* interactType:      */ INTERACT_TEXT,
@@ -320,6 +321,18 @@ void bowser_npc_act_idle(void) {
 void bhv_bowser_npc_init(void) {
     obj_set_hitbox(o, &sBowserNPCHitbox);
     o->oAction = BOWSER_NPC_ACT_FIND_SPOT;
+
+    if (gCurrLevelNum == LEVEL_BOWSER_2 && gInMemoryStage) {
+        obj_mark_for_deletion(o);
+    }
+
+    if (gCurrAreaIndex == 2 && (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB)) {
+        obj_mark_for_deletion(o);
+    }
+
+    if (gCurrAreaIndex == 3 && (save_file_get_flags() & SAVE_FLAG_BEAT_GAME)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_bowser_npc_loop(void) {
