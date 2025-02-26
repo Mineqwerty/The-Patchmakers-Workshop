@@ -4,7 +4,9 @@
 
 
 void bhv_master_init(void) {
-    create_automatic_dialog_box(DIALOG_MASTER_WELCOME);
+    if (!((save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_LLL)) & (1 << 5)))) {
+        create_automatic_dialog_box(DIALOG_MASTER_WELCOME);
+    }
 }
 
 void bhv_master_loop(void) {

@@ -31,9 +31,13 @@ void bhv_mistress_loop(void) {
 }
 
 void bhv_mistress_room_manager_init(void) {
-    //if (!(save_file_get_flags() & (N_SAVE_FLAG_CUTSCENE_MISTRESS))) {
+    if (!((save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_LLL)) & (1 << 4)))) {
         begin_cutscene_event(CUTSCENE_EVENT_MISTRESS);
-    //}
+    }
+    else {
+        SET_BPARAM1(o->oBehParams, 4);
+        spawn_default_star(gMarioState->pos[0], gMarioState->pos[1] + 300, gMarioState->pos[2]);
+    }
 }
 
 void bhv_mistress_room_manager_loop(void) {

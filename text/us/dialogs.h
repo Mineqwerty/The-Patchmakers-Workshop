@@ -3210,7 +3210,7 @@ DEFINE_DIALOG(DIALOG_MEMORY_3_5, 1, 2, 30, 200, _("\
 @5C5C5CFF...I have crossed a line no person should.\n\
 In my pursuit of life, I've desecrated life itself.\n\
 @5C5C5CFFThe terror on her face was too much to bear for me.\n\
-The madness that plagued my mind then had a momentary pause.\n\
+The madness plaguing my mind then had a small pause.\n\
 @5C5C5CFFAnd in that brief moment, before the madness\n\
 took me away once and for all...\n\
 @5C5C5CFFI drove a needle through my head.\n\
@@ -3219,7 +3219,7 @@ took me away once and for all...\n\
 itself would never be enough to take my own.\n\
 @5C5C5CFFAnd so... through the guilt,\n\
 the pain, and the weariness...\n\
-I continued my work."))
+@5C5C5CFFI continued my work."))
 
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_ARRIVED_AT_SECOND_HUB, 1, 3, 30, 200, _("\
 @FF0202FFThis is the worst...\n\
