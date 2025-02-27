@@ -9340,3 +9340,12 @@ const BehaviorScript bhvSpeechBubble[] = {
         CALL_NATIVE(bhv_speech_bubble_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPmCreditsManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_pm_credits_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_credits_manager_loop),
+    END_LOOP(),
+};

@@ -424,3 +424,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/ts_door.inc.c"
 #include "behaviors/peach_npc_spot.inc.c"
 #include "behaviors/speech_bubble.inc.c"
+#include "behaviors/pm_credits_manager.inc.c"

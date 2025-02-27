@@ -1,3 +1,4 @@
+
 Gfx new_file_select_dl_chairwood_i8_aligner[] = {gsSPEndDisplayList()};
 u8 new_file_select_dl_chairwood_i8[] = {
 	0x71, 0x77, 0x79, 0x74, 0x4b, 0x50, 0x59, 0x69, 
@@ -5938,7 +5939,31 @@ Gfx new_file_select_dl_Plane_001_mesh_layer_6_tri_3[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_new_file_select_dl_f3dlite_material[] = {
+Vtx new_file_select_dl_Plane_003_mesh_layer_1_vtx_cull[8] = {
+	{{ {-464, -647, 464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-464, -647, 464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-464, -647, -464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-464, -647, -464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {464, -647, 464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {464, -647, 464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {464, -647, -464}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {464, -647, -464}, 0, {0, 0}, {0, 0, 0, 0} }},
+};
+
+Vtx new_file_select_dl_Plane_003_mesh_layer_1_vtx_0[4] = {
+	{{ {-464, -647, 464}, 0, {-16, 1008}, {0, 127, 0, 255} }},
+	{{ {464, -647, 464}, 0, {1008, 1008}, {0, 127, 0, 255} }},
+	{{ {464, -647, -464}, 0, {1008, -16}, {0, 127, 0, 255} }},
+	{{ {-464, -647, -464}, 0, {-16, -16}, {0, 127, 0, 255} }},
+};
+
+Gfx new_file_select_dl_Plane_003_mesh_layer_1_tri_0[] = {
+	gsSPVertex(new_file_select_dl_Plane_003_mesh_layer_1_vtx_0 + 0, 4, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_new_file_select_dl_f3dlite_material_012[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
@@ -5947,7 +5972,7 @@ Gfx mat_new_file_select_dl_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_new_file_select_dl_f3dlite_material[] = {
+Gfx mat_revert_new_file_select_dl_f3dlite_material_012[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -6184,14 +6209,30 @@ Gfx mat_revert_new_file_select_dl_f3dlite_material_010[] = {
 	gsSPEndDisplayList(),
 };
 
+Gfx mat_new_file_select_dl_f3dlite_material[] = {
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsDPSetAlphaDither(G_AD_NOISE),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_new_file_select_dl_f3dlite_material[] = {
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
+	gsSPEndDisplayList(),
+};
+
 Gfx new_file_select_dl_Plane_mesh_layer_1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsSPVertex(new_file_select_dl_Plane_mesh_layer_1_vtx_cull + 0, 8, 0),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPCullDisplayList(0, 7),
-	gsSPDisplayList(mat_new_file_select_dl_f3dlite_material),
+	gsSPDisplayList(mat_new_file_select_dl_f3dlite_material_012),
 	gsSPDisplayList(new_file_select_dl_Plane_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_new_file_select_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_new_file_select_dl_f3dlite_material_012),
 	gsSPDisplayList(mat_new_file_select_dl_f3dlite_material_001),
 	gsSPDisplayList(new_file_select_dl_Plane_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_new_file_select_dl_f3dlite_material_001),
@@ -6263,6 +6304,24 @@ Gfx new_file_select_dl_Plane_001_mesh_layer_6[] = {
 	gsSPDisplayList(mat_new_file_select_dl_f3dlite_material_010),
 	gsSPDisplayList(new_file_select_dl_Plane_001_mesh_layer_6_tri_3),
 	gsSPDisplayList(mat_revert_new_file_select_dl_f3dlite_material_010),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
+	gsSPEndDisplayList(),
+};
+
+Gfx new_file_select_dl_Plane_003_mesh_layer_1[] = {
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPVertex(new_file_select_dl_Plane_003_mesh_layer_1_vtx_cull + 0, 8, 0),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPCullDisplayList(0, 7),
+	gsSPDisplayList(mat_new_file_select_dl_f3dlite_material),
+	gsSPDisplayList(new_file_select_dl_Plane_003_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_new_file_select_dl_f3dlite_material),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

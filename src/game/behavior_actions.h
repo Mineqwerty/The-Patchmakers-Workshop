@@ -1208,3 +1208,5 @@ void bhv_peach_npc_spot_init(void);
 void bhv_peach_npc_spot_loop(void);
 void bhv_speech_bubble_init(void);
 void bhv_speech_bubble_loop(void);
+void bhv_pm_credits_manager_init(void);
+void bhv_pm_credits_manager_loop(void);
