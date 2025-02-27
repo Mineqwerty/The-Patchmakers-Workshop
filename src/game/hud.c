@@ -782,6 +782,8 @@ void render_dl_title_screen() {
     
     guTranslate(mtx, (f32) SCREEN_WIDTH/2, (f32) SCREEN_HEIGHT/2, 0);
     gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    //gDPSetCombineMode(gDisplayListHead++, )
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx++),
               G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
     create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.6f, 0.6f, 1.0f);
@@ -1312,7 +1314,9 @@ void render_hud(void) {
     
 
     if (gSpecialHudRender > 0) {
-        create_dl_ortho_matrix();
+        if (hudDisplayFlags == HUD_DISPLAY_NONE) {
+            create_dl_ortho_matrix();
+        }
         switch (gSpecialHudRender) {
             case 1:
                 render_dl_title_screen();

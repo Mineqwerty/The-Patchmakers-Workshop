@@ -53,7 +53,6 @@ const LevelScript level_new_file_select_entry[] = {
 		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -35, -61, 36, 0, 0, 0, 0x00000000, bhvPmCreditsManager),
-		MARIO_POS(0x01, 0, 0, -647, 0),
 		OBJECT(MODEL_NONE, 0, -647, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(new_file_select_area_2_collision),
 		TERRAIN_MAT_LUT(new_file_select_area_2_collision_materials),
@@ -64,7 +63,7 @@ const LevelScript level_new_file_select_entry[] = {
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, 0, -647, 0),
+	MARIO_POS(0x01, 0, 0, 200, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),
