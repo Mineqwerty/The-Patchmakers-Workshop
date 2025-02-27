@@ -233,7 +233,7 @@ s32 render_gss_cloud_transition(s8 fadeTimer, s8 transTime, struct WarpTransitio
 
         gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
 
-        render_multi_image(&texture_gss_transition, 0, -200 + (int) (cube(((f32) (40 - gScreenEffectTimer)) * 0.2f)) , 320, 720, 1, 1, G_CYC_COPY);
+        render_multi_image(segmented_to_virtual(texture_gss_transition), 0, -200 + (int) (cube(((f32) (40 - gScreenEffectTimer)) * 0.2f)) , 320, 768, 1, 1, G_CYC_COPY);
         gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
 
         gScreenEffectTimer++;
