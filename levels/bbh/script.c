@@ -149,6 +149,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_TFP_CHECKER_PLATFORM, 8418, 2452, 1952, 0, -133, 0, 0x00000000, bhvTfpCheckerPlatform),
 		OBJECT(MODEL_TFP_CHECKER_PLATFORM, 8143, 3248, -88, 0, -133, 0, 0x00000000, bhvTfpCheckerPlatform),
 		OBJECT(MODEL_NONE, 16, 1101, 0, 0, 0, 0, (239 << 16), bhvSpinAirborneWarp),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 11336, 2459, -659, 0, -90, 0, (32 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_NONE, 16, 1149, 12839, 0, 0, 0, 0x00000000, bhvPortalWindow),
 		OBJECT(MODEL_RED_COIN, -9619, 934, -14859, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_NONE, -6326, 1263, -14177, 0, 0, 0, 0x00000000, bhvHiddenRedCoinStar),
@@ -227,10 +228,13 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_PURPLE_SWITCH, 209, 743, 3559, 0, 0, 0, (1 << 16), bhvFloorSwitchHardcodedModel),
 		OBJECT(MODEL_PURPLE_SWITCH, -2756, 1469, -2632, 0, 0, 0, (3 << 16), bhvFloorSwitchHardcodedModel),
 		OBJECT(MODEL_PURPLE_SWITCH, -2762, 1469, -2125, 0, 0, 0, (2 << 16), bhvFloorSwitchHardcodedModel),
+		OBJECT(MODEL_NONE, 120, -124, 6014, -90, 0, 0, (47 << 24) | (18 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 120, 813, 1830, -90, 0, 0, (49 << 24) | (9 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -629, 1165, -2594, -90, 0, 0, (48 << 24) | (9 << 16), bhvTextVolume),
 		TERRAIN(bbh_area_2_collision),
 		TERRAIN_MAT_LUT(bbh_area_2_collision_materials),
 		MACRO_OBJECTS(bbh_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_THE_FAR_PLANE),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCH_AREA),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

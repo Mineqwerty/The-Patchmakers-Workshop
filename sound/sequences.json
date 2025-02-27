@@ -246,5 +246,11 @@
     ],
     "4A_custom_patchmaker_breaking_point": [
         "streamed_audio"
+    ],
+    "4B_patch_challenge": [
+        "0C"
+    ],
+    "4C_patch_area": [
+        "0C"
     ]
 }

@@ -1,6 +1,18 @@
+Lights1 hmc_dl_water_bottom_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
+Lights1 hmc_dl_hurt_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
+Lights1 hmc_dl_wattah_001_lights = gdSPDefLights1(
+	0x2C, 0x5A, 0x7F,
+	0x5F, 0xB8, 0xFF, 0x49, 0x49, 0x49);
 
+Lights1 hmc_dl_vertical_boost_water_floor_001_lights = gdSPDefLights1(
+	0x2C, 0x5A, 0x7F,
+	0x5F, 0xB8, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx hmc_dl_gggg_i8_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_gggg_i8[] = {
@@ -20915,8 +20927,7 @@ Gfx mat_revert_hmc_dl_tunnel_layer1[] = {
 };
 
 Gfx mat_hmc_dl_water_bottom[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(hmc_dl_water_bottom_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -20931,8 +20942,7 @@ Gfx mat_revert_hmc_dl_water_bottom[] = {
 };
 
 Gfx mat_hmc_dl_hurt[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(hmc_dl_hurt_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -21141,7 +21151,7 @@ Gfx mat_revert_hmc_dl_slipy_001[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_hmc_dl_f3dlite_material[] = {
+Gfx mat_hmc_dl_f3dlite_material_010[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -21155,7 +21165,7 @@ Gfx mat_hmc_dl_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_hmc_dl_f3dlite_material[] = {
+Gfx mat_revert_hmc_dl_f3dlite_material_010[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -21370,9 +21380,9 @@ Gfx hmc_dl_Circle_010_mesh_layer_1[] = {
 	gsSPDisplayList(mat_hmc_dl_underwater_stained_002_layer1),
 	gsSPDisplayList(hmc_dl_Circle_010_mesh_layer_1_tri_4),
 	gsSPDisplayList(mat_revert_hmc_dl_underwater_stained_002_layer1),
-	gsSPDisplayList(mat_hmc_dl_f3dlite_material),
+	gsSPDisplayList(mat_hmc_dl_f3dlite_material_010),
 	gsSPDisplayList(hmc_dl_Circle_010_mesh_layer_1_tri_5),
-	gsSPDisplayList(mat_revert_hmc_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_hmc_dl_f3dlite_material_010),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

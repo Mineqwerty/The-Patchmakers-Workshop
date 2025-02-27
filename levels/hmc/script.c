@@ -61,6 +61,7 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -205,7 +206,7 @@ const LevelScript level_hmc_entry[] = {
 		TERRAIN(hmc_area_2_collision),
 		TERRAIN_MAT_LUT(hmc_area_2_collision_materials),
 		MACRO_OBJECTS(hmc_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_SUBTERRANEAN_SEAWAY),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCH_AREA),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

@@ -225,7 +225,7 @@ const LevelScript level_bob_entry[] = {
 		TERRAIN(bob_area_2_collision),
 		TERRAIN_MAT_LUT(bob_area_2_collision_materials),
 		MACRO_OBJECTS(bob_area_2_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCH_AREA),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -238,6 +238,10 @@ const LevelScript level_bob_entry[] = {
 		OBJECT(MODEL_NONE, -2784, -2300, 8, 0, 0, 0, 0x00000000, bhvWaterfallSoundLoop),
 		OBJECT(MODEL_NONE, 4435, -111, 3, 0, 0, 0, 0x00000000, bhvWaterfallSoundLoop),
 		OBJECT(MODEL_STAR, 575, 115, 2, 0, 0, 0, (4 << 24), bhvStar),
+		OBJECT(MODEL_NONE, -5337, -118, -1849, 0, 90, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2845, -85, -4074, 0, 90, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2656, 71, -37, 0, 90, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -919, 231, 1764, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -1217, 57, 1740, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -1217, 57, 1557, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),
 		OBJECT(MODEL_NONE, -1217, 57, 1942, 0, 90, 0, (0 << 16), bhvParticleCrashingWaterSpawner),

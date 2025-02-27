@@ -136,7 +136,7 @@ Gfx hmc_area_3_collision_mat_revert_hmc_dl_slipy_001[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_3_collision_f3dlite_material_layer_1[] = {
+Gfx hmc_area_3_collision_f3dlite_material_010_layer_1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -150,7 +150,7 @@ Gfx hmc_area_3_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_3_collision_mat_revert_hmc_dl_f3dlite_material[] = {
+Gfx hmc_area_3_collision_mat_revert_hmc_dl_f3dlite_material_010[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -193,8 +193,7 @@ Gfx hmc_area_3_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
 };
 
 Gfx hmc_area_3_collision_vertical_boost_water_floor_001_layer_5[] = {
-    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
-    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
+	gsSPSetLights1(hmc_dl_vertical_boost_water_floor_001_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -220,8 +219,8 @@ const Gfx* hmc_area_3_collision_materials[] = {
 	&hmc_area_3_collision_mat_revert_hmc_dl_waterwall_001,
 	&hmc_area_3_collision_slipy_001_layer_1,
 	&hmc_area_3_collision_mat_revert_hmc_dl_slipy_001,
-	&hmc_area_3_collision_f3dlite_material_layer_1,
-	&hmc_area_3_collision_mat_revert_hmc_dl_f3dlite_material,
+	&hmc_area_3_collision_f3dlite_material_010_layer_1,
+	&hmc_area_3_collision_mat_revert_hmc_dl_f3dlite_material_010,
 	&hmc_area_3_collision_cavewater_001_layer_6,
 	&hmc_area_3_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1,
 	&hmc_area_3_collision_vertical_boost_water_floor_001_layer_5,

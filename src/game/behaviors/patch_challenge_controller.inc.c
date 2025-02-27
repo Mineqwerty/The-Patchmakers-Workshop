@@ -4,6 +4,7 @@
 void bhv_patch_challenge_controller_init(void) {
     gPatchChallengeTimer = 0;
     gPatchChallengeIndex = o->oBehParams2ndByte;
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_PATCH_CHALLENGE), 0);
 }
 
 void bhv_patch_challenge_controller_loop(void) {

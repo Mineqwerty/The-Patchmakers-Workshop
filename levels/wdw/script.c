@@ -89,6 +89,7 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_NONE, 751, 1089, 10794, 0, 89, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvCorrWindController),
 		OBJECT(MODEL_NONE, -2057, 3295, 521, 0, -17, 0, (239 << 16), bhvSpinAirborneWarp),
+		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 7182, 1116, 8681, 0, -90, 0, (34 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_FOG_RED_COIN, -5905, 2130, -9539, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_FOG_RED_COIN, -8483, 2568, -12252, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_FOG_RED_COIN, -3445, 4303, -9532, 0, 0, 0, 0x00000000, bhvRedCoin),
@@ -183,10 +184,12 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 2095, 0, 2339, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GROUND_PATCH, -1237, -12, 5763, -90, 0, 0, (10 << 16), bhvGroundPatch),
 		OBJECT(MODEL_STAR, -1312, 7689, 5011, 0, 0, 0, (1 << 24), bhvStar),
+		OBJECT(MODEL_NONE, -1247, 0, 5757, -90, 0, 0, (54 << 24) | (9 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -624, 2328, 4570, -90, 0, 0, (55 << 24) | (9 << 16), bhvTextVolume),
 		TERRAIN(wdw_area_2_collision),
 		TERRAIN_MAT_LUT(wdw_area_2_collision_materials),
 		MACRO_OBJECTS(wdw_area_2_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_PATCH_AREA),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -203,7 +206,7 @@ const LevelScript level_wdw_entry[] = {
 		TERRAIN(wdw_area_3_collision),
 		TERRAIN_MAT_LUT(wdw_area_3_collision_materials),
 		MACRO_OBJECTS(wdw_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_CITY_OF_RECONSTRUCTED_RUIN),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -219,7 +222,7 @@ const LevelScript level_wdw_entry[] = {
 		TERRAIN(wdw_area_4_collision),
 		TERRAIN_MAT_LUT(wdw_area_4_collision_materials),
 		MACRO_OBJECTS(wdw_area_4_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_CITY_OF_RECONSTRUCTED_RUIN),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
