@@ -45,6 +45,7 @@ const LevelScript level_bowser_2_entry[] = {
 		OBJECT(MODEL_NONE, -5098, 1000, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_BOWSER, -4380, 1000, 0, 0, 90, 0, 0x00000000, bhvBowserNpc),
 		OBJECT(MODEL_PATCHMAKER, 723, 1000, 4249, 0, -180, 0, 0x00000000, bhvPatchmaker),
+		OBJECT(MODEL_PEACH_THREAD_OF_LIFE, 2000, 1063, 0, 0, 90, 0, 0x00000000, bhvThreadOfLife),
 		TERRAIN(bowser_2_area_1_collision),
 		TERRAIN_MAT_LUT(bowser_2_area_1_collision_materials),
 		MACRO_OBJECTS(bowser_2_area_1_macro_objs),

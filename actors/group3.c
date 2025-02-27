@@ -23,3 +23,5 @@
 #include "bowser_thread/model.inc.c"
 #include "pm_shockwave/model.inc.c"
 #include "pm_thrown_needle/model.inc.c"
+
+#include "peach_thread_of_life/model.inc.c"

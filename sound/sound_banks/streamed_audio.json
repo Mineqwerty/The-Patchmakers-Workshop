@@ -90,6 +90,16 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "48_custom_the_brink"
+        },
+        "inst13": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "49_custom_mantle_intro"
+        },
+        "inst14": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "4A_custom_patchmaker_breaking_point"
         }
     },
     "instrument_list": [
@@ -105,6 +115,8 @@
         "inst9",
         "inst10",
         "inst11",
-        "inst12"
+        "inst12",
+        "inst13",
+        "inst14"
     ]
 }

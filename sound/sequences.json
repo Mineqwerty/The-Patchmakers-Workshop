@@ -240,5 +240,11 @@
     ],
     "48_custom_the_brink": [
         "streamed_audio"
+    ],
+    "49_custom_mantle_intro": [
+        "streamed_audio"
+    ],
+    "4A_custom_patchmaker_breaking_point": [
+        "streamed_audio"
     ]
 }

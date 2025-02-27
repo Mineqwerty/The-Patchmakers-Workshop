@@ -9,6 +9,14 @@ extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleCutscenePos1
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleCutscenePos2[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleSplineFocus[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_FinalNeedleSplinePos[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroFocus1[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroFocus2[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroFocus3[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroFocus4[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroPos1[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroPos2[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroPos3[];
+extern struct CutsceneSplinePoint bowser_3_area_1_spline_MantleIntroPos4[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_ZoomPlatformingPhaseFocus1[];
 extern struct CutsceneSplinePoint bowser_3_area_1_spline_ZoomPlatformingPhasePos1[];
 extern Lights1 bowser_3_dl_f3dlite_material_010_lights;

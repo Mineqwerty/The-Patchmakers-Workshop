@@ -17,3 +17,5 @@
 #include "bowser_thread/geo.inc.c"
 #include "pm_shockwave/geo.inc.c"
 #include "pm_thrown_needle/geo.inc.c"
+
+#include "peach_thread_of_life/geo.inc.c"

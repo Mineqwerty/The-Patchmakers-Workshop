@@ -283,6 +283,7 @@ const LevelScript script_func_global_4[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BOWSER_THREAD_OF_LIFE,                    bowser_thread_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_SHOCKWAVE,        pm_shockwave_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_NEEDLE,        pm_thrown_needle_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PEACH_THREAD_OF_LIFE,        peach_thread_of_life_geo),
     RETURN(),
 };
 

@@ -1,4 +1,5 @@
 #include "src/game/ingame_menu.h"
+#include "src/game/cutscene.h"
 
 void bhv_thread_of_life_init(void) {
    
@@ -23,6 +24,10 @@ void bhv_thread_of_life_loop(void) {
         else {
             o->oAction = 1;
         }
+    }
+
+    if (o->oTimer > 2 && gCurCutscene == -1) {
+        obj_mark_for_deletion(o);
     }
 
     

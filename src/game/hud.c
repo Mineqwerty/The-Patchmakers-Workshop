@@ -939,15 +939,16 @@ void render_hud_camera_status(void) {
 
 void render_hud_boss_intro(void) {
 
-    char *bossTitles[6] = {
+    char *bossTitles[7] = {
         "Pushpin Pokey",
         "Aurumcael",
         "Demonic Solids",
         "Xodorap",
         "The Patchmaker",
-        "The Patchmaker"
+        "The Patchmaker",
+        "Mantle of Madness"
     };
-    u8 bossTitleColor[6];
+    u8 bossTitleColor[7];
     switch (gHudDisplay.bossID) {
         case 1:
             bossTitleColor[0] = 209;
@@ -978,6 +979,11 @@ void render_hud_boss_intro(void) {
             bossTitleColor[0] = 0x4C;
             bossTitleColor[1] = 0x2A;
             bossTitleColor[2] = 0x2D;
+        break;
+        case 7:
+            bossTitleColor[0] = 0x6C;
+            bossTitleColor[1] = 0x4A;
+            bossTitleColor[2] = 0x4D;
         break;
         default:
             bossTitleColor[0] = 255;
@@ -1010,6 +1016,9 @@ void render_hud_boss_intro(void) {
         case 6:
             print_small_text(160, 140, "Decaying man of creation and failure", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
         break;
+        case 7:
+            print_small_text(160, 140, "Product of pride and regret", PRINT_TEXT_ALIGN_CORRUPT, PRINT_ALL, FONT_OUTLINE);
+        break;
     }
 
     s32 titleAlpha = (gHudDisplay.bossIntroTimer - 60) * 10;
@@ -1022,14 +1031,27 @@ void render_hud_boss_intro(void) {
 
     
     print_set_envcolour(bossTitleColor[0], bossTitleColor[1], bossTitleColor[2], titleAlpha);
-    print_small_text(160, 160, bossTitles[gHudDisplay.bossID - 1], PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
+    s32 printType = PRINT_TEXT_ALIGN_CENTRE;
+    if (gHudDisplay.bossID == 7) {
+        printType = PRINT_TEXT_ALIGN_CORRUPT;
+    }
+    print_small_text(160, 160, bossTitles[gHudDisplay.bossID - 1], printType, PRINT_ALL, FONT_OUTLINE);
 
     gHudDisplay.bossIntroTimer++;
 
-    if (gHudDisplay.bossIntroTimer > 150) {
-        gHudDisplay.bossIntroTimer = 0;
-        gHudDisplay.bossID = 0;
-        gHudDisplay.flags &= ~HUD_DISPLAY_BOSS_INTRO;
+    if (gHudDisplay.bossID == 7) {
+        if (gHudDisplay.bossIntroTimer > 250) {
+            gHudDisplay.bossIntroTimer = 0;
+            gHudDisplay.bossID = 0;
+            gHudDisplay.flags &= ~HUD_DISPLAY_BOSS_INTRO;
+        }
+    }
+    else {
+        if (gHudDisplay.bossIntroTimer > 150) {
+            gHudDisplay.bossIntroTimer = 0;
+            gHudDisplay.bossID = 0;
+            gHudDisplay.flags &= ~HUD_DISPLAY_BOSS_INTRO;
+        }
     }
 }
 

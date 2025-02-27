@@ -2392,16 +2392,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     //gMarioState->numStars = 41;
 
-    if (gCurrLevelNum == LEVEL_BOWSER_3 && gGlobalTimer > 90 && gGlobalTimer % 10 == 0) {
-        extern u8 bowser_3_dl_nosiehell_rgba16[];
-
-        u8 randomNoise[2048];
-        for (int i = 0; i < 2048; i++) {
-            randomNoise[i] = random_u16();
-        }
-
-        //bcopy(randomNoise, segmented_to_virtual(bowser_3_dl_nosiehell_rgba16), 2048);
-    }
+    
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
     //print_text_fmt_int(100, 80, "BEATS %d", gTatumCount / 41);

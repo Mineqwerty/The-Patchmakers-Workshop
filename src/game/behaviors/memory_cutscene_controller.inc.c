@@ -6,7 +6,7 @@ void bhv_memory_cutscene_controller_init(void) {
     if (gInMemoryStage) {
         switch (gCurrLevelNum) {
             case LEVEL_BITS:
-                play_secondary_music(SEQ_STREAMED_THE_BRINK, 0, 255, 50);
+                play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_STREAMED_THE_BRINK), 0);
             break;
         }
         return;

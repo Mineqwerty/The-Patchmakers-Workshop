@@ -1,3 +1,5 @@
+#include "src/game/cutscene.h"
+
 void bhv_mad_spike_wall_init(void) {
    
 }
@@ -67,6 +69,10 @@ void bhv_mad_spike_wall_loop(void) {
                 obj_mark_for_deletion(o);
             }
         break;
+    }
+
+    if (gCurCutscene != -1) {
+        obj_mark_for_deletion(o);
     }
 }
 

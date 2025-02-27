@@ -1,0 +1,14 @@
+extern const GeoLayout peach_thread_of_life_geo[];
+extern u8 peach_thread_of_life_bowserthread_ia8[];
+extern Vtx peach_thread_of_life_Plane_002_mesh_layer_4_vtx_cull[8];
+extern Vtx peach_thread_of_life_Plane_002_mesh_layer_4_vtx_0[4];
+extern Gfx peach_thread_of_life_Plane_002_mesh_layer_4_tri_0[];
+extern Vtx peach_thread_of_life_Plane_002_mesh_layer_5_vtx_cull[8];
+extern Vtx peach_thread_of_life_Plane_002_mesh_layer_5_vtx_0[80];
+extern Gfx peach_thread_of_life_Plane_002_mesh_layer_5_tri_0[];
+extern Gfx mat_peach_thread_of_life_f3dlite_material_010[];
+extern Gfx mat_revert_peach_thread_of_life_f3dlite_material_010[];
+extern Gfx mat_peach_thread_of_life_f3dlite_material_011[];
+extern Gfx mat_revert_peach_thread_of_life_f3dlite_material_011[];
+extern Gfx peach_thread_of_life_Plane_002_mesh_layer_4[];
+extern Gfx peach_thread_of_life_Plane_002_mesh_layer_5[];

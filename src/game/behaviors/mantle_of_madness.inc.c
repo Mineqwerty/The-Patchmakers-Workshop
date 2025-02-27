@@ -601,7 +601,19 @@ void mantle_of_madness_choose_attack(void) {
 
     o->oAction = attack;
 }
-
+void mantle_of_madness_act_beginning_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_MANTLE_OF_MADNESS_INTRO);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (gCurCutscene == -1) {
+                o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+            }
+        break;
+    }
+}
 
 void bhv_mantle_of_madness_init(void) {
     obj_set_hitbox(o, &sMantleOfMadnessHitbox);
@@ -610,7 +622,7 @@ void bhv_mantle_of_madness_init(void) {
     gBossHealth = MANTLE_OF_MADNESS_MAX_HP;
     o->oTwitchFrames = 0;
     o->oMantleOfMadnessPhase = MANTLE_OF_MADNESS_PHASE_BEGINNING_DEFAULT;
-    o->oAction = MANTLE_OF_MADNESS_ACT_IDLE;
+    o->oAction = MANTLE_OF_MADNESS_ACT_BEGINNING_CUTSCENE;
     o->oMantleOfMadnessRageLevel = 0;
     o->oMantleOfMadnessFinalNeedleProgress = 0;
 
@@ -624,6 +636,9 @@ void bhv_mantle_of_madness_loop(void) {
     mantle_of_madness_phase_transition();
     mantle_of_madness_phase_update();
     switch (o->oAction) {
+        case MANTLE_OF_MADNESS_ACT_BEGINNING_CUTSCENE:
+            mantle_of_madness_act_beginning_cutscene();
+        break;
         case MANTLE_OF_MADNESS_ACT_IDLE:
             mantle_of_madness_act_idle();
         break;
@@ -662,6 +677,19 @@ void bhv_mantle_of_madness_loop(void) {
         case MANTLE_OF_MADNESS_ACT_GETTING_STABBED:
             mantle_of_madness_act_getting_stabbed();
         break;
+    }
+
+    if (o->oMantleOfMadnessPhase != MANTLE_OF_MADNESS_PHASE_PLATFORMING) {
+        if (gCurrLevelNum == LEVEL_BOWSER_3 && gGlobalTimer % 10 == 0) {
+            extern u8 bowser_3_dl_nosiehell_rgba16[];
+    
+            u8 randomNoise[2048];
+            for (int i = 0; i < 2048; i++) {
+                randomNoise[i] = random_u16();
+            }
+    
+            bcopy(randomNoise, segmented_to_virtual(bowser_3_dl_nosiehell_rgba16), 2048);
+        }
     }
 
     mantle_of_madness_control_face_twitch();

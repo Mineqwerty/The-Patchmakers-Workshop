@@ -125,6 +125,7 @@ enum cutscene_events {
     EVENT_SOUND,
     EVENT_SONG_PRIMARY,
     EVENT_SONG_SECONDARY,
+    EVENT_CANCEL_SONG,
 
     EVENT_HUD_DISABLE,
     //EVENT_HUD_ENABLE,
@@ -1262,6 +1263,7 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 158,
     EVENT_SET_EXTERNAL_TRIGGER, 2,
     EVENT_WAIT, 30,
+    EVENT_SOUND, SOUND_GENERAL_SWISH_AIR_UNUSED,
     EVENT_SET_EXTERNAL_TRIGGER, 3,
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 159,
@@ -1272,8 +1274,10 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_SET_MARIO_ANIMATION, MARIO_ANIM_FALL_OVER_BACKWARDS,
     EVENT_SET_MARIO_POSITION, 0, 1000, 140,
     EVENT_CAMERA_SHAKE, 0, 1000, 170,
+    EVENT_SOUND, SOUND_GENERAL_LOUD_POUND,
     EVENT_WAIT, 25,
     EVENT_LOCK_MARIO_ANIM_FRAME, 35,
+    EVENT_SOUND, SOUND_GENERAL_SWISH_AIR_UNUSED,
     EVENT_WAIT, 5,
     EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_BREAKING_POINT,
     EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 2,
@@ -1285,6 +1289,7 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_POSITION_SPLINE_DATA, 163,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 164,
     EVENT_SET_EXTERNAL_TRIGGER, 5,
+    EVENT_SOUND, SOUND_GENERAL_EXPLOSION7,
     EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
     EVENT_DISABLE_MARIO_RENDER,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
@@ -1306,6 +1311,7 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_POSITION_SPLINE_DATA, 169,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 170,
     EVENT_WAIT, 30,
+    EVENT_SOUND, SOUND_GENERAL_SWISH_AIR_UNUSED,
     EVENT_SET_EXTERNAL_TRIGGER, 9,
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 171,
@@ -1313,10 +1319,12 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_WAIT, 18,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 173,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 174,
+    EVENT_SOUND, SOUND_ACTION_BONK,
     EVENT_WAIT, 18,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 175,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 176,
     EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_SONG_PRIMARY, SEQ_STREAMED_PATCHMAKER_BREAKING_POINT,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 177,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 178,
     EVENT_WAIT, 20,
@@ -1391,6 +1399,7 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_POSITION_SPLINE_DATA, 189,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 190,
     EVENT_WAIT, 30,
+    EVENT_CANCEL_SONG, SEQ_STREAMED_PATCHMAKER_BREAKING_POINT,
     EVENT_SET_EXTERNAL_TRIGGER, 16,
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 191,
@@ -1810,6 +1819,38 @@ s32 event_third_memory[] = {
     EVENT_END_CUTSCENE
 };
 
+
+s32 event_mantle_of_madness_intro[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SONG_PRIMARY, SEQ_STREAMED_MANTLE_INTRO,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 275,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 276,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_WAIT, 60,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_WAIT_FOR_MARIO_FLOOR,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 277,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 278,
+    EVENT_WAIT, 60,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 281,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 282,
+    EVENT_WAIT, 120,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 279,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 280,
+    EVENT_WAIT, 120,
+    EVENT_SHOW_BOSS_TITLE, 7,
+    EVENT_WAIT, 210,
+    EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_CANCEL_SPLINE_DATA,
+    EVENT_SONG_PRIMARY, SEQ_LEVEL_BOSS_KOOPA_FINAL,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_END_CUTSCENE,
+
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1844,6 +1885,7 @@ s32 *eventList[] = {
     event_mantle_of_madness_platforming,
     event_mantle_of_madness_final_needle,
     event_third_memory,
+    event_mantle_of_madness_intro,
 
 };
 
@@ -2177,6 +2219,16 @@ s32 *splineList[] = {
     bits_area_1_spline_ThirdMemoryFocus1_009,
     bits_area_1_spline_ThirdMemoryPos1_010,
     bits_area_1_spline_ThirdMemoryFocus1_010,
+    //275
+    bowser_3_area_1_spline_MantleIntroPos1,
+    bowser_3_area_1_spline_MantleIntroFocus1,
+    bowser_3_area_1_spline_MantleIntroPos2,
+    bowser_3_area_1_spline_MantleIntroFocus2,
+    bowser_3_area_1_spline_MantleIntroPos3,
+    //280
+    bowser_3_area_1_spline_MantleIntroFocus3,
+    bowser_3_area_1_spline_MantleIntroPos4,
+    bowser_3_area_1_spline_MantleIntroFocus4,
 
 };
 
@@ -2508,6 +2560,10 @@ void event_handler(void) {
                 break;
                 case EVENT_SONG_PRIMARY:
                     play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, param1), 0);
+                    cCutsceneIndex += 2;
+                break;
+                case EVENT_CANCEL_SONG:
+                    stop_background_music(SEQUENCE_ARGS(4, param1));
                     cCutsceneIndex += 2;
                 break;
                 case EVENT_SET_MARIO_EYE_STATE:

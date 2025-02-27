@@ -105,4 +105,6 @@ extern const struct Animation *const unagi_seg5_anims_05012824[];
 extern const Gfx whirlpool_seg5_dl_05013B58[];
 extern const Gfx whirlpool_seg5_dl_05013CB8[];
 
+
+
 #endif

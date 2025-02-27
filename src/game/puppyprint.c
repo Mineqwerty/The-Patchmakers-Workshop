@@ -1552,7 +1552,7 @@ void print_small_text(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 f
 
     // Calculate the text width for centre and right aligned text.
     gSPDisplayList(gDisplayListHead++, dl_small_text_begin);
-    if (align == PRINT_TEXT_ALIGN_CENTRE || align == PRINT_TEXT_ALIGN_RIGHT) {
+    if (align == PRINT_TEXT_ALIGN_CENTRE || align == PRINT_TEXT_ALIGN_RIGHT || align == PRINT_TEXT_ALIGN_CORRUPT) {
         for (s32 i = 0; i < strLen; i++) {
             while (i < strLen && str[i] == '<') {
                 commandOffset = text_iterate_command(str, i, FALSE);
@@ -1572,12 +1572,17 @@ void print_small_text(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 f
                 continue;
             }
 
+            
+
+            
             get_char_from_byte(&textX, &textPos[0], str[i], &widthX, &spaceX, &offsetY, font);
+            
+
             textPos[0] += (spaceX + 1) * textSizeTotal;
             wideX[lines] = MAX(textPos[0], wideX[lines]);
         }
 
-        if (align == PRINT_TEXT_ALIGN_CENTRE) {
+        if (align == PRINT_TEXT_ALIGN_CENTRE || align == PRINT_TEXT_ALIGN_CORRUPT) {
             textPos[0] = -(wideX[0] / 2);
         } else {
             textPos[0] = -(wideX[0]);
@@ -1650,6 +1655,10 @@ void print_small_text(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 f
                 }
                 
             }
+            if (align == PRINT_TEXT_ALIGN_CORRUPT && str[i] >= 'A' && str[i] <= 'z' && str[i] != '\0' &&  gHudDisplay.bossIntroTimer > 90 && i < 0.14f * (gHudDisplay.bossIntroTimer - 90)) {
+                get_char_from_byte(&textX, &textPos[0], random_u16()%64 + 65, &widthX, &spaceX, &offsetY, font);
+            }
+
             if (xlu != prevxlu) {
                 prevxlu = xlu;
                 if (xlu > 250) {

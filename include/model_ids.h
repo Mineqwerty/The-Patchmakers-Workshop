@@ -836,6 +836,7 @@
 #define MODEL_SEWNIA_BODY                 0x138
 #define MODEL_SEWNIA_HEAD                 0x139
 #define MODEL_PEACH                       0x13A
+#define MODEL_PEACH_THREAD_OF_LIFE                  0x13B
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

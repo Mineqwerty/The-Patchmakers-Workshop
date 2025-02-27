@@ -1,3 +1,5 @@
+#include "src/game/cutscene.h"
+
 void bhv_thrown_string_init(void) {
    
 }
@@ -57,6 +59,10 @@ void bhv_thrown_string_loop(void) {
         if (gMarioState->action != ACT_CAUGHT_BY_STRING) {
             obj_mark_for_deletion(o);
         }
+    }
+
+    if (gCurCutscene != -1) {
+        obj_mark_for_deletion(o);
     }
 }
 
