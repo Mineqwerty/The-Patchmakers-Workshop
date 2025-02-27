@@ -1,18 +1,6 @@
-Lights1 bitdw_dl_f3dlite_material_015_lights = gdSPDefLights1(
-	0x2B, 0x21, 0x19,
-	0x5D, 0x4B, 0x3C, 0x49, 0x49, 0x49);
 
-Lights1 bitdw_dl_hurt_floor_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 bitdw_dl_f3dlite_material_021_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 bitdw_dl_f3dlite_material_030_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx bitdw_dl_bigthorn_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 bitdw_dl_bigthorn_ci4[] = {
@@ -50474,7 +50462,8 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_018[] = {
 
 Gfx mat_bitdw_dl_f3dlite_material_015[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPSetLights1(bitdw_dl_f3dlite_material_015_lights),
+    gsSPLightColor(LIGHT_1, 0x5d4b3cff),
+    gsSPLightColor(LIGHT_2, 0x2b2119ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -50664,7 +50653,8 @@ Gfx mat_revert_bitdw_dl_safe[] = {
 };
 
 Gfx mat_bitdw_dl_hurt_floor[] = {
-	gsSPSetLights1(bitdw_dl_hurt_floor_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -51025,7 +51015,8 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_019[] = {
 
 Gfx mat_bitdw_dl_f3dlite_material_021[] = {
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPSetLights1(bitdw_dl_f3dlite_material_021_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -51041,7 +51032,8 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_021[] = {
 };
 
 Gfx mat_bitdw_dl_f3dlite_material_030[] = {
-	gsSPSetLights1(bitdw_dl_f3dlite_material_030_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

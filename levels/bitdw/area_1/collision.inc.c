@@ -205,7 +205,8 @@ Gfx bitdw_area_1_collision_mat_revert_bitdw_dl_f3dlite_material_005[] = {
 };
 
 Gfx bitdw_area_1_collision_hurt_floor_layer_1[] = {
-	gsSPSetLights1(bitdw_dl_hurt_floor_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
