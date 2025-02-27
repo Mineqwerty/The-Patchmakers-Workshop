@@ -85,6 +85,11 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "empyreanabyss_R"
+        },
+        "inst12": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "48_custom_the_brink"
         }
     },
     "instrument_list": [
@@ -99,6 +104,7 @@
         "inst8",
         "inst9",
         "inst10",
-        "inst11"
+        "inst11",
+        "inst12"
     ]
 }

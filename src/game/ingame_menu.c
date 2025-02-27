@@ -1732,7 +1732,18 @@ void new_dialog_handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *d
                             MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
                     }
                     if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, shakeOffsets[0], shakeOffsets[1], 0);
+
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, 1, -1, 0);
+                    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
                     render_generic_char(strChar);
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, -1, 1, 0);
+                    if (customColor == 1) {
+                        gDPSetEnvColor(gDisplayListHead++, rgbaColors[0], rgbaColors[1], rgbaColors[2], rgbaColors[3]);
+                    } else {
+                        change_and_flash_dialog_text_color_lines(colorMode, lineNum, &customColor);
+                    }
+                    render_generic_char(strChar);
+
                     if (flags & NEWDIALOG_FLAG_SHAKE_TEXT) create_dl_translation_matrix(MENU_MTX_NOPUSH, -(shakeOffsets[0]), -(shakeOffsets[1]), 0);
                     create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0, 0);
                     xMatrix = 1;
