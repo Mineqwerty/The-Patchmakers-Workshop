@@ -1,3 +1,6 @@
+Lights1 bitfs_dl_f3dlite_material_030_lights = gdSPDefLights1(
+	0x0, 0x0, 0x0,
+	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx bitfs_dl_b2boards_ia8_aligner[] = {gsSPEndDisplayList()};
 u8 bitfs_dl_b2boards_ia8[] = {
@@ -76919,8 +76922,7 @@ Gfx mat_revert_bitfs_dl_warp[] = {
 };
 
 Gfx mat_bitfs_dl_f3dlite_material_030[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(bitfs_dl_f3dlite_material_030_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

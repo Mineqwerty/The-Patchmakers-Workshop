@@ -5,6 +5,11 @@ void bhv_memory_cutscene_controller_init(void) {
 
     if (gInMemoryStage) {
         switch (gCurrLevelNum) {
+            case LEVEL_BITDW:
+            FALL_THROUGH
+            case LEVEL_BITFS:
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_WORKSHOP_STAGE), 0);
+            break;
             case LEVEL_BITS:
                 play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_STREAMED_THE_BRINK), 0);
             break;

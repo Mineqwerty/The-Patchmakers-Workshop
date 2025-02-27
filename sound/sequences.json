@@ -252,5 +252,8 @@
     ],
     "4C_patch_area": [
         "0C"
+    ],
+    "4D_workshop_stage": [
+        "0C"
     ]
 }

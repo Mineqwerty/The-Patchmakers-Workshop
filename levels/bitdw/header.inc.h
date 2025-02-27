@@ -151,7 +151,7 @@ extern Vtx bitdw_dl_Cube_009_mesh_layer_1_vtx_0[40];
 extern Gfx bitdw_dl_Cube_009_mesh_layer_1_tri_0[];
 extern Vtx bitdw_dl_Cube_009_mesh_layer_1_vtx_1[8];
 extern Gfx bitdw_dl_Cube_009_mesh_layer_1_tri_1[];
-extern Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[530];
+extern Vtx bitdw_dl_Plane_mesh_layer_1_vtx_0[587];
 extern Gfx bitdw_dl_Plane_mesh_layer_1_tri_0[];
 extern Vtx bitdw_dl_Plane_mesh_layer_1_vtx_1[20];
 extern Gfx bitdw_dl_Plane_mesh_layer_1_tri_1[];
