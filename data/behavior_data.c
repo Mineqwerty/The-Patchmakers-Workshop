@@ -9349,3 +9349,13 @@ const BehaviorScript bhvPmCreditsManager[] = {
         CALL_NATIVE(bhv_pm_credits_manager_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvEscapingSouls[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_escaping_souls_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_escaping_souls_loop),
+    END_LOOP(),
+};

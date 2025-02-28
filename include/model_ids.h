@@ -575,6 +575,7 @@
 #define MODEL_TS_WARP_PLATFORM                  0x11A
 #define MODEL_MEMORY_CLOUD                  0x11B
 #define MODEL_SPEECH_BUBBLE                  0x11C
+#define MODEL_ESCAPING_SOULS                  0x11D
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
 #define MODEL_LIFT_CLOUD                  0x101

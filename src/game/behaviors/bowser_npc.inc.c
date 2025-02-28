@@ -24,7 +24,8 @@ enum BowserNPCActions {
     BOWSER_NPC_ACT_SECOND_PATCHMAKER_FIGHT_CUTSCENE,
     BOWSER_NPC_ACT_REVIVE_PEACH_CUTSCENE,
     BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE,
-    BOWSER_NPC_ACT_ENTER_BRINK
+    BOWSER_NPC_ACT_ENTER_BRINK,
+    BOWSER_NPC_ACT_ENDING_CUTSCENE
 };
 
 void bowser_npc_act_revive_cutscene(void) {
@@ -283,6 +284,31 @@ void bowser_npc_act_enter_brink(void) {
     }
 }
 
+void bowser_npc_act_ending_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -5235;
+            o->oPosY = 1622;
+            o->oPosZ = -6300;
+            cur_obj_init_animation(12);
+            o->oSubAction++;
+            o->oFaceAngleYaw = 0x100;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oFaceAngleYaw = 0x4000;
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 2) {
+                o->oFaceAngleYaw = 0x2000;
+                o->oSubAction++;
+            }
+        break;
+    }
+}
+
 void bowser_npc_find_spot(void) {
     u8 randSpot;
     struct Object *spot;
@@ -359,6 +385,9 @@ void bhv_bowser_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
         o->oAction = BOWSER_NPC_ACT_ENTER_BRINK;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_POST_MANTLE) {
+        o->oAction = BOWSER_NPC_ACT_ENDING_CUTSCENE;
+    }
 
     switch (o->oAction) {
         case BOWSER_NPC_ACT_FIND_SPOT:
@@ -387,6 +416,9 @@ void bhv_bowser_npc_loop(void) {
         break;
         case BOWSER_NPC_ACT_ENTER_BRINK:
             bowser_npc_act_enter_brink();
+        break;
+        case BOWSER_NPC_ACT_ENDING_CUTSCENE:
+            bowser_npc_act_ending_cutscene();
         break;
     }
 

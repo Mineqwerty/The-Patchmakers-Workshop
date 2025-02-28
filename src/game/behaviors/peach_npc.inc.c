@@ -18,7 +18,8 @@ enum PeachNPCActions {
     PEACH_NPC_ACT_FIND_SPOT = 4,
     PEACH_NPC_ACT_REVIVE_CUTSCENE,
     PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE,
-    PEACH_NPC_ACT_ENTER_BRINK
+    PEACH_NPC_ACT_ENTER_BRINK,
+    PEACH_NPC_ACT_ENDING_CUTSCENE
 };
 
 void peach_npc_act_revive_cutscene(void) {
@@ -144,6 +145,25 @@ void peach_npc_act_enter_brink(void) {
     }
 }
 
+void peach_npc_act_ending_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -4780;
+            o->oPosY = 1622;
+            o->oPosZ = -6150;
+            cur_obj_init_animation(2);
+            o->oFaceAngleYaw = 0;
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oFaceAngleYaw = 0x2000;
+                o->oSubAction++;
+            }
+        break;
+    }
+}
+
 void peach_npc_find_spot(void) {
             u8 randSpot = random_u16()%4;
             struct Object *spot = cur_obj_find_object_with_bparam_2nd_byte(bhvPeachNpcSpot, DIALOG_PEACH_NPC_WINDOW_GALLERY + randSpot);
@@ -186,6 +206,9 @@ void bhv_peach_npc_loop(void) {
     else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
         o->oAction = PEACH_NPC_ACT_ENTER_BRINK;
     }
+    else if (gCurCutscene == CUTSCENE_EVENT_POST_MANTLE) {
+        o->oAction = PEACH_NPC_ACT_ENDING_CUTSCENE;
+    }
 
     switch (o->oAction) {
         case PEACH_NPC_ACT_FIND_SPOT:
@@ -202,6 +225,9 @@ void bhv_peach_npc_loop(void) {
         break;
         case PEACH_NPC_ACT_ENTER_BRINK:
             peach_npc_act_enter_brink();
+        break;
+        case PEACH_NPC_ACT_ENDING_CUTSCENE:
+            peach_npc_act_ending_cutscene();
         break;
     }
 

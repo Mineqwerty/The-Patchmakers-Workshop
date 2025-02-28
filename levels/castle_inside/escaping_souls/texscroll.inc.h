@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_escaping_souls_f3dlite_material_layer5();
+extern void scroll_castle_inside_level_geo_escaping_souls();

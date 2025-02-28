@@ -1865,6 +1865,60 @@ s32 event_mantle_of_madness_intro[] = {
 
 };
 
+s32 event_post_mantle[] = {
+    EVENT_CAMERA_ENABLE_CUTSCENE,
+    EVENT_HUD_DISABLE,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_GENERIC_CUTSCENE_IDLE,
+    EVENT_SET_MARIO_POSITION, -4891, 1621, -5722,
+    EVENT_SET_MARIO_YAW, 0x8000,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 283,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 284,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_FINAL_BOSS_DEFEATED_1,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_WAIT, 30,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_WAIT, 1,
+    EVENT_SET_MARIO_ANIMATION, MARIO_ANIM_WAKE_FROM_SLEEP,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 285,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 286,
+    EVENT_WAIT, 30,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE, 
+    EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_GENERIC_CUTSCENE_IDLE,
+    EVENT_DIALOG_USER_ADVANCE, DIALOG_FINAL_BOSS_DEFEATED_2,
+
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 4,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 287,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 288,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 7,
+    EVENT_SET_EXTERNAL_TRIGGER, 1,
+    EVENT_SET_MARIO_YAW, 0x4000,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 289,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 290,
+    EVENT_SET_MARIO_POSITION, -4891, 1621, -5822,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 10,
+    EVENT_SET_EXTERNAL_TRIGGER, 2,
+    EVENT_WAIT, 1,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 291,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 292,
+    EVENT_SET_MARIO_YAW, -0x6000,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 13,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 293,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 294,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 16,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 289,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 290,
+    EVENT_WAIT_FOR_SPECIFIC_DIALOG_PAGE, 20,
+    EVENT_CAMERA_POSITION_SPLINE_DATA, 295,
+    EVENT_CAMERA_FOCUS_SPLINE_DATA, 296,
+    EVENT_WAIT_FOR_DIALOG_END,
+    EVENT_FADE_INTO_COLOR, 90, 0, 0, 0,
+    EVENT_WAIT, 90,
+    EVENT_INITIATE_WARP, LEVEL_NEW_FILE_SELECT, 2, 0x0A,
+    EVENT_END_CUTSCENE,
+};
+
 s32 *eventList[] = {
     event_test,
     event_goddess_intro,
@@ -1900,6 +1954,8 @@ s32 *eventList[] = {
     event_mantle_of_madness_final_needle,
     event_third_memory,
     event_mantle_of_madness_intro,
+    event_post_mantle,
+    //30
 
 };
 
@@ -2243,7 +2299,23 @@ s32 *splineList[] = {
     bowser_3_area_1_spline_MantleIntroFocus3,
     bowser_3_area_1_spline_MantleIntroPos4,
     bowser_3_area_1_spline_MantleIntroFocus4,
-
+    castle_inside_area_3_spline_EndingPos1,
+    castle_inside_area_3_spline_EndingFocus1,
+    //285
+    castle_inside_area_3_spline_EndingPos2,
+    castle_inside_area_3_spline_EndingFocus2,
+    castle_inside_area_3_spline_EndingPos3,
+    castle_inside_area_3_spline_EndingFocus3,
+    castle_inside_area_3_spline_EndingPos4,
+    //290
+    castle_inside_area_3_spline_EndingFocus4,
+    castle_inside_area_3_spline_EndingPos5,
+    castle_inside_area_3_spline_EndingFocus5,
+    castle_inside_area_3_spline_EndingPos6,
+    castle_inside_area_3_spline_EndingFocus6,
+    //295
+    castle_inside_area_3_spline_EndingPos7,
+    castle_inside_area_3_spline_EndingFocus7,
 };
 
 void begin_cutscene_event(s32 event) {

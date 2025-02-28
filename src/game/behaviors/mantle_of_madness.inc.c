@@ -570,6 +570,11 @@ void mantle_of_madness_act_getting_stabbed(void) {
         deathRay->oFaceAngleYaw = random_u16();
         deathRay->oFaceAnglePitch = -(random_u16() / 2);
     }
+
+    if (o->oTimer == 180) {
+        gCutsceneGameState = CUTSCENE_GAME_STATE_BEAT_MANTLE;
+        initiate_warp(LEVEL_CASTLE, 3, 0x0A, 0, 0);
+    }
 }
 
 void mantle_of_madness_choose_attack(void) {

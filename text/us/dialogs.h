@@ -2000,6 +2000,7 @@ and think about what to do next.\n\
 \n\
 @7F60B4FFOf course... Follow me.\n\
 Let's see outside after all we've accomplished.\n\
+I can't wait!\n\
 Coming, Mario?"))
 
 DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
@@ -3372,8 +3373,8 @@ DEFINE_DIALOG(DIALOG_SEWNIA_HEAD_RIPPED_OFF, 0b10, 3, 30, 200, _("\
 @5F4094FFDon't... you see now?\n\
 This is... why...\n\
 \n\
-@5F4094FFThis is why we have to...\n\
-end... him..."))
+@5F4094FFThis is why he can't...\n\
+go on..."))
 
 DEFINE_DIALOG(DIALOG_RETURN_FROM_SUBAREA, 1, 4, 30, 200, _("\
 @FEFEFEFFReturn to the main area? \n\

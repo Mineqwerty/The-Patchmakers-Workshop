@@ -59,6 +59,7 @@ const LevelScript level_castle_inside_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_TS_WARP_PLATFORM, ts_warp_platform_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MEMORY_CLOUD, memory_cloud_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SPEECH_BUBBLE, speech_bubble_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_ESCAPING_SOULS, escaping_souls_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 

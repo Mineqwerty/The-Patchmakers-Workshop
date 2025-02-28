@@ -42,6 +42,10 @@ void bhv_story_cutscene_manager_hub1_init(void) {
                 o->oAction = 1;
                 gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
             }
+            //else if (gCutsceneGameState == CUTSCENE_GAME_STATE_BEAT_MANTLE)  {
+                begin_cutscene_event(CUTSCENE_EVENT_POST_MANTLE);
+                gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
+            //}
         break;
     }
 }

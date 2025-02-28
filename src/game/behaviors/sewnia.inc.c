@@ -29,6 +29,7 @@ enum SewniaActions {
     SEWNIA_ACT_REVIVE_PEACH,
     SEWNIA_ACT_ENTER_BRINK,
     SEWNIA_ACT_START_AT_COURSE,
+    SEWNIA_ACT_ENDING_CUTSCENE,
 };
 
 enum SewniaAnims {
@@ -1663,6 +1664,27 @@ void sewnia_act_enter_brink(void) {
     o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
 }
 
+void sewnia_act_ending_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = -4951;
+            o->oPosY = 1622;
+            o->oPosZ = -5953;
+            o->oMoveAngleYaw = 0;
+            o->oFaceAngleYaw = -0x100;
+            cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                o->oMoveAngleYaw = 0x4000;
+                o->oFaceAngleYaw = 0x4000;
+                o->oSubAction++;
+            }
+        break;
+    }
+}
+
 void sewnia_act_start_at_course(void) {
     f32 dist;
     struct Object *nearCourseNode = obj_find_nearest_object_with_behavior(gMarioState->marioObj, bhvSewniaStoppingPoint, &dist);
@@ -1705,6 +1727,9 @@ void bhv_sewnia_loop(void) {
         }
         else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
             o->oAction = SEWNIA_ACT_ENTER_BRINK;
+        }
+        else if (gCurCutscene == CUTSCENE_EVENT_POST_MANTLE) {
+            o->oAction = SEWNIA_ACT_ENDING_CUTSCENE;
         }
     }
 
@@ -1765,6 +1790,9 @@ void bhv_sewnia_loop(void) {
         break;
         case SEWNIA_ACT_START_AT_COURSE:
             sewnia_act_start_at_course();
+        break;
+        case SEWNIA_ACT_ENDING_CUTSCENE:
+            sewnia_act_ending_cutscene();
         break;
     }
 
