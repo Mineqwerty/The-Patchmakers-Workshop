@@ -331,7 +331,9 @@ void bhv_bowser_npc_init(void) {
     }
 
     if (gCurrAreaIndex == 3 && (save_file_get_flags() & SAVE_FLAG_BEAT_GAME)) {
+        #ifndef COMPLETE_SAVE_FILE
         obj_mark_for_deletion(o);
+        #endif
     }
 }
 

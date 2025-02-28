@@ -1288,7 +1288,9 @@ void bhv_sewnia_init(void) {
     }
 
     if (save_file_get_flags() & SAVE_FLAG_BEAT_GAME) {
-        //obj_mark_for_deletion(o);
+        #ifndef COMPLETE_SAVE_FILE
+        obj_mark_for_deletion(o);
+        #endif
     }
 }
 

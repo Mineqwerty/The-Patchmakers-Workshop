@@ -1211,7 +1211,7 @@ void reonucam_handler(void) {
         gReonucamState.rButtonCounter = 0;
     }
     if (gPlayer1Controller->buttonPressed & camera_button_input()) {
-        if (gReonucamState.rButtonCounter2 <= 5) {
+        if (gReonucamState.rButtonCounter2 <= 5 && sFOVState.fovFunc != CAM_FOV_APP_315) {
             set_cam_angle(CAM_ANGLE_MARIO); // Enter mario cam if R is pressed 2 times in less than 5 frames
             gReonucamState.rButtonCounter2 = 6;
             sCameraDisturbed = 1;
@@ -2260,6 +2260,10 @@ void mode_water_surface_camera(struct Camera *c) {
 s32 update_mario_camera(UNUSED struct Camera *c, Vec3f focus, Vec3f pos) {
     s16 yaw = sMarioCamState->faceAngle[1] + sModeOffsetYaw + DEGREES(180);
     focus_on_mario(focus, pos, 125.f, 125.f, gCameraZoomDist, 0x05B0, yaw);
+
+    if (sFOVState.fovFunc == CAM_FOV_APP_315) {
+        set_camera_mode(c, CAMERA_MODE_8_DIRECTIONS, 2);
+    }
 
     return sMarioCamState->faceAngle[1];
 }

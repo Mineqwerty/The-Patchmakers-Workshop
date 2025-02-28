@@ -3466,7 +3466,7 @@ void render_pause_screen_felt() {
     
 }
 
-#define NUM_MENU_SONGS 20
+#define NUM_MENU_SONGS 28
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -3477,8 +3477,10 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_SUBTERRANEAN_SEAWAY,
     SEQ_CANDLELIT_CHAMBER,
     SEQ_HIDDEN_VILLAGE_HOLD,
+    SEQ_VIOLET_TWILIT_WOODS,
     SEQ_THE_FAR_PLANE,
     SEQ_EMPYREAN_ABYSS,
+    SEQ_CITY_OF_RECONSTRUCTED_RUIN,
     SEQ_TIMELESS_SHRINE,
     SEQ_PATCHMAKER_THEME,
     SEQ_EVENT_PIRANHA_PLANT,
@@ -3487,6 +3489,12 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_GOLD_SOAKED_SKY_SELECT,
     SEQ_SUBTERRANEAN_SEAWAY_SELECT,
     SEQ_CANDLELIT_CHAMBER_SELECT,
+    SEQ_HIDDEN_VILLAGE_HOLD_SELECT,
+    SEQ_VIOLET_TWILIT_WOODS_SELECT,
+    SEQ_THE_FAR_PLANE_SELECT,
+    SEQ_EMPYREAN_ABYSS_SELECT,
+    SEQ_CITY_OF_RECONSTRUCTED_RUIN_SELECT,
+    SEQ_TIMELESS_SHRINE_SELECT,
     SEQ_EVENT_CUTSCENE_COLLECT_STAR,
     SEQ_PATCH_GET
 };
@@ -3511,6 +3519,14 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     0
 };
 
@@ -3523,8 +3539,10 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Subterranean Seaway",
     "Candlelit Chamber",
     "Hidden Village Hold",
+    "Violet Twilit Woods",
     "The Far Plane",
     "Empyrean Abyss",
+    "City of Reconstructed Ruin",
     "Timeless Shrine",
     "Encounter - The Patchmaker",
     "Map - Thorn Thicket Cliffs",
@@ -3533,6 +3551,12 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Map - Gold Soaked Sky",
     "Map - Subterranean Seaway",
     "Map - Candlelit Chamber",
+    "Map - Hidden Village Hold",
+    "Map - Violet Twilit Woods",
+    "Map - The Far Plane",
+    "Map - Empyrean Abyss",
+    "Map - City of Reconstructed Ruin",
+    "Map - Timeless Shrine",
     "Event - Star Get",
     "Event - Patch Get"
 };
@@ -3546,9 +3570,12 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "Tori Draws Stuff",
     "ornevelder",
     "CowQuack",
+    "Tori Draws Stuff",
     "ornevelder",
     "CowQuack",
     "CowQuack",
+    "CowQuack",
+    //PM Theme
     "ornevelder",
     "CowQuack\nornevelder",
     "ornevelder",
@@ -3556,6 +3583,12 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "Tori Draws Stuff",
     "ornevelder",
+    "CowQuack",
+    "Tori Draws Stuff",
+    "ornevelder",
+    "CowQuack",
+    "CowQuack",
+    "CowQuack",
     "CowQuack",
     "CowQuack"
 };

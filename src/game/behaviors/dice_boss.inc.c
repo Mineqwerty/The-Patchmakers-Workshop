@@ -292,6 +292,11 @@ void bhv_d6_loop(void) {
         break;
         case 1:
             o->oPosX = approach_f32_symmetric(o->oPosX, gMarioState->pos[0], 80);
+
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_ACTION_METAL_STEP_TIPTOE);
+            }
+
             if (o->oTimer == 60) {
                 o->oAction += 2;
                 cur_obj_play_sound_2(SOUND_ACTION_METAL_HEAVY_LANDING);
@@ -305,6 +310,11 @@ void bhv_d6_loop(void) {
         break;
         case 2:
             o->oPosZ = approach_f32_symmetric(o->oPosZ, gMarioState->pos[2], 80);
+
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_ACTION_METAL_STEP_TIPTOE);
+            }
+            
             if (o->oTimer == 60) {
                 o->oAction += 2;
                 cur_obj_play_sound_2(SOUND_ACTION_METAL_HEAVY_LANDING);
@@ -324,6 +334,7 @@ void bhv_d6_loop(void) {
             }
             if (o->oMoveFlags & (OBJ_MOVE_HIT_WALL)) {
                 cur_obj_play_sound_2(SOUND_OBJ_POUNDING_LOUD);
+                cur_obj_shake_screen(SHAKE_POS_LARGE);
                 o->oAction = 0;
             }
         break;
@@ -334,6 +345,7 @@ void bhv_d6_loop(void) {
             }
             if (o->oMoveFlags & (OBJ_MOVE_HIT_WALL)) {
                 cur_obj_play_sound_2(SOUND_OBJ_POUNDING_LOUD);
+                cur_obj_shake_screen(SHAKE_POS_LARGE);
                 o->oAction = 0;
             }
         break;
@@ -512,6 +524,7 @@ void bhv_d20_loop(void) {
             for (int i = 0; i < 20; i++) {
                 spawn_object_relative(0, 0, 0, 0, o, MODEL_DICE_CUBE_SHOT, bhvDiceCubeShot);
             }
+            cur_obj_play_sound_2(SOUND_OBJ_MRI_SHOOT);
             o->oAction = 2;
             o->oMoveAngleYaw = random_u16();
         break;
@@ -618,6 +631,10 @@ void bhv_fly_in_dice_loop(void) {
                 obj_mark_for_deletion(o);
             }
         break;
+    }
+
+    if (gCurCutscene == -1) {
+        obj_mark_for_deletion(o);
     }
 
     o->oFaceAngleYaw += 0x300 - 10*o->oBehParams2ndByte;

@@ -170,7 +170,9 @@ void bhv_peach_npc_init(void) {
     cur_obj_init_animation(2);
 
     if (gCurrAreaIndex == 3 && (save_file_get_flags() & SAVE_FLAG_BEAT_GAME)) {
+        #ifndef COMPLETE_SAVE_FILE
         obj_mark_for_deletion(o);
+        #endif
     }
 }
 

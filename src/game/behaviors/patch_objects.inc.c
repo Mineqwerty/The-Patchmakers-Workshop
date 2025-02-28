@@ -5,6 +5,7 @@
 #include "src/game/level_update.h"
 #include "src/game/camera.h"
 #include "src/game/interaction.h"
+#include "src/game/cutscene.h"
 
 struct SpawnParticlesInfo sMistIce = { 2, 4, MODEL_MIST, 10.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f };
 struct SpawnParticlesInfo sSnowflakeFly = { 2, 8,  MODEL_SNOWFLAKE, 10.0f, 40, 10, 0, 0,
@@ -563,7 +564,7 @@ void bhv_halo_init(void) {
 
 void bhv_halo_loop(void) {
 
-    if (gMarioState->action == ACT_SINK_MUD) {
+    if (gMarioState->action == ACT_SINK_MUD || gCurCutscene != -1) {
         cur_obj_hide();
     }
     else {
@@ -942,6 +943,13 @@ void bhv_shadow_chomp_head_init(void) {
 
 void bhv_shadow_chomp_head_loop(void) {
 
+    if (gMarioState->action == ACT_SINK_MUD || gCurCutscene != -1) {
+        cur_obj_hide();
+    }
+    else {
+        cur_obj_unhide();
+    }
+
     if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP) {
         if (gMarioState->patchChildObj == o) {
             gMarioState->patchChildObj = NULL;
@@ -1124,6 +1132,13 @@ void bhv_shadow_chomp_tail_init(void) {
 }
 
 void bhv_shadow_chomp_tail_loop(void) {
+
+    if (gMarioState->action == ACT_SINK_MUD || gCurCutscene != -1) {
+        cur_obj_hide();
+    }
+    else {
+        cur_obj_unhide();
+    }
 
     if (gMarioState->equippedPatch != PATCH_SHADOWCHOMP || gMarioState->action ==  ACT_FALL_AFTER_STAR_GRAB) {
         obj_mark_for_deletion(o);
