@@ -52,7 +52,7 @@ void bhv_sewnia_head_loop(void) {
             if (cExternalCutsceneTrigger >= 17) {
                 cur_obj_init_animation(1);
             }
-            o->oSewniaFaceState = 9;
+            o->oSewniaFaceState = 8;
         break;
         case LEVEL_CASTLE:
             if (cExternalCutsceneTrigger >= 4) {
