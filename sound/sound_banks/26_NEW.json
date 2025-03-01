@@ -170,6 +170,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "rope_snap"
+    },
+    "inst_goofy_warp": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "goofy_warp"
     }
   },
   "instrument_list": [
@@ -204,6 +209,7 @@
     "inst_memory_end",
     "inst_wood_thunk",
     "inst_rope_tighten",
-    "inst_rope_snap"
+    "inst_rope_snap",
+    "inst_goofy_warp"
   ]
 }

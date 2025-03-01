@@ -8,6 +8,7 @@ void bhv_goofy_warp_loop(void) {
             if (o->oDistanceToMario < 300.0f) {
                 o->oAction = 1;
                 gCamera->cutscene = 1;
+                play_sound(SOUND_NEW_GOOFY_WARP, gGlobalSoundSource);
             }
         break;
         case 1:
@@ -47,6 +48,13 @@ void bhv_goofy_warp_loop(void) {
             o->oAction = 0;
         break;
     }
+
+    if (o->oAction > 0) {
+        if (o->oTimer % 5 == 0) {
+            cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+        }
+    }
+
 }
 
 void bhv_goofy_warp_reciever_init(void) {

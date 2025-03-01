@@ -8939,6 +8939,17 @@ sound_ref .sound_memory_end
 sound_ref .sound_wood_thunk
 sound_ref .sound_rope_tighten
 sound_ref .sound_rope_snap
+sound_ref .sound_goofy_warp
+
+.sound_goofy_warp:
+chan_setbank 12
+chan_setinstr 32
+chan_setlayer 0, .layer_goofy_warp
+chan_end
+
+.layer_goofy_warp:
+layer_note1 39, 0xed, 127
+layer_end
 
 .sound_rope_snap:
 chan_setbank 12
