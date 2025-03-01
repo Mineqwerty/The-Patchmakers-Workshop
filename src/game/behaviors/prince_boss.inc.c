@@ -457,7 +457,8 @@ void prince_act_defeated(void) {
         case 0:
             create_dialog_box(DIALOG_PRINCE_DEFEATED);
             cur_obj_init_animation(PRINCE_ANIM_IDLE);
-            gMarioState->action = ACT_MOVE_IN_CUTSCENE;
+            gMarioState->health = 0x880;
+            gMarioState->action = ACT_WAITING_FOR_DIALOG;
             gMarioState->pos[1] = gMarioState->floorHeight;
             o->oSubAction++;
         break;

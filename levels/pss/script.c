@@ -310,7 +310,7 @@ const LevelScript level_pss_entry[] = {
 		WARP_NODE(0xF1, LEVEL_PSS, 0x08, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -13870, -341, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, (8 << 16), bhvPatchChallengeController),
-		OBJECT(MODEL_STAR, 785, 7828, 0, 0, 0, 0, (9 << 24), bhvStar),
+		OBJECT(MODEL_STAR, 785, 7683, 0, 0, 0, 0, (9 << 24), bhvStar),
 		TERRAIN(pss_area_8_collision),
 		TERRAIN_MAT_LUT(pss_area_8_collision_materials),
 		MACRO_OBJECTS(pss_area_8_macro_objs),

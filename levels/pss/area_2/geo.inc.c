@@ -5,6 +5,7 @@ const GeoLayout pss_area_2_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, pss_dl_Cube_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, pss_dl_Cube_001_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 13904, 1441, -261, 0, 0, -33, pss_dl_Cube_023_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

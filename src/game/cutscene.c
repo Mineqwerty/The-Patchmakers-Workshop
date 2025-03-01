@@ -17,6 +17,7 @@
 #include "include/dialog_ids.h"
 #include "include/mario_animation_ids.h"
 #include "src/game/save_file.h"
+#include "src/game/puppyprint.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -116,6 +117,7 @@ enum cutscene_events {
     EVENT_MARIO_MOVE_DOWN_VERTICALLY,
     EVENT_LOCK_MARIO_ANIM_FRAME,
     EVENT_UNLOCK_MARIO_ANIM_FRAME,
+    EVENT_HEAL_MARIO,
 
     EVENT_SPAWN_OBJECT,
 
@@ -445,6 +447,7 @@ s32 event_goddess_death[] = {
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
     EVENT_DISABLE_MARIO_RENDER,
+    EVENT_HEAL_MARIO,
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_CAMERA_POSITION, -1200, 1600, -5000,
     EVENT_CAMERA_FOCUS, 0, 1800, -1600,
@@ -939,6 +942,7 @@ s32 event_patchmaker_first_fight_defeated[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_POSITION, -2511, 1065, 537,
+    EVENT_HEAL_MARIO,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
     EVENT_SET_MARIO_FORWARD_VELOCITY, 0,
     EVENT_SET_MARIO_YAW, 0x8000,
@@ -1244,6 +1248,7 @@ s32 event_before_second_patchmaker_fight[] = {
 s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
+    EVENT_HEAL_MARIO,
     EVENT_SET_MARIO_POSITION, -2511, 1065, 537,
     EVENT_CANCEL_SONG, SEQ_LEVEL_BOSS_KOOPA_FINAL,
     EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
@@ -1735,6 +1740,7 @@ s32 event_mantle_of_madness_final_needle[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_HEAL_MARIO,
     EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_LOOK_DOWN_AT_PATCHMAKER,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 221,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 222,
@@ -2717,6 +2723,10 @@ void event_handler(void) {
                     cMarioAnimLockFrame = 0;
                     cCutsceneIndex += 1;
                 break;
+                case EVENT_HEAL_MARIO:
+                    gMarioState->health = 0x880;
+                    cCutsceneIndex += 1;
+                break;
                 case EVENT_SET_CUTSCENE_GAME_STATE:
                     gCutsceneGameState = param1;
                     cCutsceneIndex += 2;
@@ -2779,7 +2789,20 @@ void event_handler(void) {
         }
         else if (cWaiting == 6) {
             s32 param1 = cEventPointer[cCutsceneIndex + 1];
-            if (gPlayer1Controller->buttonPressed & param1) {
+            u8 flashColor = ((gGlobalTimer % 60) > 30 ? 200 : 255);
+            if (patch_button_input() == L_TRIG) {
+                print_set_envcolour(0, 0, 0, 255);
+                print_small_text_buffered(SCREEN_CENTER_X+1, SCREEN_HEIGHT - 29, "L", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+                print_set_envcolour(flashColor, flashColor, flashColor, 255);
+                print_small_text_buffered(SCREEN_CENTER_X, SCREEN_HEIGHT - 30, "L", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            }
+            else {
+                print_set_envcolour(0, 0, 0, 255);
+                print_small_text_buffered(SCREEN_CENTER_X+1, SCREEN_HEIGHT - 29, "R", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+                print_set_envcolour(flashColor, flashColor, flashColor, 255);
+                print_small_text_buffered(SCREEN_CENTER_X, SCREEN_HEIGHT - 30, "R", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            }
+            if (gPlayer1Controller->buttonPressed & patch_button_input()) {
                 cWaiting = 0;
                 cCutsceneIndex += 2;
             }
