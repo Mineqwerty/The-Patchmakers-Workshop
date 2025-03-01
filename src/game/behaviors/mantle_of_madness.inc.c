@@ -502,6 +502,10 @@ void mantle_of_madness_act_big_needle(void) {
 
     if (mario_holding_down_all_needle_inputs()) {
         gainFactor = 0.004f;
+
+        if (gGlobalTimer % 3 == 0) {
+            play_sound(SOUND_NEW_ROPE_TIGHTEN, gGlobalSoundSource);
+        }
     }
     gFinalNeedleProgress = CLAMP(gFinalNeedleProgress + gainFactor, 0.0f, 1.0f);
 
@@ -539,6 +543,7 @@ void mantle_of_madness_act_big_needle(void) {
             o->oMantleOfMadnessFinalNeedleProgress = 6;
             gFinalNeedleStage = 6;
             gMarioState->action = ACT_RELEASED_FINAL_NEEDLE;
+            play_sound(SOUND_NEW_ROPE_SNAP, gGlobalSoundSource);
             o->oAction = MANTLE_OF_MADNESS_ACT_GETTING_STABBED;
         }
     }
@@ -550,6 +555,7 @@ void mantle_of_madness_act_getting_stabbed(void) {
     
     if (o->oTimer == 20) {
         cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+        play_sound(SOUND_NEW_POKEY_IMPACT, gGlobalSoundSource);
     }
     if (o->oTimer > 10) {
         gLakituState.goalPos[0] = 100;

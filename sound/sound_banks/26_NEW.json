@@ -160,6 +160,16 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "wood_thunk"
+    },
+    "inst_rope_tighten": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "rope_tighten"
+    },
+    "inst_rope_snap": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "rope_snap"
     }
   },
   "instrument_list": [
@@ -192,6 +202,8 @@
     "inst_crane_long",
     "inst_page_turn",
     "inst_memory_end",
-    "inst_wood_thunk"
+    "inst_wood_thunk",
+    "inst_rope_tighten",
+    "inst_rope_snap"
   ]
 }

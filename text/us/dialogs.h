@@ -2001,7 +2001,7 @@ and think about what to do next.\n\
 @7F60B4FFOf course... Follow me.\n\
 Let's see outside after all we've accomplished.\n\
 I can't wait!\n\
-Coming, Mario?"))
+@7F60B4FFComing, Mario?"))
 
 DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
 Hey! Knock it off! That's\n\
@@ -2158,17 +2158,17 @@ DEFINE_DIALOG(DIALOG_SEWNIA_TTC, 1, 3, 30, 200, _("\
 called Thorn Thicket Cliffs!\n\
 The smell of roses is always wafting up from within!\n\
 @7F60B4FFDon't tell anyone, but I've actually peeked in\n\
-there a few times. I was too scared to explore, but there was\n\
-a friendly person called a Rosedrift there.\n\
+there a few times. I was too scared to explore, but there\n\
+was a friendly person called a Rosedrift there.\n\
 @7F60B4FFShe, um, attempted to say hi to me, but ah...\n\
 I was a little nervous, so I came back here.\n\
 I'm sure you'll be able to talk better, Mario.\n\
 @7F60B4FFRight, anyways. Watch out for the thorny ground there!\n\
-The Patchmaker had a special tool that let him\n\
-bypass thorns, so if you haven't found it yet, keep an eye out!\n\
+The Patchmaker had a special tool that let him bypass\n\
+thorns, so if you haven't found it yet, keep an eye out!\n\
 @7F60B4FFWhen he was giving hints on where he hid it, he may have\n\
-underestimated my ability to figure it out a little...\n\
-I believe it's hidden in a path near the top of the cliffs!"))
+underestimated my ability to figure it out a little... I \n\
+believe it's hidden in a path near the top of the cliffs!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_RDR, 1, 4, 30, 200, _("\
 @7F60B4FFEvery time I opened this door, I could always\n\
@@ -2181,29 +2181,29 @@ At a point, you'll pass through a magical portal to the\n\
 muddy farmland that lies along a long road.\n\
 @7F60B4FFI haven't been to any other places, so I can only \n\
 relay what The Patchmaker has told me about this place.\n\
-Apparently, there's a rushing river that will sweep you away\n\
+Apparently, there's a rushing river that sweeps you away\n\
 if you aren't careful navigating around it.\n\
 @7F60B4FFBut if you're brave enough to cross it, there's a hidden\n\
 cave along its side. In there is a patch that will ease\n\
 your worries about falling into the river!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_STC, 1, 4, 30, 200, _("\
-@7F60B4FFI haven't ever opened this door...\n\
-After seeing the way it closes, I always got scared of being\n\
-caught in between the doors and squeezed between them until I\n\
+@7F60B4FFI haven't ever opened this door... After\n\
+seeing the way it closes, I always got scared of being\n\
+caught in between the doors and squeezed until I\n\
 burst into a pile of stuffing...\n\
 @7F60B4FFAh! Sorry! I shouldn't have said that!\n\
 I watched The Patchmaker enter here many times, it's\n\
 safe as long as you wait to close it until you're inside!\n\
 I'm only being a little scared for no reason here...\n\
 @7F60B4FFAnyways, the mechanical clicks of gears echo even with\n\
-the doors closed. This door leads to an ancient land called\n\
-Stone Terrace City. I've heard it's truly a marvel of technology.\n\
+the doors closed. They lead to an ancient land called\n\
+Stone Terrace City. I've heard it's truly a marvel.\n\
 Be careful not to fall off of the moving parts!\n\
 @7F60B4FFAs for the patch, I was given the hint that it was\n\
 hidden somewhere over a fence... I know that isn't very helpful,\n\
-but if you see some fence that looks as though it was climbed over,\n\
-I would give it a look!"))
+but if you see some fence that looks as though it was\n\
+climbed over, I would give it a look!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_GSS, 1, 4, 30, 200, _("\
 @7F60B4FFThe light in this window only shines when\n\
@@ -2214,13 +2214,13 @@ So it seems that for you, that would mean star power.\n\
 The Patchmaker described it as a sky stained with a \n\
 rich gold, so I suppose it could be called\n\
 Gold Soaked Sky...\n\
-@7F60B4FFThere are some scary things there. One time, the Patchmaker\n\
+@7F60B4FFThere are some scary things here. One time, the Patchmaker\n\
 returned from it bloodied and beaten. He never told me\n\
 what happened, only something about a divine being...\n\
 \n\
 @7F60B4FFBe very careful if you enter here, Mario. You'll want to find\n\
-the patch that was made for this location for sure. I believe\n\
-it was hidden somewhere in a vast, empty field."))
+the patch that was made for this location for sure. I\n\
+believe it was hidden somewhere in a vast, empty field."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_SS, 1, 4, 30, 200, _("\
 @7F60B4FFHeehee... This bubble column is a bit different!\n\
@@ -2241,19 +2241,25 @@ how scary it would be to drown under the sea, with\n\
 nobody to hear you...\n\
 @7F60B4FF...Be careful, Mario."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_CLC, 1, 3, 30, 200, _("\
+
+
+DEFINE_DIALOG(DIALOG_SEWNIA_CLC, 1, 4, 30, 200, _("\
 @7F60B4FFThere's something hidden here... One of the portals.\n\
-Truthfully, there was once a portal that was out in the open\n\
-like the others. It went to a place called Candlelit Chamber.\n\
+Truthfully, there was once a portal that was out\n\
+in the open like the others. It went\n\
+to a place called Candlelit Chamber.\n\
 @7F60B4FFThis place was a little special to The Patchmaker.\n\
-Within it, the Master and Mistress of the place were very\n\
-good friends of his. Apparently, they visited here often.\n\
+Within it, the Master and Mistress of the place\n\
+were very good friends of his. Apparently, they\n\
+visited here often.\n\
 @7F60B4FFAfter he... lost himself... The Patchmaker visited there\n\
 once again. I don't know what happened, but I watched\n\
 as he moved the warp tile, looking tired and beaten up.\n\
-@7F60B4FFI... didn't want to ask why, but it almost looked like guilt was\n\
-on his face. It made me want to believe that he wasn't completely\n\
-lost yet, but at the same time... What could he have done?\n\
+\n\
+@7F60B4FFI... didn't want to ask why, but it almost looked\n\
+like guilt was painted on his face. His emotion \n\
+made me want to believe that he wasn't completely lost\n\
+yet, but at the same time... What could he have done?\n\
 @7F60B4FFSorry... Anyways, if you find the warp in here, watch out.\n\
 The manor had a notorious problem with ghost infestations.\n\
 It also has many secrets hidden high up above..."))
@@ -2261,94 +2267,112 @@ It also has many secrets hidden high up above..."))
 DEFINE_DIALOG(DIALOG_SEWNIA_HVH, 1, 4, 30, 200, _("\
 @7F60B4FFMario, what do you think is defined as real?\n\
 I'm sure that line is a little blurred...\n\
-The Patchmaker talked often about defining reality with words\n\
-but came to the conclusion that it was not possible.\n\
+The Patchmaker talked often about defining reality with\n\
+words but came to the conclusion that it was not possible.\n\
 @7F60B4FFI think this book was the reason why.\n\
 It seems to be a warp to somewhere far away, but\n\
 everything there is identical to what the book describes.\n\
 It could be an entire world contained within that book...\n\
-@7F60B4FFHe wondered how real it ever was, and if it had the\n\
-secrets to the creation of life... But even if it was a\n\
-fabricated world, in the end it wasn't any different from outside.\n\
-If people could enter and exit, how was it any different from reality?\n\
+@7F60B4FFHe wondered how real it ever was, and if it had the secret\n\
+to the creation of life... But even if it was a fabricated\n\
+world, in the end it wasn't any different from outside. If \n\
+one can enter and exit, is it any different from reality?\n\
 @7F60B4FFSomething you might want to know is that the author was\n\
-mysterious. He finished the book on his deathbed, minutes before he passed.\n\
-Apparently, this meant that some ends were left untied, and for the\n\
+mysterious. He finished the book minutes before he passed.\n\
+This meant that some ends were left untied, and for the\n\
 world inside, something about it may not quite fit in...\n\
 @7F60B4FFThis place was titled Hidden Village Hold, and it's a very\n\
 charming village from what I've read of the book.\n\
 As for the patch, it HAS to be in the big wizard tower!\n\
 There's no way anything magical wouldn't be in there!"))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_VTW, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_VTW, 1, 4, 30, 200, _("\
 @7F60B4FFIt's a beautiful mobile, is it not?\n\
 Standing atop it with enough star power will transport\n\
 you to a place called Violet Twilit Woods.\n\
+\n\
 @7F60B4FFWhen this was first made, I spent hours looking at\n\
 it while waiting for The Patchmaker to return.\n\
 That night, I had a very strange dream...\n\
-@7F60B4FFI was walking amidst a purple forest, a summer breeze in my hair...\n\
-The sound of crickets were a percussion to the melody of the wind,\n\
-and as I explored, a slight floral scent was present in the haze.\n\
-@7F60B4FFIt was quiet and had a sense of peace I have never felt since...\n\
-I don't remember how I got there, but walking amidst the foliage felt like\n\
-I was floating, almost as naturally as if I had a pair of wings on my back.\n\
-@7F60B4FFI... don't know why, but there was a place I had wanted to find.\n\
-I had this idea in my head of a moonlit grove, one that I could lie in\n\
-and bask in the filtered light amid a pile of moss.\n\
+@7F60B4FFI was walking amidst a purple forest,\n\
+a summer breeze in my hair... The sound of crickets\n\
+were a percussion to the melody of the wind, and as I\n\
+explored, a slight floral scent was present in the haze.\n\
+@7F60B4FFIt was quiet and had a sense of peace I have never felt\n\
+since... I don't remember how I got there, but walking \n\
+under the foliage felt like I was floating, \n\
+almost as naturally as if I had a pair of wings on my back.\n\
+@7F60B4FFI... don't know why, but there was a place\n\
+I wanted to find. I had this idea in my head of a\n\
+moonlit grove, one that I could lie in\n\
+and bask in the filtered light on a pile of moss.\n\
 @7F60B4FFI still wonder if I was truly dreaming...\n\
 \n\
 \n\
-@7F60B4FFAh... Look at me rambling again. Sorry, I should be helping you here...\n\
-Although, I can't tell you much to be honest. The Patchmaker stopped\n\
+\n\
+@7F60B4FFAh... Look at me rambling again. Sorry, I should\n\
+be helping you here... Although, I can't tell\n\
+you much to be honest. The Patchmaker stopped\n\
 telling me about his journeys around this point...\n\
-@7F60B4FF...I really wish things had turned out different.\n\
+@7F60B4FF...I really wish things had turned out differently.\n\
 I never did find that grove, by the way.\n\
-And as much as I wish I could, I don't think it's possible anymore."))
+And as much as I wish I could,\n\
+I don't think it's possible anymore."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_TFP, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_TFP, 1, 4, 30, 200, _("\
 @7F60B4FFThis place... The Far Plane...\n\
 The Patchmaker... obviously had been changing over time,\n\
-but he was never the same after coming back from this place.\n\
-@7F60B4FFHe spent weeks in there. I know it seems foolish now, but I was really\n\
-scared he had disappeared forever. He didn't even return to create a\n\
+but he was never the same after coming back from here.\n\
+\n\
+@7F60B4FFHe spent weeks in there. I know it seems foolish now,\n\
+but I was really scared he had disappeared forever.\n\
+He didn't even return to create a\n\
 patch to navigate it. He did it all in there.\n\
 @7F60B4FFI wonder if it was because he got lost...\n\
-He was forced to create something that would help him find his\n\
-way back from anywhere is all I know...\n\
-@7F60B4FFWhen... When he finally got back, he barely talked about it.\n\
-I think... I think that this place pushed his madness forward more.\n\
-Mario... If you're really going in there, please come back soon...\n\
+He was forced to create something that would help him\n\
+find his way back from anywhere is all I know...\n\
+\n\
+@7F60B4FFWhen... When he finally got back,\n\
+he barely talked about it. I think... \n\
+I think that this place pushed his madness forward.\n\
+Mario... If you're going in there, come back soon...\n\
 @7F60B4FFI'm sorry, but that's all I can say...\n\
 In truth, I know nothing of this place other than the\n\
 fact that it rests close to the edge of existence itself..."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_EA, 1, 4, 30, 200, _("\
-@7F60B4FFHaha...\n\
-Oh, sorry. I was just thinking a little about how foolish I was.\n\
-I should have known what was happening to The Patchmaker at this point...\n\
-How could I have hid in denial with how he acted after he went here, after all.\n\
+DEFINE_DIALOG(DIALOG_SEWNIA_EA, 1, 5, 30, 200, _("\
+@7F60B4FFHaha... Oh, sorry. \n\
+I was just thinking a little about how foolish I was.\n\
+I should have known what was happening to The Patchmaker\n\
+at this point... How could I have hid in denial\n\
+with how he acted after he went here, after all.\n\
 @7F60B4FFHe painted something after coming back here.\n\
-The whole time, I hid and watched as he vigorously scratched on the canvas,\n\
-a horrid malice in his eyes that conveyed frustration ink could not.\n\
+The whole time, I hid and watched as he\n\
+vigorously scratched on the canvas, a horrid malice\n\
+in his eyes that conveyed frustration ink could not.\n\
 It... scared me, so I hid the painting after he left.\n\
 @7F60B4FFI'd rather not go looking for it again...\n\
 After he finished, The Patchmaker tried talking to me,\n\
-assuring me he would create a sister for me. He told me not to worry with a smile,\n\
-but this smile hit piles of wrath and weariness for his failures thus far.\n\
-@7F60B4FFI think that this was the first time I felt fear in my life.\n\
-I didn't know what to tell this breaking man, so I simply nodded in fright.\n\
+assuring me he would create a sister for me.\n\
+He told me not to worry with a smile, but this smile hid\n\
+piles of wrath and weariness for his failures thus far.\n\
+@7F60B4FFI think that was the first time I felt fear in my life.\n\
+I didn't know what to tell this breaking man, so I simply\n\
+nodded in fright.\n\
 That was a mistake. I should have never done that.\n\
 I...\n\
 @7F60B4FFI should have stopped him! I could have! It wasn't too late!\n\
-I didn't want a sister, I didn't want him to go to another land!\n\
-I just... I just wanted him to stay with me! But I couldn't say anything!\n\
+I didn't want a sister, I didn't want him to leave again!\n\
+I just... I just wanted him to stay with me!\n\
+But I couldn't say anything!\n\
 And look what happened! He's... never... coming back...\n\
 @7F60B4FFWhy didn't I do anything? Why...\n\
 I... I could have...\n\
 I could have done it...\n\
 \n\
+\n\
 @7F60B4FF...\n\
+\n\
 \n\
 \n\
 \n\
@@ -2356,59 +2380,69 @@ I could have done it...\n\
 I don't want to lose you too...\n\
 I won't let it happen again."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_CORR, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_CORR, 1, 6, 30, 200, _("\
 @7F60B4FFThis place...\n\
-After The Patchmaker came back from the last journey hopeless and defeated,\n\
-I could tell that he had almost given up on everything.\n\
-When he opened the portal, I knew it would not help him find any secrets of life.\n\
+After The Patchmaker came back from the last journey\n\
+hopeless and defeated, I could tell that he had\n\
+almost given up on everything. When he opened the \n\
+portal, I knew it would not help him find anything.\n\
+\n\
 @7F60B4FFThis place is a city in a far away land.\n\
-One day, a snowstorm blew in and never ceased. The people living there\n\
-were quite concerned, as they were right to be when the snow piled up.\n\
-Eventually, their doors were covered. And so, they took to higher lands.\n\
-@7F60B4FFBut the snow kept coming down. Eventually, even these places were uninhabitable.\n\
-So, the people started building. If they couldn't live on the ground, they would on the snow.\n\
-After all, the skies would have to clear one day, right?\n\
+One day, a snowstorm blew in and never ceased.\n\
+The people living there were quite concerned, \n\
+as they were right to be when the snow piled up.\n\
+Eventually, their doors were covered.\n\
+And so, they took to higher lands.\n\
+@7F60B4FFBut the snow kept coming down. \n\
+Eventually, even these places were uninhabitable.\n\
+So, the people started building. If they couldn't live \n\
+on the ground, they would on the snow. After all, the \n\
+skies would have to clear one day, right?\n\
 That's what they thought... But they never did.\n\
 @7F60B4FFIt's a land that is constantly being rebuilt and torn down.\n\
-And even though it can't be stopped, the people there still rebuild.\n\
+And even though it can't be stopped,\n\
+the people there still rebuild.\n\
 It sounds really sad, doesn't it?\n\
 That's what I thought at least.\n\
-@7F60B4FFThe Patchmaker simply looked forward with a sullen face as he walked into the\n\
-fog ahead, and I knew that he had gone there to give up.\n\
-But... To my surprise, he returned. He returned with a small glint of hope\n\
+\n\
+@7F60B4FFThe Patchmaker simply looked forward with a \n\
+sullen face as he walked into the fog ahead,\n\
+and I knew that he had gone there to give up.\n\
+But... To my surprise, he returned.\n\
+He returned with a small glint of hope\n\
 in his dead eyes.\n\
 @7F60B4FFSomething about this place had resonated with him.\n\
-I don't quite understand how, but he picked himself up and\n\
-continued his search.\n\
+I don't quite understand how,\n\
+but he picked himself up and continued his search.\n\
 To get something like that from such a hopeless place..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_TS, 1, 3, 30, 200, _("\
 @7F60B4FFAnd so here it is...\n\
 This is where The Patchmaker's journey ended...\n\
 And where his madness truly began.\n\
-@7F60B4FFInside of this portal is the place where he found the lockbox.\n\
-The one that has a pocket between life and death hidden within, where\n\
-he hides now...\n\
+@7F60B4FFInside here is the place where he found the lockbox.\n\
+The one that has a pocket between life and death\n\
+hidden within, where he hides now...\n\
 @7F60B4FFAs for the place itself, you should look for a key to the\n\
-lockbox within. I have no idea what you'll be facing, or what The\n\
-Patchmaker did to traverse it...\n\
+lockbox within. I have no idea what you'll be facing,\n\
+or what The Patchmaker did to traverse it...\n\
 @7F60B4FFBut I believe in you, Mario.\n\
 I know you'll see this through, so we can put him to rest.\n\
 Just... as always, be careful..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_1, 1, 3, 30, 200, _("\
 @7F60B4FFOh, you want to know about this part of the workshop?\n\
-Well, as somebody who explored this place through and through,\n\
-I'd be glad to tell you!\n\
-@7F60B4FFSo, this part is actually pretty forgotten, even\n\
-more than most areas here. It was the first part of the workshop\n\
-that was built, after all. It has a slight nostalgic feeling...\n\
-@7F60B4FFThe Patchmaker used magic to build a lot of the workshop, but\n\
-this area was all built by hand.\n\
+Well, as somebody who explored this place\n\
+through and through, I'd be glad to tell you!\n\
+@7F60B4FFSo, this part is actually pretty forgotten...\n\
+It was the first part of the workshopthat was built, \n\
+after all. It has a slight nostalgic feeling...\n\
+@7F60B4FFThe Patchmaker used magic to build a lot of\n\
+the workshop, but this area was all built by hand.\n\
 It's sure showing its neglect, huh?\n\
-@7F60B4FFUm... what else...\n\
-Oh! The window in the attic! It might seem dull and dark,\n\
-but check on it when you get a decent amount of star power!"))
+@7F60B4FFUm... what else... Oh! The window in the attic!\n\
+It might seem dull and dark, but check on it\n\
+when you get a decent amount of star power!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_2, 1, 5, 30, 200, _("\
 @7F60B4FFThis part of the workshop could be better \n\
@@ -2427,15 +2461,17 @@ believed he could do it. That was so long ago...\n\
 \n\
 ...I hope the dream can still be real one day."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_3, 1, 3, 30, 200, _("\
-@7F60B4FFThis... is where The Patchmaker had spent most of his\n\
-time before everything recent happened.\n\
+DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_3, 1, 4, 30, 200, _("\
+@7F60B4FFThis... is where The Patchmaker had spent\n\
+most of his time before everything recent.\n\
 I have bad memories of this place...\n\
-@7F60B4FFI'm sure you can tell by everything just how obsessed he became.\n\
-I really had hoped to not be coming back here, but...\n\
-Um... Something is missing. Something that was here before.\n\
+\n\
+@7F60B4FFI'm sure you can tell by everything just how \n\
+obsessed he became. I really had hoped to not\n\
+be coming back here, but... Um... \n\
+Something is gone. Something that was here before.\n\
 @7F60B4FF...Huh? You asked what it was?\n\
-I... I don't want to say. It isn't important.\n\
+I... I don't want to say. It isn't important now.\n\
 I just wonder where they all went..."))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_EA_ALTERNATE, 1, 3, 30, 200, _("\
@@ -2724,8 +2760,8 @@ He was not the man I formerly knew.\n\
 It started with one of the Phantasmaids going missing.\n\
 We searched for her, until we saw a horrifying sight.\n\
 The Patchmaker stood over the missing servant with a vial,\n\
-as she writhed and contorted into a Blight.\n\
-We had naught but a moment to be surprised before the Blight\n\
+as she writhed and contorted into a Blight. We\n\
+had naught but a moment to be surprised before the Blight\n\
 went berserk and attacked us. The Patchmaker fled as the\n\
 servants beside me began to contract the effects of\n\
 the experiment that he had performed.\n\
@@ -2735,8 +2771,8 @@ maniacal Patchmaker on the loose, I feared the worst.\n\
 While I ran, I ordered everyone to lock up the doors.\n\
 When I finally found her, what I saw horrified me.\n\
 A large needle stuck into the flesh of her face was\n\
-weaving thread through it with unsettling fluidity.\n\
-The kind of craftwork that happens with thousands of tries.\n\
+weaving thread through it with unsettling fluidity. The\n\
+kind of craftwork that happens with thousands of tries.\n\
 All the while, the man controlling the needle smiled\n\
 softly, the face behind it focusing on the weaving and\n\
 winding of thread, smiling despite my wife's \n\

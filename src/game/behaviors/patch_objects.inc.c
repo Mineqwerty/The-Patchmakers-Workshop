@@ -1433,7 +1433,6 @@ void bhv_extension_block_init(void) {
 
     if (o->oBehParams2ndByte == 1) {
         o->oAction = EXT_BLOCK_ACT_EXTEND_SIDE;
-        cur_obj_set_model(MODEL_EXTENSION_BLOCK_SIDE);
         obj_set_collision_data(o, extension_block_side_collision);
     }
     else {
@@ -1450,6 +1449,16 @@ void bhv_extension_block_init(void) {
 }
 
 void bhv_extension_block_loop(void) {
+
+    if (o->oTimer == 1) {
+        if (o->oBehParams2ndByte == 1) {
+            cur_obj_set_model(MODEL_EXTENSION_BLOCK_SIDE);
+        }
+        else {
+            cur_obj_set_model(MODEL_EXTENSION_BLOCK);
+        }
+    }
+
     switch (o->oAction) {
         case EXT_BLOCK_ACT_EXTEND_UP:
             obj_scale_xyz(o, 1.0f, CLAMP(3.0f * sins(o->oTimer * 0x222), 0.1f, 3.0f), 1.0f);

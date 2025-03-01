@@ -1021,7 +1021,7 @@ s32 act_marine_patch_waterfall(struct MarioState *m) {
     if (m->wall) {
         Vec3f normal;
         get_surface_normal(normal, m->wall);
-        m->faceAngle[1] = atan2s(normal[2], normal[1]) + 0x8000;
+        m->faceAngle[1] = atan2s(normal[2], normal[0]) + 0x8000;
     }
 
     m->marioObj->header.gfx.angle[0] = -0x4000;
@@ -1255,7 +1255,7 @@ s32 act_ground_pound(struct MarioState *m) {
                         cur_obj_spawn_particles(&MistIce);
                     }
                     else if (m->equippedPatch == PATCH_EXTENSION && m->floor && m->floor->object == NULL) {
-                        gMarioState->patchChildObj = spawn_object_relative(0, 0, -10, 0, m->marioObj, MODEL_EXTENSION_BLOCK, bhvExtensionBlock);
+                        gMarioState->patchChildObj = spawn_object_relative(0, 0, -10, 0, m->marioObj, MODEL_NONE, bhvExtensionBlock);
                     }
                     else {
                         m->particleFlags |= PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR;

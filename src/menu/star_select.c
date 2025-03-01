@@ -239,7 +239,7 @@ void bhv_act_selector_init(void) {
     //note: disable menu scrolling when using this
     //spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvCoordinateController, -2000.0f, 50, -7500.0f, 0, 0, 0);
     spawn_stage_diorama();
-    render_100_coin_star(stars);
+    //render_100_coin_star(stars);
 }
 
 void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
@@ -466,6 +466,27 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
                 case 4: coords[0] = -7616.0f; coords[1] = 470.0f; coords[2] = -2369.0f;
                 break;
                 case 5: coords[0] = 4768.0f; coords[1] = 710.0f; coords[2] = -13489.0f;
+                break;
+
+
+                default: vec3f_set(coords, -2000.0f, 2500.0f, -7500.0f);
+                break;
+            }
+        break;
+
+        case LEVEL_TTM:
+            switch (starIndex) {
+                case 0: coords[0] = -2027.0f; coords[1] = 0.0f; coords[2] = -3326.0f;
+                break;
+                case 1: coords[0] = -4623.0f; coords[1] = 0.0f; coords[2] = -5626.0f;
+                break;
+                case 2: coords[0] = -6708.0f; coords[1] = 0.0f; coords[2] = -8202.0f;
+                break;
+                case 3: coords[0] = 2779.0f; coords[1] = 0.0f; coords[2] = -8319.0f;
+                break;
+                case 4: coords[0] = 475.0f; coords[1] = 0.0f; coords[2] = -5664.0f;
+                break;
+                case 5: coords[0] = -2000.0f; coords[1] = 0.0f; coords[2] = -9694.0f;
                 break;
 
 

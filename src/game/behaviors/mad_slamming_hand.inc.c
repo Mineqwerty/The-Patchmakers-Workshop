@@ -65,6 +65,7 @@ void bhv_mad_slamming_hand_loop(void) {
                     o->oVelY = 90.0f;
                     o->oForwardVel = 28.0f;
                     o->oAction = 3;
+                    cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
                 }
             }
             load_object_collision_model();
@@ -76,6 +77,7 @@ void bhv_mad_slamming_hand_loop(void) {
                     o->oVelY = 150.0f;
                     o->oForwardVel = 28.0f;
                 o->oAction = 3;
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
             }
         break;
         case 3:
@@ -102,6 +104,7 @@ void bhv_mad_slamming_hand_loop(void) {
                 o->oPosY = fHeight;
                     o->oAction = 0;
                     cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                    cur_obj_play_sound_2(SOUND_GENERAL_POUND_ROCK);
                     o->oPosY = o->oFloorHeight;
             }
         break;

@@ -8937,6 +8937,28 @@ sound_ref .sound_crane_long
 sound_ref .sound_page_turn
 sound_ref .sound_memory_end
 sound_ref .sound_wood_thunk
+sound_ref .sound_rope_tighten
+sound_ref .sound_rope_snap
+
+.sound_rope_snap:
+chan_setbank 12
+chan_setinstr 31
+chan_setlayer 0, .layer_rope_snap
+chan_end
+
+.layer_rope_snap:
+layer_note1 39, 0x20, 127
+layer_end
+
+.sound_rope_tighten:
+chan_setbank 12
+chan_setinstr 30
+chan_setlayer 0, .layer_rope_tighten
+chan_end
+
+.layer_rope_tighten:
+layer_note1 39, 0x16, 127
+layer_end
 
 .sound_wood_thunk:
 chan_setbank 12

@@ -3823,10 +3823,10 @@ void update_star_select_camera(struct Camera *c, Vec3f rotateCoords) {
         c->camTimer += 1;
 
     if (gCurrLevelNum == LEVEL_TTM) {
-        gLakituState.pos[0] = -2300;
+        gLakituState.pos[0] = -2000;
         gLakituState.pos[1] = 6000;
         gLakituState.pos[2] = 6500;
-        gLakituState.focus[0] = -2300;
+        gLakituState.focus[0] = -2000;
         gLakituState.focus[1] = 3100;
         gLakituState.focus[2] = 0;
         return;
