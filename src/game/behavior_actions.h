@@ -648,6 +648,8 @@ void bhv_torch_holder_loop(void);
 
 void bhv_stationary_flame_loop(void);
 
+void bhv_room_flame_loop(void);
+
 void bhv_fire_smoke_spawner_loop(void);
 void bhv_fire_smoke_init(void);
 void bhv_fire_smoke_loop(void);

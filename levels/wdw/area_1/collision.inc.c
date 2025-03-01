@@ -1,6 +1,7 @@
 Gfx wdw_area_1_collision_f3dlite_material_002_layer_5[] = {
 	gsSPGeometryMode(0, G_FOG),
-	gsSPSetLights1(wdw_dl_f3dlite_material_002_layer5_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, PRIMITIVE),
 	gsDPSetFogColor(181, 194, 205, 255),

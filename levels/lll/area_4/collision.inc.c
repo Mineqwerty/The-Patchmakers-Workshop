@@ -129,7 +129,8 @@ Gfx lll_area_4_collision_mat_revert_lll_dl_f3dlite_material_035[] = {
 };
 
 Gfx lll_area_4_collision_death_layer_1[] = {
-	gsSPSetLights1(lll_dl_death_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -196,7 +197,8 @@ Gfx lll_area_4_collision_mat_revert_lll_dl_spectral_sucky_layer5[] = {
 };
 
 Gfx lll_area_4_collision_f3dlite_material_045_layer_1[] = {
-	gsSPSetLights1(lll_dl_f3dlite_material_045_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

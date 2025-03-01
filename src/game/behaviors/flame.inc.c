@@ -1,5 +1,7 @@
 // flame.inc.c
 
+#include "src/game/object_list_processor.h"
+
 void bhv_moving_flame_loop(void) {
     if (GET_BPARAM2(o->oBehParams) == MOVING_FLAME_BP_1FRAME) {
         if (o->oTimer > 0) {
@@ -59,5 +61,13 @@ void bhv_stationary_flame_loop(void) {
     }
     else {
         cur_obj_scale(7.0f);
+    }
+}
+
+void bhv_room_flame_loop(void) {
+    if (gMarioCurrentRoom == o->oRoom) {
+        if (gGlobalTimer % 2 == 0) {
+            o->oAnimState++;
+        }
     }
 }

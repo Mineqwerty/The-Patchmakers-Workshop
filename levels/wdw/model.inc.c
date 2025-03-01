@@ -1,6 +1,3 @@
-Lights1 wdw_dl_f3dlite_material_002_layer5_area1_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
 
 Gfx wdw_dl_destroyedconc_i8_aligner[] = {gsSPEndDisplayList()};
 u8 wdw_dl_destroyedconc_i8[] = {
@@ -33329,7 +33326,8 @@ Gfx mat_revert_wdw_dl_f3dlite_material_003_layer1_area1[] = {
 
 Gfx mat_wdw_dl_f3dlite_material_002_layer5_area1[] = {
 	gsSPGeometryMode(0, G_FOG),
-	gsSPSetLights1(wdw_dl_f3dlite_material_002_layer5_area1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, PRIMITIVE),
 	gsDPSetFogColor(181, 194, 205, 255),
