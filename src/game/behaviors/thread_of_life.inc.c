@@ -26,7 +26,7 @@ void bhv_thread_of_life_loop(void) {
         }
     }
 
-    if (o->oTimer > 2 && gCurCutscene == -1) {
+    if (o->oTimer > 10 && gCurCutscene == -1) {
         obj_mark_for_deletion(o);
     }
 

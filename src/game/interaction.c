@@ -1804,6 +1804,10 @@ u32 interact_pole(struct MarioState *m, UNUSED u32 interactType, struct Object *
             // If mario is beneath the pole, clamp mario's position to the down-offset of the pole (bottom)
             marioObj->oMarioPolePos = ((m->pos[1] - obj->oPosY) < 0) ? -obj->hitboxDownOffset : (m->pos[1] - obj->oPosY);
 
+            if (gCurrLevelNum == LEVEL_LLL && GET_BPARAM3(obj->oBehParams) == 2 && gMarioState->equippedPatch != PATCH_MIASMA) {
+                return set_mario_action(m, ACT_BURNING_FALL, 0);
+            }
+
             if (lowSpeed) {
                 return set_mario_action(m, ACT_GRAB_POLE_SLOW, 0);
             }

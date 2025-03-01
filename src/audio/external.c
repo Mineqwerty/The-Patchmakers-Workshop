@@ -2322,7 +2322,7 @@ void play_dialog_sound(u8 dialogID) {
     if (dialogID == DIALOG_JOURNAL_HVH
      || dialogID == DIALOG_JOURNAL_VTW
      || dialogID == DIALOG_012) {
-        play_puzzle_jingle();
+        //play_puzzle_jingle();
     }
 }
 

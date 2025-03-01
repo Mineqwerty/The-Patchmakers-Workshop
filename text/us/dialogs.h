@@ -2294,6 +2294,7 @@ you to a place called Violet Twilit Woods.\n\
 @7F60B4FFWhen this was first made, I spent hours looking at\n\
 it while waiting for The Patchmaker to return.\n\
 That night, I had a very strange dream...\n\
+\n\
 @7F60B4FFI was walking amidst a purple forest,\n\
 a summer breeze in my hair... The sound of crickets\n\
 were a percussion to the melody of the wind, and as I\n\
