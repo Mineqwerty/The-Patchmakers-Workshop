@@ -1,10 +1,4 @@
-Lights1 ssl_dl_f3dlite_material_022_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 ssl_dl_f3dlite_material_010_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx ssl_dl_violetwater_i4_aligner[] = {gsSPEndDisplayList()};
 u8 ssl_dl_violetwater_i4[] = {
@@ -27680,7 +27674,8 @@ Gfx mat_revert_ssl_dl_f3dlite_material_020[] = {
 };
 
 Gfx mat_ssl_dl_f3dlite_material_022[] = {
-	gsSPSetLights1(ssl_dl_f3dlite_material_022_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -27971,7 +27966,8 @@ Gfx mat_revert_ssl_dl_safepurp[] = {
 };
 
 Gfx mat_ssl_dl_f3dlite_material_010[] = {
-	gsSPSetLights1(ssl_dl_f3dlite_material_010_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

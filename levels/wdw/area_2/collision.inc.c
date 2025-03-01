@@ -1,6 +1,5 @@
 Gfx wdw_area_2_collision_garage_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 175, 185, 255),
@@ -18,8 +17,7 @@ Gfx wdw_area_2_collision_garage_layer_1[] = {
 };
 
 Gfx wdw_area_2_collision_mat_revert_wdw_dl_garage_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -28,8 +26,7 @@ Gfx wdw_area_2_collision_mat_revert_wdw_dl_garage_layer1_area2[] = {
 };
 
 Gfx wdw_area_2_collision_rubblewal_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 175, 185, 255),
@@ -47,8 +44,7 @@ Gfx wdw_area_2_collision_rubblewal_layer_1[] = {
 };
 
 Gfx wdw_area_2_collision_mat_revert_wdw_dl_rubblewal_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -57,8 +53,7 @@ Gfx wdw_area_2_collision_mat_revert_wdw_dl_rubblewal_layer1_area2[] = {
 };
 
 Gfx wdw_area_2_collision_building_001_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 175, 185, 255),
@@ -76,8 +71,7 @@ Gfx wdw_area_2_collision_building_001_layer_1[] = {
 };
 
 Gfx wdw_area_2_collision_mat_revert_wdw_dl_building_001_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -86,8 +80,7 @@ Gfx wdw_area_2_collision_mat_revert_wdw_dl_building_001_layer1_area2[] = {
 };
 
 Gfx wdw_area_2_collision_stackedmaterial_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 175, 185, 255),
@@ -105,8 +98,7 @@ Gfx wdw_area_2_collision_stackedmaterial_layer_1[] = {
 };
 
 Gfx wdw_area_2_collision_mat_revert_wdw_dl_stackedmaterial_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -115,8 +107,7 @@ Gfx wdw_area_2_collision_mat_revert_wdw_dl_stackedmaterial_layer1_area2[] = {
 };
 
 Gfx wdw_area_2_collision_stackedmaterial_001_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(164, 175, 185, 255),
@@ -134,8 +125,7 @@ Gfx wdw_area_2_collision_stackedmaterial_001_layer_1[] = {
 };
 
 Gfx wdw_area_2_collision_mat_revert_wdw_dl_stackedmaterial_001_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),

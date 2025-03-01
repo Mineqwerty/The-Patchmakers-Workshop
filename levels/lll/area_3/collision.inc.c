@@ -1,5 +1,5 @@
 Gfx lll_area_3_collision_f3dlite_material_040_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -17,7 +17,7 @@ Gfx lll_area_3_collision_f3dlite_material_040_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_040[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -25,7 +25,7 @@ Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_040[] = {
 };
 
 Gfx lll_area_3_collision_f3dlite_material_034_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -39,14 +39,14 @@ Gfx lll_area_3_collision_f3dlite_material_034_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_034[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx lll_area_3_collision_f3dlite_material_039_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -64,7 +64,7 @@ Gfx lll_area_3_collision_f3dlite_material_039_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_039[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -72,7 +72,7 @@ Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_039[] = {
 };
 
 Gfx lll_area_3_collision_f3dlite_material_035_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -90,7 +90,7 @@ Gfx lll_area_3_collision_f3dlite_material_035_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_035[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -98,7 +98,7 @@ Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_035[] = {
 };
 
 Gfx lll_area_3_collision_f3dlite_material_036_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -116,7 +116,7 @@ Gfx lll_area_3_collision_f3dlite_material_036_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_036[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -124,7 +124,7 @@ Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_036[] = {
 };
 
 Gfx lll_area_3_collision_f3dlite_material_037_layer_1[] = {
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -138,14 +138,14 @@ Gfx lll_area_3_collision_f3dlite_material_037_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_037[] = {
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx lll_area_3_collision_f3dlite_material_038_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -163,7 +163,7 @@ Gfx lll_area_3_collision_f3dlite_material_038_layer_1[] = {
 };
 
 Gfx lll_area_3_collision_mat_revert_lll_dl_f3dlite_material_038[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),

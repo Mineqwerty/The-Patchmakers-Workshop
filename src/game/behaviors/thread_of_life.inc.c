@@ -21,12 +21,16 @@ void bhv_thread_of_life_loop(void) {
         else if (gPageNum < 7) {
             cur_obj_scale(1.0f);
         }
-        else {
+        else if (gCurrLevelNum == LEVEL_BOWSER_1) {
+            o->oAction = 1;
+        }
+
+        if (gCurrLevelNum == LEVEL_BOWSER_2 && cExternalCutsceneTrigger >= 2 && o->oTimer > 3) {
             o->oAction = 1;
         }
     }
 
-    if (o->oTimer > 10 && gCurCutscene == -1) {
+    if (o->oTimer > 30 && gCurCutscene == -1) {
         obj_mark_for_deletion(o);
     }
 

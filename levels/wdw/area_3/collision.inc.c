@@ -1,5 +1,5 @@
 Gfx wdw_area_3_collision_nonfog_snow_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, TEXEL1, SHADE_ALPHA, TEXEL1, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -20,7 +20,7 @@ Gfx wdw_area_3_collision_nonfog_snow_layer_1[] = {
 };
 
 Gfx wdw_area_3_collision_mat_revert_wdw_dl_nonfog_snow_layer1[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -29,8 +29,7 @@ Gfx wdw_area_3_collision_mat_revert_wdw_dl_nonfog_snow_layer1[] = {
 };
 
 Gfx wdw_area_3_collision_building_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(181, 194, 205, 255),
@@ -48,8 +47,7 @@ Gfx wdw_area_3_collision_building_layer_1[] = {
 };
 
 Gfx wdw_area_3_collision_mat_revert_wdw_dl_building_layer1_area3[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -58,7 +56,7 @@ Gfx wdw_area_3_collision_mat_revert_wdw_dl_building_layer1_area3[] = {
 };
 
 Gfx wdw_area_3_collision_f3dlite_material_008_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -76,7 +74,7 @@ Gfx wdw_area_3_collision_f3dlite_material_008_layer_1[] = {
 };
 
 Gfx wdw_area_3_collision_mat_revert_wdw_dl_f3dlite_material_008[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -84,7 +82,7 @@ Gfx wdw_area_3_collision_mat_revert_wdw_dl_f3dlite_material_008[] = {
 };
 
 Gfx wdw_area_3_collision_fadetodirt_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, TEXEL1, SHADE_ALPHA, TEXEL1, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -105,7 +103,7 @@ Gfx wdw_area_3_collision_fadetodirt_layer_1[] = {
 };
 
 Gfx wdw_area_3_collision_mat_revert_wdw_dl_fadetodirt_layer1[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
