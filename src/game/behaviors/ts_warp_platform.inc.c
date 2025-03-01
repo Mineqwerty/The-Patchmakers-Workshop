@@ -1,5 +1,7 @@
 void bhv_ts_warp_platform_init(void) {
     o->parentObj = cur_obj_find_object_with_bparam_2nd_byte(bhvStarUnlockPlatform, 7);
+    o->oAction = 0;
+    cur_obj_hide();
 
     if (save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_TS) {
         o->oAction = 1;

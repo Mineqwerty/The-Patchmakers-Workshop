@@ -1719,6 +1719,10 @@ void bhv_skybridge_ring_loop(void) {
         break;
     }
 
+    if (gMarioState->equippedPatch != PATCH_SKYBRIDGE) {
+        obj_mark_for_deletion(o);
+    }
+
     
     SET_BPARAM4(o->oPrimColorParams, 255 - o->oSkybridgeRingFade);
 }

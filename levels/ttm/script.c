@@ -54,6 +54,7 @@ const LevelScript level_ttm_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_TS_PANEL_TOUCH, ts_panel_touch_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TS_PANEL_SIGHT, ts_panel_sight_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TS_PANEL_TASTE, ts_panel_taste_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_TS_FINAL_DOOR, ts_final_door_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN, shrine_shape_1_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+1, shrine_shape_2_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_SHRINE_SHAPE_BEGIN+2, shrine_shape_3_geo), 

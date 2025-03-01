@@ -764,6 +764,7 @@
 //City of Reconstructed Ruin
 #define MODEL_RED_CONSTRUCTION_LIGHT                  0x100
 #define MODEL_POWER_BREAKER                  0x101
+#define MODEL_LOWER_CITY_GATE                  0x102
 
 
 //Timeless Shrine

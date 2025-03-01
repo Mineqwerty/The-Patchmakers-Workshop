@@ -1862,7 +1862,7 @@ void handle_special_dialog_text(s16 dialogID) { // dialog ID tables, in order
     // Koopa the Quick (BoB), Koopa the Quick (THI), Penguin Race, Fat Penguin Race (120 stars)
     s16 dialogRaceSound[] = { DIALOG_JOURNAL_RDR, DIALOG_JOURNAL_CLC, DIALOG_055, DIALOG_056             };
     // Red Switch, Green Switch, Blue Switch, 100 coins star, Bowser Red Coin Star
-    s16 dialogStarSound[] = { DIALOG_JOURNAL_HVH, DIALOG_JOURNAL_VTW, DIALOG_012, DIALOG_HUNDRED_COINS, DIALOG_SECRET_STAR };
+    s16 dialogStarSound[] = { DIALOG_JOURNAL_HVH, DIALOG_JOURNAL_VTW, DIALOG_OPEN_LOCKBOX, DIALOG_HUNDRED_COINS, DIALOG_SECRET_STAR };
     // King Bob-omb (Start), Whomp (Defeated), King Bob-omb (Defeated, missing in JP), Eyerock (Defeated), Wiggler (Defeated)
     s16 dialogBossStop[]  = { DIALOG_JOURNAL_EA, DIALOG_115, DIALOG_116, DIALOG_118, DIALOG_152 };
     s16 i;
@@ -3834,6 +3834,7 @@ void render_patch_challenge_menu() {
         
     
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    
 }
 
 s16 lastSelectedSide;

@@ -34412,7 +34412,7 @@ Gfx mat_revert_wdw_dl_decalice[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_wdw_dl_f3dlite_material[] = {
+Gfx mat_wdw_dl_f3dlite_material_009[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
@@ -34421,7 +34421,7 @@ Gfx mat_wdw_dl_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_wdw_dl_f3dlite_material[] = {
+Gfx mat_revert_wdw_dl_f3dlite_material_009[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -34864,9 +34864,9 @@ Gfx wdw_dl_Plane_014_mesh_layer_1[] = {
 	gsSPVertex(wdw_dl_Plane_014_mesh_layer_1_vtx_cull + 0, 8, 0),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPCullDisplayList(0, 7),
-	gsSPDisplayList(mat_wdw_dl_f3dlite_material),
+	gsSPDisplayList(mat_wdw_dl_f3dlite_material_009),
 	gsSPDisplayList(wdw_dl_Plane_014_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_wdw_dl_f3dlite_material),
+	gsSPDisplayList(mat_revert_wdw_dl_f3dlite_material_009),
 	gsSPEndDisplayList(),
 };
 

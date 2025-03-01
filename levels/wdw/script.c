@@ -40,6 +40,7 @@ const LevelScript level_wdw_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, corr_skybox_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_RED_CONSTRUCTION_LIGHT, red_construction_light_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_POWER_BREAKER, power_breaker_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_LOWER_CITY_GATE, lower_city_gate_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -57,7 +58,7 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_NONE, -297, -75, -239, 0, 0, 0, 0x00000000, bhvFarawayBeepManager),
 		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, -7532, 393, 8688, 0, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
 		OBJECT_WITH_ACTS(MODEL_NONE, 1886, 872, 4738, 0, 0, 0, 0x00000000, bhvPowerBreakerController, ACT_5 | ACT_6),
-		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, -7358, 757, -9900, 0, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
+		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, -7170, 757, -9642, 0, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
 		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, 1100, 1765, -6577, -59, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
 		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, 4825, 2130, -323, 99, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
 		OBJECT_WITH_ACTS(MODEL_POWER_BREAKER, 10007, 1192, -6848, 0, 0, 0, 0x00000000, bhvPowerBreaker, ACT_5 | ACT_6),
@@ -89,6 +90,7 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_NONE, 751, 1089, 10794, 0, 89, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvCorrWindController),
 		OBJECT(MODEL_NONE, -2057, 3295, 521, 0, -17, 0, (239 << 16), bhvSpinAirborneWarp),
+		OBJECT_WITH_ACTS(MODEL_LOWER_CITY_GATE, 9520, -1, -9780, 0, 0, 0, 0x00000000, bhvLowerCityGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 7182, 1116, 8681, 0, -90, 0, (34 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_FOG_RED_COIN, -5905, 2130, -9539, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_FOG_RED_COIN, -8483, 2568, -12252, 0, 0, 0, 0x00000000, bhvRedCoin),

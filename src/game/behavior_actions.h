@@ -1214,3 +1214,5 @@ void bhv_pm_credits_manager_init(void);
 void bhv_pm_credits_manager_loop(void);
 void bhv_escaping_souls_init(void);
 void bhv_escaping_souls_loop(void);
+void bhv_lower_city_gate_init(void);
+void bhv_lower_city_gate_loop(void);

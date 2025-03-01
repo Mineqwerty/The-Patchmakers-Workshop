@@ -182,7 +182,7 @@ Spielstand speichern?\n\
 \n\
 //Ja!////Nein!"))
 
-DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OPEN_LOCKBOX, 1, 4, 30, 200, _("\
 Du hast den blauen\n\
 Schalter aktiviert.\n\
 Ab jetzt kannst Du die\n\

@@ -915,18 +915,25 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                 if (gStarModelLastCollected == MODEL_BOWSER_KEY) {
                     obj_set_model(celebStar, gStarModelLastCollected);
                 }
-#endif
+#endif          
+
+                if (gCurrLevelNum != LEVEL_TTM) {
                 disable_background_sound();
+                    }
                 //! TODO: Is this check necessary? Both seem to do the exact same thing.
                 if (m->actionArg & 1) {
                     // No exit
-                    play_course_clear(obj_has_model(celebStar, MODEL_BOWSER_KEY));
+                    if (gCurrLevelNum != LEVEL_TTM) {
+                        play_course_clear(obj_has_model(celebStar, MODEL_BOWSER_KEY));
+                    }
                 } else {
                     // Exit
                     if (obj_has_model(celebStar, MODEL_BOWSER_KEY)) {
                         play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
                     } else {
+                        if (gCurrLevelNum != LEVEL_TTM) {
                         play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
+                        }
                     }
                 }
                 break;
@@ -940,13 +947,15 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                     level_trigger_warp(m, WARP_OP_STAR_EXIT);
                 } else {
                     enable_time_stop();
-                    create_dialog_box(gLastCompletedStarNum == 7 ? DIALOG_HUNDRED_COINS : DIALOG_SECRET_STAR);
+                    if (gCurrLevelNum != LEVEL_TTM) {
+                        create_dialog_box(gLastCompletedStarNum == 7 ? DIALOG_HUNDRED_COINS : DIALOG_SECRET_STAR);
+                    }
                     m->actionState = ACT_STATE_STAR_DANCE_DO_SAVE;
                 }
                 break;
         }
-    } else if (m->actionState == ACT_STATE_STAR_DANCE_DO_SAVE && gDialogResponse != DIALOG_RESPONSE_NONE) {
-        if (gDialogResponse == DIALOG_RESPONSE_YES) {
+    } else if (m->actionState == ACT_STATE_STAR_DANCE_DO_SAVE && (gDialogResponse != DIALOG_RESPONSE_NONE || gCurrLevelNum == LEVEL_TTM)) {
+        if (gDialogResponse == DIALOG_RESPONSE_YES || gCurrLevelNum == LEVEL_TTM) {
             save_file_do_save(gCurrSaveFileNum - 1);
         }
         m->actionState = ACT_STATE_STAR_DANCE_RETURN;

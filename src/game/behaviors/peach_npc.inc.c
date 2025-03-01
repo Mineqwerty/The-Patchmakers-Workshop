@@ -140,6 +140,7 @@ void peach_npc_act_enter_brink(void) {
             o->oPosZ = -4460;
             cur_obj_init_animation(2);
             o->oFaceAngleYaw = -0x7500;
+            cur_obj_unhide();
             o->oSubAction++;
         break;
     }
@@ -206,6 +207,9 @@ void bhv_peach_npc_loop(void) {
         o->oAction = PEACH_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE;
     }
     else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
+        if (o->oAction != PEACH_NPC_ACT_ENTER_BRINK) {
+            o->oSubAction = 0;
+        }
         o->oAction = PEACH_NPC_ACT_ENTER_BRINK;
     }
     else if (gCurCutscene == CUTSCENE_EVENT_POST_MANTLE) {

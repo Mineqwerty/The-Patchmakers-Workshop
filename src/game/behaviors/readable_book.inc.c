@@ -80,7 +80,7 @@ void bhv_readable_book_loop(void) {
             }
 
             if (gCurrLevelNum != LEVEL_CASTLE) {
-                dialog = DIALOG_JOURNAL_TTC - 1 + courseToOrderedIndex[gCurrCourseNum];
+                dialog = courseToOrderedIndex[gCurrCourseNum] >= 9 ? (DIALOG_JOURNAL_TFP - 1 + courseToOrderedIndex[gCurrCourseNum-8]) : (DIALOG_JOURNAL_TTC - 1 + courseToOrderedIndex[gCurrCourseNum]);
             }
             
             if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_DOWN) == MARIO_DIALOG_STATUS_SPEAK 

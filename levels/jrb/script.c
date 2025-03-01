@@ -84,6 +84,7 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -265,7 +266,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GRAPPLE_STONE, -2364, 2393, 3242, 0, -90, 0, (200 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 2924, 6798, -2468, 0, -180, 0, (150 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GEAR, -2069, 493, -2564, 0, -180, 0, (1 << 24), bhvStoneGear),
-		OBJECT(MODEL_STAR, -643, 3985, -4832, 0, 0, 0, (12 << 24), bhvStar),
+		OBJECT(MODEL_STAR, -643, 3985, -4832, 0, 0, 0, (13 << 24), bhvStar),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),

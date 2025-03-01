@@ -226,7 +226,7 @@ Voulez-vous sauvegarder?\n\
 \n\
 //Oui////Non."))
 
-DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OPEN_LOCKBOX, 1, 4, 30, 200, _("\
 Vous venez d'actionner\n\
 l'interrupteur des\n\
 casquettes d'invisibilité.\n\

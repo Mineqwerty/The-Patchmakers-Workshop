@@ -42,3 +42,6 @@
 
 #include "levels/wdw/red_construction_light/model.inc.c"
 #include "levels/wdw/power_breaker/model.inc.c"
+
+#include "levels/wdw/lower_city_gate/collision.inc.c"
+#include "levels/wdw/lower_city_gate/model.inc.c"

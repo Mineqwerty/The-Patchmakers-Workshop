@@ -174,7 +174,7 @@ DEFINE_DIALOG(DIALOG_JOURNAL_VTW, 1, 3, 30, 200, _("\
 \n\
 　　　はい　　　いいえ"))
 
-DEFINE_DIALOG(DIALOG_012, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_OPEN_LOCKBOX, 1, 3, 30, 200, _("\
 すがたをけせる　まほうの\n\
 『とうめいのぼうし』の\n\
 スイッチを　ふみました。\n\

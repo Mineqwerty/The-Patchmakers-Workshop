@@ -166,7 +166,7 @@ void spawn_arena_star_stc(f32 x, f32 y, f32 z) {
 void spawn_ring_challenge_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
     starObj = spawn_star(starObj, 9490, 2070, 4620);
-    starObj->oBehParams = 0x02000000;
+    starObj->oBehParams = 0x03000000;
 }
 
 void spawn_water_ring_challenge_star(f32 x, f32 y, f32 z) {

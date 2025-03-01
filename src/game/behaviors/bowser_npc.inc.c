@@ -284,6 +284,7 @@ void bowser_npc_act_enter_brink(void) {
             cur_obj_init_animation(12);
             o->oSubAction++;
             o->oFaceAngleYaw = -0x7000;
+            cur_obj_unhide();
         break;
     }
 }
@@ -390,6 +391,9 @@ void bhv_bowser_npc_loop(void) {
         o->oAction = BOWSER_NPC_ACT_ENTER_THIRD_HUB_CUTSCENE;
     }
     else if (gCurCutscene == CUTSCENE_EVENT_ENTER_BRINK) {
+        if (o->oAction != BOWSER_NPC_ACT_ENTER_BRINK) {
+            o->oSubAction = 0;
+        }
         o->oAction = BOWSER_NPC_ACT_ENTER_BRINK;
     }
     else if (gCurCutscene == CUTSCENE_EVENT_POST_MANTLE) {

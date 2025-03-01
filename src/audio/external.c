@@ -1637,7 +1637,7 @@ static void seq_player_play_sequence(u8 player, u8 seqId, u16 arg2) {
     u8 targetVolume;
     u8 i;
 
-    save_file_set_collected_song(gCurrSaveFileNum-1, seqId);
+    save_file_set_collected_song(gCurrSaveFileNum-1, CLAMP(seqId, 0, 127));
 
     if (player == SEQ_PLAYER_LEVEL) {
         sCurrentBackgroundMusicSeqId = seqId & SEQ_BASE_ID;
@@ -2321,7 +2321,7 @@ void play_dialog_sound(u8 dialogID) {
     // "You've stepped on the (Wing|Metal|Vanish) Cap Switch"
     if (dialogID == DIALOG_JOURNAL_HVH
      || dialogID == DIALOG_JOURNAL_VTW
-     || dialogID == DIALOG_012) {
+     || dialogID == DIALOG_OPEN_LOCKBOX) {
         //play_puzzle_jingle();
     }
 }

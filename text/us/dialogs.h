@@ -192,8 +192,9 @@ I... promised Sewnia, after all.\n\
 Next time, I'll warp somewhere that\n\
 WILL give me this knowledge."))
 
-DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
-SS"))
+DEFINE_DIALOG(DIALOG_OPEN_LOCKBOX, 1, 4, 30, 200, _("\
+@FEFEFEFFEnter the lockbox?\n\
+//Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_HUNDRED_COINS, 1, 5, 30, 200, _("\
 You obtained the 100 coin star!\n\
@@ -206,10 +207,10 @@ With another mystery uncovered,\n\
 it's time to keep searching!"))
 
 DEFINE_DIALOG(DIALOG_OBELISK, 1, 4, 30, 200, _("\
-Activate the Obelisk? \n\
+@FEFEFEFFActivate the Obelisk? \n\
 //Yes    //No      "))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TFP, 0b100, 3, 30, 200, _("\
 @FEFEFEFFI've made a horrible mistake.\n\
 I'm lost. Terribly lost.\n\
 I know not how long it has been.\n\
@@ -233,7 +234,7 @@ DEFINE_DIALOG(DIALOG_JOURNAL_EA, 1, 3, 30, 200, _("\
 The only parts that can be made out contain words\n\
 of spite and hatred, with little coherence..."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_CORR, 0b100, 3, 30, 200, _("\
 @FEFEFEFFThe snow helps me feel as though I am in my\n\
 own flesh again... It's a nice feeling.\n\
 A nice feeling. Yes, it is.\n\
@@ -259,7 +260,7 @@ my entire life would be fixed. Healed.\n\
 once I find the secrets to life,\n\
 things can just go back to normal."))
 
-DEFINE_DIALOG(DIALOG_JOURNAL_TS, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_JOURNAL_TS, 0b100, 3, 30, 200, _("\
 @FEFEFEFFThey're here. The secrets are here.\n\
 I know not if this realm appeared from my pleas,\n\
 or if it always existed, but life itself is here.\n\

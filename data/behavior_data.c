@@ -9309,9 +9309,10 @@ const BehaviorScript bhvTsDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
     LOAD_COLLISION_DATA(ts_final_door_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_ts_door_init),
     BEGIN_LOOP(),
-    CALL_NATIVE(load_object_collision_model),
+        CALL_NATIVE(load_object_collision_model),
         CALL_NATIVE(bhv_ts_door_loop),
     END_LOOP(),
 };
@@ -9352,5 +9353,17 @@ const BehaviorScript bhvEscapingSouls[] = {
     CALL_NATIVE(bhv_escaping_souls_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_escaping_souls_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvLowerCityGate[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(lower_city_gate_collision),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_lower_city_gate_init),
+    CALL_NATIVE(load_object_static_model),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_lower_city_gate_loop),
     END_LOOP(),
 };

@@ -28,3 +28,5 @@
 
 #include "levels/wdw/red_construction_light/geo.inc.c"
 #include "levels/wdw/power_breaker/geo.inc.c"
+
+#include "levels/wdw/lower_city_gate/geo.inc.c"
