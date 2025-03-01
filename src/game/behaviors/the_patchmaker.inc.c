@@ -183,6 +183,10 @@ void patchmaker_transition_to_next_action() {
         break;
     }
 
+    if (gMarioState->health <= 255) {
+        nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+    }
+
     o->oAction = nextAction;
     o->oSubAction = 0;
 

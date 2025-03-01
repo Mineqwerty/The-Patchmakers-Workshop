@@ -1001,6 +1001,8 @@ void sewnia_act_beginning_cutscene_at_course_entrance(void) {
 
             if (o->oInteractStatus == INT_STATUS_INTERACTED) {
                 o->oInteractStatus = 0;
+                o->oInteractType = INTERACT_PUSH_OUT;
+                
                 if (o->oSewniaApproachSpecificNode == 13) {
                     create_dialog_box(30);
                     o->oSubAction = 1;
@@ -1024,6 +1026,7 @@ void sewnia_act_beginning_cutscene_at_course_entrance(void) {
                 }
                 else {
                     o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+                    o->oInteractType = INTERACT_TEXT;
                 }
                 
             }
@@ -1280,7 +1283,7 @@ void bhv_sewnia_init(void) {
 
     o->oSewniaHasSpawnedSpeechBubble = 0;
 
-    if (sSourceWarpNodeId == 240 || sSourceWarpNodeId == 241) {
+    if ((sSourceWarpNodeId == 240 || sSourceWarpNodeId == 241) && gCutsceneGameState == CUTSCENE_GAME_STATE_DEFAULT) {
         o->oAction = SEWNIA_ACT_START_AT_COURSE;
     }
     else {
@@ -1433,7 +1436,11 @@ void sewnia_act_enter_second_hub(void) {
     switch (o->oSubAction) {
         case 0:
             cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
+            cur_obj_unhide();
             o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            o->oPosX = -4586;
+            o->oPosY = 100;
+            o->oPosZ = 1106;
             if (cExternalCutsceneTrigger >= 1) {
                 o->oSubAction = 1;
                 o->oTimer = 0;

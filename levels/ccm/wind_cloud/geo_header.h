@@ -6,4 +6,3 @@ extern Gfx wind_cloud_Cube_008_mesh_layer_1_tri_0[];
 extern Gfx mat_wind_cloud_envcloud_001_layer1[];
 extern Gfx mat_revert_wind_cloud_envcloud_001_layer1[];
 extern Gfx wind_cloud_Cube_008_mesh_layer_1[];
-extern Gfx wind_cloud_material_revert_render_settings[];

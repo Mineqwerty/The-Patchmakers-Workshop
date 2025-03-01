@@ -50,21 +50,27 @@ static struct ObjectHitbox sHaloHitbox = {
 void bhv_ice_spikes_init(void) {
     obj_scale_xyz(o, 0, 0, 0);
     o->oFaceAngleYaw = 0x2000;
+    o->oF4 = 0;
 }
 
 void bhv_ice_spikes_loop(void) {
-    obj_set_hitbox(o, &sIceSpikesHitbox);
-    for (int i = 0; i < o->numCollidedObjs; i++) {
-        struct Object *other = o->collidedObjs[i];
 
-        if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
-            // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
-            // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-            attack_object(other, 8, 4);
+    
+        obj_set_hitbox(o, &sIceSpikesHitbox);
+        if (o->oF4 == 0) {
+        for (int i = 0; i < o->numCollidedObjs; i++) {
+            struct Object *other = o->collidedObjs[i];
+
+            if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
+                // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
+                // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
+                attack_object(other, 8, 4);
+                o->oF4 = 1;
+            }
         }
     }
 
-    o->oInteractStatus = 0;
+    
 
     if (o->oTimer < 5) {
         if ((gMarioState->action != ACT_GROUND_POUND_LAND)) {
@@ -688,7 +694,7 @@ void bhv_halo_loop(void) {
                 o->oHaloCapturedObject =
                     spawn_object_relative(0, 0, 0, 0, o, MODEL_YELLOW_COIN_NO_SHADOW, bhvCoinWithValue);
                 gMarioState->haloCaptureType = 2;
-                o->oHaloCapturedObject->oHaloCoinValue += 1;
+                o->oHaloCapturedObject->oHaloCoinValue += nearCoin->oDamageOrCoinValue;
                 spawn_object(nearCoin, MODEL_SPARKLES, bhvCoinSparklesSpawner);
                 cur_obj_play_sound_1(SOUND_GENERAL_COIN_DROP);
                 if (nearCoin->parentObj)

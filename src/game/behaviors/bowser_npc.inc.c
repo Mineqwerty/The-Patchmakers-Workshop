@@ -114,6 +114,10 @@ void bowser_npc_act_revive_cutscene(void) {
 void bowser_npc_act_enter_second_hub(void) {
     switch (o->oSubAction) {
         case 0:
+            o->oPosX = -5044;
+            o->oPosY = 100;
+            o->oPosZ = 1626;
+            cur_obj_unhide();
             cur_obj_init_animation(12);
             if (cExternalCutsceneTrigger >= 2) {
                 cur_obj_init_animation(27);
@@ -346,7 +350,10 @@ void bowser_npc_act_idle(void) {
 
 void bhv_bowser_npc_init(void) {
     obj_set_hitbox(o, &sBowserNPCHitbox);
-    o->oAction = BOWSER_NPC_ACT_FIND_SPOT;
+
+    if (gCutsceneGameState != CUTSCENE_GAME_STATE_ENTER_SECOND_HUB && gCutsceneGameState != CUTSCENE_GAME_STATE_ENTER_THIRD_HUB) {
+        o->oAction = BOWSER_NPC_ACT_FIND_SPOT;
+    }
 
     if (gCurrLevelNum == LEVEL_BOWSER_2 && gInMemoryStage) {
         obj_mark_for_deletion(o);

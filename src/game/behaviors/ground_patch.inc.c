@@ -40,8 +40,12 @@ void bhv_ground_cutscene_patch_loop(void) {
     break;
     case 1:
         gMarioState->marioBodyState->grabPos = GRAB_POS_CUTSCENE_STONE_PATCH;
+        if (gCurCutscene == -1 || cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+            obj_mark_for_deletion(o);
+        }
     break;
     }
+    
 }
 
 void bhv_ground_patch_loop(void) {
@@ -67,6 +71,7 @@ void bhv_ground_patch_loop(void) {
 
         if (o->oTimer == 22) {
             gMarioState->heldObj = o;
+            o->oFaceAngleYaw = 0x4000;
             cur_obj_hide();
         }
         if (o->oTimer == 25) {
@@ -106,6 +111,7 @@ void bhv_ground_patch_loop(void) {
     gLakituState.goalFocus[0] = gMarioState->pos[0];
     gLakituState.goalFocus[1] = gMarioState->pos[1] + 100;
     gLakituState.goalFocus[2] = gMarioState->pos[2];
+
     break;
    }
 }

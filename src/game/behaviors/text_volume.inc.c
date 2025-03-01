@@ -16,7 +16,8 @@ void bhv_text_volume_loop(void) {
 
     if (gCurrLevelNum != LEVEL_CASTLE) {
         if (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum]))
-        || gCurCutscene > -1) {
+        || gCurCutscene > -1
+        || gCamera->cutscene > 0) {
             return;
         }
     }

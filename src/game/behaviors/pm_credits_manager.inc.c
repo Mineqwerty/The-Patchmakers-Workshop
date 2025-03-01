@@ -119,6 +119,17 @@ void bhv_pm_credits_manager_loop(void) {
         break;
         case 10:
             print_set_envcolour(255, 255, 255, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Terrain Sounds", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            
+            print_set_envcolour(240, 240, 240, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "Yoshi Milkman", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            
+            if (o->oTimer == 150) {
+                o->oAction++;
+            }
+        break;
+        case 11:
+            print_set_envcolour(255, 255, 255, fadeAlpha);
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "General Code Help", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             
             print_set_envcolour(240, 240, 240, fadeAlpha);
@@ -128,7 +139,7 @@ void bhv_pm_credits_manager_loop(void) {
                 o->oAction++;
             }
         break;
-        case 11:
+        case 12:
             print_set_envcolour(255, 255, 255, fadeAlpha);
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Beta Testing", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             
@@ -139,7 +150,7 @@ void bhv_pm_credits_manager_loop(void) {
                 o->oAction++;
             }
         break;
-        case 12:
+        case 13:
             print_set_envcolour(255, 255, 255, fadeAlpha);
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Special Thanks", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             

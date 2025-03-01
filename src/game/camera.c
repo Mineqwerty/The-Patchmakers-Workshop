@@ -10488,8 +10488,8 @@ void cutscene_exit_painting_start(struct Camera *c) {
     vec3f_set(sCutsceneVars[1].point, 65.f, 155.f, 444.f);
 
     if (gPrevLevel == LEVEL_TTM) {
-        sCutsceneVars[1].point[1] = 0.f;
-        sCutsceneVars[1].point[2] = 0.f;
+        //sCutsceneVars[1].point[1] = 0.f;
+        //sCutsceneVars[1].point[2] = 0.f;
     }
     vec3f_copy(sCutsceneVars[0].point, sMarioCamState->pos);
     sCutsceneVars[0].angle[0] = 0;
@@ -10497,7 +10497,7 @@ void cutscene_exit_painting_start(struct Camera *c) {
     sCutsceneVars[0].angle[2] = 0;
     offset_rotated(c->focus, sCutsceneVars[0].point, sCutsceneVars[1].point, sCutsceneVars[0].angle);
     offset_rotated(c->pos, sCutsceneVars[0].point, sCutsceneVars[2].point, sCutsceneVars[0].angle);
-    floorHeight = find_floor(c->pos[0], c->pos[1] + 100.f, c->pos[2], &floor);
+    floorHeight = find_floor(c->pos[0], c->pos[1] + 400.f, c->pos[2], &floor);
 
     if (floorHeight != FLOOR_LOWER_LIMIT) {
         if (c->pos[1] < (floorHeight += 60.f)) {
@@ -10533,7 +10533,7 @@ void cutscene_exit_painting_move_to_floor(struct Camera *c) {
     Vec3f floorHeight;
 
     vec3f_copy(floorHeight, sMarioCamState->pos);
-    floorHeight[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 200.f,
+    floorHeight[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 400.f,
                                 sMarioCamState->pos[2], &floor);
 
     if (floor != NULL) {

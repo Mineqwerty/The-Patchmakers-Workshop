@@ -186,7 +186,9 @@ void peach_npc_act_idle(void) {
 
 void bhv_peach_npc_init(void) {
     obj_set_hitbox(o, &sPeachNPCHitbox);
-    o->oAction = PEACH_NPC_ACT_FIND_SPOT;
+    if (gCutsceneGameState != CUTSCENE_GAME_STATE_ENTER_SECOND_HUB && gCutsceneGameState != CUTSCENE_GAME_STATE_ENTER_THIRD_HUB) {
+        o->oAction = PEACH_NPC_ACT_FIND_SPOT;
+    }
     cur_obj_init_animation(2);
 
     if (gCurrAreaIndex == 3 && (save_file_get_flags() & SAVE_FLAG_BEAT_GAME)) {

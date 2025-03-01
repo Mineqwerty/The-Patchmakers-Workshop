@@ -657,7 +657,7 @@
 #define MODEL_SWINGING_AXE                 0x10F
 #define MODEL_WING_SURFACE              0x110
 #define MODEL_GODDESS_SPEAR              0x111
-#define MODEL_GILDED_STAR              0x112
+#define MODEL_ROCKET_FLOWER_FOG              0x112
 
 //Subterranean Seaway
 #define MODEL_TILTING_STONE_BRIDGE                   0x100

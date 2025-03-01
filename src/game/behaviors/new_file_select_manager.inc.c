@@ -15,6 +15,27 @@ void set_initial_game_variables(void) {
     update_dl_dpad_patches();
 }
 
+void update_mario_save_file_variables(void) {
+    gMarioState->portal1Position[0] = 0;
+    gMarioState->portal1Position[1] = 0;
+    gMarioState->portal1Position[2] = 0;
+
+    gMarioState->portal2Position[0] = 0;
+    gMarioState->portal2Position[1] = 0;
+    gMarioState->portal2Position[2] = 0;
+
+    gMarioState->portal1Info[2] = 0;
+    gMarioState->portal2Info[2] = 0;
+
+    gMarioState->numCoins = 0;
+    gMarioState->numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
+    gMarioState->numKeys = 0;
+    gMarioState->health = 0x880;
+    gMarioState->prevNumStarsForDialog = gMarioState->numStars;
+    gHudDisplay.coins = 0;
+    gHudDisplay.wedges = 8;
+}
+
 void bhv_new_file_select_manager_init(void) {
     gCamera->cutscene = 1;
     gHudDisplay.flags = 0;
@@ -92,6 +113,7 @@ void bhv_new_file_select_manager_loop(void) {
                     if (!save_file_exists(gCurrSaveFileNum - 1)) {
                         set_initial_game_variables();
                     }
+                    update_mario_save_file_variables();
                     o->oAction = NEW_FILE_SELECT_LOADING_FILE;
                 }
             }

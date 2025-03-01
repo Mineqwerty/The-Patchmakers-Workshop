@@ -201,7 +201,7 @@ s8 gHorizIndex = 0;
 s8 gSubMenuIndex = 1;
 s8 gMenuDelayTimer = 0;
 s8 gOptionsIndex = 0;
-s8 gPatchIndex = 0;
+s8 gPatchIndex = 12;
 s8 gPatchIndexX = 0;
 s8 gPatchIndexY = 0;
 s16 gPatchMenuTimer = 0;
@@ -910,12 +910,12 @@ s16 find_patch_menu_valid_scroll(s8 direction) {
                 currentIndex = 12;
             }
             else {
-                currentIndex = CLAMP(currentIndex + direction, 0, 15);
+                currentIndex = CLAMP(currentIndex + direction, 0, 12);
             }
             
         }
 
-        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << ((currentIndex+1) % 12)))) {
+        while (!(save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << ((currentIndex+1) % 13)))) {
             if (currentIndex / 4 == 0 && direction == -4) {
                 currentIndex = gPatchIndex;
                 break;
@@ -3100,11 +3100,11 @@ void render_patch_selection() {
     //selector
     if (gSubMenuIndex == 2) {
         if (patchFlags == 0) {
-            gPatchIndex = 13;
+            gPatchIndex = 12;
         }
     handle_patch_menu_scrolling(gPatchIndex, patchFlags);
     if (patchFlags == 0) {
-        gPatchIndex = 13;
+        gPatchIndex = 12;
     }
     gPatchIndexX = gPatchIndex % 4;
     gPatchIndexY = gPatchIndex / 4;

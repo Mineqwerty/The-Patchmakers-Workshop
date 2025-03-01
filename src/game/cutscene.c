@@ -151,6 +151,7 @@ enum cutscene_events {
 
     EVENT_SET_CUTSCENE_GAME_STATE,
     EVENT_SET_SAVE_FLAG,
+    EVENT_SAVE_GAME,
     EVENT_START_CUTSCENE,
     EVENT_END_CUTSCENE,
 };
@@ -431,7 +432,11 @@ s32 event_find_stone_patch[] = {
     EVENT_SET_EXTERNAL_TRIGGER, EXTERNAL_TRIGGER_CUTSCENE_SKIPPED,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_CANCEL_SPLINE_DATA,
-    EVENT_WAIT, 1,
+    EVENT_CAMERA_DISABLE_CUTSCENE,
+    EVENT_STONE_PATCH_EQUIPPED,
+    EVENT_WAIT_FOR_BUTTON_PRESS, L_TRIG,
+    EVENT_SONG_PRIMARY, SEQ_PATCH_AREA,
+    EVENT_STONE_PATCH_BREAK_OUT,
     EVENT_END_CUTSCENE,
 
 };
@@ -777,6 +782,7 @@ s32 event_sewnia_revive_mario[] = {
     EVENT_CLEAR_FOV,
     EVENT_FADE_INTO_COLOR, 60, 0, 0, 0,
     EVENT_WAIT, 90,
+    EVENT_CANCEL_SONG, SEQ_OPENING_CUTSCENE,
     EVENT_SET_EXTERNAL_TRIGGER, 0,
     EVENT_START_CUTSCENE, 7
 };
@@ -933,7 +939,7 @@ s32 event_patchmaker_first_fight_defeated[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_POSITION, -2511, 1065, 537,
-    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
     EVENT_SET_MARIO_FORWARD_VELOCITY, 0,
     EVENT_SET_MARIO_YAW, 0x8000,
     EVENT_SET_MARIO_ROLL, 0,
@@ -944,6 +950,7 @@ s32 event_patchmaker_first_fight_defeated[] = {
     EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_SET_MARIO_YAW, 0x8000,
     EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_REACH_TO_PATCHMAKER,
+    EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 89,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 90,
     EVENT_WAIT, 60,
@@ -1072,6 +1079,7 @@ s32 event_first_memory[] = {
     EVENT_SOUND, SOUND_NEW_MEMORY_END,
     EVENT_WAIT, 90,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_CANCEL_DIALOG,
     EVENT_FADE_INTO_COLOR, 1, 0, 0, 0,
     EVENT_WAIT, 60,
     EVENT_CANCEL_SPLINE_DATA,
@@ -1128,6 +1136,7 @@ s32 event_second_hub_arrival[] = {
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_CANCEL_SPLINE_DATA,
     EVENT_SET_SAVE_FLAG, SAVE_FLAG_ENTERED_SECOND_HUB,
+    EVENT_SAVE_GAME,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
     EVENT_END_CUTSCENE
 };
@@ -1236,7 +1245,8 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_CAMERA_ENABLE_CUTSCENE,
     EVENT_HUD_DISABLE,
     EVENT_SET_MARIO_POSITION, -2511, 1065, 537,
-    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
+    EVENT_CANCEL_SONG, SEQ_LEVEL_BOSS_KOOPA_FINAL,
+    EVENT_SET_MARIO_ACTION, ACT_WAITING_FOR_DIALOG,
     EVENT_SET_MARIO_FORWARD_VELOCITY, 0,
     EVENT_SET_MARIO_YAW, 0x8000,
     EVENT_SET_MARIO_ROLL, 0,
@@ -1246,6 +1256,7 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_DIALOG_USER_ADVANCE, DIALOG_PATCHMAKER_DEFEATED_SECOND_FIGHT,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SET_MARIO_POSITION, 0, 1000, 150,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_SET_MARIO_CUSTOM_ANIMATION, MARIO_CUSTOM_ANIM_LOOK_DOWN_AT_PATCHMAKER,
     EVENT_SET_MARIO_YAW, 0x8000,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 149,
@@ -1255,10 +1266,12 @@ s32 event_patchmaker_breaking_point[] = {
     EVENT_WAIT, 1,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 151,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 152,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_DISABLE_MARIO_RENDER,
     EVENT_WAIT, 90,
     EVENT_CAMERA_POSITION_SPLINE_DATA, 153,
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 154,
+    EVENT_SET_MARIO_ACTION, ACT_STORY_CUTSCENE,
     EVENT_DIALOG_AUTO, DIALOG_PATCHMAKER_LISTEN,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SET_EXTERNAL_TRIGGER, 1,
@@ -1639,6 +1652,7 @@ s32 event_enter_third_hub[] = {
     EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
     EVENT_CANCEL_DIALOG,
     EVENT_SET_SAVE_FLAG, SAVE_FLAG_ENTERED_THIRD_HUB,
+    EVENT_SAVE_GAME,
     EVENT_WAIT, 30,
     EVENT_SET_EXTERNAL_TRIGGER, 2,
     EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
@@ -1920,6 +1934,8 @@ s32 event_post_mantle[] = {
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_FADE_INTO_COLOR, 90, 0, 0, 0,
     EVENT_WAIT, 90,
+    EVENT_SET_SAVE_FLAG, SAVE_FLAG_BEAT_GAME,
+    EVENT_SAVE_GAME,
     EVENT_INITIATE_WARP, LEVEL_NEW_FILE_SELECT, 2, 0x0A,
     EVENT_END_CUTSCENE,
 };
@@ -2336,6 +2352,7 @@ void begin_cutscene_event(s32 event) {
     cExternalCutsceneTrigger = 0;
     gPlayerCameraState[0].cameraEvent = 0;
     cEventPointer = eventList[event];
+    gMarioState->marioBodyState->eyeState = 1;
     cMarioMoveDownTimer = 0;
     cMarioAnimLockFrame = 0;
     cCameraDownVel = 0;
@@ -2427,6 +2444,9 @@ void event_handler(void) {
                     if (gDialogID == DIALOG_NONE) {
                         cCutsceneIndex += 2;
                     }
+                    else {
+                        cCutsceneIndex += 1;
+                    }
                 break;
                 case EVENT_WAIT_FOR_BUTTON_PRESS:
                     if (cWaiting == 0) {
@@ -2437,6 +2457,10 @@ void event_handler(void) {
                 case EVENT_SET_SAVE_FLAG:
                     save_file_set_flags(param1);
                     cCutsceneIndex += 2;
+                break;
+                case EVENT_SAVE_GAME:
+                    save_file_do_save(gCurrSaveFileNum - 1);
+                    cCutsceneIndex += 1;
                 break;
                 case EVENT_DIALOG_AUTO:
                     create_automatic_dialog_box(param1);

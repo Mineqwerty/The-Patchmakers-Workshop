@@ -82,6 +82,8 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -95,13 +97,13 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, -2091, -489, -7277, 0, 0, 0, (30 << 24) | (11 << 16), bhvWarp),
 		MARIO_POS(0x01, 0, 0, 684, 0),
 		OBJECT(MODEL_NONE, 0, 684, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_BLUE_COIN_SWITCH, -1159, 1698, -7602, 0, -180, 0, 0x00000000, bhvBlueCoinSwitch),
-		OBJECT(MODEL_NONE, -390, 1698, -8287, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -386, 1698, -9061, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, 486, 3116, -9066, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -392, 2157, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, -20, 2665, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
-		OBJECT(MODEL_NONE, 478, 3103, -8715, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN_SWITCH, -1159, 1698, -7602, 0, -180, 0, (12 << 16), bhvBlueCoinSwitch),
+		OBJECT(MODEL_BLUE_COIN, -390, 1698, -8287, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, -386, 1698, -9061, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 486, 3116, -9066, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, -392, 2157, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, -20, 2665, -9062, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 478, 3103, -8715, 0, -180, 0, 0x00000000, bhvHiddenBlueCoin),
 		OBJECT(MODEL_NONE, 1495, 1316, -18, 0, 90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 3474, 1850, -1640, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4825, 2432, 7834, 0, -180, 0, 0x00000000, bhvCoinFormation),
