@@ -93,7 +93,7 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_CASHEW_MAN, -2226, 306, -1107, 0, 45, 0, (1 << 24) | (DIALOG_VILLAGER_FRUIT << 16), bhvGenericNPC),
 		OBJECT(MODEL_NONE, 3485, 930, -64, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -3883, 483, -267, 0, -90, 0, 0x00000000, bhvCoinFormation),
-		OBJECT(MODEL_PODOGOO, -2870, 1815, 1919, 0, -90, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2870, 1815, 1919, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4175, 2725, 2399, 0, -107, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -5805, 2173, -4742, 0, -107, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 1552, 675, 10479, 0, -107, 0, (2 << 16), bhvCoinFormation),

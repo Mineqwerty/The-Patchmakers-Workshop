@@ -42,7 +42,7 @@ void bhv_malva_flower_loop(void) {
             if (o->oTimer == 3) {
                 o->oAction = 4;
                 if (o->parentObj->oF4 == 5) {
-                    SET_BPARAM1(o->oBehParams, 2);
+                    SET_BPARAM1(o->oBehParams, 3);
                     spawn_default_star(o->oPosX, o->oPosY + 300, o->oPosZ);
                 }
                 else {

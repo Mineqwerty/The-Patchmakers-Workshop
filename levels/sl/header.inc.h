@@ -39,7 +39,7 @@ extern u8 sl_dl_tentaclemess_pal_rgba16[];
 extern u8 sl_dl_porous_stone_ci8[];
 extern u8 sl_dl_porous_stone_pal_rgba16[];
 extern Vtx sl_dl_Circle_mesh_layer_1_vtx_cull[8];
-extern Vtx sl_dl_Circle_mesh_layer_1_vtx_0[2934];
+extern Vtx sl_dl_Circle_mesh_layer_1_vtx_0[2930];
 extern Vtx sl_dl_Circle_mesh_layer_1_vtx_1[160];
 extern Vtx sl_dl_Circle_mesh_layer_1_vtx_2[394];
 extern Vtx sl_dl_Circle_mesh_layer_1_vtx_3[8];
