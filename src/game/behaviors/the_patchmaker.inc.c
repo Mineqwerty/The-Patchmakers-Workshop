@@ -808,8 +808,8 @@ void bhv_patchmaker_init(void) {
     o->oDragStrength = 5.0f;
     o->oFriction = 1.0f;
     o->oBounciness = 0.0f;
-    o->oHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
     obj_set_hitbox(o, &sPatchmakerHitbox);
+    o->oHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
 
     if (gInMemoryStage) {

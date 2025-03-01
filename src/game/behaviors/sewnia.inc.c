@@ -1587,6 +1587,10 @@ void sewnia_act_enter_third_hub_cutscene(void) {
             }
         break;
     }
+
+    if (cExternalCutsceneTrigger >= 2) {
+        o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
+    }
 }
 
 void sewnia_act_revive_peach_cutscene(void) {

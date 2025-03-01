@@ -55,6 +55,7 @@ void bhv_sewnia_head_loop(void) {
             o->oSewniaFaceState = 8;
         break;
         case LEVEL_CASTLE:
+        
             if (cExternalCutsceneTrigger >= 4) {
                 o->oPosZ = 0;
                 cur_obj_init_animation(3);
