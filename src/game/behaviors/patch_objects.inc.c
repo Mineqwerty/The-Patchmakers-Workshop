@@ -1592,12 +1592,18 @@ u8 check_skybridge_oob(void) {
 void bhv_skybridge_init(void) {
     cur_obj_hide();
     o->oOpacity = 0;
+    f32 dist;
 
     if (gMarioState->pos[1] < gMarioState->lastStoodOnFloorHeight) {
         gMarioState->lastStoodOnFloorHeight = gMarioState->pos[1];
     }
 
-    o->oSkybridgeRing = spawn_object_relative(0, 0, 0, 0, o, MODEL_SKYBRIDGE_RING, bhvSkybridgeRing);
+    if (count_objects_with_behavior(bhvSkybridgeRing) == 0) {
+        o->oSkybridgeRing = spawn_object_relative(0, 0, 0, 0, o, MODEL_SKYBRIDGE_RING, bhvSkybridgeRing);
+    }
+    else {
+        o->oSkybridgeRing = cur_obj_find_nearest_object_with_behavior(bhvSkybridgeRing, &dist);
+    }
 
     o->oFaceAngleYaw = 0;
     o->oFaceAngleRoll = 0;

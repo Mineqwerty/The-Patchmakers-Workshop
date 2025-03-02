@@ -2302,17 +2302,28 @@ void spawn_initial_patch_object(struct MarioState *m ) {
             }
         break;
 
-        case PATCH_SKYBRIDGE:
+        case PATCH_SKYBRIDGE:;
+            u8 renewTimer = 1;
             if (m->patchChildObj) {
                 if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
                     obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
+                }
+                if (obj_has_behavior(m->patchChildObj, bhvSkybridge)) {
+                    renewTimer = 0;
                 }
                 if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
                     obj_mark_for_deletion(m->patchChildObj);
                 }
                 m->patchChildObj = NULL;
             }
+
+            
             m->patchChildObj = spawn_object_relative(0, 0, 0, 0, gMarioObject, MODEL_SKYBRIDGE, bhvSkybridge);
+            if (!renewTimer) {
+                gMarioState->curPatch = PATCH_NONE;
+                gMarioState->lastStoodOnFloorHeight = -11000;
+                m->patchChildObj->oAction = 2;
+            }
             m->hidSkybridge = 0;
         break;
 
