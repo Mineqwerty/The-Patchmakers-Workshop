@@ -648,14 +648,20 @@ void bhv_halo_loop(void) {
             }
             
 
-            if ((obj_has_behavior(other, bhvFlame) && !o->oHaloCapturedObject) || obj_has_behavior(other, bhvSmallFlame) && !o->oHaloCapturedObject) {
+            if ((obj_has_behavior(other, bhvFlame) || obj_has_behavior(other, bhvSmallFlame) || obj_has_behavior(other, bhvLargeFlame)) && !o->oHaloCapturedObject) {
                 u8 behParamFire = 1;
                 o->oHaloCapturedObject =
                     spawn_object_relative(behParamFire, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
                 gMarioState->haloCaptureType = 1;
             }
             else if (obj_has_behavior(other, bhvGoldBlob) && other->oAction != 2) {
-                if (!o->oHaloCapturedObject) {
+                if (o->oHaloCapturedObject && obj_has_behavior(o->oHaloCapturedObject, bhvFireSmokeSpawner)) {
+                    obj_mark_for_deletion(o->oHaloCapturedObject);
+                    other->oIntangibleTimer = -1;
+                    o->oHaloCapturedObject = other;
+                    gMarioState->haloCaptureType = 3;
+                }
+                else if (!o->oHaloCapturedObject) {
                     other->oIntangibleTimer = -1;
                     o->oHaloCapturedObject = other;
                     gMarioState->haloCaptureType = 3;

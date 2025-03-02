@@ -115,7 +115,7 @@ void bhv_pm_thrown_needle_loop(void) {
             cur_obj_move_xz_using_fvel_and_yaw();
             o->oPosY = approach_f32_asymptotic(o->oPosY, patchmaker->oPosY + 150, 0.09f);
 
-            obj_attack_in_radius(o, 200, 8, 1);
+            obj_attack_in_radius(o, 200, 6, 1);
 
             if (o->oTimer == 60) {
                 
@@ -126,7 +126,7 @@ void bhv_pm_thrown_needle_loop(void) {
 
     if (o->oAction < 4) {
         halo = cur_obj_find_nearest_object_with_behavior(bhvHalo, &dist);
-        if (halo && halo->oAction > 0 && !halo->oHaloCapturedObject && dist < 100) {
+        if (halo && halo->oAction > 0 && !halo->oHaloCapturedObject && dist < 150) {
             halo->oHaloCapturedObject = o;
             o->parentObj = halo;
             gMarioState->haloCaptureType = 4;

@@ -1953,7 +1953,6 @@ void perform_patch_action(struct MarioState *m) {
             set_mario_action(m, ACT_STONE_PATCH_AIRBORNE, 0);
         }
         else {
-            common_patch_cancel(m);
             m->usedStonePatch = 1;
             set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
             m->vel[1] += 5.0f;
@@ -1962,7 +1961,8 @@ void perform_patch_action(struct MarioState *m) {
         break;
 
         case PATCH_GRAPPLE:
-            if (!m->patchChildObj && m->action != ACT_SIDE_FLIP && m->action != ACT_DIVE && m->grappleCooldownTimer == 0 && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+            if (!m->patchChildObj && m->action != ACT_DIVE && m->grappleCooldownTimer == 0 && !(gMarioState->action & ACT_FLAG_WATER_OR_TEXT)) {
+                u8 flipHook = m->action == ACT_SIDE_FLIP;
                 m->vel[1] = 20.0f;
                 m->forwardVel -= 20.0f;
                 drop_and_set_mario_action(m, ACT_SHOOT_GRAPPLE_HOOK, 0);
@@ -1970,6 +1970,10 @@ void perform_patch_action(struct MarioState *m) {
                 m->curPatch = PATCH_GRAPPLE;
                 m->grappleCooldownTimer = 40;
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_GRAPPLE_HOOK, bhvGrappleHook);
+                if (flipHook) {
+                    m->patchChildObj->oFaceAngleYaw += 0x8000;
+                    m->patchChildObj->oMoveAngleYaw += 0x8000;
+                }
             }
         break;
         //halo is handled in its own object
@@ -2206,7 +2210,7 @@ void late_patch_update(struct MarioState *m ) {
     switch (m->curPatch) {
         case PATCH_STONE:
             //GOODBYE FOREVER STONE PATCH WALKING!!!
-            if (gMarioState->action != ACT_STONE_PATCH_AIR_LAND && gMarioState->action != ACT_STONE_PATCH_GROUNDED && gMarioState->action != ACT_STONE_PATCH_AIRBORNE) {
+            if (gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT && gMarioState->action != ACT_STONE_PATCH_AIR_LAND && gMarioState->action != ACT_STONE_PATCH_GROUNDED && gMarioState->action != ACT_STONE_PATCH_AIRBORNE) {
                 m->curPatch = PATCH_NONE;
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                 cur_obj_spawn_particles(&StoneBreak);
@@ -2393,7 +2397,7 @@ void check_and_change_patch_dpad(u32 dir) {
 s32 execute_mario_action(UNUSED struct Object *obj) {
     s32 inLoop = TRUE;
 
-    if (gPlayer1Controller->buttonPressed & patch_button_input() && check_able_to_use_patch()) {
+    if ((gPlayer1Controller->buttonPressed & patch_button_input()) && check_able_to_use_patch()) {
         perform_patch_action(gMarioState);
     }
 

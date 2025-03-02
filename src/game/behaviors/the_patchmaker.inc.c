@@ -55,8 +55,8 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_WALK_AWAY_FROM_FIGHT
 };
 
-#define PATCHMAKER_1_MAX_HEALTH 50
-#define PATCHMAKER_2_MAX_HEALTH 75
+#define PATCHMAKER_1_MAX_HEALTH 35
+#define PATCHMAKER_2_MAX_HEALTH 60
 #define PATCHMAKER_SECOND_FIGHT (gCurrLevelNum == LEVEL_BOWSER_2)
 
 u8 firstCutsceneDone = 0;
@@ -811,6 +811,8 @@ void bhv_patchmaker_init(void) {
     obj_set_hitbox(o, &sPatchmakerHitbox);
     o->oHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
+    o->oPatchmakerAttackedVel = 0;
+    o->oPatchmakerAttackedAngle = 0;
 
     if (gInMemoryStage) {
         patchmaker_fight_start();
@@ -903,6 +905,29 @@ void bhv_patchmaker_loop(void) {
         }
         
     }
+
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+        if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
+            o->oPatchmakerAttackedVel = 30.0f;
+            o->oPatchmakerAttackedAngle = o->oAngleToMario;
+        }
+    }
+
+    if (o->oAction != PATCHMAKER_ACT_FIRST_CUTSCENE 
+        && o->oAction != PATCHMAKER_ACT_SECOND_CUTSCENE 
+        && o->oAction != PATCHMAKER_ACT_DEFEATED 
+        && o->oPatchmakerAttackedVel > 0) {
+            if (obj_find_wall(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
+            o->oPosY, 
+            o->oPosZ - o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle), 
+            o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
+            o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle))) {
+                    o->oPosX -= o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle);
+                    o->oPosZ -= o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle);
+            }
+            
+            o->oPatchmakerAttackedVel -= 2;
+        }
 
     o->oInteractStatus = 0;
 }

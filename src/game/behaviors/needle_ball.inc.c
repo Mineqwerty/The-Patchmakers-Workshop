@@ -57,7 +57,7 @@ void bhv_needle_ball_loop(void) {
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
 
         if (o->oBehParams2ndByte == 1) {
-            attack_object(goalObj, INT_HIT_FROM_BELOW, 16);
+            attack_object(goalObj, INT_HIT_FROM_BELOW, 12);
         }
 
         obj_mark_for_deletion(o);

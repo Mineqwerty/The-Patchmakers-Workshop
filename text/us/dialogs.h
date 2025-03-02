@@ -2437,7 +2437,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_WORKSHOP_HUB_1, 1, 3, 30, 200, _("\
 Well, as somebody who explored this place\n\
 through and through, I'd be glad to tell you!\n\
 @7F60B4FFSo, this part is actually pretty forgotten...\n\
-It was the first part of the workshopthat was built, \n\
+It was the first part of the workshop that was built, \n\
 after all. It has a slight nostalgic feeling...\n\
 @7F60B4FFThe Patchmaker used magic to build a lot of\n\
 the workshop, but this area was all built by hand.\n\

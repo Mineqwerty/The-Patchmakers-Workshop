@@ -8,9 +8,7 @@ void bhv_rocket_flower_loop(void) {
     Vec3f original_pos;
     vec3f_copy(original_pos,&o->oPosX);
 
-    if (gCurrLevelNum == LEVEL_CCM) {
-        cur_obj_set_model(MODEL_ROCKET_FLOWER_FOG);
-    }
+    
 
     switch (o->oAction) {
         case 0:
@@ -25,6 +23,9 @@ void bhv_rocket_flower_loop(void) {
                 o->oAction = 1;
                 gMarioState->boostTimer = 210;
                 gMarioState->forwardVel = 128;
+            }
+            if (gCurrLevelNum == LEVEL_CCM) {
+                cur_obj_set_model(MODEL_ROCKET_FLOWER_FOG);
             }
         break;
         case 1:

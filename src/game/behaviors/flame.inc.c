@@ -65,7 +65,7 @@ void bhv_stationary_flame_loop(void) {
 }
 
 void bhv_room_flame_loop(void) {
-    if (gMarioCurrentRoom == o->oRoom) {
+    if (gMarioCurrentRoom == o->oRoom || gCurrLevelNum == LEVEL_CASTLE) {
         if (gGlobalTimer % 2 == 0) {
             o->oAnimState++;
         }

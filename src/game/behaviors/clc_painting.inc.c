@@ -18,7 +18,7 @@ void bhv_clc_painting_loop(void) {
     switch (o->oAction) {
         case 0:
             obj_set_hitbox(o, &sClcPaintingHitbox);
-            if (cur_obj_was_attacked_or_ground_pounded()) {
+            if (cur_obj_was_attacked_or_ground_pounded() || (save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_LLL)) != 0)) {
                 o->oAction = 1;
             }
 

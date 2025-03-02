@@ -668,7 +668,9 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
             vec3f_copy(m->pos, ledgePos);
             set_mario_floor(m, floor, ledgePos[1]);
             m->faceAngle[0] = 0x0;
+            if (m->action != ACT_GRAPPLE_WALL) {
             m->faceAngle[1] = SURFACE_YAW(grabbedWall) + 0x8000;
+            }
         } else {
             vec3f_copy(m->pos, nextPos);
             set_mario_floor(m, floor, floorHeight);

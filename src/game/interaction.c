@@ -2403,7 +2403,7 @@ void mario_handle_special_floors(struct MarioState *m) {
             }
             break;
             case SURFACE_CLC_WARP:
-                if (!(m->action & (ACT_FLAG_AIR))) {
+                if (!(m->action & (ACT_FLAG_AIR)) && (save_file_get_flags() & SAVE_FLAG_UNLOCKED_COURSE_CLC)) {
                     set_mario_action(m, ACT_WARP_RDR, 1);
                 }
             break;

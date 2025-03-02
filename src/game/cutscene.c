@@ -2378,6 +2378,7 @@ void begin_cutscene_event(s32 event) {
     cExternalCutsceneTrigger = 0;
     gPlayerCameraState[0].cameraEvent = 0;
     cEventPointer = eventList[event];
+    cEyeStateOverride = 0;
     gMarioState->marioBodyState->eyeState = 1;
     cMarioMoveDownTimer = 0;
     cMarioAnimLockFrame = 0;

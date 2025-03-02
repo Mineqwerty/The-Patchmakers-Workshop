@@ -90,6 +90,7 @@ enum SeqId {
     SEQ_WORKSHOP_STAGE,
     SEQ_FIRST_HUB,
     SEQ_SEWNIA_THEME,
+    SEQ_BOWSER_TIME,
     SEQ_COUNT
 };
 

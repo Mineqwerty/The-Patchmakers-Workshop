@@ -24,7 +24,7 @@ void bhv_thrown_string_loop(void) {
         Vec3f pointD;
 
         s16 laserWidth = 60;
-        s16 laserLength = 3500;
+        s16 laserLength = 2500;
 
         vec3f_set(pointA, o->oPosX + laserWidth * coss(o->oFaceAngleYaw), o->oPosY, o->oPosZ + laserWidth * sins(o->oFaceAngleYaw + 0x50));
         vec3f_set(pointB, o->oPosX + laserWidth * -coss(o->oFaceAngleYaw), o->oPosY, o->oPosZ + laserWidth * -sins(o->oFaceAngleYaw + 0x50));
@@ -37,9 +37,11 @@ void bhv_thrown_string_loop(void) {
 
         if (o->oTimer > 60 && (point_inside_xz_tri(gMarioState->pos, pointA, pointB, pointC) || point_inside_xz_tri(gMarioState->pos, pointA, pointC, pointD))) {
             if (absf(o->oPosY - 400 - gMarioState->pos[1] + 60) < 130 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
-                gMarioState->action = ACT_CAUGHT_BY_STRING;
-                gMarioState->faceAngle[1] = o->oFaceAngleYaw + 0x8000;
                 take_damage_from_no_interact_object(gMarioState, 1);
+                if (gMarioState->health > 2*255) {
+                    gMarioState->action = ACT_CAUGHT_BY_STRING;
+                }
+                gMarioState->faceAngle[1] = o->oFaceAngleYaw + 0x8000;
                 cur_obj_play_sound_1(SOUND_MARIO_ATTACKED);
                 o->oAction = 1;
                 o->parentObj->oSubAction = 1;
