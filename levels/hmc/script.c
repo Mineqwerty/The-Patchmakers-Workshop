@@ -62,6 +62,7 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -139,7 +140,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_GLASSFISH, -10262, -1374, 3685, 0, 105, 0, 0x00000000, bhvGlassfish),
 		OBJECT(MODEL_NONE, 8022, 4543, -10957, 0, 119, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 7488, 5282, -12000, 0, 119, 0, (200 << 16), bhvPoleGrabbing),
-		OBJECT(MODEL_NONE, -10913, 7501, -13720, 0, 119, 0, (3 << 24), bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, -10913, 7501, -13720, 0, 119, 0, (2 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_RED_COIN, -8884, 7017, -9435, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -11885, 7207, -6296, 0, 119, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -8211, 7200, -4843, 0, 119, 0, 0x00000000, bhvRedCoin),

@@ -1412,6 +1412,11 @@ u8 check_extension_height_limit(void) {
     raydir[1] = 200.0f;
     raydir[2] = 0;
 
+    if (gCurrLevelNum == LEVEL_JRB && gCurrAreaIndex == 3) {
+        //gear push
+        return 0;
+    }
+
     vec3f_set(hitpos, 0.0f, 0.0f, 0.0f);
 
     vec3f_set(originPos, o->oPosX + 150, o->oPosY + 200 * o->header.gfx.scale[1], o->oPosZ + 150);

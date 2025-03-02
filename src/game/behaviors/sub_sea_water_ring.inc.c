@@ -26,7 +26,7 @@ void bhv_sub_sea_water_ring_manager_loop(void) {
         }
     }
     else if (o->oAction == 3) {
-        SET_BPARAM1(o->oBehParams, 2);
+        SET_BPARAM1(o->oBehParams, 3);
         spawn_water_ring_challenge_star(13964.0f, -3200.0f, -765.0f);
         spawn_mist_particles();
         o->oAction = 4;

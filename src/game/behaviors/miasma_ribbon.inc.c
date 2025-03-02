@@ -94,7 +94,7 @@ void bhv_miasma_ribbon_loop(void) {
             }
 
             if (o->oTimer == 9) {
-                obj_attack_in_quad(o, 1000.0f, 500.0f, 200.0f, 600.0f, 4, 2);
+                obj_attack_in_quad(o, 1100.0f, 500.0f, 400.0f, 600.0f, 4, 2);
             }
 
             if (o->oTimer == 16) {

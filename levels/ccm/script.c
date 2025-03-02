@@ -194,7 +194,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_NONE, 1985, -9457, -9630, 0, 13, 0, 0x00000000, bhvRocketFlowerSpawner),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2295, -8764, 493, 0, 0, 0, (1 << 16), bhvWillOWispSpawner, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
 		OBJECT(MODEL_STAR, 13703, -6933, 13713, 0, 0, 0, (15 << 24), bhvStar),
-		OBJECT_WITH_ACTS(MODEL_NONE, -2028, -8587, -345, 0, 0, 0, (3 << 24), bhvGSSHiddenStar, ACT_4),
+		OBJECT_WITH_ACTS(MODEL_NONE, -2028, -8587, -345, 0, 0, 0, (3 << 24), bhvGSSHiddenStar, ACT_1 | ACT_3 | ACT_4 | ACT_5 | ACT_6),
 		OBJECT(MODEL_STAR_GATE, -6342, -8511, -5384, 0, 0, 0, 0x00100000, bhvStarGate),
 		OBJECT(MODEL_STAR_GATE, 5505, -8667, -82, 0, 0, 0, 0x00110000, bhvStarGate),
 		OBJECT_WITH_ACTS(MODEL_NONE, -2573, -8601, -752, 0, 0, 0, 0x00000000, bhvWillOWispSpawner, ACT_2),

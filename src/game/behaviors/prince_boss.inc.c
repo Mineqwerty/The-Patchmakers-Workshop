@@ -465,6 +465,7 @@ void prince_act_defeated(void) {
         case 1:
             if (gDialogID == -1) {
                 gMarioState->action = ACT_IDLE;
+                SET_BPARAM1(o->oBehParams, 5);
                 spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
                 obj_mark_for_deletion(o);
             }

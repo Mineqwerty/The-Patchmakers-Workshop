@@ -7632,6 +7632,7 @@ const BehaviorScript bhvRedFlower[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(red_flower_collision),
+    SET_FLOAT(oDrawingDistance, 32000),
     CALL_NATIVE(bhv_red_flower_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_red_flower_loop),

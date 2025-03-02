@@ -40,7 +40,7 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
         case ACT_ARG_PUNCH_SEQUENCE_YAH:
             play_sound(SOUND_MARIO_PUNCH_YAH, m->marioObj->header.gfx.cameraToObject);
             if (m->equippedPatch == PATCH_MIASMA) {
-                    struct Object *ribbon = spawn_object_relative(0, 0, 50, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    struct Object *ribbon = spawn_object_relative(0, 0, 50, -100, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
                     ribbon->oFaceAngleRoll = 0;
                     ribbon->oFaceAnglePitch = -0x500;
                     SET_BPARAM1(ribbon->oBehParams, 2);
@@ -78,7 +78,7 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
             if (m->input & INPUT_B_PRESSED) {
                 m->actionArg = ACT_ARG_PUNCH_SEQUENCE_WAH;
                 if (m->equippedPatch == PATCH_MIASMA) {
-                    struct Object *ribbonn = spawn_object_relative(0, 0, 40, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 40, -100, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
                     ribbonn->oFaceAngleRoll = -0x7000;
                     ribbonn->oFaceAnglePitch = -0x500;
                     SET_BPARAM1(ribbonn->oBehParams, 2);
@@ -119,7 +119,7 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
             if (m->input & INPUT_B_PRESSED) {
                 m->actionArg = ACT_ARG_PUNCH_SEQUENCE_GROUND_KICK;
                 if (m->equippedPatch == PATCH_MIASMA) {
-                    struct Object *ribbonn = spawn_object_relative(0, 0, 20, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                    struct Object *ribbonn = spawn_object_relative(0, 0, 20, -100, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
                     ribbonn->oFaceAngleRoll = 0x4000;
                     ribbonn->oFaceAnglePitch = -0x2000;
                     SET_BPARAM1(ribbonn->oBehParams, 2);
@@ -157,7 +157,7 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
             if (animFrame == 1) {
                 if (m->equippedPatch == PATCH_MIASMA) {
                 for (u8 i = 0; i < 10; i++) {
-                        struct Object *ribbon = spawn_object_relative(i, 0, 100, 0, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
+                        struct Object *ribbon = spawn_object_relative(i, 0, 100, -100, m->marioObj, MODEL_MIASMA_RIBBON, bhvMiasmaRibbon);
                         ribbon->oFaceAngleRoll = random_u16();
                         ribbon->oFaceAnglePitch += (random_u16() % 512) - 256;
                     }

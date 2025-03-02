@@ -2722,7 +2722,7 @@ from the disease permeating the area.\n\
 The plague that corrupts the spectral\n\
 servants is one of magic and madness.\n\
 Worry not, us living beings are unaffected\n\
-by it. But as for it's root...\n\
+by it. But as for its root...\n\
 Well, I'm sure you know by now. The man\n\
 you know as The Patchmaker is the cause.\n\
 Truthfully, he was once a friend of mine...\n\

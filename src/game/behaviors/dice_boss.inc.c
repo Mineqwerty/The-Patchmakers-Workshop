@@ -610,7 +610,7 @@ void bhv_fly_in_dice_loop(void) {
     switch (o->oAction) {
         case 0:
             cur_obj_hide();
-            if (cExternalCutsceneTrigger == 1) {
+            if (cExternalCutsceneTrigger >= 1) {
                 o->oAction = 1;
             }
         break;
@@ -622,7 +622,7 @@ void bhv_fly_in_dice_loop(void) {
         break;
         case 2:
             o->oPosY = approach_f32_asymptotic(o->oPosY, 2640, 0.09f);
-            if (cExternalCutsceneTrigger == 2) {
+            if (cExternalCutsceneTrigger >= 2) {
                 o->oAction = 3;
             }
         break;
@@ -631,10 +631,6 @@ void bhv_fly_in_dice_loop(void) {
                 obj_mark_for_deletion(o);
             }
         break;
-    }
-
-    if (gCurCutscene == -1) {
-        obj_mark_for_deletion(o);
     }
 
     o->oFaceAngleYaw += 0x300 - 10*o->oBehParams2ndByte;
