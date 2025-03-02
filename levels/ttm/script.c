@@ -225,7 +225,7 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_NONE, 7536, 6097, 8645, 0, 0, 0, 0x00000000, bhvShrineShapeController),
 		OBJECT(MODEL_NONE, 0, 791, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_LOCKBOX_KEY, 14681, 6342, 8645, 0, 0, 0, 0x00000000, bhvLockboxKey),
-		OBJECT(MODEL_NONE, 7033, 5758, 11927, 0, 0, 0, 0x00000000, bhvHiddenRedCoinStar),
+		OBJECT(MODEL_NONE, 7033, 5758, 11927, 0, 0, 0, (5 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_RED_COIN, 1423, 1133, -8, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 5717, 1696, 3018, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 7590, 3441, -3064, 0, 0, 0, 0x00000000, bhvRedCoin),
