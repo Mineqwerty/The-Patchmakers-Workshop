@@ -1956,6 +1956,10 @@ void perform_patch_action(struct MarioState *m) {
             m->usedStonePatch = 1;
             set_mario_action(m, ACT_FORWARD_ROLLOUT, 0);
             m->vel[1] += 5.0f;
+            m->curPatch = PATCH_NONE;
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
+            cur_obj_spawn_particles(&StoneBreak);
+            play_sound(SOUND_STONE_PATCH_DEFORM, m->marioObj->header.gfx.cameraToObject);
         }
             }
         break;
@@ -2210,7 +2214,11 @@ void late_patch_update(struct MarioState *m ) {
     switch (m->curPatch) {
         case PATCH_STONE:
             //GOODBYE FOREVER STONE PATCH WALKING!!!
-            if (gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT && gMarioState->action != ACT_STONE_PATCH_AIR_LAND && gMarioState->action != ACT_STONE_PATCH_GROUNDED && gMarioState->action != ACT_STONE_PATCH_AIRBORNE) {
+            if (gMarioState->action != ACT_BOUNCED_ON_ROSEDRIFT 
+                && gMarioState->action != ACT_STONE_PATCH_AIR_LAND 
+                && gMarioState->action != ACT_STONE_PATCH_GROUNDED 
+                && gMarioState->action != ACT_STONE_PATCH_AIRBORNE
+            && (gMarioState->action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED) {
                 m->curPatch = PATCH_NONE;
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MARIO];
                 cur_obj_spawn_particles(&StoneBreak);
@@ -2562,6 +2570,22 @@ void vec3f_center(Vec3f dest, Vec3s vtx1, Vec3s vtx2, Vec3s vtx3) {
     dest[0] = ((f32)(vtx1[0] + vtx2[0] + vtx3[0])) * 0.33333333f;
     dest[1] = ((f32)(vtx1[1] + vtx2[1] + vtx3[1])) * 0.33333333f;
     dest[2] = ((f32)(vtx1[2] + vtx2[2] + vtx3[2])) * 0.33333333f;
+}
+
+void check_mario_floor_checkpoint_breeze(struct MarioState *m) {
+    struct Surface *breezeFloor;
+    find_floor(gMarioState->pos[0], gMarioState->pos[1] + 10, gMarioState->pos[2], &breezeFloor);
+    if (
+        breezeFloor &&
+        breezeFloor->force == FLOOR_CHECKPOINT_FORCE &&
+        breezeFloor != m->floorCheckpoint.floor
+    ) {
+        vec3f_center(m->floorCheckpoint.pos, breezeFloor->vertex1, breezeFloor->vertex2, breezeFloor->vertex3);
+        m->floorCheckpoint.yaw = m->faceAngle[1];
+        m->floorCheckpoint.level = gCurrLevelNum;
+        m->floorCheckpoint.area = gCurrAreaIndex;
+        m->floorCheckpoint.floor = breezeFloor;
+    }
 }
 
 void check_mario_floor_checkpoint(struct MarioState *m) {

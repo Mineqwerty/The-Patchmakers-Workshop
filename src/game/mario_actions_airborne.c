@@ -1104,7 +1104,7 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
             cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
         }
 
-        check_mario_floor_checkpoint(m);
+        check_mario_floor_checkpoint_breeze(m);
         
         
         if (m->floor != NULL && m->floorNormal[1] < 0.6f) {

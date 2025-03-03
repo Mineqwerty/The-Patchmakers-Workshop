@@ -156,7 +156,7 @@ void bhv_blue_coin_switch_loop(void) {
             // recede and get ready to start ticking.
             o->oNumBlueCoinsCollected = 0;
             if (gMarioObject->platform == o) {
-                if (gMarioStates[0].action == ACT_GROUND_POUND_LAND) {
+                if ((gMarioStates[0].action == ACT_GROUND_POUND_LAND) || gMarioState->curPatch == PATCH_STONE) {
                     // Set to BLUE_COIN_SWITCH_ACT_RECEDING
                     o->oAction = BLUE_COIN_SWITCH_ACT_RECEDING;
                     o->oVelY = -16.0f;

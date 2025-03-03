@@ -85,6 +85,7 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -112,6 +113,9 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, 4842, 1232, -4761, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 6232, 3951, 9857, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 5878, 3320, 9492, 0, -180, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5308, 3452, -7726, 0, -180, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5801, 3452, -6989, 0, -90, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 5801, 3452, -8524, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -1662, 194, 1309, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2904, -253, 3193, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4286, 1453, 4728, 0, -180, 0, (2 << 16), bhvCoinFormation),

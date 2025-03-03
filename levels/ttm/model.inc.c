@@ -1,22 +1,7 @@
-Lights1 ttm_dl_scrollma_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 ttm_dl_hurtplane_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 ttm_dl_f3dlite_material_009_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 ttm_dl_f3dlite_material_011_layer1_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
 
-Lights1 ttm_dl_f3dlite_material_008_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx ttm_dl_hanginggeom1_ia4_aligner[] = {gsSPEndDisplayList()};
 u8 ttm_dl_hanginggeom1_ia4[] = {
@@ -45619,7 +45604,8 @@ Gfx mat_revert_ttm_dl_safe_primwhite[] = {
 };
 
 Gfx mat_ttm_dl_scrollma[] = {
-	gsSPSetLights1(ttm_dl_scrollma_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -45726,7 +45712,8 @@ Gfx mat_revert_ttm_dl_f3dlite_material_001[] = {
 };
 
 Gfx mat_ttm_dl_hurtplane[] = {
-	gsSPSetLights1(ttm_dl_hurtplane_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -45993,7 +45980,8 @@ Gfx mat_revert_ttm_dl_stainedglass_layer1[] = {
 };
 
 Gfx mat_ttm_dl_f3dlite_material_009[] = {
-	gsSPSetLights1(ttm_dl_f3dlite_material_009_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -46009,7 +45997,8 @@ Gfx mat_revert_ttm_dl_f3dlite_material_009[] = {
 
 Gfx mat_ttm_dl_f3dlite_material_011_layer1[] = {
 	gsSPGeometryMode(0, G_FOG),
-	gsSPSetLights1(ttm_dl_f3dlite_material_011_layer1_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -46053,7 +46042,8 @@ Gfx mat_revert_ttm_dl_f3dlite_material_012[] = {
 };
 
 Gfx mat_ttm_dl_f3dlite_material_008[] = {
-	gsSPSetLights1(ttm_dl_f3dlite_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

@@ -884,6 +884,9 @@ void bhv_portal_loop(void) {
     if (o->oAction == 2 && o->oDistanceToMario < 200 && gMarioState->action != ACT_SPAWN_SPIN_AIRBORNE
         && gMarioState->action != ACT_HOLD_CUTSCENE) {
         o->oAction = 3;
+        if (gDialogID > -1) {
+            gDialogBoxState = 3;
+        }
         play_sound(SOUND_PORTAL_IN, gMarioState->marioObj->header.gfx.cameraToObject);
     }
     if (o->oAction == 3) {
