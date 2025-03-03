@@ -1368,6 +1368,9 @@
 #define oPotogooVelXZ        OBJECT_FIELD_F32(0x1D)
 #define oPotogooVelY        OBJECT_FIELD_F32(0x1E)
 
+//danger puff 
+#define oDangerPuffChaseDecay          OBJECT_FIELD_S32(0x1B)
+
 //fortogoo
 #define oFortogooChildHitbox           OBJECT_FIELD_OBJ(0x1B)
 

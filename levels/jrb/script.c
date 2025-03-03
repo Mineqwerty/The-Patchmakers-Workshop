@@ -86,6 +86,7 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -245,7 +246,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, -2745, 2749, 3074, 0, -180, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -1049, 3310, 3120, 0, -180, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2822, 5030, 3105, 0, -180, 0, (1 << 16), bhvCoinFormation),
-		OBJECT(MODEL_NONE, -2752, 829, -1742, 0, -180, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2752, 829, -1403, 0, -180, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_STONE_ELEVATOR, -1053, 2900, 3110, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, -2819, 4817, 3116, 0, -180, 0, (5 << 16), bhvStoneElevator),
 		OBJECT(MODEL_STONE_ELEVATOR, 2771, 420, -2432, 0, -180, 0, (5 << 16), bhvStoneElevator),
@@ -271,10 +272,10 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GRAPPLE_STONE, 2924, 6798, -2468, 0, -180, 0, (150 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GEAR, -2069, 493, -2564, 0, -180, 0, (1 << 24), bhvStoneGear),
 		OBJECT(MODEL_STAR, -643, 3985, -4832, 0, 0, 0, (13 << 24), bhvStar),
-		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
-		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
-		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1406, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
-		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -2078, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -1067, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 373, -1740, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1067, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
+		OBJECT(MODEL_STONE_TOWER_DOOR, -2714, 1421, -1740, 0, 90, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, 1434, 1603, -2396, 0, 0, 0, 0x00000000, bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -439, 524, -2833, 0, 90, 0, (1 << 8), bhvStoneTowerDoor),
 		OBJECT(MODEL_STONE_TOWER_DOOR, -439, 524, -2833, 0, -90, 0, (1 << 8), bhvStoneTowerDoor),

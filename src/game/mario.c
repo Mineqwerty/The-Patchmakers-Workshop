@@ -2004,7 +2004,12 @@ void perform_patch_action(struct MarioState *m) {
                 }
 
                 cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
-            }    
+            }
+            else if (m->action == ACT_BREEZE_PATCH_BOUNCING) {
+                drop_and_set_mario_action(m, ACT_FREEFALL, 2);
+                m->curPatch = PATCH_NONE;
+
+            }
 
         break;
 

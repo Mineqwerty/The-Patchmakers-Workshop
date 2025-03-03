@@ -2999,7 +2999,9 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     }
 
     if (gDialogLineNum != 13) {
-        while (save_file_get_course_star_count(gCurrSaveFileNum - 1, gDialogLineNum) == 0) {
+        while ((save_file_get_course_star_count(gCurrSaveFileNum - 1, gDialogLineNum) == 0)
+                && save_file_is_secret_star_collected(gCurrSaveFileNum - 1, 9 + 2*(courseToOrderedIndex[gDialogLineNum] - 1)) == 0
+                && save_file_is_secret_star_collected(gCurrSaveFileNum - 1, 10 + 2*(courseToOrderedIndex[gDialogLineNum] - 1)) == 0) {
             if (gDialogLineNum >= prevCourseIndex) {
                 gDialogLineNum++;
             } else {

@@ -1,8 +1,15 @@
 extern void scroll_ssl_dl_Circle_mesh_layer_5_vtx_0();
 extern void scroll_ssl_dl_Circle_mesh_layer_1_vtx_5();
-extern void scroll_ssl_dl_Circle_006_mesh_layer_1_vtx_0();
 extern void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0();
 extern void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_2();
+extern void scroll_ssl_dl_leaves_room1_mesh_layer_1_vtx_0();
+extern void scroll_ssl_dl_room1_other_rooms_mesh_layer_1_vtx_3();
+extern void scroll_ssl_dl_leaves_room2_mesh_layer_1_vtx_0();
+extern void scroll_ssl_dl_room2_col_mesh_layer_1_vtx_5();
+extern void scroll_ssl_dl_leaves_room3_mesh_layer_1_vtx_0();
+extern void scroll_ssl_dl_room3_col_mesh_layer_1_vtx_5();
+extern void scroll_ssl_dl_room_3_other_rooms_mesh_layer_5_vtx_0();
+extern void scroll_ssl_dl_room_3_other_rooms_mesh_layer_1_vtx_5();
 extern void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0();
 extern void scroll_ssl_dl_Plane_007_mesh_layer_1_vtx_0();
 extern void scroll_gfx_mat_ssl_dl_normalwater_layer5_area1();

@@ -13,6 +13,7 @@ static struct ObjectHitbox sDangerPuffHitbox = {
 void bhv_danger_puff_init(void) {
     obj_set_hitbox(o, &sDangerPuffHitbox);
     o->oInteractStatus = 0;
+    o->oDangerPuffChaseDecay = 0;
 }
 
 void bhv_danger_puff_loop(void) {
@@ -20,7 +21,8 @@ void bhv_danger_puff_loop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oDistanceToMario < 1500) {
-                f32 marioApproachFactor = 40.0f * ((1500.0f - o->oDistanceToMario) / 1400.0f);
+                o->oDangerPuffChaseDecay++;
+                f32 marioApproachFactor = (o->oDangerPuffChaseDecay > 30 ? 30.0f / (f32)o->oDangerPuffChaseDecay : 1.0f) * 40.0f * ((1500.0f - o->oDistanceToMario) / 1400.0f);
                 o->oPosY = approach_f32_symmetric(o->oPosY, gMarioState->pos[1],  marioApproachFactor * 0.4f);
                 o->oMoveAngleYaw = o->oAngleToMario;
                 o->oForwardVel = marioApproachFactor;
@@ -47,9 +49,11 @@ void bhv_danger_puff_loop(void) {
                 o->oPosX = approach_f32_symmetric(o->oPosX, o->oHomeX,  2.0f);
                 o->oPosY = approach_f32_symmetric(o->oPosY, o->oHomeY,  2.0f);
                 o->oPosZ = approach_f32_symmetric(o->oPosZ, o->oHomeZ,  2.0f);
+                o->oDangerPuffChaseDecay = 0;
             }
         break;
         case 1:
+            cur_obj_become_intangible();
             if (o->oTimer == 90) {
                 o->oPosX = o->oHomeX;
                 o->oPosY = o->oHomeY;
@@ -64,6 +68,8 @@ void bhv_danger_puff_loop(void) {
                 o->oAction = 0;
                 cur_obj_scale(1.0f);
                 o->oInteractStatus = 0;
+                cur_obj_become_tangible();
+                o->oDangerPuffChaseDecay = 0;
             }
         break;
     }

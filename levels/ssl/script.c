@@ -62,6 +62,11 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -73,7 +78,7 @@ const LevelScript level_ssl_entry[] = {
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x02, 0x043, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 148, 435, -816, 0, 0, 0, 0x00000000, bhvFoliageManager),
-		MARIO_POS(0x01, 0, -10044, 87, -3591),
+		MARIO_POS(0x01, 0, 0, 0, 0),
 		OBJECT(MODEL_STAR, 10605, 3619, 752, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, 1663, -4561, -8586, 0, 0, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -10044, 87, -3591, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
@@ -82,7 +87,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 9876, 1475, -7156, 0, -68, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 8626, 1788, -13132, 0, -103, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 1392, 2061, -2576, 0, -134, 0, 0x00000000, bhvCoinFormation),
-		OBJECT(MODEL_NONE, 1006, 264, 13422, 0, -114, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, 1529, 313, 13982, 0, -134, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -9036, 712, 3658, 0, 99, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -12827, -617, -1715, 0, 99, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -7899, -3252, -10159, 0, -166, 0, 0x00000000, bhvCoinFormation),
@@ -97,7 +102,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_DANGER_PUFF, 480, 1342, 4138, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 2424, 2001, 439, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 3203, 1791, 4841, 0, 37, 0, 0x00000000, bhvDangerPuff),
-		OBJECT(MODEL_DANGER_PUFF, 1808, 326, 12591, 0, 37, 0, 0x00000000, bhvDangerPuff),
+		OBJECT(MODEL_DANGER_PUFF, 2571, 374, 13484, 0, 17, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 11500, 2149, 11490, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 13475, 2202, 15431, 0, 37, 0, 0x00000000, bhvDangerPuff),
 		OBJECT(MODEL_DANGER_PUFF, 14902, 2593, 3178, 0, 37, 0, 0x00000000, bhvDangerPuff),
@@ -127,6 +132,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 1523, 2276, -5907, 0, -180, 0, (16 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 13604, 449, 8546, 0, 170, 0, (16 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 15435, 1980, 11532, 0, 178, 0, (16 << 16), bhvCoinFormation),
+		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 5665, -6140, 1665, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_GRAY_MUSHROOM, -5374, 515, -3660, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 6746, 1567, -7860, 0, 0, 0, 0x00000000, bhvVTWMushroom),
 		OBJECT(MODEL_GRAY_MUSHROOM, 5107, 1924, -12973, 0, 0, 0, 0x00000000, bhvVTWMushroom),
@@ -178,6 +184,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_NONE, 1571, 605, -6542, 0, 0, 0, (40 << 24) | (11 << 16), bhvWarp),
 		OBJECT(MODEL_NONE, -1616, 5584, -917, 0, 0, 0, (40 << 24) | (12 << 16), bhvWarp),
 		TERRAIN(ssl_area_1_collision),
+		ROOMS(ssl_area_1_collision_rooms),
 		TERRAIN_MAT_LUT(ssl_area_1_collision_materials),
 		MACRO_OBJECTS(ssl_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_VIOLET_TWILIT_WOODS),
@@ -238,7 +245,7 @@ const LevelScript level_ssl_entry[] = {
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 	FREE_LEVEL_POOL(),
-	MARIO_POS(0x01, 0, -10044, 87, -3591),
+	MARIO_POS(0x01, 0, 0, 0, 0),
 	CALL(0, lvl_init_or_update),
 	CALL_LOOP(1, lvl_init_or_update),
 	CLEAR_LEVEL(),

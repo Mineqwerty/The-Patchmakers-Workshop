@@ -8,6 +8,7 @@
 #include "levels/ssl/area_4/spline.inc.c"
 #include "levels/ssl/model.inc.c"
 #include "levels/ssl/area_1/collision.inc.c"
+#include "levels/ssl/area_1/room.inc.c"
 #include "levels/ssl/area_2/collision.inc.c"
 #include "levels/ssl/area_3/collision.inc.c"
 #include "levels/ssl/area_4/collision.inc.c"
