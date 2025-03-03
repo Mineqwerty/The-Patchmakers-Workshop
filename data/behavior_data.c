@@ -8727,12 +8727,13 @@ const BehaviorScript bhvRealityCracks[] = {
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_reality_cracks_init),
     BEGIN_LOOP(),
+        CALL_NATIVE(load_object_collision_model),
         CALL_NATIVE(bhv_reality_cracks_loop),
     END_LOOP(),
 };
 
 const BehaviorScript bhvRealityCracksHitbox[] = {
-    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     CALL_NATIVE(bhv_reality_cracks_hitbox_init),
     BEGIN_LOOP(),

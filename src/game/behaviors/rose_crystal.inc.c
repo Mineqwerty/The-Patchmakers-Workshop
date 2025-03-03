@@ -58,6 +58,7 @@ void bhv_rose_crystal_reciever_loop(void) {
     }
     else if (o->oAction == 1) {
         if (o->oTimer == 30) {
+            SET_BPARAM1(o->oBehParams, 32);
             spawn_default_star(o->oPosX + 200, o->oPosY, o->oPosZ);
             o->oAction = 2;
         }

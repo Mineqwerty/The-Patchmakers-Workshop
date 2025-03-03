@@ -2927,13 +2927,15 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
 
     
     gDPSetEnvColor(gDisplayListHead++, 0, 255, 255, gDialogTextAlpha);
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[courseIndex] - 1))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 7 + 2*(courseToOrderedIndex[courseIndex+1]))) {
         print_generic_string(x + 76, y - 5, textStar);
     }
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[courseIndex] - 1))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 8 + 2*(courseToOrderedIndex[courseIndex+1]))) {
         print_generic_string(x + 90, y - 5, textStar);
     }
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+
+    print_text_fmt_int(10, 100, "%d", courseToOrderedIndex[courseIndex+1]);
 
     while (hasStar != starCount) {
         if (starFlags & (1 << nextStar)) {
@@ -2999,9 +3001,7 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     }
 
     if (gDialogLineNum != 13) {
-        while ((save_file_get_course_star_count(gCurrSaveFileNum - 1, gDialogLineNum) == 0)
-                && save_file_is_secret_star_collected(gCurrSaveFileNum - 1, 9 + 2*(courseToOrderedIndex[gDialogLineNum] - 1)) == 0
-                && save_file_is_secret_star_collected(gCurrSaveFileNum - 1, 10 + 2*(courseToOrderedIndex[gDialogLineNum] - 1)) == 0) {
+        while ((save_file_get_course_star_count(gCurrSaveFileNum - 1, indexToCourseSlot[gDialogLineNum]) == 0)) {
             if (gDialogLineNum >= prevCourseIndex) {
                 gDialogLineNum++;
             } else {
@@ -3255,10 +3255,26 @@ u32 courseToOrderedIndex[13] = {
     12
 };
 
+u32 indexToOriginalCourse[13] = {
+    COURSE_NONE,
+    COURSE_BOB,
+    COURSE_WF,
+    COURSE_JRB,
+    COURSE_CCM,
+    9,
+    5,
+    6,
+    8,
+    7,
+    10,
+    11,
+    12
+};
+
 
 
 void render_course_hint_text(void) {
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
         print_set_envcolour(0, 255, 0, 255);
     }
     else {
@@ -3268,7 +3284,7 @@ void render_course_hint_text(void) {
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
         starHints[2*(courseToOrderedIndex[gCurrCourseNum] - 1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
         
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[gCurrCourseNum] - 1))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
         print_set_envcolour(0, 255, 0, 255);
     }
     else {

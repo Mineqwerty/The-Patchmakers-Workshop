@@ -111,3 +111,4 @@
 #include "levels/bbh/red_puzzle_box/model.inc.c"
 #include "levels/bbh/green_puzzle_box/model.inc.c"
 #include "levels/bbh/blue_puzzle_box/model.inc.c"
+#include "levels/bbh/break_reality/collision.inc.c"

@@ -67,6 +67,7 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -168,7 +169,7 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_RED_COIN, 9525, 1592, -10277, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 9107, 3093, -12773, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, 2081, 2819, -8328, 0, 0, 0, 0x00000000, bhvRedCoin),
-		OBJECT(MODEL_STAR, 6731, -5836, 1131, 0, 0, 0, (25 << 24), bhvStar),
+		OBJECT(MODEL_STAR, 6731, -5836, 1131, 0, 0, 0, (23 << 24), bhvStar),
 		OBJECT(MODEL_NONE, 1137, 1838, -12176, 0, 0, 0, (2 << 24), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_NONE, 1504, 2547, -4370, 0, -134, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -4034, 1396, -3803, 0, 0, 0, (1 << 16), bhvCoinFormation),

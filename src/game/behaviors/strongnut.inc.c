@@ -60,7 +60,7 @@ void bhv_strongnut_loop(void) {
             if (set_mario_npc_dialog(MARIO_DIALOG_LOOK_DOWN) == MARIO_DIALOG_STATUS_SPEAK 
                 && cutscene_object_with_dialog(CUTSCENE_DIALOG, o, DIALOG_STRONGNUT_BEATEN)) {
                 set_mario_npc_dialog(MARIO_DIALOG_STOP);
-                SET_BPARAM1(o->oBehParams, 24);
+                SET_BPARAM1(o->oBehParams, 22);
                 spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
                 o->oAction = 5;
                 }

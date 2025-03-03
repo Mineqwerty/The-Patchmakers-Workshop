@@ -9,7 +9,7 @@ void bhv_lily_star_manager_loop(void) {
 
             if (!lily) {
                 o->oAction = 1;
-                SET_BPARAM1(o->oBehParams, 26);
+                SET_BPARAM1(o->oBehParams, 24);
                 spawn_default_star(o->oPosX, o->oPosY, o->oPosZ);
                 
             }

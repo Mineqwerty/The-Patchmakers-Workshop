@@ -63,6 +63,8 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -232,7 +234,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, -2258, 2976, -4740, 0, 119, 0, 0x00000000, bhvGeyser),
 		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 3291, 5395, -474, 0, -90, 0, (28 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_STAR, -4238, 7131, -4812, 0, 119, 0, (4 << 24), bhvStar),
-		OBJECT(MODEL_TRANSMUTATION_STAR, -4276, 5986, -13795, 0, 119, 0, (19 << 24), bhvTransmutationStar),
+		OBJECT(MODEL_TRANSMUTATION_STAR, -4276, 5986, -13795, 0, 119, 0, (17 << 24), bhvTransmutationStar),
 		OBJECT(MODEL_NONE, 7213, -1330, -7986, 0, 119, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 5975, 372, -4952, 0, 119, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 775, 2118, -4907, 0, 119, 0, (1 << 16), bhvCoinFormation),

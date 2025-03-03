@@ -481,7 +481,7 @@ void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0() {
 
 void scroll_ssl_dl_Plane_007_mesh_layer_1_vtx_0() {
 	int i = 0;
-	int count = 91;
+	int count = 88;
 	int width = 32 * 0x20;
 	int height = 32 * 0x20;
 

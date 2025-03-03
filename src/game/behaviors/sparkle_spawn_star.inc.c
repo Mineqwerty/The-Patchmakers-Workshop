@@ -17,17 +17,18 @@ void bhv_spawned_star_init(void) {
         o->oBehParams = o->parentObj->oBehParams;
     }
     u8 param = GET_BPARAM1(o->oBehParams);
-    if (param >= 8) {
-        if (gCurrLevelNum == LEVEL_PSS) {
-            if ((1 << param) & save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(COURSE_BITS + (param / 7)))) {
-                cur_obj_set_model(MODEL_TRANSPARENT_STAR);
-            }
+    
+    if (gCurrLevelNum == LEVEL_PSS) {
+        if ((1 << param) & save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(COURSE_BITS + (param / 7)))) {
+            cur_obj_set_model(MODEL_TRANSPARENT_STAR);
         }
-        else {
+    }
+    else if (param >= 8) {
+        //else {
             if ((1 << param) & save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(COURSE_COTMC + (param / 7)))) {
                 cur_obj_set_model(MODEL_TRANSPARENT_STAR);
             }
-        }
+        //}
     }
     else {
         if ((1 << param) & save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(gCurrCourseNum))) {

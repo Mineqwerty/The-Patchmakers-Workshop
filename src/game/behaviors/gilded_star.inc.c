@@ -58,6 +58,7 @@ void bhv_gilded_star_receiver_loop(void) {
     }
     else if (o->oAction == 1) {
         if (o->oTimer == 30) {
+            SET_BPARAM1(o->oBehParams, 16);
             spawn_default_star(o->oPosX, o->oPosY, o->oPosZ + 200);
         }
     }

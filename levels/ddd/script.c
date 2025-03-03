@@ -245,7 +245,7 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_NONE, -4464, 2752, 9878, 0, -107, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_GLOBAL_GROUND_BOOK, -9145, 3090, -3661, 0, -90, 0, (30 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_SKYBOX_TEST, 327, -457, 934, 0, 0, 0, 0x00000000, bhvBackgroundObject),
-		OBJECT(MODEL_STAR, 4252, 5780, -5409, 0, 131, 0, (23 << 24), bhvStar),
+		OBJECT(MODEL_STAR, 4252, 5780, -5409, 0, 131, 0, (21 << 24), bhvStar),
 		TERRAIN(ddd_area_4_collision),
 		TERRAIN_MAT_LUT(ddd_area_4_collision_materials),
 		MACRO_OBJECTS(ddd_area_4_macro_objs),

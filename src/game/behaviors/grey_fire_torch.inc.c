@@ -14,6 +14,7 @@ void bhv_grey_fire_torch_loop(void) {
     }
     else if (o->oAction == 1) {
         if (o->oTimer == 30) {
+            SET_BPARAM1(o->oBehParams, 31);
             spawn_default_star(o->oPosX, o->oPosY, o->oPosZ + 200);
             o->oAction = 2;
         }
