@@ -65,6 +65,8 @@ const LevelScript level_hmc_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, hmc_area_1),
@@ -202,9 +204,9 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, 3365, 0, 0, 0, (7 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -733, 0, 0, 0, (4 << 16), bhvUnderwaterStoneDoor),
 		OBJECT(MODEL_UNDERWATER_STONE_DOOR, 15, 4726, -4225, 0, 0, 0, (2 << 16), bhvUnderwaterStoneDoor),
-		OBJECT(MODEL_NONE, 96, 3254, 7751, -90, 0, 0, (39 << 24) | (6 << 16), bhvTextVolume),
-		OBJECT(MODEL_NONE, -6347, 3328, 982, -90, 0, 0, (40 << 24) | (6 << 16), bhvTextVolume),
-		OBJECT(MODEL_NONE, 63, 3082, -2206, -90, 0, 0, (41 << 24) | (6 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 96, 3254, 8637, -90, 0, 0, (39 << 24) | (8 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -6347, 3328, 982, -90, 0, 0, (40 << 24) | (11 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, 63, 3082, -2206, -90, 0, 0, (41 << 24) | (9 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 43, 2941, -7459, 0, 0, 0, (10 << 16), bhvSpinAirborneWarp),
 		TERRAIN(hmc_area_2_collision),
 		TERRAIN_MAT_LUT(hmc_area_2_collision_materials),

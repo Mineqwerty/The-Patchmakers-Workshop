@@ -57,12 +57,19 @@ void bhv_underwater_stone_button_loop(void) {
                 cur_obj_shake_screen(SHAKE_POS_MEDIUM);
                 cur_obj_spawn_particles(&sGlobalMistParticles);
             }
+            
+            SET_BPARAM1(o->oPrimColorParams, 0);
+            SET_BPARAM2(o->oPrimColorParams, 0);
+            SET_BPARAM3(o->oPrimColorParams, 0);
         break;
         case 1:
             cur_obj_scale_over_time(SCALE_AXIS_Z, 10, 1.0f, 0.4f);
             if (o->oTimer == 10) {
                 o->oAction++;
             }
+            SET_BPARAM1(o->oPrimColorParams, 160);
+            SET_BPARAM2(o->oPrimColorParams, 160);
+            SET_BPARAM3(o->oPrimColorParams, 160);
         break;
     }
     load_object_collision_model();
