@@ -315,9 +315,9 @@ void get_level_star_pin(s16 levelID, s16 starIndex, Vec3f coords) {
                 break;
                 case 2: coords[0] = -6160.0f; coords[1] = 1890.0f; coords[2] = -3900.0f;
                 break;
-                case 3: coords[0] = -2560.0f; coords[1] = 4550.0f; coords[2] = -2780.0f;
+                case 3: coords[0] = -2240.0f; coords[1] = -270.0f; coords[2] = -4460.0f;
                 break;
-                case 4: coords[0] = -2240.0f; coords[1] = -270.0f; coords[2] = -4460.0f;
+                case 4: coords[0] = -2560.0f; coords[1] = 4550.0f; coords[2] = -2780.0f;
                 break;
                 case 5: coords[0] = -2400.0f; coords[1] = 3510.0f; coords[2] = -10060.0f;
                 break;

@@ -976,7 +976,11 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         break;
     }
 
-    if (m->curPatch == PATCH_SHADOWCHOMP && jumpStart) {
+    if (m->curPatch == PATCH_SHADOWCHOMP 
+        && jumpStart
+        && action != ACT_DIVE
+        && action != ACT_SLIDE_KICK
+        && action != ACT_JUMP_KICK) {
         m->vel[1] *= 2;
         m->curPatch = 0;
         m->patchTimer = 0;
@@ -1425,7 +1429,7 @@ void update_mario_joystick_inputs(struct MarioState *m) {
 
     if (m->intendedMag > 0.0f) {
         if (sFOVState.fov > 180) {
-            m->intendedYaw = atan2s(-controller->stickY, -controller->stickX) + m->area->camera->yaw;
+            m->intendedYaw = atan2s(controller->stickY, -controller->stickX) + m->area->camera->yaw;
         }
         else {
            m->intendedYaw = atan2s(-controller->stickY, controller->stickX) + m->area->camera->yaw; 
@@ -2277,7 +2281,7 @@ void late_patch_update(struct MarioState *m ) {
             }
         break;
         case PATCH_SKYBRIDGE:
-            if (m->patchChildObj) {
+            if (m->patchChildObj && obj_has_behavior(m->patchChildObj, bhvSkybridge)) {
                 m->patchChildObj->oPosX = m->pos[0];
                 m->patchChildObj->oPosZ = m->pos[2];
             }
@@ -2614,6 +2618,19 @@ s32 get_checkpoint_action(struct MarioState *m) {
 }
 
 s32 warp_to_checkpoint(struct MarioState *m, s32 damage) {
+
+    if (m->floorCheckpoint.level != gCurrLevelNum
+        || m->floorCheckpoint.area != gCurrAreaIndex) {
+            struct Object *startWarp = cur_obj_find_object_with_bparam_2nd_byte(bhvSpinAirborneWarp, 0x0A);
+            if (startWarp) {
+                m->floorCheckpoint.pos[0] = startWarp->oPosX;
+                m->floorCheckpoint.pos[1] = startWarp->oPosY;
+                m->floorCheckpoint.pos[2] = startWarp->oPosZ;
+                m->floorCheckpoint.area = gCurrAreaIndex;
+                m->floorCheckpoint.level = gCurrLevelNum;
+            }
+    }
+
     Vec3f displacement;
     vec3_diff(displacement, m->pos, m->floorCheckpoint.pos);
 

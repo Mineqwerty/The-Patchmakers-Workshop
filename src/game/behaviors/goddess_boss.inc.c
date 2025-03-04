@@ -997,7 +997,7 @@ void bhv_goddess_spear_loop(void) {
 
                 cur_obj_move_xz_using_fvel_and_yaw();
 
-                if (o->oTimer == 90) {
+                if (o->oTimer == 50) {
                     o->oSubAction = 4;
                     o->oTimer = 0;
                 }

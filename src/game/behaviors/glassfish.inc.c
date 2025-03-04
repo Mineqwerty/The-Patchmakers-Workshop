@@ -53,7 +53,7 @@ void bhv_glassfish_loop(void) {
 
     if (o->oTimer > 60
         && o->oDistanceToMario
-               < (200 * (o->oBehParams2ndByte >= 3 ? 4 - (o->oBehParams2ndByte - 3) : 1))
+               < (300 * (o->oBehParams2ndByte >= 3 ? 4 - (o->oBehParams2ndByte - 3) : 1))
         && gMarioState->action == ACT_MARINE_PATCH_SPIN && o->oAction != 3) {
         if (o->oGlassfishMouthObj) {
             o->oGlassfishMouthObj->parentObj = NULL;

@@ -351,13 +351,17 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
         vec3f_copy(m->pos, nextPos);
         
 
-        if (m->equippedPatch == PATCH_SKYBRIDGE && gMarioState->patchChildObj->oAction != 2) {
+        if (m->equippedPatch == PATCH_SKYBRIDGE 
+            && gMarioState->patchChildObj 
+            && obj_has_behavior(gMarioState->patchChildObj, bhvSkybridge) 
+            && gMarioState->patchChildObj->curBhvCommand != gMarioState->patchChildObj->behavior
+            && gMarioState->patchChildObj->oAction != 2) {
 
             m->patchChildObj->oPosY = m->lastStoodOnFloorHeight - 5;
 
             struct Object *lastObject = gCurrentObject;
             gCurrentObject = gMarioState->patchChildObj;
-            if (gMarioState->patchChildObj) {
+            if (gMarioState->patchChildObj && obj_has_behavior(gMarioState->patchChildObj, bhvSkybridge)) {
                 load_object_collision_model();
             }
             gCurrentObject = lastObject;
