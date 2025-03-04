@@ -2935,8 +2935,6 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
     }
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
-    print_text_fmt_int(10, 100, "%d", courseToOrderedIndex[courseIndex+1]);
-
     while (hasStar != starCount) {
         if (starFlags & (1 << nextStar)) {
             str[nextStar * 2] = DIALOG_CHAR_STAR_FILLED;

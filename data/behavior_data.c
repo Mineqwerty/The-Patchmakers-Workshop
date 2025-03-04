@@ -6277,6 +6277,7 @@ const BehaviorScript bhvTalotak[] = {
     SET_INTERACT_TYPE(INTERACT_TEXT),
     SET_HITBOX(/*Radius*/ 100, /*Height*/ 60),
     SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_talotak_init),
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),

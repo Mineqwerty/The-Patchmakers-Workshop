@@ -1068,6 +1068,7 @@ u8 object_behavior_is_chompable(struct Object *obj) {
         || obj->behavior == segmented_to_virtual(bhvDangerPuff)
         || obj->behavior == segmented_to_virtual(bhvScuttlebug)
         || obj->behavior == segmented_to_virtual(bhvSkeeter)
+        || obj->behavior == segmented_to_virtual(bhvSwampSkeeter)
         || obj->behavior == segmented_to_virtual(bhvYarnBlooper)
     );
 }
