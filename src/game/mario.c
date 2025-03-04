@@ -1005,6 +1005,12 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
             }
     }
 
+    if (m->equippedPatch == PATCH_MARINE && gCurrLevelNum == LEVEL_SL && jumpStart) {
+        //marine patch has secret jump and speed bonuses in EA
+        m->vel[1] *= 1.3f;
+        m->forwardVel *= 1.3f;
+    }
+
     m->peakHeight = m->pos[1];
     m->flags |= MARIO_JUMPING;
 
@@ -2452,6 +2458,9 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     if (gCurrLevelNum == LEVEL_SL) {
         if (random_u16()%12 == 0) {
             spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvSmallParticleBubbles);
+            if (gMarioState->equippedPatch == PATCH_MARINE) {
+                spawn_object(o, MODEL_SPARKLES, bhvCoinSparklesSpawner);
+            }
         }
 
         gMarioState->particleFlags |= PARTICLE_PLUNGE_BUBBLE;

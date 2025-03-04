@@ -1129,7 +1129,9 @@ s32 act_breeze_patch_bouncing(struct MarioState *m) {
             m->breezeSlopeTimer--;
         }
     }
-
+    if (m->boostTimer > 0) {
+        m->forwardVel = approach_f32(m->forwardVel, 150.0f, 6.0f, 6.35f);
+    }
     //m->forwardVel = approach_f32(m->forwardVel, 90.0f, 6.0f, 20.35f);
 
     return FALSE;

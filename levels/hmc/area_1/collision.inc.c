@@ -255,7 +255,8 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_safe_layer1[] = {
 };
 
 Gfx hmc_area_1_collision_water_bottom_layer_1[] = {
-	gsSPSetLights1(hmc_dl_water_bottom_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -270,7 +271,8 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_water_bottom[] = {
 };
 
 Gfx hmc_area_1_collision_hurt_layer_1[] = {
-	gsSPSetLights1(hmc_dl_hurt_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -285,7 +287,8 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_hurt[] = {
 };
 
 Gfx hmc_area_1_collision_wattah_001_layer_5[] = {
-	gsSPSetLights1(hmc_dl_wattah_001_lights),
+    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
+    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -301,7 +304,8 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_wattah_001[] = {
 };
 
 Gfx hmc_area_1_collision_vertical_boost_water_floor_001_layer_5[] = {
-	gsSPSetLights1(hmc_dl_vertical_boost_water_floor_001_lights),
+    gsSPLightColor(LIGHT_1, 0x5fb8ffff),
+    gsSPLightColor(LIGHT_2, 0x2c5a7fff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE, 0, 0, 0, SHADE, 0, 0, 0, PRIMITIVE),
 	gsDPSetAlphaDither(G_AD_NOISE),

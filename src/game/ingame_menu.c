@@ -3272,7 +3272,7 @@ u32 indexToOriginalCourse[13] = {
 
 
 void render_course_hint_text(void) {
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 9 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 7 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
         print_set_envcolour(0, 255, 0, 255);
     }
     else {
@@ -3282,7 +3282,7 @@ void render_course_hint_text(void) {
     print_small_text(gSecretStarMenuPosX - 40 , SCREEN_CENTER_Y - 20, 
         starHints[2*(courseToOrderedIndex[gCurrCourseNum] - 1)], PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_VANILLA);
         
-    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 10 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
+    if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 8 + 2*(courseToOrderedIndex[gCurrCourseNum]))) {
         print_set_envcolour(0, 255, 0, 255);
     }
     else {

@@ -9,7 +9,8 @@
 
 void spawn_wave_enemy(BehaviorScript enemy, u32 model) {
     u16 randomSpot = random_u16();
-    spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, model, enemy);
+    struct Object *waveObj = spawn_object_relative(0, 1500 * sins(randomSpot), 20, 1500 * coss(randomSpot), o, model, enemy);
+    SET_BPARAM3(waveObj->oBehParams, 5);
 }
 
 void spawn_waves(u8 wave) {
@@ -44,6 +45,8 @@ void spawn_waves(u8 wave) {
 void bhv_enemy_obelisk_loop() {
 
     f32 *dist;
+    o->oNumWaveEnemiesLeft = count_objects_with_behavior_and_bparam_3(bhvGoomba, 5) + count_objects_with_behavior_and_bparam_3(bhvJellyfish, 5)  + count_objects_with_behavior_and_bparam_3(bhvYarnBlooper, 5);
+    //dbp(o->oNumWaveEnemiesLeft); 
 
     switch (o->oAction) {
         //forcefield spawning
@@ -77,7 +80,6 @@ void bhv_enemy_obelisk_loop() {
         break;
         //wave 1 happening
         case 2:
-            //print_text(20, 20, "wave 1");
             if (o->oNumWaveEnemiesLeft <= 0) {
                 o->oAction++;
             }
