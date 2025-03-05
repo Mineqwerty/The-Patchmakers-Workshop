@@ -579,17 +579,10 @@ We will help you in any way we can. Here, take this as\n\
 proof of our trust and hope in you.\n\
 It seems even star power wasn't enough for her..."))
 
-DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
-Stop and press [Z] to\n\
-crouch, then press [A]\n\
-to do a high, Backward\n\
-Somersault!\n\
-\n\
-To perform a Side\n\
-Somersault, run, do a\n\
-sharp U-turn and jump.\n\
-You can catch lots of\n\
-air with both jumps."))
+DEFINE_DIALOG(DIALOG_PHANTASMAID_INVITE, 1, 3, 30, 200, _("\
+The Master wishes to see you.\n\
+Go right ahead through this door...\n\
+I must warn you, though. The path is haunted."))
 
 DEFINE_DIALOG(DIALOG_053, 1, 5, 30, 200, _("\
 Sometimes, if you pass\n\

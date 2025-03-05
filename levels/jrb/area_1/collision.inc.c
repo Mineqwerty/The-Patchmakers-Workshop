@@ -133,7 +133,8 @@ Gfx jrb_area_1_collision_mat_revert_jrb_dl_b_surface_stone[] = {
 };
 
 Gfx jrb_area_1_collision_f3d_material_001_layer_1[] = {
-	gsSPSetLights1(jrb_dl_f3d_material_001_lights),
+    gsSPLightColor(LIGHT_1, 0x481817ff),
+    gsSPLightColor(LIGHT_2, 0x1f0706ff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -256,7 +257,8 @@ Gfx jrb_area_1_collision_mat_revert_jrb_dl_b_bricks_vine_layer1[] = {
 };
 
 Gfx jrb_area_1_collision_f3dlite_material_008_layer_1[] = {
-	gsSPSetLights1(jrb_dl_f3dlite_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

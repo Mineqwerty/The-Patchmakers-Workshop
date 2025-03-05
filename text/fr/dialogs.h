@@ -715,7 +715,7 @@ faire un méga-saut vers\n\
 l'arrière, digne des plus\n\
 grands athlètes!"))
 
-DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_INVITE, 1, 5, 30, 200, _("\
 Arrêtez-vous et appuyez\n\
 sur [Z] pour vous accroupir,\n\
 puis appuyez sur [A] pour\n\

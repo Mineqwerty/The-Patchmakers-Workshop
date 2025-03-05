@@ -1173,7 +1173,7 @@ void bhv_shadow_chomp_tail_loop(void) {
 
     f32 marioShadowHeight = o->oShadowTailHeight;
 
-    if (gMarioState->pos[1] - gMarioState->floorHeight > 1000) {
+    if ((gMarioState->pos[1] - gMarioState->floorHeight > 1000) || ((gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)) {
         o->oShadowTailAttachToMario = 1;
     }
 

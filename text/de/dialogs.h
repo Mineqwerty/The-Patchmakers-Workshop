@@ -657,7 +657,7 @@ Objekt ab, machst Du\n\
 einen unglaublich hohen\n\
 Sprung."))
 
-DEFINE_DIALOG(DIALOG_052, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_INVITE, 1, 5, 30, 200, _("\
 Du machst einen\n\
 Rückwärtssalto, wenn\n\
 Du stehend den [Z]-Knopf\n\

@@ -602,7 +602,7 @@ DEFINE_DIALOG(DIALOG_051, 1, 5, 30, 200, _("\
 むきをきめて　せなかの\n\
 ほうこうに　ジャンプだ！"))
 
-DEFINE_DIALOG(DIALOG_052, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_INVITE, 1, 4, 30, 200, _("\
 Ｚボタンで　しゃがめます。\n\
 とまって　しゃがんでから\n\
 ジャンプすると、\n\

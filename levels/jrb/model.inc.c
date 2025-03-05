@@ -1,14 +1,5 @@
-Lights1 jrb_dl_f3dlite_material_008_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
-Lights1 jrb_dl_f3d_material_001_lights = gdSPDefLights1(
-	0x1F, 0x7, 0x6,
-	0x48, 0x18, 0x17, 0x49, 0x49, 0x49);
 
-Lights1 jrb_dl_f3d_material_022_lights = gdSPDefLights1(
-	0x0, 0x0, 0x0,
-	0x0, 0x0, 0x0, 0x49, 0x49, 0x49);
 
 Gfx jrb_dl_STC_3skybox_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 jrb_dl_STC_3skybox_rgba16[] = {
@@ -32310,7 +32301,8 @@ Gfx mat_revert_jrb_dl_f3d_material_019_layer1[] = {
 };
 
 Gfx mat_jrb_dl_f3dlite_material_008[] = {
-	gsSPSetLights1(jrb_dl_f3dlite_material_008_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -32706,7 +32698,8 @@ Gfx mat_revert_jrb_dl_f3dlite_material_010[] = {
 };
 
 Gfx mat_jrb_dl_f3d_material_022[] = {
-	gsSPSetLights1(jrb_dl_f3d_material_022_lights),
+    gsSPLightColor(LIGHT_1, 0xff),
+    gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

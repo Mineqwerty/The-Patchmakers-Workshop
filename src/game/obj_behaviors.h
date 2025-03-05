@@ -17,6 +17,7 @@ enum ObjCollisionFlags {
 };
 
 s16 object_step_without_floor_orient(void);
+s16 object_step_no_water(void);
 
 //! Lots of these are duplicates
 void set_yoshi_as_not_dead(void);

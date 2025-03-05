@@ -65,7 +65,7 @@ void bhv_fire_smoke_loop(void) {
     o->oForwardVel *= 0.98f;
     o->oVelY *= 1.01f;
 
-    object_step();
+    object_step_no_water();
 }
 
 void bhv_willowisp_loop(void) {
@@ -191,6 +191,6 @@ void bhv_shadowchomp_particle_loop(void) {
     o->oForwardVel *= 0.98f;
     o->oVelY *= 1.1f;
 
-    object_step();
+    object_step_no_water();
 }
 
