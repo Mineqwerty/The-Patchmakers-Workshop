@@ -389,6 +389,7 @@ void goddess_act_death(void) {
     if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
         if (o->oSubAction < 5) {
             o->oSubAction = 5;
+            o->oPosY = -400;
         }
     }
 }

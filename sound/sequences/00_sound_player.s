@@ -8940,6 +8940,17 @@ sound_ref .sound_wood_thunk
 sound_ref .sound_rope_tighten
 sound_ref .sound_rope_snap
 sound_ref .sound_goofy_warp
+sound_ref .sound_bubble_rush
+
+.sound_bubble_rush:
+chan_setbank 12
+chan_setinstr 33
+chan_setlayer 0, .layer_bubble_rush
+chan_end
+
+.layer_bubble_rush:
+layer_note1 39, 0x70, 127
+layer_end
 
 .sound_goofy_warp:
 chan_setbank 12

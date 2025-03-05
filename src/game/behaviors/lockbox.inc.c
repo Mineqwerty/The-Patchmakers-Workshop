@@ -28,7 +28,7 @@ void bhv_lockbox_loop(void) {
     }
 
     else {
-        if (o->oF4 == 0 && o->oDistanceToMario < 300 && (save_file_get_flags() & (SAVE_FLAG_HAVE_LOCKBOX_KEY))) {
+        if (o->oF4 == 0 && o->oDistanceToMario < 300 && (save_file_get_flags() & (SAVE_FLAG_HAVE_LOCKBOX_KEY)) && gMarioState->action != ACT_BREEZE_PATCH_BOUNCING) {
             
             s16 dialogResponse = cutscene_object_with_dialog(CUTSCENE_RACE_DIALOG, o, DIALOG_OPEN_LOCKBOX);
 

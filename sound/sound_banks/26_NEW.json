@@ -175,6 +175,11 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "goofy_warp"
+    },
+    "inst_bubble_rush": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "bubble_rush"
     }
   },
   "instrument_list": [
@@ -210,6 +215,7 @@
     "inst_wood_thunk",
     "inst_rope_tighten",
     "inst_rope_snap",
-    "inst_goofy_warp"
+    "inst_goofy_warp",
+    "inst_bubble_rush"
   ]
 }

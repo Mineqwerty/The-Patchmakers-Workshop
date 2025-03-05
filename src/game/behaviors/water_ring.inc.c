@@ -244,7 +244,7 @@ void manta_water_ring_act_not_collected(void) {
 
     //water_ring_check_collection(avgScale, ringManager);
     water_ring_set_scale(avgScale);
-    set_object_visibility(o, 5000);
+    //set_object_visibility(o, 5000);
 
     //if (ringSpawner->oWaterRingSpawnerRingsCollected == 4
     //    && o->oWaterRingIndex == ringManager->oWaterRingMgrLastRingCollected + 1) {
@@ -291,6 +291,7 @@ void bhv_sub_sea_water_ring_loop(void) {
             if (o->oInteractStatus & INT_STATUS_INTERACTED) {
 
                 o->oAction = SS_RING_ACT_COLLECTED;
+                play_sound(SOUND_NEW_BUBBLE_RUSH, gGlobalSoundSource);
     }
             break;
 

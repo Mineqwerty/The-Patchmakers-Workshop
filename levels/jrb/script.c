@@ -87,6 +87,7 @@ const LevelScript level_jrb_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
@@ -117,7 +118,8 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, 5308, 3452, -7726, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 5801, 3452, -6989, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 5801, 3452, -8524, 0, -90, 0, 0x00000000, bhvCoinFormation),
-		OBJECT(MODEL_NONE, -1662, 194, 1309, 0, -180, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3483, 142, 1954, 0, -180, 0, 0x00000000, bhvCoinFormation),
+		OBJECT(MODEL_NONE, -2367, 230, 618, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2904, -253, 3193, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4286, 1453, 4728, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4439, 4070, -7932, 0, -180, 0, (2 << 16), bhvCoinFormation),
@@ -149,6 +151,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_GEAR, -8092, 1088, 9455, 0, -135, 0, (1 << 16), bhvStoneGear),
 		OBJECT(MODEL_GEAR, 2435, 519, 4063, 0, -180, 0, 0x00000000, bhvStoneGear),
 		OBJECT(MODEL_GEAR, 3358, 448, 4063, 0, -135, 0, 0x00000000, bhvStoneGear),
+		OBJECT(MODEL_GEAR, -573, 56, 517, 0, -135, 0, (1 << 16), bhvStoneGear),
 		OBJECT(MODEL_GRAPPLE_STONE, 1765, 2393, 9015, 0, -180, 0, (171 << 8), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 1603, 1010, 2281, 0, 90, 0, (1 << 16), bhvGrappleStone),
 		OBJECT(MODEL_GRAPPLE_STONE, 1603, 1010, 1389, 0, 90, 0, (1 << 16), bhvGrappleStone),

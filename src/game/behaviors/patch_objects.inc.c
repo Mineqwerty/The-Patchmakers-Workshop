@@ -900,6 +900,7 @@ void bhv_portal_loop(void) {
         play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 20, 103, 146, 224);
 
         if (o->oTimer == 18) {
+            gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_HIDE_DPAD;
 
             switch (o->oBehParams2ndByte) {
                 case 0:
@@ -1331,6 +1332,14 @@ void bhv_transmutation_cone_loop(void) {
                     }
                     else if (obj_has_behavior(target, bhvNeedleBall)) {
                         target->oBehParams2ndByte = 1;
+                    }
+                    else if (obj_has_behavior(target, bhvDangerPuff)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_BLUE_COIN, bhvMrIBlueCoin);
+                        obj_mark_for_deletion(target);
+                    }
+                    else if (obj_has_behavior(target, bhvSpekturr)) {
+                        spawn_object_relative(0, 0, 0, 0, target, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
+                        obj_mark_for_deletion(target);
                     }
 
                     else if (obj_has_behavior(target, bhvD4) || obj_has_behavior(target, bhvD6) || obj_has_behavior(target, bhvD8) || obj_has_behavior(target, bhvD12) || obj_has_behavior(target, bhvD20)) {

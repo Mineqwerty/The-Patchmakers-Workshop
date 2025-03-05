@@ -1592,6 +1592,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     }
 
     if (sWarpDest.portalID > 0) {
+        gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_HIDE_DPAD;
         if (sWarpDest.portalID == 1) {
             gCurrActNum = gMarioState->portal1Info[3];
         }
