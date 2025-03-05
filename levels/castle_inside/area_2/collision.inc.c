@@ -118,7 +118,7 @@ Gfx castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3dlite_material_
 	gsSPEndDisplayList(),
 };
 
-Gfx castle_inside_area_2_collision_f3d_material_001_layer_1[] = {
+Gfx castle_inside_area_2_collision_dustywood_layer_1[] = {
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, TEXEL1, SHADE_ALPHA, TEXEL1, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, 0, 0, 0, 1),
@@ -143,7 +143,7 @@ Gfx castle_inside_area_2_collision_f3d_material_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3d_material_001_layer1[] = {
+Gfx castle_inside_area_2_collision_mat_revert_castle_inside_dl_dustywood_layer1[] = {
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -1179,8 +1179,8 @@ const Gfx* castle_inside_area_2_collision_materials[] = {
 	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3dlite_material_010,
 	&castle_inside_area_2_collision_f3dlite_material_124_layer_1,
 	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3dlite_material_124,
-	&castle_inside_area_2_collision_f3d_material_001_layer_1,
-	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3d_material_001_layer1,
+	&castle_inside_area_2_collision_dustywood_layer_1,
+	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_dustywood_layer1,
 	&castle_inside_area_2_collision_f3dlite_material_016_layer_1,
 	&castle_inside_area_2_collision_mat_revert_castle_inside_dl_f3dlite_material_016,
 	&castle_inside_area_2_collision_f3dlite_material_110_layer_1,
