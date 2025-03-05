@@ -68,6 +68,9 @@
 #define TEXT_VARIABLE_X _("×")
 #define TEXT_UNFILLED_STAR _("☆")
 
+#define TEXT_PATCH_NOT_OBTAINED _("[Z]")
+#define TEXT_PATCH_OBTAINED _("[R]")
+
 /**
  * Global Text
  */

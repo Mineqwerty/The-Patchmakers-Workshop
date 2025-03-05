@@ -220,6 +220,10 @@ s16 gMenuShakeX;
 s16 gMenuShakeY;
 s16 gNewStarIconTimer;
 
+
+u8 textPatchNotObtained[] = { TEXT_PATCH_NOT_OBTAINED };
+u8 textPatchObtained[] = { TEXT_PATCH_OBTAINED };
+
 void create_dl_identity_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
@@ -681,6 +685,17 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
             gStarSelectDisturbed = 1;
         }
     }
+    else if (scrollDirection == MENU_SCROLL_BOTH) {
+            if ((gPlayer1Controller->rawStickY >  60)) index+=3;
+            if ((gPlayer1Controller->rawStickY < -60)) index += 4;
+            if ((gPlayer1Controller->rawStickX >  60)) {
+                index += 2;
+            }
+            if ((gPlayer1Controller->rawStickX < -60)) {
+                index++;
+            }
+        
+    }
 
     if (((index ^ gMenuHoldKeyIndex) & index) == 2) {
         if (*currentIndex != maxIndex) {
@@ -709,6 +724,22 @@ void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8
                 else {
                     gScrollSongVersion = 1;
                 }
+            }
+        }
+    }
+
+    if (scrollDirection == MENU_SCROLL_BOTH) {
+        if (((index ^ gMenuHoldKeyIndex) & index) == 4) {
+            if (*currentIndex + 2 <= maxIndex) {
+                play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+                (*currentIndex) = ((*currentIndex) + 2);
+            }
+        }
+
+        if (((index ^ gMenuHoldKeyIndex) & index) == 3) {
+            if (*currentIndex - 2 >= minIndex) {
+                play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
+                (*currentIndex) = ((*currentIndex) - 2);
             }
         }
     }
@@ -2925,6 +2956,15 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
         print_generic_string(x + 24, y - 5, textCoin);
     }
 
+    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[courseIndex+1])) {
+        gDPSetEnvColor(gDisplayListHead++, 30, 255, 100, gDialogTextAlpha);
+        print_generic_string(x + 54, y - 5, textPatchObtained);
+    }
+    else {
+        gDPSetEnvColor(gDisplayListHead++, 160, 160, 160, gDialogTextAlpha);
+        print_generic_string(x + 54, y - 5, textPatchNotObtained);
+    }
+
     
     gDPSetEnvColor(gDisplayListHead++, 0, 255, 255, gDialogTextAlpha);
     if (save_file_is_secret_star_collected(gCurrSaveFileNum-1, 7 + 2*(courseToOrderedIndex[courseIndex+1]))) {
@@ -3412,6 +3452,9 @@ void render_pause_screen_felt() {
         gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
         gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     }
+    
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
+
 
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer2PosX, gLayer2PosY, 6);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer2Rot, 0, 0, 1.0f); 
@@ -3424,6 +3467,8 @@ void render_pause_screen_felt() {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
+
 
     create_dl_translation_matrix(MENU_MTX_PUSH, gLayer1PosX, gLayer1PosY, 3);
     create_dl_rotation_matrix(MENU_MTX_NOPUSH, gLayer1Rot, 0, 0, 1.0f); 
@@ -4325,6 +4370,12 @@ void render_course_complete_lvl_info_and_hud_str(void) {
         print_generic_string(63, 167, LANGUAGE_ARRAY(textCourse));
         print_generic_string(CRS_NUM_X3, 167, strCourseNum);
 
+
+        
+
+        
+
+
         gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
     } else if (gLastCompletedCourseNum == COURSE_BITDW || gLastCompletedCourseNum == COURSE_BITFS) { // Bowser courses
         name = segmented_to_virtual(courseNameTbl[COURSE_NUM_TO_INDEX(gLastCompletedCourseNum)]);
@@ -4489,6 +4540,17 @@ void render_new_course_complete_text(s16 alpha) {
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
         print_generic_string(63 + gMenuShakeX, 67 + gMenuShakeY, courseName);
         //print_generic_string(CRS_NUM_X3, 167, strCourseNum);
+
+        if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gLastCompletedCourseNum+1])) {
+            gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
+            print_generic_string(72 + gMenuShakeX, 25 + gMenuShakeY, textPatchObtained);
+        }
+        else {
+            gDPSetEnvColor(gDisplayListHead++, 160, 160, 160, gDialogTextAlpha);
+            print_generic_string(72 + gMenuShakeY, 25 + gMenuShakeY, textPatchNotObtained);
+        }
+
+        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
         render_new_course_complete_stars(100, 10, gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gLastCompletedCourseNum), gLastCompletedStarNum - 1);
 

@@ -95,7 +95,7 @@ void bhv_new_file_select_manager_loop(void) {
             gSpecialHudElementAlpha = CLAMP_U8(255 - o->oTimer * 6);
             if (o->oTimer >= 50) {
 
-                handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &gSelectedFile, 0, 3);
+                handle_menu_scrolling(MENU_SCROLL_BOTH, &gSelectedFile, 0, 3);
                 f32 dist;
                 struct Object *selector = cur_obj_find_nearest_object_with_behavior(bhvYarnCircleSelector, &dist);
 

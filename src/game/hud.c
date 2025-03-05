@@ -313,6 +313,7 @@ void render_hud_eye_effect(void) {
     }
 
     create_dl_translation_matrix(MENU_MTX_PUSH, SCREEN_CENTER_X, SCREEN_CENTER_Y, 0);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
     if (gSpecialHudElementTimer < 60) {
         create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, 500, 0);
         gSPDisplayList(gDisplayListHead++, &screen_effect_eye_open_Plane_009_mesh);
