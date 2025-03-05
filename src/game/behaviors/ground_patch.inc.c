@@ -72,6 +72,8 @@ void bhv_ground_patch_loop(void) {
         if (o->oTimer == 22) {
             gMarioState->heldObj = o;
             o->oFaceAngleYaw = 0x4000;
+            o->oFaceAnglePitch = 0;
+            o->oFaceAngleRoll = 0;
             cur_obj_hide();
         }
         if (o->oTimer == 25) {

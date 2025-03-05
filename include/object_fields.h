@@ -1421,6 +1421,9 @@
 #define oLaser2Obj           OBJECT_FIELD_OBJ(0x1C)
 #define oLaser3Obj           OBJECT_FIELD_OBJ(0x1D)
 
+//paper boo
+#define oPaperBooSpawned           OBJECT_FIELD_OBJ(0x1B)
+
 //patchmaker
 #define oPatchmakerChildObj           OBJECT_FIELD_OBJ(0x1B)
 #define oPatchmakerNeedleBallObj           OBJECT_FIELD_OBJ(0x1C)

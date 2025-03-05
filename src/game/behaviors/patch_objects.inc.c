@@ -1032,6 +1032,12 @@ void bhv_shadow_chomp_head_loop(void) {
                     o->oAction = SHADOW_CHOMP_ACT_RETRACT;
                     gMarioState->curPatch = PATCH_SHADOWCHOMP;
                     cur_obj_init_animation_with_accel_and_sound(2, 3.0f);
+
+                    if (obj_has_behavior(o->oShadowChompTarget, bhvPaperBooEatable)) {
+                        //this is dumb
+                        o->oShadowChompTarget->parentObj->oPaperBooSpawned = NULL;
+                    }
+
                     obj_mark_for_deletion(o->oShadowChompTarget);
                     cur_obj_play_sound_1(SOUND_SHADOWCHOMP_CHOMP);
                     o->oShadowChompTarget = NULL;

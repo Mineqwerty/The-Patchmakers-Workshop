@@ -3902,6 +3902,48 @@ void render_placing_portal_menu() {
     //gSPDisplayList(gDisplayListHead++, menu_arrow_portal_selector_Plane_020_mesh);
     //gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
+    f32 p1Dist, p2Dist;
+    
+    char textBytes[80];
+
+    if (gMarioState->portal1Info[0] == gCurrLevelNum 
+        && gMarioState->portal1Info[1] == gCurrAreaIndex
+        && gMarioState->patchChildPortalObj) {
+        vec3f_get_dist(gMarioState->pos, &gMarioState->patchChildPortalObj->oPosVec, &p1Dist);
+        
+        sprintf(textBytes, "Distance: %.2fm", p1Dist/100.f);
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(1 + SCREEN_CENTER_X - SCREEN_CENTER_X/2, 1 + 50, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(SCREEN_CENTER_X - SCREEN_CENTER_X/2, 50, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+    }
+    else {
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(1 + SCREEN_CENTER_X - SCREEN_CENTER_X/2, 1 + 50, "Distance: ???", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(SCREEN_CENTER_X - SCREEN_CENTER_X/2, 50, "Distance: ???", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+    
+    }
+
+    if (gMarioState->portal2Info[0] == gCurrLevelNum 
+        && gMarioState->portal2Info[1] == gCurrAreaIndex
+        && gMarioState->patchChildSecondaryObj) {
+        vec3f_get_dist(gMarioState->pos, &gMarioState->patchChildSecondaryObj->oPosVec, &p2Dist);
+        
+        sprintf(textBytes, "Distance: %.2fm", p2Dist/100.f);
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(1 + SCREEN_CENTER_X + SCREEN_CENTER_X/2, 1 + 50, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(SCREEN_CENTER_X + SCREEN_CENTER_X/2, 50, textBytes, PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+    }
+    else {
+        print_set_envcolour(0, 0, 0, 255);
+        print_small_text(1 + SCREEN_CENTER_X + SCREEN_CENTER_X/2, 1 + 50, "Distance: ???", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text(SCREEN_CENTER_X + SCREEN_CENTER_X/2, 50, "Distance: ???", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+    
+    }
+
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     if (gMarioState->equippedPatch != PATCH_PORTAL) {

@@ -855,3 +855,4 @@ extern const BehaviorScript bhvSpeechBubble[];
 extern const BehaviorScript bhvPmCreditsManager[];
 extern const BehaviorScript bhvEscapingSouls[];
 extern const BehaviorScript bhvLowerCityGate[];
+extern const BehaviorScript bhvPaperBooEatable[];
