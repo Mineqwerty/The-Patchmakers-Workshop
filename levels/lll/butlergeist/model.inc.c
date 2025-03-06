@@ -1,4 +1,3 @@
-
 Gfx butlergeist_tuxedo_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 butlergeist_tuxedo_ci8[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -622,44 +621,11 @@ Vtx butlergeist_root_mesh_layer_1_vtx_0[55] = {
 	{{ {42, 73, 15}, 0, {-16, 2032}, {255, 255, 255, 255} }},
 };
 
-Gfx butlergeist_root_mesh_layer_1_tri_0[] = {
-	gsSPVertex(butlergeist_root_mesh_layer_1_vtx_0 + 0, 31, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
-	gsSP2Triangles(4, 3, 2, 0, 4, 5, 3, 0),
-	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
-	gsSP2Triangles(9, 6, 10, 0, 9, 10, 11, 0),
-	gsSP2Triangles(12, 11, 10, 0, 12, 13, 11, 0),
-	gsSP2Triangles(14, 11, 13, 0, 14, 15, 11, 0),
-	gsSP2Triangles(9, 11, 15, 0, 9, 15, 16, 0),
-	gsSP2Triangles(16, 7, 9, 0, 16, 17, 7, 0),
-	gsSP2Triangles(18, 19, 20, 0, 18, 20, 21, 0),
-	gsSP2Triangles(22, 23, 24, 0, 22, 25, 23, 0),
-	gsSP2Triangles(25, 22, 26, 0, 25, 26, 27, 0),
-	gsSP2Triangles(25, 27, 28, 0, 25, 28, 29, 0),
-	gsSP2Triangles(29, 23, 25, 0, 29, 30, 23, 0),
-	gsSPVertex(butlergeist_root_mesh_layer_1_vtx_0 + 31, 24, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
-	gsSP2Triangles(0, 3, 4, 0, 0, 4, 5, 0),
-	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
-	gsSP2Triangles(10, 7, 9, 0, 10, 9, 11, 0),
-	gsSP2Triangles(12, 13, 14, 0, 12, 15, 13, 0),
-	gsSP2Triangles(16, 17, 18, 0, 18, 17, 19, 0),
-	gsSP2Triangles(19, 17, 20, 0, 21, 16, 22, 0),
-	gsSP2Triangles(22, 23, 21, 0, 23, 20, 21, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx butlergeist_root_mesh_layer_5_vtx_0[4] = {
 	{{ {0, 73, 30}, 0, {-16, 1008}, {136, 136, 136, 214} }},
 	{{ {-37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
 	{{ {0, 41, 23}, 0, {-16, 1008}, {255, 255, 255, 214} }},
 	{{ {37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
-};
-
-Gfx butlergeist_root_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_root_mesh_layer_5_vtx_0 + 0, 4, 0),
-	gsSP2Triangles(0, 1, 2, 0, 3, 0, 2, 0),
-	gsSPEndDisplayList(),
 };
 
 Vtx butlergeist_arm_mesh_layer_1_vtx_0[39] = {
@@ -704,37 +670,6 @@ Vtx butlergeist_arm_mesh_layer_1_vtx_0[39] = {
 	{{ {-49, -34, 71}, 0, {-16, 2032}, {255, 255, 255, 255} }},
 };
 
-Gfx butlergeist_arm_mesh_layer_1_tri_0[] = {
-	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_0 + 0, 32, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
-	gsSP2Triangles(6, 5, 4, 0, 6, 7, 5, 0),
-	gsSP2Triangles(8, 7, 6, 0, 8, 9, 7, 0),
-	gsSP2Triangles(10, 11, 12, 0, 11, 10, 13, 0),
-	gsSP2Triangles(10, 14, 13, 0, 10, 15, 14, 0),
-	gsSP2Triangles(10, 12, 15, 0, 15, 12, 16, 0),
-	gsSP2Triangles(16, 12, 17, 0, 12, 18, 17, 0),
-	gsSP2Triangles(12, 11, 18, 0, 11, 13, 18, 0),
-	gsSP2Triangles(18, 13, 19, 0, 13, 20, 19, 0),
-	gsSP2Triangles(13, 14, 20, 0, 14, 21, 20, 0),
-	gsSP2Triangles(14, 22, 21, 0, 15, 22, 14, 0),
-	gsSP2Triangles(15, 23, 22, 0, 15, 16, 23, 0),
-	gsSP2Triangles(23, 16, 24, 0, 16, 17, 24, 0),
-	gsSP2Triangles(24, 17, 25, 0, 17, 26, 25, 0),
-	gsSP2Triangles(17, 18, 26, 0, 18, 19, 26, 0),
-	gsSP2Triangles(26, 19, 27, 0, 19, 28, 27, 0),
-	gsSP2Triangles(19, 20, 28, 0, 20, 29, 28, 0),
-	gsSP2Triangles(20, 21, 29, 0, 21, 30, 29, 0),
-	gsSP2Triangles(21, 31, 30, 0, 22, 31, 21, 0),
-	gsSP2Triangles(22, 24, 31, 0, 23, 24, 22, 0),
-	gsSP1Triangle(24, 25, 31, 0),
-	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_0 + 32, 7, 0),
-	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
-	gsSP2Triangles(1, 4, 3, 0, 4, 5, 3, 0),
-	gsSP1Triangle(0, 2, 6, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx butlergeist_arm_mesh_layer_1_vtx_1[6] = {
 	{{ {-63, -42, 59}, 0, {-16, 1008}, {255, 255, 255, 255} }},
 	{{ {-50, -41, 65}, 0, {-16, 1008}, {255, 255, 255, 255} }},
@@ -742,13 +677,6 @@ Vtx butlergeist_arm_mesh_layer_1_vtx_1[6] = {
 	{{ {-55, -27, 67}, 0, {-16, 1008}, {255, 255, 255, 255} }},
 	{{ {-63, -34, 54}, 0, {-16, 1008}, {255, 255, 255, 255} }},
 	{{ {-61, -23, 61}, 0, {-16, 1008}, {255, 255, 255, 255} }},
-};
-
-Gfx butlergeist_arm_mesh_layer_1_tri_1[] = {
-	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_1 + 0, 6, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
-	gsSP2Triangles(4, 0, 3, 0, 4, 3, 5, 0),
-	gsSPEndDisplayList(),
 };
 
 Vtx butlergeist_arm_mesh_layer_5_vtx_0[6] = {
@@ -760,36 +688,15 @@ Vtx butlergeist_arm_mesh_layer_5_vtx_0[6] = {
 	{{ {-54, -35, 68}, 0, {867, 841}, {144, 94, 136, 225} }},
 };
 
-Gfx butlergeist_arm_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_arm_mesh_layer_5_vtx_0 + 0, 6, 0),
-	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
-	gsSP2Triangles(1, 4, 3, 0, 4, 5, 3, 0),
-	gsSP2Triangles(4, 0, 5, 0, 0, 2, 5, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx butlergeist_handtentacles_skinned_mesh_layer_5_vtx_0[3] = {
 	{{ {-63, -38, 59}, 0, {922, 903}, {144, 94, 136, 188} }},
 	{{ {-65, -26, 63}, 0, {875, 903}, {144, 94, 136, 188} }},
 	{{ {-54, -35, 68}, 0, {867, 841}, {144, 94, 136, 225} }},
 };
 
-Gfx butlergeist_handtentacles_skinned_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_handtentacles_skinned_mesh_layer_5_vtx_0 + 0, 3, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx butlergeist_handtentacles_mesh_layer_5_vtx_0[2] = {
 	{{ {-47, 173, 13}, 0, {890, 887}, {144, 94, 136, 13} }},
 	{{ {-47, 150, 20}, 0, {875, 856}, {144, 94, 136, 188} }},
-};
-
-Gfx butlergeist_handtentacles_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_handtentacles_mesh_layer_5_vtx_0 + 0, 2, 3),
-	gsSP2Triangles(1, 0, 3, 0, 0, 4, 3, 0),
-	gsSP2Triangles(0, 2, 4, 0, 2, 3, 4, 0),
-	gsSP1Triangle(2, 1, 3, 0),
-	gsSPEndDisplayList(),
 };
 
 Vtx butlergeist_armtentacles_skinned_mesh_layer_5_vtx_0[9] = {
@@ -804,25 +711,10 @@ Vtx butlergeist_armtentacles_skinned_mesh_layer_5_vtx_0[9] = {
 	{{ {-28, 166, -7}, 0, {859, 920}, {144, 94, 136, 255} }},
 };
 
-Gfx butlergeist_armtentacles_skinned_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_armtentacles_skinned_mesh_layer_5_vtx_0 + 0, 9, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx butlergeist_armtentacles_mesh_layer_5_vtx_0[3] = {
 	{{ {-24, 209, -10}, 0, {890, 887}, {144, 94, 136, 13} }},
 	{{ {-20, 213, 4}, 0, {890, 887}, {144, 94, 136, 13} }},
 	{{ {18, 209, -10}, 0, {890, 887}, {144, 94, 136, 13} }},
-};
-
-Gfx butlergeist_armtentacles_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_armtentacles_mesh_layer_5_vtx_0 + 0, 3, 9),
-	gsSP2Triangles(0, 1, 9, 0, 1, 2, 9, 0),
-	gsSP2Triangles(2, 0, 9, 0, 3, 4, 10, 0),
-	gsSP2Triangles(4, 5, 10, 0, 5, 3, 10, 0),
-	gsSP2Triangles(6, 7, 11, 0, 7, 8, 11, 0),
-	gsSP1Triangle(8, 6, 11, 0),
-	gsSPEndDisplayList(),
 };
 
 Vtx butlergeist_head_mesh_layer_1_vtx_0[44] = {
@@ -872,7 +764,249 @@ Vtx butlergeist_head_mesh_layer_1_vtx_0[44] = {
 	{{ {-25, 49, 15}, 0, {-16, 1008}, {0, 0, 0, 255} }},
 };
 
-Gfx butlergeist_head_mesh_layer_1_tri_0[] = {
+Vtx butlergeist_head_mesh_layer_1_vtx_1[6] = {
+	{{ {25, 49, 15}, 0, {-16, 1008}, {222, 121, 238, 255} }},
+	{{ {25, 49, -15}, 0, {-16, 1008}, {214, 114, 38, 255} }},
+	{{ {0, 49, -25}, 0, {-16, 1008}, {0, 111, 61, 255} }},
+	{{ {0, 49, 25}, 0, {-16, 1008}, {0, 122, 220, 255} }},
+	{{ {-25, 49, 15}, 0, {-16, 1008}, {34, 121, 238, 255} }},
+	{{ {-25, 49, -15}, 0, {-16, 1008}, {42, 114, 38, 255} }},
+};
+
+Vtx butlergeist_headtentacles_skinned_mesh_layer_5_vtx_0[15] = {
+	{{ {19, 37, 11}, 0, {954, 920}, {144, 94, 136, 255} }},
+	{{ {8, 44, -3}, 0, {859, 825}, {144, 94, 136, 255} }},
+	{{ {4, 43, 15}, 0, {859, 920}, {144, 94, 136, 255} }},
+	{{ {-13, 45, 12}, 0, {954, 920}, {144, 94, 136, 255} }},
+	{{ {0, 37, 1}, 0, {859, 825}, {144, 94, 136, 255} }},
+	{{ {-19, 35, 0}, 0, {859, 920}, {144, 94, 136, 255} }},
+	{{ {-5, 37, -6}, 0, {954, 920}, {144, 94, 136, 255} }},
+	{{ {-3, 25, 9}, 0, {859, 825}, {144, 94, 136, 255} }},
+	{{ {10, 34, 0}, 0, {859, 920}, {144, 94, 136, 255} }},
+	{{ {13, 36, -3}, 0, {954, 920}, {144, 94, 136, 255} }},
+	{{ {19, 47, 10}, 0, {859, 825}, {144, 94, 136, 255} }},
+	{{ {28, 43, -6}, 0, {859, 920}, {144, 94, 136, 255} }},
+	{{ {-7, 34, -6}, 0, {954, 920}, {144, 94, 136, 255} }},
+	{{ {-20, 31, 7}, 0, {859, 825}, {144, 94, 136, 255} }},
+	{{ {-3, 39, 9}, 0, {859, 920}, {144, 94, 136, 255} }},
+};
+
+Vtx butlergeist_headtentacles_mesh_layer_5_vtx_0[5] = {
+	{{ {30, 168, 24}, 0, {890, 887}, {144, 94, 136, 13} }},
+	{{ {-16, 160, -17}, 0, {890, 887}, {144, 94, 136, 13} }},
+	{{ {-10, 152, 45}, 0, {890, 887}, {144, 94, 136, 13} }},
+	{{ {-9, 162, -13}, 0, {890, 887}, {144, 94, 136, 13} }},
+	{{ {-37, 160, 3}, 0, {890, 887}, {144, 94, 136, 13} }},
+};
+
+Vtx butlergeist_tail_skinned_mesh_layer_5_vtx_0[4] = {
+	{{ {37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
+	{{ {0, 73, -30}, 0, {-16, 1008}, {145, 145, 145, 214} }},
+	{{ {-37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
+	{{ {0, 41, 23}, 0, {-16, 1008}, {255, 255, 255, 214} }},
+};
+
+Vtx butlergeist_tail_mesh_layer_5_vtx_0[4] = {
+	{{ {0, 5, 22}, 0, {-16, 1008}, {255, 255, 255, 148} }},
+	{{ {29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 94} }},
+	{{ {0, 19, -19}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+	{{ {-29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+};
+
+Vtx butlergeist_tail2_skinned_mesh_layer_5_vtx_0[4] = {
+	{{ {0, 5, 22}, 0, {-16, 1008}, {255, 255, 255, 148} }},
+	{{ {29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 94} }},
+	{{ {0, 19, -19}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+	{{ {-29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+};
+
+Vtx butlergeist_tail2_mesh_layer_5_vtx_0[4] = {
+	{{ {18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+	{{ {0, 31, -8}, 0, {-16, 1008}, {255, 255, 255, 95} }},
+	{{ {-18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+	{{ {0, 38, 10}, 0, {-16, 1008}, {255, 255, 255, 96} }},
+};
+
+Vtx butlergeist_tail3_skinned_mesh_layer_5_vtx_0[4] = {
+	{{ {0, 31, -8}, 0, {-16, 1008}, {255, 255, 255, 95} }},
+	{{ {-18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+	{{ {0, 38, 10}, 0, {-16, 1008}, {255, 255, 255, 96} }},
+	{{ {18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
+};
+
+Vtx butlergeist_tail3_mesh_layer_5_vtx_0[1] = {
+	{{ {0, 37, -3}, 0, {-16, 1008}, {255, 255, 255, 0} }},
+};
+
+
+Gfx butlergeist_root_mesh_layer_1[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_RGBA16 | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPSetOtherMode(G_SETOTHERMODE_L, 0, 3, G_AC_NONE | G_ZS_PIXEL),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butlergeist_tuxedo_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 64),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, butlergeist_tuxedo_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 1023, 512),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
+	gsDPSetTileSize(0, 0, 0, 124, 252),
+	gsSPVertex(butlergeist_root_mesh_layer_1_vtx_0 + 0, 31, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSP2Triangles(4, 3, 2, 0, 4, 5, 3, 0),
+	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
+	gsSP2Triangles(9, 6, 10, 0, 9, 10, 11, 0),
+	gsSP2Triangles(12, 11, 10, 0, 12, 13, 11, 0),
+	gsSP2Triangles(14, 11, 13, 0, 14, 15, 11, 0),
+	gsSP2Triangles(9, 11, 15, 0, 9, 15, 16, 0),
+	gsSP2Triangles(16, 7, 9, 0, 16, 17, 7, 0),
+	gsSP2Triangles(18, 19, 20, 0, 18, 20, 21, 0),
+	gsSP2Triangles(22, 23, 24, 0, 22, 25, 23, 0),
+	gsSP2Triangles(25, 22, 26, 0, 25, 26, 27, 0),
+	gsSP2Triangles(25, 27, 28, 0, 25, 28, 29, 0),
+	gsSP2Triangles(29, 23, 25, 0, 29, 30, 23, 0),
+	gsSPVertex(butlergeist_root_mesh_layer_1_vtx_0 + 31, 24, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSP2Triangles(0, 3, 4, 0, 0, 4, 5, 0),
+	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
+	gsSP2Triangles(10, 7, 9, 0, 10, 9, 11, 0),
+	gsSP2Triangles(12, 13, 14, 0, 12, 15, 13, 0),
+	gsSP2Triangles(16, 17, 18, 0, 18, 17, 19, 0),
+	gsSP2Triangles(19, 17, 20, 0, 21, 16, 22, 0),
+	gsSP2Triangles(22, 23, 21, 0, 23, 20, 21, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_root_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPSetOtherMode(G_SETOTHERMODE_L, 0, 3, G_AC_NONE | G_ZS_PIXEL),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetPrimColor(0, 0, 186, 201, 206, 255),
+	gsSPVertex(butlergeist_root_mesh_layer_5_vtx_0 + 0, 4, 0),
+	gsSP2Triangles(0, 1, 2, 0, 3, 0, 2, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_arm_mesh_layer_1[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_RGBA16 | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_0 + 0, 32, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
+	gsSP2Triangles(6, 5, 4, 0, 6, 7, 5, 0),
+	gsSP2Triangles(8, 7, 6, 0, 8, 9, 7, 0),
+	gsSP2Triangles(10, 11, 12, 0, 11, 10, 13, 0),
+	gsSP2Triangles(10, 14, 13, 0, 10, 15, 14, 0),
+	gsSP2Triangles(10, 12, 15, 0, 15, 12, 16, 0),
+	gsSP2Triangles(16, 12, 17, 0, 12, 18, 17, 0),
+	gsSP2Triangles(12, 11, 18, 0, 11, 13, 18, 0),
+	gsSP2Triangles(18, 13, 19, 0, 13, 20, 19, 0),
+	gsSP2Triangles(13, 14, 20, 0, 14, 21, 20, 0),
+	gsSP2Triangles(14, 22, 21, 0, 15, 22, 14, 0),
+	gsSP2Triangles(15, 23, 22, 0, 15, 16, 23, 0),
+	gsSP2Triangles(23, 16, 24, 0, 16, 17, 24, 0),
+	gsSP2Triangles(24, 17, 25, 0, 17, 26, 25, 0),
+	gsSP2Triangles(17, 18, 26, 0, 18, 19, 26, 0),
+	gsSP2Triangles(26, 19, 27, 0, 19, 28, 27, 0),
+	gsSP2Triangles(19, 20, 28, 0, 20, 29, 28, 0),
+	gsSP2Triangles(20, 21, 29, 0, 21, 30, 29, 0),
+	gsSP2Triangles(21, 31, 30, 0, 22, 31, 21, 0),
+	gsSP2Triangles(22, 24, 31, 0, 23, 24, 22, 0),
+	gsSP1Triangle(24, 25, 31, 0),
+	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_0 + 32, 7, 0),
+	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
+	gsSP2Triangles(1, 4, 3, 0, 4, 5, 3, 0),
+	gsSP1Triangle(0, 2, 6, 0),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butlergeist_butlergeist_mouth_pal_rgba16),
+	gsDPLoadTLUTCmd(5, 67),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, butlergeist_butlergeist_mouth_ci8),
+	gsDPLoadBlock(7, 0, 0, 1023, 256),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 124),
+	gsSPVertex(butlergeist_arm_mesh_layer_1_vtx_1 + 0, 6, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	gsSP2Triangles(4, 0, 3, 0, 4, 3, 5, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_arm_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, SHADE, 0, 0, 0, SHADE, 0, 0, 0, SHADE),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_arm_mesh_layer_5_vtx_0 + 0, 6, 0),
+	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
+	gsSP2Triangles(1, 4, 3, 0, 4, 5, 3, 0),
+	gsSP2Triangles(4, 0, 5, 0, 0, 2, 5, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_handtentacles_skinned_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_handtentacles_skinned_mesh_layer_5_vtx_0 + 0, 3, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_handtentacles_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_handtentacles_mesh_layer_5_vtx_0 + 0, 2, 3),
+	gsSP2Triangles(1, 0, 3, 0, 0, 4, 3, 0),
+	gsSP2Triangles(0, 2, 4, 0, 2, 3, 4, 0),
+	gsSP1Triangle(2, 1, 3, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_armtentacles_skinned_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_armtentacles_skinned_mesh_layer_5_vtx_0 + 0, 9, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_armtentacles_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_armtentacles_mesh_layer_5_vtx_0 + 0, 3, 9),
+	gsSP2Triangles(0, 1, 9, 0, 1, 2, 9, 0),
+	gsSP2Triangles(2, 0, 9, 0, 3, 4, 10, 0),
+	gsSP2Triangles(4, 5, 10, 0, 5, 3, 10, 0),
+	gsSP2Triangles(6, 7, 11, 0, 7, 8, 11, 0),
+	gsSP1Triangle(8, 6, 11, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPEndDisplayList(),
+};
+
+Gfx butlergeist_head_mesh_layer_1[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_RGBA16 | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_head_mesh_layer_1_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(4, 5, 6, 0, 4, 7, 5, 0),
@@ -896,57 +1030,36 @@ Gfx butlergeist_head_mesh_layer_1_tri_0[] = {
 	gsSP2Triangles(6, 7, 8, 0, 9, 3, 5, 0),
 	gsSP2Triangles(9, 10, 3, 0, 2, 3, 10, 0),
 	gsSP1Triangle(11, 9, 5, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx butlergeist_head_mesh_layer_1_vtx_1[6] = {
-	{{ {25, 49, 15}, 0, {-16, 1008}, {222, 121, 238, 255} }},
-	{{ {25, 49, -15}, 0, {-16, 1008}, {214, 114, 38, 255} }},
-	{{ {0, 49, -25}, 0, {-16, 1008}, {0, 111, 61, 255} }},
-	{{ {0, 49, 25}, 0, {-16, 1008}, {0, 122, 220, 255} }},
-	{{ {-25, 49, 15}, 0, {-16, 1008}, {34, 121, 238, 255} }},
-	{{ {-25, 49, -15}, 0, {-16, 1008}, {42, 114, 38, 255} }},
-};
-
-Gfx butlergeist_head_mesh_layer_1_tri_1[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPLightColor(LIGHT_1, 0x000000FF),
+	gsSPLightColor(LIGHT_2, 0x000000FF),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_head_mesh_layer_1_vtx_1 + 0, 6, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 3, 2, 0, 4, 2, 5, 0),
+	gsDPPipeSync(),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_headtentacles_skinned_mesh_layer_5_vtx_0[15] = {
-	{{ {19, 37, 11}, 0, {954, 920}, {144, 94, 136, 255} }},
-	{{ {8, 44, -3}, 0, {859, 825}, {144, 94, 136, 255} }},
-	{{ {4, 43, 15}, 0, {859, 920}, {144, 94, 136, 255} }},
-	{{ {-13, 45, 12}, 0, {954, 920}, {144, 94, 136, 255} }},
-	{{ {0, 37, 1}, 0, {859, 825}, {144, 94, 136, 255} }},
-	{{ {-19, 35, 0}, 0, {859, 920}, {144, 94, 136, 255} }},
-	{{ {-5, 37, -6}, 0, {954, 920}, {144, 94, 136, 255} }},
-	{{ {-3, 25, 9}, 0, {859, 825}, {144, 94, 136, 255} }},
-	{{ {10, 34, 0}, 0, {859, 920}, {144, 94, 136, 255} }},
-	{{ {13, 36, -3}, 0, {954, 920}, {144, 94, 136, 255} }},
-	{{ {19, 47, 10}, 0, {859, 825}, {144, 94, 136, 255} }},
-	{{ {28, 43, -6}, 0, {859, 920}, {144, 94, 136, 255} }},
-	{{ {-7, 34, -6}, 0, {954, 920}, {144, 94, 136, 255} }},
-	{{ {-20, 31, 7}, 0, {859, 825}, {144, 94, 136, 255} }},
-	{{ {-3, 39, 9}, 0, {859, 920}, {144, 94, 136, 255} }},
-};
-
-Gfx butlergeist_headtentacles_skinned_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_headtentacles_skinned_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_headtentacles_skinned_mesh_layer_5_vtx_0 + 0, 15, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_headtentacles_mesh_layer_5_vtx_0[5] = {
-	{{ {30, 168, 24}, 0, {890, 887}, {144, 94, 136, 13} }},
-	{{ {-16, 160, -17}, 0, {890, 887}, {144, 94, 136, 13} }},
-	{{ {-10, 152, 45}, 0, {890, 887}, {144, 94, 136, 13} }},
-	{{ {-9, 162, -13}, 0, {890, 887}, {144, 94, 136, 13} }},
-	{{ {-37, 160, 3}, 0, {890, 887}, {144, 94, 136, 13} }},
-};
-
-Gfx butlergeist_headtentacles_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_headtentacles_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_headtentacles_mesh_layer_5_vtx_0 + 0, 5, 15),
 	gsSP2Triangles(0, 1, 15, 0, 1, 2, 15, 0),
 	gsSP2Triangles(2, 0, 15, 0, 3, 4, 16, 0),
@@ -956,303 +1069,78 @@ Gfx butlergeist_headtentacles_mesh_layer_5_tri_0[] = {
 	gsSP2Triangles(10, 11, 18, 0, 11, 9, 18, 0),
 	gsSP2Triangles(12, 13, 19, 0, 13, 14, 19, 0),
 	gsSP1Triangle(14, 12, 19, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_tail_skinned_mesh_layer_5_vtx_0[4] = {
-	{{ {37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
-	{{ {0, 73, -30}, 0, {-16, 1008}, {145, 145, 145, 214} }},
-	{{ {-37, 31, -20}, 0, {-16, 1008}, {136, 136, 136, 214} }},
-	{{ {0, 41, 23}, 0, {-16, 1008}, {255, 255, 255, 214} }},
-};
-
-Gfx butlergeist_tail_skinned_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_tail_skinned_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsDPSetPrimColor(0, 0, 186, 201, 206, 255),
 	gsSPVertex(butlergeist_tail_skinned_mesh_layer_5_vtx_0 + 0, 4, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_tail_mesh_layer_5_vtx_0[4] = {
-	{{ {0, 5, 22}, 0, {-16, 1008}, {255, 255, 255, 148} }},
-	{{ {29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 94} }},
-	{{ {0, 19, -19}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-	{{ {-29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-};
-
-Gfx butlergeist_tail_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_tail_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_tail_mesh_layer_5_vtx_0 + 0, 4, 4),
 	gsSP2Triangles(1, 0, 4, 0, 4, 0, 5, 0),
 	gsSP2Triangles(0, 6, 5, 0, 0, 3, 6, 0),
 	gsSP2Triangles(2, 6, 3, 0, 2, 7, 6, 0),
 	gsSP2Triangles(4, 7, 2, 0, 2, 1, 4, 0),
+	gsDPPipeSync(),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_tail2_skinned_mesh_layer_5_vtx_0[4] = {
-	{{ {0, 5, 22}, 0, {-16, 1008}, {255, 255, 255, 148} }},
-	{{ {29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 94} }},
-	{{ {0, 19, -19}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-	{{ {-29, 17, -4}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-};
-
-Gfx butlergeist_tail2_skinned_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_tail2_skinned_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_tail2_skinned_mesh_layer_5_vtx_0 + 0, 4, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
-Vtx butlergeist_tail2_mesh_layer_5_vtx_0[4] = {
-	{{ {18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-	{{ {0, 31, -8}, 0, {-16, 1008}, {255, 255, 255, 95} }},
-	{{ {-18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-	{{ {0, 38, 10}, 0, {-16, 1008}, {255, 255, 255, 96} }},
-};
-
-Gfx butlergeist_tail2_mesh_layer_5_tri_0[] = {
+Gfx butlergeist_tail2_mesh_layer_5[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPVertex(butlergeist_tail2_mesh_layer_5_vtx_0 + 0, 4, 4),
 	gsSP2Triangles(0, 1, 4, 0, 1, 5, 4, 0),
 	gsSP2Triangles(1, 2, 5, 0, 3, 5, 2, 0),
 	gsSP2Triangles(3, 6, 5, 0, 0, 6, 3, 0),
 	gsSP2Triangles(0, 7, 6, 0, 0, 4, 7, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx butlergeist_tail3_skinned_mesh_layer_5_vtx_0[4] = {
-	{{ {0, 31, -8}, 0, {-16, 1008}, {255, 255, 255, 95} }},
-	{{ {-18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-	{{ {0, 38, 10}, 0, {-16, 1008}, {255, 255, 255, 96} }},
-	{{ {18, 35, 1}, 0, {-16, 1008}, {255, 255, 255, 93} }},
-};
-
-Gfx butlergeist_tail3_skinned_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_tail3_skinned_mesh_layer_5_vtx_0 + 0, 4, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx butlergeist_tail3_mesh_layer_5_vtx_0[1] = {
-	{{ {0, 37, -3}, 0, {-16, 1008}, {255, 255, 255, 0} }},
-};
-
-Gfx butlergeist_tail3_mesh_layer_5_tri_0[] = {
-	gsSPVertex(butlergeist_tail3_mesh_layer_5_vtx_0 + 0, 1, 4),
-	gsSP2Triangles(0, 1, 4, 0, 1, 2, 4, 0),
-	gsSP2Triangles(2, 3, 4, 0, 3, 0, 4, 0),
-	gsSPEndDisplayList(),
-};
-
-
-Gfx mat_butlergeist_f3dlite_material[] = {
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
-	gsSPGeometryMode(G_LIGHTING, 0),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butlergeist_tuxedo_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(5, 64),
-	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, butlergeist_tuxedo_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadBlock(7, 0, 0, 1023, 512),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
-	gsDPSetTileSize(0, 0, 0, 124, 252),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_butlergeist_f3dlite_material[] = {
-	gsDPPipeSync(),
-	gsSPGeometryMode(0, G_LIGHTING),
-	gsDPSetTextureLUT(G_TT_NONE),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_butlergeist_f3dlite_material_001[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, SHADE),
-	gsSPGeometryMode(G_LIGHTING, 0),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetPrimColor(0, 0, 186, 201, 206, 255),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_butlergeist_f3dlite_material_001[] = {
-	gsDPPipeSync(),
-	gsSPGeometryMode(0, G_LIGHTING),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_butlergeist_b[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
-	gsSPGeometryMode(G_LIGHTING, 0),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butlergeist_butlergeist_mouth_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(5, 67),
-	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, butlergeist_butlergeist_mouth_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadBlock(7, 0, 0, 1023, 256),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0),
-	gsDPSetTileSize(0, 0, 0, 252, 124),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_butlergeist_b[] = {
-	gsDPPipeSync(),
-	gsSPGeometryMode(0, G_LIGHTING),
-	gsDPSetTextureLUT(G_TT_NONE),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_butlergeist_f3dlite_material_003[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, SHADE, 0, 0, 0, SHADE, 0, 0, 0, SHADE),
-	gsSPGeometryMode(G_LIGHTING, 0),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_butlergeist_f3dlite_material_003[] = {
-	gsDPPipeSync(),
-	gsSPGeometryMode(0, G_LIGHTING),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_butlergeist_f3dlite_material_002[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_root_mesh_layer_1[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material),
-	gsSPDisplayList(butlergeist_root_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_root_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_root_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_arm_mesh_layer_1[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material),
-	gsSPDisplayList(butlergeist_arm_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material),
-	gsSPDisplayList(mat_butlergeist_b),
-	gsSPDisplayList(butlergeist_arm_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_butlergeist_b),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_arm_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_arm_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_handtentacles_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_handtentacles_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_handtentacles_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_handtentacles_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_armtentacles_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_armtentacles_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_armtentacles_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_armtentacles_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_head_mesh_layer_1[] = {
-	gsSPDisplayList(mat_butlergeist_b),
-	gsSPDisplayList(butlergeist_head_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_b),
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_002),
-	gsSPDisplayList(butlergeist_head_mesh_layer_1_tri_1),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_headtentacles_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_headtentacles_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_headtentacles_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_003),
-	gsSPDisplayList(butlergeist_headtentacles_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_003),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_tail_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_tail_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_tail2_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail2_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_tail2_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail2_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
 Gfx butlergeist_tail3_skinned_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail3_skinned_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_tail3_skinned_mesh_layer_5_vtx_0 + 0, 4, 0),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsSPEndDisplayList(),
 };
 
 Gfx butlergeist_tail3_mesh_layer_5[] = {
-	gsSPDisplayList(mat_butlergeist_f3dlite_material_001),
-	gsSPDisplayList(butlergeist_tail3_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_butlergeist_f3dlite_material_001),
-	gsSPEndDisplayList(),
-};
-
-Gfx butlergeist_material_revert_render_settings[] = {
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_AD_NOISE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
+	gsSPVertex(butlergeist_tail3_mesh_layer_5_vtx_0 + 0, 1, 4),
+	gsSP2Triangles(0, 1, 4, 0, 1, 2, 4, 0),
+	gsSP2Triangles(2, 3, 4, 0, 3, 0, 4, 0),
 	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH),
+	gsSPSetOtherMode(G_SETOTHERMODE_H, 4, 20, G_CD_MAGICSQ | G_AD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_PERSP | G_CYC_1CYCLE | G_PM_1PRIMITIVE),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 0),
 	gsDPSetEnvColor(255, 255, 255, 255),

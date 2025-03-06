@@ -7372,7 +7372,7 @@ const BehaviorScript bhvShadowChompTail[] = {
 
 const BehaviorScript bhvSwingingChandelier[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(chandelier_collision),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_swinging_chandelier_init),
@@ -7384,7 +7384,7 @@ const BehaviorScript bhvSwingingChandelier[] = {
 
 const BehaviorScript bhvFloatingTable[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(floating_table_collision),
     SET_HOME(),
     CALL_NATIVE(bhv_init_room),
@@ -7398,7 +7398,7 @@ const BehaviorScript bhvFloatingTable[] = {
 
 const BehaviorScript bhvScalingStairs[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(scaling_stairs_collision),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_scaling_stairs_init),
@@ -7410,7 +7410,7 @@ const BehaviorScript bhvScalingStairs[] = {
 
 const BehaviorScript bhvSpinningTable[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(floating_table_collision),
     CALL_NATIVE(bhv_init_room),
     SET_HOME(),
@@ -7445,7 +7445,7 @@ const BehaviorScript bhvClcPuzzleSwitch[] = {
 
 const BehaviorScript bhvClcPuzzleEye[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(clc_puzzle_eye_collision),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_clc_puzzle_eye_init),
@@ -7457,7 +7457,7 @@ const BehaviorScript bhvClcPuzzleEye[] = {
 
 const BehaviorScript bhvClcPuzzleWall[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(clc_puzzle_wall_collision),
     CALL_NATIVE(bhv_init_room),
     SET_FLOAT(oCollisionDistance, 20000),
@@ -7521,7 +7521,7 @@ const BehaviorScript bhvWorkshopDoor[] = {
 
 const BehaviorScript bhvBlight[] = {
     BEGIN(OBJ_LIST_PUSHABLE),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_ANIMATIONS(oAnimations, blight_anims),
     CALL_NATIVE(bhv_init_room),
     ANIMATE(0),
@@ -7533,7 +7533,7 @@ const BehaviorScript bhvBlight[] = {
 
 const BehaviorScript bhvMovingSpectralOctagon[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(moving_spectral_octagon_collision),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_moving_spectral_octagon_init),
@@ -7545,7 +7545,7 @@ const BehaviorScript bhvMovingSpectralOctagon[] = {
 
 const BehaviorScript bhvEyebulb[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     DROP_TO_FLOOR(),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),
@@ -7790,7 +7790,7 @@ const BehaviorScript bhvRainSoundManager[] = {
 
 const BehaviorScript bhvVTWMushroom[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(purple_mushroom_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_transmutation_table_init),
@@ -7813,7 +7813,7 @@ const BehaviorScript bhvLilyPad[] = {
 
 const BehaviorScript bhvDangerPuff[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     SET_HOME(),
     BILLBOARD(),
     SET_FLOAT(oDrawingDistance, 20000),
@@ -7825,7 +7825,7 @@ const BehaviorScript bhvDangerPuff[] = {
 
 const BehaviorScript bhvMalvaFlower[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(malva_bud_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_malva_flower_init),
