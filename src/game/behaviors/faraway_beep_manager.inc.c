@@ -9,7 +9,7 @@ void bhv_faraway_beep_manager_loop(void) {
             vec3f_set(randomPosition, (f32)(-17000 + random_u16()%16000), 
                 gMarioState->pos[1], 
                 (f32)(CLAMP(random_u16() - 32000, -31000.0f, 31000)));
-        }
+        
         switch (random_u16()%3) {
             case 0:
             FALL_THROUGH
@@ -21,6 +21,7 @@ void bhv_faraway_beep_manager_loop(void) {
 
             break;
         }
+    }
         o->oCraneBeepDelay = 90 + random_u16()%300;
 
     }
