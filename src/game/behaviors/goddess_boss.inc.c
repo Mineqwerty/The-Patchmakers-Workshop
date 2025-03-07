@@ -621,12 +621,29 @@ void bhv_gold_blob_loop(void) {
         }
 
         if (o->oTimer == 60) {
-            switch (random_u16() % 3) {
+            switch (random_u16() % 6) {
                 case 0:
+                FALL_THROUGH
+                case 1:
                     o->oAction = 3;
                     spawn_object_relative(0, 0, 20, 0, o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
                     cur_obj_set_model(MODEL_GOLD_BLOB);
                     break;
+
+                case 2:;
+                    
+                    struct Object *coin = spawn_object(o, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
+
+                    cur_obj_play_sound_2(SOUND_GENERAL_COIN_SPURT);
+
+                    coin->oForwardVel = 2.0f;
+                    coin->oVelY = 10.0f;
+                    coin->oPosY = o->oPosY + 10.0f;
+                    coin->oMoveAngleYaw = random_u16();
+                    spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
+                    obj_mark_for_deletion(o);
+                break;
+                break;
                 default:
                     spawn_object(o, MODEL_FIRE_SMOKE, bhvFireSmokeParticle);
                     obj_mark_for_deletion(o);

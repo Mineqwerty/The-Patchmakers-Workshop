@@ -617,28 +617,41 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
             }
         }
         s8 dpadMap[4]; 
+        u8 envColor;
         save_file_get_dpad_map(gCurrSaveFileNum - 1, dpadMap);
 
         if (dpadMap[3] != -1) {
             create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[3], 0);
+
+            envColor = (gMarioState->equippedPatch == dpadMap[3] ? 255 : 210);
+            gDPSetEnvColor(gDisplayListHead++, envColor, envColor, envColor, 255);
             gSPDisplayList(gDisplayListHead++, &menu_patch_left_icon_Plane_007_mesh);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
         }
 
         if (dpadMap[1] != -1) {
             create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[1], 0);
+
+            envColor = (gMarioState->equippedPatch == dpadMap[1] ? 255 : 210);
+            gDPSetEnvColor(gDisplayListHead++, envColor, envColor, envColor, 255);
             gSPDisplayList(gDisplayListHead++, &menu_patch_right_icon_Plane_008_mesh);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
         }
 
         if (dpadMap[2] != -1) {
             create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[2], 0);
+
+            envColor = (gMarioState->equippedPatch == dpadMap[2] ? 255 : 210);
+            gDPSetEnvColor(gDisplayListHead++, envColor, envColor, envColor, 255);
             gSPDisplayList(gDisplayListHead++, &menu_patch_down_icon_Plane_006_mesh);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
         }
 
         if (dpadMap[0] != -1) {
             create_dl_translation_matrix(MENU_MTX_PUSH, 0, animateBounce[0], 0);
+
+            envColor = (gMarioState->equippedPatch == dpadMap[0] ? 255 : 210);
+            gDPSetEnvColor(gDisplayListHead++, envColor, envColor, envColor, 255);
             gSPDisplayList(gDisplayListHead++, &menu_patch_up_icon_Plane_005_mesh);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
         }

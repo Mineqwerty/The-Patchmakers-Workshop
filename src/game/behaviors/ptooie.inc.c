@@ -105,10 +105,10 @@ void bhv_spike_ball_init(void) {
 
 void bhv_spike_ball_loop(void) {
 
-    if (o->activeFlags & (ACTIVE_FLAG_FAR_AWAY)) {
-        o->oPosY = o->parentObj->oPosY + 210;
-        return o->oTimer = 0;
-    }
+    //if (o->activeFlags & (ACTIVE_FLAG_FAR_AWAY)) {
+        //o->oPosY = o->parentObj->oPosY + 210;
+        //return o->oTimer = 0;
+    //}
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         o->oInteractStatus = INT_STATUS_NONE;

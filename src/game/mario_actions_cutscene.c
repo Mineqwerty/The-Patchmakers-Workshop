@@ -973,13 +973,19 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 }
 
 s32 act_star_dance(struct MarioState *m) {
-    common_patch_cancel(m);
+    if (m->equippedPatch != PATCH_HALO) {
+        common_patch_cancel(m);
+    }
+    if (m->equippedPatch == PATCH_TRANSMUTATION) {
+        m->patchChildObj = NULL;
+    }
     if (m->patchChildObj && m->action != ACT_STAR_DANCE_NO_EXIT) {
         if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
             obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
         }
         if (!obj_has_behavior(m->patchChildObj, bhvIceFloor)) {
             obj_mark_for_deletion(m->patchChildObj);
+            m->patchChildObj = NULL;
         }
     }
     m->faceAngle[1] = m->area->camera->yaw;

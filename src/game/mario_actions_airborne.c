@@ -457,6 +457,11 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                 set_mario_animation(m, animation);
             }
 
+            
+            if (m->wall != NULL && m->wall->type == SURFACE_CLIMBABLE_WALL) {
+                return set_mario_action(m, ACT_CLIMBING_WALL, 0);
+            }
+
             if (m->forwardVel > 16.0f) {
 #if ENABLE_RUMBLE
                 queue_rumble_data(5, 40);

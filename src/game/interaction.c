@@ -969,6 +969,10 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
     u32 starGrabAction = ACT_STAR_DANCE_EXIT;
     u32 noExit = (obj->oInteractionSubtype & INT_SUBTYPE_NO_EXIT) != 0;
 
+    if (sDelayedWarpOp == WARP_OP_DEATH && gCurrLevelNum == LEVEL_PSS) {
+        return FALSE;
+    }
+
     if (gCurrLevelNum == LEVEL_TTM || (GET_BPARAM1(obj->oBehParams)) > 8) {
         noExit = TRUE;
     }
