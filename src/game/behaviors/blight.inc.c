@@ -1,6 +1,7 @@
 enum BlightActions {
     BLIGHT_ACT_IDLE,
-    BLIGHT_ACT_ENRAGED
+    BLIGHT_ACT_ENRAGED,
+    BLIGHT_ACT_LOSE_INTEREST
 };
 
 static struct ObjectHitbox sBlightHitbox = {
@@ -28,7 +29,7 @@ void blight_check_enraged(void) {
         || relativeMarioFaceAngle < relativeMarioFaceAngleThreshhold) {
         obj_turn_toward_object(o, gMarioState->marioObj, O_FACE_ANGLE_YAW_INDEX, 0x400);
         o->oMoveAngleYaw = o->oFaceAngleYaw;
-    } else if (o->oDistanceToMario < 1500) {
+    } else if (o->oDistanceToMario < 1500 && gMarioState->curPatch != PATCH_STONE) {
         o->oAction = BLIGHT_ACT_ENRAGED;
         cur_obj_init_animation(1);
         cur_obj_play_sound_2(SOUND_NEW_BLIGHT_SCREAM);
@@ -54,10 +55,25 @@ void bhv_blight_loop(void) {
             o->oForwardVel = 8.0f;
             o->oPosY = approach_f32_asymptotic(o->oPosY, gMarioState->pos[1] + 100, 0.03f);
 
-            if (o->oTimer == 450) {
+            if (o->oTimer == 300) {
                 o->oAction = BLIGHT_ACT_IDLE;
                 cur_obj_init_animation(0);
 
+            }
+
+            if (o->oDistanceToMario < 500 && gMarioState->curPatch == PATCH_STONE) {
+                o->oAction = BLIGHT_ACT_LOSE_INTEREST;
+            }
+        break;
+        case BLIGHT_ACT_LOSE_INTEREST:
+            
+            obj_turn_toward_position(o, o->oHomeX, o->oHomeY, o->oHomeZ, O_FACE_ANGLE_YAW_INDEX, 0x800);
+            o->oMoveAngleYaw = o->oFaceAngleYaw;
+            o->oForwardVel = 8.0f;
+
+            if (o->oTimer >= 120) {
+                o->oAction = BLIGHT_ACT_IDLE;
+                cur_obj_init_animation(0);
             }
         break;
     }

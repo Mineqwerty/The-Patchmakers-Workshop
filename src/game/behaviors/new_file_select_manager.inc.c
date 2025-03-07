@@ -140,6 +140,10 @@ void bhv_new_file_select_manager_loop(void) {
                         print_small_text_buffered(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 30, "Hold Z To Delete File", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
                     }
                 }
+                
+                print_set_envcolour(120, 120, 120, CLAMP((o->oTimer - 60)* 17, 1, 255));
+                print_small_text_buffered(45, SCREEN_HEIGHT - 30, "Beta 1.0.7", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            
             }
             Vec3f goalFilePos = {634, 250, -175};
             Vec3f goalFileFoc = {638, 0, -175};

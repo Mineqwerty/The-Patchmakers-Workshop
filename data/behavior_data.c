@@ -7524,6 +7524,7 @@ const BehaviorScript bhvBlight[] = {
     OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_ANIMATIONS(oAnimations, blight_anims),
     CALL_NATIVE(bhv_init_room),
+    SET_HOME(),
     ANIMATE(0),
     CALL_NATIVE(bhv_blight_init),
     BEGIN_LOOP(),
