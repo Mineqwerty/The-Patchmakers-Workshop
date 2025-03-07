@@ -3021,7 +3021,7 @@ void cur_obj_align_gfx_with_floor_ice(void) {
     vec3f_copy(position, &o->oPosVec);
 
     floor = o->oIceSurface;
-    if (floor != NULL) {
+    if (floor != NULL && floor->object == NULL) {
         Vec3f floorNormal;
         get_surface_normal(floorNormal, floor);
 

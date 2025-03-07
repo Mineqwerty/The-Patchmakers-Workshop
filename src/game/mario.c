@@ -2087,7 +2087,7 @@ void perform_patch_action(struct MarioState *m) {
         break;
 
         case PATCH_SKYBRIDGE:
-            m->hidSkybridge = (m->hidSkybridge + 1)%2;
+            m->hidSkybridge = !(m->hidSkybridge);
             switch (m->hidSkybridge) {
                 case 0:
                     cur_obj_play_sound_1(SOUND_SKYBRIDGE_ON);

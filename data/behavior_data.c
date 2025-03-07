@@ -8754,9 +8754,10 @@ const BehaviorScript bhvOnOffController[] = {
 
 const BehaviorScript bhvRealityCracks[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(reality_cracks_collision),
     SET_FLOAT(oDrawingDistance, 30000),
+    SET_FLOAT(oCollisionDistance, 30000),
     CALL_NATIVE(bhv_reality_cracks_init),
     BEGIN_LOOP(),
         CALL_NATIVE(load_object_collision_model),
@@ -8767,6 +8768,7 @@ const BehaviorScript bhvRealityCracks[] = {
 const BehaviorScript bhvRealityCracksHitbox[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(reality_cracks_hitbox_collision),
     CALL_NATIVE(bhv_reality_cracks_hitbox_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_reality_cracks_hitbox_loop),

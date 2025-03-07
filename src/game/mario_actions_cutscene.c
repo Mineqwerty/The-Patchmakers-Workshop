@@ -1539,7 +1539,9 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
 
 s32 act_spawn_holding_object(struct MarioState *m) {
     if (m->heldObj == NULL) {
-        m->heldObj = spawn_object_relative(m->lastHeldBehaviorParams, 0, 0, 0, o, m->lastHeldModel, virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, m->lastHeldBehavior));
+        struct Object *spawnedHeldObj = spawn_object_relative(m->lastHeldBehaviorParams, 0, 0, 0, o, m->lastHeldModel, virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, m->lastHeldBehavior));
+        spawnedHeldObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        m->heldObj = spawnedHeldObj;
         m->heldObj->oIntangibleTimer = -1;
         m->heldObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
     }

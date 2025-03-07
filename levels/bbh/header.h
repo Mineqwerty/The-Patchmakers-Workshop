@@ -194,4 +194,6 @@ extern const LevelScript level_bbh_entry[];
 
 #include "levels/bbh/break_reality/collision_header.h"
 
+#include "levels/bbh/reality_cracks_hitbox/collision_header.h"
+
 #endif

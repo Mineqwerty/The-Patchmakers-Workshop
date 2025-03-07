@@ -2958,11 +2958,11 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
 
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[courseIndex+1])) {
         gDPSetEnvColor(gDisplayListHead++, 30, 255, 100, gDialogTextAlpha);
-        print_generic_string(x + 54, y - 5, textPatchObtained);
+        print_generic_string(x + 62, y - 5, textPatchObtained);
     }
     else {
         gDPSetEnvColor(gDisplayListHead++, 160, 160, 160, gDialogTextAlpha);
-        print_generic_string(x + 54, y - 5, textPatchNotObtained);
+        print_generic_string(x + 62, y - 5, textPatchNotObtained);
     }
 
     

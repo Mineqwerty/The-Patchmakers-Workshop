@@ -9,6 +9,8 @@
 
 u8 gSelectedFile = 0;
 
+s16 saveDeletionTimer = 0;
+
 void set_initial_game_variables(void) {
     s8 dpadMap[4] = {-1, -1, -1, -1};
     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
@@ -42,6 +44,7 @@ void bhv_new_file_select_manager_init(void) {
     gMarioState->action = ACT_WAITING_FOR_DIALOG;
     gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
     gSpecialHudElementAlpha = 0;
+    saveDeletionTimer = 0;
     spawn_object_relative(0, 0,0, 0, o, MODEL_YARN_SELECTOR_CIRCLE,bhvYarnCircleSelector);
 }
 
@@ -115,6 +118,27 @@ void bhv_new_file_select_manager_loop(void) {
                     }
                     update_mario_save_file_variables();
                     o->oAction = NEW_FILE_SELECT_LOADING_FILE;
+                }
+
+                u8 deleteGBColor = 255;
+
+                if (save_file_exists((s16)gSelectedFile) && (gPlayer1Controller->buttonDown & Z_TRIG)) {
+                    saveDeletionTimer++;
+                    deleteGBColor = 255 - 2*saveDeletionTimer;
+                    print_set_envcolour(255, deleteGBColor, deleteGBColor, 255);
+                    print_small_text_buffered(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 30, "Deleting File!", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+                    if (saveDeletionTimer == 120) {
+                        save_file_erase((s32)gSelectedFile);
+                        saveDeletionTimer = 0;
+                    }
+                    
+                }
+                else {
+                    saveDeletionTimer = 0;
+                    if (save_file_exists((s16)gSelectedFile)) {
+                        print_set_envcolour(255, 255, 255, CLAMP((o->oTimer - 60)* 17, 1, 255));
+                        print_small_text_buffered(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 30, "Hold Z To Delete File", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+                    }
                 }
             }
             Vec3f goalFilePos = {634, 250, -175};

@@ -7,7 +7,7 @@ void bhv_ring_mission_ring_loop(void) {
    if (o->parentObj->oRingMissionCount == o->oBehParams2ndByte && o->parentObj->oAction == 1) {
     cur_obj_unhide();
     o->oFaceAngleYaw += 0x800;
-    if (o->oDistanceToMario < 200) {
+    if (o->oDistanceToMario < 280) {
         o->parentObj->oRingMissionCount++;
         
         o->parentObj->oTimer = 0;

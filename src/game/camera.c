@@ -1248,7 +1248,7 @@ void reonucam_collision_handler(struct Camera *c) {
         s16 yaw = atan2s(camToMario[2], camToMario[0]);
         vec3f_get_lateral_dist(hitpos,gMarioState->pos, &dist);
         #define REONUCAM_MIN_DISTANCE 300.0f
-        if (dist < REONUCAM_MIN_DISTANCE && (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 4)) {
+        if (dist < REONUCAM_MIN_DISTANCE) {
             distFromSurf += (dist - REONUCAM_MIN_DISTANCE);
             //yDist = REONUCAM_MIN_DISTANCE - CLAMP(dist, 0, REONUCAM_MIN_DISTANCE);
             
@@ -2241,6 +2241,12 @@ s16 update_slide_camera(struct Camera *c) {
 
 void mode_behind_mario_camera(struct Camera *c) {
     c->nextYaw = mode_behind_mario(c);
+
+    if (gCurrLevelNum != LEVEL_WF && gCurrAreaIndex != 3 
+        && (gMarioState->action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED) {
+            set_camera_mode_8_directions(c);
+            gCameraMovementFlags &= ~CAM_MOVE_SUBMERGED;
+        }
 }
 
 s32 nop_update_water_camera(UNUSED struct Camera *c, UNUSED Vec3f focus, UNUSED Vec3f pos) {
