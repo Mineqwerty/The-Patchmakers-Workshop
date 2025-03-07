@@ -57,6 +57,9 @@ static s8 sSelectableStarIndex = 0;
 // Act Selector menu timer that keeps counting until you choose an act.
 static s32 sActSelectorMenuTimer = 0;
 
+u8 textSSPatchNotObtained[] = { TEXT_PATCH_NOT_OBTAINED };
+u8 textSSPatchObtained[] = { TEXT_PATCH_OBTAINED };
+
 /**
  * Act Selector Star Type Loop Action
  * Defines a select type for a star in the act selector.
@@ -621,6 +624,7 @@ void print_act_selector_strings(void) {
 #if !MULTILANG
     s16 lvlNameX;
     s16 actNameX;
+    s16 patchIndicatorX;
 #endif
     s8 i;
 #if MULTILANG
@@ -656,6 +660,7 @@ if (sVisibleStars != 0) {
 #else
     actNameX = get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f);
     lvlNameX = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
+    patchIndicatorX = SCREEN_WIDTH - 40.0f;
     #endif
 }
 
@@ -673,6 +678,19 @@ if (sVisibleStars != 0) {
 
     gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    if (sSelectedActIndex == 1) {
+        gDPSetEnvColor(gDisplayListHead++, 180, 180, 180, 180);
+        create_dl_translation_matrix(MENU_MTX_PUSH, patchIndicatorX, 26.0f, 0);
+        create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.11f, 0.21f, 1.0f);
+    
+        gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
+
+
+        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+
+    }
+
 }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
@@ -684,6 +702,23 @@ if (sVisibleStars != 0) {
 if (sVisibleStars != 0) {
     print_generic_string(lvlNameX, 33, currLevelName + 3);
 }
+
+if (sSelectedActIndex == 1) {
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
+    print_generic_string(patchIndicatorX + 3, 9, 
+        (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum])) ? textSSPatchObtained : textSSPatchNotObtained);
+
+    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum])) {
+        gDPSetEnvColor(gDisplayListHead++, 70, 210, 70, 255);
+    }
+    else {
+        gDPSetEnvColor(gDisplayListHead++, 120, 120, 120, 255);
+    }
+
+    print_generic_string(patchIndicatorX + 2, 10, 
+        (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum])) ? textSSPatchObtained : textSSPatchNotObtained);
+}
+
 #endif
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
