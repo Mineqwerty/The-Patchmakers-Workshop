@@ -231,7 +231,6 @@ const GeoLayout patchmaker_title_screen_geo[] = {
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, patchmaker_title_screen_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

@@ -4147,6 +4147,7 @@ s32 render_pause_courses_and_castle(void) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
+                gDisplaySecretStarMenu = FALSE;
                 gFeltGoalX = SCREEN_CENTER_X + (gGlobalTimer % 20 - 10);
                 gFeltGoalY = -200;
                 gFeltGoalRot = (gGlobalTimer % 16 - 8);
