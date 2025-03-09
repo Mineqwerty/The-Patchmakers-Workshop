@@ -197,7 +197,7 @@ u32 pressed_pause(void) {
     }
 #endif
 
-    if (!intangible && !dialogActive && !gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE
+    if (!intangible && !dialogActive && !gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE && gMenuMode != MENU_MODE_NEW_STAR_COMPLETE_TEXT
         && cCutsceneActive == 0 && gMarioState->overrideGravity == 0 && (gPlayer1Controller->buttonPressed & START_BUTTON)) {
         return TRUE;
     }

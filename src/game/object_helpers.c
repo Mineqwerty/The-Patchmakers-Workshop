@@ -971,7 +971,18 @@ struct Object *obj_find_transmute_target(struct Object *sourceObj) {
 s32 obj_shouldnt_be_attacked(struct Object *obj) {
     return (obj_has_model(obj, MODEL_YELLOW_COIN)
         || obj_has_model(obj, MODEL_YELLOW_COIN_NO_SHADOW)
-        || obj->behavior == segmented_to_virtual(bhvStar));
+        || obj_has_model(obj, MODEL_FOG_YELLOW_COIN)
+        || obj_has_model(obj, MODEL_FOG_PURPLE_COIN)
+        || obj_has_model(obj, MODEL_FOG_PURPLE_COIN_NO_SHADOW)
+        || obj_has_model(obj, MODEL_FOG_YELLOW_COIN_NO_SHADOW)
+        || obj_has_model(obj, MODEL_RED_COIN)
+        || obj_has_model(obj, MODEL_RED_COIN_NO_SHADOW)
+        || obj_has_model(obj, MODEL_FOG_RED_COIN)
+        || obj_has_model(obj, MODEL_BLUE_COIN)
+        || obj_has_model(obj, MODEL_BLUE_COIN_NO_SHADOW)
+        || obj->behavior == segmented_to_virtual(bhvStar)
+        || obj->behavior == segmented_to_virtual(bhvSpawnedStar)
+        || obj->behavior == segmented_to_virtual(bhvSpawnedStarNoLevelExit));
 }
 
 struct Object *obj_attack_in_quad(struct Object *sourceObj, f32 length, f32 height, f32 closeWidth, f32 farWidth,

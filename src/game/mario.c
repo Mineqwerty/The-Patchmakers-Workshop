@@ -1988,6 +1988,11 @@ void perform_patch_action(struct MarioState *m) {
                     m->patchChildObj->oFaceAngleYaw += 0x8000;
                     m->patchChildObj->oMoveAngleYaw += 0x8000;
                 }
+
+                if (gCurrLevelNum == LEVEL_PSS) {
+                    gMarioState->patchChildObj->oMoveAngleYaw = (gMarioState->patchChildObj->oMoveAngleYaw > 0 ? 0x4000 : -0x4000);
+                    gMarioState->patchChildObj->oFaceAngleYaw = gMarioState->patchChildObj->oMoveAngleYaw;
+                }
             }
         break;
         //halo is handled in its own object
@@ -1997,6 +2002,10 @@ void perform_patch_action(struct MarioState *m) {
                 m->curPatch = PATCH_TRANSMUTATION;
                 drop_and_set_mario_action(m, ACT_TRANSMUTING, 0);
                 m->patchChildObj = spawn_object_relative(0, 0, 60, 0, gMarioObject, MODEL_TRANSMUTATION_CONE, bhvTransmutationCone);
+                if (gCurrLevelNum == LEVEL_PSS) {
+                    gMarioState->patchChildObj->oMoveAngleYaw = (gMarioState->patchChildObj->oMoveAngleYaw > 0 ? 0x4000 : -0x4000);
+                    gMarioState->patchChildObj->oFaceAngleYaw = gMarioState->patchChildObj->oMoveAngleYaw;
+                }
             }
         break;
 
@@ -2073,7 +2082,9 @@ void perform_patch_action(struct MarioState *m) {
                       gMarioState->pos[2] + (coss(gMarioState->faceAngle[1]) * 500.0f));
 
             find_surface_on_ray(originPos, raydir, &extendWall, hitpos, 2U, 1);
-            if (extendWall != NULL && extendWall->object == NULL) {
+            if (extendWall != NULL && extendWall->object == NULL
+            && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE 
+                && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
                 if (extendWall->type == SURFACE_INVISIBLE_WALL) {
                     return;
                 }
@@ -2083,6 +2094,11 @@ void perform_patch_action(struct MarioState *m) {
                 gMarioState->patchChildObj->oMaterialIndex = extendWall->matPointer;
                 gMarioState->patchChildObj->oRevertIndex = extendWall->matRevertPointer;
                 gMarioState->patchChildObj->oMaterialLayer = extendWall->materialIndex;
+
+                if (gCurrLevelNum == LEVEL_PSS) {
+                    gMarioState->patchChildObj->oMoveAngleYaw = (gMarioState->patchChildObj->oMoveAngleYaw > 0 ? 0x4000 : -0x4000);
+                    gMarioState->patchChildObj->oFaceAngleYaw = gMarioState->patchChildObj->oMoveAngleYaw;
+                }
             }
         break;
 
@@ -2444,6 +2460,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     }
 
     update_mario_equipped_patch();
+
+    gMarioState->numStars = 55;
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
 

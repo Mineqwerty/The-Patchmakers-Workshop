@@ -703,7 +703,7 @@ if (sVisibleStars != 0) {
     print_generic_string(lvlNameX, 33, currLevelName + 3);
 }
 
-if (sSelectedActIndex == 1) {
+if (sSelectedActIndex == (gCurrCourseNum == LEVEL_TTM ? 0 : 1)) {
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     print_generic_string(patchIndicatorX + 3, 9, 
         (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gCurrCourseNum])) ? textSSPatchObtained : textSSPatchNotObtained);

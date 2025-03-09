@@ -3832,7 +3832,7 @@ u32 patchChallengeTimes[12] = {
     1650,
     1800,
     2250,
-    1950,
+    2000,
     2400,
     3300,
     2700,
@@ -4542,7 +4542,7 @@ void render_new_course_complete_text(s16 alpha) {
         print_generic_string(63 + gMenuShakeX, 67 + gMenuShakeY, courseName);
         //print_generic_string(CRS_NUM_X3, 167, strCourseNum);
 
-        if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gLastCompletedCourseNum+1])) {
+        if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[COURSE_NUM_TO_INDEX(gLastCompletedCourseNum)+1])) {
             gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
             print_generic_string(72 + gMenuShakeX, 25 + gMenuShakeY, textPatchObtained);
         }

@@ -41,11 +41,17 @@ void bhv_ts_warp_platform_loop(void) {
     if (o->oAction == 3) {
         gCamera->cutscene = 1;
         gLakituState.goalPos[0] = o->oPosX;
-        gLakituState.goalPos[1] = o->oPosY + 400;
-        gLakituState.goalPos[2] = o->oPosZ - 400;
+        gLakituState.goalPos[1] = o->oPosY + 380;
+        gLakituState.goalPos[2] = o->oPosZ - 500;
         gLakituState.goalFocus[0] = o->oPosX;
-        gLakituState.goalFocus[1] = o->oPosY + 400;
+        gLakituState.goalFocus[1] = o->oPosY + 380;
         gLakituState.goalFocus[2] = o->oPosZ;
+
+        gMarioState->action = ACT_STORY_CUTSCENE;
+        gMarioState->pos[0] = approach_f32_asymptotic(gMarioState->pos[0], o->oPosX, 0.09f);
+        gMarioState->pos[1] = approach_f32_asymptotic(gMarioState->pos[1], o->oPosY + 340, 0.09f);
+        gMarioState->pos[2] = approach_f32_asymptotic(gMarioState->pos[2], o->oPosZ, 0.09f);
+        set_mario_animation(gMarioState, MARIO_ANIM_BEING_GRABBED);
         if (o->oTimer == 40) {
             play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
             play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);

@@ -1213,6 +1213,8 @@ s32 act_ground_pound(struct MarioState *m) {
     u32 stepResult;
     f32 yOffset;
 
+    m->boostTimer = 0;
+
     play_sound_if_no_flag(m, SOUND_ACTION_THROW, MARIO_ACTION_SOUND_PLAYED);
 
     if (m->actionState == 0) {
@@ -1646,6 +1648,10 @@ s32 act_grapple_wall(struct MarioState *m) {
     raydir[0] = sins(m->faceAngle[1]+0x8000) * 150.0f;
     raydir[1] = 0;
     raydir[2] = coss(m->faceAngle[1]+0x8000) * 150.0f;
+
+    if (m->equippedPatch != PATCH_GRAPPLE) {
+        return set_mario_action(m, ACT_FREEFALL, 0);
+    }
 
     if (m->input & INPUT_A_PRESSED) {
         m->lastFrameObj = NULL;

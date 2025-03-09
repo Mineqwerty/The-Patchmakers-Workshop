@@ -79,6 +79,9 @@ void bhv_power_breaker_controller_loop(void) {
             }
             else {
                 begin_cutscene_event(CUTSCENE_EVENT_CITY_LIGHTS_ON);
+                if (gMarioState->action == ACT_BREEZE_PATCH_BOUNCING) {
+                    gMarioState->action = ACT_FREEFALL;
+                }
                 o->oAction = 1;
             }
         break;

@@ -286,10 +286,12 @@ void bhv_stone_elevator_loop(void) {
             if ((gTatumCount / 41) % 4 == 0) {
                 //check if elevator is ascending and if mario is on it
                 if (o->oAction != 2 && gMarioObject->platform == o) {
+                    cur_obj_play_sound_2(SOUND_NEW_MACHINE_CLICK);
                     o->oAction++;
                 }
                 //check if elevator is descending and if mario isnt on it
                 else if (o->oAction == 2 && gMarioObject->platform != o) {
+                    cur_obj_play_sound_2(SOUND_NEW_MACHINE_CLICK);
                     o->oAction++;
                 }
                 //after 3 seconds of mario not being on the elevator while it was ascending, start descending.

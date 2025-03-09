@@ -180,6 +180,21 @@
       "release_rate": 208,
       "envelope": "envelope0",
       "sound": "bubble_rush"
+    },
+    "inst_goddess_projectile": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "goddess_projectile"
+    },
+    "inst_goddess_summon": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "goddess_summon"
+    },
+    "inst_goddess_hit": {
+      "release_rate": 208,
+      "envelope": "envelope0",
+      "sound": "goddess_hit"
     }
   },
   "instrument_list": [
@@ -216,6 +231,9 @@
     "inst_rope_tighten",
     "inst_rope_snap",
     "inst_goofy_warp",
-    "inst_bubble_rush"
+    "inst_bubble_rush",
+    "inst_goddess_projectile",
+    "inst_goddess_summon",
+    "inst_goddess_hit"
   ]
 }

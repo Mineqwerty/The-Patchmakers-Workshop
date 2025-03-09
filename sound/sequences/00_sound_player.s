@@ -8941,6 +8941,27 @@ sound_ref .sound_rope_tighten
 sound_ref .sound_rope_snap
 sound_ref .sound_goofy_warp
 sound_ref .sound_bubble_rush
+sound_ref .sound_goddess_projectile
+sound_ref .sound_goddess_summon
+sound_ref .sound_goddess_hit
+
+.sound_goddess_hit:
+chan_setbank 12
+chan_setinstr 36
+chan_setlayer 0, .layer_bubble_rush
+chan_end
+
+.sound_goddess_summon:
+chan_setbank 12
+chan_setinstr 35
+chan_setlayer 0, .layer_memory_end
+chan_end
+
+.sound_goddess_projectile:
+chan_setbank 12
+chan_setinstr 34
+chan_setlayer 0, .layer_bubble_rush
+chan_end
 
 .sound_bubble_rush:
 chan_setbank 12
