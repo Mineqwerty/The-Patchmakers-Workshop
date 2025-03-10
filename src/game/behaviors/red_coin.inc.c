@@ -49,6 +49,10 @@ void bhv_red_coin_loop(void) {
             // ...increment the star's counter.
             o->parentObj->oHiddenStarTriggerCounter++;
 
+            if (gCurrLevelNum == LEVEL_DDD) {
+                gMarioState->hvhRedsFlags |= (1 << o->oBehParams2ndByte);
+            }
+
             // Spawn the orange number counter, as long as it isn't the last coin.
             if (o->parentObj->oHiddenStarTriggerCounter != o->parentObj->oHiddenStarTriggerTotal) {
                 // Cap visible count to 99

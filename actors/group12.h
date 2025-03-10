@@ -76,4 +76,14 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 #include "peach/anim_header.h"
 #include "peach/geo_header.h"
+#include "pm_throw_flower/geo_header.h"
+
+#include "pm_throw_flower_stone/geo_header.h"
+
+#include "pm_ice_spike/geo_header.h"
+
+#include "pm_grapple/geo_header.h"
+
+#include "pm_halo/geo_header.h"
+
 #endif

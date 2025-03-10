@@ -11,6 +11,10 @@ enum PatchmakerActions {
     PATCHMAKER_ACT_SUMMON_NEEDLE_BALL,
     PATCHMAKER_ACT_SHOCKWAVE,
     PATCHMAKER_ACT_NEEDLE_STORM,
+    PATCHMAKER_ACT_STONE_FLOWER,
+    PATCHMAKER_ACT_ICE_SPIKES,
+    PATCHMAKER_ACT_GRAPPLE,
+    PATCHMAKER_ACT_HALO,
 
     PATCHMAKER_ACT_DEFEATED,
     PATCHMAKER_ACT_SECOND_CUTSCENE
@@ -82,53 +86,79 @@ void patchmaker_transition_to_next_action() {
         case PATCHMAKER_ACT_FIRST_CUTSCENE:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
-        case PATCHMAKER_ACT_WALK_TO_MARIO:
-            if (o->oDistanceToMario < 250) {
-                switch (randomAction % 5) {
-                    case 0:
-                    case 1:
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_GRAB_MARIO;
-                    break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
-                    break;
-                    case 5:
-                        nextAction = PATCHMAKER_ACT_SHOCKWAVE;
-                    break;
+        case PATCHMAKER_ACT_WALK_TO_MARIO:;
+
+            u8 standardAttack = random_u16() % 10;
+
+            if (standardAttack < 6) {
+                if (o->oDistanceToMario < 250) {
+                    switch (randomAction % 5) {
+                        case 0:
+                        case 1:
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_GRAB_MARIO;
+                        break;
+                        case 3:
+                        case 4:
+                            nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                        break;
+                        case 5:
+                            nextAction = PATCHMAKER_ACT_SHOCKWAVE;
+                        break;
+                    }
                 }
-            }
-            else if (o->oDistanceToMario < 900) {
-                switch (randomAction % 4) {
-                    case 0:
-                        nextAction = PATCHMAKER_ACT_THROW_STRING;
-                    break;
-                    case 1:
-                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
-                    break;
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_SHOCKWAVE;
-                    break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
-                    break;
+                else if (o->oDistanceToMario < 900) {
+                    switch (randomAction % 4) {
+                        case 0:
+                            nextAction = PATCHMAKER_ACT_THROW_STRING;
+                        break;
+                        case 1:
+                            nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                        break;
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_SHOCKWAVE;
+                        break;
+                        case 3:
+                            nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
+                        break;
+                    }
+                }
+                else {
+                    switch (randomAction % 3 + (o->oPatchmakerNeedleBallObj == NULL)) {
+                        case 0:
+                            nextAction = PATCHMAKER_ACT_JUMPS;
+                        break;
+                        case 1:
+                            nextAction = PATCHMAKER_ACT_THROW_STRING;
+                        break;
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
+                        break;
+                        case 3:
+                            nextAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
+                        break;
+                        
+                    }
                 }
             }
             else {
-                switch (randomAction % 3 + (o->oPatchmakerNeedleBallObj == NULL)) {
-                    case 0:
-                        nextAction = PATCHMAKER_ACT_JUMPS;
+                switch (gCurrLevelNum) {
+                    case LEVEL_BOWSER_1:
+                        switch (random_u16()%4) {
+                            case 0:
+                                nextAction = PATCHMAKER_ACT_STONE_FLOWER;
+                            break;
+                            case 1:
+                                nextAction = PATCHMAKER_ACT_ICE_SPIKES;
+                            break;
+                            case 2:
+                                nextAction = PATCHMAKER_ACT_GRAPPLE;
+                            break;
+                            case 3:
+                                nextAction = PATCHMAKER_ACT_HALO;
+                            break;
+                        }
                     break;
-                    case 1:
-                        nextAction = PATCHMAKER_ACT_THROW_STRING;
-                    break;
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
-                    break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
-                    break;
-                    
                 }
             }
             
@@ -179,6 +209,19 @@ void patchmaker_transition_to_next_action() {
         break;
 
         case PATCHMAKER_ACT_NEEDLE_STORM:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+
+        case PATCHMAKER_ACT_STONE_FLOWER:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_ICE_SPIKES:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_GRAPPLE:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_HALO:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
     }
@@ -686,6 +729,116 @@ void patchmaker_act_throw_needles(void) {
     //o->oHealth = 1;
 }
 
+void patchmaker_act_stone_flower(void) {
+
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_POINT);
+        spawn_object_relative(0, 0, 160, 0, o, MODEL_PM_THROWN_FLOWER, bhvPmThrownFlower);
+    }
+
+    if (o->oTimer == 50) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_SNAP);
+    }
+
+    if (o->oTimer == 70) {
+        cur_obj_play_sound_1(SOUND_NEW_FINGER_SNAP);
+    }
+
+    if (o->oTimer < 70) {
+        cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    }
+
+    if (o->oTimer == 80) {
+        patchmaker_transition_to_next_action();
+    }
+    //o->oHealth = 1;
+}
+
+void patchmaker_act_ice_spikes(void) {
+    switch (o->oSubAction) {
+        case 0:
+            if (o->oTimer == 12) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_JUMP);
+            }
+        
+            if (o->oTimer == 26) {
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+                o->oVelY = 75.0f;
+                o->oForwardVel = 0.0f;
+                o->oSubAction++;
+            }
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+        break;
+        case 1:;
+            s16 collisionFlags = object_step();
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
+
+            if (((collisionFlags & OBJ_COL_FLAG_GROUNDED) && o->oTimer > 30 ) || o->oTimer >= 125) {
+                o->oTimer = 0;
+                o->oForwardVel = 0;
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_JUMP_END, 1.0f);
+                for (int i = 0; i < 3; i++) {
+                    struct Object *iceSpawner = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvPmIceSpikeSpawner);
+                    iceSpawner->oMoveAngleYaw += -0x2000 + i*0x2000;
+                }
+                o->oSubAction = 2;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            if (o->oTimer >= 90) {
+                patchmaker_transition_to_next_action();
+            }
+        break;
+    }
+}
+
+void patchmaker_act_grapple(void) {
+    
+    cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_POINT, 0.7f);
+
+    
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+    if (o->oTimer > 30) {
+        o->oPosY += 2 * coss(o->oTimer * 0x8000);
+    }
+
+    if (o->oTimer == 40) {
+        spawn_object_relative(0, 0, 60, 0, o, MODEL_PM_GRAPPLE, bhvPmGrapple);
+        cur_obj_play_sound_2(SOUND_GRAPPLE_HOOK_1);
+    }
+
+    if (o->oTimer == 59) {
+        o->oAction = PATCHMAKER_ACT_GRAB_MARIO;
+    }
+}
+
+void patchmaker_act_halo(void) {
+
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_STRING_THROW);
+    }
+
+    if (o->oTimer == 40) {
+        spawn_object_relative(0, 0, 80, 0, o, MODEL_PM_HALO, bhvPmHalo);
+    }
+    else {
+        o->oAngleVelYaw -= 6*o->oTimer;
+        if (o->oTimer % 12 == 0) {
+            cur_obj_play_sound_1(SOUND_HALO_IN);
+        }
+    }
+
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+
+    if (o->oTimer >= 70) {
+        patchmaker_transition_to_next_action();
+
+    }
+}
+
 void patchmaker_act_first_fight_defeated(void) {
     switch (o->oSubAction) {
         case 0:
@@ -873,6 +1026,18 @@ void bhv_patchmaker_loop(void) {
         break;
         case PATCHMAKER_ACT_NEEDLE_STORM:
             patchmaker_act_throw_needles();
+        break;
+        case PATCHMAKER_ACT_STONE_FLOWER:
+            patchmaker_act_stone_flower();
+        break;
+        case PATCHMAKER_ACT_ICE_SPIKES:
+            patchmaker_act_ice_spikes();
+        break;
+        case PATCHMAKER_ACT_GRAPPLE:
+            patchmaker_act_grapple();
+        break;
+        case PATCHMAKER_ACT_HALO:
+            patchmaker_act_halo();
         break;
         case PATCHMAKER_ACT_DEFEATED:
             if (PATCHMAKER_SECOND_FIGHT) {

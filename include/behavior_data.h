@@ -856,3 +856,8 @@ extern const BehaviorScript bhvPmCreditsManager[];
 extern const BehaviorScript bhvEscapingSouls[];
 extern const BehaviorScript bhvLowerCityGate[];
 extern const BehaviorScript bhvPaperBooEatable[];
+extern const BehaviorScript bhvPmThrownFlower[];
+extern const BehaviorScript bhvPmIceSpike[];
+extern const BehaviorScript bhvPmIceSpikeSpawner[];
+extern const BehaviorScript bhvPmGrapple[];
+extern const BehaviorScript bhvPmHalo[];

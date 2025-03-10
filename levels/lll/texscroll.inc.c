@@ -10,7 +10,7 @@ void scroll_gfx_lll_dl_Col_room3_mesh_layer_1() {
 
 
 	shift_t(mat, 200, PACK_TILESIZE(0, 1));
-	shift_t(mat, 475, PACK_TILESIZE(0, 1));
+	shift_t(mat, 486, PACK_TILESIZE(0, 1));
 
 };
 

@@ -7646,7 +7646,6 @@ const BehaviorScript bhvRedFlower[] = {
     CALL_NATIVE(bhv_red_flower_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_red_flower_loop),
-        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
@@ -9402,5 +9401,53 @@ const BehaviorScript bhvLowerCityGate[] = {
     CALL_NATIVE(load_object_static_model),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_lower_city_gate_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmThrownFlower[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_pm_thrown_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_thrown_flower_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmIceSpike[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_pm_ice_spike_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_ice_spike_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmIceSpikeSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_pm_ice_spike_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_ice_spike_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmGrapple[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_pm_grapple_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_grapple_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmHalo[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_HOME(),
+    CALL_NATIVE(bhv_pm_halo_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_halo_loop),
     END_LOOP(),
 };

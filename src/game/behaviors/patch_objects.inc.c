@@ -1317,9 +1317,12 @@ void bhv_transmutation_cone_loop(void) {
                         star->oBehParams = target->oBehParams;
                         obj_mark_for_deletion(target);
                     }
-                    else if (obj_has_behavior(target, bhvRedFlower)) {
-                        spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
-                        obj_mark_for_deletion(target);
+                    else if (obj_has_behavior(target, bhvRedFlower) && target->oAction == 0) {
+                        struct Object *red = spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
+                        red->oBehParams = target->oBehParams;
+                        red->oBehParams2ndByte = target->oBehParams2ndByte;
+                        target->oAction = 1;
+                        //obj_mark_for_deletion(target);
                     }
                     else if (obj_has_behavior(target, bhvFloatingPlane)) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);

@@ -18,3 +18,8 @@
 #include "sewnia_body/geo.inc.c"
 #include "sewnia_head/geo.inc.c"
 #include "peach/geo.inc.c"
+#include "pm_throw_flower/geo.inc.c"
+#include "pm_throw_flower_stone/geo.inc.c"
+#include "pm_ice_spike/geo.inc.c"
+#include "pm_grapple/geo.inc.c"
+#include "pm_halo/geo.inc.c"

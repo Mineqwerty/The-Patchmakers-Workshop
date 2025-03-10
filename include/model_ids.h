@@ -839,6 +839,11 @@
 #define MODEL_SEWNIA_HEAD                 0x139
 #define MODEL_PEACH                       0x13A
 #define MODEL_PEACH_THREAD_OF_LIFE                  0x13B
+#define MODEL_PM_THROWN_FLOWER                  0x13C
+#define MODEL_PM_THROWN_FLOWER_STONE                  0x13D
+#define MODEL_PM_ICE_SPIKE                  0x13E
+#define MODEL_PM_GRAPPLE                  0x13F
+#define MODEL_PM_HALO                  0x140
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

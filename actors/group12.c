@@ -38,3 +38,8 @@ UNUSED static const u64 binid_5 = 5;
 #include "peach/model.inc.c"
 #include "peach/anims/data.inc.c"
 #include "peach/anims/table.inc.c"
+#include "pm_throw_flower/model.inc.c"
+#include "pm_throw_flower_stone/model.inc.c"
+#include "pm_ice_spike/model.inc.c"
+#include "pm_grapple/model.inc.c"
+#include "pm_halo/model.inc.c"
