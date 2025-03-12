@@ -844,6 +844,9 @@
 #define MODEL_PM_ICE_SPIKE                  0x13E
 #define MODEL_PM_GRAPPLE                  0x13F
 #define MODEL_PM_HALO                  0x140
+#define MODEL_PM_BUBBLE                  0x141
+#define MODEL_PM_SHADOWCHOMP_OPEN                  0x142
+#define MODEL_PM_SHADOWCHOMP_CLOSED                  0x143
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

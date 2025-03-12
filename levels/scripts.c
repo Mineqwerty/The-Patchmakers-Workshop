@@ -289,6 +289,9 @@ const LevelScript script_func_global_4[] = {
     LOAD_MODEL_FROM_GEO(MODEL_PM_ICE_SPIKE,        pm_ice_spike_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_GRAPPLE,        pm_grapple_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_HALO,        pm_halo_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_BUBBLE,        pm_bubble_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_SHADOWCHOMP_OPEN,        pm_shadowchomp_open_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_SHADOWCHOMP_CLOSED,        pm_shadowchomp_closed_geo),
     RETURN(),
 };
 

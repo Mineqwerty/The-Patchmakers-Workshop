@@ -43,3 +43,6 @@ UNUSED static const u64 binid_5 = 5;
 #include "pm_ice_spike/model.inc.c"
 #include "pm_grapple/model.inc.c"
 #include "pm_halo/model.inc.c"
+#include "pm_bubble/model.inc.c"
+#include "pm_shadowchomp_open/model.inc.c"
+#include "pm_shadowchomp_closed/model.inc.c"

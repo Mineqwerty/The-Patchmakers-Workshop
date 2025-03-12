@@ -1226,3 +1226,5 @@ void bhv_pm_grapple_init(void);
 void bhv_pm_grapple_loop(void);
 void bhv_pm_halo_init(void);
 void bhv_pm_halo_loop(void);
+void bhv_pm_bubble_init(void);
+void bhv_pm_bubble_loop(void);

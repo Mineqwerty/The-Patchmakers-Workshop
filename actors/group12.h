@@ -86,4 +86,10 @@ extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 
 #include "pm_halo/geo_header.h"
 
+#include "pm_bubble/geo_header.h"
+
+#include "pm_shadowchomp_open/geo_header.h"
+
+#include "pm_shadowchomp_closed/geo_header.h"
+
 #endif

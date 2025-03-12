@@ -23,3 +23,6 @@
 #include "pm_ice_spike/geo.inc.c"
 #include "pm_grapple/geo.inc.c"
 #include "pm_halo/geo.inc.c"
+#include "pm_bubble/geo.inc.c"
+#include "pm_shadowchomp_open/geo.inc.c"
+#include "pm_shadowchomp_closed/geo.inc.c"

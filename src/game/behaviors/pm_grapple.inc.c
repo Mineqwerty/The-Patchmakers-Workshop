@@ -13,7 +13,15 @@ void bhv_pm_grapple_loop(void) {
 
     if (o->oDistanceToMario < 200 && o->oAction == 0 && gMarioState->curPatch != PATCH_STONE) {
         o->oAction = 1;
-        cur_obj_play_sound_2(SOUND_GRAPPLE_HOOK_2);
+
+        if (obj_has_model(o, MODEL_PM_SHADOWCHOMP_OPEN)) {
+            cur_obj_play_sound_2(SOUND_SHADOWCHOMP_CHOMP);
+            cur_obj_set_model(MODEL_PM_SHADOWCHOMP_CLOSED);
+            take_damage_from_no_interact_object(gMarioState, 2);
+        }
+        else {
+            cur_obj_play_sound_2(SOUND_GRAPPLE_HOOK_2);
+        }
     }
 
     cur_obj_move_xz_using_fvel_and_yaw();

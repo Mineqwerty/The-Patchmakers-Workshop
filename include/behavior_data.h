@@ -861,3 +861,4 @@ extern const BehaviorScript bhvPmIceSpike[];
 extern const BehaviorScript bhvPmIceSpikeSpawner[];
 extern const BehaviorScript bhvPmGrapple[];
 extern const BehaviorScript bhvPmHalo[];
+extern const BehaviorScript bhvPmBubble[];
