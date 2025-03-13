@@ -28,6 +28,7 @@
 
 #include "config.h"
 #include "src/game/cutscene.h"
+#include "levels/new_file_select/header.h"
 
 /* @file hud.c
  * This file implements HUD rendering and power meter animations.
@@ -956,16 +957,17 @@ void render_hud_camera_status(void) {
 
 void render_hud_boss_intro(void) {
 
-    char *bossTitles[7] = {
+    char *bossTitles[8] = {
         "Pushpin Pokey",
         "Aurumcael",
         "Demonic Solids",
         "Xodorap",
         "The Patchmaker",
         "The Patchmaker",
-        "Mantle of Madness"
+        "Mantle of Madness",
+        "The Patchmaker",
     };
-    u8 bossTitleColor[7];
+    u8 bossTitleColor[3];
     switch (gHudDisplay.bossID) {
         case 1:
             bossTitleColor[0] = 209;
@@ -1002,6 +1004,11 @@ void render_hud_boss_intro(void) {
             bossTitleColor[1] = 0x4A;
             bossTitleColor[2] = 0x4D;
         break;
+        case 8:
+            bossTitleColor[0] = 0x4C;
+            bossTitleColor[1] = 0x2A;
+            bossTitleColor[2] = 0x2D;
+        break;
         default:
             bossTitleColor[0] = 255;
             bossTitleColor[1] = 255;
@@ -1035,6 +1042,9 @@ void render_hud_boss_intro(void) {
         break;
         case 7:
             print_small_text(160, 140, "Product of pride and regret", PRINT_TEXT_ALIGN_CORRUPT, PRINT_ALL, FONT_OUTLINE);
+        break;
+        case 8:
+            print_small_text(160, 140, "Animated shell of memories betrayed", PRINT_TEXT_ALIGN_CENTRE, PRINT_ALL, FONT_OUTLINE);
         break;
     }
 
@@ -1215,6 +1225,13 @@ void render_hud_final_needle_prompts() {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 }
 
+void render_hud_credits_drawing(void) {
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
+
+    render_multi_image(segmented_to_virtual(texture_ending_drawing), 0, 0, 320, 240, 1, 1, G_CYC_COPY);
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
+}
+
 /**
  * Render HUD strings using hudDisplayFlags with it's render functions,
  * excluding the cannon reticle which detects a camera preset for it.
@@ -1338,6 +1355,9 @@ void render_hud(void) {
             break;
             case 2:
                 render_hud_eye_effect();
+            break;
+            case 3:
+                render_hud_credits_drawing();
             break;
         }
     }

@@ -968,14 +968,14 @@ Unterstände als Kreise\n\
 dargestellt, den Eingang\n\
 erkennst Du am Pfeil!"))
 
-DEFINE_DIALOG(DIALOG_072, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BEFORE_THIRD_FIGHT, 1, 5, 30, 200, _("\
 Hier oben weht eine steife\n\
 Brise. Solltest Du Deine\n\
 Mütze verlieren, kannst\n\
 Du sie auf dem Weg zum\n\
 Gipfel wiederfinden."))
 
-DEFINE_DIALOG(DIALOG_073, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_THIRD_PATCMAKER_DEFEAT, 1, 5, 95, 200, _("\
 Ahoi, Landratte! Es ist\n\
 doch wohl logisch, daß\n\
 sich hier unten ein\n\
@@ -987,7 +987,7 @@ Reihenfolge öffnen, klar?\n\
 Aber ich sage nicht, wie\n\
 sie lautet, hehehe!"))
 
-DEFINE_DIALOG(DIALOG_074, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_DEPARTURE, 1, 5, 30, 200, _("\
 Siehst Du den Block\n\
 nebenan? Manchmal kannst\n\
 Du im Innern dieser\n\
@@ -2041,7 +2041,7 @@ dem [A]- oder [B]-Knopf\n\
 lesen, wenn Du direkt\n\
 davor stehst."))
 
-DEFINE_DIALOG(DIALOG_168, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_3, 1, 4, 30, 200, _("\
 Bist Du immer noch hier?\n\
 Findest Du nicht, daß\n\
 Du bereits genug Schaden\n\

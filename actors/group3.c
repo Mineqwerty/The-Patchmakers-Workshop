@@ -25,3 +25,15 @@
 #include "pm_thrown_needle/model.inc.c"
 
 #include "peach_thread_of_life/model.inc.c"
+
+#include "pm_throw_flower/model.inc.c"
+#include "pm_throw_flower_stone/model.inc.c"
+#include "pm_ice_spike/model.inc.c"
+#include "pm_grapple/model.inc.c"
+#include "pm_halo/model.inc.c"
+#include "pm_bubble/model.inc.c"
+#include "pm_shadowchomp_open/model.inc.c"
+#include "pm_shadowchomp_closed/model.inc.c"
+#include "pm_miasma/model.inc.c"
+#include "pm_miasma/anims/data.inc.c"
+#include "pm_miasma/anims/table.inc.c"

@@ -6,6 +6,8 @@
 // geo
 extern const GeoLayout ending_geo_area_1[];
 
+
+
 // leveldata
 extern const Gfx dl_cake_end_screen[];
 #ifndef EU_CUSTOM_CAKE_FIX

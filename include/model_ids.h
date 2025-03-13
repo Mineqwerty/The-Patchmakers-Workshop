@@ -576,6 +576,7 @@
 #define MODEL_MEMORY_CLOUD                  0x11B
 #define MODEL_SPEECH_BUBBLE                  0x11C
 #define MODEL_ESCAPING_SOULS                  0x11D
+#define MODEL_PM_THREAD                  0x11E
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
 #define MODEL_LIFT_CLOUD                  0x101
@@ -847,6 +848,7 @@
 #define MODEL_PM_BUBBLE                  0x141
 #define MODEL_PM_SHADOWCHOMP_OPEN                  0x142
 #define MODEL_PM_SHADOWCHOMP_CLOSED                  0x143
+#define MODEL_PM_MIASMA                  0x144
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

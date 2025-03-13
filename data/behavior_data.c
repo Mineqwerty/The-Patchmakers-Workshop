@@ -9462,3 +9462,24 @@ const BehaviorScript bhvPmBubble[] = {
         CALL_NATIVE(bhv_pm_bubble_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvPmMiasma[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, pm_miasma_anims),
+    ANIMATE(1),
+    CALL_NATIVE(bhv_pm_miasma_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_miasma_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmPortal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_pm_portal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_portal_loop),
+    END_LOOP(),
+};

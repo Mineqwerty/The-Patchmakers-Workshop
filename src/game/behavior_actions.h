@@ -1228,3 +1228,7 @@ void bhv_pm_halo_init(void);
 void bhv_pm_halo_loop(void);
 void bhv_pm_bubble_init(void);
 void bhv_pm_bubble_loop(void);
+void bhv_pm_miasma_init(void);
+void bhv_pm_miasma_loop(void);
+void bhv_pm_portal_init(void);
+void bhv_pm_portal_loop(void);

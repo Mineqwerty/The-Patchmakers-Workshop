@@ -194,8 +194,8 @@ void bowser_npc_act_second_patchmaker_fight_cutscene(void) {
             }
         break;
     }
-
-    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+    extern u8 secondCutsceneDone;
+    if ((cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED)) {
         obj_mark_for_deletion(o);
     }
 }
@@ -309,6 +309,11 @@ void bowser_npc_act_ending_cutscene(void) {
             if (cExternalCutsceneTrigger >= 2) {
                 o->oFaceAngleYaw = 0x2000;
                 o->oSubAction++;
+            }
+        break;
+        case 3:
+            if (cExternalCutsceneTrigger >= 4) {
+                obj_mark_for_deletion(o);
             }
         break;
     }
@@ -440,6 +445,10 @@ void bhv_bowser_npc_loop(void) {
             o->oFaceAngleYaw = o->oMoveAngleYaw;
         }
         o->oInteractStatus = 0;
+    }
+
+    if (gCurrLevelNum == LEVEL_BOWSER_2 && (o->oTimer > 2 && gCurCutscene == -1)) {
+        obj_mark_for_deletion(o);
     }
 
     

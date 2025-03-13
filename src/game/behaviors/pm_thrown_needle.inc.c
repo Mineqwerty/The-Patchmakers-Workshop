@@ -29,6 +29,10 @@ void bhv_pm_thrown_needle_init(void) {
 
 void bhv_pm_thrown_needle_loop(void) {
 
+    if (gCurrAreaIndex == 2) {
+        o->oDamageOrCoinValue = 1;
+    }
+
     struct Object *patchmaker;
     struct Object *halo;
     f32 dist;

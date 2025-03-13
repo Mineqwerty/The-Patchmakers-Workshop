@@ -36,5 +36,11 @@ const struct Animation *const the_patchmaker_anims[] = {
 	&the_patchmaker_anim_grabSewniaIdle,
 	&the_patchmaker_anim_frozenArmsOut,
 	&the_patchmaker_anim_walkAwayFromFight,
+	&the_patchmaker_anim_grovel,
+	&the_patchmaker_anim_grovelshake,
+	&the_patchmaker_anim_grovelstand,
+	&the_patchmaker_anim_summonWall,
+	&the_patchmaker_anim_deaththird,
+	&the_patchmaker_anim_transformtomantle,
 	NULL,
 };

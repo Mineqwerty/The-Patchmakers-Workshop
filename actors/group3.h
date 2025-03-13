@@ -29,5 +29,25 @@
 #include "pm_thrown_needle/geo_header.h"
 
 #include "peach_thread_of_life/geo_header.h"
+#include "pm_throw_flower/geo_header.h"
+
+#include "pm_throw_flower_stone/geo_header.h"
+
+#include "pm_ice_spike/geo_header.h"
+
+#include "pm_grapple/geo_header.h"
+
+#include "pm_halo/geo_header.h"
+
+#include "pm_bubble/geo_header.h"
+
+#include "pm_shadowchomp_open/geo_header.h"
+
+#include "pm_shadowchomp_closed/geo_header.h"
+
+#include "pm_miasma/geo_header.h"
+
+
+#include "pm_miasma/anim_header.h"
 
 #endif

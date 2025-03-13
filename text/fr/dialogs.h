@@ -1038,7 +1038,7 @@ pour respirer.\n\
 Cercle: Abri\n\
 Flèche: Entrée - Sortie"))
 
-DEFINE_DIALOG(DIALOG_072, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BEFORE_THIRD_FIGHT, 1, 3, 30, 200, _("\
 Attention: vents violents!\n\
 Accrochez-vous à votre\n\
 casquette!\n\
@@ -1046,7 +1046,7 @@ Si vous la perdez, vous\n\
 devrez revenir la chercher\n\
 là où vous l'avez perdue..."))
 
-DEFINE_DIALOG(DIALOG_073, 1, 3, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_THIRD_PATCMAKER_DEFEAT, 1, 3, 95, 200, _("\
 Souquez ferme, matelot!\n\
 J'ai caché un trésor\n\
 par ici, moussaillon.\n\
@@ -1057,7 +1057,7 @@ Y arriveras-tu, petit?\n\
 \n\
 // -- Le capitaine --"))
 
-DEFINE_DIALOG(DIALOG_074, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_DEPARTURE, 1, 5, 30, 200, _("\
 Vous pouvez vous\n\
 accrocher au rebord d'une\n\
 falaise.\n\
@@ -2281,7 +2281,7 @@ quelque chose. Appuyez à\n\
 nouveau sur [B] pour lancer\n\
 ce que vous portez."))
 
-DEFINE_DIALOG(DIALOG_168, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_3, 1, 6, 30, 200, _("\
 Hé! Lâche-moi un peu!\n\
 Ça fait deux fois que tu\n\
 t'essuies les pieds sur\n\

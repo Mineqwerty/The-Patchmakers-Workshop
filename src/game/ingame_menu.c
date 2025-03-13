@@ -3482,7 +3482,7 @@ void render_pause_screen_felt() {
                 render_pause_castle_main_strings(-66, 0);
             }
         }
-        else if (gCurrLevelNum == LEVEL_BOWSER_3) {
+        else if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1) {
             render_pause_mantle_of_madness_flavor();
         }
         else {

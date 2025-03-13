@@ -9,6 +9,15 @@ struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus1[] = {
 	{ 5, 10, { 773, -3676, -8249 }},
 	{ -1, 10, { 772, -3676, -8251 }},
 };
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus10[] = {
+	{ 0, 10, { -4921, 1763, -5771 }},
+	{ 1, 10, { -4922, 1762, -5772 }},
+	{ 2, 10, { -4922, 1762, -5773 }},
+	{ 3, 10, { -4924, 1759, -5778 }},
+	{ 4, 10, { -4926, 1757, -5782 }},
+	{ 5, 10, { -4927, 1756, -5783 }},
+	{ -1, 10, { -4927, 1755, -5784 }},
+};
 struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus2[] = {
 	{ 0, 10, { -4285, 1803, -5857 }},
 	{ 1, 10, { -4287, 1803, -5857 }},
@@ -75,6 +84,24 @@ struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus7[] = {
 	{ 5, 10, { -4579, 1781, -5873 }},
 	{ -1, 10, { -4580, 1780, -5873 }},
 };
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus8[] = {
+	{ 0, 10, { -4732, 1763, -5839 }},
+	{ 1, 10, { -4733, 1762, -5839 }},
+	{ 2, 10, { -4735, 1762, -5840 }},
+	{ 3, 10, { -4739, 1759, -5841 }},
+	{ 4, 10, { -4744, 1757, -5842 }},
+	{ 5, 10, { -4745, 1756, -5842 }},
+	{ -1, 10, { -4746, 1755, -5843 }},
+};
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus9[] = {
+	{ 0, 10, { -4987, 1792, -5839 }},
+	{ 1, 10, { -4988, 1791, -5839 }},
+	{ 2, 10, { -4989, 1791, -5840 }},
+	{ 3, 10, { -4993, 1787, -5841 }},
+	{ 4, 10, { -4997, 1784, -5842 }},
+	{ 5, 10, { -4998, 1783, -5842 }},
+	{ -1, 10, { -4999, 1782, -5843 }},
+};
 struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos1[] = {
 	{ 0, 10, { 1163, -3676, -8234 }},
 	{ 1, 10, { 1162, -3676, -8235 }},
@@ -83,6 +110,15 @@ struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos1[] = {
 	{ 4, 10, { 1150, -3676, -8248 }},
 	{ 5, 10, { 1149, -3676, -8249 }},
 	{ -1, 10, { 1147, -3676, -8251 }},
+};
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos10[] = {
+	{ 0, 10, { -4698, 1763, -5518 }},
+	{ 1, 10, { -4698, 1762, -5519 }},
+	{ 2, 10, { -4699, 1762, -5520 }},
+	{ 3, 10, { -4701, 1759, -5525 }},
+	{ 4, 10, { -4703, 1757, -5529 }},
+	{ 5, 10, { -4704, 1756, -5530 }},
+	{ -1, 10, { -4704, 1755, -5531 }},
 };
 struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos2[] = {
 	{ 0, 10, { -3910, 1803, -5857 }},
@@ -143,6 +179,24 @@ struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos7[] = {
 	{ 4, 10, { -4425, 1787, -5915 }},
 	{ 5, 10, { -4426, 1786, -5915 }},
 	{ -1, 10, { -4427, 1786, -5915 }},
+};
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos8[] = {
+	{ 0, 10, { -4395, 1763, -5839 }},
+	{ 1, 10, { -4396, 1762, -5839 }},
+	{ 2, 10, { -4397, 1762, -5840 }},
+	{ 3, 10, { -4402, 1759, -5841 }},
+	{ 4, 10, { -4406, 1757, -5842 }},
+	{ 5, 10, { -4407, 1756, -5842 }},
+	{ -1, 10, { -4409, 1755, -5843 }},
+};
+struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos9[] = {
+	{ 0, 10, { -4658, 1866, -5839 }},
+	{ 1, 10, { -4659, 1866, -5839 }},
+	{ 2, 10, { -4660, 1865, -5840 }},
+	{ 3, 10, { -4664, 1861, -5841 }},
+	{ 4, 10, { -4668, 1858, -5842 }},
+	{ 5, 10, { -4669, 1857, -5842 }},
+	{ -1, 10, { -4670, 1856, -5843 }},
 };
 struct CutsceneSplinePoint castle_inside_area_3_spline_EnterBrinkFocus1[] = {
 	{ 0, 10, { -2749, 1729, -5111 }},

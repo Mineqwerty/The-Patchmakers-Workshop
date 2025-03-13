@@ -110,19 +110,25 @@ extern const MacroObject castle_inside_area_3_macro_objs[];
 #include "src/game/camera.h"
 
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus1[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus10[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus2[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus3[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus4[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus5[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus6[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus7[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus8[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingFocus9[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos1[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos10[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos2[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos3[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos4[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos5[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos6[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos7[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos8[];
+extern struct CutsceneSplinePoint castle_inside_area_3_spline_EndingPos9[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterBrinkFocus1[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterBrinkFocus2[];
 extern struct CutsceneSplinePoint castle_inside_area_3_spline_EnterBrinkFocus3[];

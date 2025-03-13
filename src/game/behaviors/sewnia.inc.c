@@ -1703,7 +1703,17 @@ void sewnia_act_ending_cutscene(void) {
         case 3:
         o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
             if (cExternalCutsceneTrigger >= 3) {
-                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+                
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+        o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger >= 5) {
+                o->oMoveAngleYaw = 0;
+                o->oFaceAngleYaw = 0;
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
                 
                 o->oSubAction++;
             }

@@ -54,3 +54,4 @@
 #include "levels/castle_inside/memory_cloud/geo.inc.c"
 #include "levels/castle_inside/speech_bubble/geo.inc.c"
 #include "levels/castle_inside/escaping_souls/geo.inc.c"
+#include "levels/castle_inside/pm_thread_of_life/geo.inc.c"

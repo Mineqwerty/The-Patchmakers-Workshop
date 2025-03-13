@@ -852,21 +852,21 @@ DEFINE_DIALOG(DIALOG_071, 1, 4, 30, 200, _("\
 まる・・・・・ひなんじょ\n\
 やじるし・・・でいりぐち"))
 
-DEFINE_DIALOG(DIALOG_072, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BEFORE_THIRD_FIGHT, 1, 5, 30, 200, _("\
 カゼつよし！　　ぼうしは\n\
 しっかり　かぶりましょう。\n\
 もし　ぼうしをなくしても\n\
 ここでなくした　ぼうしは\n\
 このやまで　みつかります。"))
 
-DEFINE_DIALOG(DIALOG_073, 1, 5, 95, 200, _("\
+DEFINE_DIALOG(DIALOG_THIRD_PATCMAKER_DEFEAT, 1, 5, 95, 200, _("\
 ただしい　じゅんばんで\n\
 はこを　ひらくこと。\n\
 こたえは　だれにも\n\
 おしえてやらない。\n\
 　　　--せんちょう--"))
 
-DEFINE_DIALOG(DIALOG_074, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PATCHMAKER_DEPARTURE, 1, 5, 30, 200, _("\
 ガケのカドに　とびつくと\n\
 ぶらさがれます。\n\
 おりるときはスティックを\n\
@@ -1885,7 +1885,7 @@ A_BUTTON_ACT \
 "Ｚボタン『しゃがむ』\n"\
 B_BUTTON_ACT))
 
-DEFINE_DIALOG(DIALOG_168, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_3, 1, 4, 30, 200, _("\
 アーン、またまた　\n\
 ふんづけられちゃいました。\n\
 ハナチャン　かんぜんに\n\

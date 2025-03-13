@@ -1,4 +1,4 @@
-#include <ultra64.h>"
+#include <ultra64.h>
 #include "sm64.h"
 #include "surface_terrains.h"
 #include "moving_texture_macros.h"
@@ -10,6 +10,9 @@
 
 #include "make_const_nonconst.h"
 
+ALIGNED8 const Texture texture_ending_drawing[] = {
+    #include "levels/new_file_select/drawing.rgba16.inc.c"  
+};
 
 #include "levels/new_file_select/leveldata.inc.c"
 

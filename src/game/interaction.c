@@ -817,6 +817,10 @@ u32 take_damage_from_interact_object(struct MarioState *m) {
     s32 shake;
     s32 damage = m->interactObj->oDamageOrCoinValue;
 
+    if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 2) {
+        damage *= 2;
+    }
+
     if (damage >= 4) {
         shake = SHAKE_LARGE_DAMAGE;
     } else if (damage >= 2) {
@@ -845,6 +849,10 @@ u32 take_damage_from_interact_object(struct MarioState *m) {
 
 u32 take_damage_from_no_interact_object(struct MarioState *m, s32 damage) {
     s32 shake;
+
+    if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 2) {
+        damage *= 2;
+    }
 
     if (damage >= 4) {
         shake = SHAKE_LARGE_DAMAGE;

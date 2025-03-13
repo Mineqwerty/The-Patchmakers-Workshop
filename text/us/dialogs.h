@@ -851,46 +851,62 @@ air!\n\
 Circle: Shelter\n\
 Arrow: Entrance-Exit"))
 
-DEFINE_DIALOG(DIALOG_072, 1, 5, 30, 200, _("\
-High winds ahead!\n\
-Pull your Cap down tight.\n\
-If it blows off, you'll\n\
-have to find it on this\n\
-mountain."))
+DEFINE_DIALOG(DIALOG_PATCHMAKER_BEFORE_THIRD_FIGHT, 0b10, 3, 30, 200, _("\
+@5D5D5DFFHaha...\n\
+Ha...\n\
+...\n\
+@5D5D5DFFI... couldn't do it.\n\
+Haha... The souls... hate me...\n\
+Do you hear them screaming?\n\
+@5D5D5DFFMore failures! More!\n\
+HAHA!!!\n\
+No more...\n\
+@5D5D5DFFI... don't understand. Why?\n\
+I... got rid of all distractions.\n\
+I focused... on this alone.\n\
+@5D5D5DFFThe emotions... they were distractions.\n\
+The buttons... on my eyes... they helped \n\
+keep them away! AWAY!!!\n\
+@5D5D5DFFThe threads I stole... from you...\n\
+They... helped me know how life...\n\
+was sewn...\n\
+@5D5D5DFFThose who moved... I hated...\n\
+them... Even... the doll. I can't...\n\
+make another... so why...?\n\
+@5D5D5DFFWhy... does it hurt? WHY... DO I FEEL?\n\
+THE BUTTONS! THEY ITCH SO... THEY...\n\
+STOP IT! STOP IT! STOPITSTOPIT!!!\n\
+@5D5D5DFFMY MIND? WHERE IS IT? WHERE?\n\
+WHERE ARE MY THOUGHTS!? IT ITCHES!!!\n\
+IT HURTS!!! WHERE AM I!?\n\
+@5D5D5DFFI CAN'T SEE! THINK! I CAN'T...\n\
+I can't...\n\
+...\n\
+@5D5D5DFFI can't create life...\n\
+Not even... in a realm full of souls...\n\
+Can I do the one thing I desire most...\n\
+@5D5D5DFFHaha... HAHAHA!!!\n\
+AHAHAHA!!!"))
 
-DEFINE_DIALOG(DIALOG_073, 1, 4, 95, 200, _("\
-Aarrgh! Ahoy, matey. I\n\
-have sunken treasure,\n\
-here, I do.\n\
-\n\
-But to pluck the plunder,\n\
-you must open the\n\
-Treasure Chests in the\n\
-right order.\n\
-What order is that,\n\
-ye say?\n\
-\n\
-\n\
-I'll never tell!\n\
-\n\
-//--The Cap'n"))
+DEFINE_DIALOG(DIALOG_THIRD_PATCMAKER_DEFEAT, 0b10, 3, 95, 200, _("\
+@5D5D5DFFI...\n\
+can't...\n\
+...\n\
+@5D5D5DFFAAAAUUUUGHHH!!!!!"))
 
-DEFINE_DIALOG(DIALOG_074, 1, 5, 30, 200, _("\
-You can grab on to the\n\
-edge of a cliff or ledge\n\
-with your fingertips and\n\
-hang down from it.\n\
-\n\
-To drop from the edge,\n\
-either press the Control\n\
-Stick in the direction of\n\
-Mario's back or press the\n\
-[Z] Button.\n\
-To get up onto the ledge,\n\
-either press Up on the\n\
-Control Stick or press [A]\n\
-as soon as you grab the\n\
-ledge to climb up quickly."))
+DEFINE_DIALOG(DIALOG_PATCHMAKER_DEPARTURE, 1, 3, 30, 200, _("\
+@5C5C5CFFIt's bright...\n\
+It seems my legacy ends here... with\n\
+the weight of hundreds of regrets and mistakes.\n\
+@5C5C5CFFSewnia... there was so much I wanted to\n\
+teach you still. Memories I had wanted to make.\n\
+I'm sorry, Sewnia.\n\
+@5C5C5CFFI could never ask you to forgive me.\n\
+However, I hope that you cherish the memories we\n\
+shared, and move on to a brighter future.\n\
+@5C5C5CFFI have so much I wish I could tell you...\n\
+But what I bequeath now must suffice. Please, Sewnia...\n\
+Please take this and smile for your future."))
 
 DEFINE_DIALOG(DIALOG_075, 1, 5, 30, 200, _("\
 Mario!! My castle is in\n\
@@ -1962,11 +1978,11 @@ Are you... thinking about him?\n\
 @7F60B4FFMhm... He's finally free, too.\n\
 The memories I cherished can't be\n\
 tarnished any more...\n\
-@7F60B4FFI'll never forget the incredible\n\
-man he used to be. Even if what he became\n\
+@7F60B4FFIt's... hard to believe. I'll... miss those\n\
+times in the past. Even if all he was now\n\
 was a mad, unforgivable monster.\n\
 @FF0202FFBuck up, kid.\n\
-I'm sure your pops would have been\n\
+I'm sure your real pops would have been\n\
 real proud of you for toughing this out.\n\
 @7F60B4FFI just...\n\
 What...\n\
@@ -1989,20 +2005,54 @@ get this mustiness off my shell at this rate!\n\
 @FF75DFFFI agree with Bowser!\n\
 A pleasant walk will help you take a breath\n\
 and think about what to do next.\n\
-@FF75DFFFSewnia, can you show us the way?\n\
+@FF75DFFFSewnia, you can join us when\n\
+you feel ready to. I'm sure you have a lot\n\
+to say with your goodbyes...\n\
+@7F60B4FFOf course...\n\
 \n\
 \n\
-@7F60B4FFOf course... Follow me.\n\
-Let's see outside after all we've accomplished.\n\
-I can't wait!\n\
-@7F60B4FFComing, Mario?"))
+@7F60B4FF...Mario...\n\
+I hope this was right...\n\
+It feels so... sad.\n\
+@7F60B4FFHmm?\n\
+What's this?\n\
+...!\n\
+@7F60B4FFThat's...!\n\
+A thead of life? His?\n\
+But... how? Only him and I know how...\n\
+@7F60B4FFHe left this for you?\n\
+But... why? Without his body, it can't\n\
+be re-attached as a soul...\n\
+@7F60B4FFLook at it... It's all frayed\n\
+and scarred with magic burns. His\n\
+madness must have afflicted his very soul...\n\
+@7F60B4FFHe caused so much pain with the craftwork\n\
+he meant to bring joy with... even to himself.\n\
+He never got his grand artwork reveal...\n\
+@7F60B4FFI think... I think I know what to do now.\n\
+I'm going to follow in his footsteps.\n\
+Not to create life, but to protect it.\n\
+@7F60B4FFI'll learn all of his techniques!\n\
+I'll help the people of each land he harmed recover!\n\
+A future where his magic can heal!\n\
+@7F60B4FFAnd one day, when I've mastered it all,\n\
+I'll wash this madness away from his thread.\n\
+I'll give him life again... not out of pride, but love.\n\
+@7F60B4FFIt's a big dream, Mario...\n\
+Do you think one day... \n\
+I can do it?"))
 
-DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
-Hey! Knock it off! That's\n\
-the second time you've\n\
-nailed me. Now you're\n\
-asking for it, linguine\n\
-breath!"))
+DEFINE_DIALOG(DIALOG_FINAL_BOSS_DEFEATED_3, 1, 3, 30, 200, _("\
+@7F60B4FFHeehee... Thank you, Mario.\n\
+Truly. Without you, I would\n\
+have never made it here.\n\
+@7F60B4FFI feel... hopeful.\n\
+It's a wonderful feeling...\n\
+I can't wait for the future!\n\
+@7F60B4FFWell, shall we meet them?\n\
+I sure hope Bowser isn't causing Peach\n\
+any trouble right now...\n\
+@7F60B4FFLet's go, Mario!"))
 
 DEFINE_DIALOG(DIALOG_OMIY, 1, 4, 30, 200, _("\
 Interesting...\n\

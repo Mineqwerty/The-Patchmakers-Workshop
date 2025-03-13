@@ -158,9 +158,13 @@ void bhv_pm_credits_manager_loop(void) {
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "The HackerSM64 Team", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
             
             if (o->oTimer == 150) {
-                //initiate_warp(LEVEL_ENDING, 1, 0x0A, 0, 0);
+                
+                play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 90, 0, 0, 0);
                 o->oAction++;
             }
+        break;
+        case 14:
+            gSpecialHudRender = 3;
         break;
     }
 }

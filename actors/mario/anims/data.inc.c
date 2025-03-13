@@ -35,3 +35,4 @@
 #include "anim_lookToBowser.inc.c"
 #include "anim_genericCutsceneIdle.inc.c"
 #include "anim_ClimbHorizontal.inc.c"
+#include "anim_pullOutPocket.inc.c"
