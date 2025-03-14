@@ -545,6 +545,8 @@ void bowser_act_walk_to_mario(void) {
                     
      //           }
 
+    f32 maxSpeed = 50.0f + CLAMP(o->oTimer / 2, 0, 50);
+
     if (gPlayer1Controller->stickX == 0 && gPlayer1Controller->stickY == 0) {
         //o->oForwardVel = 0.0f;
             //cur_obj_init_animation_with_sound(BOWSER_ANIM_RUN_SLIP);
@@ -559,11 +561,13 @@ void bowser_act_walk_to_mario(void) {
             if (approach_f32_signed(&o->oForwardVel, 0, -10.0f)) {
                 return o->oAction = BOWSER_ACT_DEFAULT;
             }
-            
+            if (o->oTimer > 5) {
+                o->oTimer -= 5;
+            }
         
     }
     else {
-        o->oForwardVel = approach_f32_symmetric(o->oForwardVel, 50.0f, 15.0f);
+        o->oForwardVel = approach_f32_symmetric(o->oForwardVel, maxSpeed, 15.0f);
     }
     if (gPlayer1Controller->buttonPressed & B_BUTTON) {
         return o->oAction = BOWSER_ACT_DANCE;
@@ -605,30 +609,9 @@ void bowser_act_walk_to_mario(void) {
             }
     
     
-    //if (o->oSubAction == 0) {
-    //    o->oBowserTimer = 0;
-        // Start walking
-    //    if (bowser_set_anim_slow_gait()) {
-    //        o->oSubAction++;
-    //    }
-    //} else if (o->oSubAction == 1) {
-        // Keep walking slowly
-    //    if (bowser_set_anim_slow_gait()) {
-    //        o->oBowserTimer++;
-            // Reset fire sky status
-    //        if (o->oBowserStatus & BOWSER_STATUS_FIRE_SKY) {
-    //            if (o->oBowserTimer > 4) {
-                    //o->oBowserStatus &= ~BOWSER_STATUS_FIRE_SKY;
-    //            }
-            // Do subaction below if angles is less than 0x2000
-    //        } else if (angleFromMario < 0x2000) {
-                //o->oSubAction++;
-  //          }
-    //    }
-    // Stop walking and set to default action
-    //} else if (bowser_set_anim_look_down_stop_walk()) {
-    //    o->oAction = BOWSER_ACT_DEFAULT;
-    //}
+            if (o->oMoveFlags & OBJ_MOVE_HIT_EDGE) {
+                o->oAction = BOWSER_ACT_FALL_OFF_EDGE;
+            }
 }
 
 /**
@@ -757,8 +740,8 @@ void bowser_act_hit_mine(void) {
  * Returns TRUE on the middle of the jump
  */
 s32 bowser_set_anim_jump(void) {
-    cur_obj_init_animation_with_sound(BOWSER_ANIM_JUMP_START);
-    if (cur_obj_check_anim_frame(11)) {
+    cur_obj_init_animation_with_accel_and_sound(BOWSER_ANIM_JUMP_START, 2.0f);
+    if (o->header.gfx.animInfo.animFrame >= 11) {
         return TRUE;
     } else {
         return FALSE;
@@ -774,7 +757,7 @@ s32 bowser_land(void) {
         o->oForwardVel = 0;
         o->oVelY = 0;
         spawn_mist_particles_variable(0, 0, 60.0f);
-        cur_obj_init_animation_with_sound(BOWSER_ANIM_JUMP_STOP);
+        cur_obj_init_animation_with_accel_and_sound(BOWSER_ANIM_JUMP_STOP, 2.0f);
         o->header.gfx.animInfo.animFrame = 0;
         cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
         cur_obj_shake_screen(SHAKE_POS_MEDIUM);
@@ -878,6 +861,40 @@ void bowser_act_quick_jump(void) {
         }
     // Lands then quickly returns to default action
     } else if (o->oSubAction == 1) {
+        if (gPlayer1Controller->stickY != 0 || gPlayer1Controller->stickX != 0) {
+            if (o->oVelY + 20 > 0) {
+        o->oPosX += ((o->oVelY + 20) / 5) * sins((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw));
+        o->oPosZ += ((o->oVelY + 20) / 5) * coss((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw));
+            }
+        }
+        if (bowser_land()) {
+            o->oSubAction++;
+        }
+
+        o->oVelY -= 4;
+    } else {
+        if (cur_obj_check_if_near_animation_end()) {
+            o->oAction = BOWSER_ACT_DEFAULT;
+        }
+        else if (o->header.gfx.animInfo.animFrame > 5 && gPlayer1Controller->stickMag > 20) {
+            o->oAction = BOWSER_ACT_WALK_TO_MARIO;
+        }
+    }
+}
+
+void bowser_act_fall_off_edge(void) {
+    //gMarioState->bowserAttack = 2;
+
+    if (bowser_check_fallen_off_stage()) {
+        o->oPosX = 0;
+        o->oPosY = 2000;
+        o->oPosZ = 0;
+    }
+
+    f32 velY = sBowserVelYAir[0];
+    f32 fVel = sBowserFVelAir[0];
+    if (o->oSubAction == 0) {
+        bowser_set_anim_jump();
         if (gPlayer1Controller->stickY != 0 || gPlayer1Controller->stickX != 0) {
             if (o->oVelY + 20 > 0) {
         o->oPosX += ((o->oVelY + 20) / 5) * sins((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw));
@@ -1248,6 +1265,8 @@ void bowser_act_jump_onto_stage(void) {
  */
 s8 sBowserDanceStepNoises[] = { 15, 26, 38, -1 };
 
+s16 bowserAttackInputTimer = 0;
+
 /**
  * Makes Bowser's dance as a "taunt"
  */
@@ -1258,6 +1277,19 @@ void bowser_act_dance(void) {
     }
     // Play dance animation and after that return to default action
     cur_obj_init_animation_with_accel_and_sound(BOWSER_ANIM_DANCE, 1.6f);
+
+    if (gPlayer1Controller->buttonPressed & B_BUTTON) {
+        bowserAttackInputTimer = 10;
+    }
+    if (bowserAttackInputTimer > 0) {
+        bowserAttackInputTimer--;
+    }
+
+    if (o->header.gfx.animInfo.animFrame >= 22) {
+        if (bowserAttackInputTimer == 0) {
+            o->oAction = BOWSER_ACT_DEFAULT;
+        }
+    }
     if (cur_obj_check_if_near_animation_end()) {
         o->oAction = BOWSER_ACT_DEFAULT;
     }
@@ -1641,7 +1673,7 @@ void (*sBowserActions[])(void) = {
     bowser_act_breath_fire,
     bowser_act_teleport,
     bowser_act_quick_jump,
-    bowser_act_idle,
+    bowser_act_fall_off_edge,
     bowser_act_tilt_lava_platform
 };
 
@@ -1703,6 +1735,8 @@ void bowser_free_update(void) {
     gMarioState->pos[1] = o->oPosY + 400.0f;
     gMarioState->pos[2] = o->oPosZ;
     gMarioState->faceAngle[1] = o->oFaceAngleYaw;
+    gMarioState->equippedPatch = 0;
+    gMarioState->curPatch = 0;
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
 
     if (gCurCutscene != -1) {
@@ -1729,7 +1763,7 @@ void bowser_free_update(void) {
     cur_obj_call_action_function(sBowserActions);
     cur_obj_move_standard(-78);
 
-    if (o->oAction != BOWSER_ACT_QUICK_JUMP) {
+    if (o->oAction != BOWSER_ACT_QUICK_JUMP && o->oAction != BOWSER_ACT_FALL_OFF_EDGE) {
         o->oPosY = o->oFloorHeight;
     }
 

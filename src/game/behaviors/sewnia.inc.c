@@ -826,6 +826,8 @@ void sewnia_act_intro_cutscene(void) {
             o->oPosX = 0;
             o->oPosY = 100;
             o->oPosZ = 1152;
+            o->oFaceAngleYaw = 0;
+            o->oMoveAngleYaw = 0;
             cur_obj_init_animation(SEWNIA_ANIM_STARING);
 
             o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;

@@ -18,7 +18,7 @@ void bhv_wooden_plank_block_loop(void) {
             if (bowser) {
                 dist = lateral_dist_between_objects(o, bowser);
             }
-            if (bowser && bowser->oAction == 3 && bowser->oTimer >= 16 && dist < 300) {
+            if (bowser && bowser->oAction == 3 && bowser->oTimer >= 12 && dist < 300) {
                 struct Object *fragment = spawn_object_relative(0, 0, 0, 0, o, MODEL_WOODEN_PLANK_LEFT, bhvWoodenPlankFragment);
                 fragment->oMoveAngleYaw = o->oFaceAngleYaw + 0x4000;
                 fragment = spawn_object_relative(2, 0, 0, 0, o, MODEL_WOODEN_PLANK_RIGHT, bhvWoodenPlankFragment);
