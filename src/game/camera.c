@@ -3313,10 +3313,16 @@ void handle_course_volumes(struct Camera *c) {
     s16 volumeID = check_mario_is_in_course_volume();
     s16 cameraAngle;
 
+    if (volumeID == 2 && gCurrLevelNum == LEVEL_BBH && gDialogBoxState == 3) {
+        sPrevCameraVolume = 0;
+    }
+
     if (sPrevCameraVolume != volumeID) {
         sPrevCameraVolume = volumeID;
         sCameraDisturbed = 0;
     }
+
+    
 
     if (volumeID > 0 && sCameraDisturbed == 0) {
         switch (gCurrLevelNum) {

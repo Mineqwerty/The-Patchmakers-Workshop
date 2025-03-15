@@ -2,13 +2,17 @@ struct ObjectHitbox sSeraphimHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 50,
     /* damageOrCoinValue: */ 2,
-    /* health:            */ 0,
+    /* health:            */ 60,
     /* numLootCoins:      */ 3,
     /* radius:            */ 100,
     /* height:            */ 100,
     /* hurtboxRadius:     */ 70,
     /* hurtboxHeight:     */ 60,
 };
+
+void bhv_seraphim_init(void) {
+    obj_set_hitbox(o, &sSeraphimHitbox);
+}
 
 void bhv_seraphim_loop(void) {
     object_step();
@@ -71,23 +75,11 @@ switch (o->oAction) {
     break;
 }
     
-    obj_set_hitbox(o, &sSeraphimHitbox);
+    
 
-    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
-        if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
-
-            u8 healthSubtract = 1;
-            for (int i = 0; i < (o->oInteractStatus & INT_STATUS_ATTACK_MASK); i++) {
-                healthSubtract *= 2;
-            }
-            o->oHealth -= healthSubtract;
-
-            if (healthSubtract > 24) {
-                o->oHealth = 0;
-                obj_die_if_health_non_positive();
-            }
-        }
-    }
+    
+    obj_die_if_health_non_positive();
+    o->oHealth = 60;
 
     
     o->oInteractStatus = 0;

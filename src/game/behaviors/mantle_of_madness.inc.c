@@ -579,7 +579,12 @@ void mantle_of_madness_act_getting_stabbed(void) {
     }
 
     if (o->oTimer >= 180) {
-        o->oAction = MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE;
+        if (gInMemoryStage) {
+            initiate_warp(LEVEL_CASTLE, 3, 10, 0, 0);
+        }
+        else {
+            o->oAction = MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE;
+        }
     }
 }
 

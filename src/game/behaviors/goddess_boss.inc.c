@@ -586,7 +586,7 @@ void bhv_gold_blob_loop(void) {
                 gold_blob_approach_home();
 
                 if (seraphim && o->oTimer == 30) {
-                    attack_object(seraphim, 32, 10);
+                    seraphim->oHealth = 0;
 
                     obj_mark_for_deletion(o);
                 }

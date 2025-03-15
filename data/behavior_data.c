@@ -6783,6 +6783,7 @@ const BehaviorScript bhvSeraphim[] = {
     LOAD_ANIMATIONS(oAnimations, seraphim_anims),
     ANIMATE(0),
     SET_HOME(),
+    CALL_NATIVE(bhv_seraphim_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_seraphim_loop),
     END_LOOP(),

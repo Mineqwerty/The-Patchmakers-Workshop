@@ -1398,7 +1398,12 @@ void bhv_patchmaker_loop(void) {
 
             if (gInMemoryStage) {
                 if (o->oTimer == 30) {
-                    initiate_warp(LEVEL_CASTLE, PATCHMAKER_SECOND_FIGHT ? 2 : 1, 10, 0, 0);
+                    if (gCurrLevelNum == LEVEL_BOWSER_3) {
+                        initiate_warp(LEVEL_BOWSER_3, 1, 10, 0, 0);
+                    }
+                    else {
+                        initiate_warp(LEVEL_CASTLE, PATCHMAKER_SECOND_FIGHT ? 2 : 1, 10, 0, 0);
+                    }
                 }
             }
             

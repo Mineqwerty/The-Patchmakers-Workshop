@@ -38,7 +38,7 @@ struct SaveFile {
     u8 courseStars[COURSE_COUNT-1]; // 200 bits
 
     u32 unlockedSongs[4]; // 128 bits
-
+    u32 filler[4];
     u32 patchChallengeFrames[12]; // 384 bits
 
     struct SaveBlockSignature signature; // 32 bits 

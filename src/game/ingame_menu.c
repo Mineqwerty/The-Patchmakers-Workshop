@@ -3232,8 +3232,8 @@ const char starHints[24][48] = {
     "Along the clock tower",
     "Tower in the fog",
     "The relic from below",
-    "Dry, deep chasm",
     "Secret near waterfalls",
+    "Dry, deep chasm",
     "Fire in the kitchen",
     "Red-hot pole climb",
     "In a castle spire",
@@ -3259,8 +3259,8 @@ u8 secretStarPatchRequirements[24] = {
     PATCH_SKYBRIDGE,
     PATCH_SHADOWCHOMP,
     PATCH_PORTAL,
-    PATCH_BREEZE,
     PATCH_TRANSMUTATION,
+    PATCH_BREEZE,
     PATCH_HALO,
     PATCH_MIASMA,
     PATCH_GRAPPLE,
@@ -3854,13 +3854,13 @@ void render_patch_challenge_menu() {
     gSPDisplayList(gDisplayListHead++, patch_challenge_menu_bg_Plane_011_mesh);
 
     
-        if (handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12) || gPatchChallengeIndex == 1) {
+        if (updatePatchMenuDma || handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12) || gPatchChallengeIndex == 1) {
             extern const u8 patch_textures_dma[];
             extern u8 mario_mario_cap_rgba16[];
             u8 *patchTexture = segmented_to_virtual(&patch_challenge_menu_bg_mario_cap_rgba16_rgba16);
 
             dma_read(patchTexture, (gPatchChallengeIndex*2048) + patch_textures_dma, (gPatchChallengeIndex*2048) + patch_textures_dma + 2048);
-            
+            updatePatchMenuDma = 0;
         }
         //print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
 

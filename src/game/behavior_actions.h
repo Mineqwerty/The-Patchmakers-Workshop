@@ -673,6 +673,7 @@ void bhv_gold_blob_loop(void);
 void bhv_gold_fragment_loop(void);
 void bhv_banish_fragment_loop(void);
 
+void bhv_seraphim_init(void);
 void bhv_seraphim_loop(void);
 
 void bhv_patchmaker_init(void);

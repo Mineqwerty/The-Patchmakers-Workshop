@@ -683,12 +683,12 @@ u32 save_file_is_song_unlocked(s32 fileIndex, u8 seqID) {
     #ifdef UNLOCK_ALL
     return 1;
     #else
-    return gSaveBuffer.files[fileIndex][0].unlockedSongs[seqID / 32] & (1 << (seqID%32));
+    return gSaveBuffer.files[fileIndex][0].unlockedSongs[CLAMP(seqID / 32, 0, 3)] & (1 << (seqID%32));
     #endif
 }
 
 void save_file_set_collected_song(s32 fileIndex, u8 seqID) {
-    gSaveBuffer.files[fileIndex][0].unlockedSongs[seqID / 32] |= (1 << (seqID%32));
+    gSaveBuffer.files[fileIndex][0].unlockedSongs[CLAMP(seqID / 32, 0, 3)] |= (1 << (seqID%32));
 }
 
 /**

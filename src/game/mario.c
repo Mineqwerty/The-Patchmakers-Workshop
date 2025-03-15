@@ -2445,8 +2445,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
-    //gMarioState->numStars = 41;
-
     
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
@@ -2461,7 +2459,9 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     update_mario_equipped_patch();
 
-    gMarioState->numStars = 55;
+    if (gMarioState->numCoins < 90) {
+        gMarioState->numCoins = 99;
+    }
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
 
