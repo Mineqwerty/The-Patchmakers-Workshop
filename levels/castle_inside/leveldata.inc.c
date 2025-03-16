@@ -7,4 +7,5 @@
 #include "levels/castle_inside/model.inc.c"
 #include "levels/castle_inside/area_1/collision.inc.c"
 #include "levels/castle_inside/area_2/collision.inc.c"
+#include "levels/castle_inside/area_2/room.inc.c"
 #include "levels/castle_inside/area_3/collision.inc.c"

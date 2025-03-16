@@ -28,6 +28,8 @@
 #include "spawn_sound.h"
 #include "puppylights.h"
 
+#include "src/game/cutscene.h"
+
 static s32 clear_move_flag(u32 *bitSet, s32 flag);
 
 Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx) {
