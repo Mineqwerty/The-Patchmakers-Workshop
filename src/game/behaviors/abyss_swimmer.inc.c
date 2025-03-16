@@ -10,6 +10,8 @@ struct Trajectory *sAbyssSwimmerPaths[] = {
 void bhv_abyss_swimmer_init(void) {
     o->oPathedStartWaypoint = o->oPathedPrevWaypoint =
             segmented_to_virtual(sAbyssSwimmerPaths[o->oBehParams2ndByte]);
+
+    o->oDrawingDistance = (gIsConsole ? 5000 : 20000);
 }
 
 void bhv_abyss_swimmer_loop(void) {

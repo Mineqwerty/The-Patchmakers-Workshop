@@ -1,5 +1,5 @@
 void bhv_sky_slug_init(void) {
-
+    o->oDrawingDistance = (gIsConsole ? 6000 : 20000);
 }
 
 void bhv_sky_slug_loop(void) {

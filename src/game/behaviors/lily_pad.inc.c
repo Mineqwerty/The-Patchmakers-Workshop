@@ -13,6 +13,7 @@ void freeze_lily(void) {
 void bhv_lily_pad_init(void) {
     o->oBuoyancy = 0.3f;
     o->oGravity = 1.6f;
+    o->oDrawingDistance = (gIsConsole ? 5000 : 20000);
 }
 
 void bhv_lily_pad_loop(void) {
@@ -35,7 +36,9 @@ void bhv_lily_pad_loop(void) {
                 }
                 
             }
-            object_step_without_floor_orient();
+            if (o->oTimer < 90) {
+                object_step_without_floor_orient();
+            }
         break;
         case 1:
         if (o->oTimer == 1) {

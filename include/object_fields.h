@@ -1370,6 +1370,7 @@
 
 //danger puff 
 #define oDangerPuffChaseDecay          OBJECT_FIELD_S32(0x1B)
+#define oDangerPuffReturnTime          OBJECT_FIELD_S32(0x1C)
 
 //fortogoo
 #define oFortogooChildHitbox           OBJECT_FIELD_OBJ(0x1B)

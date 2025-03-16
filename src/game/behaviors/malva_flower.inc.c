@@ -1,6 +1,7 @@
 void bhv_malva_flower_init(void) {
     f32 dist;
     o->parentObj = cur_obj_find_nearest_object_with_behavior(bhvMalvaFlowerManager, &dist);
+    o->oDrawingDistance = 20000;
 }
 
 void bhv_malva_flower_loop(void) {
