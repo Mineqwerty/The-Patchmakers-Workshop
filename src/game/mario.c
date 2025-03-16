@@ -2459,10 +2459,6 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
 
     update_mario_equipped_patch();
 
-    if (gMarioState->numCoins < 90) {
-        gMarioState->numCoins = 99;
-    }
-
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
 
     if (gMarioState->boostTimer > 0) {

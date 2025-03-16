@@ -10,6 +10,9 @@ void bhv_grey_fire_torch_loop(void) {
     if (haloFire && haloFire->oHaloCapturedObject && obj_has_behavior(haloFire->oHaloCapturedObject, bhvFireSmokeSpawner) && dist < 200) {
         o->oAction = 1;
         spawn_object_relative(0, 0, 0, 0, o, MODEL_GREY_FLAME, bhvFlame);
+        obj_mark_for_deletion(haloFire->oHaloCapturedObject);
+        haloFire->oHaloCapturedObject = NULL;
+        gMarioState->haloCaptureType = 0;
     }
     }
     else if (o->oAction == 1) {

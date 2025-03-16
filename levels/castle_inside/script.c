@@ -239,6 +239,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x44, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -3624, 1621, -6725, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 2760, 3014, -5771, 0, -180, 0, (57 << 24) | (7 << 16), bhvTextVolume),
+		OBJECT(MODEL_NONE, -7077, 1782, 4347, 0, -180, 0, (59 << 24) | (7 << 16), bhvTextVolume),
 		OBJECT(MODEL_BOWSER, -190, 1621, -6156, 0, 0, 0, 0x00000000, bhvBowserNpc),
 		OBJECT(MODEL_NONE, -3774, 1621, -3293, 0, -113, 0, (DIALOG_BOWSER_NPC_ARRIVED_AT_THIRD_HUB << 16), bhvBowserNpcSpot),
 		OBJECT(MODEL_NONE, -1613, 1782, -185, 0, -113, 0, (DIALOG_BOWSER_NPC_WINDOW_GALLERY << 16), bhvBowserNpcSpot),
