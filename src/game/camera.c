@@ -9439,7 +9439,7 @@ void cutscene_dialog(struct Camera *c) {
     void **dialogTable = segmented_to_virtual(languageTable[gInGameLanguage][0]);
     struct DialogEntry *dialog = segmented_to_virtual(dialogTable[gDialogID]);
 
-    if ((dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) && gDialogBoxState != 0) {
+    if ((get_dialog_id() != DIALOG_NONE) && (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) && gDialogBoxState != 0) {
             seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, CLAMP(40 - gPageNum*8, 0, 40));
     }
 

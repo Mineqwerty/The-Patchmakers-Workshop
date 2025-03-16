@@ -1446,11 +1446,9 @@ void bhv_patchmaker_loop(void) {
         && o->oAction != PATCHMAKER_ACT_SECOND_CUTSCENE 
         && o->oAction != PATCHMAKER_ACT_DEFEATED 
         && o->oPatchmakerAttackedVel > 0) {
-            if (obj_find_wall(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
+            if (find_floor_height(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
             o->oPosY, 
-            o->oPosZ - o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle), 
-            o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
-            o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle))) {
+            o->oPosZ - o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle)) > -10000) {
                     o->oPosX -= o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle);
                     o->oPosZ -= o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle);
             }

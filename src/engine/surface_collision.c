@@ -95,6 +95,48 @@ void get_surface_normal(f32 normal[3], struct Surface *surf) {
     }
 }
 
+void get_wall_surface_normal(f32 normal[3], struct Surface *surf) {
+
+    if (surf == NULL) {
+        normal[0] = 1;
+        normal[1] = 0;
+        normal[2] = 0;
+        return;
+    }
+
+    f32 nx, ny, nz;
+    f32 mag;
+    register s32 x1, y1, z1;
+    register s32 x2, y2, z2;
+    register s32 x3, y3, z3;
+    x1 = surf->vertex1[0];
+    y1 = surf->vertex1[1];
+    z1 = surf->vertex1[2];
+    x2 = surf->vertex2[0];
+    y2 = surf->vertex2[1];
+    z2 = surf->vertex2[2];
+    x3 = surf->vertex3[0];
+    y3 = surf->vertex3[1];
+    z3 = surf->vertex3[2];
+    // (v2 - v1) x (v3 - v2)
+    nx = (y2 - y1) * (z3 - z2) - (z2 - z1) * (y3 - y2);
+    ny = (z2 - z1) * (x3 - x2) - (x2 - x1) * (z3 - z2);
+    nz = (x2 - x1) * (y3 - y2) - (y2 - y1) * (x3 - x2);
+    mag = sqrtf(nx * nx + ny * ny + nz * nz);
+    mag = (f32)(1.0f / mag);
+    nx *= mag;
+    ny *= mag;
+    nz *= mag;
+    normal[0] = nx;
+    normal[1] = ny;
+    normal[2] = nz;
+    if (surf == &gWaterSurfacePseudoFloor) {
+        normal[0] = 0;
+        normal[1] = 1;
+        normal[2] = 0;
+    }
+}
+
 /**************************************************
  *                      WALLS                     *
  **************************************************/
