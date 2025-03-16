@@ -1,5 +1,5 @@
 Gfx ssl_area_4_collision_noslipwood_safe_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -17,7 +17,7 @@ Gfx ssl_area_4_collision_noslipwood_safe_layer_1[] = {
 };
 
 Gfx ssl_area_4_collision_mat_revert_ssl_dl_noslipwood_safe[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -25,7 +25,7 @@ Gfx ssl_area_4_collision_mat_revert_ssl_dl_noslipwood_safe[] = {
 };
 
 Gfx ssl_area_4_collision_treeleavesnolight_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, TEXEL1, 0, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -46,7 +46,7 @@ Gfx ssl_area_4_collision_treeleavesnolight_layer_1[] = {
 };
 
 Gfx ssl_area_4_collision_mat_revert_ssl_dl_treeleavesnolight_layer1[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),

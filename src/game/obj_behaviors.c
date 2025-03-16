@@ -139,7 +139,7 @@ s8 obj_find_wall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ) {
         o->oPosZ = hitbox.z;
 
         Vec3f normal;
-        get_surface_normal(normal, hitbox.walls[0]);
+        get_wall_surface_normal(normal, hitbox.walls[0]);
         wall_nX = normal[0];
         wall_nY = normal[1];
         wall_nZ = normal[2];

@@ -1,0 +1,14 @@
+extern const GeoLayout pm_shadowchomp_open_geo[];
+extern Lights1 pm_shadowchomp_open_f3dlite_material_013_lights;
+extern u8 pm_shadowchomp_open_chompfog_ia4[];
+extern u8 pm_shadowchomp_open_chomplayers_ia4[];
+extern Vtx pm_shadowchomp_open_Sphere_003_mesh_layer_5_vtx_0[85];
+extern Gfx pm_shadowchomp_open_Sphere_003_mesh_layer_5_tri_0[];
+extern Vtx pm_shadowchomp_open_Sphere_003_mesh_layer_7_vtx_0[156];
+extern Gfx pm_shadowchomp_open_Sphere_003_mesh_layer_7_tri_0[];
+extern Gfx mat_pm_shadowchomp_open_shadowchomp_layer5[];
+extern Gfx mat_revert_pm_shadowchomp_open_shadowchomp_layer5[];
+extern Gfx mat_pm_shadowchomp_open_f3dlite_material_013[];
+extern Gfx mat_revert_pm_shadowchomp_open_f3dlite_material_013[];
+extern Gfx pm_shadowchomp_open_Sphere_003_mesh_layer_5[];
+extern Gfx pm_shadowchomp_open_Sphere_003_mesh_layer_7[];

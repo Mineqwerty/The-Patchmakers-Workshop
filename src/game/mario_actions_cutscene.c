@@ -947,7 +947,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                     level_trigger_warp(m, WARP_OP_STAR_EXIT);
                 } else {
                     enable_time_stop();
-                    if (gCurrLevelNum != LEVEL_TTM) {
+                    if (gCurrLevelNum != LEVEL_TTM || gLastCompletedStarNum > 8) {
                         create_dialog_box(gLastCompletedStarNum == 7 ? DIALOG_HUNDRED_COINS : DIALOG_SECRET_STAR);
                     }
                     m->actionState = ACT_STATE_STAR_DANCE_DO_SAVE;
@@ -1539,7 +1539,9 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
 
 s32 act_spawn_holding_object(struct MarioState *m) {
     if (m->heldObj == NULL) {
-        m->heldObj = spawn_object_relative(m->lastHeldBehaviorParams, 0, 0, 0, o, m->lastHeldModel, virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, m->lastHeldBehavior));
+        struct Object *spawnedHeldObj = spawn_object_relative(m->lastHeldBehaviorParams, 0, 0, 0, o, m->lastHeldModel, virtual_to_segmented(SEGMENT_BEHAVIOR_DATA, m->lastHeldBehavior));
+        spawnedHeldObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        m->heldObj = spawnedHeldObj;
         m->heldObj->oIntangibleTimer = -1;
         m->heldObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
     }

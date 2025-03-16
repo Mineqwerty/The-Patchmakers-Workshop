@@ -576,6 +576,7 @@
 #define MODEL_MEMORY_CLOUD                  0x11B
 #define MODEL_SPEECH_BUBBLE                  0x11C
 #define MODEL_ESCAPING_SOULS                  0x11D
+#define MODEL_PM_THREAD                  0x11E
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
 #define MODEL_LIFT_CLOUD                  0x101
@@ -839,6 +840,15 @@
 #define MODEL_SEWNIA_HEAD                 0x139
 #define MODEL_PEACH                       0x13A
 #define MODEL_PEACH_THREAD_OF_LIFE                  0x13B
+#define MODEL_PM_THROWN_FLOWER                  0x13C
+#define MODEL_PM_THROWN_FLOWER_STONE                  0x13D
+#define MODEL_PM_ICE_SPIKE                  0x13E
+#define MODEL_PM_GRAPPLE                  0x13F
+#define MODEL_PM_HALO                  0x140
+#define MODEL_PM_BUBBLE                  0x141
+#define MODEL_PM_SHADOWCHOMP_OPEN                  0x142
+#define MODEL_PM_SHADOWCHOMP_CLOSED                  0x143
+#define MODEL_PM_MIASMA                  0x144
 
 //Global
 #define MODEL_YARN_GOOMBA                   0x180

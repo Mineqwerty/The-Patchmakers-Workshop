@@ -27,7 +27,7 @@ const MacroObject jrb_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/  3642, -5103,  3175),
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/  4400,  2200,  1300),
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/  5400,  2200,  1300),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 180, /*pos*/  -900, -2966, -2200, /*behParam*/ DIALOG_073),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/ 180, /*pos*/  -900, -2966, -2200, /*behParam*/ DIALOG_THIRD_PATCMAKER_DEFEAT),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/  80, /*pos*/ -2552,  1331,  6573, /*behParam*/ DIALOG_051),
     MACRO_OBJECT(/*preset*/ macro_clam_shell,                  /*yaw*/ 315, /*pos*/ -1800, -1023,  3500),
     MACRO_OBJECT(/*preset*/ macro_clam_shell,                  /*yaw*/ 225, /*pos*/  -480,   512,  5980),

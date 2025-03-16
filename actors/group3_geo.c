@@ -19,3 +19,12 @@
 #include "pm_thrown_needle/geo.inc.c"
 
 #include "peach_thread_of_life/geo.inc.c"
+#include "pm_throw_flower/geo.inc.c"
+#include "pm_throw_flower_stone/geo.inc.c"
+#include "pm_ice_spike/geo.inc.c"
+#include "pm_grapple/geo.inc.c"
+#include "pm_halo/geo.inc.c"
+#include "pm_bubble/geo.inc.c"
+#include "pm_shadowchomp_open/geo.inc.c"
+#include "pm_shadowchomp_closed/geo.inc.c"
+#include "pm_miasma/geo.inc.c"

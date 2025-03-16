@@ -461,10 +461,31 @@ void prince_act_defeated(void) {
             gMarioState->action = ACT_WAITING_FOR_DIALOG;
             gMarioState->pos[1] = gMarioState->floorHeight;
             o->oSubAction++;
+            gBossMaxHealth = 0;
+            gBossHealth = 0;
+            gBossDrainHealthDisplay = 0;
+            gBossHealthDisplay = 0;
         break;
         case 1:
             if (gDialogID == -1) {
                 gMarioState->action = ACT_IDLE;
+                cur_obj_init_animation(PRINCE_ANIM_SUMMON);
+                o->oSubAction++;
+            }
+        break;
+        case 2:
+            if (o->oTimer == 20) {
+                for (int i = 0; i < 30; i++) {
+                    struct Object *spark = spawn_object_relative(0, random_u16()%500-250, random_u16()%500, random_u16()%500-250, o, MODEL_BREAKER_SPARK, bhvBreakerSpark);
+                        spark->oForwardVel = random_u16()%10;
+                        spark->oMoveAngleYaw = random_u16();
+                        spark->oVelY = random_u16()%15;
+                }
+                cur_obj_hide();
+                
+                
+            }
+            if (o->oTimer == 21) {
                 SET_BPARAM1(o->oBehParams, 5);
                 spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
                 obj_mark_for_deletion(o);
@@ -507,7 +528,7 @@ void bhv_prince_boss_loop(void) {
             prince_act_defeated();
         break;
     }
-    if (o->oAction != PRINCE_ACT_CUTSCENE) {
+    if (o->oAction != PRINCE_ACT_CUTSCENE && o->oAction != PRINCE_ACT_DEFEATED) {
         gBossHealth = o->oHealth;
     }
 

@@ -673,6 +673,7 @@ void bhv_gold_blob_loop(void);
 void bhv_gold_fragment_loop(void);
 void bhv_banish_fragment_loop(void);
 
+void bhv_seraphim_init(void);
 void bhv_seraphim_loop(void);
 
 void bhv_patchmaker_init(void);
@@ -1216,3 +1217,19 @@ void bhv_escaping_souls_init(void);
 void bhv_escaping_souls_loop(void);
 void bhv_lower_city_gate_init(void);
 void bhv_lower_city_gate_loop(void);
+void bhv_pm_thrown_flower_init(void);
+void bhv_pm_thrown_flower_loop(void);
+void bhv_pm_ice_spike_init(void);
+void bhv_pm_ice_spike_loop(void);
+void bhv_pm_ice_spike_spawner_init(void);
+void bhv_pm_ice_spike_spawner_loop(void);
+void bhv_pm_grapple_init(void);
+void bhv_pm_grapple_loop(void);
+void bhv_pm_halo_init(void);
+void bhv_pm_halo_loop(void);
+void bhv_pm_bubble_init(void);
+void bhv_pm_bubble_loop(void);
+void bhv_pm_miasma_init(void);
+void bhv_pm_miasma_loop(void);
+void bhv_pm_portal_init(void);
+void bhv_pm_portal_loop(void);

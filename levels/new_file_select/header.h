@@ -5,6 +5,7 @@
 #include "game/moving_texture.h"
 
 extern const LevelScript level_new_file_select_entry[];
+extern ALIGNED8 const Texture texture_ending_drawing[];
 
 
 #include "levels/new_file_select/header.inc.h"

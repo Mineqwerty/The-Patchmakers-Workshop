@@ -1,0 +1,15 @@
+extern const GeoLayout pm_thread_of_life_geo[];
+extern u8 pm_thread_of_life_pmthread_ci8[];
+extern u8 pm_thread_of_life_pmthread_pal_rgba16[];
+extern Vtx pm_thread_of_life_Plane_003_mesh_layer_4_vtx_cull[8];
+extern Vtx pm_thread_of_life_Plane_003_mesh_layer_4_vtx_0[4];
+extern Gfx pm_thread_of_life_Plane_003_mesh_layer_4_tri_0[];
+extern Vtx pm_thread_of_life_Plane_003_mesh_layer_5_vtx_cull[8];
+extern Vtx pm_thread_of_life_Plane_003_mesh_layer_5_vtx_0[80];
+extern Gfx pm_thread_of_life_Plane_003_mesh_layer_5_tri_0[];
+extern Gfx mat_pm_thread_of_life_f3dlite_material_045[];
+extern Gfx mat_revert_pm_thread_of_life_f3dlite_material_045[];
+extern Gfx mat_pm_thread_of_life_f3dlite_material_046[];
+extern Gfx mat_revert_pm_thread_of_life_f3dlite_material_046[];
+extern Gfx pm_thread_of_life_Plane_003_mesh_layer_4[];
+extern Gfx pm_thread_of_life_Plane_003_mesh_layer_5[];

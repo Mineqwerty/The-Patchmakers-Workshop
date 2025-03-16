@@ -1,0 +1,2 @@
+extern void scroll_gfx_mat_pm_shadowchomp_closed_shadowchomp_layer5();
+extern void scroll_actor_geo_pm_shadowchomp_closed();

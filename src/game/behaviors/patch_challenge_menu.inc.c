@@ -18,6 +18,19 @@ void bhv_patch_challenge_menu_loop(void) {
                 gLakituState.goalFocus[0] = o->oPosX;
                 gLakituState.goalFocus[1] = o->oPosY;
                 gLakituState.goalFocus[2] = o->oPosZ;
+
+                u8 startIndex = gMarioState->equippedPatch;
+
+                if (gMarioState->equippedPatch == 0) {
+                    for (int i = 1; i <= 12; i++) {
+                        if ((save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << i))) {
+                            startIndex = i;
+                            break;
+                        }
+                    }
+                }
+                updatePatchMenuDma = 1;
+                gPatchChallengeIndex = startIndex;
                 o->oAction++;
             }
         break;

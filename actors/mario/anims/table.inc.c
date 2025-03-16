@@ -32,5 +32,6 @@ const struct Animation *const mario_anims[] = {
 	&mario_anim_lookToBowser,
 	&mario_anim_genericCutsceneIdle,
 	&mario_anim_ClimbHorizontal,
+	&mario_anim_pullOutPocket,
 	NULL,
 };

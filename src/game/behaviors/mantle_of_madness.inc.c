@@ -39,12 +39,13 @@ enum MantleOfMadnessActions {
     MANTLE_OF_MADNESS_ACT_SPAWN_HAND_AND_EYES,
     MANTLE_OF_MADNESS_ACT_SPAWN_FINAL_NEEDLE,
     MANTLE_OF_MADNESS_ACT_BIG_NEEDLE,
-    MANTLE_OF_MADNESS_ACT_GETTING_STABBED
+    MANTLE_OF_MADNESS_ACT_GETTING_STABBED,
+    MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE
 };
 
 void mantle_of_madness_control_face_twitch(void) {
 
-    if (o->oAction == MANTLE_OF_MADNESS_ACT_GETTING_STABBED) {
+    if (o->oAction == MANTLE_OF_MADNESS_ACT_GETTING_STABBED || o->oAction == MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE) {
         return;
     }
 
@@ -577,9 +578,47 @@ void mantle_of_madness_act_getting_stabbed(void) {
         deathRay->oFaceAnglePitch = -(random_u16() / 2);
     }
 
-    if (o->oTimer == 180) {
-        gCutsceneGameState = CUTSCENE_GAME_STATE_BEAT_MANTLE;
-        initiate_warp(LEVEL_CASTLE, 3, 0x0A, 0, 0);
+    if (o->oTimer >= 180) {
+        if (gInMemoryStage) {
+            initiate_warp(LEVEL_CASTLE, 3, 10, 0, 0);
+        }
+        else {
+            o->oAction = MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE;
+        }
+    }
+}
+
+void mantle_of_madness_act_closing_dialogue(void) {
+    switch (o->oSubAction) {
+        case 0:
+            gLakituState.goalPos[0] = 11172;
+            gLakituState.goalPos[1] = 1160;
+            gLakituState.goalPos[2] = 7841;
+            gLakituState.goalFocus[0] = 1200;
+            gLakituState.goalFocus[1] = 2900;
+            gLakituState.goalFocus[2] = 100;
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 5, 255, 255, 255);
+            if (o->oTimer >= 5) {
+                gDialogID = -1;
+                create_dialog_box(DIALOG_PATCHMAKER_DEPARTURE);
+                stop_background_music(SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL));
+                stop_background_music(SEQUENCE_ARGS(4, SEQ_PATCHMAKER_THEME));
+                stop_background_music(SEQUENCE_ARGS(4, SEQ_STREAMED_MANTLE_INTRO));
+                o->oSubAction++;
+            }
+        break;
+        case 1:
+            if (gDialogBoxState == 3) {
+                o->oSubAction++;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            if (o->oTimer >= 60) {
+                gCutsceneGameState = CUTSCENE_GAME_STATE_BEAT_MANTLE;
+                initiate_warp(LEVEL_CASTLE, 3, 0x0A, 0, 0);
+            }
+        break;
     }
 }
 
@@ -687,6 +726,9 @@ void bhv_mantle_of_madness_loop(void) {
         break;
         case MANTLE_OF_MADNESS_ACT_GETTING_STABBED:
             mantle_of_madness_act_getting_stabbed();
+        break;
+        case MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE:
+            mantle_of_madness_act_closing_dialogue();
         break;
     }
 

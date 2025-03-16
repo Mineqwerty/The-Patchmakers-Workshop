@@ -162,6 +162,11 @@ void peach_npc_act_ending_cutscene(void) {
                 o->oSubAction++;
             }
         break;
+        case 2:
+            if (cExternalCutsceneTrigger >= 4) {
+                obj_mark_for_deletion(o);
+            }
+        break;
     }
 }
 

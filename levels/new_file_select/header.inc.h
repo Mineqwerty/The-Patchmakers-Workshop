@@ -16,7 +16,7 @@ extern u8 new_file_select_dl_le_ia4[];
 extern u8 new_file_select_dl__12_ia4[];
 extern u8 new_file_select_dl__34_ia4[];
 extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_cull[8];
-extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_0[48];
+extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_0[116];
 extern Gfx new_file_select_dl_Plane_mesh_layer_1_tri_0[];
 extern Vtx new_file_select_dl_Plane_mesh_layer_1_vtx_1[627];
 extern Gfx new_file_select_dl_Plane_mesh_layer_1_tri_1[];

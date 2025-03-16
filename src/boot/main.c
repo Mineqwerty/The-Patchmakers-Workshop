@@ -549,7 +549,13 @@ void thread1_idle(UNUSED void *arg) {
     change_vi(&VI, SCREEN_WIDTH, SCREEN_HEIGHT);
     osViSetMode(&VI);
     osViBlack(TRUE);
-    osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+    if (gIsConsole) {
+        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_OFF);
+        osViSetSpecialFeatures(OS_VI_DIVOT_OFF);
+    }
+    else {
+        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+    }
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
     create_thread(&gMainThread, THREAD_3_MAIN, thread3_main, NULL, gThread3Stack + THREAD3_STACK, 100);

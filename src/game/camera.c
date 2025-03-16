@@ -1248,7 +1248,7 @@ void reonucam_collision_handler(struct Camera *c) {
         s16 yaw = atan2s(camToMario[2], camToMario[0]);
         vec3f_get_lateral_dist(hitpos,gMarioState->pos, &dist);
         #define REONUCAM_MIN_DISTANCE 300.0f
-        if (dist < REONUCAM_MIN_DISTANCE && (gCurrLevelNum != LEVEL_BBH || gCurrAreaIndex != 4)) {
+        if (dist < REONUCAM_MIN_DISTANCE) {
             distFromSurf += (dist - REONUCAM_MIN_DISTANCE);
             //yDist = REONUCAM_MIN_DISTANCE - CLAMP(dist, 0, REONUCAM_MIN_DISTANCE);
             
@@ -1768,7 +1768,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         offset_rotated(secondFocus, sMarioCamState->pos, holdFocOffset, sMarioCamState->faceAngle);
     }
 
-    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2 || gCurrLevelNum == LEVEL_SL) {
+    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2 || gCurrLevelNum == LEVEL_BOWSER_3 || gCurrLevelNum == LEVEL_SL) {
         focus[0] = (sMarioCamState->pos[0] + (secondFocus[0])) / 2.f;
         focus[1] = (sMarioCamState->pos[1] + (secondFocus[1])) / 2.f + 125.f;
         focus[2] = (sMarioCamState->pos[2] + (secondFocus[2])) / 2.f;
@@ -1848,7 +1848,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         }
         focusDistance += yaw;
     }
-    else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
+    else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2 || gCurrLevelNum == LEVEL_BOWSER_3) {
 
         c->pos[0] = gMarioState->pos[0] + (1000 * -sins(c->approachAngleOffsetBossCam));
         c->pos[2] = gMarioState->pos[2] + (1000 * -coss(c->approachAngleOffsetBossCam));
@@ -2241,6 +2241,12 @@ s16 update_slide_camera(struct Camera *c) {
 
 void mode_behind_mario_camera(struct Camera *c) {
     c->nextYaw = mode_behind_mario(c);
+
+    if (gCurrLevelNum != LEVEL_WF && gCurrAreaIndex != 3 
+        && (gMarioState->action & ACT_GROUP_MASK) != ACT_GROUP_SUBMERGED) {
+            set_camera_mode_8_directions(c);
+            gCameraMovementFlags &= ~CAM_MOVE_SUBMERGED;
+        }
 }
 
 s32 nop_update_water_camera(UNUSED struct Camera *c, UNUSED Vec3f focus, UNUSED Vec3f pos) {
@@ -3307,10 +3313,16 @@ void handle_course_volumes(struct Camera *c) {
     s16 volumeID = check_mario_is_in_course_volume();
     s16 cameraAngle;
 
+    if (volumeID == 2 && gCurrLevelNum == LEVEL_BBH && gDialogBoxState == 3) {
+        sPrevCameraVolume = 0;
+    }
+
     if (sPrevCameraVolume != volumeID) {
         sPrevCameraVolume = volumeID;
         sCameraDisturbed = 0;
     }
+
+    
 
     if (volumeID > 0 && sCameraDisturbed == 0) {
         switch (gCurrLevelNum) {
@@ -9427,7 +9439,7 @@ void cutscene_dialog(struct Camera *c) {
     void **dialogTable = segmented_to_virtual(languageTable[gInGameLanguage][0]);
     struct DialogEntry *dialog = segmented_to_virtual(dialogTable[gDialogID]);
 
-    if ((dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) && gDialogBoxState != 0) {
+    if ((get_dialog_id() != DIALOG_NONE) && (dialog->flags & NEWDIALOG_FLAG_FULL_TEXTBOX) && gDialogBoxState != 0) {
             seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, CLAMP(40 - gPageNum*8, 0, 40));
     }
 
@@ -11233,7 +11245,7 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // COTMC          | TOTWC
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 1, 0, 0, 0), // BOWSER_1       | WMOTR
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 0, 0, 0), // Unused         | BOWSER_2
-	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // BOWSER_3       | Unused
+	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 0, 0, 0, 0), // BOWSER_3       | Unused
 	ZOOMOUT_AREA_MASK(1, 1, 0, 0, 0, 0, 0, 0), // TTM            | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // Unused         | Unused
 };

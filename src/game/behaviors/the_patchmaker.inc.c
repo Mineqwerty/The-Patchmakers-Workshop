@@ -11,9 +11,20 @@ enum PatchmakerActions {
     PATCHMAKER_ACT_SUMMON_NEEDLE_BALL,
     PATCHMAKER_ACT_SHOCKWAVE,
     PATCHMAKER_ACT_NEEDLE_STORM,
+    PATCHMAKER_ACT_STONE_FLOWER,
+    PATCHMAKER_ACT_ICE_SPIKES,
+    PATCHMAKER_ACT_GRAPPLE,
+    PATCHMAKER_ACT_HALO,
+    PATCHMAKER_ACT_MARINE_BUBBLES,
+    PATCHMAKER_ACT_SHADOWCHOMP,
+    PATCHMAKER_ACT_TRANSMUTATION_NEEDLE,
+    PATCHMAKER_ACT_BREEZE_SPIN,
+    PATCHMAKER_ACT_PORTAL_TO_MARIO,
+    PATCHMAKER_ACT_EXTENSION,
 
     PATCHMAKER_ACT_DEFEATED,
-    PATCHMAKER_ACT_SECOND_CUTSCENE
+    PATCHMAKER_ACT_SECOND_CUTSCENE,
+    PATCHMAKER_ACT_THIRD_CUTSCENE
 };
 
 enum PatchmakerAnims {
@@ -52,15 +63,24 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_GRAB_SEWNIA,
     PATCHMAKER_ANIM_GRAB_SEWNIA_IDLE,
     PATCHMAKER_ANIM_FROZEN_ARMS_OUT,
-    PATCHMAKER_ANIM_WALK_AWAY_FROM_FIGHT
+    PATCHMAKER_ANIM_WALK_AWAY_FROM_FIGHT,
+    PATCHMAKER_ANIM_GROVEL,
+    PATCHMAKER_ANIM_GROVEL_SHAKE,
+    PATCHMAKER_ANIM_GROVEL_STAND,
+    PATCHMAKER_ANIM_SUMMON_WALL,
+    PATCHMAKER_ANIM_THIRD_DEFEAT,
+    PATCHMAKER_ANIM_TRANSFORM_TO_MANTLE
 };
 
 #define PATCHMAKER_1_MAX_HEALTH 35
 #define PATCHMAKER_2_MAX_HEALTH 60
+#define PATCHMAKER_3_MAX_HEALTH 80
 #define PATCHMAKER_SECOND_FIGHT (gCurrLevelNum == LEVEL_BOWSER_2)
+#define PATCHMAKER_THIRD_FIGHT (gCurrLevelNum == LEVEL_BOWSER_3)
 
 u8 firstCutsceneDone = 0;
 u8 secondCutsceneDone = 0;
+u8 thirdCutsceneDone = 0;
 
 static struct ObjectHitbox sPatchmakerHitbox = {
     /* interactType:      */ INTERACT_PUSH_OUT,
@@ -82,53 +102,105 @@ void patchmaker_transition_to_next_action() {
         case PATCHMAKER_ACT_FIRST_CUTSCENE:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
-        case PATCHMAKER_ACT_WALK_TO_MARIO:
-            if (o->oDistanceToMario < 250) {
-                switch (randomAction % 5) {
-                    case 0:
-                    case 1:
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_GRAB_MARIO;
-                    break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
-                    break;
-                    case 5:
-                        nextAction = PATCHMAKER_ACT_SHOCKWAVE;
-                    break;
+        case PATCHMAKER_ACT_WALK_TO_MARIO:;
+
+            u8 standardAttack = random_u16() % 10;
+
+            if (standardAttack < 6) {
+                if (o->oDistanceToMario < 250) {
+                    switch (randomAction % 5) {
+                        case 0:
+                        case 1:
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_GRAB_MARIO;
+                        break;
+                        case 3:
+                        case 4:
+                            nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                        break;
+                        case 5:
+                            nextAction = PATCHMAKER_ACT_SHOCKWAVE;
+                        break;
+                    }
                 }
-            }
-            else if (o->oDistanceToMario < 900) {
-                switch (randomAction % 4) {
-                    case 0:
-                        nextAction = PATCHMAKER_ACT_THROW_STRING;
-                    break;
-                    case 1:
-                        nextAction = PATCHMAKER_ACT_SLASH_DASH;
-                    break;
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_SHOCKWAVE;
-                    break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
-                    break;
+                else if (o->oDistanceToMario < 900) {
+                    switch (randomAction % 4) {
+                        case 0:
+                            nextAction = PATCHMAKER_ACT_THROW_STRING;
+                        break;
+                        case 1:
+                            nextAction = PATCHMAKER_ACT_SLASH_DASH;
+                        break;
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_SHOCKWAVE;
+                        break;
+                        case 3:
+                            nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
+                        break;
+                    }
+                }
+                else {
+                    switch (randomAction % 3 + (o->oPatchmakerNeedleBallObj == NULL)) {
+                        case 0:
+                            nextAction = PATCHMAKER_ACT_JUMPS;
+                        break;
+                        case 1:
+                            nextAction = PATCHMAKER_ACT_THROW_STRING;
+                        break;
+                        case 2:
+                            nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
+                        break;
+                        case 3:
+                            nextAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
+                        break;
+                        
+                    }
                 }
             }
             else {
-                switch (randomAction % 3 + (o->oPatchmakerNeedleBallObj == NULL)) {
-                    case 0:
-                        nextAction = PATCHMAKER_ACT_JUMPS;
+                switch (gCurrLevelNum) {
+                    case LEVEL_BOWSER_1:
+                        switch (random_u16()%4) {
+                            case 0:
+                                nextAction = PATCHMAKER_ACT_STONE_FLOWER;
+                            break;
+                            case 1:
+                                nextAction = PATCHMAKER_ACT_ICE_SPIKES;
+                            break;
+                            case 2:
+                                nextAction = PATCHMAKER_ACT_GRAPPLE;
+                            break;
+                            case 3:
+                                nextAction = PATCHMAKER_ACT_HALO;
+                            break;
+                        }
                     break;
-                    case 1:
-                        nextAction = PATCHMAKER_ACT_THROW_STRING;
+                    case LEVEL_BOWSER_2:
+                        switch (random_u16()%4) {
+                            case 0:
+                                nextAction = PATCHMAKER_ACT_MARINE_BUBBLES;
+                            break;
+                            case 1:
+                                nextAction = PATCHMAKER_ACT_SHADOWCHOMP;
+                            break;
+                            case 2:
+                                nextAction = PATCHMAKER_ACT_TRANSMUTATION_NEEDLE;
+                            break;
+                            case 3:
+                                nextAction = PATCHMAKER_ACT_BREEZE_SPIN;
+                            break;
+                        }
                     break;
-                    case 2:
-                        nextAction = PATCHMAKER_ACT_NEEDLE_STORM;
+                    case LEVEL_BOWSER_3:
+                        switch (random_u16()%2) {
+                            case 0:
+                                nextAction = PATCHMAKER_ACT_PORTAL_TO_MARIO;
+                            break;
+                            case 1:
+                                nextAction = PATCHMAKER_ACT_EXTENSION;
+                            break;
+                        }
                     break;
-                    case 3:
-                        nextAction = PATCHMAKER_ACT_SUMMON_NEEDLE_BALL;
-                    break;
-                    
                 }
             }
             
@@ -181,6 +253,37 @@ void patchmaker_transition_to_next_action() {
         case PATCHMAKER_ACT_NEEDLE_STORM:
             nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
         break;
+
+        case PATCHMAKER_ACT_STONE_FLOWER:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_ICE_SPIKES:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_GRAPPLE:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_HALO:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_MARINE_BUBBLES:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_SHADOWCHOMP:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_TRANSMUTATION_NEEDLE:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_BREEZE_SPIN:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_PORTAL_TO_MARIO:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
+        case PATCHMAKER_ACT_EXTENSION:
+            nextAction = PATCHMAKER_ACT_WALK_TO_MARIO;
+        break;
     }
 
     if (gMarioState->health <= 255) {
@@ -204,13 +307,23 @@ void patchmaker_set_boss_cam(void) {
 }
 
 void patchmaker_fight_start(void) {
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL), 0);
     o->oAction = PATCHMAKER_ACT_NEEDLE_STORM;
                 gBossMaxHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
                 gBossHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
+
+                if (PATCHMAKER_THIRD_FIGHT) {
+                    gBossMaxHealth = PATCHMAKER_3_MAX_HEALTH;
+                    gBossHealth = PATCHMAKER_3_MAX_HEALTH;
+                }
+
                 cur_obj_init_animation(1);
                 patchmaker_set_boss_cam();
 
-                if (PATCHMAKER_SECOND_FIGHT) {
+                if (PATCHMAKER_THIRD_FIGHT) {
+                    thirdCutsceneDone = 1;
+                }
+                else if (PATCHMAKER_SECOND_FIGHT) {
                     secondCutsceneDone = 1;
                 }
                 else {
@@ -343,6 +456,52 @@ void patchmaker_act_second_fight_cutscene(void) {
                 o->oFaceAngleYaw = -0x4000;
                 o->oMoveAngleYaw = -0x4000;
                 patchmaker_fight_start();
+    }
+}
+
+void spawn_patchmaker_miasma(void) {
+    for (int i = 0; i < 4; i++) {
+        struct Object *ribbon = spawn_object_relative(i, 0, 80, 0, o, MODEL_PM_MIASMA, bhvPmMiasma);
+        ribbon->oFaceAngleRoll = 0x2000 * i - 0x3000;
+    }
+}
+
+void patchmaker_act_third_fight_cutscene(void) {
+    switch (o->oSubAction) {
+        case 0:
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_THIRD_FIGHT_INTRO);
+            cur_obj_init_animation(PATCHMAKER_ANIM_GROVEL);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_GROVEL_SHAKE);
+                o->oSubAction++;
+            }
+        break;
+        case 2:  
+            if (cExternalCutsceneTrigger >= 2) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_GROVEL);
+                o->oSubAction++;
+            }
+        break;
+        case 3:
+        if (cExternalCutsceneTrigger >= 3) {
+            cur_obj_init_animation(PATCHMAKER_ANIM_GROVEL_STAND);
+            spawn_patchmaker_miasma();
+            o->oSubAction++;
+        }
+        break;
+        case 4:
+        if (gCurCutscene == -1) {
+            patchmaker_fight_start();
+        }
+        break;
+    }
+
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        spawn_patchmaker_miasma();
+        patchmaker_fight_start();
     }
 }
 
@@ -686,6 +845,285 @@ void patchmaker_act_throw_needles(void) {
     //o->oHealth = 1;
 }
 
+void patchmaker_act_stone_flower(void) {
+
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_POINT);
+        spawn_object_relative(0, 0, 160, 0, o, MODEL_PM_THROWN_FLOWER, bhvPmThrownFlower);
+    }
+
+    if (o->oTimer == 50) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_SNAP);
+    }
+
+    if (o->oTimer == 70) {
+        cur_obj_play_sound_1(SOUND_NEW_FINGER_SNAP);
+    }
+
+    if (o->oTimer < 70) {
+        cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    }
+
+    if (o->oTimer == 80) {
+        patchmaker_transition_to_next_action();
+    }
+    //o->oHealth = 1;
+}
+
+void patchmaker_act_ice_spikes(void) {
+    switch (o->oSubAction) {
+        case 0:
+            if (o->oTimer == 12) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_JUMP);
+            }
+        
+            if (o->oTimer == 26) {
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+                o->oVelY = 75.0f;
+                o->oForwardVel = 0.0f;
+                o->oSubAction++;
+            }
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+        break;
+        case 1:;
+            s16 collisionFlags = object_step();
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
+
+            if (((collisionFlags & OBJ_COL_FLAG_GROUNDED) && o->oTimer > 30 ) || o->oTimer >= 125) {
+                o->oTimer = 0;
+                o->oForwardVel = 0;
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_JUMP_END, 1.0f);
+                for (int i = 0; i < 3; i++) {
+                    struct Object *iceSpawner = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvPmIceSpikeSpawner);
+                    iceSpawner->oMoveAngleYaw += -0x2000 + i*0x2000;
+                }
+                o->oSubAction = 2;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            if (o->oTimer >= 90) {
+                patchmaker_transition_to_next_action();
+            }
+        break;
+    }
+}
+
+void patchmaker_act_grapple(void) {
+    
+    cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_POINT, 0.7f);
+
+    
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+    if (o->oTimer > 30) {
+        o->oPosY += 2 * coss(o->oTimer * 0x8000);
+    }
+
+    if (o->oTimer == 40) {
+        spawn_object_relative(0, 0, 60, 0, o, MODEL_PM_GRAPPLE, bhvPmGrapple);
+        cur_obj_play_sound_2(SOUND_GRAPPLE_HOOK_1);
+    }
+
+    if (o->oTimer == 59) {
+        o->oAction = PATCHMAKER_ACT_GRAB_MARIO;
+    }
+}
+
+void patchmaker_act_halo(void) {
+
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_STRING_THROW);
+    }
+
+    if (o->oTimer == 40) {
+        spawn_object_relative(0, 0, 80, 0, o, MODEL_PM_HALO, bhvPmHalo);
+    }
+    else {
+        o->oAngleVelYaw -= 60*o->oTimer;
+        if (o->oTimer % 12 == 0) {
+            cur_obj_play_sound_1(SOUND_HALO_IN);
+        }
+    }
+
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+
+    if (o->oTimer >= 70) {
+        patchmaker_transition_to_next_action();
+
+    }
+}
+
+void patchmaker_act_shadowchomp(void) {
+    
+    cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_POINT, 0.7f);
+
+    
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+    if (o->oTimer > 30) {
+        o->oPosY += 2 * coss(o->oTimer * 0x8000);
+    }
+
+    if (o->oTimer == 40) {
+        spawn_object_relative(0, 0, 60, 0, o, MODEL_PM_SHADOWCHOMP_OPEN, bhvPmGrapple);
+        cur_obj_play_sound_2(SOUND_SHADOWCHOMP_APPROACH);
+    }
+
+    if (o->oTimer == 63) {
+        o->oAction = PATCHMAKER_ACT_GRAB_MARIO;
+    }
+}
+
+void patchmaker_act_marine_bubbles(void) {
+    switch (o->oSubAction) {
+        case 0:
+            if (o->oTimer == 12) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_JUMP);
+            }
+        
+            if (o->oTimer == 26) {
+                cur_obj_play_sound_2(SOUND_GENERAL_GRINDEL_ROLL);
+                o->oVelY = 35.0f;
+                o->oForwardVel = 0.0f;
+                o->oSubAction++;
+            }
+        break;
+        case 1:;
+            s16 collisionFlags = object_step();
+            o->oMoveAngleYaw += 0x1020;
+
+            if (o->oTimer % 6 == 0) {
+                cur_obj_play_sound_2(SOUND_ACTION_SIDE_FLIP_UNK);
+            }
+
+            if (((collisionFlags & OBJ_COL_FLAG_GROUNDED) && o->oTimer > 30 ) || o->oTimer >= 125) {
+                o->oTimer = 0;
+                o->oForwardVel = 0;
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_play_sound_2(SOUND_NEW_BUBBLE_RUSH);
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_JUMP_END, 1.0f);
+                for (int i = 0; i < 6; i++) {
+                    struct Object *pmBubble = spawn_object_relative(0, 0, 80, 0, o, MODEL_PM_BUBBLE, bhvPmBubble);
+                    pmBubble->oMoveAngleYaw += -0x4000 + i*0x2000;
+                }
+                o->oSubAction = 2;
+                o->oTimer = 0;
+            }
+        break;
+        case 2:
+            if (o->oTimer >= 60) {
+                patchmaker_transition_to_next_action();
+            }
+        break;
+    }
+}
+
+void patchmaker_act_breeze_spin(void) {
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_JUMP);
+        o->oGravity = 0.4f;
+    }
+
+    if (o->oTimer == 20) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_STRING_THROW);
+        o->oVelY = 13.0f;
+        o->oForwardVel = 44.0f;
+        o->oInteractType = INTERACT_DAMAGE;
+
+
+        for (u8 i = 0; i < 6; i++) {
+            spawn_object_relative(0, 0, random_u16()%20, 0, o, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+        }
+        for (u8 j = 0; j < 6; j++) {
+            spawn_object_relative(1, 0, random_u16()%20, 0, o, MODEL_FLOATING_PETAL, bhvFloatingPetal);
+        }
+
+        cur_obj_play_sound_1(SOUND_AIR_HOWLING_WIND);
+    }
+
+    if (o->oTimer >= 20) {
+        s16 collisionFlags = object_step();
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+            if (o->oTimer % 3 == 0) {
+                cur_obj_play_sound_2(SOUND_ACTION_SIDE_FLIP_UNK);
+            }
+
+            if (((collisionFlags & OBJ_COL_FLAG_GROUNDED) && o->oTimer > 30 ) || o->oTimer >= 125) {
+                cur_obj_shake_screen(SHAKE_POS_MEDIUM);
+                cur_obj_init_animation_with_accel_and_sound(PATCHMAKER_ANIM_JUMP_END, 1.0f);
+                patchmaker_transition_to_next_action();
+                o->oInteractType = INTERACT_PUSH_OUT;
+                o->oGravity = 3.0f;
+            }
+
+            o->oFaceAngleYaw += 0x1420;
+    }
+}
+
+void patchmaker_act_transmutation_needle(void) {
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_POINT);
+    }
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+
+    if (o->oTimer == 20) {
+        spawn_object_relative(1, random_u16()%300 - 150, 100, -300,  o, MODEL_PM_THROWN_NEEDLE, bhvPmThrownNeedle);
+    }
+
+    if (o->oTimer == 30) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_SNAP);
+    }
+
+    if (o->oTimer == 60) {
+        cur_obj_play_sound_1(SOUND_NEW_FINGER_SNAP);
+    }
+
+    if (o->oTimer == 80) {
+        patchmaker_transition_to_next_action();
+    }
+    
+}
+
+void patchmaker_act_portal_to_mario(void) {
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_SNAP);
+        spawn_object_relative(0, 0, 120, 0, o, MODEL_PORTAL, bhvPmPortal);
+        cur_obj_play_sound_2(SOUND_GENERAL_PAINTING_EJECT);
+    }
+    if (o->oTimer == 30) {
+        cur_obj_play_sound_1(SOUND_NEW_FINGER_SNAP);
+        cur_obj_play_sound_2(SOUND_PORTAL_OUT);
+        spawn_object_relative(0, 0, 120, 0, gMarioState->marioObj, MODEL_PORTAL, bhvPmPortal);
+        o->oPosX = gMarioState->pos[0];
+        o->oPosY = gMarioState->floorHeight;
+        o->oPosZ = gMarioState->pos[2];
+        o->oAction = PATCHMAKER_ACT_GRAB_MARIO;
+    }
+}
+
+void patchmaker_act_extension_wall(void) {
+    if (o->oTimer == 1) {
+        cur_obj_init_animation(PATCHMAKER_ANIM_SUMMON_WALL);
+    }
+    if (o->oTimer == 30) {
+    s16 randomAngle = random_u16();
+    
+    struct Object *spikeWall =
+        spawn_object_relative(0, -200, -1200, 1000 * coss(randomAngle), gMarioState->marioObj,
+                              MODEL_MAD_SPIKE_WALL, bhvMadSpikeWall);
+    spikeWall->oPosY = o->oPosY - 1050;
+    }
+
+    if (cur_obj_check_if_at_animation_end()) {
+        patchmaker_transition_to_next_action();
+    }
+}
+
 void patchmaker_act_first_fight_defeated(void) {
     switch (o->oSubAction) {
         case 0:
@@ -803,6 +1241,28 @@ void patchmaker_act_second_fight_defeated(void) {
     
 }
 
+void patchmaker_act_third_fight_defeated(void) {
+    switch (o->oSubAction) {
+        case 0:
+            o->oPosX = 0;
+            o->oPosZ = 0;
+            o->oPosY = 458;
+            o->oFaceAngleYaw = 0;
+            o->oMoveAngleYaw = 0;
+            cur_obj_init_animation(PATCHMAKER_ANIM_THIRD_DEFEAT);
+            begin_cutscene_event(CUTSCENE_EVENT_PATCHMAKER_THIRD_FIGHT_DEFEAT);
+            o->oSubAction++;
+        break;
+        case 1:
+            if (cExternalCutsceneTrigger >= 1) {
+                cur_obj_init_animation(PATCHMAKER_ANIM_TRANSFORM_TO_MANTLE);
+                o->oSubAction++;
+
+            }
+        break;
+    }
+}
+
 void bhv_patchmaker_init(void) {
     o->oGravity = 3.0f;
     o->oDragStrength = 5.0f;
@@ -810,6 +1270,9 @@ void bhv_patchmaker_init(void) {
     o->oBounciness = 0.0f;
     obj_set_hitbox(o, &sPatchmakerHitbox);
     o->oHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
+    if (PATCHMAKER_THIRD_FIGHT) {
+        o->oHealth = PATCHMAKER_3_MAX_HEALTH;
+    }
     o->oInteractionSubtype = INT_SUBTYPE_PATCHMAKER;
     o->oPatchmakerAttackedVel = 0;
     o->oPatchmakerAttackedAngle = 0;
@@ -829,11 +1292,26 @@ void bhv_patchmaker_init(void) {
         }
         break;
         case LEVEL_BOWSER_2:
-        if (firstCutsceneDone) {
+        if (secondCutsceneDone) {
+            
+            o->oPosX = 300;
+            o->oPosY = 1000;
+            o->oPosZ = -40;
+            o->oFaceAngleYaw = -0x4000;
+            o->oMoveAngleYaw = -0x4000;
             patchmaker_fight_start();
         }
         else {
             o->oAction = PATCHMAKER_ACT_SECOND_CUTSCENE;
+        }
+        break;
+        case LEVEL_BOWSER_3:
+        if (thirdCutsceneDone) {
+            spawn_patchmaker_miasma();
+            patchmaker_fight_start();
+        }
+        else {
+            o->oAction = PATCHMAKER_ACT_THIRD_CUTSCENE;
         }
         break;
     }
@@ -846,6 +1324,9 @@ void bhv_patchmaker_loop(void) {
         break;
         case PATCHMAKER_ACT_SECOND_CUTSCENE:
             patchmaker_act_second_fight_cutscene();
+        break;
+        case PATCHMAKER_ACT_THIRD_CUTSCENE:
+            patchmaker_act_third_fight_cutscene();
         break;
         case PATCHMAKER_ACT_WALK_TO_MARIO:
             patchmaker_act_walk_to_mario();
@@ -874,8 +1355,41 @@ void bhv_patchmaker_loop(void) {
         case PATCHMAKER_ACT_NEEDLE_STORM:
             patchmaker_act_throw_needles();
         break;
+        case PATCHMAKER_ACT_STONE_FLOWER:
+            patchmaker_act_stone_flower();
+        break;
+        case PATCHMAKER_ACT_ICE_SPIKES:
+            patchmaker_act_ice_spikes();
+        break;
+        case PATCHMAKER_ACT_GRAPPLE:
+            patchmaker_act_grapple();
+        break;
+        case PATCHMAKER_ACT_HALO:
+            patchmaker_act_halo();
+        break;
+        case PATCHMAKER_ACT_MARINE_BUBBLES:
+            patchmaker_act_marine_bubbles();
+        break;
+        case PATCHMAKER_ACT_SHADOWCHOMP:
+            patchmaker_act_shadowchomp();
+        break;
+        case PATCHMAKER_ACT_TRANSMUTATION_NEEDLE:
+            patchmaker_act_transmutation_needle();
+        break;
+        case PATCHMAKER_ACT_BREEZE_SPIN:
+            patchmaker_act_breeze_spin();
+        break;
+        case PATCHMAKER_ACT_PORTAL_TO_MARIO:
+            patchmaker_act_portal_to_mario();
+        break;
+        case PATCHMAKER_ACT_EXTENSION:
+            patchmaker_act_extension_wall();
+        break;
         case PATCHMAKER_ACT_DEFEATED:
-            if (PATCHMAKER_SECOND_FIGHT) {
+            if (PATCHMAKER_THIRD_FIGHT) {
+                patchmaker_act_third_fight_defeated();
+            }
+            else if (PATCHMAKER_SECOND_FIGHT) {
                 patchmaker_act_second_fight_defeated();
             }
             else {
@@ -884,14 +1398,29 @@ void bhv_patchmaker_loop(void) {
 
             if (gInMemoryStage) {
                 if (o->oTimer == 30) {
-                    initiate_warp(LEVEL_CASTLE, PATCHMAKER_SECOND_FIGHT ? 2 : 1, 10, 0, 0);
+                    if (gCurrLevelNum == LEVEL_BOWSER_3) {
+                        initiate_warp(LEVEL_BOWSER_3, 1, 10, 0, 0);
+                    }
+                    else {
+                        initiate_warp(LEVEL_CASTLE, PATCHMAKER_SECOND_FIGHT ? 2 : 1, 10, 0, 0);
+                    }
                 }
             }
             
         break;
     }
 
-    if (o->oAction != PATCHMAKER_ACT_JUMPS && o->oAction != PATCHMAKER_ACT_THROW_STRING) {
+    if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurCutscene == -1 && o->oTimer % 4 == 0) {
+        struct Object *shadowSmoke = spawn_object_relative(0, random_u16()%200 - 100, random_u16()%10 + 10, random_u16()%200 - 100, 
+                            o, MODEL_FIRE_SMOKE, bhvShadowchompParticle);
+                            
+                            SET_BPARAM1(shadowSmoke->oBehParams, 2);
+                            shadowSmoke->oVelY = ((random_u16() % 8));
+                            shadowSmoke->oMoveAngleYaw = random_u16();
+                            shadowSmoke->oForwardVel = (random_u16() % 8) + 5.0f;
+    }
+
+    if (o->oAction != PATCHMAKER_ACT_JUMPS && o->oAction != PATCHMAKER_ACT_THROW_STRING && o->oAction != PATCHMAKER_ACT_BREEZE_SPIN) {
         o->oFaceAngleYaw = o->oMoveAngleYaw;
     }
 
@@ -917,11 +1446,9 @@ void bhv_patchmaker_loop(void) {
         && o->oAction != PATCHMAKER_ACT_SECOND_CUTSCENE 
         && o->oAction != PATCHMAKER_ACT_DEFEATED 
         && o->oPatchmakerAttackedVel > 0) {
-            if (obj_find_wall(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
+            if (find_floor_height(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
             o->oPosY, 
-            o->oPosZ - o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle), 
-            o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 
-            o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle))) {
+            o->oPosZ - o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle)) > -10000) {
                     o->oPosX -= o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle);
                     o->oPosZ -= o->oPatchmakerAttackedVel * coss(o->oPatchmakerAttackedAngle);
             }
@@ -934,7 +1461,8 @@ void bhv_patchmaker_loop(void) {
 
 s16 patchmaker_in_needle_action(struct Object *obj) {
     return ((obj->oAction == PATCHMAKER_ACT_SLASH_DASH && (obj->oTimer > 16))
-            || obj->oAction == PATCHMAKER_ACT_SLOW_NEEDLE_WALK && ((obj->oSubAction == 2 || obj->oTimer > 23)));
+            || (obj->oAction == PATCHMAKER_ACT_BREEZE_SPIN && obj->oTimer > 20)
+            || (obj->oAction == PATCHMAKER_ACT_SLOW_NEEDLE_WALK && ((obj->oSubAction == 2 || obj->oTimer > 23))));
 }
 
 Gfx *geo_switch_patchmaker_needle(s32 callContext, struct GraphNode *node) {

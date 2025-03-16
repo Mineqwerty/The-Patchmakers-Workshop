@@ -2958,11 +2958,11 @@ void render_pause_castle_course_stars(s16 x, s16 y, s16 fileIndex, s16 courseInd
 
     if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[courseIndex+1])) {
         gDPSetEnvColor(gDisplayListHead++, 30, 255, 100, gDialogTextAlpha);
-        print_generic_string(x + 54, y - 5, textPatchObtained);
+        print_generic_string(x + 62, y - 5, textPatchObtained);
     }
     else {
         gDPSetEnvColor(gDisplayListHead++, 160, 160, 160, gDialogTextAlpha);
-        print_generic_string(x + 54, y - 5, textPatchNotObtained);
+        print_generic_string(x + 62, y - 5, textPatchNotObtained);
     }
 
     
@@ -3232,8 +3232,8 @@ const char starHints[24][48] = {
     "Along the clock tower",
     "Tower in the fog",
     "The relic from below",
-    "Dry, deep chasm",
     "Secret near waterfalls",
+    "Dry, deep chasm",
     "Fire in the kitchen",
     "Red-hot pole climb",
     "In a castle spire",
@@ -3259,8 +3259,8 @@ u8 secretStarPatchRequirements[24] = {
     PATCH_SKYBRIDGE,
     PATCH_SHADOWCHOMP,
     PATCH_PORTAL,
-    PATCH_BREEZE,
     PATCH_TRANSMUTATION,
+    PATCH_BREEZE,
     PATCH_HALO,
     PATCH_MIASMA,
     PATCH_GRAPPLE,
@@ -3482,7 +3482,7 @@ void render_pause_screen_felt() {
                 render_pause_castle_main_strings(-66, 0);
             }
         }
-        else if (gCurrLevelNum == LEVEL_BOWSER_3) {
+        else if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1) {
             render_pause_mantle_of_madness_flavor();
         }
         else {
@@ -3832,7 +3832,7 @@ u32 patchChallengeTimes[12] = {
     1650,
     1800,
     2250,
-    1950,
+    2000,
     2400,
     3300,
     2700,
@@ -3854,13 +3854,13 @@ void render_patch_challenge_menu() {
     gSPDisplayList(gDisplayListHead++, patch_challenge_menu_bg_Plane_011_mesh);
 
     
-        if (handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12) || gPatchChallengeIndex == 1) {
+        if (updatePatchMenuDma || handle_patch_challenge_menu_scrolling(MENU_SCROLL_VERTICAL, &gPatchChallengeIndex, 1, 12) || gPatchChallengeIndex == 1) {
             extern const u8 patch_textures_dma[];
             extern u8 mario_mario_cap_rgba16[];
             u8 *patchTexture = segmented_to_virtual(&patch_challenge_menu_bg_mario_cap_rgba16_rgba16);
 
             dma_read(patchTexture, (gPatchChallengeIndex*2048) + patch_textures_dma, (gPatchChallengeIndex*2048) + patch_textures_dma + 2048);
-            
+            updatePatchMenuDma = 0;
         }
         //print_song_name_list(SCREEN_WIDTH - 200, SCREEN_CENTER_Y - 10);
 
@@ -4147,6 +4147,7 @@ s32 render_pause_courses_and_castle(void) {
                 level_set_transition(0, NULL);
                 play_sound(SOUND_MENU_PAUSE_CLOSE, gGlobalSoundSource);
                 gMenuMode = MENU_MODE_FELT_GOING_UP;
+                gDisplaySecretStarMenu = FALSE;
                 gFeltGoalX = SCREEN_CENTER_X + (gGlobalTimer % 20 - 10);
                 gFeltGoalY = -200;
                 gFeltGoalRot = (gGlobalTimer % 16 - 8);
@@ -4541,7 +4542,7 @@ void render_new_course_complete_text(s16 alpha) {
         print_generic_string(63 + gMenuShakeX, 67 + gMenuShakeY, courseName);
         //print_generic_string(CRS_NUM_X3, 167, strCourseNum);
 
-        if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[gLastCompletedCourseNum+1])) {
+        if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << courseToOrderedIndex[COURSE_NUM_TO_INDEX(gLastCompletedCourseNum)+1])) {
             gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
             print_generic_string(72 + gMenuShakeX, 25 + gMenuShakeY, textPatchObtained);
         }

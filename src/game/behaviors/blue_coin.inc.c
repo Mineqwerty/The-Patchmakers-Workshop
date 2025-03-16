@@ -230,6 +230,9 @@ void bhv_blue_coin_switch_loop(void) {
             case 4:
                 cur_obj_disable_rendering();
                 cur_obj_become_intangible();
+                if (o->oTimer > 10) {
+                    obj_mark_for_deletion(o);
+                }
             break;
             case 10:
                 if (o->oTimer == 20) {

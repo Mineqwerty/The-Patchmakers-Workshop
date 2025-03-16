@@ -1317,9 +1317,12 @@ void bhv_transmutation_cone_loop(void) {
                         star->oBehParams = target->oBehParams;
                         obj_mark_for_deletion(target);
                     }
-                    else if (obj_has_behavior(target, bhvRedFlower)) {
-                        spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
-                        obj_mark_for_deletion(target);
+                    else if (obj_has_behavior(target, bhvRedFlower) && target->oAction == 0) {
+                        struct Object *red = spawn_object_relative(0, 0, 50, 0, target, MODEL_RED_COIN, bhvRedCoin);
+                        red->oBehParams = target->oBehParams;
+                        red->oBehParams2ndByte = target->oBehParams2ndByte;
+                        target->oAction = 1;
+                        //obj_mark_for_deletion(target);
                     }
                     else if (obj_has_behavior(target, bhvFloatingPlane)) {
                         spawn_object_relative(0, 0, 0, 0, target, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
@@ -1709,6 +1712,16 @@ void bhv_skybridge_ring_init(void) {
 }
 
 void bhv_skybridge_ring_loop(void) {
+    f32 dist;
+    struct Object *skybridge = cur_obj_find_nearest_object_with_behavior(bhvSkybridge, &dist);
+
+    if (skybridge) {
+        o->parentObj = skybridge;
+    }
+    else {
+        obj_mark_for_deletion(o);
+    }
+
     o->oPosX = gMarioState->pos[0];
     o->oPosY = (o->parentObj->oAction == 1 ? approach_f32_symmetric(o->oPosY, o->parentObj->oPosY, 20.0f) : gMarioState->pos[1]);
     o->oPosZ = gMarioState->pos[2];
@@ -1740,7 +1753,7 @@ void bhv_skybridge_ring_loop(void) {
                 o->oAction = 0;
                 o->oSkybridgeRingFade = 1;
             }
-            else if (o->parentObj->oTimer == 89) {
+            else if (o->parentObj->oTimer == 89 || o->parentObj->oAction == 2) {
                 o->oAction = 2;
             }
         break;
@@ -1750,6 +1763,10 @@ void bhv_skybridge_ring_loop(void) {
             if (o->parentObj->oAction == 0) {
                 o->oAction = 0;
                 o->oSkybridgeRingFade = 1;
+            }
+            else if (o->parentObj->oAction == 1) {
+                o->oAction = 1;
+                o->oSkybridgeRingFade = 120;
             }
         break;
     }

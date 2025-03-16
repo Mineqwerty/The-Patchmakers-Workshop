@@ -102,6 +102,20 @@ const LevelScript level_bowser_3_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
+	AREA(2, bowser_3_area_2),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF0, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_BOWSER_3, 0x02, 0x0A, WARP_NO_CHECKPOINT),
+		OBJECT(MODEL_NONE, 2162, 1489, 2, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_PATCHMAKER, -1088, 458, 0, 0, 90, 0, 0x00000000, bhvPatchmaker),
+		TERRAIN(bowser_3_area_2_collision),
+		TERRAIN_MAT_LUT(bowser_3_area_2_collision_materials),
+		MACRO_OBJECTS(bowser_3_area_2_macro_objs),
+		STOP_MUSIC(0),
+		TERRAIN_TYPE(TERRAIN_GRASS),
+		/* Fast64 begin persistent block [area commands] */
+		/* Fast64 end persistent block [area commands] */
+	END_AREA(),
 	FREE_LEVEL_POOL(),
 	MARIO_POS(0x01, 0, -2887, 3815, -108),
 	CALL(0, lvl_init_or_update),

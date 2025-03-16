@@ -37,7 +37,7 @@ void scroll_ssl_dl_Circle_mesh_layer_5_vtx_0() {
 
 void scroll_ssl_dl_Circle_mesh_layer_1_vtx_5() {
 	int i = 0;
-	int count = 94;
+	int count = 82;
 	int width = 64 * 0x20;
 	int height = 128 * 0x20;
 
@@ -74,7 +74,7 @@ void scroll_ssl_dl_Circle_mesh_layer_1_vtx_5() {
 
 void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 30;
+	int count = 28;
 	int width = 64 * 0x20;
 	int height = 64 * 0x20;
 
@@ -148,7 +148,7 @@ void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_2() {
 
 void scroll_ssl_dl_leaves_room1_mesh_layer_1_vtx_0() {
 	int i = 0;
-	int count = 32;
+	int count = 28;
 	int width = 64 * 0x20;
 	int height = 128 * 0x20;
 
@@ -259,7 +259,7 @@ void scroll_ssl_dl_leaves_room2_mesh_layer_1_vtx_0() {
 
 void scroll_ssl_dl_room2_col_mesh_layer_1_vtx_5() {
 	int i = 0;
-	int count = 118;
+	int count = 104;
 	int width = 64 * 0x20;
 	int height = 128 * 0x20;
 
@@ -333,7 +333,7 @@ void scroll_ssl_dl_leaves_room3_mesh_layer_1_vtx_0() {
 
 void scroll_ssl_dl_room3_col_mesh_layer_1_vtx_5() {
 	int i = 0;
-	int count = 47;
+	int count = 42;
 	int width = 64 * 0x20;
 	int height = 128 * 0x20;
 
@@ -407,7 +407,7 @@ void scroll_ssl_dl_room_3_other_rooms_mesh_layer_5_vtx_0() {
 
 void scroll_ssl_dl_room_3_other_rooms_mesh_layer_1_vtx_5() {
 	int i = 0;
-	int count = 45;
+	int count = 44;
 	int width = 64 * 0x20;
 	int height = 128 * 0x20;
 
@@ -444,7 +444,7 @@ void scroll_ssl_dl_room_3_other_rooms_mesh_layer_1_vtx_5() {
 
 void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0() {
 	int i = 0;
-	int count = 357;
+	int count = 331;
 	int width = 32 * 0x20;
 	int height = 32 * 0x20;
 
@@ -481,7 +481,7 @@ void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0() {
 
 void scroll_ssl_dl_Plane_007_mesh_layer_1_vtx_0() {
 	int i = 0;
-	int count = 88;
+	int count = 77;
 	int width = 32 * 0x20;
 	int height = 32 * 0x20;
 

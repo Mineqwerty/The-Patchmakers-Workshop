@@ -34,6 +34,9 @@ void bhv_star_gate_loop(void) {
         if (o->oTimer == 18) {
             initiate_warp(LEVEL_CCM, 1, o->oBehParams2ndByte, 0, 0);
             gMarioState->specialWarpTransitionOperation = 2;
+            if (gDialogID > -1) {
+                gDialogBoxState = 3;
+            }
         }
 
         gMarioState->boostTimer = 0;

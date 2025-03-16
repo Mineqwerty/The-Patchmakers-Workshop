@@ -2094,7 +2094,7 @@ const BehaviorScript bhvBowser[] = {
     SPAWN_OBJ(/*Model*/ MODEL_NONE, /*Behavior*/ bhvBowserTailAnchor),
     // Beta leftover that spawn 50 coins when Bowser is defeated
     SET_INT(oNumLootCoins, 50),
-    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 0, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
     SET_HOME(),
     CALL_NATIVE(bhv_bowser_init),
     BEGIN_LOOP(),
@@ -6783,6 +6783,7 @@ const BehaviorScript bhvSeraphim[] = {
     LOAD_ANIMATIONS(oAnimations, seraphim_anims),
     ANIMATE(0),
     SET_HOME(),
+    CALL_NATIVE(bhv_seraphim_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_seraphim_loop),
     END_LOOP(),
@@ -7524,6 +7525,7 @@ const BehaviorScript bhvBlight[] = {
     OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_IS_ENEMY | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_ANIMATIONS(oAnimations, blight_anims),
     CALL_NATIVE(bhv_init_room),
+    SET_HOME(),
     ANIMATE(0),
     CALL_NATIVE(bhv_blight_init),
     BEGIN_LOOP(),
@@ -7644,7 +7646,6 @@ const BehaviorScript bhvRedFlower[] = {
     CALL_NATIVE(bhv_red_flower_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_red_flower_loop),
-        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
@@ -8752,9 +8753,10 @@ const BehaviorScript bhvOnOffController[] = {
 
 const BehaviorScript bhvRealityCracks[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
     LOAD_COLLISION_DATA(reality_cracks_collision),
     SET_FLOAT(oDrawingDistance, 30000),
+    SET_FLOAT(oCollisionDistance, 30000),
     CALL_NATIVE(bhv_reality_cracks_init),
     BEGIN_LOOP(),
         CALL_NATIVE(load_object_collision_model),
@@ -8765,6 +8767,7 @@ const BehaviorScript bhvRealityCracks[] = {
 const BehaviorScript bhvRealityCracksHitbox[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_COLLISION_DATA(reality_cracks_hitbox_collision),
     CALL_NATIVE(bhv_reality_cracks_hitbox_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_reality_cracks_hitbox_loop),
@@ -9397,5 +9400,85 @@ const BehaviorScript bhvLowerCityGate[] = {
     CALL_NATIVE(load_object_static_model),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_lower_city_gate_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmThrownFlower[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_pm_thrown_flower_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_thrown_flower_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmIceSpike[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_pm_ice_spike_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_ice_spike_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmIceSpikeSpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_pm_ice_spike_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_ice_spike_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmGrapple[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    CALL_NATIVE(bhv_pm_grapple_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_grapple_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmHalo[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_HOME(),
+    CALL_NATIVE(bhv_pm_halo_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_halo_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmBubble[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    BILLBOARD(),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_pm_bubble_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_bubble_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmMiasma[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, pm_miasma_anims),
+    ANIMATE(1),
+    CALL_NATIVE(bhv_pm_miasma_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_miasma_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPmPortal[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_pm_portal_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pm_portal_loop),
     END_LOOP(),
 };

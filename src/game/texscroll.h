@@ -19,6 +19,7 @@
 #include "src/game/texscroll/group3_texscroll.inc.h"
 #include "src/game/texscroll/bowser_3_texscroll.inc.h"
 #include "src/game/texscroll/bits_texscroll.inc.h"
+#include "src/game/texscroll/group12_texscroll.inc.h"
 extern void scroll_textures();
 
 #endif

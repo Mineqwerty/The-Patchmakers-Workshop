@@ -249,4 +249,6 @@ extern const LevelScript level_castle_inside_entry[];
 
 #include "levels/castle_inside/escaping_souls/geo_header.h"
 
+#include "levels/castle_inside/pm_thread_of_life/geo_header.h"
+
 #endif

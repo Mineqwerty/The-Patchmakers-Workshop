@@ -85,6 +85,7 @@ void goddess_act_gold_barrage(void) {
         bullet->oHomeX = gMarioState->pos[0];
         bullet->oHomeY = gMarioState->pos[1];
         bullet->oHomeZ = gMarioState->pos[2];
+        cur_obj_play_sound_2(SOUND_NEW_GODDESS_PROJECTILE);
     }
 }
 
@@ -262,6 +263,7 @@ void goddess_act_banish(void) {
                 for (int i = 0; i < 8; i++) {
                     spawn_object_relative(i, 0, 0, 0, o, MODEL_GOLD_FRAGMENT, bhvBanishFragment);
                 }
+                cur_obj_play_sound_2(SOUND_NEW_GODDESS_SUMMON);
                 o->oSubAction++;
             }
             break;
@@ -495,6 +497,7 @@ void goddess_check_interactions(void) {
 
             if (gBossHealth - o->oHealth > 15) {
                 o->oAction = GODDESS_ACT_HURT;
+                cur_obj_play_sound_2(SOUND_NEW_GODDESS_HIT);
                 o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1040);
                 for (int i = 0; i < 8; i++) {
                     struct Object *fragment =
@@ -583,7 +586,7 @@ void bhv_gold_blob_loop(void) {
                 gold_blob_approach_home();
 
                 if (seraphim && o->oTimer == 30) {
-                    attack_object(seraphim, 32, 10);
+                    seraphim->oHealth = 0;
 
                     obj_mark_for_deletion(o);
                 }

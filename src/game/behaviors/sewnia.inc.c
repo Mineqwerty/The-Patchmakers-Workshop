@@ -826,6 +826,8 @@ void sewnia_act_intro_cutscene(void) {
             o->oPosX = 0;
             o->oPosY = 100;
             o->oPosZ = 1152;
+            o->oFaceAngleYaw = 0;
+            o->oMoveAngleYaw = 0;
             cur_obj_init_animation(SEWNIA_ANIM_STARING);
 
             o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
@@ -1703,7 +1705,17 @@ void sewnia_act_ending_cutscene(void) {
         case 3:
         o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
             if (cExternalCutsceneTrigger >= 3) {
-                o->oSewniaFaceState = SEWNIA_FACE_STATE_DEFAULT;
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+                
+                o->oSubAction++;
+            }
+        break;
+        case 4:
+        o->oSewniaFaceState = SEWNIA_FACE_STATE_FROWN;
+            if (cExternalCutsceneTrigger >= 5) {
+                o->oMoveAngleYaw = 0;
+                o->oFaceAngleYaw = 0;
+                o->oSewniaFaceState = SEWNIA_FACE_STATE_SURPRISED;
                 
                 o->oSubAction++;
             }

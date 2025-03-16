@@ -60,7 +60,7 @@ const MacroObject bob_seg7_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/ 270, /*pos*/    66,     0,  6977, /*behParam*/ DIALOG_113),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  3394,  3072,  1846, /*behParam*/ DIALOG_064),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/ 270, /*pos*/ -3110,   104,  5064, /*behParam*/ DIALOG_BUTLERGEIST_ISSUES),
-    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  6860,  2041, -6640, /*behParam*/ DIALOG_074),
+    MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  6860,  2041, -6640, /*behParam*/ DIALOG_PATCHMAKER_DEPARTURE),
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/ -6020,   768,  2957, /*behParam*/ DIALOG_104),
     MACRO_OBJECT(/*preset*/ macro_coin_ring_vertical,        /*yaw*/  90, /*pos*/ -1506,  5317,  1250),
     MACRO_OBJECT(/*preset*/ macro_hidden_star_trigger,       /*yaw*/   0, /*pos*/ -1506,  5517,  1250),

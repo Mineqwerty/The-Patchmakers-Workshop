@@ -10,12 +10,28 @@ static struct ObjectHitbox sPMNeedleHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
+static struct ObjectHitbox sPMGiantNeedleHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 4,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 140,
+    /* height:            */ 400,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void bhv_pm_thrown_needle_init(void) {
     obj_set_hitbox(o, &sPMNeedleHitbox);
     o->oInteractionSubtype = INT_SUBTYPE_BREAK_STONE_PATCH;
 }
 
 void bhv_pm_thrown_needle_loop(void) {
+
+    if (gCurrAreaIndex == 2) {
+        o->oDamageOrCoinValue = 1;
+    }
 
     struct Object *patchmaker;
     struct Object *halo;
@@ -33,6 +49,13 @@ void bhv_pm_thrown_needle_loop(void) {
                 obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_YAW_INDEX, 0x800);
                 obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x800);
                 obj_turn_toward_object(o, gMarioObject, O_FACE_ANGLE_PITCH_INDEX, 0x800);
+
+            if (o->oBehParams2ndByte == 1 && o->oTimer == 10) {
+                cur_obj_scale(5.0f);
+                obj_set_hitbox(o, &sPMGiantNeedleHitbox);
+                cur_obj_play_sound_2(SOUND_TRANSMUTATION_CONE);
+            }
+
             if (o->oTimer == 20 + 20*(gCurrLevelNum == LEVEL_BOWSER_3)) {
                 
                 o->oAction  = 2;
@@ -124,7 +147,7 @@ void bhv_pm_thrown_needle_loop(void) {
         break;
     }
 
-    if (o->oAction < 4) {
+    if (o->oAction < 4  && o->oBehParams2ndByte != 1) {
         halo = cur_obj_find_nearest_object_with_behavior(bhvHalo, &dist);
         if (halo && halo->oAction > 0 && !halo->oHaloCapturedObject && dist < 150) {
             halo->oHaloCapturedObject = o;

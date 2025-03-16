@@ -76,4 +76,6 @@ char *tutorialDialogs[] = {
     "\"A World Without You\"",
 //58
     "\"Magic and Fabrication\"",
+//59
+    "\"Freed or Forgotten?\"",
 };

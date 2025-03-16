@@ -284,6 +284,15 @@ const LevelScript script_func_global_4[] = {
     LOAD_MODEL_FROM_GEO(MODEL_PM_SHOCKWAVE,        pm_shockwave_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_NEEDLE,        pm_thrown_needle_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PEACH_THREAD_OF_LIFE,        peach_thread_of_life_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_FLOWER,        pm_throw_flower_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_THROWN_FLOWER_STONE,        pm_throw_flower_stone_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_ICE_SPIKE,        pm_ice_spike_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_GRAPPLE,        pm_grapple_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_HALO,        pm_halo_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_BUBBLE,        pm_bubble_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_SHADOWCHOMP_OPEN,        pm_shadowchomp_open_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_SHADOWCHOMP_CLOSED,        pm_shadowchomp_closed_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_PM_MIASMA,        pm_miasma_geo),
     RETURN(),
 };
 

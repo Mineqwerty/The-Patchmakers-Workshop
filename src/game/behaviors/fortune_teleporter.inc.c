@@ -44,6 +44,7 @@ void bhv_fortune_teleporter_loop(void) {
             cur_obj_init_animation(1);
             if (o->oTimer == 30) {
                 gReonucamState.overhead = 0;
+                gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_HIDE_DPAD;
                 initiate_warp(gCurrLevelNum, 1, 0xEF, WARP_FLAG_FORTUNE_TELEPORTER, 0);
             }
         break;

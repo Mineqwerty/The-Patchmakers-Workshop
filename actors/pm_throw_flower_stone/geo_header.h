@@ -1,0 +1,7 @@
+extern const GeoLayout pm_throw_flower_stone_geo[];
+extern u8 pm_throw_flower_stone_imgonline_com_ua_TextureSeamless_4lDHDn87nwIU_i8[];
+extern Vtx pm_throw_flower_stone_Circle_001_mesh_layer_1_vtx_0[68];
+extern Gfx pm_throw_flower_stone_Circle_001_mesh_layer_1_tri_0[];
+extern Gfx mat_pm_throw_flower_stone_f3dlite_material[];
+extern Gfx mat_revert_pm_throw_flower_stone_f3dlite_material[];
+extern Gfx pm_throw_flower_stone_Circle_001_mesh_layer_1[];

@@ -4,6 +4,7 @@ const GeoLayout castle_inside_area_3_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, castle_inside_dl_darkspot_visual_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, castle_inside_dl_darkspot_visual_mesh_layer_4),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, castle_inside_dl_Plane_030_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, castle_inside_dl_Plane_030_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, castle_inside_dl_Plane_031_mesh_layer_6),

@@ -70,7 +70,7 @@ extern u8 ddd_dl_hedge_rgba16[];
 extern u8 ddd_dl_hedgenoise_rgba16[];
 extern Vtx ddd_dl_nocol_mesh_layer_1_vtx_0[5];
 extern Gfx ddd_dl_nocol_mesh_layer_1_tri_0[];
-extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_0[596];
+extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_0[610];
 extern Gfx ddd_dl_Plane_mesh_layer_1_tri_0[];
 extern Vtx ddd_dl_Plane_mesh_layer_1_vtx_1[884];
 extern Gfx ddd_dl_Plane_mesh_layer_1_tri_1[];

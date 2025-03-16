@@ -94,6 +94,9 @@ static void cloud_fwoosh_update(void) {
             o->oCloudCenterY = o->oHomeY;
         }
 
+        if (o->header.gfx.scale[0] < 0.15f) {
+            o->header.gfx.scale[0] = 0.15f;
+        }
         cur_obj_scale(o->header.gfx.scale[0]);
     }
 }

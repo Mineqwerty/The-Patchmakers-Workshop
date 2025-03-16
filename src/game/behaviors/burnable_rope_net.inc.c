@@ -17,7 +17,7 @@ void bhv_burnable_rope_net_loop(void) {
                 spawn_object_relative(0, 0, random_u16()%400 - 200, random_u16()%600 - 300, o, MODEL_RED_FLAME, bhvFlameLargeBurningOut);
             }
 
-            if (o->oTimer == 60) {
+            if (o->oTimer == 45) {
                 obj_mark_for_deletion(o);
             }
         break;
