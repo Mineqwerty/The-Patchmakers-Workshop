@@ -339,6 +339,14 @@ Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *conte
             gMarioObject->oPosZ
         );
 
+        if (gCurrLevelNum == LEVEL_CASTLE && gCurCutscene > 0) {
+            room = get_room_at_pos(
+                gLakituState.pos[0],
+                gLakituState.pos[1],
+                gLakituState.pos[2]
+            );
+        }
+
         print_debug_top_down_objectinfo("areainfo %d", room);
 
         if (room > 0) {
