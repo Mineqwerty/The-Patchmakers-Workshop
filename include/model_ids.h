@@ -577,6 +577,7 @@
 #define MODEL_SPEECH_BUBBLE                  0x11C
 #define MODEL_ESCAPING_SOULS                  0x11D
 #define MODEL_PM_THREAD                  0x11E
+
 //Patch Challenge
 #define MODEL_PAPER_SCUTTLEBUG                  0x100
 #define MODEL_LIFT_CLOUD                  0x101

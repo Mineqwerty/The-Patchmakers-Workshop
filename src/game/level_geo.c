@@ -130,6 +130,45 @@ Gfx *geo_remove_cracked_wall(s32 callContext, struct GraphNode *node, UNUSED Mat
     return 0;
 }
 
+//am I REALLY going to write specific geo functions to cull level geometry in notoriously laggy spots...?
+
+//OF COURSE I AM!
+Gfx *geo_hide_ttc_patch_area_entrance(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (gMarioState->pos[1] < 3532) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_hide_ttc_grass_area(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (gMarioState->pos[1] < 2770 && gMarioState->pos[2] < -7371) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_hide_ttc_start_grass_area(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (gMarioState->pos[2] < -9355) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
 Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
         Gfx *mat = segmented_to_virtual(mat_bbh_dl_f3dlite_material_003_layer1);

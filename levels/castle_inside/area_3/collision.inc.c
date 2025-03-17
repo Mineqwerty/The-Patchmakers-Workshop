@@ -293,8 +293,8 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_143_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPLightColor(LIGHT_1, 0x000000FF),
+	gsSPLightColor(LIGHT_2, 0x000000FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -366,8 +366,8 @@ Gfx castle_inside_area_3_collision_mat_revert_castle_inside_dl_f3dlite_material_
 };
 
 Gfx castle_inside_area_3_collision_f3dlite_material_145_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff000dff),
-    gsSPLightColor(LIGHT_2, 0x7f0003ff),
+	gsSPLightColor(LIGHT_1, 0xFF000DFF),
+	gsSPLightColor(LIGHT_2, 0x7F0003FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),

@@ -12,6 +12,8 @@
 #include "textures.h"
 #include "mario_actions_submerged.h"
 #include "level_geo.h"
+#include "src/game/level_update.h"
+#include "src/game/object_list_processor.h"
 
 /**
  * This file implements environment effects that are not snow:
@@ -538,8 +540,7 @@ void envfx_update_force_floor_bubbles(Vec3s centerPos) {
             (gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
             struct Surface *floor = NULL;
             struct Surface *waterFloor = NULL;
-            find_floor((gEnvFxBuffer + i)->xPos, centerPos[1] + 500, (gEnvFxBuffer + i)->zPos, &floor);
-            (gEnvFxBuffer + i)->yPos = find_floor_height((gEnvFxBuffer + i)->xPos, centerPos[1], (gEnvFxBuffer + i)->zPos) + ((random_float()) * 200.0f);
+            (gEnvFxBuffer + i)->yPos = find_floor((gEnvFxBuffer + i)->xPos, centerPos[1] + 500, (gEnvFxBuffer + i)->zPos, &floor) + ((random_float()) * 200.0f);
             if (floor && (floor->type == SURFACE_FLOWING_WATER || floor->type == SURFACE_VERTICAL_FLOWING_WATER)) {
                 (gEnvFxBuffer + i)->floorHeight = find_water_level_and_floor((gEnvFxBuffer + i)->xPos, 10000, (gEnvFxBuffer + i)->zPos, &waterFloor);
                 (gEnvFxBuffer + i)->angleAndDist[0] = ((random_float() - 0.5f) * 0x100) + (floor->force << 8);
@@ -567,52 +568,72 @@ void envfx_update_force_floor_bubbles(Vec3s centerPos) {
     }
 }
 
+s32 bubbleXZOrigins[12] = {
+    196, -2780,
+    541, -3826,
+    1730, -2027,
+    2237, -2947,
+    2290, -4089,
+    1197, -4485
+};
+
+#define BUBBLE_BOTTOM_HEIGHT 1310
+
 void envfx_update_column_bubbles(Vec3s centerPos) {
     s32 i;
-
+    if (gMarioCurrentRoom != 1) {
+        return;
+    }
     for (i = 0; i < sBubbleParticleMaxCount; i++) {
         (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerPos[0], centerPos[2], 4000);
-        if (!(gEnvFxBuffer + i)->isAlive) {
-            
-            
-            (gEnvFxBuffer + i)->xPos = centerPos[0] + ((random_float() - 0.5f) * 4000.0f);
-            (gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
-            struct Surface *floor = NULL;
-            find_floor((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos, &floor);
-            (gEnvFxBuffer + i)->yPos = find_floor_height((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos);
-            if (floor && (floor->type == SURFACE_BUBBLE_COLUMN)) {
-                (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 350;
-                (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
-                (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
-                (gEnvFxBuffer + i)->randParticleSpeed = 5.0f;
-            }
-            else if (floor && (floor->type == SURFACE_SS_WARP)) {
-                (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 3050;
-                (gEnvFxBuffer + i)->yPos += 630;
-                (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
-                (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
-                (gEnvFxBuffer + i)->randParticleSpeed = -5.0f;
-            }
-            else {
-                (gEnvFxBuffer + i)->angleAndDist[0] = 0;
-                (gEnvFxBuffer + i)->angleAndDist[1] = 100.0f;
-                (gEnvFxBuffer + i)->zPos = -32000;
-                (gEnvFxBuffer + i)->xPos = -32000;
-                (gEnvFxBuffer + i)->yPos = -11000;
-            }
-        } else {
-            if ((((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > (gEnvFxBuffer + i)->floorHeight) || (gEnvFxBuffer + i)->yPos < 1300) {
-                //TODO: this is a shit solution for respawning bubbles
-                (gEnvFxBuffer + i)->zPos = -15000;
-                (gEnvFxBuffer + i)->xPos = -15000;
-                (gEnvFxBuffer + i)->yPos = -11000;
-                continue;
-            }
-            (gEnvFxBuffer + i)->yPos += (gEnvFxBuffer + i)->randParticleSpeed;
-            (gEnvFxBuffer + i)->xPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * sins((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
-            (gEnvFxBuffer + i)->zPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * coss((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
+            if (!(gEnvFxBuffer + i)->isAlive) {
+                
+                u16 randomTube = random_u16()%6;
 
-        }
+                //(gEnvFxBuffer + i)->xPos = centerPos[0] + ((random_float() - 0.5f) * 4000.0f);
+                //(gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
+                //struct Surface *floor = NULL;
+                //find_floor((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos, &floor);
+                //(gEnvFxBuffer + i)->yPos = find_floor_height((gEnvFxBuffer + i)->xPos, 1766, (gEnvFxBuffer + i)->zPos);
+                if (randomTube < 5) {
+                    (gEnvFxBuffer + i)->xPos = bubbleXZOrigins[2*randomTube] + ((random_float() - 0.5f) * 80.0f);
+                    (gEnvFxBuffer + i)->zPos = bubbleXZOrigins[2*randomTube + 1] + ((random_float() - 0.5f) * 80.0f);
+                    (gEnvFxBuffer + i)->yPos = BUBBLE_BOTTOM_HEIGHT;
+                    (gEnvFxBuffer + i)->yPos += random_u16()%50;
+                    (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 350;
+                    (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
+                    (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
+
+                    //disperse the bubbles while mario isn't close
+                    if (!(gMarioState->pos[2] < -1525)) {
+                        (gEnvFxBuffer + i)->yPos += random_u16()%200;
+                    }
+                    (gEnvFxBuffer + i)->randParticleSpeed = 5.0f;
+                }
+                else {
+                    (gEnvFxBuffer + i)->xPos = bubbleXZOrigins[2*randomTube] + ((random_float() - 0.5f) * 80.0f);
+                    (gEnvFxBuffer + i)->zPos = bubbleXZOrigins[2*randomTube + 1] + ((random_float() - 0.5f) * 80.0f);
+                    (gEnvFxBuffer + i)->yPos = BUBBLE_BOTTOM_HEIGHT;
+                    (gEnvFxBuffer + i)->floorHeight = (gEnvFxBuffer + i)->yPos + 3050;
+                    (gEnvFxBuffer + i)->yPos += 630;
+                    (gEnvFxBuffer + i)->angleAndDist[0] = random_u16();
+                    (gEnvFxBuffer + i)->angleAndDist[1] = random_u16();
+                    (gEnvFxBuffer + i)->randParticleSpeed = -5.0f;
+                }
+            } else {
+                if (((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > 1946 || (gEnvFxBuffer + i)->yPos < 1300) {
+                    //TODO: this is a shit solution for respawning bubbles
+                    (gEnvFxBuffer + i)->zPos = -15000;
+                    (gEnvFxBuffer + i)->xPos = -15000;
+                    (gEnvFxBuffer + i)->yPos = -11000;
+                    continue;
+                }
+                (gEnvFxBuffer + i)->yPos += (gEnvFxBuffer + i)->randParticleSpeed;
+                (gEnvFxBuffer + i)->xPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * sins((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
+                (gEnvFxBuffer + i)->zPos += sins(((gEnvFxBuffer + i)->angleAndDist[1] + (0x888 * gGlobalTimer))) * coss((gEnvFxBuffer + i)->angleAndDist[0]) * 0.8f;
+
+            }
+        //}
     }
 }
 

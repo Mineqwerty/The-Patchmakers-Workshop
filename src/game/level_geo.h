@@ -36,6 +36,9 @@ Gfx *geo_get_area_material_from_table(s32 callContext, struct GraphNode *node, U
 Gfx *geo_get_area_revert_from_table(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_rotate_billboard(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_hide_ttc_patch_area_entrance(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_hide_ttc_grass_area(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_hide_ttc_start_grass_area(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H

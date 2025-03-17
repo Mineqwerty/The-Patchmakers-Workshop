@@ -33,6 +33,7 @@
 #include "src/game/texscroll/bits_texscroll.inc.c"
 #include "src/game/texscroll/group12_texscroll.inc.c"
 void scroll_textures() {
+	if (gCurrLevelNum != LEVEL_CASTLE) {
 	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bob_segment_7SegmentRomStart)) {
 		scroll_textures_bob();
 	}
@@ -81,10 +82,6 @@ void scroll_textures() {
 		scroll_textures_wdw();
 	}
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_castle_inside_segment_7SegmentRomStart)) {
-		scroll_textures_castle_inside();
-	}
-
 	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_ttm_segment_7SegmentRomStart)) {
 		scroll_textures_ttm();
 	}
@@ -111,6 +108,11 @@ void scroll_textures() {
 
 	if(SCROLL_CONDITION(sSegmentROMTable[0x6] == (uintptr_t)_group12_mio0SegmentRomStart)) {
 		scroll_textures_group12();
+	}
+}
+
+	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_castle_inside_segment_7SegmentRomStart)) {
+		scroll_textures_castle_inside();
 	}
 
 }
