@@ -625,11 +625,11 @@ Oh, I do have this...\n\
 with my eternal\n\
 gratitude."))
 
-DEFINE_DIALOG(DIALOG_059, 1, 4, 30, 200, _("\
-That's not my baby! She\n\
-looks nothing like me!\n\
-Her parents must be\n\
-worried sick!"))
+DEFINE_DIALOG(DIALOG_PHANTASMAID_ENTER_CHAMBER, 1, 4, 30, 200, _("\
+You have been invited to the Master's\n\
+inner quarters.\n\
+Please proceed with caution, this area\n\
+is still haunted..."))
 
 DEFINE_DIALOG(DIALOG_060, 1, 3, 30, 200, _("\
 @C5950FFFWhy?\n\

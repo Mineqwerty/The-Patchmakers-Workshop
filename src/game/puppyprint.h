@@ -145,6 +145,7 @@ extern s32  get_text_width(const char *str, s32 font);
 extern void prepare_blank_box(void);
 extern void finish_blank_box(void);
 extern void render_blank_box(s32 x1, s32 y1, s32 x2, s32 y2, u8 r, u8 g, u8 b, u8 a);
+extern void render_blank_box_offscreen(s32 x1, s32 y1, s32 x2, s32 y2, u8 r, u8 g, u8 b, u8 a);
 extern void render_blank_box_rounded(s32 x1, s32 y1, s32 x2, s32 y2, u8 r, u8 g, u8 b, u8 a);
 extern char consoleLogTable[LOG_BUFFER_SIZE][255];
 extern void render_boss_health();

@@ -48,7 +48,7 @@ void tuxies_mother_act_receiving_baby(void) {
             if (!cur_obj_is_mario_on_platform()) {
                 s32 motherParam = GET_BPARAM2(o->oBehParams);
                 s32 babyParam   = GET_BPARAM2(o->prevObj->oBehParams);
-                s32 dialogID = ((motherParam == babyParam) ? DIALOG_058 : DIALOG_059);
+                s32 dialogID = ((motherParam == babyParam) ? DIALOG_058 : DIALOG_PHANTASMAID_ENTER_CHAMBER);
 
                 if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
                         DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, dialogID)) {

@@ -343,9 +343,9 @@ Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *conte
 
         if (gCurrLevelNum == LEVEL_CASTLE && gCurCutscene > 0) {
             room = get_room_at_pos(
-                gLakituState.pos[0],
-                gLakituState.pos[1],
-                gLakituState.pos[2]
+                gCamera->pos[0],
+                gCamera->pos[1],
+                gCamera->pos[2]
             );
         }
 

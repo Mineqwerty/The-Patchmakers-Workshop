@@ -229,8 +229,11 @@ s32 render_gss_cloud_transition(s8 fadeTimer, s8 transTime, struct WarpTransitio
         sTransitionTextureFadeCount[fadeTimer] += transData->texTimer;
     }
     */
-   
-
+        //fuck you viewport
+        //prepare_blank_box();
+        //render_blank_box_offscreen(-300, 0, 0, SCREEN_HEIGHT, 212, 158, 11, 255);
+        //render_blank_box_offscreen(SCREEN_WIDTH, 0, SCREEN_WIDTH + 300, SCREEN_HEIGHT, 212, 158, 11, 255);
+        //finish_blank_box();
         gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
 
         render_multi_image(segmented_to_virtual(texture_gss_transition), 0, -200 + (int) (cube(((f32) (40 - gScreenEffectTimer)) * 0.2f)) , 320, 768, 1, 1, G_CYC_COPY);

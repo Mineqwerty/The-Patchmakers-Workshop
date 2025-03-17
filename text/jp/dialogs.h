@@ -672,7 +672,7 @@ DEFINE_DIALOG(DIALOG_058, 1, 5, 30, 200, _("\
 あったかくって　とても\n\
 げんきに　なりますよ。"))
 
-DEFINE_DIALOG(DIALOG_059, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_ENTER_CHAMBER, 1, 5, 30, 200, _("\
 このこは　うちのこじゃー\n\
 ないようだなあ・・・\n\
 かわいそうに・・・\n\

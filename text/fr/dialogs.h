@@ -794,7 +794,7 @@ Tiens, prends cette étoile.\n\
 Tu l'as bien méritée...\n\
 Encore merci, petit!"))
 
-DEFINE_DIALOG(DIALOG_059, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_ENTER_CHAMBER, 1, 2, 30, 200, _("\
 C'est pas mon bébé!!!\n\
 Où est mon bébé?\n\
 JE VEUX MON BÉBÉ!!!!\n\

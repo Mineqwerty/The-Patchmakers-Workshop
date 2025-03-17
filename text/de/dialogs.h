@@ -746,7 +746,7 @@ hier. Nimm ihn als\n\
 Zeichen meiner ewigen\n\
 Dankbarkeit!"))
 
-DEFINE_DIALOG(DIALOG_059, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PHANTASMAID_ENTER_CHAMBER, 1, 6, 30, 200, _("\
 Was soll ich mit diesem\n\
 Früchtchen? Das ist nicht\n\
 mein Baby! Mein Baby hat\n\
