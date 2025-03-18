@@ -8168,7 +8168,7 @@ const BehaviorScript bhvSightCube[] = {
 
 const BehaviorScript bhvMovingSightCube[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(sight_cube_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     SET_FLOAT(oCollisionDistance, 20000),
@@ -8182,7 +8182,7 @@ const BehaviorScript bhvMovingSightCube[] = {
 
 const BehaviorScript bhvSightSwitch[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(sight_switch_inactive_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),
@@ -8218,7 +8218,7 @@ const BehaviorScript bhvSightChamberController[] = {
 
 const BehaviorScript bhvSightDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(sight_door_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     SET_FLOAT(oCollisionDistance, 20000),
@@ -8241,7 +8241,7 @@ const BehaviorScript bhvAttackImpactParticle[] = {
 
 const BehaviorScript bhvShrineShadow[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_NEW_DAMAGE_SYSTEM | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_ANIMATIONS(oAnimations, shrine_shadow_anims),
     SET_FLOAT(oDrawingDistance, 20000),
     ANIMATE(0),
@@ -8264,7 +8264,7 @@ const BehaviorScript bhvShadowBall[] = {
 
 const BehaviorScript bhvShadowSpike[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_shadow_spike_init),
     BEGIN_LOOP(),
@@ -8274,7 +8274,7 @@ const BehaviorScript bhvShadowSpike[] = {
 
 const BehaviorScript bhvTouchDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST)),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(touch_door_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     SET_FLOAT(oCollisionDistance, 20000),
@@ -8288,7 +8288,7 @@ const BehaviorScript bhvTouchDoor[] = {
 
 const BehaviorScript bhvShadowSpikeSpawner[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     CALL_NATIVE(bhv_shadow_spike_spawner_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_shadow_spike_spawner_loop),
@@ -8297,7 +8297,7 @@ const BehaviorScript bhvShadowSpikeSpawner[] = {
 
 const BehaviorScript bhvScentFlower[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_scent_flower_init),
@@ -8308,7 +8308,7 @@ const BehaviorScript bhvScentFlower[] = {
 
 const BehaviorScript bhvSoundDrum[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(sound_drum_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),
@@ -8321,7 +8321,7 @@ const BehaviorScript bhvSoundDrum[] = {
 
 const BehaviorScript bhvSoundWave[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_sound_wave_init),
     BEGIN_LOOP(),
@@ -8332,7 +8332,8 @@ const BehaviorScript bhvSoundWave[] = {
 
 const BehaviorScript bhvTasteNoiseSpikeHitbox[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
+    CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_taste_noise_spike_hitbox_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_taste_noise_spike_hitbox_loop),
@@ -8341,7 +8342,7 @@ const BehaviorScript bhvTasteNoiseSpikeHitbox[] = {
 
 const BehaviorScript bhvTasteSwitch[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(taste_switch_inactive_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),
@@ -8354,7 +8355,7 @@ const BehaviorScript bhvTasteSwitch[] = {
 
 const BehaviorScript bhvTasteDoor[] = {
     BEGIN(OBJ_LIST_SURFACE),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_ONLY_PROCESS_INSIDE_ROOM)),
     LOAD_COLLISION_DATA(taste_door_collision),
     SET_FLOAT(oDrawingDistance, 20000),
     CALL_NATIVE(bhv_init_room),

@@ -169,6 +169,53 @@ Gfx *geo_hide_ttc_start_grass_area(s32 callContext, struct GraphNode *node, UNUS
     return 0;
 }
 
+Gfx *geo_hide_bubble_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        //in hvh library
+        if (gMarioState->pos[0] > 3234) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_hide_hvh_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        //too low to see
+        if (gMarioState->pos[1] < 1581) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        //far into vtw room
+        else if (gMarioState->pos[0] < 800 && gMarioState->pos[2] > 2232) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_hide_vtw_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        //in hvh library
+        if (gMarioState->pos[0] > 3389) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        //in hallway
+        else if (gMarioState->pos[0] < -2520) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
 Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
         Gfx *mat = segmented_to_virtual(mat_bbh_dl_f3dlite_material_003_layer1);
@@ -296,14 +343,9 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
 Gfx *geo_loop_level(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
 
-        if (gLoopCounter == 8) {
-            if (!(gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] > renderThreshold)) {
-                //((struct GraphNodeDisplayList *) node->next)->displayList = NULL; 
-            }
-        }
-
-        ((struct GraphNodeTranslation *) node->next)->translation[0] = ((gLoopCounter % 3) - 1) * 32762;
-        ((struct GraphNodeTranslation *) node->next)->translation[2] = ((gLoopCounter / 3) - 1) * 32762;
+        
+            ((struct GraphNodeTranslation *) node->next->next->next)->translation[0] = ((gLoopCounter % 3) - 1) * 32762;
+            ((struct GraphNodeTranslation *) node->next->next->next)->translation[2] = ((gLoopCounter / 3) - 1) * 32762;
     }
     return 0;
 }
@@ -313,6 +355,20 @@ Gfx *geo_end_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
 
         if (gLoopCounter >= 8) {
             gLoopCounter = 0;
+        }
+    }
+    return 0;
+}
+
+Gfx *geo_choose_tfp_draw(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (gLoopCounter != 4 || absf(gMarioState->pos[0]) > 8000 || absf(gMarioState->pos[2]) > 8000) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+            node->next->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->next->flags &= ~GRAPH_RENDER_ACTIVE;
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
         }
     }
     return 0;
