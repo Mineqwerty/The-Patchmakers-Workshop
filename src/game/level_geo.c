@@ -207,32 +207,51 @@ Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
         //main level geo
         gLoopCounter = 4;
         geo_process_node_and_siblings(node->children);
+
+        if (gCamera == NULL || gMarioState == NULL || gMarioState->levelInitTimer < 2) {
+            return 0;
+        }
+        s16 fixedYaw = (s16)(gCamera->yaw + 0x8000);
         gLoopCounter = 0;
-        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] < -renderThreshold 
+            && (gMarioState->pos[2] < -15000 || gMarioState->pos[0] < -15000 
+                || (fixedYaw) < -0x2000 || fixedYaw > 0x6000)) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 1;
-        if (gMarioState->pos[2] < -renderThreshold) {
+        if (gMarioState->pos[2] < -renderThreshold 
+            && (gMarioState->pos[2] < -15000 
+                || ((fixedYaw) < -0x2000 || (fixedYaw) > 0x2000))) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 2;
-        if (gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] < -renderThreshold) {
+        if (gMarioState->pos[0] > renderThreshold && gMarioState->pos[2] < -renderThreshold 
+            && (gMarioState->pos[2] < -15000 || gMarioState->pos[0] > 15000 
+                || (fixedYaw) > 0x2000 || fixedYaw < -0x6000)) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 3;
-        if (gMarioState->pos[0] < -renderThreshold) {
+        if (gMarioState->pos[0] < -renderThreshold
+            && (gMarioState->pos[0] < -15000 
+                || ((fixedYaw) < 0x2000 || (fixedYaw) > -0x6000))) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 5;
-        if (gMarioState->pos[0] > renderThreshold) {
+        if (gMarioState->pos[0] > renderThreshold
+            && (gMarioState->pos[0] > 15000 
+                || ((fixedYaw) < 0x6000 || (fixedYaw) > -0x6000))) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 6;
-        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] > renderThreshold) {
+        if (gMarioState->pos[0] < -renderThreshold && gMarioState->pos[2] > renderThreshold
+            && (gMarioState->pos[2] > 15000 || gMarioState->pos[0] < -15000 
+            || (fixedYaw) > -0x6000 || fixedYaw < 0x2000)) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 7;
-        if (gMarioState->pos[2] > renderThreshold) {
+        if (gMarioState->pos[2] > renderThreshold
+            && (gMarioState->pos[2] > 15000 
+                || ((fixedYaw) > -0x6000 || (fixedYaw) < 0x6000))) {
             geo_process_node_and_siblings(node->children);
         }
         gLoopCounter = 8;

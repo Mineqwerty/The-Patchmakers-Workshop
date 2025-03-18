@@ -8104,6 +8104,7 @@ const BehaviorScript bhvClcPainting[] = {
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
     LOAD_COLLISION_DATA(clc_painting_collision),
     SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_clc_painting_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_clc_painting_loop),

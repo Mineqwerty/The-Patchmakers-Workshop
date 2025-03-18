@@ -2445,6 +2445,8 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     patch_update(gMarioState);
     gMarioState->patchTimer++;
 
+    gMarioState->levelInitTimer++;
+
     
 
     //print_text_fmt_int(100, 100, "TATUMS %d", gTatumCount);
@@ -2786,6 +2788,8 @@ void init_mario(void) {
 
     gMarioState->hurtCounter = 0;
     gMarioState->healCounter = 0;
+
+    gMarioState->levelInitTimer = 0;
 
     gMarioState->capTimer = 0;
     gMarioState->quicksandDepth = 0.0f;

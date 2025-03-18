@@ -547,6 +547,7 @@ struct MarioState {
     s16 miasmaArmorTimer;
     u8 dialogStoryNum;
     u16 hvhRedsFlags;
+    u32 levelInitTimer;
     struct Object *patchChildObj;
     struct Object *patchChildPortalObj;
     struct Object *patchChildSecondaryObj;
