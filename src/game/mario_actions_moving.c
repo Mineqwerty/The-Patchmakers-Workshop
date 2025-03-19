@@ -45,6 +45,9 @@ Mat4 sFloorAlignMatrix[2];
 s16 tilt_body_running(struct MarioState *m) {
     s16 pitch = find_floor_slope(m, 0);
     pitch = pitch * m->forwardVel / 40.0f;
+    if (m->floor == &gWaterSurfacePseudoFloor) {
+        pitch = 0;
+    }
     return -pitch;
 }
 

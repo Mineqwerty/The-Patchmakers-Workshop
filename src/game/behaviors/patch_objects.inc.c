@@ -116,13 +116,14 @@ void bhv_ice_floor_init(void) {
 }
 
 void bhv_ice_floor_loop(void) {
-
-    cur_obj_align_gfx_with_floor_ice();
+    //if ((o->oAction != 0 || o->oTimer > 3) && o->header.gfx.scale[0] > 0.7f) {
+        cur_obj_align_gfx_with_floor_ice();
+    //}
 
     switch (o->oAction) {
         case 0:
             if (o->oTimer < 2) {
-                obj_scale_xyz(o, ((f32) o->oTimer) / 2.0f, 1, ((f32) o->oTimer) / 2.0f);
+                obj_scale_xyz(o, CLAMP(((f32) o->oTimer) / 2.0f, 0.02f, 2.0f), 1, CLAMP(((f32) o->oTimer) / 2.0f, 0.02f, 2.0f));
             } else if (sqr(gMarioState->pos[0] - o->oPosX) + sqr(gMarioState->pos[2] - o->oPosZ)
                        > 20000.0f) {
                 o->oAction += 1;
@@ -137,7 +138,7 @@ void bhv_ice_floor_loop(void) {
             }
             break;
         case 1:
-            obj_scale_xyz(o, 1.0f - ((f32) o->oTimer) / 10.0f, 1, 1.0f - ((f32) o->oTimer) / 10.0f);
+            obj_scale_xyz(o, CLAMP(1.0f - ((f32) o->oTimer) / 10.0f, 0.02f, 2.0f), 1, CLAMP(1.0f - ((f32) o->oTimer) / 10.0f, 0.02f, 2.0f));
 
             if (o->oTimer >= 10) {
                 obj_mark_for_deletion(o);

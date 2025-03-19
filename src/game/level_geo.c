@@ -136,7 +136,7 @@ Gfx *geo_remove_cracked_wall(s32 callContext, struct GraphNode *node, UNUSED Mat
 //OF COURSE I AM!
 Gfx *geo_hide_ttc_patch_area_entrance(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
-        if (gMarioState->pos[1] < 3532) {
+        if (gMarioState->pos[1] < 3532 && gMarioState->pos[0] < 5200) {
             node->next->flags &= ~GRAPH_RENDER_ACTIVE;
         }
         else {
