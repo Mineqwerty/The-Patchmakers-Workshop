@@ -595,7 +595,7 @@ void bhv_halo_loop(void) {
 
             cur_obj_become_intangible();
 
-            if (gPlayer1Controller->buttonPressed & L_TRIG) {
+            if (gPlayer1Controller->buttonPressed & patch_button_input()) {
                 o->oMoveAngleYaw = gMarioState->faceAngle[1];
                 o->oAction = 1;
                 play_sound(SOUND_HALO_OUT, gMarioState->marioObj->header.gfx.cameraToObject);
