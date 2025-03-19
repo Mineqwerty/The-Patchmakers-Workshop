@@ -89,7 +89,7 @@ Gfx wdw_area_4_collision_mat_revert_wdw_dl_concwallnocam_layer1_area4[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx wdw_area_4_collision_f3dlite_material_layer_1[] = {
+Gfx wdw_area_4_collision_f3dlite_material_010_layer_1[] = {
     gsSPLightColor(LIGHT_1, 0xff),
     gsSPLightColor(LIGHT_2, 0xff),
 	gsDPPipeSync(),
@@ -99,7 +99,7 @@ Gfx wdw_area_4_collision_f3dlite_material_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx wdw_area_4_collision_mat_revert_wdw_dl_f3dlite_material[] = {
+Gfx wdw_area_4_collision_mat_revert_wdw_dl_f3dlite_material_010[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -139,8 +139,8 @@ const Gfx* wdw_area_4_collision_materials[] = {
 	&wdw_area_4_collision_mat_revert_wdw_dl_concccwall_002_layer1_area4,
 	&wdw_area_4_collision_concwallnocam_layer_1,
 	&wdw_area_4_collision_mat_revert_wdw_dl_concwallnocam_layer1_area4,
-	&wdw_area_4_collision_f3dlite_material_layer_1,
-	&wdw_area_4_collision_mat_revert_wdw_dl_f3dlite_material,
+	&wdw_area_4_collision_f3dlite_material_010_layer_1,
+	&wdw_area_4_collision_mat_revert_wdw_dl_f3dlite_material_010,
 	&wdw_area_4_collision_stackedmaterial_layer_1,
 	&wdw_area_4_collision_mat_revert_wdw_dl_stackedmaterial_layer1_area2,
 };

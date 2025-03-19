@@ -530,7 +530,10 @@ void envfx_update_jetstream(void) {
 
 void envfx_update_force_floor_bubbles(Vec3s centerPos) {
     s32 i;
-
+    
+    struct Surface *floor = NULL;
+    struct Surface *waterFloor = NULL;
+    f32 floorHeight = find_floor((gEnvFxBuffer)->xPos, centerPos[1] + 500, (gEnvFxBuffer)->zPos, &floor) + ((random_float()) * 200.0f);
     for (i = 0; i < sBubbleParticleMaxCount; i++) {
         (gEnvFxBuffer + i)->isAlive = particle_is_laterally_close(i, centerPos[0], centerPos[2], 4000);
         if (!(gEnvFxBuffer + i)->isAlive) {
@@ -538,11 +541,8 @@ void envfx_update_force_floor_bubbles(Vec3s centerPos) {
             
             (gEnvFxBuffer + i)->xPos = centerPos[0] + ((random_float() - 0.5f) * 4000.0f);
             (gEnvFxBuffer + i)->zPos = centerPos[2] + ((random_float() - 0.5f) * 4000.0f);
-            struct Surface *floor = NULL;
-            struct Surface *waterFloor = NULL;
-            (gEnvFxBuffer + i)->yPos = find_floor((gEnvFxBuffer + i)->xPos, centerPos[1] + 500, (gEnvFxBuffer + i)->zPos, &floor) + ((random_float()) * 200.0f);
+            (gEnvFxBuffer + i)->yPos = floorHeight;
             if (floor && (floor->type == SURFACE_FLOWING_WATER || floor->type == SURFACE_VERTICAL_FLOWING_WATER)) {
-                (gEnvFxBuffer + i)->floorHeight = find_water_level_and_floor((gEnvFxBuffer + i)->xPos, 10000, (gEnvFxBuffer + i)->zPos, &waterFloor);
                 (gEnvFxBuffer + i)->angleAndDist[0] = ((random_float() - 0.5f) * 0x100) + (floor->force << 8);
                 (gEnvFxBuffer + i)->angleAndDist[1] = (sWaterCurrentSpeeds[floor->force >> 8]);
                 (gEnvFxBuffer + i)->randParticleSpeed = ((floor->type == SURFACE_VERTICAL_FLOWING_WATER) ? sWaterVerticalCurrentSpeeds[(floor->force >> 8) - 5] : random_sign() * (random_u16() % 3));
@@ -553,7 +553,7 @@ void envfx_update_force_floor_bubbles(Vec3s centerPos) {
                 (gEnvFxBuffer + i)->yPos = -11000;
             }
         } else {
-            if (((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > (gEnvFxBuffer + i)->floorHeight) {
+            if (((gEnvFxBuffer + i)->yPos + (gEnvFxBuffer + i)->randParticleSpeed) > 3182) {
                 //TODO: this is a shit solution for respawning bubbles
                 (gEnvFxBuffer + i)->zPos = -15000;
                 (gEnvFxBuffer + i)->xPos = -15000;

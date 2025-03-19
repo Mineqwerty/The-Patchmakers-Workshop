@@ -30,6 +30,7 @@ const GeoLayout ttm_dl_room_2___sight_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_013_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_Plane_013_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_sight_colonly_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_sight_nocol_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),

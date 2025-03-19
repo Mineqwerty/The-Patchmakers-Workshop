@@ -1233,3 +1233,5 @@ void bhv_pm_miasma_init(void);
 void bhv_pm_miasma_loop(void);
 void bhv_pm_portal_init(void);
 void bhv_pm_portal_loop(void);
+void bhv_sisyphus_manager_init(void);
+void bhv_sisyphus_manager_loop(void);

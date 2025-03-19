@@ -43,6 +43,7 @@ Gfx *geo_hide_vtw_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
 Gfx *geo_hide_bubble_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_hide_hvh_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 Gfx *geo_choose_tfp_draw(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
+Gfx *geo_corr_switch_full_fog_buildings(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 
 #endif // LEVEL_GEO_H

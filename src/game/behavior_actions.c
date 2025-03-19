@@ -435,3 +435,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/pm_bubble.inc.c"
 #include "behaviors/pm_miasma.inc.c"
 #include "behaviors/pm_portal.inc.c"
+#include "behaviors/sisyphus_manager.inc.c"

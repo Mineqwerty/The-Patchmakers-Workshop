@@ -14,6 +14,7 @@
 #include "src/game/fb_effects.h"
 #include "actors/extension_block/geo_header.h"
 #include "levels/wdw/header.inc.h"
+#include "src/game/emutest.h"
 
 struct GraphNode *loopNode;
 struct GraphNode *originalContinueNode;
@@ -216,6 +217,20 @@ Gfx *geo_hide_vtw_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
     return 0;
 }
 
+Gfx *geo_corr_switch_full_fog_buildings(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
+        if (gMarioState->pos[0] > -6040 && gMarioState->pos[0] < 11500 && gMarioState->pos[2] > -9180 && gMarioState->pos[2] < 6930) {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+            node->next->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+        else {
+            node->next->next->flags &= ~GRAPH_RENDER_ACTIVE;
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
+        }
+    }
+    return 0;
+}
+
 Gfx *geo_update_road_depth(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
         Gfx *mat = segmented_to_virtual(mat_bbh_dl_f3dlite_material_003_layer1);
@@ -249,7 +264,11 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
 s32 renderThreshold = -5000;
 
 Gfx *geo_start_loop(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
+    
     if (callContext == GEO_CONTEXT_RENDER) {
+        if (gIsConsole) {
+            renderThreshold = 2000;
+            }
         
         //main level geo
         gLoopCounter = 4;

@@ -9484,3 +9484,12 @@ const BehaviorScript bhvPmPortal[] = {
         CALL_NATIVE(bhv_pm_portal_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSisyphusManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_sisyphus_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_sisyphus_manager_loop),
+    END_LOOP(),
+};

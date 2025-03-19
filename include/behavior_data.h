@@ -864,3 +864,4 @@ extern const BehaviorScript bhvPmHalo[];
 extern const BehaviorScript bhvPmBubble[];
 extern const BehaviorScript bhvPmMiasma[];
 extern const BehaviorScript bhvPmPortal[];
+extern const BehaviorScript bhvSisyphusManager[];
