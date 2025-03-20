@@ -609,10 +609,10 @@ void bhv_halo_loop(void) {
             if (o->oHaloKnockbackSpeed > 0) {
                 halo_apply_knockback();
             }
-            if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & L_TRIG)) {
+            if (o->oTimer > 10 && !(gPlayer1Controller->buttonDown & patch_button_input())) {
                 o->oAction = 2;
                 play_sound(SOUND_HALO_IN, gMarioState->marioObj->header.gfx.cameraToObject);
-            } else if (gPlayer1Controller->buttonPressed & L_TRIG) {
+            } else if (gPlayer1Controller->buttonPressed & patch_button_input()) {
                 o->oAction = 3;
                 play_sound(SOUND_HALO_CIRCLE, gMarioState->marioObj->header.gfx.cameraToObject);
             }

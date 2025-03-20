@@ -92,7 +92,7 @@ extern Vtx ccm_dl_Circle_mesh_layer_1_vtx_3[83];
 extern Gfx ccm_dl_Circle_mesh_layer_1_tri_3[];
 extern Vtx ccm_dl_Circle_mesh_layer_1_vtx_4[178];
 extern Gfx ccm_dl_Circle_mesh_layer_1_tri_4[];
-extern Vtx ccm_dl_Circle_mesh_layer_1_vtx_5[525];
+extern Vtx ccm_dl_Circle_mesh_layer_1_vtx_5[531];
 extern Gfx ccm_dl_Circle_mesh_layer_1_tri_5[];
 extern Vtx ccm_dl_Circle_mesh_layer_1_vtx_6[131];
 extern Gfx ccm_dl_Circle_mesh_layer_1_tri_6[];

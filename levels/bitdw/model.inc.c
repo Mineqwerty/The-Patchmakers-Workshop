@@ -50810,12 +50810,13 @@ Gfx mat_revert_bitdw_dl_f3dlite_material_022[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_bitdw_dl_f3dlite_material_023[] = {
+Gfx mat_bitdw_dl_f3dlite_material_023_layer1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, COMBINED, 0, PRIMITIVE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetCycleType(G_CYC_2CYCLE),
+	gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetPrimColor(0, 0, 199, 147, 91, 255),
 	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, bitdw_dl_woodprocessed_ia8),
@@ -50826,11 +50827,12 @@ Gfx mat_bitdw_dl_f3dlite_material_023[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_bitdw_dl_f3dlite_material_023[] = {
+Gfx mat_revert_bitdw_dl_f3dlite_material_023_layer1[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
+	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
 
@@ -51437,9 +51439,9 @@ Gfx bitdw_dl_Plane_mesh_layer_1[] = {
 	gsSPDisplayList(mat_bitdw_dl_f3dlite_material_022),
 	gsSPDisplayList(bitdw_dl_Plane_mesh_layer_1_tri_10),
 	gsSPDisplayList(mat_revert_bitdw_dl_f3dlite_material_022),
-	gsSPDisplayList(mat_bitdw_dl_f3dlite_material_023),
+	gsSPDisplayList(mat_bitdw_dl_f3dlite_material_023_layer1),
 	gsSPDisplayList(bitdw_dl_Plane_mesh_layer_1_tri_11),
-	gsSPDisplayList(mat_revert_bitdw_dl_f3dlite_material_023),
+	gsSPDisplayList(mat_revert_bitdw_dl_f3dlite_material_023_layer1),
 	gsSPDisplayList(mat_bitdw_dl_f3dlite_material_025),
 	gsSPDisplayList(bitdw_dl_Plane_mesh_layer_1_tri_12),
 	gsSPDisplayList(mat_revert_bitdw_dl_f3dlite_material_025),

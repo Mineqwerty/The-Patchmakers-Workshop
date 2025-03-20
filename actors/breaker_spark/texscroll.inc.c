@@ -1,6 +1,6 @@
 void scroll_breaker_spark_Plane_009_mesh_layer_5_vtx_0() {
 	int i = 0;
-	int count = 27;
+	int count = 19;
 	int height = 32 * 0x20;
 
 	static int currentY = 0;
@@ -23,6 +23,6 @@ void scroll_breaker_spark_Plane_009_mesh_layer_5_vtx_0() {
 	currentY += deltaY;	timeY += 1;
 }
 
-void scroll_wdw_level_geo_breaker_spark() {
+void scroll_actor_geo_breaker_spark() {
 	scroll_breaker_spark_Plane_009_mesh_layer_5_vtx_0();
 };

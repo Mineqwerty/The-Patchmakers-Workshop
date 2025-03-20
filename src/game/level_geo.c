@@ -220,12 +220,14 @@ Gfx *geo_hide_vtw_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
 Gfx *geo_corr_switch_full_fog_buildings(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
         if (gMarioState->pos[0] > -6040 && gMarioState->pos[0] < 11500 && gMarioState->pos[2] > -9180 && gMarioState->pos[2] < 6930) {
-            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
+            node->next->flags |= GRAPH_RENDER_ACTIVE;
             node->next->next->flags |= GRAPH_RENDER_ACTIVE;
+            node->next->next->next->flags &= ~GRAPH_RENDER_ACTIVE;
         }
         else {
+            node->next->flags &= ~GRAPH_RENDER_ACTIVE;
             node->next->next->flags &= ~GRAPH_RENDER_ACTIVE;
-            node->next->flags |= GRAPH_RENDER_ACTIVE;
+            node->next->next->next->flags |= GRAPH_RENDER_ACTIVE;
         }
     }
     return 0;

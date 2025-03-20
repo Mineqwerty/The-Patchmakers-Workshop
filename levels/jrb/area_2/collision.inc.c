@@ -1,6 +1,5 @@
 Gfx jrb_area_2_collision_groundfog_002_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(162, 162, 162, 255),
@@ -22,8 +21,7 @@ Gfx jrb_area_2_collision_groundfog_002_layer_1[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_groundfog_002_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -33,8 +31,7 @@ Gfx jrb_area_2_collision_mat_revert_jrb_dl_groundfog_002_layer1_area2[] = {
 };
 
 Gfx jrb_area_2_collision_bricksfog_001_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(162, 162, 162, 255),
@@ -56,8 +53,7 @@ Gfx jrb_area_2_collision_bricksfog_001_layer_1[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_bricksfog_001_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -67,7 +63,7 @@ Gfx jrb_area_2_collision_mat_revert_jrb_dl_bricksfog_001_layer1_area2[] = {
 };
 
 Gfx jrb_area_2_collision_lightwindow_002_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -85,7 +81,7 @@ Gfx jrb_area_2_collision_lightwindow_002_layer_1[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_lightwindow_002[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -93,7 +89,7 @@ Gfx jrb_area_2_collision_mat_revert_jrb_dl_lightwindow_002[] = {
 };
 
 Gfx jrb_area_2_collision_f3d_material_021_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -111,7 +107,7 @@ Gfx jrb_area_2_collision_f3d_material_021_layer_1[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_f3d_material_021[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -119,8 +115,7 @@ Gfx jrb_area_2_collision_mat_revert_jrb_dl_f3d_material_021[] = {
 };
 
 Gfx jrb_area_2_collision_aibricks_layer_1[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
 	gsDPSetFogColor(162, 162, 162, 255),
@@ -142,8 +137,7 @@ Gfx jrb_area_2_collision_aibricks_layer_1[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_aibricks_layer1_area2[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_FOG, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -153,7 +147,7 @@ Gfx jrb_area_2_collision_mat_revert_jrb_dl_aibricks_layer1_area2[] = {
 };
 
 Gfx jrb_area_2_collision_literal_light_002_layer_5[] = {
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, PRIMITIVE, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, PRIMITIVE, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -163,7 +157,7 @@ Gfx jrb_area_2_collision_literal_light_002_layer_5[] = {
 };
 
 Gfx jrb_area_2_collision_mat_revert_jrb_dl_literal_light_002[] = {
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),

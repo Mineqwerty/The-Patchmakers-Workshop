@@ -12,7 +12,6 @@
 #define SCROLL_CONDITION(condition) 1
 #endif
 
-
 #include "src/game/texscroll/bob_texscroll.inc.c"
 #include "src/game/texscroll/wf_texscroll.inc.c"
 #include "src/game/texscroll/jrb_texscroll.inc.c"
@@ -33,86 +32,110 @@
 #include "src/game/texscroll/bits_texscroll.inc.c"
 #include "src/game/texscroll/group12_texscroll.inc.c"
 void scroll_textures() {
-	if (gCurrLevelNum != LEVEL_CASTLE) {
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bob_segment_7SegmentRomStart)) {
-		scroll_textures_bob();
-	}
+    if (gCurrLevelNum == LEVEL_BOB) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _bob_segment_7SegmentRomStart)) {
+            scroll_textures_bob();
+        }
+    }
+    if (gCurrLevelNum == LEVEL_WF) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _wf_segment_7SegmentRomStart)) {
+            scroll_textures_wf();
+        }
+    }
+    if (gCurrLevelNum == LEVEL_JRB) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _jrb_segment_7SegmentRomStart)) {
+            scroll_textures_jrb();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_wf_segment_7SegmentRomStart)) {
-		scroll_textures_wf();
-	}
+    if (gCurrLevelNum == LEVEL_CCM) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _ccm_segment_7SegmentRomStart)) {
+            scroll_textures_ccm();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_jrb_segment_7SegmentRomStart)) {
-		scroll_textures_jrb();
-	}
+    if (gCurrLevelNum == LEVEL_BBH) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _bbh_segment_7SegmentRomStart)) {
+            scroll_textures_bbh();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_ccm_segment_7SegmentRomStart)) {
-		scroll_textures_ccm();
-	}
+    if (gCurrLevelNum == LEVEL_SSL) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _ssl_segment_7SegmentRomStart)) {
+            scroll_textures_ssl();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bbh_segment_7SegmentRomStart)) {
-		scroll_textures_bbh();
-	}
+    if (gCurrLevelNum == LEVEL_HMC) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _hmc_segment_7SegmentRomStart)) {
+            scroll_textures_hmc();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x4] == (uintptr_t)_group0_yay0SegmentRomStart)) {
-		scroll_textures_group0();
-	}
+    if (gCurrLevelNum == LEVEL_LLL) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _lll_segment_7SegmentRomStart)) {
+            scroll_textures_lll();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_ssl_segment_7SegmentRomStart)) {
-		scroll_textures_ssl();
-	}
+    if (gCurrLevelNum == LEVEL_DDD) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _ddd_segment_7SegmentRomStart)) {
+            scroll_textures_ddd();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_hmc_segment_7SegmentRomStart)) {
-		scroll_textures_hmc();
-	}
+    if (gCurrLevelNum == LEVEL_SL) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _sl_segment_7SegmentRomStart)) {
+            scroll_textures_sl();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_lll_segment_7SegmentRomStart)) {
-		scroll_textures_lll();
-	}
+    if (gCurrLevelNum == LEVEL_WDW) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _wdw_segment_7SegmentRomStart)) {
+            scroll_textures_wdw();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_ddd_segment_7SegmentRomStart)) {
-		scroll_textures_ddd();
-	}
+    if (gCurrLevelNum == LEVEL_TTM) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _ttm_segment_7SegmentRomStart)) {
+            scroll_textures_ttm();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_sl_segment_7SegmentRomStart)) {
-		scroll_textures_sl();
-	}
+    if (gCurrLevelNum == LEVEL_PSS) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _pss_segment_7SegmentRomStart)) {
+            scroll_textures_pss();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_wdw_segment_7SegmentRomStart)) {
-		scroll_textures_wdw();
-	}
+    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2
+        || gCurrLevelNum == LEVEL_BOWSER_3) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x6] == (uintptr_t) _group3_mio0SegmentRomStart)) {
+            scroll_textures_group3();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_ttm_segment_7SegmentRomStart)) {
-		scroll_textures_ttm();
-	}
+    if (SCROLL_CONDITION(sSegmentROMTable[0x4] == (uintptr_t) _group0_mio0SegmentRomStart)) {
+        scroll_textures_group0();
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_pss_segment_7SegmentRomStart)) {
-		scroll_textures_pss();
-	}
+    if (gCurrLevelNum == LEVEL_BOWSER_3) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _bowser_3_segment_7SegmentRomStart)) {
+            scroll_textures_bowser_3();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x6] == (uintptr_t)_group3_mio0SegmentRomStart)) {
-		scroll_textures_group3();
-	}
+    if (gCurrLevelNum == LEVEL_BITS) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t) _bits_segment_7SegmentRomStart)) {
+            scroll_textures_bits();
+        }
+    }
 
-	if(SCROLL_CONDITION(sSegmentROMTable[0x4] == (uintptr_t)_group0_mio0SegmentRomStart)) {
-		scroll_textures_group0();
-	}
-
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bowser_3_segment_7SegmentRomStart)) {
-		scroll_textures_bowser_3();
-	}
-
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_bits_segment_7SegmentRomStart)) {
-		scroll_textures_bits();
-	}
-
-	if(SCROLL_CONDITION(sSegmentROMTable[0x6] == (uintptr_t)_group12_mio0SegmentRomStart)) {
-		scroll_textures_group12();
-	}
-}
-
-	if(SCROLL_CONDITION(sSegmentROMTable[0x7] == (uintptr_t)_castle_inside_segment_7SegmentRomStart)) {
-		scroll_textures_castle_inside();
-	}
+    if (gCurrLevelNum == LEVEL_CASTLE) {
+        if (SCROLL_CONDITION(sSegmentROMTable[0x7]
+                             == (uintptr_t) _castle_inside_segment_7SegmentRomStart)) {
+            scroll_textures_castle_inside();
+        }
+    }
 
 }

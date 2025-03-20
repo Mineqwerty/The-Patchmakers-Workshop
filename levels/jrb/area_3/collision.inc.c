@@ -1,6 +1,6 @@
 Gfx jrb_area_3_collision_f3dlite_material_008_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPLightColor(LIGHT_1, 0x000000FF),
+	gsSPLightColor(LIGHT_2, 0x000000FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -15,7 +15,7 @@ Gfx jrb_area_3_collision_mat_revert_jrb_dl_f3dlite_material_008[] = {
 };
 
 Gfx jrb_area_3_collision_b_notsafe_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -33,7 +33,7 @@ Gfx jrb_area_3_collision_b_notsafe_layer_1[] = {
 };
 
 Gfx jrb_area_3_collision_mat_revert_jrb_dl_b_notsafe[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -41,7 +41,7 @@ Gfx jrb_area_3_collision_mat_revert_jrb_dl_b_notsafe[] = {
 };
 
 Gfx jrb_area_3_collision_warpa1_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, SHADE_ALPHA, SHADE, 0, 0, 0, 1, COMBINED, 0, SHADE, 0, 0, 0, 0, 1),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -57,7 +57,7 @@ Gfx jrb_area_3_collision_warpa1_layer_1[] = {
 };
 
 Gfx jrb_area_3_collision_mat_revert_jrb_dl_warpa1_layer1[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -66,7 +66,7 @@ Gfx jrb_area_3_collision_mat_revert_jrb_dl_warpa1_layer1[] = {
 };
 
 Gfx jrb_area_3_collision_f3dlite_material_010_layer_4[] = {
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -81,15 +81,15 @@ Gfx jrb_area_3_collision_f3dlite_material_010_layer_4[] = {
 };
 
 Gfx jrb_area_3_collision_mat_revert_jrb_dl_f3dlite_material_010[] = {
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPGeometryMode(0, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx jrb_area_3_collision_f3d_material_022_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPLightColor(LIGHT_1, 0x000000FF),
+	gsSPLightColor(LIGHT_2, 0x000000FF),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -104,7 +104,7 @@ Gfx jrb_area_3_collision_mat_revert_jrb_dl_f3d_material_022[] = {
 };
 
 Gfx jrb_area_3_collision_b_surface_stone_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -122,7 +122,7 @@ Gfx jrb_area_3_collision_b_surface_stone_layer_1[] = {
 };
 
 Gfx jrb_area_3_collision_mat_revert_jrb_dl_b_surface_stone[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),

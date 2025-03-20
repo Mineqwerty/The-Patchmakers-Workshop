@@ -46,7 +46,8 @@ void bhv_spekturr_loop(void) {
                 o->oAction = 1;
                 o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_SPEKTURR];
                 cur_obj_spawn_particles(&sSpekturrEmergeMist);
-                if (gDialogID == -1) {
+                if (o->oBehParams2ndByte == 0 && gDialogID == -1 && 
+                    gDialogBoxState == 0) {
                     create_automatic_dialog_box(39 + gMarioState->dialogStoryNum);
                     gMarioState->dialogStoryNum++;
                     if (gMarioState->dialogStoryNum == 10) {

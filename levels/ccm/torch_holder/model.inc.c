@@ -1,5 +1,5 @@
-Gfx torch_holder__1815404117_ci8_aligner[] = {gsSPEndDisplayList()};
-u8 torch_holder__1815404117_ci8[] = {
+Gfx torch_holder_1815404117_ci8_aligner[] = {gsSPEndDisplayList()};
+u8 torch_holder_1815404117_ci8[] = {
 	0x00, 0x01, 0x02, 0x03, 0x04, 0x03, 0x05, 0x06, 
 	0x07, 0x04, 0x08, 0x09, 0x02, 0x0a, 0x0a, 0x0b, 
 	0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x0d, 0x12, 
@@ -259,8 +259,8 @@ u8 torch_holder__1815404117_ci8[] = {
 	
 };
 
-Gfx torch_holder__1815404117_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 torch_holder__1815404117_ci8_pal_rgba16[] = {
+Gfx torch_holder_1815404117_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 torch_holder_1815404117_pal_rgba16[] = {
 	0x83, 0xdf, 0x73, 0x9d, 0x84, 0x21, 0x94, 0xa5, 
 	0x7b, 0xdf, 0xad, 0x69, 0x9c, 0xe5, 0xad, 0x6b, 
 	0x6b, 0x59, 0x63, 0x17, 0x8c, 0x63, 0x8c, 0xa5, 
@@ -310,50 +310,50 @@ u8 torch_holder__1815404117_ci8_pal_rgba16[] = {
 };
 
 Vtx torch_holder_Circle_004_mesh_layer_1_vtx_0[44] = {
-	{{{43, -18, -25},0, {910, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 175, -50},0, {496, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{43, 175, -25},0, {910, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{0, -18, -50},0, {496, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, 175, -25},0, {82, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-43, -18, -25},0, {82, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, -18, 50},0, {496, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{43, -18, 25},0, {910, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{43, 175, 25},0, {910, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{0, 175, 50},0, {496, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-43, -18, 25},0, {82, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, 175, 25},0, {82, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-43, -18, -25},0, {735, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, -18, 25},0, {257, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, 175, 25},0, {257, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-43, 175, -25},0, {735, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{43, -18, 25},0, {257, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{43, -18, -25},0, {735, 2015},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{43, 175, -25},0, {735, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{43, 175, 25},0, {257, 171},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{43, 175, 25},0, {910, 1184},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{43, 175, -25},0, {910, 707},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{75, 206, -43},0, {1215, 531},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 206, -87},0, {496, 116},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 175, -50},0, {496, 468},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-75, 206, -43},0, {-223, 531},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, 175, -25},0, {82, 707},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{-75, 206, 43},0, {-223, 1361},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-43, 175, 25},0, {82, 1184},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{0, 206, 87},0, {496, 1776},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 175, 50},0, {496, 1423},{0xAC, 0xAC, 0xAC, 0x0}}},
-	{{{75, 206, 43},0, {1215, 1361},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{41, 189, -24},0, {893, 717},{0x1D, 0x12, 0xD, 0xFF}}},
-	{{{75, 206, 43},0, {1215, 1361},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{75, 206, -43},0, {1215, 531},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 189, -48},0, {496, 488},{0x0, 0x0, 0x0, 0xFF}}},
-	{{{0, 206, -87},0, {496, 116},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-41, 189, -24},0, {99, 717},{0x2, 0x2, 0x2, 0xFF}}},
-	{{{-75, 206, -43},0, {-223, 531},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{-41, 189, 24},0, {99, 1175},{0x1, 0x1, 0x1, 0xFF}}},
-	{{{-75, 206, 43},0, {-223, 1361},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{0, 189, 48},0, {496, 1404},{0x1D, 0x11, 0xC, 0xFF}}},
-	{{{0, 206, 87},0, {496, 1776},{0xFF, 0xFF, 0xFF, 0x0}}},
-	{{{41, 189, 24},0, {893, 1175},{0x14, 0xB, 0x7, 0xFF}}},
+	{{ {43, -18, -25}, 0, {910, 2015}, {255, 255, 255, 0} }},
+	{{ {0, 175, -50}, 0, {496, 171}, {172, 172, 172, 0} }},
+	{{ {43, 175, -25}, 0, {910, 171}, {172, 172, 172, 0} }},
+	{{ {0, -18, -50}, 0, {496, 2015}, {255, 255, 255, 0} }},
+	{{ {-43, 175, -25}, 0, {82, 171}, {172, 172, 172, 0} }},
+	{{ {-43, -18, -25}, 0, {82, 2015}, {255, 255, 255, 0} }},
+	{{ {0, -18, 50}, 0, {496, 2015}, {255, 255, 255, 0} }},
+	{{ {43, -18, 25}, 0, {910, 2015}, {255, 255, 255, 0} }},
+	{{ {43, 175, 25}, 0, {910, 171}, {172, 172, 172, 0} }},
+	{{ {0, 175, 50}, 0, {496, 171}, {172, 172, 172, 0} }},
+	{{ {-43, -18, 25}, 0, {82, 2015}, {255, 255, 255, 0} }},
+	{{ {-43, 175, 25}, 0, {82, 171}, {172, 172, 172, 0} }},
+	{{ {-43, -18, -25}, 0, {735, 2015}, {255, 255, 255, 0} }},
+	{{ {-43, -18, 25}, 0, {257, 2015}, {255, 255, 255, 0} }},
+	{{ {-43, 175, 25}, 0, {257, 171}, {172, 172, 172, 0} }},
+	{{ {-43, 175, -25}, 0, {735, 171}, {172, 172, 172, 0} }},
+	{{ {43, -18, 25}, 0, {257, 2015}, {255, 255, 255, 0} }},
+	{{ {43, -18, -25}, 0, {735, 2015}, {255, 255, 255, 0} }},
+	{{ {43, 175, -25}, 0, {735, 171}, {172, 172, 172, 0} }},
+	{{ {43, 175, 25}, 0, {257, 171}, {172, 172, 172, 0} }},
+	{{ {43, 175, 25}, 0, {910, 1184}, {172, 172, 172, 0} }},
+	{{ {43, 175, -25}, 0, {910, 707}, {172, 172, 172, 0} }},
+	{{ {75, 206, -43}, 0, {1215, 531}, {255, 255, 255, 0} }},
+	{{ {0, 206, -87}, 0, {496, 116}, {255, 255, 255, 0} }},
+	{{ {0, 175, -50}, 0, {496, 468}, {172, 172, 172, 0} }},
+	{{ {-75, 206, -43}, 0, {-223, 531}, {255, 255, 255, 0} }},
+	{{ {-43, 175, -25}, 0, {82, 707}, {172, 172, 172, 0} }},
+	{{ {-75, 206, 43}, 0, {-223, 1361}, {255, 255, 255, 0} }},
+	{{ {-43, 175, 25}, 0, {82, 1184}, {172, 172, 172, 0} }},
+	{{ {0, 206, 87}, 0, {496, 1776}, {255, 255, 255, 0} }},
+	{{ {0, 175, 50}, 0, {496, 1423}, {172, 172, 172, 0} }},
+	{{ {75, 206, 43}, 0, {1215, 1361}, {255, 255, 255, 0} }},
+	{{ {41, 189, -24}, 0, {893, 717}, {29, 18, 13, 255} }},
+	{{ {75, 206, 43}, 0, {1215, 1361}, {255, 255, 255, 0} }},
+	{{ {75, 206, -43}, 0, {1215, 531}, {255, 255, 255, 0} }},
+	{{ {0, 189, -48}, 0, {496, 488}, {0, 0, 0, 255} }},
+	{{ {0, 206, -87}, 0, {496, 116}, {255, 255, 255, 0} }},
+	{{ {-41, 189, -24}, 0, {99, 717}, {2, 2, 2, 255} }},
+	{{ {-75, 206, -43}, 0, {-223, 531}, {255, 255, 255, 0} }},
+	{{ {-41, 189, 24}, 0, {99, 1175}, {1, 1, 1, 255} }},
+	{{ {-75, 206, 43}, 0, {-223, 1361}, {255, 255, 255, 0} }},
+	{{ {0, 189, 48}, 0, {496, 1404}, {29, 17, 12, 255} }},
+	{{ {0, 206, 87}, 0, {496, 1776}, {255, 255, 255, 0} }},
+	{{ {41, 189, 24}, 0, {893, 1175}, {20, 11, 7, 255} }},
 };
 
 Gfx torch_holder_Circle_004_mesh_layer_1_tri_0[] = {
@@ -404,50 +404,36 @@ Gfx torch_holder_Circle_004_mesh_layer_1_tri_0[] = {
 };
 
 
-Gfx mat_torch_holder_sink_mud_002_layer1[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
-	gsSPSetGeometryMode(G_FOG),
+Gfx mat_torch_holder_sink_mud_002[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
-	gsDPSetCycleType(G_CYC_2CYCLE),
-	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
-	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
+	gsDPSetAlphaDither(G_AD_NOISE),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, torch_holder__1815404117_ci8_pal_rgba16),
-	gsDPTileSync(),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadSync(),
-	gsDPLoadTLUTCmd(7, 181),
-	gsDPPipeSync(),
-	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, torch_holder__1815404117_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
-	gsDPLoadSync(),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, torch_holder_1815404117_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 181),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, torch_holder_1815404117_ci8),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
-	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 6, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_torch_holder_sink_mud_002_layer1[] = {
-	gsDPPipeSync(),
-	gsSPClearGeometryMode(G_FOG),
+Gfx mat_revert_torch_holder_sink_mud_002[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
-	gsDPSetCycleType(G_CYC_1CYCLE),
-	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+	gsDPPipeSync(),
+	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
 Gfx torch_holder_Circle_004_mesh_layer_1[] = {
-	gsSPDisplayList(mat_torch_holder_sink_mud_002_layer1),
+	gsSPDisplayList(mat_torch_holder_sink_mud_002),
 	gsSPDisplayList(torch_holder_Circle_004_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_torch_holder_sink_mud_002_layer1),
-	gsSPEndDisplayList(),
-};
-
-Gfx torch_holder_material_revert_render_settings[] = {
+	gsSPDisplayList(mat_revert_torch_holder_sink_mud_002),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

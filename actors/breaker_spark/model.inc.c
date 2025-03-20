@@ -140,7 +140,18 @@ u8 breaker_spark_elecspark_pal_rgba16[] = {
 	0xff, 0xa1, 0xff, 0x9d, 0xff, 0x9f, 
 };
 
-Vtx breaker_spark_Plane_009_mesh_layer_5_vtx_0[27] = {
+Vtx breaker_spark_Plane_009_mesh_layer_5_vtx_cull[8] = {
+	{{ {-89, -86, 12}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-89, 67, 12}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-89, 67, -2}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {-89, -86, -2}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {38, -86, 12}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {38, 67, 12}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {38, 67, -2}, 0, {0, 0}, {0, 0, 0, 0} }},
+	{{ {38, -86, -2}, 0, {0, 0}, {0, 0, 0, 0} }},
+};
+
+Vtx breaker_spark_Plane_009_mesh_layer_5_vtx_0[19] = {
 	{{ {-30, -67, -2}, 0, {496, 1008}, {255, 255, 255, 255} }},
 	{{ {-9, -27, 8}, 0, {-16, 693}, {255, 255, 255, 255} }},
 	{{ {-89, -29, -2}, 0, {-16, 1008}, {255, 255, 255, 255} }},
@@ -157,53 +168,32 @@ Vtx breaker_spark_Plane_009_mesh_layer_5_vtx_0[27] = {
 	{{ {30, 38, 10}, 0, {1008, -16}, {255, 255, 255, 255} }},
 	{{ {7, 62, 8}, 0, {496, -16}, {255, 255, 255, 255} }},
 	{{ {-16, 43, -1}, 0, {175, 305}, {255, 255, 255, 255} }},
-	{{ {-16, 43, -1}, 0, {175, 305}, {255, 255, 255, 255} }},
-	{{ {7, 62, 8}, 0, {496, -16}, {255, 255, 255, 255} }},
 	{{ {-1, 55, 12}, 0, {-16, -16}, {255, 255, 255, 255} }},
 	{{ {-51, 67, -1}, 0, {-16, 229}, {255, 255, 255, 255} }},
 	{{ {0, 8, 2}, 0, {-16, 496}, {255, 255, 255, 255} }},
-	{{ {-6, 36, -1}, 0, {496, 317}, {255, 255, 255, 255} }},
-	{{ {10, 3, 2}, 0, {496, 496}, {255, 255, 255, 255} }},
-	{{ {-5, -30, 2}, 0, {116, 628}, {255, 255, 255, 255} }},
-	{{ {-9, -27, 8}, 0, {-16, 693}, {255, 255, 255, 255} }},
-	{{ {1, -30, 2}, 0, {496, 605}, {255, 255, 255, 255} }},
-	{{ {19, -1, 2}, 0, {1008, 496}, {255, 255, 255, 255} }},
 };
 
 Gfx breaker_spark_Plane_009_mesh_layer_5_tri_0[] = {
-	gsSPVertex(breaker_spark_Plane_009_mesh_layer_5_vtx_0 + 0, 16, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(0, 3, 1, 0),
-	gsSP1Triangle(0, 4, 3, 0),
-	gsSP1Triangle(0, 5, 4, 0),
-	gsSP1Triangle(0, 6, 5, 0),
-	gsSP1Triangle(0, 7, 6, 0),
-	gsSP1Triangle(5, 6, 8, 0),
-	gsSP1Triangle(4, 5, 8, 0),
-	gsSP1Triangle(4, 8, 9, 0),
-	gsSP1Triangle(8, 10, 9, 0),
-	gsSP1Triangle(8, 11, 10, 0),
-	gsSP1Triangle(8, 12, 11, 0),
-	gsSP1Triangle(11, 12, 13, 0),
-	gsSP1Triangle(11, 13, 14, 0),
-	gsSP1Triangle(10, 11, 14, 0),
-	gsSP1Triangle(15, 10, 14, 0),
-	gsSPVertex(breaker_spark_Plane_009_mesh_layer_5_vtx_0 + 16, 11, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(3, 0, 2, 0),
-	gsSP1Triangle(4, 0, 3, 0),
-	gsSP1Triangle(4, 5, 0, 0),
-	gsSP1Triangle(4, 6, 5, 0),
-	gsSP1Triangle(7, 6, 4, 0),
-	gsSP1Triangle(8, 7, 4, 0),
-	gsSP1Triangle(7, 9, 6, 0),
-	gsSP1Triangle(4, 6, 10, 0),
+	gsSPVertex(breaker_spark_Plane_009_mesh_layer_5_vtx_0 + 0, 19, 0),
+	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
+	gsSP2Triangles(0, 4, 3, 0, 0, 5, 4, 0),
+	gsSP2Triangles(0, 6, 5, 0, 0, 7, 6, 0),
+	gsSP2Triangles(5, 6, 8, 0, 4, 5, 8, 0),
+	gsSP2Triangles(4, 8, 9, 0, 8, 10, 9, 0),
+	gsSP2Triangles(8, 11, 10, 0, 8, 12, 11, 0),
+	gsSP2Triangles(11, 12, 13, 0, 11, 13, 14, 0),
+	gsSP2Triangles(10, 11, 14, 0, 15, 10, 14, 0),
+	gsSP2Triangles(15, 14, 16, 0, 17, 15, 16, 0),
+	gsSP2Triangles(18, 15, 17, 0, 18, 10, 15, 0),
+	gsSP2Triangles(18, 9, 10, 0, 3, 9, 18, 0),
+	gsSP2Triangles(1, 3, 18, 0, 3, 4, 9, 0),
+	gsSP1Triangle(18, 9, 8, 0),
 	gsSPEndDisplayList(),
 };
 
 
-Gfx mat_breaker_spark_f3dlite_material[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
+Gfx mat_breaker_spark_f3dlite_material_007[] = {
+	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -221,8 +211,8 @@ Gfx mat_breaker_spark_f3dlite_material[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_breaker_spark_f3dlite_material[] = {
-	gsSPSetGeometryMode(G_LIGHTING),
+Gfx mat_revert_breaker_spark_f3dlite_material_007[] = {
+	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetTextureLUT(G_TT_NONE),
@@ -230,9 +220,13 @@ Gfx mat_revert_breaker_spark_f3dlite_material[] = {
 };
 
 Gfx breaker_spark_Plane_009_mesh_layer_5[] = {
-	gsSPDisplayList(mat_breaker_spark_f3dlite_material),
+	gsSPClearGeometryMode(G_LIGHTING),
+	gsSPVertex(breaker_spark_Plane_009_mesh_layer_5_vtx_cull + 0, 8, 0),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPCullDisplayList(0, 7),
+	gsSPDisplayList(mat_breaker_spark_f3dlite_material_007),
 	gsSPDisplayList(breaker_spark_Plane_009_mesh_layer_5_tri_0),
-	gsSPDisplayList(mat_revert_breaker_spark_f3dlite_material),
+	gsSPDisplayList(mat_revert_breaker_spark_f3dlite_material_007),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

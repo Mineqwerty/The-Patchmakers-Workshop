@@ -13,5 +13,5 @@ void scroll_textures_group0() {
 	scroll_actor_geo_miasma_ribbon();
 	scroll_actor_dl_menu_purple_portal();
 	scroll_actor_dl_menu_orange_portal();
-	scroll_wdw_level_geo_breaker_spark();
+	scroll_actor_geo_breaker_spark();
 }
