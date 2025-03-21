@@ -247,8 +247,11 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
         Vec3f portalPos;
         vec3f_set(portalPos, 0, 1065, 12889);
     
-        f32 scale, dist;
-        vec3f_get_lateral_dist(portalPos, gMarioState->pos, &dist);
+        f32 scale = 1.0f;
+        f32 dist = 10000.0f;
+        if (gMarioState) {
+            vec3f_get_lateral_dist(portalPos, gMarioState->pos, &dist);
+        
 
     
 
@@ -258,6 +261,7 @@ Gfx *geo_scale_portal(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
     else {
        scale = 1.0f; 
     }
+}
         ((struct GraphNodeScale *) node->next)->scale = scale;
     }
     return 0;

@@ -373,6 +373,8 @@ void thread3_main(UNUSED void *arg) {
 
     if (!(gEmulator & EMU_CONSOLE)) {
         gBorderHeight = BORDER_HEIGHT_EMULATOR;
+        
+        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
 #ifdef RCVI_HACK
         VI.comRegs.vSync = 525*20;   
         change_vi(&VI, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -382,6 +384,10 @@ void thread3_main(UNUSED void *arg) {
 #endif
     } else {
         gBorderHeight = BORDER_HEIGHT_CONSOLE;
+            osViSetSpecialFeatures(OS_VI_DITHER_FILTER_OFF);
+            osViSetSpecialFeatures(OS_VI_DIVOT_OFF);
+        
+
     }
 #ifdef DEBUG
     gIdleThreadStack[0] = 0;
@@ -507,6 +513,12 @@ void change_vi(OSViMode *mode, int width, int height) {
         mode->fldRegs[0].yScale = ((height * 1024) / 240);
         mode->fldRegs[1].yScale = ((height * 1024) / 240);
     }
+    if (width <= 320 && gIsConsole) {
+        mode->comRegs.xScale = 0x201;
+        mode->comRegs.ctrl &= ~0x100;
+        mode->comRegs.ctrl |= 0x300;
+    }
+
 }
 
 void get_audio_frequency(void) {
@@ -549,19 +561,14 @@ void thread1_idle(UNUSED void *arg) {
     change_vi(&VI, SCREEN_WIDTH, SCREEN_HEIGHT);
     osViSetMode(&VI);
     osViBlack(TRUE);
-    if (gIsConsole) {
-        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_OFF);
-        osViSetSpecialFeatures(OS_VI_DIVOT_OFF);
-    }
-    else {
-        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
-    }
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
     create_thread(&gMainThread, THREAD_3_MAIN, thread3_main, NULL, gThread3Stack + THREAD3_STACK, 100);
     osStartThread(&gMainThread);
 
     osSetThreadPri(NULL, 0);
+
+    
 
     // halt
     while (TRUE) {

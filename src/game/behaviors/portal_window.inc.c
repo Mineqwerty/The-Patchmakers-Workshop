@@ -6,7 +6,8 @@ void bhv_portal_window_loop(void) {
     Vec3f portalPos;
         vec3f_set(portalPos, 0, 1065, 12889);
     
-        f32 scale, scaleY, dist;
+        f32 scale, scaleY;
+        f32 dist = 1000;
         vec3f_get_lateral_dist(&o->oPosVec, gMarioState->pos, &dist);
 
         
