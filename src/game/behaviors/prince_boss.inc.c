@@ -471,6 +471,7 @@ void prince_act_defeated(void) {
                 gMarioState->action = ACT_IDLE;
                 cur_obj_init_animation(PRINCE_ANIM_SUMMON);
                 o->oSubAction++;
+                o->oTimer = 0;
             }
         break;
         case 2:
@@ -485,7 +486,7 @@ void prince_act_defeated(void) {
                 
                 
             }
-            if (o->oTimer == 21) {
+            if (o->oTimer >= 21) {
                 SET_BPARAM1(o->oBehParams, 5);
                 spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
                 obj_mark_for_deletion(o);
