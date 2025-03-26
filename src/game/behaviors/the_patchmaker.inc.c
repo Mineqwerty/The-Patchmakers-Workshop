@@ -1444,6 +1444,7 @@ void bhv_patchmaker_loop(void) {
 
     if (o->oAction != PATCHMAKER_ACT_FIRST_CUTSCENE 
         && o->oAction != PATCHMAKER_ACT_SECOND_CUTSCENE 
+        && o->oAction != PATCHMAKER_ACT_THIRD_CUTSCENE
         && o->oAction != PATCHMAKER_ACT_DEFEATED 
         && o->oPatchmakerAttackedVel > 0) {
             if (find_floor_height(o->oPosX - o->oPatchmakerAttackedVel * sins(o->oPatchmakerAttackedAngle), 

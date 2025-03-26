@@ -26,7 +26,7 @@ void bhv_needle_ball_loop(void) {
     if (o->oBehParams2ndByte == 1) {
         f32 objDist;
         goalObj = cur_obj_find_nearest_object_with_behavior(
-            (gCurrLevelNum == LEVEL_BOWSER_3 ? bhvMantleOfMadness : bhvPatchmaker), &objDist);
+            ((gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1)? bhvMantleOfMadness : bhvPatchmaker), &objDist);
     }
     else {
         goalObj = gMarioState->marioObj;
@@ -51,7 +51,7 @@ void bhv_needle_ball_loop(void) {
     vec3f_get_lateral_dist(&o->oPosVec, &goalObj->oPosVec, &dist);
 
     if (dist < 50 || (gMarioState->curPatch == PATCH_STONE && dist < 150) || o->oHealth <= 0 || o->oTimer > 500) {
-        if (gCurrLevelNum != LEVEL_BOWSER_3) {
+        if (gCurrLevelNum != LEVEL_BOWSER_3 || gCurrAreaIndex != 1) {
             o->parentObj->oPatchmakerNeedleBallObj = NULL;
         }
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);

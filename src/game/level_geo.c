@@ -90,7 +90,7 @@ Gfx *geo_zbuffer_clear(s32 callContext, UNUSED struct GraphNode *node, UNUSED Ma
     Gfx *dl = NULL;
     if (callContext == GEO_CONTEXT_RENDER) {
         Gfx *dlHead = NULL;
-        dl = alloc_display_list(13 * sizeof(*dl));
+        dl = alloc_display_list(14 * sizeof(*dl));
         dlHead = dl;
         gDPPipeSync(dlHead++);
         gDPSetRenderMode(dlHead++, G_RM_NOOP, G_RM_NOOP2);
@@ -108,6 +108,7 @@ Gfx *geo_zbuffer_clear(s32 callContext, UNUSED struct GraphNode *node, UNUSED Ma
                         gPhysicalFramebuffers[sRenderingFramebuffer]);
         gDPSetScissor(dlHead++, G_SC_NON_INTERLACE, 0, gBorderHeight, SCREEN_WIDTH,
                   SCREEN_HEIGHT - gBorderHeight);
+        gDPFullSync(dlHead++);
         gSPEndDisplayList(dlHead++);
     }
     return dl;
