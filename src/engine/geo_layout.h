@@ -70,7 +70,7 @@ void geo_layout_cmd_node_translation_rotation(void);
 void geo_layout_cmd_node_translation(void);
 void geo_layout_cmd_node_rotation(void);
 void geo_layout_cmd_node_scale(void);
-void geo_layout_cmd_node_scale_portal(void);
+void geo_layout_unused_cmd_node_scale_portal(void);
 void geo_layout_cmd_nop2(void);
 void geo_layout_cmd_node_animated_part(void);
 void geo_layout_cmd_node_billboard(void);
