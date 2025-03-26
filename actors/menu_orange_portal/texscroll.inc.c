@@ -32,7 +32,8 @@ void scroll_menu_orange_portal_Plane_019_mesh_vtx_1() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;
+	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_actor_dl_menu_orange_portal() {

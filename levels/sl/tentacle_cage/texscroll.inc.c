@@ -32,7 +32,7 @@ void scroll_tentacle_cage_Circle_006_mesh_layer_4_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_sl_level_geo_tentacle_cage() {

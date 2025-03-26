@@ -32,7 +32,7 @@ void scroll_sl_dl_Circle_mesh_layer_4_vtx_3() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_sl_dl_Plane_001_mesh_layer_1_vtx_0() {
@@ -69,7 +69,7 @@ void scroll_sl_dl_Plane_001_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_sl_dl_Plane_005_mesh_layer_1_vtx_0() {
@@ -106,7 +106,7 @@ void scroll_sl_dl_Plane_005_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_sl() {

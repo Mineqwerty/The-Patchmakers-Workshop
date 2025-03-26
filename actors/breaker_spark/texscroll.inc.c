@@ -20,7 +20,8 @@ void scroll_breaker_spark_Plane_009_mesh_layer_5_vtx_0() {
 	for (i = 0; i < count; i++) {
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentY += deltaY;	timeY += 1;
+	currentY += deltaY;	
+	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_actor_geo_breaker_spark() {
