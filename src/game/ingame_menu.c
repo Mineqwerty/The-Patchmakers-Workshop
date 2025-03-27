@@ -3548,6 +3548,7 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_CANDLELIT_CHAMBER,
     SEQ_MISTRESS_THEME,
     SEQ_HIDDEN_VILLAGE_HOLD,
+    SEQ_DEMONIC_SOLIDS,
     SEQ_VIOLET_TWILIT_WOODS,
     SEQ_THE_FAR_PLANE,
     SEQ_EMPYREAN_ABYSS,
@@ -3606,6 +3607,7 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
     0
 };
 
@@ -3628,6 +3630,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Candlelit Chamber",
     "Tragedy of The Mistress",
     "Hidden Village Hold",
+    "Demonic Solids",
     "Violet Twilit Woods",
     "The Far Plane",
     "Empyrean Abyss",
@@ -3668,6 +3671,8 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "Tori Draws Stuff",
     "ornevelder",
     "CowQuack",
+    "CowQuack",
+    "ornevelder",
     "Tori Draws Stuff",
     "ornevelder",
     "CowQuack",

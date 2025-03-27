@@ -633,6 +633,10 @@ void bhv_fly_in_dice_loop(void) {
         break;
     }
 
+    if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+        o->oAction = 3;
+    }
+
     o->oFaceAngleYaw += 0x300 - 10*o->oBehParams2ndByte;
     
 }
