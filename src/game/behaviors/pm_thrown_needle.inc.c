@@ -56,7 +56,7 @@ void bhv_pm_thrown_needle_loop(void) {
                 cur_obj_play_sound_2(SOUND_TRANSMUTATION_CONE);
             }
 
-            if (o->oTimer == 20 + 20*(gCurrLevelNum == LEVEL_BOWSER_3)) {
+            if (o->oTimer == 20 + 20*(gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1)) {
                 
                 o->oAction  = 2;
             }
@@ -100,7 +100,7 @@ void bhv_pm_thrown_needle_loop(void) {
             o->oPosY = o->parentObj->oPosY;
             o->oPosZ = o->parentObj->oPosZ;
 
-            if (gCurrLevelNum == LEVEL_BOWSER_3) {
+            if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1) {
                 patchmaker = cur_obj_find_nearest_object_with_behavior(bhvMantleOfMadness, &dist);
             }
             else {
@@ -127,7 +127,7 @@ void bhv_pm_thrown_needle_loop(void) {
         break;
         case 5:
         //fling to pm
-            if (gCurrLevelNum == LEVEL_BOWSER_3) {
+            if (gCurrLevelNum == LEVEL_BOWSER_3 && gCurrAreaIndex == 1) {
                 patchmaker = cur_obj_find_nearest_object_with_behavior(bhvMantleOfMadness, &dist);
             }
             else {

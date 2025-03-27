@@ -32,7 +32,7 @@ void scroll_ssl_dl_Circle_mesh_layer_5_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_Circle_mesh_layer_1_vtx_5() {
@@ -69,7 +69,7 @@ void scroll_ssl_dl_Circle_mesh_layer_1_vtx_5() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0() {
@@ -106,7 +106,7 @@ void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_2() {
@@ -143,7 +143,7 @@ void scroll_ssl_dl_Circle_008_mesh_layer_5_vtx_2() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_leaves_room1_mesh_layer_1_vtx_0() {
@@ -180,7 +180,7 @@ void scroll_ssl_dl_leaves_room1_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_room1_other_rooms_mesh_layer_1_vtx_3() {
@@ -217,7 +217,7 @@ void scroll_ssl_dl_room1_other_rooms_mesh_layer_1_vtx_3() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_leaves_room2_mesh_layer_1_vtx_0() {
@@ -254,7 +254,7 @@ void scroll_ssl_dl_leaves_room2_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_room2_col_mesh_layer_1_vtx_5() {
@@ -291,7 +291,7 @@ void scroll_ssl_dl_room2_col_mesh_layer_1_vtx_5() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_leaves_room3_mesh_layer_1_vtx_0() {
@@ -328,7 +328,7 @@ void scroll_ssl_dl_leaves_room3_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_room3_col_mesh_layer_1_vtx_5() {
@@ -365,7 +365,7 @@ void scroll_ssl_dl_room3_col_mesh_layer_1_vtx_5() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_room_3_other_rooms_mesh_layer_5_vtx_0() {
@@ -402,7 +402,7 @@ void scroll_ssl_dl_room_3_other_rooms_mesh_layer_5_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_room_3_other_rooms_mesh_layer_1_vtx_5() {
@@ -439,7 +439,7 @@ void scroll_ssl_dl_room_3_other_rooms_mesh_layer_1_vtx_5() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0() {
@@ -476,7 +476,7 @@ void scroll_ssl_dl_Plane_003_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_ssl_dl_Plane_007_mesh_layer_1_vtx_0() {
@@ -513,7 +513,7 @@ void scroll_ssl_dl_Plane_007_mesh_layer_1_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
 }
 
 void scroll_gfx_mat_ssl_dl_normalwater_layer5_area1() {

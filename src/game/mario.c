@@ -2184,7 +2184,7 @@ void patch_update(struct MarioState *m ) {
         case PATCH_PORTAL:
 
             if (check_no_portal_area()) {
-                if (gPlayer1Controller->buttonPressed & L_TRIG) {
+                if (gPlayer1Controller->buttonPressed & patch_button_input()) {
                     f32 dist;
                     struct Object *lightningSentry = cur_obj_find_nearest_object_with_behavior(bhvLightningSentry, &dist);
                     if (lightningSentry) obj_mark_for_deletion(lightningSentry);
@@ -2192,10 +2192,10 @@ void patch_update(struct MarioState *m ) {
                     m->curPatch = PATCH_NONE;
                 }
             }
-            else if ((gPlayer1Controller->buttonDown & L_TRIG) && check_able_to_use_patch() && gMenuMode == MENU_MODE_NONE) {
+            else if ((gPlayer1Controller->buttonDown & patch_button_input()) && check_able_to_use_patch() && gMenuMode == MENU_MODE_NONE) {
                 gMenuMode = MENU_MODE_PLACING_PORTAL;
             }
-            else if (!(gPlayer1Controller->buttonDown & L_TRIG) && gMenuMode == MENU_MODE_PLACING_PORTAL) {
+            else if (!(gPlayer1Controller->buttonDown & patch_button_input()) && gMenuMode == MENU_MODE_PLACING_PORTAL) {
                 gMenuMode = MENU_MODE_NONE;
                 gSlowdownCount = 0;
 
@@ -2462,7 +2462,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     update_mario_equipped_patch();
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
-
+    gMarioState->numStars = 55;
     if (gMarioState->boostTimer > 0) {
         gMarioState->boostTimer--;
     }

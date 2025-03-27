@@ -38,7 +38,6 @@ const LevelScript level_jrb_entry[] = {
 	JUMP_LINK(script_func_global_15), 
 	LOAD_MODEL_FROM_GEO(MODEL_STONE_TOWER_DOOR, stone_tower_door_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GEAR, stone_gear_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, skybox_test_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_GRAPPLE_STONE, grapple_stone_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_ENEMY_OBELISK, enemy_obelisk_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FORCEFIELD, forcefield_geo), 
@@ -55,41 +54,7 @@ const LevelScript level_jrb_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_7, falling_stone_7_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_SHADOW, falling_stone_shadow_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FORTOGOO, fortogoo_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 end persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo),
 
 	AREA(1, jrb_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),

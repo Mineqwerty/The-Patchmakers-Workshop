@@ -20,7 +20,7 @@ void bhv_lily_pad_loop(void) {
     switch (o->oAction) {
         case 0:
             o->oGravity = 1.6f;
-            if (gMarioState->marioObj->platform == o && gMarioState->equippedPatch == PATCH_BREEZE && gPlayer1Controller->buttonPressed & L_TRIG) {
+            if (gMarioState->marioObj->platform == o && gMarioState->equippedPatch == PATCH_BREEZE && gPlayer1Controller->buttonPressed & patch_button_input()) {
                 o->oAction = 1;
                 o->oVelY = 100.0f;
                 

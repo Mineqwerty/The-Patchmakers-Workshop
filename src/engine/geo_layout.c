@@ -42,8 +42,7 @@ GeoLayoutCommandProc GeoLayoutJumpTable[] = {
     /*GEO_CMD_NODE_SCALE                */ geo_layout_cmd_node_scale,
     /*GEO_CMD_NOP_1E                    */ geo_layout_cmd_nop2,
     /*GEO_CMD_NOP_1F                    */ geo_layout_cmd_nop3,
-    /*GEO_CMD_NODE_CULLING_RADIUS       */ geo_layout_cmd_node_culling_radius,
-    /*GEO_CMD_NODE_SCALE_PORTAL                */ geo_layout_cmd_node_scale_portal,
+    /*GEO_CMD_NODE_CULLING_RADIUS       */ geo_layout_cmd_node_culling_radius
 };
 
 struct GraphNode gObjParentGraphNode;
@@ -546,41 +545,8 @@ void geo_layout_cmd_node_scale(void) {
     gGeoLayoutCommand += 0x08 << CMD_SIZE_SHIFT;
 }
 
-void geo_layout_cmd_node_scale_portal(void) {
+void geo_layout_unused_cmd_node_scale_portal(void) {
     struct GraphNodeScale *graphNode;
-
-    s16 drawingLayer = LAYER_FIRST;
-    s16 params = cur_geo_cmd_u8(0x01);
-
-    Vec3f portalPos;
-    vec3f_set(portalPos, 0, 1065, 12889);
-    
-    f32 scale, dist;
-    vec3f_get_dist(portalPos, gMarioState->pos, &dist);
-
-    
-
-    if (dist < 8000) {
-        scale = 131072.0f - 8*(dist / 400.0f) + 16384.0f;
-        *(volatile int*)0 = 0;
-    }
-    else {
-       scale = 16384.0f; 
-    }
-    
-    void *displayList = NULL;
-
-    if (params & 0x80) {
-        displayList = cur_geo_cmd_ptr(0x08);
-        drawingLayer = params & 0x0F;
-        gGeoLayoutCommand += 4 << CMD_SIZE_SHIFT;
-    }
-
-    graphNode = init_graph_node_scale(gGraphNodePool, NULL, drawingLayer, displayList, scale);
-
-    register_scene_graph_node(&graphNode->node);
-
-    gGeoLayoutCommand += 0x08 << CMD_SIZE_SHIFT;
 }
 
 // 0x1E: No operation
