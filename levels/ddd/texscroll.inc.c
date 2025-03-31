@@ -16,7 +16,16 @@ void scroll_gfx_mat_ddd_dl_housewater_layer6_area2() {
 
 };
 
+void scroll_gfx_mat_ddd_dl_f3dlite_material_049() {
+	Gfx *mat = segmented_to_virtual(mat_ddd_dl_f3dlite_material_049);
+
+	shift_s(mat, 9, PACK_TILESIZE(0, 1));
+	shift_t_down(mat, 9, PACK_TILESIZE(0, 2));
+
+};
+
 void scroll_ddd() {
 	scroll_gfx_mat_ddd_dl_cavewater_001_layer6_area1();
 	scroll_gfx_mat_ddd_dl_housewater_layer6_area2();
+	scroll_gfx_mat_ddd_dl_f3dlite_material_049();
 };

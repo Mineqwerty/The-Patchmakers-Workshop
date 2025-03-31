@@ -756,6 +756,12 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
         gMarioState->onOffState = 1;
     }
+    if (destLevel == LEVEL_PSS && portalID == 0) {
+        gMarioState->patchChildPortalObj = NULL;
+        gMarioState->patchChildSecondaryObj = NULL;
+        gMarioState->portal1Info[0] = NULL;
+        gMarioState->portal2Info[0] = NULL;
+    }
 
     if ((destLevel == LEVEL_BOWSER_1 && gCurrLevelNum == LEVEL_BOWSER_1)
         || (destLevel == LEVEL_BOWSER_2 && gCurrLevelNum == LEVEL_BOWSER_2)

@@ -117,4 +117,6 @@ extern const LevelScript level_ddd_entry[];
 
 #include "levels/ddd/d8_shadow/geo_header.h"
 
+#include "levels/ddd/sky_bully/geo_header.h"
+
 #endif

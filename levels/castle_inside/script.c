@@ -275,7 +275,7 @@ const LevelScript level_castle_inside_entry[] = {
 		TERRAIN(castle_inside_area_3_collision),
 		TERRAIN_MAT_LUT(castle_inside_area_3_collision_materials),
 		MACRO_OBJECTS(castle_inside_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_TITLE_SCREEN),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

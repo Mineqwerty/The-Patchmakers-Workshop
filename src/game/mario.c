@@ -2462,7 +2462,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     update_mario_equipped_patch();
 
     check_special_warp_operation(gMarioState->specialWarpTransitionOperation);
-    gMarioState->numStars = 55;
+    
     if (gMarioState->boostTimer > 0) {
         gMarioState->boostTimer--;
     }

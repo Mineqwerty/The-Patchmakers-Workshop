@@ -53,8 +53,11 @@ const LevelScript level_jrb_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_6, falling_stone_6_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_7, falling_stone_7_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FALLING_STONE_BLOCK_SHADOW, falling_stone_shadow_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_SKYBOX_TEST, skybox_test_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_FORTOGOO, fortogoo_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_grapple_geo), 
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, jrb_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -86,7 +89,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_NONE, 5801, 3452, -8524, 0, -90, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -3483, 142, 1954, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2367, 230, 618, 0, -180, 0, (2 << 16), bhvCoinFormation),
-		OBJECT(MODEL_NONE, -2904, -253, 3193, 0, -180, 0, (2 << 16), bhvCoinFormation),
+		OBJECT(MODEL_NONE, -3028, -253, 3193, 0, -180, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4286, 1453, 4728, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4439, 4070, -7932, 0, -180, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -655, 1698, -9718, 0, -180, 0, (2 << 16), bhvCoinFormation),
@@ -148,6 +151,7 @@ const LevelScript level_jrb_entry[] = {
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -9069, 318, 2004, 0, -180, 0, 0x00000000, bhvRotatingStoneCylinder),
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -9069, 318, 728, 0, -180, 0, (1 << 16), bhvRotatingStoneCylinder),
 		OBJECT(MODEL_ROTATING_STONE_CYLINDER, -10136, 318, 728, 0, -180, 0, (0 << 16), bhvRotatingStoneCylinder),
+		OBJECT(MODEL_SKYBOX_TEST, -117, 641, 112, 0, -180, 0, 0x00000000, bhvBackgroundObject),
 		OBJECT(MODEL_STAR, 11479, 4742, -1502, 0, -180, 0, (14 << 24), bhvStar),
 		OBJECT(MODEL_STAR, -2220, 3482, -11636, 0, 90, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, -11192, 959, -3144, 0, 90, 0, (4 << 24) | (4 << 16), bhvStar),

@@ -71,6 +71,8 @@ const LevelScript level_ssl_entry[] = {
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
+	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, ssl_area_1),
@@ -86,6 +88,14 @@ const LevelScript level_ssl_entry[] = {
 		OBJECT(MODEL_STAR, 10605, 3619, 752, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_STAR, 1663, -4561, -8586, 0, 0, 0, (4 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -10044, 87, -3591, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_BLUE_COIN_SWITCH, 14400, -177, 12992, 0, -26, 0, (16 << 16), bhvBlueCoinSwitch),
+		OBJECT(MODEL_BLUE_COIN, 14841, -128, 11901, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 14147, 323, 11673, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 14147, 1094, 11673, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 14121, 1598, 12560, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 15401, 2122, 11128, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 13761, 694, 8561, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
+		OBJECT(MODEL_BLUE_COIN, 14194, 436, 7060, 0, -26, 0, 0x00000000, bhvHiddenBlueCoin),
 		OBJECT(MODEL_NONE, 5490, 3818, -2975, 0, -64, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 2934, 1944, -12379, 0, -77, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 9876, 1475, -7156, 0, -68, 0, 0x00000000, bhvCoinFormation),

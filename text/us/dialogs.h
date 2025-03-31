@@ -3178,8 +3178,8 @@ That day, Sewnia was born.\n\
 Creating life was an incredible feat, and even\n\
 more surprising were her capabilities.\n\
 @FEFEFEFFShe behaved like a child would, yet\n\
-she could speak perfectly, and some words\n\
-she knew, not even I had heard before.\n\
+she learned incredibly fast, and was\n\
+soon able to speak as elaborately as I.\n\
 @FEFEFEFFI was so morbidly curious about it all.\n\
 No magic had ever created life itself. But...\n\
 She is a living person, and I will treat her as one.\n\
