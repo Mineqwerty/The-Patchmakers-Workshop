@@ -11,6 +11,8 @@ void bhv_pm_credits_manager_loop(void) {
     gMarioState->marioObj->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
     gCamera->cutscene = 1;
     gHudDisplay.flags = HUD_DISPLAY_NONE;
+    gMarioState->equippedPatch = 0;
+    gMarioState->curPatch = 0;
 
     u8 fadeAlpha = (o->oTimer > 120 ?  CLAMP(255 - 255*(f32)(o->oTimer - 120)/30.0f, 1, 255) : CLAMP(255*(f32)(o->oTimer)/30.0f, 1, 255));
 

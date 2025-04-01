@@ -457,6 +457,7 @@ void prince_act_defeated(void) {
         case 0:
             create_dialog_box(DIALOG_PRINCE_DEFEATED);
             cur_obj_init_animation(PRINCE_ANIM_IDLE);
+            
             gMarioState->health = 0x880;
             gMarioState->action = ACT_WAITING_FOR_DIALOG;
             gMarioState->pos[1] = gMarioState->floorHeight;
@@ -469,6 +470,7 @@ void prince_act_defeated(void) {
         case 1:
             if (gDialogID == -1) {
                 gMarioState->action = ACT_IDLE;
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
                 cur_obj_init_animation(PRINCE_ANIM_SUMMON);
                 o->oSubAction++;
                 o->oTimer = 0;
