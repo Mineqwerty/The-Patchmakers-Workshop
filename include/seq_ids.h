@@ -92,6 +92,7 @@ enum SeqId {
     SEQ_SEWNIA_THEME,
     SEQ_BOWSER_TIME,
     SEQ_DEMONIC_SOLIDS,
+    SEQ_AURUMCAEL,
     SEQ_COUNT
 };
 
