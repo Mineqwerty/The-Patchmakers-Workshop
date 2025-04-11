@@ -207,7 +207,7 @@ Gfx *geo_hide_vtw_room(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx
             node->next->flags &= ~GRAPH_RENDER_ACTIVE;
         }
         //in hallway
-        else if (gMarioState->pos[0] < -2520) {
+        else if (gMarioState->pos[0] < -3400) {
             node->next->flags &= ~GRAPH_RENDER_ACTIVE;
         }
         else {
