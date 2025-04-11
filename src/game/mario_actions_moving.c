@@ -769,7 +769,12 @@ void push_or_sidle_wall(struct MarioState *m, Vec3f startPos) {
             m->actionState = ACT_STATE_PUSH_OR_SIDLE_WALL_SIDLING;
             m->actionArg = wallAngle + 0x8000;
             m->marioObj->header.gfx.angle[1] = wallAngle + 0x8000;
-            m->marioObj->header.gfx.angle[2] = find_floor_slope(m, 0x4000);
+            if (m->floor != &gWaterSurfacePseudoFloor) {
+                m->marioObj->header.gfx.angle[2] = find_floor_slope(m, 0x4000);
+            }
+            else {
+                m->marioObj->header.gfx.angle[2] = 0;
+            }
         }
     }
 }

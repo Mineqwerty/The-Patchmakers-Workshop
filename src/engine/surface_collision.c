@@ -689,7 +689,7 @@ struct Surface *find_water_floor_from_list(struct SurfaceNode *surfaceNode, s32 
 
         if (!check_within_bounds_y_norm(x, z, surf)) continue;
 
-        curBottomHeight = get_floor_height_at_location(x, z, surf);;
+        curBottomHeight = get_floor_height_at_location(x, z, surf);
 
         if (curBottomHeight < y + buffer) {
             continue;
@@ -703,6 +703,7 @@ struct Surface *find_water_floor_from_list(struct SurfaceNode *surfaceNode, s32 
     while (topSurfaceNode != NULL) {
         surf = topSurfaceNode->surface;
         topSurfaceNode = topSurfaceNode->next;
+        get_surface_normal_oo(normal, surf);
 
         // skip water tops or wall angled water bottoms
         if (surf->type == SURFACE_NEW_WATER_BOTTOM || absf(normal[1]) < NORMAL_FLOOR_THRESHOLD) continue;
