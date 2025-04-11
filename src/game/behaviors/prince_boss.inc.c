@@ -478,6 +478,7 @@ void prince_act_defeated(void) {
         break;
         case 2:
             if (o->oTimer == 20) {
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
                 for (int i = 0; i < 30; i++) {
                     struct Object *spark = spawn_object_relative(0, random_u16()%500-250, random_u16()%500, random_u16()%500-250, o, MODEL_BREAKER_SPARK, bhvBreakerSpark);
                         spark->oForwardVel = random_u16()%10;
@@ -489,6 +490,7 @@ void prince_act_defeated(void) {
                 
             }
             if (o->oTimer >= 21) {
+                set_camera_mode(gMarioState->area->camera, CAMERA_MODE_8_DIRECTIONS, 1);
                 SET_BPARAM1(o->oBehParams, 5);
                 spawn_default_star(o->oPosX + 300, o->oPosY + 300, o->oPosZ);
                 obj_mark_for_deletion(o);

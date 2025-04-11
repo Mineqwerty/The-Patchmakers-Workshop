@@ -143,16 +143,40 @@ void bhv_pm_credits_manager_loop(void) {
         break;
         case 12:
             print_set_envcolour(255, 255, 255, fadeAlpha);
-            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Beta Testing", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Extensive Feedback", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             
             print_set_envcolour(240, 240, 240, fadeAlpha);
-            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "this will be you in 2025", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "KeyBlader", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
             
             if (o->oTimer == 150) {
                 o->oAction++;
             }
         break;
         case 13:
+            print_set_envcolour(255, 255, 255, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Beta Testing", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            
+            print_set_envcolour(240, 240, 240, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X - 60, SCREEN_CENTER_Y + 20, "arthurc\nCheezepin\nCryogeon\nJakeDower\nJoshTheBosh", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            
+            print_small_text_buffered(SCREEN_CENTER_X + 60, SCREEN_CENTER_Y + 20, "mewde\nornevelder\nRovertronic\ntylersm64\nWoissil", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            
+            if (o->oTimer == 150) {
+                o->oAction++;
+            }
+        break;
+        case 14:
+            print_set_envcolour(255, 255, 255, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Console Testing", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
+            
+            print_set_envcolour(240, 240, 240, fadeAlpha);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "Fazana\nNobbie\nReonu\ns4ys", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            
+            if (o->oTimer == 150) {
+                o->oAction++;
+            }
+        break;
+        case 15:
             print_set_envcolour(255, 255, 255, fadeAlpha);
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Special Thanks", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             
@@ -165,7 +189,7 @@ void bhv_pm_credits_manager_loop(void) {
                 o->oAction++;
             }
         break;
-        case 14:
+        case 16:
             gSpecialHudRender = 3;
         break;
     }

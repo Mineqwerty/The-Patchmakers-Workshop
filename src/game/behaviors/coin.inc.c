@@ -276,7 +276,7 @@ void bhv_coin_formation_loop(void) {
     s32 bitIndex;
     f32 coinDistance = 10000.0f;
 
-    if (gIsConsole) {
+    if (gIsConsole || gCurrLevelNum == LEVEL_WDW || gCurrLevelNum == LEVEL_SSL) {
         coinDistance = COIN_FORMATION_DISTANCE;
     }
 

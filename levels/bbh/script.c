@@ -91,7 +91,6 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, 7282, 3546, -1400, 0, 100, 0, 0x00000000, bhvFarPlaneBoostPanel),
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, 5528, 2197, 3527, 0, -90, 0, 0x00000000, bhvFarPlaneBoostPanel),
 		OBJECT(MODEL_FAR_PLANE_BOOST_PANEL, -1574, 2197, 3527, 0, -90, 0, 0x00000000, bhvFarPlaneBoostPanel),
-		OBJECT(MODEL_BOX_BASKET, -12037, -4894, 9394, 0, 0, 0, 0x00000000, bhvBoxBasket),
 		OBJECT(MODEL_NONE, -399, 2340, 6456, 0, 0, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, -15176, 2156, -8653, 0, 0, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 9520, 2319, 5137, 0, 0, 0, (2 << 16), bhvCoinFormation),
