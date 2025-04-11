@@ -1773,6 +1773,13 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         focus[1] = (sMarioCamState->pos[1] + (secondFocus[1])) / 2.f + 125.f;
         focus[2] = (sMarioCamState->pos[2] + (secondFocus[2])) / 2.f;
     }
+    else if (gCurrLevelNum == LEVEL_CCM) {
+        // Set the camera focus to the average of Mario and secondFocus
+        focus[0] = (sMarioCamState->pos[0] + (secondFocus[0])) / 2.f;
+        focus[1] = (sMarioCamState->pos[1] + (secondFocus[1])) / 2.f + 125.f;
+        focus[2] = (sMarioCamState->pos[2] + (secondFocus[2])) / 2.f;
+    }
+
     else {
         // Set the camera focus to the average of Mario and secondFocus
         focus[0] = (sMarioCamState->pos[0] + (secondFocus[0]/2.0f)) / 2.f;
@@ -1833,19 +1840,20 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     }
     else if (gCurrLevelNum == LEVEL_CCM) {
 
-        if (lateralDist < 500) {
+        if (lateralDist < 1000) {
             Vec3f radiusOffsetPos;
-            radiusOffsetPos[0] = 500*sins(angleDiff);
-            radiusOffsetPos[1] = gMarioState->pos[1];
-            radiusOffsetPos[2] = 500*coss(angleDiff);
+            //radiusOffsetPos[0] = 500*sins(angleDiff);
+            //radiusOffsetPos[1] = gMarioState->pos[1];
+            //radiusOffsetPos[2] = 500*coss(angleDiff);
 
-            approach_camera_x(c, radiusOffsetPos[0] + (3000 * -sins(angleDiff)), 200.0f);
-            approach_camera_z(c, radiusOffsetPos[2] + (3000 * -coss(angleDiff)), 200.0f);
+            //approach_camera_x(c, radiusOffsetPos[0] + (3000 * -sins(angleDiff)), 200.0f);
+            //approach_camera_z(c, radiusOffsetPos[2] + (3000 * -coss(angleDiff)), 200.0f);
+
+            secondFocus[1] -= 0.15f * (1000 - lateralDist);
         }
-        else {
-            approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
-            approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
-        }
+        approach_camera_x(c, gMarioState->pos[0] + (3000 * -sins(angleDiff)), 200.0f);
+        approach_camera_z(c, gMarioState->pos[2] + (3000 * -coss(angleDiff)), 200.0f);
+        
         focusDistance += yaw;
     }
     else if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2 || gCurrLevelNum == LEVEL_BOWSER_3) {
@@ -3393,6 +3401,10 @@ void handle_course_volumes(struct Camera *c) {
                         gMarioState->area = gCurrentArea;
                         
                         gMarioState->area->camera->yaw = cameraAngle;
+                        if (gMarioState->equippedPatch == PATCH_HALO || gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
+                            gMarioState->patchChildObj = NULL;
+                            gMarioState->updatePatch = 1;
+                        }
                         struct Surface *floor;
                         f32 floorHeight = find_floor(gMarioState->pos[0], gMarioState->pos[1], gMarioState->pos[2], &floor);
                         

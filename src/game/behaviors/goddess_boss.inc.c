@@ -50,6 +50,7 @@ static struct ObjectHitbox sGoddessSpearHitbox = {
 };
 
 void goddess_act_idle_flight(void) {
+    gSecondCameraFocus = o;
     cur_obj_init_animation(0);
     o->oFlags |= OBJ_FLAG_NEW_DAMAGE_SYSTEM;
     gCamera->controlBossCameraYaw = 1;

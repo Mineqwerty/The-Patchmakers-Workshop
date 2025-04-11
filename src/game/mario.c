@@ -2299,6 +2299,10 @@ void late_patch_update(struct MarioState *m ) {
                         gMarioState->area = gCurrentArea;
                         
                         gMarioState->area->camera->yaw = cameraAngle;
+                        if (gMarioState->equippedPatch == PATCH_HALO || gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
+                            gMarioState->patchChildObj = NULL;
+                            gMarioState->updatePatch = 1;
+                        }
                 }
             }
         break;

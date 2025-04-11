@@ -670,9 +670,9 @@ void check_instant_warp(void) {
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
 
-                if (gMarioState->equippedPatch == PATCH_HALO) {
-                gMarioState->patchChildObj = NULL;
-                gMarioState->updatePatch = 1;
+                if (gMarioState->equippedPatch == PATCH_HALO || gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
+                    gMarioState->patchChildObj = NULL;
+                    gMarioState->updatePatch = 1;
                 }
 
                 warp_camera(warp->displacement[0], warp->displacement[1], warp->displacement[2]);

@@ -135,7 +135,7 @@ const LevelScript level_ddd_entry[] = {
 		OBJECT(MODEL_STAR, -3228, 4854, -6392, 0, -180, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 1168, 552, 3974, 0, -180, 0, (2 << 24) | (8 << 16), bhvHiddenRedCoinStar),
 		OBJECT(MODEL_STRONGNUT, -2575, 303, 10033, 0, 168, 0, 0x00000000, bhvStrongnut),
-		OBJECT(MODEL_NONE, -7945, 303, -12252, 0, 172, 0, (50 << 24) | (12 << 16), bhvInstantActiveWarp),
+		OBJECT(MODEL_NONE, -7945, 303, -12252, 0, -8, 0, (50 << 24) | (12 << 16), bhvInstantActiveWarp),
 		OBJECT(MODEL_NONE, -8419, 303, 14445, 0, 172, 0, (50 << 24) | (13 << 16), bhvInstantActiveWarp),
 		TERRAIN(ddd_area_1_collision),
 		TERRAIN_MAT_LUT(ddd_area_1_collision_materials),

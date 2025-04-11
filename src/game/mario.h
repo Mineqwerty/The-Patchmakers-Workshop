@@ -57,6 +57,7 @@ void init_mario_from_save_file(void);
 void common_patch_cancel(struct MarioState *m);
 void check_mario_floor_checkpoint(struct MarioState *m);
 void check_mario_floor_checkpoint_breeze(struct MarioState *m);
+void spawn_initial_patch_object(struct MarioState *m );
 u32 patch_button_input(void);
 
 #endif // MARIO_H

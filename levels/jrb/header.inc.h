@@ -96,7 +96,7 @@ extern Vtx jrb_dl_Plane_003_mesh_layer_1_vtx_18[8];
 extern Gfx jrb_dl_Plane_003_mesh_layer_1_tri_18[];
 extern Vtx jrb_dl_Plane_003_mesh_layer_1_vtx_19[333];
 extern Gfx jrb_dl_Plane_003_mesh_layer_1_tri_19[];
-extern Vtx jrb_dl_Plane_003_mesh_layer_1_vtx_20[571];
+extern Vtx jrb_dl_Plane_003_mesh_layer_1_vtx_20[575];
 extern Gfx jrb_dl_Plane_003_mesh_layer_1_tri_20[];
 extern Vtx jrb_dl_Plane_003_mesh_layer_1_vtx_21[6];
 extern Gfx jrb_dl_Plane_003_mesh_layer_1_tri_21[];

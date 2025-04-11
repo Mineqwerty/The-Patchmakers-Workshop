@@ -2272,6 +2272,10 @@ void check_gss_cloud_warp(struct MarioState *m) {
                     break;
                 }
             }
+            else if (gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
+                gMarioState->patchChildObj = NULL;
+                gMarioState->updatePatch = 1;
+            }
                     
                     
         }

@@ -85,8 +85,7 @@ Gfx ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_050[] = {
 };
 
 Gfx ddd_area_5_collision_warp_a4_layer_1[] = {
-    gsSPLightColor(LIGHT_1, 0xff),
-    gsSPLightColor(LIGHT_2, 0xff),
+	gsSPSetLights1(ddd_dl_warp_a4_lights),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
