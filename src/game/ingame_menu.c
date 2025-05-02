@@ -3527,7 +3527,7 @@ void render_pause_screen_felt() {
     
 }
 
-#define NUM_MENU_SONGS 37
+#define NUM_MENU_SONGS 42
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -3542,6 +3542,7 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_GOLD_SOAKED_SKY,
     SEQ_STREAMED_CHAMBER,
     SEQ_AURUMCAEL,
+    SEQ_WORKSHOP_STAGE,
     SEQ_PATCHMAKER_THEME,
     SEQ_HUB_SECOND,
     SEQ_PATCH_CHALLENGE,
@@ -3551,8 +3552,10 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_HIDDEN_VILLAGE_HOLD,
     SEQ_DEMONIC_SOLIDS,
     SEQ_VIOLET_TWILIT_WOODS,
+    SEQ_BOWSER_TIME,
     SEQ_THE_FAR_PLANE,
     SEQ_EMPYREAN_ABYSS,
+    SEQ_XODORAP,
     SEQ_CITY_OF_RECONSTRUCTED_RUIN,
     SEQ_TIMELESS_SHRINE,
     SEQ_EVENT_PIRANHA_PLANT,
@@ -3587,8 +3590,11 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
     (1 <<  0) | (1 <<  1),
     (1 <<  0) | (1 <<  1) | (1 << 2),
+    0,
+    0,
     0,
     0,
     0,
@@ -3626,6 +3632,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Gold Soaked Sky",
     "Ambience of Celestials",
     "Aurumcael",
+    "Deep in the Workshop",
     "The Patchmaker",
     "Workshop - Wonder",
     "Let's See What You've Got!",
@@ -3635,8 +3642,10 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Hidden Village Hold",
     "Demonic Solids",
     "Violet Twilit Woods",
+    "It's Bowser Time!"
     "The Far Plane",
     "Empyrean Abyss",
+    "The Deep End",
     "City of Reconstructed Ruin",
     "Timeless Shrine",
     "Map - Thorn Thicket Cliffs",
@@ -3668,6 +3677,7 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "CowQuack",
     "ornevelder",
+    "ornevelder",
     //PM Theme
     "ornevelder",
     "ornevelder",
@@ -3679,7 +3689,9 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "Tori Draws Stuff",
     "ornevelder",
+    "ornevelder",
     "CowQuack",
+    "ornevelder",
     "CowQuack",
     "CowQuack",
     "CowQuack\nornevelder",

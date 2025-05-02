@@ -93,6 +93,7 @@ enum SeqId {
     SEQ_BOWSER_TIME,
     SEQ_DEMONIC_SOLIDS,
     SEQ_AURUMCAEL,
+    SEQ_XODORAP,
     SEQ_COUNT
 };
 
