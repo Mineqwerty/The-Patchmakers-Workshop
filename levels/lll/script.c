@@ -344,7 +344,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_CLC_DOOR, 100, 422, 764, 0, -180, 0, (1 << 24) | (14 << 16), bhvClcDoorWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvMistressRoomManager),
 		OBJECT(MODEL_MISTRESS, 581, 550, -1207, 0, -90, 0, 0x00000000, bhvMistress),
-		OBJECT(MODEL_PHANTASMAID, 429, 421, -970, 0, 132, 0, (36 << 16), bhvGenericNPC),
+		OBJECT(MODEL_PHANTASMAID, 429, 421, -970, 0, 132, 0, (DIALOG_126 << 16), bhvGenericNPC),
 		TERRAIN(lll_area_3_collision),
 		TERRAIN_MAT_LUT(lll_area_3_collision_materials),
 		MACRO_OBJECTS(lll_area_3_macro_objs),

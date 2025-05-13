@@ -100,6 +100,16 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "4A_custom_patchmaker_breaking_point"
+        },
+        "inst15": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "bowsertime_L"
+        },
+        "inst16": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "bowsertime_R"
         }
     },
     "instrument_list": [
@@ -117,6 +127,8 @@
         "inst11",
         "inst12",
         "inst13",
-        "inst14"
+        "inst14",
+        "inst15",
+        "inst16"
     ]
 }

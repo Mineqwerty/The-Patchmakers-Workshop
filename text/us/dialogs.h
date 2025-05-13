@@ -1427,9 +1427,9 @@ the realm of betweens...\n\
 You now have access to The Brink."))
 
 DEFINE_DIALOG(DIALOG_126, 2, 3, 30, 200, _("\
-Up: Black Hole\n\
-Right: Work Elevator\n\
-/// Hazy Maze"))
+...Please, Mario.\n\
+Find somebody that can\n\
+eventually save her."))
 
 DEFINE_DIALOG(DIALOG_127, 3, 4, 30, 200, _("\
 Underground Lake\n\

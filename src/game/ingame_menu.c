@@ -3642,7 +3642,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Hidden Village Hold",
     "Demonic Solids",
     "Violet Twilit Woods",
-    "It's Bowser Time!"
+    "It's Bowser Time!",
     "The Far Plane",
     "Empyrean Abyss",
     "The Deep End",
