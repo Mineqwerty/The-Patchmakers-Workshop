@@ -745,7 +745,7 @@ static void level_cmd_show_dialog(void) {
 }
 
 static void level_cmd_set_music(void) {
-    if (0 && sCurrAreaIndex != -1) {
+    if (sCurrAreaIndex != -1) {
         gAreas[sCurrAreaIndex].musicParam = CMD_GET(s16, 2);
 #ifdef BETTER_REVERB
         if (gEmulator & EMU_CONSOLE)

@@ -3326,7 +3326,7 @@ finally realize what a BOSS I am! Bwahaha!"))
 
 DEFINE_DIALOG(DIALOG_BOWSER_NPC_AUTOMATON, 1, 3, 30, 200, _("\
 @FF0202FFThis room smells like an old grandma.\n\
-I bet its that weird looking robot...\n\
+I bet it's that weird looking robot...\n\
 moving... lady thing on that giant music box.\n\
 @FF0202FF...What? It's called an automaton?\n\
 I didn't ask, pasta-brain!\n\

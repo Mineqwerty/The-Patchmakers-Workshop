@@ -307,7 +307,7 @@ void patchmaker_set_boss_cam(void) {
 }
 
 void patchmaker_fight_start(void) {
-    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL), 0);
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_PATCHMAKER_FIGHT), 0);
     o->oAction = PATCHMAKER_ACT_NEEDLE_STORM;
                 gBossMaxHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);
                 gBossHealth = (PATCHMAKER_SECOND_FIGHT ? PATCHMAKER_2_MAX_HEALTH : PATCHMAKER_1_MAX_HEALTH);

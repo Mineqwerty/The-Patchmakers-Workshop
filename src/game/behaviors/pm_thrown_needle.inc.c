@@ -16,8 +16,8 @@ static struct ObjectHitbox sPMGiantNeedleHitbox = {
     /* damageOrCoinValue: */ 4,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 140,
-    /* height:            */ 400,
+    /* radius:            */ 40,
+    /* height:            */ 100,
     /* hurtboxRadius:     */ 0,
     /* hurtboxHeight:     */ 0,
 };

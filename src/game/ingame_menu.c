@@ -3527,7 +3527,7 @@ void render_pause_screen_felt() {
     
 }
 
-#define NUM_MENU_SONGS 42
+#define NUM_MENU_SONGS 43
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -3544,6 +3544,7 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_AURUMCAEL,
     SEQ_WORKSHOP_STAGE,
     SEQ_PATCHMAKER_THEME,
+    SEQ_PATCHMAKER_FIGHT,
     SEQ_HUB_SECOND,
     SEQ_PATCH_CHALLENGE,
     SEQ_SUBTERRANEAN_SEAWAY,
@@ -3585,6 +3586,7 @@ s16 songVersions[NUM_MENU_SONGS] = {
     (1 <<  0) | (1 <<  1),
     0,
     (1 <<  0) | (1 <<  1),
+    0,
     0,
     0,
     0,
@@ -3634,6 +3636,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Aurumcael",
     "Deep in the Workshop",
     "The Patchmaker",
+    "Baleful Effigy of the Madness' Cause",
     "Workshop - Wonder",
     "Let's See What You've Got!",
     "Subterranean Seaway",
@@ -3680,6 +3683,7 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     //PM Theme
     "ornevelder",
+    "CowQuack",
     "ornevelder",
     "ornevelder",
     "Tori Draws Stuff",

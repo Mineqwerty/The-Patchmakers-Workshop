@@ -110,6 +110,16 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "bowsertime_R"
+        },
+        "inst17": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "pm_L"
+        },
+        "inst18": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "pm_R"
         }
     },
     "instrument_list": [
@@ -129,6 +139,8 @@
         "inst13",
         "inst14",
         "inst15",
-        "inst16"
+        "inst16",
+        "inst17",
+        "inst18"
     ]
 }

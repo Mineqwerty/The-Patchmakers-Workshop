@@ -18,7 +18,7 @@
  * Enables a comprehensive standalone profiler. Automatically enabled by PUPPYPRINT_DEBUG.
  * If not using PUPPYPRINT_DEBUG, press L + D-Pad Up to toggle the profiler.
  */
-#define USE_PROFILER
+//#define USE_PROFILER
 
 /**
  * -- TEST LEVEL --
@@ -57,7 +57,7 @@
  * Visual debug enables some collision visuals. Tapping Right on the D-pad will cycle between visual hitboxes, visual surfaces, both, and neither.
  * If puppyprint is enabled, then this can be cycled only while the screen is active.
  */
-#define VISUAL_DEBUG
+//#define VISUAL_DEBUG
 
 /**
  * Opens all courses and doors. Used for debugging purposes to unlock all content.

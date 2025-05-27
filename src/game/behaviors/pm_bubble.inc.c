@@ -34,7 +34,7 @@ void bhv_pm_bubble_loop(void) {
     elastic_approach(&o->oPotogooApproachXZ, &o->oPotogooVelXZ, 1.0f, 0.1f, 0.3f);
     cur_obj_scale(o->oPotogooApproachXZ);
 
-    if (o->oTimer == 240 || o->oInteractStatus != 0) {
+    if (gCurCutscene != -1 || o->oTimer == 240 || o->oInteractStatus != 0) {
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         obj_mark_for_deletion(o);
     }
