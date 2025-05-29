@@ -276,5 +276,11 @@
     ],
     "54_patchmaker_fight": [
         "streamed_audio"
+    ],
+    "55_final": [
+        "streamed_audio"
+    ],
+    "56_credits": [
+        "streamed_audio"
     ]
 }

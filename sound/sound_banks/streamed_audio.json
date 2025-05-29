@@ -120,6 +120,26 @@
             "release_rate": 10,
             "envelope": "envelope",
             "sound": "pm_R"
+        },
+        "inst19": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "final_L"
+        },
+        "inst20": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "final_R"
+        },
+        "inst21": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "credits_L"
+        },
+        "inst22": {
+            "release_rate": 10,
+            "envelope": "envelope",
+            "sound": "credits_R"
         }
     },
     "instrument_list": [
@@ -141,6 +161,10 @@
         "inst15",
         "inst16",
         "inst17",
-        "inst18"
+        "inst18",
+        "inst19",
+        "inst20",
+        "inst21",
+        "inst22"
     ]
 }

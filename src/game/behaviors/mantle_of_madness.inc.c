@@ -601,9 +601,10 @@ void mantle_of_madness_act_closing_dialogue(void) {
             if (o->oTimer >= 5) {
                 gDialogID = -1;
                 create_dialog_box(DIALOG_PATCHMAKER_DEPARTURE);
-                stop_background_music(SEQUENCE_ARGS(4, SEQ_LEVEL_BOSS_KOOPA_FINAL));
+                stop_background_music(SEQUENCE_ARGS(4, SEQ_FINAL_FIGHT));
                 stop_background_music(SEQUENCE_ARGS(4, SEQ_PATCHMAKER_THEME));
                 stop_background_music(SEQUENCE_ARGS(4, SEQ_STREAMED_MANTLE_INTRO));
+                save_file_set_collected_song(gCurrSaveFileNum-1, CLAMP(SEQ_CREDITS, 0, 127));
                 o->oSubAction++;
             }
         break;

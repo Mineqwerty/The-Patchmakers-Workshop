@@ -57,7 +57,7 @@ const LevelScript level_new_file_select_entry[] = {
 		TERRAIN(new_file_select_area_2_collision),
 		TERRAIN_MAT_LUT(new_file_select_area_2_collision_materials),
 		MACRO_OBJECTS(new_file_select_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_HUB_SECOND),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_CREDITS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

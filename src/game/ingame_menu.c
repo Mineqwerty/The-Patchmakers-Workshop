@@ -3527,7 +3527,7 @@ void render_pause_screen_felt() {
     
 }
 
-#define NUM_MENU_SONGS 43
+#define NUM_MENU_SONGS 46
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -3559,6 +3559,9 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_XODORAP,
     SEQ_CITY_OF_RECONSTRUCTED_RUIN,
     SEQ_TIMELESS_SHRINE,
+    SEQ_STREAMED_THE_BRINK,
+    SEQ_FINAL_FIGHT,
+    SEQ_CREDITS,
     SEQ_EVENT_PIRANHA_PLANT,
     SEQ_RAINY_DAY_ROADSIDE_SELECT,
     SEQ_STONE_TERRACE_CITY_SELECT,
@@ -3618,6 +3621,9 @@ s16 songVersions[NUM_MENU_SONGS] = {
     0,
     0,
     0,
+    0,
+    0,
+    0,
     0
 };
 
@@ -3651,6 +3657,9 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "The Deep End",
     "City of Reconstructed Ruin",
     "Timeless Shrine",
+    "The Brink",
+    "Bitter Elegy of a Man Who Played God",
+    "Thank You.",
     "Map - Thorn Thicket Cliffs",
     "Map - Rainy Day Roadside",
     "Map - Stone Terrace City",
@@ -3698,6 +3707,9 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "CowQuack",
     "CowQuack",
+    "CowQuack",
+    "ornevelder",
+    "ornevelder",
     "CowQuack\nornevelder",
     "ornevelder",
     "ornevelder",

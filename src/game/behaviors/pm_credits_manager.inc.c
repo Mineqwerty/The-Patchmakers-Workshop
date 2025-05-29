@@ -186,6 +186,7 @@ void bhv_pm_credits_manager_loop(void) {
             if (o->oTimer == 150) {
                 
                 play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 90, 0, 0, 0);
+                save_file_do_save(gCurrSaveFileNum - 1);
                 o->oAction++;
             }
         break;
