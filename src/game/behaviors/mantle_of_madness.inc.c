@@ -165,10 +165,6 @@ void mantle_of_madness_phase_update(void) {
 
 void mantle_of_madness_act_idle(void) {
 
-    if (o->oHealth > 160) {
-        o->oHealth = 160;
-    }
-
     u16 nextActionTime = 180;
     if (o->oMantleOfMadnessRageLevel >= 1) {
         nextActionTime = 150;

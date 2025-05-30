@@ -19,7 +19,7 @@ Gfx hmc_area_2_collision_underwater_stained_002_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_2_collision_mat_revert_hmc_dl_underwater_stained_002_layer1[] = {
+Gfx hmc_area_2_collision_underwater_stained_002_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -42,7 +42,7 @@ Gfx hmc_area_2_collision_forcestone_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_2_collision_mat_revert_hmc_dl_forcestone_001[] = {
+Gfx hmc_area_2_collision_forcestone_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -63,7 +63,7 @@ Gfx hmc_area_2_collision_f3dlite_material_009_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_2_collision_mat_revert_hmc_dl_f3dlite_material_009[] = {
+Gfx hmc_area_2_collision_f3dlite_material_009_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -95,7 +95,7 @@ Gfx hmc_area_2_collision_stained_walls_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_2_collision_mat_revert_hmc_dl_stained_walls_001_layer1[] = {
+Gfx hmc_area_2_collision_stained_walls_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -107,7 +107,7 @@ Gfx hmc_area_2_collision_mat_revert_hmc_dl_stained_walls_001_layer1[] = {
 
 Gfx hmc_area_2_collision_cavewater_001_layer_6[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -130,9 +130,9 @@ Gfx hmc_area_2_collision_cavewater_001_layer_6[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_2_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
+Gfx hmc_area_2_collision_cavewater_001_layer_6_revert[] = {
 	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -142,15 +142,15 @@ Gfx hmc_area_2_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
 
 const Gfx* hmc_area_2_collision_materials[] = {
 	&hmc_area_2_collision_underwater_stained_002_layer_1,
-	&hmc_area_2_collision_mat_revert_hmc_dl_underwater_stained_002_layer1,
+	&hmc_area_2_collision_underwater_stained_002_layer_1_revert,
 	&hmc_area_2_collision_forcestone_001_layer_1,
-	&hmc_area_2_collision_mat_revert_hmc_dl_forcestone_001,
+	&hmc_area_2_collision_forcestone_001_layer_1_revert,
 	&hmc_area_2_collision_f3dlite_material_009_layer_1,
-	&hmc_area_2_collision_mat_revert_hmc_dl_f3dlite_material_009,
+	&hmc_area_2_collision_f3dlite_material_009_layer_1_revert,
 	&hmc_area_2_collision_stained_walls_001_layer_1,
-	&hmc_area_2_collision_mat_revert_hmc_dl_stained_walls_001_layer1,
+	&hmc_area_2_collision_stained_walls_001_layer_1_revert,
 	&hmc_area_2_collision_cavewater_001_layer_6,
-	&hmc_area_2_collision_mat_revert_hmc_dl_cavewater_001_layer6_area1,
+	&hmc_area_2_collision_cavewater_001_layer_6_revert,
 };
 
 const Collision hmc_area_2_collision[] = {

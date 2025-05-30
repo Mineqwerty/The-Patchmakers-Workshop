@@ -32,7 +32,7 @@ void scroll_pss_dl_Cube_001_mesh_layer_5_vtx_0() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
 }
 
 void scroll_pss_dl_Cube_012_mesh_layer_5_vtx_3() {
@@ -69,7 +69,7 @@ void scroll_pss_dl_Cube_012_mesh_layer_5_vtx_3() {
 		vertices[i].n.tc[0] += deltaX;
 		vertices[i].n.tc[1] += deltaY;
 	}
-	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY = (timeY + 1) % 65530;
+	currentX += deltaX;	timeX += 1;	currentY += deltaY;	timeY += 1;
 }
 
 void scroll_gfx_mat_pss_dl_weird_layer1() {

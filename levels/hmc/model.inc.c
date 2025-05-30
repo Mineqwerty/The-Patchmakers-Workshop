@@ -21122,7 +21122,7 @@ Gfx mat_revert_hmc_dl_geyser_noslip_layer1[] = {
 
 Gfx mat_hmc_dl_cavewater_001_layer6_area1[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -21147,7 +21147,7 @@ Gfx mat_hmc_dl_cavewater_001_layer6_area1[] = {
 
 Gfx mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
 	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -21156,7 +21156,7 @@ Gfx mat_revert_hmc_dl_cavewater_001_layer6_area1[] = {
 };
 
 Gfx mat_hmc_dl_waterplant_002[] = {
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -21171,14 +21171,14 @@ Gfx mat_hmc_dl_waterplant_002[] = {
 };
 
 Gfx mat_revert_hmc_dl_waterplant_002[] = {
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_hmc_dl_waterplant_003[] = {
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -21193,7 +21193,7 @@ Gfx mat_hmc_dl_waterplant_003[] = {
 };
 
 Gfx mat_revert_hmc_dl_waterplant_003[] = {
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -21307,7 +21307,7 @@ Gfx mat_revert_hmc_dl_f3dlite_material_010[] = {
 
 Gfx mat_hmc_dl_cozieswater_001_layer5_area3[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -21332,7 +21332,7 @@ Gfx mat_hmc_dl_cozieswater_001_layer5_area3[] = {
 
 Gfx mat_revert_hmc_dl_cozieswater_001_layer5_area3[] = {
 	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
@@ -21342,7 +21342,7 @@ Gfx mat_revert_hmc_dl_cozieswater_001_layer5_area3[] = {
 
 Gfx mat_hmc_dl_cozieswater_002_layer5_area3[] = {
 	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -21367,7 +21367,7 @@ Gfx mat_hmc_dl_cozieswater_002_layer5_area3[] = {
 
 Gfx mat_revert_hmc_dl_cozieswater_002_layer5_area3[] = {
 	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),

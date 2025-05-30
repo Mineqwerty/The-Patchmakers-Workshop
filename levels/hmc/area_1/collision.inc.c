@@ -16,7 +16,7 @@ Gfx hmc_area_1_collision_limestone_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_limestone_001[] = {
+Gfx hmc_area_1_collision_limestone_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -46,7 +46,7 @@ Gfx hmc_area_1_collision_additive_coral_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_additive_coral_layer1[] = {
+Gfx hmc_area_1_collision_additive_coral_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -80,7 +80,7 @@ Gfx hmc_area_1_collision_stained_walls_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_stained_walls_001_layer1[] = {
+Gfx hmc_area_1_collision_stained_walls_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -111,7 +111,7 @@ Gfx hmc_area_1_collision_underwater_stained_002_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_underwater_stained_002_layer1[] = {
+Gfx hmc_area_1_collision_underwater_stained_002_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -134,7 +134,7 @@ Gfx hmc_area_1_collision_f3dlite_material_003_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_f3dlite_material_003[] = {
+Gfx hmc_area_1_collision_f3dlite_material_003_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -163,7 +163,7 @@ Gfx hmc_area_1_collision_geyser_noslip_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_geyser_noslip_layer1[] = {
+Gfx hmc_area_1_collision_geyser_noslip_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -186,7 +186,7 @@ Gfx hmc_area_1_collision_forcestone_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_forcestone_001[] = {
+Gfx hmc_area_1_collision_forcestone_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -214,7 +214,7 @@ Gfx hmc_area_1_collision_tunnel_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_tunnel_layer1[] = {
+Gfx hmc_area_1_collision_tunnel_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -245,7 +245,7 @@ Gfx hmc_area_1_collision_safe_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_safe_layer1[] = {
+Gfx hmc_area_1_collision_safe_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -264,7 +264,7 @@ Gfx hmc_area_1_collision_water_bottom_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_water_bottom[] = {
+Gfx hmc_area_1_collision_water_bottom_layer_1_revert[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -280,7 +280,7 @@ Gfx hmc_area_1_collision_hurt_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_hurt[] = {
+Gfx hmc_area_1_collision_hurt_layer_1_revert[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -297,7 +297,7 @@ Gfx hmc_area_1_collision_wattah_001_layer_5[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_wattah_001[] = {
+Gfx hmc_area_1_collision_wattah_001_layer_5_revert[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -314,7 +314,7 @@ Gfx hmc_area_1_collision_vertical_boost_water_floor_001_layer_5[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx hmc_area_1_collision_mat_revert_hmc_dl_vertical_boost_water_floor_001[] = {
+Gfx hmc_area_1_collision_vertical_boost_water_floor_001_layer_5_revert[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -322,31 +322,31 @@ Gfx hmc_area_1_collision_mat_revert_hmc_dl_vertical_boost_water_floor_001[] = {
 
 const Gfx* hmc_area_1_collision_materials[] = {
 	&hmc_area_1_collision_limestone_001_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_limestone_001,
+	&hmc_area_1_collision_limestone_001_layer_1_revert,
 	&hmc_area_1_collision_additive_coral_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_additive_coral_layer1,
+	&hmc_area_1_collision_additive_coral_layer_1_revert,
 	&hmc_area_1_collision_stained_walls_001_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_stained_walls_001_layer1,
+	&hmc_area_1_collision_stained_walls_001_layer_1_revert,
 	&hmc_area_1_collision_underwater_stained_002_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_underwater_stained_002_layer1,
+	&hmc_area_1_collision_underwater_stained_002_layer_1_revert,
 	&hmc_area_1_collision_f3dlite_material_003_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_f3dlite_material_003,
+	&hmc_area_1_collision_f3dlite_material_003_layer_1_revert,
 	&hmc_area_1_collision_geyser_noslip_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_geyser_noslip_layer1,
+	&hmc_area_1_collision_geyser_noslip_layer_1_revert,
 	&hmc_area_1_collision_forcestone_001_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_forcestone_001,
+	&hmc_area_1_collision_forcestone_001_layer_1_revert,
 	&hmc_area_1_collision_tunnel_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_tunnel_layer1,
+	&hmc_area_1_collision_tunnel_layer_1_revert,
 	&hmc_area_1_collision_safe_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_safe_layer1,
+	&hmc_area_1_collision_safe_layer_1_revert,
 	&hmc_area_1_collision_water_bottom_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_water_bottom,
+	&hmc_area_1_collision_water_bottom_layer_1_revert,
 	&hmc_area_1_collision_hurt_layer_1,
-	&hmc_area_1_collision_mat_revert_hmc_dl_hurt,
+	&hmc_area_1_collision_hurt_layer_1_revert,
 	&hmc_area_1_collision_wattah_001_layer_5,
-	&hmc_area_1_collision_mat_revert_hmc_dl_wattah_001,
+	&hmc_area_1_collision_wattah_001_layer_5_revert,
 	&hmc_area_1_collision_vertical_boost_water_floor_001_layer_5,
-	&hmc_area_1_collision_mat_revert_hmc_dl_vertical_boost_water_floor_001,
+	&hmc_area_1_collision_vertical_boost_water_floor_001_layer_5_revert,
 };
 
 const Collision hmc_area_1_collision[] = {

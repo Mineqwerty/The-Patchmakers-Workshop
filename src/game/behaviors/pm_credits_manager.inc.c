@@ -47,7 +47,7 @@ void bhv_pm_credits_manager_loop(void) {
             print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y - 20, "Original Soundtrack", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_OUTLINE);
             
             print_set_envcolour(240, 240, 240, fadeAlpha);
-            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "Ornevelder\nTori Draws Stuff\nCowQuack", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            print_small_text_buffered(SCREEN_CENTER_X, SCREEN_CENTER_Y + 20, "Ornevelder\nTori Draws Stuff\nCowQuack\n\n(Additional Help)\nEthan Ingle", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
             
             if (o->oTimer == 150) {
                 o->oAction++;

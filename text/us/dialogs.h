@@ -454,7 +454,7 @@ The issues we've been dealing with?\n\
 It is not an easy subject. The manor has\n\
 been reduced to nothing but a haunted wreck.\n\
 And not by us servants' hands mind you.\n\
-We are benevolent spirits, but there have.\n\
+We are benevolent spirits, but there have\n\
 been other ghosts about, ones that have\n\
 lost their way and will.\n\
 It's best you simply avoid them.\n\
