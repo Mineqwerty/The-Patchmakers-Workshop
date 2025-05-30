@@ -89,7 +89,7 @@ extern Vtx hmc_dl_Circle_010_mesh_layer_1_vtx_5[417];
 extern Gfx hmc_dl_Circle_010_mesh_layer_1_tri_5[];
 extern Vtx hmc_dl_Circle_010_mesh_layer_1_vtx_6[128];
 extern Gfx hmc_dl_Circle_010_mesh_layer_1_tri_6[];
-extern Vtx hmc_dl_Circle_011_mesh_layer_6_vtx_0[72];
+extern Vtx hmc_dl_Circle_011_mesh_layer_6_vtx_0[73];
 extern Gfx hmc_dl_Circle_011_mesh_layer_6_tri_0[];
 extern Vtx hmc_dl_nocol_mesh_layer_5_vtx_0[31];
 extern Gfx hmc_dl_nocol_mesh_layer_5_tri_0[];

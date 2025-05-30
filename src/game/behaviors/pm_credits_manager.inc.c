@@ -159,7 +159,7 @@ void bhv_pm_credits_manager_loop(void) {
             print_set_envcolour(240, 240, 240, fadeAlpha);
             print_small_text_buffered(SCREEN_CENTER_X - 60, SCREEN_CENTER_Y + 20, "arthurc\nCheezepin\nCryogeon\nJakeDower\nJoshTheBosh", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
             
-            print_small_text_buffered(SCREEN_CENTER_X + 60, SCREEN_CENTER_Y + 20, "mewde\nornevelder\nRovertronic\ntylersm64\nWoissil", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+            print_small_text_buffered(SCREEN_CENTER_X + 60, SCREEN_CENTER_Y + 20, "MewDE\nornevelder\nRovertronic\ntylersm64\nWoissil", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
             
             if (o->oTimer == 150) {
                 o->oAction++;

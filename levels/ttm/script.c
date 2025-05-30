@@ -96,6 +96,7 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_NONE, 5012, 1172, -10475, 0, 0, 0, (2 << 16), bhvCoinFormation),
 		OBJECT(MODEL_TS_FINAL_DOOR, 9450, 1972, 0, 0, 0, 0, 0x00000000, bhvTsDoor),
 		OBJECT(MODEL_GREY_FLAME, 5119, 1298, -12740, 0, 0, 0, 0x00000000, bhvFlame),
+		OBJECT(MODEL_GREY_FLAME, 5119, 1163, -12740, 0, 0, 0, 0x00000000, bhvFlame),
 		OBJECT(MODEL_SIGHT_CUBE, 5521, 17, -5366, 0, -180, 0, (40 << 24) | (6 << 16) | (1 << 8) | (10), bhvMovingSightCube),
 		OBJECT(MODEL_SIGHT_CUBE, 4313, 1204, -6980, 0, -90, 0, (66 << 24) | (12 << 16) | (1 << 8) | (34), bhvMovingSightCube),
 		OBJECT(MODEL_NONE, 4445, 1874, 0, 0, 0, 0, (239 << 16), bhvSpinAirborneWarp),

@@ -1,3 +1,5 @@
+#include "src/game/cutscene.h"
+
 static struct ObjectHitbox sPMNeedleHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 0,
@@ -29,8 +31,23 @@ void bhv_pm_thrown_needle_init(void) {
 
 void bhv_pm_thrown_needle_loop(void) {
 
+    if (!o->parentObj) {
+        obj_mark_for_deletion(o);
+        return;
+    }
+
+    if (o->oAction >= 4 && (gMarioState->equippedPatch != PATCH_HALO)) {
+        obj_mark_for_deletion(o);
+        return;
+    }
+
     if (gCurrAreaIndex == 2) {
         o->oDamageOrCoinValue = 1;
+    }
+
+    if (gCurCutscene != -1) {
+        obj_mark_for_deletion(o);
+        return;
     }
 
     struct Object *patchmaker;

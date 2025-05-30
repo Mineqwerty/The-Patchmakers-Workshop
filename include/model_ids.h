@@ -909,20 +909,20 @@
 #define MODEL_GLOBAL_GROUND_BOOK                  0x1B4
 #define MODEL_LOCKBOX                  0x1B5
 
-#define MODEL_STAR_MARKER                      0x54
-#define MODEL_BLUE_STAR_MARKER                      0x55
-#define MODEL_TTC_DIORAMA                      0x56
-#define MODEL_RDR_DIORAMA                      0x57
-#define MODEL_STC_DIORAMA                      0x58
-#define MODEL_GSS_DIORAMA                      0x59
-#define MODEL_SS_DIORAMA                      0x5A
-#define MODEL_CLC_DIORAMA                      0x5B
-#define MODEL_HVH_DIORAMA                      0x5C
-#define MODEL_TVW_DIORAMA                      0x5D
-#define MODEL_TFP_DIORAMA                      0x5E
-#define MODEL_EA_DIORAMA                      0x5F
-#define MODEL_CORR_DIORAMA                      0x60
-#define MODEL_TS_DIORAMA                      0x61
+#define MODEL_STAR_MARKER                      0x1C0
+#define MODEL_BLUE_STAR_MARKER                      0x1C1
+#define MODEL_TTC_DIORAMA                      0x1C2
+#define MODEL_RDR_DIORAMA                      0x1C3
+#define MODEL_STC_DIORAMA                      0x1C4
+#define MODEL_GSS_DIORAMA                      0x1C5
+#define MODEL_SS_DIORAMA                      0x1C6
+#define MODEL_CLC_DIORAMA                      0x1C7
+#define MODEL_HVH_DIORAMA                      0x1C8
+#define MODEL_TVW_DIORAMA                      0x1C9
+#define MODEL_TFP_DIORAMA                      0x1CA
+#define MODEL_EA_DIORAMA                      0x1CB
+#define MODEL_CORR_DIORAMA                      0x1CC
+#define MODEL_TS_DIORAMA                      0x1CD
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

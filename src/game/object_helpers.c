@@ -990,6 +990,8 @@ s32 obj_shouldnt_be_attacked(struct Object *obj) {
         || obj_has_model(obj, MODEL_FOG_RED_COIN)
         || obj_has_model(obj, MODEL_BLUE_COIN)
         || obj_has_model(obj, MODEL_BLUE_COIN_NO_SHADOW)
+        || obj_has_model(obj, MODEL_STAR)
+        || obj_has_model(obj, MODEL_TRANSPARENT_STAR)
         || obj->behavior == segmented_to_virtual(bhvStar)
         || obj->behavior == segmented_to_virtual(bhvSpawnedStar)
         || obj->behavior == segmented_to_virtual(bhvSpawnedStarNoLevelExit));

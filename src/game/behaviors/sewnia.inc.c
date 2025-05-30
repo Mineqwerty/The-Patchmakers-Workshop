@@ -1028,7 +1028,7 @@ void sewnia_act_beginning_cutscene_at_course_entrance(void) {
                 }
                 else {
                     o->oAction = SEWNIA_ACT_FOLLOW_MARIO;
-                    o->oInteractType = INTERACT_TEXT;
+                    //o->oInteractType = INTERACT_TEXT;
                 }
                 
             }
@@ -1373,7 +1373,7 @@ void sewnia_act_follow_mario(void) {
         cur_obj_init_animation(SEWNIA_ANIM_OLD_IDLE);
     }
     
-
+    o->oInteractType = INTERACT_TEXT;
     if (o->oInteractStatus == INT_STATUS_INTERACTED) {
         o->oInteractStatus = 0;
         if (!o->oSewniaHasSpawnedSpeechBubble) {

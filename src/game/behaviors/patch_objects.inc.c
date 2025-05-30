@@ -679,6 +679,16 @@ void bhv_halo_loop(void) {
     }
 
     if (o->oAction != 0) {
+        f32 flameDist;
+
+        struct Object *nearFlame = cur_obj_find_nearest_object_with_behavior(bhvSmallFlame, &flameDist);
+
+        if (flameDist < 300 && !o->oHaloCapturedObject) {
+                u8 behParamFire = 1;
+                o->oHaloCapturedObject =
+                    spawn_object_relative(behParamFire, 0, 0, 0, o, MODEL_NONE, bhvFireSmokeSpawner);
+                gMarioState->haloCaptureType = 1;
+            }
 
         f32 dist;
 
@@ -1726,6 +1736,10 @@ void bhv_skybridge_ring_loop(void) {
     o->oPosX = gMarioState->pos[0];
     o->oPosY = (o->parentObj->oAction == 1 ? approach_f32_symmetric(o->oPosY, o->parentObj->oPosY, 20.0f) : gMarioState->pos[1]);
     o->oPosZ = gMarioState->pos[2];
+
+    o->oFaceAngleRoll = 0;
+    o->oFaceAnglePitch = 0;
+    o->oFaceAngleYaw = 0;
 
     switch (o->oAction) {
         case 0:

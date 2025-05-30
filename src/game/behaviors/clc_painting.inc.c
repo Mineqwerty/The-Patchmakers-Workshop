@@ -23,6 +23,8 @@ void bhv_clc_painting_loop(void) {
             }
 
             o->oInteractStatus = 0;
+
+            o->oFaceAngleRoll += 0x30 * coss(o->oTimer * 0x111);
             
         break;
         case 1:

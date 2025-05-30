@@ -3234,7 +3234,7 @@ const char starHints[24][48] = {
     "The relic from below",
     "Secret near waterfalls",
     "Dry, deep chasm",
-    "Fire in the kitchen",
+    "Burn the infested room",
     "Red-hot pole climb",
     "In a castle spire",
     "One powerful strike",
@@ -3246,8 +3246,8 @@ const char starHints[24][48] = {
     "Still sky slug",
     "The orange building",
     "Highest, longest reach",
-    "Lighting the torch",
-    "From beginning to end"
+    "Gray flame across rooms",
+    "From Thorns and Thickets"
 };
 
 u8 secretStarPatchRequirements[24] = {

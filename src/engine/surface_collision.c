@@ -10,6 +10,7 @@
 #include "surface_load.h"
 #include "game/puppyprint.h"
 #include "src/game/mario_step.h"
+#include "src/game/game_init.h"
 
 struct SpawnParticlesInfo ThornPass = {
     1, 10, MODEL_LEAVES, 20.0f, -20, 0, 20, 40, 252, 30, 15.0f, 0.0f

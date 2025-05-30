@@ -72,9 +72,9 @@ enum PatchmakerAnims {
     PATCHMAKER_ANIM_TRANSFORM_TO_MANTLE
 };
 
-#define PATCHMAKER_1_MAX_HEALTH 35
-#define PATCHMAKER_2_MAX_HEALTH 60
-#define PATCHMAKER_3_MAX_HEALTH 80
+#define PATCHMAKER_1_MAX_HEALTH 30
+#define PATCHMAKER_2_MAX_HEALTH 50
+#define PATCHMAKER_3_MAX_HEALTH 70
 #define PATCHMAKER_SECOND_FIGHT (gCurrLevelNum == LEVEL_BOWSER_2)
 #define PATCHMAKER_THIRD_FIGHT (gCurrLevelNum == LEVEL_BOWSER_3)
 
@@ -1386,16 +1386,6 @@ void bhv_patchmaker_loop(void) {
             patchmaker_act_extension_wall();
         break;
         case PATCHMAKER_ACT_DEFEATED:
-            if (PATCHMAKER_THIRD_FIGHT) {
-                patchmaker_act_third_fight_defeated();
-            }
-            else if (PATCHMAKER_SECOND_FIGHT) {
-                patchmaker_act_second_fight_defeated();
-            }
-            else {
-                patchmaker_act_first_fight_defeated();
-            }
-
             if (gInMemoryStage) {
                 if (o->oTimer == 30) {
                     if (gCurrLevelNum == LEVEL_BOWSER_3) {
@@ -1406,6 +1396,17 @@ void bhv_patchmaker_loop(void) {
                     }
                 }
             }
+            else if (PATCHMAKER_THIRD_FIGHT) {
+                patchmaker_act_third_fight_defeated();
+            }
+            else if (PATCHMAKER_SECOND_FIGHT) {
+                patchmaker_act_second_fight_defeated();
+            }
+            else {
+                patchmaker_act_first_fight_defeated();
+            }
+
+            
             
         break;
     }

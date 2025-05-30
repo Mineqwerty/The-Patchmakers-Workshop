@@ -2339,6 +2339,9 @@ void spawn_initial_patch_object(struct MarioState *m ) {
 
         case PATCH_SHADOWCHOMP:
             if (m->patchChildObj && !obj_has_behavior(m->patchChildObj, bhvShadowChompHead)) {
+                if (m->patchChildObj->oHaloCapturedObject && obj_has_behavior(m->patchChildObj, bhvHalo)) {
+                    obj_mark_for_deletion(m->patchChildObj->oHaloCapturedObject);
+                }
                 if (!obj_has_behavior(m->patchChildObj, bhvExtensionBlock)) {
                     obj_mark_for_deletion(m->patchChildObj);
                 }

@@ -1783,7 +1783,7 @@ It was just lying around in a box.\n\
 beautiful things though... If Princess Peach is like\n\
 what you describe, her thread may be out somewhere."))
 
-DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_25_STARS_1, 1, 3, 30, 200, _("\
 @7F60B4FFHow have the worlds around here been treating you?\n\
 Unlike the last area, these worlds were reached\n\
 with better destination intent.\n\
@@ -2018,7 +2018,7 @@ It feels so... sad.\n\
 What's this?\n\
 ...!\n\
 @7F60B4FFThat's...!\n\
-A thead of life? His?\n\
+A thread of life? His?\n\
 But... how? Only him and I know how...\n\
 @7F60B4FFHe left this for you?\n\
 But... why? Without his body, it can't\n\
