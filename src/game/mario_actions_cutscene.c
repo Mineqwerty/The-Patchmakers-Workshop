@@ -2074,6 +2074,7 @@ s32 act_squished(struct MarioState *m) {
                     level_trigger_warp(m, WARP_OP_DEATH);
                     // woosh, he's gone!
                     set_mario_action(m, ACT_DISAPPEARED, 0);
+
                 } else if (m->hurtCounter == 0) {
                     // un-squish animation
                     m->squishTimer = 30;
@@ -2112,12 +2113,19 @@ s32 act_squished(struct MarioState *m) {
 
     // squished for more than 10 seconds, so kill Mario
     if (m->actionArg++ > 300) {
-        // 0 units of health
-        m->health = 0x00FF;
-        m->hurtCounter = 0;
-        level_trigger_warp(m, WARP_OP_DEATH);
-        // woosh, he's gone!
-        set_mario_action(m, ACT_DISAPPEARED, 0);
+        if (m->health > 0xFF*3) {
+                play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
+                take_damage_from_no_interact_object(m, 2);
+                }
+                else {
+                    if (level_trigger_warp(m, WARP_OP_WARP_FLOOR) == 20 && !(m->flags & MARIO_FALL_SOUND_PLAYED)) {
+                        
+                play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
+            }
+                }
+            
+            
+            set_mario_action(m, ACT_FLOOR_CHECKPOINT_WARP_OUT, m->floor->force);
     }
     stop_and_set_height_to_floor(m);
     set_mario_animation(m, MARIO_ANIM_A_POSE);

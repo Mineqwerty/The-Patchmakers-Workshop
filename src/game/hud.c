@@ -525,6 +525,7 @@ void render_hud_pop_off_beads() {
                     
                     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+                gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
             }
         }
     }

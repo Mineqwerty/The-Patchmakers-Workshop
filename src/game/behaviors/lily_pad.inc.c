@@ -26,7 +26,7 @@ void bhv_lily_pad_loop(void) {
                 
             }
 
-            if (gMarioState->marioObj->platform == o && gMarioState->equippedPatch == PATCH_CHILLSTEP) {
+            if (gMarioState->marioObj->platform == o && gMarioState->equippedPatch == PATCH_CHILLSTEP && gMarioState->action != ACT_FALL_AFTER_STAR_GRAB && gMarioState->action != ACT_STAR_DANCE_NO_EXIT && gMarioState->action != ACT_STAR_DANCE_EXIT) {
                 freeze_lily();
                 if (o->oBehParams2ndByte == 1) {
                     o->oAction = 2;
