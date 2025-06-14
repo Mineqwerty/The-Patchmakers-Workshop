@@ -169,6 +169,7 @@ s32 event_test[] = {
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_SET_MARIO_ACTION, ACT_IDLE,
+    EVENT_ENABLE_MARIO_RENDER,
     EVENT_END_CUTSCENE
 };
 
@@ -1073,6 +1074,7 @@ s32 event_revive_bowser[] = {
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 118,
     EVENT_WAIT, 100,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_HUD_CLEAR_EFFECT,
     EVENT_SET_CUTSCENE_GAME_STATE, CUTSCENE_GAME_STATE_ENTER_SECOND_HUB,
     EVENT_CANCEL_DIALOG,
     EVENT_FADE_INTO_COLOR, 30, 0, 0, 0,
@@ -1622,6 +1624,7 @@ s32 event_revive_peach[] = {
     EVENT_CAMERA_FOCUS_SPLINE_DATA, 118,
     EVENT_WAIT, 100,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_HUD_CLEAR_EFFECT,
     EVENT_CANCEL_SONG, SEQ_SEWNIA_THEME,
     EVENT_SET_CUTSCENE_GAME_STATE, CUTSCENE_GAME_STATE_ENTER_THIRD_HUB,
     EVENT_CANCEL_DIALOG,
@@ -2756,6 +2759,10 @@ void event_handler(void) {
                 break;
                 case EVENT_HUD_CLEAR_EFFECT:
                     gSpecialHudRender = 0;
+                    gSpecialHudElementTimer = 0;
+                    gSpecialHudElementAlpha = 255;
+                    gSpecialHudElementValue = 0;
+                    gSpecialHudElementScale = 1.0f;
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_FADE_INTO_COLOR:

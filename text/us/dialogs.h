@@ -1577,7 +1577,7 @@ Well, if you think about it, it IS their home.\n\
 sense for a concept like a home. Wow,\n\
 this place has me thinking all artsy..."))
 
-DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_MIRROR, 1, 3, 30, 200, _("\
 @FF75DFFFMario, you'll never believe me if I say this,\n\
 but I think this exhibit secretly terrifies Bowser.\n\
 It's hard to imagine, right?\n\
@@ -1585,7 +1585,7 @@ It's hard to imagine, right?\n\
 he's scared picturing a world without him.\n\
 I suppose all of us would be troubled by that..."))
 
-DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 5, 150, 200, _("\
+DEFINE_DIALOG(DIALOG_PEACH_NPC_BOWSER_FOLLOW, 1, 3, 150, 200, _("\
 @FF75DFFFI'm getting quite fed up with Bowser.\n\
 He won't leave me alone when you're gone.\n\
 I keep telling him to leave me be, with a raised voice.\n\

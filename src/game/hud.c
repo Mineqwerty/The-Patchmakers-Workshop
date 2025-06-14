@@ -356,8 +356,12 @@ void render_hud_eye_effect(void) {
 
     gSpecialHudElementTimer++;
 
-    if (gSpecialHudElementTimer == 180) {
+    if (gSpecialHudElementTimer >= 180) {
         gSpecialHudRender = 0;
+        gSpecialHudElementAlpha = 255;
+        gSpecialHudElementValue = 1.0f;
+        gSpecialHudElementScale = 1.0f;
+        gSpecialHudElementTimer = 0;
     }
 
 }
@@ -659,6 +663,7 @@ void render_dl_dpad_patches(s16 numHealthWedges) {
         }
     
 
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 

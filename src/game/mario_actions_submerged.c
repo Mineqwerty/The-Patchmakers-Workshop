@@ -618,6 +618,10 @@ static s32 check_water_jump(struct MarioState *m) {
 
             m->vel[1] = 62.0f;
             sFOVState.fovFunc = CAM_FOV_APP_45;
+            m->waterCurrentVel[0] = 0;
+            m->waterCurrentVel[1] = 0;
+            m->waterCurrentVel[2] = 0;
+            
 
             if (m->action == ACT_MARINE_PATCH_SPIN) {
                 m->vel[1] = 80.0f;
@@ -1715,6 +1719,9 @@ static s32 check_common_submerged_cancels(struct MarioState *m) {
             } else {
                 // m->pos[1] = m->waterLevel - 80; // Vanilla bug: Downwarp swimming out of waterfalls
                 sFOVState.fovFunc = CAM_FOV_APP_45;
+                m->waterCurrentVel[0] = 0;
+                m->waterCurrentVel[1] = 0;
+                m->waterCurrentVel[2] = 0;
                 return transition_submerged_to_airborne(m);
             }
         } else {
@@ -1730,6 +1737,9 @@ static s32 check_common_submerged_cancels(struct MarioState *m) {
                 stop_shell_music();
             }
             sFOVState.fovFunc = CAM_FOV_APP_45;
+                m->waterCurrentVel[0] = 0;
+                m->waterCurrentVel[1] = 0;
+                m->waterCurrentVel[2] = 0;
             return transition_submerged_to_walking(m);
         }
     }

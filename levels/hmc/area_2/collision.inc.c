@@ -106,8 +106,7 @@ Gfx hmc_area_2_collision_stained_walls_001_layer_1_revert[] = {
 };
 
 Gfx hmc_area_2_collision_cavewater_001_layer_6[] = {
-	gsSPSetGeometryMode(G_FOG),
-	gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK),
+	gsSPGeometryMode(G_CULL_BACK | G_LIGHTING, G_FOG),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL1, 0, TEXEL0, 0, TEXEL1, 0, TEXEL0, 0, SHADE, COMBINED, PRIMITIVE, COMBINED, 1, COMBINED, PRIMITIVE, COMBINED),
 	gsDPSetFogColor(0, 0, 0, 255),
@@ -131,8 +130,7 @@ Gfx hmc_area_2_collision_cavewater_001_layer_6[] = {
 };
 
 Gfx hmc_area_2_collision_cavewater_001_layer_6_revert[] = {
-	gsSPClearGeometryMode(G_FOG),
-	gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
+	gsSPGeometryMode(G_FOG, G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsDPSetCycleType(G_CYC_1CYCLE),

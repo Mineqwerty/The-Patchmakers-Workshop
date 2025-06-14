@@ -3228,7 +3228,7 @@ const char starHints[24][48] = {
     "Abandoned well's gaps",
     "Against the current",
     "Light steps, mud path",
-    "The last cog in place",
+    "Raise the clock's cog",
     "Along the clock tower",
     "Tower in the fog",
     "The relic from below",
@@ -4754,7 +4754,7 @@ s32 render_new_star_complete_text(void) {
                 gNewStarCollected = 0;
 
                 if (gLastCompletedCourseNum == COURSE_PSS) {
-                    u32 lastBest = save_file_get_patch_challenge_time(gCurrSaveFileNum - 1, gPatchChallengeIndex-1);
+                    u32 lastBest = save_file_get_patch_challenge_time(gCurrSaveFileNum - 1, gPatchChallengeIndex);
 
                     if (!lastBest || lastBest > gPatchChallengeTimer) {
                         save_file_set_patch_challenge_time(gCurrSaveFileNum - 1, gPatchChallengeIndex, gPatchChallengeTimer);

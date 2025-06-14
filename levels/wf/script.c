@@ -42,32 +42,7 @@ const LevelScript level_wf_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_TAEBER, taeber_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_TAEBER_LEAVES, taeber_leaves_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_BLUBOL, blubol_geo), 
-	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_chillstep_geo), /* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 begin persistent block [level commands] */
-	/* Fast64 end persistent block [level commands] */
+	LOAD_MODEL_FROM_GEO(MODEL_GROUND_PATCH, grounded_patch_chillstep_geo),
 
 	AREA(1, wf_area_1),
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
@@ -177,7 +152,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_STAR, 3212, 3507, 13369, 0, 0, 0, (1 << 24), bhvStar),
 		OBJECT(MODEL_NONE, -5356, -18, -1325, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 1858, 1329, 12457, 0, 0, 0, 0x00000000, bhvFortuneTeleporterPedestal),
-		OBJECT(MODEL_GROUND_PATCH, -481, 250, -1306, -90, 0, 0, (1 << 16), bhvGroundPatch),
+		OBJECT(MODEL_GLOBAL_GROUND_PATCH, -481, 250, -1306, -90, 0, 0, (1 << 16), bhvGroundPatch),
 		OBJECT(MODEL_NONE, -481, 418, -1306, 0, 0, 0, (5 << 24) | (4 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 3569, 237, 2377, 0, 0, 0, (7 << 24) | (8 << 16), bhvTextVolume),
 		OBJECT(MODEL_NONE, 1812, 452, -1208, 0, 0, 0, (6 << 24) | (6 << 16), bhvTextVolume),

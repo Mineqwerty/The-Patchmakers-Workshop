@@ -3167,6 +3167,9 @@ s32 act_floor_checkpoint_warp_out(struct MarioState *m) {
         m->vel[0] *= 0.8f; 
         m->vel[1] *= 0.8f; 
         m->vel[2] *= 0.8f;
+        
+        m->slideVelX = 0.0f;
+        m->slideVelZ = 0.0f;
         vec3f_add(m->pos, m->vel);
         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         // TODO: Fade out audio or something?

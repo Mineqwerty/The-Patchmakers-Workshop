@@ -2282,6 +2282,9 @@ void late_patch_update(struct MarioState *m ) {
             if (m->overrideGravity && gCurrLevelNum == LEVEL_BBH) {
                 if (m->patchTimer == 60) {
                     set_mario_action(m, ACT_FREEFALL, 0);
+                    if (m->vel[1] < 25.0f) {
+                        m->vel[1] = 25.0f;
+                    }
                     play_sound(SOUND_MARIO_WAAAOOOW, gMarioState->pos);
                     
                 }
@@ -2543,11 +2546,13 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
             gMarioState->patchChildObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
             gMarioState->patchChildObj->oIceSurface = gMarioState->floor;
         }
-        vec3f_get_dist(&gMarioState->patchChildObj->oPosX, gMarioState->pos, &dist);
-            if (dist > 130.0f) {
-                 gMarioState->patchChildObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
-                gMarioState->patchChildObj->oIceSurface = gMarioState->floor;
-            }
+        if (gMarioState->patchChildObj) {
+            vec3f_get_dist(&gMarioState->patchChildObj->oPosX, gMarioState->pos, &dist);
+                if (dist > 130.0f) {
+                    gMarioState->patchChildObj = spawn_object_relative(0, 0, 10, 0, gMarioState->marioObj, MODEL_ICE_FLOOR, bhvIceFloor);
+                    gMarioState->patchChildObj->oIceSurface = gMarioState->floor;
+                }
+        }
     }
 
         // The function can loop through many action shifts in one frame,

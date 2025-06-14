@@ -60,6 +60,9 @@ extern const u8 patch_textures_dma[];
 extern const u8 power_beads_textures_dma[];
 extern u8 gSpecialHudRender;
 extern u8 gSpecialHudElementAlpha;
+extern s32 gSpecialHudElementTimer;
+extern f32 gSpecialHudElementValue;
+extern f32 gSpecialHudElementScale;
 extern struct HudBead hudBeads[8];
 extern s16 holdStartExitTimer;
 

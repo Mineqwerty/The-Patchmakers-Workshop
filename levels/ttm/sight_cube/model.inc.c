@@ -121,7 +121,7 @@ Gfx sight_cube_Plane_001_mesh_layer_1_tri_0[] = {
 
 
 Gfx mat_sight_cube_prim_sight[] = {
-	gsSPGeometryMode(G_LIGHTING, 0),
+	gsSPClearGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsDPSetAlphaDither(G_AD_NOISE),
@@ -131,7 +131,7 @@ Gfx mat_sight_cube_prim_sight[] = {
 };
 
 Gfx mat_revert_sight_cube_prim_sight[] = {
-	gsSPGeometryMode(0, G_LIGHTING),
+	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),

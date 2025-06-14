@@ -33,7 +33,7 @@ void bhv_lift_cloud_switch_loop(void) {
     if (o->oAction == 0) {
         f32 dist = 9999.0f;
         struct Object *halo = cur_obj_find_nearest_object_with_behavior(bhvHalo, &dist);
-        if (dist < 250.0f && halo && halo->oAction != 0) {
+        if (dist < 350.0f && halo && halo->oAction != 0) {
                 play_sound(SOUND_GENERAL2_ROTATING_BLOCK_CLICK, gGlobalSoundSource);
                 o->oAction = 1;
             
