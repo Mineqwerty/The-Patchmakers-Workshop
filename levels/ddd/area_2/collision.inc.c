@@ -19,7 +19,7 @@ Gfx ddd_area_2_collision_cobblebrick_001_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_2_collision_mat_revert_ddd_dl_cobblebrick_001_layer1[] = {
+Gfx ddd_area_2_collision_cobblebrick_001_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -50,7 +50,7 @@ Gfx ddd_area_2_collision_housewater_layer_6[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_2_collision_mat_revert_ddd_dl_housewater_layer6_area2[] = {
+Gfx ddd_area_2_collision_housewater_layer_6_revert[] = {
 	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -77,7 +77,7 @@ Gfx ddd_area_2_collision_f3dlite_material_025_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_2_collision_mat_revert_ddd_dl_f3dlite_material_025[] = {
+Gfx ddd_area_2_collision_f3dlite_material_025_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -103,7 +103,7 @@ Gfx ddd_area_2_collision_f3dlite_material_020_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_2_collision_mat_revert_ddd_dl_f3dlite_material_020[] = {
+Gfx ddd_area_2_collision_f3dlite_material_020_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -113,13 +113,13 @@ Gfx ddd_area_2_collision_mat_revert_ddd_dl_f3dlite_material_020[] = {
 
 const Gfx* ddd_area_2_collision_materials[] = {
 	&ddd_area_2_collision_cobblebrick_001_layer_1,
-	&ddd_area_2_collision_mat_revert_ddd_dl_cobblebrick_001_layer1,
+	&ddd_area_2_collision_cobblebrick_001_layer_1_revert,
 	&ddd_area_2_collision_housewater_layer_6,
-	&ddd_area_2_collision_mat_revert_ddd_dl_housewater_layer6_area2,
+	&ddd_area_2_collision_housewater_layer_6_revert,
 	&ddd_area_2_collision_f3dlite_material_025_layer_1,
-	&ddd_area_2_collision_mat_revert_ddd_dl_f3dlite_material_025,
+	&ddd_area_2_collision_f3dlite_material_025_layer_1_revert,
 	&ddd_area_2_collision_f3dlite_material_020_layer_1,
-	&ddd_area_2_collision_mat_revert_ddd_dl_f3dlite_material_020,
+	&ddd_area_2_collision_f3dlite_material_020_layer_1_revert,
 };
 
 const Collision ddd_area_2_collision[] = {

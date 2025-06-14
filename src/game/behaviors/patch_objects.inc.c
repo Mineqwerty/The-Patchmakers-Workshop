@@ -64,7 +64,7 @@ void bhv_ice_spikes_loop(void) {
             if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
                 // other->oInteractStatus |= INT_STATUS_TOUCHED_MARIO | INT_STATUS_WAS_ATTACKED |
                 // INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB;
-                attack_object(other, 8, 4);
+                attack_object(other, 8, (gCurrLevelNum == LEVEL_BOWSER_3 ? 8 : 4));
                 o->oF4 = 1;
             }
         }
@@ -344,7 +344,7 @@ void bhv_grapple_hook_loop(void) {
                 if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
                     s16 health = other->oHealth;
                      other->oInteractStatus |= INT_STATUS_INTERACTED;
-                    if ((attack_object(other, 2, 3) != 0) && (other->oHealth < health)) {
+                    if ((attack_object(other, 2, (gCurrLevelNum == LEVEL_BOWSER_3 ? 6 : 3)) != 0) && (other->oHealth < health)) {
                         spawn_object_relative(0, o->oPosX - other->oPosX, 
                         o->oPosY - other->oPosY - 40, 
                         o->oPosZ - other->oPosZ, 
@@ -641,7 +641,7 @@ void bhv_halo_loop(void) {
         if (other != gMarioObject && attack_patch_object_is_attackable(other)) {
             
             s16 health = other->oHealth;
-            if ((attack_object(other, 1, 1) != 0) && (other->oHealth < health)) {
+            if ((attack_object(other, 1, (gCurrLevelNum == LEVEL_BOWSER_3 ? 2 : 1)) != 0) && (other->oHealth < health)) {
                 spawn_object_relative(0, o->oPosX - other->oPosX, 
                         o->oPosY - other->oPosY - 40, 
                         o->oPosZ - other->oPosZ, 

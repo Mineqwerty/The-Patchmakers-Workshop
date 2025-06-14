@@ -426,6 +426,13 @@ void init_mario_after_warp(void) {
         init_mario();
         set_mario_initial_action(gMarioState, marioSpawnType, sWarpDest.arg);
 
+        if (gCurrLevelNum == LEVEL_DDD && gCurrAreaIndex == 5) {
+            gIsAttemptingDemonicSolids = TRUE;
+        }
+        else if (gCurrLevelNum != LEVEL_CASTLE) {
+            gIsAttemptingDemonicSolids = FALSE;
+        }
+
         if (sWarpDest.portalID == 0) {
             gMarioState->interactObj = spawnNode->object;
             gMarioState->usedObj = spawnNode->object;
@@ -546,7 +553,10 @@ void warp_level(void) {
     //gMarioState->portal2Position[1] = 0;
     //gMarioState->portal2Position[2] = 0;
 
+    
     load_area(sWarpDest.areaIdx);
+
+    
     init_mario_after_warp();
 }
 

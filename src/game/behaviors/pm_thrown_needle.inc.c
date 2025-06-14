@@ -155,7 +155,7 @@ void bhv_pm_thrown_needle_loop(void) {
             cur_obj_move_xz_using_fvel_and_yaw();
             o->oPosY = approach_f32_asymptotic(o->oPosY, patchmaker->oPosY + 150, 0.09f);
 
-            obj_attack_in_radius(o, 200, 6, 1);
+            obj_attack_in_radius(o, 200, (gCurrLevelNum == LEVEL_BOWSER_3 ? 12 : 6), 1);
 
             if (o->oTimer == 60) {
                 

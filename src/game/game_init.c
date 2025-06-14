@@ -71,6 +71,7 @@ s32 gFinalNeedleStage = 0;
 s16 portalSelectorSide;
 s16 gDestroyedCrackInReality = 0;
 s16 gInMemoryStage = 0;
+s16 gIsAttemptingDemonicSolids = 0;
 s16 updatePatchMenuDma = 0;
 u8 gFBE = FALSE;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG

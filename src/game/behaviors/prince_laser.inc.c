@@ -21,7 +21,7 @@ void bhv_prince_laser_loop(void) {
 
 
     if (point_inside_xz_tri(gMarioState->pos, pointA, pointB, pointC) || point_inside_xz_tri(gMarioState->pos, pointA, pointC, pointD)) {
-        if (absf(o->oPosY - gMarioState->pos[1] + 60) < 100 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
+        if (absf(o->oPosY - gMarioState->pos[1] - 60) < 100 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
             gMarioState->action = ACT_BACKWARD_AIR_KB;
             o->oDamageOrCoinValue = 3;
             take_damage_and_knock_back(gMarioState, o);

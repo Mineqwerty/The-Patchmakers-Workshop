@@ -804,6 +804,10 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
                 sWarpDest.areaIdx = 5;
             }
 
+            if (gCurrLevelNum == LEVEL_DDD && gIsAttemptingDemonicSolids) {
+                sWarpDest.areaIdx = 5;
+            }
+
             gDialogCourseActNum = sSelectedActIndex + 1;
         }
     }

@@ -12,11 +12,15 @@ void bhv_prince_shock_wave_loop(void) {
         f32 marioDist = lateral_dist_between_objects(o, gMarioState->marioObj);
         if (marioDist > 178*lateralScale && marioDist < 218*lateralScale && absf(gMarioState->pos[1] + 80 - o->oPosY) < 100 && gMarioState->action != ACT_SHOCKED && absf(o->oFaceAngleYaw - o->oAngleToMario) < 0x4000) {
 
-            take_damage_from_no_interact_object(gMarioState, 3);
-            play_sound(SOUND_MARIO_ATTACKED, gMarioState->marioObj->header.gfx.cameraToObject);
+            
             if (gMarioState->miasmaArmorTimer <= 0) {
                 update_mario_sound_and_camera(gMarioState);
                 drop_and_set_mario_action(gMarioState, ACT_SHOCKED, 0);
+                take_damage_from_no_interact_object(gMarioState, 3);
+                play_sound(SOUND_MARIO_ATTACKED, gMarioState->marioObj->header.gfx.cameraToObject);
+            }
+            else {
+                gMarioState->invincTimer = 30;
             }
             o->oAction = 1;
         }

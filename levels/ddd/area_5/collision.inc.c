@@ -19,7 +19,7 @@ Gfx ddd_area_5_collision_cobblebrick_002_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_5_collision_mat_revert_ddd_dl_cobblebrick_002_layer1[] = {
+Gfx ddd_area_5_collision_cobblebrick_002_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -49,7 +49,7 @@ Gfx ddd_area_5_collision_cobblebrick_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_5_collision_mat_revert_ddd_dl_cobblebrick_layer1[] = {
+Gfx ddd_area_5_collision_cobblebrick_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -76,7 +76,7 @@ Gfx ddd_area_5_collision_f3dlite_material_050_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_050[] = {
+Gfx ddd_area_5_collision_f3dlite_material_050_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -94,7 +94,7 @@ Gfx ddd_area_5_collision_warp_a4_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_5_collision_mat_revert_ddd_dl_warp_a4[] = {
+Gfx ddd_area_5_collision_warp_a4_layer_1_revert[] = {
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
 	gsSPEndDisplayList(),
@@ -114,7 +114,7 @@ Gfx ddd_area_5_collision_f3dlite_material_051_layer_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_051[] = {
+Gfx ddd_area_5_collision_f3dlite_material_051_layer_1_revert[] = {
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsDPPipeSync(),
 	gsDPSetAlphaDither(G_AD_DISABLE),
@@ -123,15 +123,15 @@ Gfx ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_051[] = {
 
 const Gfx* ddd_area_5_collision_materials[] = {
 	&ddd_area_5_collision_cobblebrick_002_layer_1,
-	&ddd_area_5_collision_mat_revert_ddd_dl_cobblebrick_002_layer1,
+	&ddd_area_5_collision_cobblebrick_002_layer_1_revert,
 	&ddd_area_5_collision_cobblebrick_layer_1,
-	&ddd_area_5_collision_mat_revert_ddd_dl_cobblebrick_layer1,
+	&ddd_area_5_collision_cobblebrick_layer_1_revert,
 	&ddd_area_5_collision_f3dlite_material_050_layer_1,
-	&ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_050,
+	&ddd_area_5_collision_f3dlite_material_050_layer_1_revert,
 	&ddd_area_5_collision_warp_a4_layer_1,
-	&ddd_area_5_collision_mat_revert_ddd_dl_warp_a4,
+	&ddd_area_5_collision_warp_a4_layer_1_revert,
 	&ddd_area_5_collision_f3dlite_material_051_layer_1,
-	&ddd_area_5_collision_mat_revert_ddd_dl_f3dlite_material_051,
+	&ddd_area_5_collision_f3dlite_material_051_layer_1_revert,
 };
 
 const Collision ddd_area_5_collision[] = {

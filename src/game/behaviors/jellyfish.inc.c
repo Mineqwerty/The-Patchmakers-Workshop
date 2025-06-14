@@ -43,6 +43,13 @@ void bhv_jellyfish_loop(void) {
             }
         break;
     }
+
+    if (gMarioState->miasmaArmorTimer > 0) {
+        o->oInteractType = INTERACT_NONE;
+    }
+    else {
+        o->oInteractType = INTERACT_SHOCK;
+    }
     
     obj_set_hitbox(o, &sJellyfishHitbox);
         if (o->oInteractStatus & INT_STATUS_INTERACTED) {

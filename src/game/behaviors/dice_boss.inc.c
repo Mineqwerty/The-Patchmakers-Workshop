@@ -182,9 +182,9 @@ void bhv_d4_loop(void) {
         break;
         case 1:
             if (o->oTimer == 45) {
-                o->oLaser1Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
-                o->oLaser2Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
-                o->oLaser3Obj = spawn_object_relative(0, 0, 50, 0, o, MODEL_NONE, bhvDiceLaser);
+                o->oLaser1Obj = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvDiceLaser);
+                o->oLaser2Obj = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvDiceLaser);
+                o->oLaser3Obj = spawn_object_relative(0, 0, 0, 0, o, MODEL_NONE, bhvDiceLaser);
                 o->oAction = 2;
             }
             cur_obj_scale(1.0f + (((f32)o->oTimer) / 60.0f));
@@ -254,7 +254,7 @@ void bhv_dice_laser_loop(void) {
 
 
     if (point_inside_xz_tri(gMarioState->pos, pointA, pointB, pointC) || point_inside_xz_tri(gMarioState->pos, pointA, pointC, pointD)) {
-        if (absf(o->oPosY - gMarioState->pos[1] + 30) < 100 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
+        if (absf(o->oPosY - gMarioState->pos[1] - 60) < 100 && gMarioState->action != ACT_BACKWARD_AIR_KB) {
             gMarioState->action = ACT_BACKWARD_AIR_KB;
             o->oDamageOrCoinValue = 3;
             take_damage_and_knock_back(gMarioState, o);

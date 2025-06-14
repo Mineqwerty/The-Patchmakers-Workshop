@@ -4,10 +4,16 @@ void bhv_lightning_sentry_init(void) {
 
 void bhv_lightning_sentry_loop(void) {
     if (o->oTimer % 60 == 59) {
-        obj_attack_in_radius(o, 400.0f, 1, 1);
+        s16 attackRadius = 400;
 
-        for (int i = 0; i < 15; i++) {
-            spawn_object_relative(0, random_u16()%400 - 200, random_u16()%300 - 150, random_u16()%400 - 200, o, MODEL_BREAKER_SPARK, bhvBreakerSpark);
+        if (gCurrLevelNum == LEVEL_BOWSER_3) {
+            attackRadius = 1200;
+        }
+
+        obj_attack_in_radius(o, (f32)attackRadius, 1, 1);
+
+        for (int i = 0; i < attackRadius/30; i++) {
+            spawn_object_relative(0, random_u16()%attackRadius - (attackRadius/2), random_u16() % (s16)((attackRadius*0.75f) - (attackRadius*0.75f * 0.5f)), random_u16()%attackRadius - (attackRadius/2), o, MODEL_BREAKER_SPARK, bhvBreakerSpark);
         }
     }
 }

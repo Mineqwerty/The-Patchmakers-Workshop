@@ -973,6 +973,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 }
 
 s32 act_star_dance(struct MarioState *m) {
+    gIsAttemptingDemonicSolids = FALSE;
     if (m->equippedPatch != PATCH_HALO) {
         common_patch_cancel(m);
     }
