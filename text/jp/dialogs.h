@@ -1632,7 +1632,7 @@ DEFINE_DIALOG(DIALOG_146, 1, 6, 150, 200, _("\
 クッパはかなりあせってる。\n\
 さあ！さいごのたたかいだ。"))
 
-DEFINE_DIALOG(DIALOG_147, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MONTHS_LATER, 1, 5, 30, 200, _("\
 あか・あお・みどりの\n\
 『アイテムブロック』を\n\
 つかっていますか？\n\
@@ -1649,7 +1649,7 @@ DEFINE_DIALOG(DIALOG_147, 1, 5, 30, 200, _("\
 \n\
 とてもつよい　みかたです。"))
 
-DEFINE_DIALOG(DIALOG_148, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_MASTER, 1, 5, 30, 200, _("\
 このさきスノーマンのやま\n\
 だれも　はいるな！\n\
 アイスブロックシューター\n\

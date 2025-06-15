@@ -1992,7 +1992,7 @@ attend...\n\
 Etes-vous prêt à\n\
 l'affronter?"))
 
-DEFINE_DIALOG(DIALOG_147, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MONTHS_LATER, 1, 6, 30, 200, _("\
 Faites-vous bon usage\n\
 des casquettes spéciales?\n\
 Elles peuvent vous être\n\
@@ -2012,7 +2012,7 @@ casquettes d'invisibilité,\n\
 et les verts des\n\
 casquettes-métal..."))
 
-DEFINE_DIALOG(DIALOG_148, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_MASTER, 1, 6, 30, 200, _("\
 Montagne du Bonhomme de\n\
 neige.../DANGER!\n\
 Ne pas tenter le Triple\n\

@@ -1659,41 +1659,83 @@ thanks to you--and is\n\
 Bowser ever upset! Now,\n\
 on to the final bout!"))
 
-DEFINE_DIALOG(DIALOG_147, 1, 5, 30, 200, _("\
-Are you using the Cap\n\
-Blocks? You really should,\n\
-you know.\n\
-\n\
-\n\
-To make them solid so you\n\
-can break them, you have\n\
-to press the colored Cap\n\
-Switches in the castle's\n\
-hidden courses.\n\
-You'll find the hidden\n\
-courses only after\n\
-regaining some of the\n\
-Power Stars.\n\
-\n\
-The Cap Blocks are a big\n\
-help! Red for the Wing\n\
-Cap, green for the Metal\n\
-Cap, blue for the Vanish\n\
-Cap."))
+DEFINE_DIALOG(DIALOG_MONTHS_LATER, 1, 3, 30, 200, _("\
+@5C5C5CFFA few months later..."))
 
-DEFINE_DIALOG(DIALOG_148, 1, 6, 30, 200, _("\
-Snowman Mountain ahead.\n\
-Keep out! And don't try\n\
-the Triple Jump over the\n\
-ice block shooter.\n\
+DEFINE_DIALOG(DIALOG_SEWNIA_MASTER, 1, 3, 30, 200, _("\
+@7F60B4FFHello!\n\
 \n\
 \n\
-If you fall into the\n\
-freezing pond, your power\n\
-decreases quickly, and\n\
-you won't recover\n\
-automatically.\n\
-//--The Snowman"))
+@7F60B4FFPhew... I'm here finally!\n\
+\n\
+\n\
+@FFFFFFFFAh, miss Sewnia. It is a pleasure\n\
+to see you again. Welcome, and apologies\n\
+for the journey here.\n\
+@7F60B4FFNo worries!\n\
+So... she's in there?\n\
+And Mario's here already, right?\n\
+@FFFFFFFFYes. I trust you've developed\n\
+something to help her, yes?\n\
+\n\
+@7F60B4FFI have... But are you sure?\n\
+I can't guarantee this will work.\n\
+It might be risky.\n\
+@FFFFFFFFThat is fine. If there is even\n\
+a sliver of a chance she may yet be\n\
+her former self, I will take it.\n\
+@FFFFFFFFBefore we enter though, I must\n\
+ask you one thing... Your ultimate\n\
+goal is bringing him back, right?\n\
+@FFFFFFFFI still can't grasp how you find it\n\
+in your heart to forgive him. The pain he\n\
+caused, the lives he took... why?\n\
+@FFFFFFFFThe man ripped your head off! And yet,\n\
+you wish to give him life again. Are you\n\
+not scared the same things will commence?\n\
+@7F60B4FF...\n\
+\n\
+\n\
+@7F60B4FFIt won't happen again.\n\
+His madness, I mean.\n\
+\n\
+@7F60B4FFYou and I are not so different.\n\
+We were both close to him... and he hurt\n\
+everyone around us.\n\
+@7F60B4FFAnd... I haven't forgiven him.\n\
+I don't know if I ever will.\n\
+But I can't just leave things like this.\n\
+@7F60B4FFWhile his obsession and desperation turned\n\
+him towards the path he walked, it was\n\
+the magic of life he used that drove him mad.\n\
+@7F60B4FFHe made a mistake... a horrible mistake.\n\
+And it is his fault that he did not stop\n\
+after realizing it. But...\n\
+@7F60B4FFHe gave me his thread of life before\n\
+his body was destroyed. Why would he do\n\
+something like that? I think I know.\n\
+@7F60B4FFDeep down, he wanted to atone. He wanted\n\
+to right the wrongs he caused. And he can't\n\
+do that without my help.\n\
+@7F60B4FFSo no, I haven't forgiven him.\n\
+But I want to give him a chance to fix things.\n\
+Even if the wounds are deep.\n\
+@FFFFFFFFSewnia... you display such maturity\n\
+for a little one, you know. I hope\n\
+the happiest of days for you after this.\n\
+@FFFFFFFFYour father did horrible things.\n\
+But if there's anything I know about him,\n\
+it's that he doesn't give up.\n\
+@FFFFFFFFSo, if you say so, I trust that\n\
+he has the capacity and willingness to atone.\n\
+And that he can and will cure those he hurt.\n\
+@FFFFFFFFI... can't see myself forgiving him.\n\
+But, if you do manage to one day revive him,\n\
+I will allow it for the Blights' sake.
+@FFFFFFFFSo then, shall we enter?\n\
+Mario has been waiting quite a while.\n\
+\n\
+@7F60B4FFOh, right! Yeah, let's go!"))
 
 DEFINE_DIALOG(DIALOG_149, 1, 3, 30, 200, _("\
 Welcome to\n\

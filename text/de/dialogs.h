@@ -1758,7 +1758,7 @@ endlosen Treppe lüften.\n\
 Begib Dich zum finalen\n\
 Duell mit Bowser!"))
 
-DEFINE_DIALOG(DIALOG_147, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MONTHS_LATER, 1, 4, 30, 200, _("\
 Bevor Du weitergehst,\n\
 solltest Du nach den\n\
 versteckten Schaltern\n\
@@ -1776,7 +1776,7 @@ einige Sterne besitzen, um\n\
 die Schalterpaläste finden\n\
 zu können!"))
 
-DEFINE_DIALOG(DIALOG_148, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_SEWNIA_MASTER, 1, 4, 30, 200, _("\
 Achtung, Achtung!\n\
 Versuche bloß nicht, den\n\
 Berg mit dem Dreisprung\n\
