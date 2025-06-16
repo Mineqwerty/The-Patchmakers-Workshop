@@ -3527,7 +3527,7 @@ void render_pause_screen_felt() {
     
 }
 
-#define NUM_MENU_SONGS 46
+#define NUM_MENU_SONGS 50
 
 s16 songList[NUM_MENU_SONGS] = {
     SEQ_TITLE_SCREEN,
@@ -3537,6 +3537,10 @@ s16 songList[NUM_MENU_SONGS] = {
     SEQ_LEVEL_GRASS,
     SEQ_STONE_PATCH_CUTSCENE,
     SEQ_PATCH_AREA,
+    SEQ_LEVEL_UNDERGROUND_WATERWORKS,
+    SEQ_POKEY_INTRO,
+    SEQ_POKEY_FIRST_PHASE,
+    SEQ_POKEY_SECOND_PHASE,
     SEQ_RAINY_DAY_ROADSIDE,
     SEQ_STONE_TERRACE_CITY,
     SEQ_GOLD_SOAKED_SKY,
@@ -3579,6 +3583,10 @@ s16 songList[NUM_MENU_SONGS] = {
 };
 
 s16 songVersions[NUM_MENU_SONGS] = {
+    0,
+    0,
+    0,
+    0,
     0,
     0,
     0,
@@ -3634,7 +3642,11 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Workshop - Safety",
     "Thorn Thicket Cliffs",
     "Hallucination of Petrification",
-    "Let's Get The Hang of Things...",
+    "Let's Get the Hang of Things...",
+    "Ambience of Vines and Crystals",
+    "Terror of the Tower of Thorns",
+    "Everybody, Run!!!",
+    "Now's Your Chance!",
     "Rainy Day Roadside",
     "Stone Terrace City",
     "Gold Soaked Sky",
@@ -3647,7 +3659,7 @@ const char songNames[NUM_MENU_SONGS][48] = {
     "Let's See What You've Got!",
     "Subterranean Seaway",
     "Candlelit Chamber",
-    "Tragedy of The Mistress",
+    "Tragedy of the Mistress",
     "Hidden Village Hold",
     "Demonic Solids",
     "Violet Twilit Woods",
@@ -3683,6 +3695,10 @@ const char composerNames[NUM_MENU_SONGS][48] = {
     "ornevelder",
     "CowQuack\nornevelder",
     "CowQuack",
+    "ornevelder",
+    "CowQuack",
+    "CowQuack",
+    "ornevelder",
     "ornevelder",
     "ornevelder",
     "ornevelder",

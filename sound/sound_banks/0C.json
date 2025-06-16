@@ -543,9 +543,9 @@
             "sound": "29_orchestra_hit"
         },
         "Trumpet": {
-            "release_rate": 208,
+            "release_rate": 67,
             "envelope": "envelope1",
-            "sound": "19_brass"
+            "sound": "17_trumpet"
         },
         "Timpani": {
             "release_rate": 10,

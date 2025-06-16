@@ -613,7 +613,7 @@ void pushpin_pokey_stunned(void) {
 
     switch (o->oSubAction) {
         case 0:
-        play_secondary_music(SEQ_LADY_SECOND_PHASE, 0, 255, 10);
+        play_secondary_music(SEQ_POKEY_SECOND_PHASE, 0, 255, 10);
         if (gMarioState->curPatch != PATCH_STONE) {
             for (int i = 0; i < 3; i++) {
                 o->oCamFocus = spawn_object_relative(i, 0, 0, 0, o, MODEL_ROSEDRIFT, bhvBounceRosedrift);
@@ -703,7 +703,7 @@ void pushpin_pokey_pop_up(void) {
         if (o->oTimer == 1) {
             /*
             seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_POKEY_FIRST_PHASE), 0);
             */
            o->oInteractType = INTERACT_PUSH_OUT;
            func_80321080(90);
@@ -816,7 +816,7 @@ void pushpin_pokey_cutscene(void) {
     }
     if (gCamera->cutscene == 0 && o->oTimer > 30) {
         o->oAction = POKEY_ACT_IDLE;
-        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_POKEY_FIRST_PHASE), 0);
     }
 
     if (o->oTimer == 190) {
@@ -839,7 +839,7 @@ void pushpin_pokey_cutscene(void) {
 
     if (o->oTimer == 170) {
         seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_INTRO), 0);
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_POKEY_INTRO), 0);
     }
     if (o->oTimer == 190) {
         o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 1000, o->oPosZ);
@@ -862,7 +862,7 @@ void pushpin_pokey_cutscene(void) {
     if (cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
         o->oAction = POKEY_ACT_IDLE;
         seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
-        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LADY_FIRST_PHASE), 0);
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_POKEY_FIRST_PHASE), 0);
         o->oPosY = find_floor_height(o->oPosX, gMarioState->pos[1] + 1000, o->oPosZ);
         if (o->oCamFocus) obj_mark_for_deletion(o->oCamFocus);
     }

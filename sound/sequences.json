@@ -130,11 +130,11 @@
     "23_level_underground_waterworks": [
         "0C"
     ],
-    "24_lady_first_phase": [
-        "21"
+    "24_pokey_first_phase": [
+        "0C"
     ],
-    "25_lady_second_phase": [
-        "21"
+    "25_pokey_second_phase": [
+        "0C"
     ],
     "26_custom_seq_streamed_rain": [
         "streamed_audio"
@@ -163,8 +163,8 @@
     "2E_custom_chamber": [
         "streamed_audio"
     ],
-    "2F_lady_intro": [
-        "21"
+    "2F_pokey_intro": [
+        "0C"
     ],
     "30_the_far_plane": [
         "streamed_audio"

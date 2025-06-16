@@ -1731,7 +1731,7 @@ he has the capacity and willingness to atone.\n\
 And that he can and will cure those he hurt.\n\
 @FFFFFFFFI... can't see myself forgiving him.\n\
 But, if you do manage to one day revive him,\n\
-I will allow it for the Blights' sake.
+I will allow it for the Blights' sake.\n\
 @FFFFFFFFSo then, shall we enter?\n\
 Mario has been waiting quite a while.\n\
 \n\
