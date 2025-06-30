@@ -11,6 +11,28 @@ u8 gSelectedFile = 0;
 
 s16 saveDeletionTimer = 0;
 
+s16 fileMenuTimer = 0;
+
+u8 isNewGamePlus = 0;
+
+u8 unlockedNGPlus = 0;
+
+void set_newgame_plus(void) {
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 0));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 2));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 3));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 4));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 5));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 6));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 7));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 8));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 9));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 10));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 11));
+    save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 12));
+}
+
 void set_initial_game_variables(void) {
     s8 dpadMap[4] = {-1, -1, -1, -1};
     save_file_set_dpad_map(gCurrSaveFileNum - 1, dpadMap);
@@ -71,6 +93,13 @@ void bhv_new_file_select_manager_loop(void) {
             }
 
             if (o->oTimer == 130) {
+
+                for (s16 i = 0; i < 4; i++) {
+                    if (specific_save_file_get_flags(i) & SAVE_FLAG_BEAT_GAME) {
+                        unlockedNGPlus = TRUE;
+                    }
+                }
+
                 o->oAction++;
             }
             Vec3f goalPos = {-100, 300, 0};
@@ -80,6 +109,7 @@ void bhv_new_file_select_manager_loop(void) {
         break;
         case NEW_FILE_SELECT_CAM_LOGO:
             {
+                isNewGamePlus = 0;
                 gSpecialHudRender = 1;
                 gSpecialHudElementAlpha = CLAMP_U8(o->oTimer * 6);
             Vec3f goalTitlePos = {-100, 300, 0};
@@ -104,6 +134,7 @@ void bhv_new_file_select_manager_loop(void) {
 
                 if (selector) {
                     selector->oF4 = gSelectedFile;
+                    selector->oF8 = isNewGamePlus;
                 }
 
                 gSpecialHudRender = 0;
@@ -115,9 +146,16 @@ void bhv_new_file_select_manager_loop(void) {
                     gCurrSaveFileNum = (s16)gSelectedFile + 1;
                     if (!save_file_exists(gCurrSaveFileNum - 1)) {
                         set_initial_game_variables();
+                        if (isNewGamePlus) {
+                            set_newgame_plus();
+                        }
                     }
                     update_mario_save_file_variables();
                     o->oAction = NEW_FILE_SELECT_LOADING_FILE;
+                }
+                else if (gPlayer1Controller->buttonPressed & (L_TRIG)) {
+
+                    isNewGamePlus = !isNewGamePlus;
                 }
 
                 u8 deleteGBColor = 255;
@@ -138,7 +176,12 @@ void bhv_new_file_select_manager_loop(void) {
                     if (save_file_exists((s16)gSelectedFile)) {
                         print_set_envcolour(255, 255, 255, CLAMP((o->oTimer - 60)* 17, 1, 255));
                         print_small_text_buffered(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 30, "Hold Z To Delete File", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+                        
                     }
+                    else if (unlockedNGPlus) {
+                        print_set_envcolour(255, 255, 255, CLAMP((o->oTimer - 60)* 17, 1, 255));
+                                print_small_text_buffered(SCREEN_WIDTH - 80, SCREEN_HEIGHT - 30, "Press L To Toggle NewGame+", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, FONT_VANILLA);
+                            }
                 }
                 
                 print_set_envcolour(120, 120, 120, CLAMP((o->oTimer - 60)* 17, 1, 255));
@@ -163,6 +206,7 @@ void bhv_new_file_select_manager_loop(void) {
 }
 
 void bhv_file_controller_init(void) {
+    
     if (save_file_exists(o->oBehParams2ndByte - 1)) {
         s16 starCount = save_file_get_total_star_count(o->oBehParams2ndByte - 1, COURSE_MIN - 1, COURSE_MAX - 1);
         u8 inHundreds = starCount/100;
@@ -186,6 +230,6 @@ void bhv_file_controller_init(void) {
 }
 
 void bhv_file_controller_loop(void) {
-
+    fileMenuTimer += 1;
 }
 

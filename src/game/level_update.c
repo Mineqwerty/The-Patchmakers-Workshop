@@ -1619,6 +1619,9 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
         
         return FALSE;
     }
+    else if (gCutsceneGameState == CUTSCENE_GAME_STATE_START_EPILOGUE) {
+        return FALSE;
+    }
 
     return !gDebugLevelSelect;
 }

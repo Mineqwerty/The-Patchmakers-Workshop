@@ -208,7 +208,7 @@ static void wiggler_act_walk(void) {
         // If Mario is positioned below the wiggler, assume he entered through the
         // lower cave entrance, so don't display text.
         if (gMarioObject->oPosY < o->oPosY || cur_obj_update_dialog_with_cutscene(
-            MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_150)) {
+            MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_MISTRESS_REVIVED)) {
             o->oWigglerTextStatus = WIGGLER_TEXT_STATUS_COMPLETED_DIALOG;
         }
     } else {
@@ -266,7 +266,7 @@ static void wiggler_act_walk(void) {
  */
 static void wiggler_act_jumped_on(void) {
     // Text to show on first, second, and third attack.
-    s32 attackText[3] = { DIALOG_152, DIALOG_FINAL_BOSS_DEFEATED_3, DIALOG_BOOK_MAGIC };
+    s32 attackText[3] = { DIALOG_EPILOGUE, DIALOG_FINAL_BOSS_DEFEATED_3, DIALOG_BOOK_MAGIC };
 
     // Shrink until the squish speed becomes 0, then unisquish
     if (approach_f32_ptr(&o->oWigglerSquishSpeed, 0.0f, 0.05f)) {

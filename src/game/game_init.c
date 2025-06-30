@@ -73,6 +73,7 @@ s16 gDestroyedCrackInReality = 0;
 s16 gInMemoryStage = 0;
 s16 gIsAttemptingDemonicSolids = 0;
 s16 updatePatchMenuDma = 0;
+u8 gHasAskedForEpilogue = 0;
 u8 gFBE = FALSE;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;

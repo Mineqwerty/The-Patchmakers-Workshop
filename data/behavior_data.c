@@ -7485,6 +7485,7 @@ const BehaviorScript bhvClcDoor[] = {
     LOAD_COLLISION_DATA(clc_door_collision),
     SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
     SET_INT(oIntangibleTimer, 0),
+    SET_FLOAT(oDrawingDistance, 20000),
     SET_FLOAT(oCollisionDistance, 2000),
     SET_HOME(),
     CALL_NATIVE(bhv_door_init),
@@ -9491,5 +9492,59 @@ const BehaviorScript bhvSisyphusManager[] = {
     CALL_NATIVE(bhv_sisyphus_manager_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_sisyphus_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvEpilogueWarp[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    CALL_NATIVE(bhv_epilogue_warp_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_epilogue_warp_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvEpilogueCutsceneManager[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_epilogue_cutscene_manager_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_epilogue_cutscene_manager_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMasterEpilogue[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, master_anims),
+    ANIMATE(2),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_master_epilogue_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_master_epilogue_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPostgameSewnia[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, sewnia_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_postgame_sewnia_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_postgame_sewnia_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvMistressCured[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    LOAD_ANIMATIONS(oAnimations, mistress_cured_anims),
+    ANIMATE(0),
+    SET_FLOAT(oDrawingDistance, 20000),
+    CALL_NATIVE(bhv_mistress_cured_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_mistress_cured_loop),
     END_LOOP(),
 };

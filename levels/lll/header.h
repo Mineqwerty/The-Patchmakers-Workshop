@@ -192,4 +192,8 @@ extern const LevelScript level_lll_entry[];
 #include "levels/lll/cutscene_chair/geo_header.h"
 
 
+#include "levels/lll/mistress_cured/geo_header.h"
+
+#include "levels/lll/mistress_cured/anim_header.h"
+
 #endif

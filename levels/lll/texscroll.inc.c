@@ -1,7 +1,7 @@
 void scroll_gfx_lll_dl_NoCol_Room2_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_NoCol_Room2_mesh_layer_1);
 
-	shift_t(mat, 242, PACK_TILESIZE(0, 1));
+	shift_t(mat, 241, PACK_TILESIZE(0, 1));
 
 };
 
@@ -9,8 +9,8 @@ void scroll_gfx_lll_dl_Col_room3_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_Col_room3_mesh_layer_1);
 
 
-	shift_t(mat, 202, PACK_TILESIZE(0, 1));
-	shift_t(mat, 489, PACK_TILESIZE(0, 1));
+	shift_t(mat, 201, PACK_TILESIZE(0, 1));
+	shift_t(mat, 488, PACK_TILESIZE(0, 1));
 
 };
 
@@ -29,8 +29,8 @@ void scroll_gfx_lll_dl_col_room4_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_col_room4_mesh_layer_1);
 
 
-	shift_t(mat, 120, PACK_TILESIZE(0, 1));
-	shift_t(mat, 371, PACK_TILESIZE(0, 1));
+	shift_t(mat, 119, PACK_TILESIZE(0, 1));
+	shift_t(mat, 370, PACK_TILESIZE(0, 1));
 
 };
 
@@ -48,7 +48,7 @@ void scroll_gfx_lll_dl_col_room4_mesh_layer_5() {
 void scroll_gfx_lll_dl_nocol_room4_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_nocol_room4_mesh_layer_1);
 
-	shift_t(mat, 82, PACK_TILESIZE(0, 1));
+	shift_t(mat, 81, PACK_TILESIZE(0, 1));
 
 };
 
@@ -67,8 +67,8 @@ void scroll_gfx_lll_dl_nocol_room5_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_nocol_room5_mesh_layer_1);
 
 
-	shift_t(mat, 83, PACK_TILESIZE(0, 1));
-	shift_t(mat, 184, PACK_TILESIZE(0, 1));
+	shift_t(mat, 82, PACK_TILESIZE(0, 1));
+	shift_t(mat, 183, PACK_TILESIZE(0, 1));
 
 };
 
@@ -97,7 +97,7 @@ void scroll_gfx_lll_dl_col_room9_mesh_layer_5() {
 void scroll_gfx_lll_dl_nocol_room9_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_nocol_room9_mesh_layer_1);
 
-	shift_t(mat, 197, PACK_TILESIZE(0, 1));
+	shift_t(mat, 192, PACK_TILESIZE(0, 1));
 
 };
 
@@ -115,7 +115,7 @@ void scroll_gfx_lll_dl_nocol_room9_mesh_layer_5() {
 void scroll_gfx_lll_dl_col_room10_mesh_layer_1() {
 	Gfx *mat = segmented_to_virtual(lll_dl_col_room10_mesh_layer_1);
 
-	shift_t(mat, 71, PACK_TILESIZE(0, 1));
+	shift_t(mat, 66, PACK_TILESIZE(0, 1));
 
 };
 

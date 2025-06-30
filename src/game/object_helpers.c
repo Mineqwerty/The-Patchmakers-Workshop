@@ -349,6 +349,14 @@ Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *conte
             );
         }
 
+        if (gCutsceneGameState == CUTSCENE_GAME_STATE_START_EPILOGUE && gCurrAreaIndex == 1 && gCurCutscene > 0) {
+            room = get_room_at_pos(
+                gCamera->pos[0],
+                gCamera->pos[1],
+                gCamera->pos[2]
+            );
+        }
+
         print_debug_top_down_objectinfo("areainfo %d", room);
 
         if (room > 0) {

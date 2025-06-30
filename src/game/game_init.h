@@ -70,6 +70,7 @@ extern s16 gInMemoryStage;
 extern s32 gFinalNeedleStage;
 extern s16 updatePatchMenuDma;
 extern s16 gIsAttemptingDemonicSolids;
+extern u8 gHasAskedForEpilogue;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 extern u8 gCustomDebugMode;
 #endif

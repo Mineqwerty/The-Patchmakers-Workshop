@@ -603,7 +603,7 @@ u32 save_file_get_flags(void) {
             SAVE_FLAG_UNLOCKED_COURSE_TS    |
             SAVE_FLAG_BEAT_GAME |
             SAVE_FLAG_UNLOCKED_50_STAR_DOOR  |
-            SAVE_FLAG_COLLECTED_TOAD_STAR_1  |
+            SAVE_FLAG_SEEN_EPILOGUE  |
             SAVE_FLAG_COLLECTED_TOAD_STAR_2  |
             SAVE_FLAG_COLLECTED_TOAD_STAR_3  |
             SAVE_FLAG_COLLECTED_MIPS_STAR_1  |
@@ -614,6 +614,13 @@ u32 save_file_get_flags(void) {
     }
     return gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags;
 #endif
+}
+
+u32 specific_save_file_get_flags(s16 fileNum) {
+    if (gCurrCreditsEntry != NULL || gCurrDemoInput != NULL) {
+        return 0;
+    }
+    return gSaveBuffer.files[fileNum][0].flags;
 }
 
 /**

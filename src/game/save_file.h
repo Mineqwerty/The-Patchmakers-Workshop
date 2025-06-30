@@ -131,7 +131,7 @@ enum SaveProgressFlags {
     SAVE_FLAG_CAP_ON_UKIKI           = (1 << 18), /* 0x00040000 */
     SAVE_FLAG_CAP_ON_MR_BLIZZARD     = (1 << 19), /* 0x00080000 */
     SAVE_FLAG_UNLOCKED_50_STAR_DOOR  = (1 << 20), /* 0x00100000 */
-    SAVE_FLAG_COLLECTED_TOAD_STAR_1  = (1 << 24), /* 0x01000000 */
+    SAVE_FLAG_SEEN_EPILOGUE  = (1 << 24), /* 0x01000000 */
     SAVE_FLAG_COLLECTED_TOAD_STAR_2  = (1 << 25), /* 0x02000000 */
     SAVE_FLAG_COLLECTED_TOAD_STAR_3  = (1 << 26), /* 0x04000000 */
     SAVE_FLAG_COLLECTED_MIPS_STAR_1  = (1 << 27), /* 0x08000000 */
@@ -217,6 +217,7 @@ void save_file_set_dpad_map(s32 fileIndex, s8 dpadMap[4]);
 u32 save_file_get_collected_patch_upgrades(s32 fileIndex);
 void save_file_set_collected_patch_upgrades(s32 fileIndex, u32 patchUpgrades);
 s32 save_file_get_course_coin_score(s32 fileIndex, s32 courseIndex);
+u32 specific_save_file_get_flags(s16 fileNum);
 s32 save_file_is_cannon_unlocked(void);
 u32 save_file_get_camera_correction(void);
 u32 save_file_get_patch_button(void);

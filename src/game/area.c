@@ -438,7 +438,7 @@ void render_game(void) {
                 shade_portal_screen();
          }
 
-        render_hud();
+       render_hud();
 
         render_fb_effects();
 

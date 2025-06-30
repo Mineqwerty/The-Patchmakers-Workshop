@@ -865,3 +865,8 @@ extern const BehaviorScript bhvPmBubble[];
 extern const BehaviorScript bhvPmMiasma[];
 extern const BehaviorScript bhvPmPortal[];
 extern const BehaviorScript bhvSisyphusManager[];
+extern const BehaviorScript bhvEpilogueWarp[];
+extern const BehaviorScript bhvEpilogueCutsceneManager[];
+extern const BehaviorScript bhvMasterEpilogue[];
+extern const BehaviorScript bhvPostgameSewnia[];
+extern const BehaviorScript bhvMistressCured[];

@@ -1311,7 +1311,7 @@ ses amis...\n\
 Allez... En garde!\n\
 BWA HA HA HA HA HA HA!"))
 
-DEFINE_DIALOG(DIALOG_094, 1, 6, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_NOT_MUCH_LEFT, 1, 6, 30, 200, _("\
 Pourquoi ne pas escalader\n\
 cette pente en courant?\n\
 Petit rappel: pour faire\n\
@@ -2026,7 +2026,7 @@ permanente.\n\
 Alors, attention!\n\
 -Le Bonhomme de neige-"))
 
-DEFINE_DIALOG(DIALOG_149, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_POSTGAME_MISTRESS, 1, 5, 30, 200, _("\
 Voici la Glissade Secrète\n\
 de la Princesse Peach!\n\
 Vous y trouverez une\n\
@@ -2042,7 +2042,7 @@ vous découvrirez une\n\
 des étoiles secrètes du\n\
 château!"))
 
-DEFINE_DIALOG(DIALOG_150, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MISTRESS_REVIVED, 1, 4, 30, 200, _("\
 Whoa! Va-z'y, lui!\n\
 T' as inondé ma zon-mé!!!\n\
 Pourquoi t'as fait ça, yo!\n\
@@ -2067,7 +2067,7 @@ face...\n\
 Grrrr! Pas cool, Bob.\n\
 Tu cherches le contact?"))
 
-DEFINE_DIALOG(DIALOG_152, 1, 2, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_EPILOGUE, 1, 2, 30, 200, _("\
 Gnaaaaa! Pov'type, va!\n\
 Tiens, la v'là ton étoile!\n\
 J'm'en fiche...\n\

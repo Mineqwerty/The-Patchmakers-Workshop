@@ -1216,7 +1216,7 @@ endgültig mir und ich bin\n\
 auf ewig der Herrscher\n\
 des Schlosses!!!"))
 
-DEFINE_DIALOG(DIALOG_094, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_NOT_MUCH_LEFT, 1, 4, 30, 200, _("\
 Erinnerst Du Dich noch an\n\
 den Weitsprung? Renne,\n\
 drücke den [Z]-Knopf und\n\
@@ -1786,7 +1786,7 @@ sehr kalt - Deine Fitness\n\
 könnte bei einem Bad\n\
 großen Schaden nehmen!"))
 
-DEFINE_DIALOG(DIALOG_149, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_POSTGAME_MISTRESS, 1, 5, 30, 200, _("\
 Willkommen auf der\n\
 Rutschbahn der Prinzessin.\n\
 Hier befindet sich ein\n\
@@ -1798,7 +1798,7 @@ beschleunigen.\n\
 Wenn Du sehr schnell bist,\n\
 erhältst Du den Stern."))
 
-DEFINE_DIALOG(DIALOG_150, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MISTRESS_REVIVED, 1, 5, 30, 200, _("\
 Aaaaaah! Sieh Dir diese\n\
 Schweinerei an. Du hast\n\
 meine Wohnung überflutet.\n\
@@ -1822,7 +1822,7 @@ beibringen! Du...Ich...\n\
 werde Dich...Ich werde\n\
 Dich lehren..."))
 
-DEFINE_DIALOG(DIALOG_152, 1, 4, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_EPILOGUE, 1, 4, 30, 200, _("\
 Ooooh, halt, halt! Ich\n\
 gebe auf. Hier, nimm\n\
 den Stern. Ich brauche\n\

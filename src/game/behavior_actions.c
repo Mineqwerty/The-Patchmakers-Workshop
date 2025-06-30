@@ -436,3 +436,6 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/pm_miasma.inc.c"
 #include "behaviors/pm_portal.inc.c"
 #include "behaviors/sisyphus_manager.inc.c"
+#include "behaviors/epilogue_warp.inc.c"
+#include "behaviors/epilogue_cutscene_manager.inc.c"
+#include "behaviors/postgame_sewnia.inc.c"

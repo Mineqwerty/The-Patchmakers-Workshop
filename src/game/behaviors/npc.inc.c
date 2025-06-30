@@ -62,6 +62,9 @@ void bhv_generic_npc_init(void) {
 
 void bhv_generic_npc_loop(void) {
     if (cur_obj_has_model(MODEL_PHANTASMAID)) {
+        if (gCutsceneGameState == CUTSCENE_GAME_STATE_START_EPILOGUE) {
+            obj_mark_for_deletion(o);
+        }
         //turn anim
         if (cCutsceneActive && o->oTimer == 80) {
             cur_obj_init_animation(1);

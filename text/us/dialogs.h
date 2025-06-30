@@ -1115,11 +1115,11 @@ And you'll never see the\n\
 Princess again!\n\
 Bwa ha ha ha!"))
 
-DEFINE_DIALOG(DIALOG_094, 1, 4, 30, 200, _("\
-Get a good run up the\n\
-slope! Do you remember\n\
-the Long Jump? Run, press\n\
-[Z], then jump!"))
+DEFINE_DIALOG(DIALOG_NOT_MUCH_LEFT, 1, 4, 30, 200, _("\
+@FEFEFEFFThere isn't much left for\n\
+you here...\n\
+Leave the workshop?\n\
+//Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_095, 1, 4, 30, 200, _("\
 To read a sign, stand in\n\
@@ -1675,7 +1675,7 @@ for the journey here.\n\
 @7F60B4FFNo worries!\n\
 So... she's in there?\n\
 And Mario's here already, right?\n\
-@FFFFFFFFYes. I trust you've developed\n\
+@FFFFFFFFIndeed. I trust you've developed\n\
 something to help her, yes?\n\
 \n\
 @7F60B4FFI have... But are you sure?\n\
@@ -1737,35 +1737,60 @@ Mario has been waiting quite a while.\n\
 \n\
 @7F60B4FFOh, right! Yeah, let's go!"))
 
-DEFINE_DIALOG(DIALOG_149, 1, 3, 30, 200, _("\
-Welcome to\n\
-Princess Toadstool's\n\
-secret slide!\n\
-There's a Star hidden\n\
-here that Bowser couldn't\n\
-find.\n\
-When you slide, press\n\
-forward to speed up,\n\
-pull back to slow down.\n\
-If you slide really\n\
-fast, you'll win the Star!"))
-
-DEFINE_DIALOG(DIALOG_150, 1, 5, 30, 200, _("\
-Waaaa! You've flooded my\n\
-house! Wh-why?? Look at\n\
-this mess! What am I\n\
-going to do now?\n\
+DEFINE_DIALOG(DIALOG_POSTGAME_MISTRESS, 1, 3, 30, 200, _("\
+@FFFFFFFFDear? You have more visitors.\n\
 \n\
-The ceiling's ruined, the\n\
-floor is soaked...what to\n\
-do, what to do? Huff...\n\
-huff...it makes me so...\n\
-MAD!!!\n\
-Everything's been going\n\
-wrong ever since I got\n\
-this Star...It's so shiny,\n\
-but it makes me feel...\n\
-strange..."))
+\n\
+@7F60B4FFHello!...\n\
+I'm...\n\
+...oh.\n\
+@7F60B4FFS-sorry! I'm sorry!\n\
+I was just a little...\n\
+\n\
+@FFFFFFFFShocked? Scared? Mortified?\n\
+This is what The Patchmaker did, Sewnia.\n\
+Keep that in mind going forward.\n\
+@7F60B4FF...I know. And I'm going to fix it.\n\
+\n\
+\n\
+@7F60B4FFHi there! You poor thing...\n\
+I can't imagine how much hurt you've\n\
+been through... I'll make it better!\n\
+@7F60B4FFHere's what I'm going to do.\n\
+Mario, I'm using the Thread of Life\n\
+technique to take her thread out.\n\
+@7F60B4FFOnce she has been turned into a\n\
+plush doll, I'll use it again to imbue\n\
+her soul back into her body.\n\
+@7F60B4FFThis should work... but it won't\n\
+be easy. That's where the star power you\n\
+collected comes in.\n\
+@7F60B4FFA normal Thread of Life only rewinds\n\
+the results of taking the soul out of a\n\
+person... but there is a more powerful version.\n\
+@7F60B4FFWith the star power, attaching the thread\n\
+again should rescind ALL patchwork, not just\n\
+the doll form of the Thread of Life.\n\
+@7F60B4FFThis is only possible because Mario collected\n\
+so many stars... So thank you, Mario!\n\
+Now then, if everyone may stand back..."))
+
+DEFINE_DIALOG(DIALOG_MISTRESS_REVIVED, 1, 3, 30, 200, _("\
+@FFFFFFFFMmm... I feel warm.\n\
+My head is spinning...\n\
+...Is someone there?\n\
+@FFFFFFFFMy... My Dear!\n\
+You're...\n\
+Back to yourself, right?\n\
+@FFFFFFFFHoney, who are these people?\n\
+Where... was I?\n\
+What was I doing?\n\
+@FFFFFFFFThank heavens! I could\n\
+die of happiness right now!!!\n\
+Oh, thank you Sewnia!!!\n\
+@7F60B4FFI'm happy you're happy!\n\
+Ah... but your wife seems a bit dazed\n\
+and confused... let's explain to her..."))
 
 DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 0b100, 3, 30, 200, _("\
 @FEFEFEFFIn a world as vast and differing as this one,\n\
@@ -1784,19 +1809,61 @@ best that way.\n\
 of wonder and amazement.\n\
 It would be best to not pursue other measures."))
 
-DEFINE_DIALOG(DIALOG_152, 1, 3, 30, 200, _("\
-Owwch! Uncle! Uncle!\n\
-Okay, I give up. Take this\n\
-Star!\n\
-Whew! I feel better now.\n\
-I don't really need it\n\
-anymore, anyway--\n\
-I can see the stars\n\
-through my ceiling at\n\
-night.\n\
-They make me feel...\n\
-...peaceful. Please, come\n\
-back and visit anytime."))
+DEFINE_DIALOG(DIALOG_EPILOGUE, 1, 3, 30, 200, _("\
+@FFFFFFFFI see... That feels correct to me.\n\
+In truth, I do remember the attack now.\n\
+Thinking of it chills my spine.\n\
+@FFFFFFFFI cannot thank you enough in that case.\n\
+The manor has gone through turmoil whilst I\n\
+was sleeping... and it doesn't seem over.\n\
+@7F60B4FFNo... But curing you was the first step.\n\
+Since that worked, I'm one step closer to\n\
+restoring life to my father.\n\
+@7F60B4FFI... can't help cure the Blights.\n\
+But he knows more than me. I studied the\n\
+Shadowchomp Patch he created for a while...\n\
+@7F60B4FFIt seems the captured essence of the Blights it\n\
+consumes is not lost in any form. If he truly knew how\n\
+to bend life in that way, his struggle would have been short.\n\
+@7F60B4FFThey seem to be in a different state of existence...\n\
+Whether that can be reversed or not...\n\
+That is not something I can answer.\n\
+@FFFFFFFFThat is quite alright, Sewnia.\n\
+You've given us here a glimmer of hope\n\
+we haven't seen in a long time.\n\
+@FFFFFFFFI still have my reservations about\n\
+bringing that man back... But I trust\n\
+your judgement. Until then we shall hope.\n\
+@7F60B4FFThank you... I'm going to continue\n\
+working hard to heal these worlds of\n\
+The Patchmaker by getting better at his craft...\n\
+@7F60B4FFI know that, one day, I can use his\n\
+thread to give him life in a new body.\n\
+But only once I know I can cleanse his madness.\n\
+@7F60B4FFIt's going to be a long time... but I hope\n\
+to have the support of everyone along the way.\n\
+So thank you for trusting me.\n\
+@7F60B4FFYou know... how long have you all\n\
+been houled up in this manor for? The flowers\n\
+outside the workshop are pretty this time of year.\n\
+@7F60B4FFI have a handy patch that Mario gave me\n\
+that can bring us there... so what do\n\
+you say? It would be nice...\n\
+@FFFFFFFFOf course, Sewnia! My husband and I\n\
+would love to see it with you! We can see\n\
+just what you've been up to recently, too!\n\
+@FFFFFFFFWhy don't we travel there now?\n\
+\n\
+\n\
+@FFFFFFFFBut dear... you only now\n\
+got better! Aren't you tired?\n\
+\n\
+@FFFFFFFFWhat I'm tired of is being in that\n\
+bed. Let's go get some outdoor air!\n\
+\n\
+@7F60B4FFHehe! Yeah!\n\
+I'll lead the way!\n\
+Come on, Mario!"))
 
 DEFINE_DIALOG(DIALOG_SEWNIA_FLAVOR_HUB_2_1, 1, 3, 30, 200, _("\
 @7F60B4FFI used to love this place, you know.\n\
@@ -2287,7 +2354,7 @@ the doors closed. They lead to an ancient land called\n\
 Stone Terrace City. I've heard it's truly a marvel.\n\
 Be careful not to fall off of the moving parts!\n\
 @7F60B4FFAs for the patch, I was given the hint that it was\n\
-hidden somewhere over a fence... I know that isn't very helpful,\n\
+hidden somewhere over a fence... That isn't very helpful,\n\
 but if you see some fence that looks as though it was\n\
 climbed over, I would give it a look!"))
 

@@ -194,9 +194,6 @@ void bhv_toad_message_init(void) {
     switch (dialogId) {
         case TOAD_STAR_1_DIALOG:
             enoughStars = (starCount >= TOAD_STAR_1_REQUIREMENT);
-            if (saveFlags & SAVE_FLAG_COLLECTED_TOAD_STAR_1) {
-                dialogId = TOAD_STAR_1_DIALOG_AFTER;
-            }
             break;
         case TOAD_STAR_2_DIALOG:
             enoughStars = (starCount >= TOAD_STAR_2_REQUIREMENT);

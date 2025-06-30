@@ -105,3 +105,7 @@
 #include "levels/lll/master/anims/table.inc.c"
 #include "levels/lll/cutscene_chair/collision.inc.c"
 #include "levels/lll/cutscene_chair/model.inc.c"
+
+#include "levels/lll/mistress_cured/model.inc.c"
+#include "levels/lll/mistress_cured/anims/data.inc.c"
+#include "levels/lll/mistress_cured/anims/table.inc.c"

@@ -1072,7 +1072,7 @@ DEFINE_DIALOG(DIALOG_093, 1, 4, 30, 200, _("\
 ピーチちゃんも　わたさん\n\
 もんね！　　いくぞ！！"))
 
-DEFINE_DIALOG(DIALOG_094, 1, 3, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_NOT_MUCH_LEFT, 1, 3, 30, 200, _("\
 のぼりにくい　さかみちは\n\
 じょそうをつけて\n\
 げんきよく　のぼる！\n\
@@ -1661,7 +1661,7 @@ DEFINE_DIALOG(DIALOG_SEWNIA_MASTER, 1, 5, 30, 200, _("\
 かいふくも　しません。\n\
 　　　　　　スノーマン"))
 
-DEFINE_DIALOG(DIALOG_149, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_POSTGAME_MISTRESS, 1, 5, 30, 200, _("\
 ピーチのかくれスライダー\n\
 へ　ようこそ！\n\
 ここには　クッパにみつけ\n\
@@ -1673,7 +1673,7 @@ DEFINE_DIALOG(DIALOG_149, 1, 5, 30, 200, _("\
 はやくすべれば　スターが\n\
 みつかるはずだ！"))
 
-DEFINE_DIALOG(DIALOG_150, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_MISTRESS_REVIVED, 1, 5, 30, 200, _("\
 あーーん、だれだい？\n\
 とつぜん　ビショぬれに\n\
 なっちゃいました！\n\
@@ -1686,7 +1686,7 @@ DEFINE_DIALOG(DIALOG_BOOK_MAGIC, 1, 4, 30, 200, _("\
 もう　ほんとーに\n\
 おこったです！"))
 
-DEFINE_DIALOG(DIALOG_152, 1, 5, 30, 200, _("\
+DEFINE_DIALOG(DIALOG_EPILOGUE, 1, 5, 30, 200, _("\
 いててて！！！\n\
 らんぼうなひとだなあ。\n\
 なぜかイライラしてたけど、\n\

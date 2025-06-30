@@ -1,2 +1,5 @@
 #include "anim_idle_001.inc.c"
 #include "anim_leanback.inc.c"
+#include "anim_idle_standing.inc.c"
+#include "anim_ready_to_hug.inc.c"
+#include "anim_hugmistress.inc.c"

@@ -52,6 +52,7 @@ const LevelScript level_lll_entry[] = {
 	LOAD_MODEL_FROM_GEO(MODEL_MISTRESS, mistress_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_MASTER, master_geo), 
 	LOAD_MODEL_FROM_GEO(MODEL_CUTSCENE_CHAIR, cutscene_chair_geo), 
+	LOAD_MODEL_FROM_GEO(MODEL_MISTRESS_CURED, mistress_cured_geo), 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
 
@@ -229,6 +230,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_FORTUNE_TELEPORTER_PEDESTAL, 11611, 9046, -9966, 0, -180, 0, 0x00000000, bhvFortuneTeleporterPedestal),
 		OBJECT(MODEL_NONE, 4928, 1578, -3146, 0, -180, 0, (239 << 16), bhvSpinAirborneWarp),
 		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 568, 6992, 490, 0, -90, 0, (29 << 24) | (2 << 16), bhvReadableBook),
+		OBJECT(MODEL_MASTER, 10722, 9046, -13351, 0, 130, 0, 0x00000000, bhvMasterEpilogue),
 		OBJECT(MODEL_MOVING_SPECTRAL_OCTAGON, 4944, 2606, -13528, 0, -90, 0, 0x00000000, bhvMovingSpectralOctagon),
 		OBJECT(MODEL_MOVING_SPECTRAL_OCTAGON, 8564, 3685, -13459, 0, -141, 0, 0x00000000, bhvMovingSpectralOctagon),
 		OBJECT(MODEL_MOVING_SPECTRAL_OCTAGON, 8600, 4306, -13474, 0, -51, 0, 0x00000000, bhvMovingSpectralOctagon),
@@ -247,6 +249,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_NONE, -4614, 2588, -12338, 0, -180, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -3925, 2588, -12338, 0, -180, 0, (100 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -6102, 4113, -5727, 0, -180, 0, (1 << 24) | (45 << 16) | (2 << 8), bhvPoleGrabbing),
+		OBJECT(MODEL_NONE, 11484, 9046, -12671, 0, -180, 0, 0x00000000, bhvEpilogueCutsceneManager),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -9149, 5272, 398, 0, -180, 0, 0x00000000, bhvClcPuzzleEye),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -8266, 5272, 2323, 0, -90, 0, (1 << 16), bhvClcPuzzleEye),
 		OBJECT(MODEL_CLC_PUZZLE_EYE, -10203, 5272, 1137, 0, -180, 0, (2 << 16), bhvClcPuzzleEye),
@@ -265,6 +268,7 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_RED_COIN, -4370, 1038, -5741, 0, -180, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -2110, 3749, -12222, 0, -180, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_RED_COIN, -6039, 5008, -11257, 0, -180, 0, 0x00000000, bhvRedCoin),
+		OBJECT(MODEL_SEWNIA, 11421, 9046, -11466, 0, -168, 0, 0x00000000, bhvPostgameSewnia),
 		OBJECT(MODEL_FLOATING_TABLE, 7636, 1451, 1600, 0, -180, 0, 0x00000000, bhvSpinningTable),
 		OBJECT(MODEL_FLOATING_TABLE, 3269, 1823, 5063, 0, -180, 0, 0x00000000, bhvSpinningTable),
 		OBJECT(MODEL_FLOATING_TABLE, 3797, 6884, 9181, 0, -180, 0, 0x00000000, bhvSpinningTable),
@@ -343,8 +347,11 @@ const LevelScript level_lll_entry[] = {
 		OBJECT(MODEL_CLC_DOOR, -100, 422, 764, 0, 0, 0, (2 << 24) | (15 << 16), bhvClcDoorWarp),
 		OBJECT(MODEL_CLC_DOOR, 100, 422, 764, 0, -180, 0, (1 << 24) | (14 << 16), bhvClcDoorWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvMistressRoomManager),
+		OBJECT(MODEL_MASTER, -44, 422, 344, 0, 175, 0, 0x00000000, bhvMasterEpilogue),
 		OBJECT(MODEL_MISTRESS, 581, 550, -1207, 0, -90, 0, 0x00000000, bhvMistress),
 		OBJECT(MODEL_PHANTASMAID, 429, 421, -970, 0, 132, 0, (36 << 16), bhvGenericNPC),
+		OBJECT(MODEL_NONE, 795, 422, -1010, 0, -180, 0, 0x00000000, bhvEpilogueCutsceneManager),
+		OBJECT(MODEL_SEWNIA, 317, 422, 216, 0, 171, 0, 0x00000000, bhvPostgameSewnia),
 		TERRAIN(lll_area_3_collision),
 		TERRAIN_MAT_LUT(lll_area_3_collision_materials),
 		MACRO_OBJECTS(lll_area_3_macro_objs),
