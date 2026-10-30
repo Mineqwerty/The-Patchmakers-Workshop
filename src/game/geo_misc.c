@@ -60,7 +60,7 @@ Gfx *geo_exec_inside_castle_light(s32 callContext, struct GraphNode *node, UNUSE
             struct GraphNodeGenerated *generatedNode = (struct GraphNodeGenerated *) node;
             SET_GRAPH_NODE_LAYER(generatedNode->fnNode.node.flags, LAYER_TRANSPARENT);
 
-            gSPDisplayList(displayListHead++, dl_castle_lobby_wing_cap_light);
+            gSPDisplayList(displayListHead++, NULL);
             gSPEndDisplayList(displayListHead);
         }
     }

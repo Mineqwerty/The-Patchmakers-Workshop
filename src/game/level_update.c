@@ -35,6 +35,7 @@
 #include "level_commands.h"
 #include "include/behavior_data.h"
 #include "src/game/hud.h"
+#include "src/game/randomizer.h"
 
 #include "config.h"
 #include "src/game/cutscene.h"
@@ -785,6 +786,16 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     sWarpDest.nodeId = destWarpNode;
     sWarpDest.arg = warpFlags;
     sWarpDest.portalID = portalID;
+
+    u16 levelShuffleNum = find_warp_entrance(destLevel, destArea);
+
+    if (levelShuffleNum > 0) {
+        WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
+        sWarpDest.levelNum = newGoal->level;
+        sWarpDest.areaIdx = newGoal->area;
+
+    }
+
 }
 
 // From Surface 0xD3 to 0xFC

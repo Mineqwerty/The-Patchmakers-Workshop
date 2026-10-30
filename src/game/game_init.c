@@ -35,6 +35,7 @@
 #include "fb_effects.h"
 #include "vc_ultra.h"
 #include "emutest.h"
+#include "src/game/randomizer.h"
 
 // Emulators that the Instant Input patch should not be applied to
 #define INSTANT_INPUT_BLACKLIST (EMU_CONSOLE | EMU_WIIVC | EMU_ARES | EMU_SIMPLE64 | EMU_CEN64)
@@ -776,6 +777,11 @@ void init_controllers(void) {
     osContSetCh(lastUsedPort + 1);
 }
 
+u16 test_seed = 2967924;
+void init_rando() {
+    shuffle_warp_goals(test_seed);
+}
+
 // Game thread core
 // ----------------------------------------------------------------------------------------------------
 
@@ -830,7 +836,7 @@ void thread5_game_loop(UNUSED void *arg) {
 #ifdef PUPPYCAM
     puppycam_boot();
 #endif
-
+    init_rando();
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
     // Point address to the entry point into the level script data.
