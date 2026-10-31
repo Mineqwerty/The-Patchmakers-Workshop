@@ -787,13 +787,48 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     sWarpDest.arg = warpFlags;
     sWarpDest.portalID = portalID;
 
+#ifdef PUPPYPRINT_DEBUG
+    // The puppyprint debug level select names an explicit level/area, so leave
+    // it out of the shuffle -- otherwise the menu never goes where it says.
+    if (gPuppyWarp) {
+        return;
+    }
+#endif
+
+    // GSS and its graveyard are one connected space: the star gates in ccm/2
+    // warp back up to a matching spot in ccm/1, so shuffling that link would
+    // strand the player. Keep travel between the two areas out of the shuffle.
+    if (gCurrLevelNum == LEVEL_CCM && destLevel == LEVEL_CCM
+        && (gCurrAreaIndex == 1 || gCurrAreaIndex == 2)
+        && (destArea == 1 || destArea == 2)) {
+        return;
+    }
+
     u16 levelShuffleNum = find_warp_entrance(destLevel, destArea);
 
-    if (levelShuffleNum > 0) {
-        WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
-        sWarpDest.levelNum = newGoal->level;
-        sWarpDest.areaIdx = newGoal->area;
+    if (warpFlags == WARP_FLAG_EXIT_COURSE) {
+        sWarpDest.levelNum = LEVEL_CASTLE;
+        sWarpDest.areaIdx = gMarioState->lastHubArea;
 
+    }
+
+    
+    if (sWarpDest.levelNum != LEVEL_CASTLE) {
+        if (levelShuffleNum > 0) {
+            WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
+            sWarpDest.levelNum = newGoal->level;
+            sWarpDest.areaIdx = newGoal->area;
+            // The incoming node id belongs to the area we were *supposed* to land
+            // in; the shuffled area almost certainly does not declare it.
+            sWarpDest.nodeId = get_warp_entrance_node(newGoal->level, newGoal->area);
+
+        }
+    }
+    else {
+        if (sWarpDest.levelNum == LEVEL_CASTLE) {
+            sWarpDest.areaIdx = gMarioState->lastHubArea;
+
+        }
     }
 
 }
@@ -1631,6 +1666,10 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
         return FALSE;
     }
     else if (gCutsceneGameState == CUTSCENE_GAME_STATE_START_EPILOGUE) {
+        return FALSE;
+    }
+
+    if (sWarpDest.areaIdx > 1) {
         return FALSE;
     }
 

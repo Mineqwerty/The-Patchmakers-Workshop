@@ -1061,6 +1061,7 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
 
         play_sound(SOUND_MENU_STAR_SOUND, m->marioObj->header.gfx.cameraToObject);
         update_mario_sound_and_camera(m);
+        save_file_do_save(gCurrSaveFileNum - 1);
 
         if (grandStar) {
             return set_mario_action(m, ACT_JUMBO_STAR_CUTSCENE, 0);

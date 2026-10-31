@@ -777,7 +777,7 @@ void init_controllers(void) {
     osContSetCh(lastUsedPort + 1);
 }
 
-u16 test_seed = 2967924;
+u16 test_seed = 296792;
 void init_rando() {
     shuffle_warp_goals(test_seed);
 }

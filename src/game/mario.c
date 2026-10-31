@@ -2774,6 +2774,10 @@ void init_mario(void) {
 
     spawn_initial_patch_object(gMarioState);
 
+    if (gCurrLevelNum == LEVEL_CASTLE) {
+        gMarioState->lastHubArea = gCurrAreaIndex;
+    }
+
     gDialogBoxState = 0;
                 gMenuMode = MENU_MODE_NONE;
                 gCourseDoneMenuTimer = 0;

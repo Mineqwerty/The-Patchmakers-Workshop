@@ -6,20 +6,28 @@ typedef struct {
 #define WARP_PAIR(lvl, ar) { .level = (lvl), .area = (ar) }
 
 enum LogicKeys {
-    LOGIC_KEY_NONE = 0,
-    LOGIC_PATCH_STONE,
-    LOGIC_PATCH_CHILLSTEP,
-    LOGIC_PATCH_GRAPPLE,
-    LOGIC_PATCH_HALO,
-    LOGIC_PATCH_MARINE,
-    LOGIC_PATCH_SHADOWCHOMP,
-    LOGIC_PATCH_TRANSMUTATION,
-    LOGIC_PATCH_BREEZE,
-    LOGIC_PATCH_PORTAL,
-    LOGIC_PATCH_MIASMA,
-    LOGIC_PATCH_EXTENSION,
-    LOGIC_PATCH_SKYBRIDGE,
-    LOGIC_KEY_LOCKBOX
+    LOGIC_KEY_NONE = (0 << 0),
+    LOGIC_PATCH_STONE = (1 << 0),
+    LOGIC_PATCH_CHILLSTEP = (1 << 1),
+    LOGIC_PATCH_GRAPPLE = (1 << 2),
+    LOGIC_PATCH_HALO = (1 << 3),
+    LOGIC_PATCH_MARINE = (1 << 4),
+    LOGIC_PATCH_SHADOWCHOMP = (1 << 5),
+    LOGIC_PATCH_TRANSMUTATION = (1 << 6),
+    LOGIC_PATCH_BREEZE = (1 << 7),
+    LOGIC_PATCH_PORTAL = (1 << 8),
+    LOGIC_PATCH_MIASMA = (1 << 9),
+    LOGIC_PATCH_EXTENSION = (1 << 10),
+    LOGIC_PATCH_SKYBRIDGE = (1 << 11),
+    LOGIC_KEY_LOCKBOX = (1 << 12),
+    LOGIC_KEY_STAR_COUNT = (1 << 13),
+    LOGIC_KEY_FINAL_ACT = (1 << 14),
+    LOGIC_KEY_IN_HUB_2 = (1 << 15),
+    LOGIC_KEY_IN_HUB_3 = (1 << 16),
+    LOGIC_KEY_TS_STARS = (1 << 17),
+    LOGIC_KEY_PM1_CLEAR = (1 << 18),
+    LOGIC_KEY_PM2_CLEAR = (1 << 19),
+    LOGIC_KEY_NO_PATCH_HARD = (1 << 31),
 };
 
 enum LogicWarpEntrances {
@@ -84,5 +92,8 @@ enum LogicWarpEntrances {
 };
 
 extern const WarpGoal vanillaWarpGoals[];
+extern const u8 vanillaWarpEntrances[];
 extern WarpGoal shuffledWarps[WARPS_END];
 extern void shuffle_warp_goals(u16 seed);
+extern u16 find_warp_entrance(u8 target_level, u8 target_area);
+extern u8 get_warp_entrance_node(u8 target_level, u8 target_area);

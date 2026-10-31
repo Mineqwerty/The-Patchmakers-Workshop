@@ -569,6 +569,9 @@ struct MarioState {
     u16 lastHeldModel;
     u8 lastHeldBehaviorParams;
     u8 specialWarpFlags;
+
+    u8 lastHubArea;
+
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER
              s16 breath;
