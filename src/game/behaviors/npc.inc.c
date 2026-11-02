@@ -5,6 +5,11 @@
 #include "levels/ddd/cashew_man/anim_header.h"
 #include "levels/ddd/hazelnut_woman/anim_header.h"
 #include "levels/ddd/omiy/anim_header.h"
+#include "src/game/archipelago.h"
+
+// bparam3 on the Phantasmaid beside the Master Path door in Candlelit Chamber's main area
+#define PHANTASMAID_MASTER_DOOR 1
+#define PHANTASMAID_MASTER_DOOR_LOCKED_DIALOG 36
 
 #include "src/game/cutscene.h"
 
@@ -62,6 +67,11 @@ void bhv_generic_npc_init(void) {
 
 void bhv_generic_npc_loop(void) {
     if (cur_obj_has_model(MODEL_PHANTASMAID)) {
+        // Invites you through the Master Path door once it's unlocked, instead of being split across acts
+        if (GET_BPARAM3(o->oBehParams) == PHANTASMAID_MASTER_DOOR) {
+            o->oBehParams2ndByte = archipelago_final_act_unlocked(AP_ITEM_PATH_TO_MASTER_DOOR_UNLOCK)
+                                   ? DIALOG_PHANTASMAID_INVITE : PHANTASMAID_MASTER_DOOR_LOCKED_DIALOG;
+        }
         if (gCutsceneGameState == CUTSCENE_GAME_STATE_START_EPILOGUE) {
             obj_mark_for_deletion(o);
         }

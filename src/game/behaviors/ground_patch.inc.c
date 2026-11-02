@@ -2,8 +2,10 @@
 #include "src/game/cutscene.h"
 #include "actors/group0.h"
 
+#include "src/game/archipelago.h"
+
 void bhv_ground_patch_init(void) {
-    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << o->oBehParams2ndByte + 1)) {
+    if (archipelago_location_checked(AP_LOC_PATCH_PICKUP(o->oBehParams2ndByte + 1))) {
         obj_mark_for_deletion(o);
     }
 
@@ -20,31 +22,33 @@ void bhv_ground_patch_init(void) {
 }
 
 void bhv_ground_cutscene_patch_init(void) {
-    if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << 1)) {
-        obj_mark_for_deletion(o);
-    }
+    bhv_ground_patch_init();
+    // if (save_file_get_patch_flags(gCurrSaveFileNum - 1) & (1 << 1)) {
+    //     obj_mark_for_deletion(o);
+    // }
 }
 
 void bhv_ground_cutscene_patch_loop(void) {
-    switch (o->oAction) {
-    case 0:
-        if (o->oDistanceToMario < 900.0f && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
-            o->oAction++;
-            gMarioState->pos[0] = o->oPosX;
-            gMarioState->pos[1] = o->oPosY + 50;
-            gMarioState->pos[2] = o->oPosZ - 20;
-            gMarioState->faceAngle[1] = 0;
-            begin_cutscene_event(CUTSCENE_EVENT_STONE_PATCH);
-            save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
-        }
-    break;
-    case 1:
-        gMarioState->marioBodyState->grabPos = GRAB_POS_CUTSCENE_STONE_PATCH;
-        if (gCurCutscene == -1 || cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
-            obj_mark_for_deletion(o);
-        }
-    break;
-    }
+    bhv_ground_patch_loop();
+    // switch (o->oAction) {
+    // case 0:
+    //     if (o->oDistanceToMario < 900.0f && !((gMarioState->action & ACT_GROUP_MASK) >= ACT_GROUP_AIRBORNE && (gMarioState->action & ACT_GROUP_MASK) < (ACT_HOLD_JUMP & ACT_ID_MASK))) {
+    //         o->oAction++;
+    //         gMarioState->pos[0] = o->oPosX;
+    //         gMarioState->pos[1] = o->oPosY + 50;
+    //         gMarioState->pos[2] = o->oPosZ - 20;
+    //         gMarioState->faceAngle[1] = 0;
+    //         begin_cutscene_event(CUTSCENE_EVENT_STONE_PATCH);
+    //         save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << 1));
+    //     }
+    // break;
+    // case 1:
+    //     gMarioState->marioBodyState->grabPos = GRAB_POS_CUTSCENE_STONE_PATCH;
+    //     if (gCurCutscene == -1 || cExternalCutsceneTrigger == EXTERNAL_TRIGGER_CUTSCENE_SKIPPED) {
+    //         obj_mark_for_deletion(o);
+    //     }
+    // break;
+    // }
     
 }
 
@@ -90,9 +94,10 @@ void bhv_ground_patch_loop(void) {
 
     if (o->oTimer == 65) {
         gMarioState->heldObj = NULL;
-        gMarioState->equippedPatch = o->oBehParams2ndByte + 1;
-        gMarioState->updatePatch = 1;
-        save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << (o->oBehParams2ndByte + 1)));
+        // gMarioState->equippedPatch = o->oBehParams2ndByte + 1;
+        // gMarioState->updatePatch = 1;
+        archipelago_check_location(AP_LOC_PATCH_PICKUP(o->oBehParams2ndByte + 1));
+        //save_file_set_patch_flags(gCurrSaveFileNum - 1, (1 << (o->oBehParams2ndByte + 1)));
     }
 
     if (o->oTimer >= 100 && o->oTimer < 115) {

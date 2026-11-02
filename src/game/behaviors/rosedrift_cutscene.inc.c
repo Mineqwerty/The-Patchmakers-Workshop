@@ -8,6 +8,22 @@ void bhv_rosedrift_cutscene_init(void) {
 }
 
 void bhv_rosedrift_cutscene_loop(void) {
+    f32 dist;
+    struct Object *apSpawner = cur_obj_find_nearest_object_with_behavior(bhvApPushpinPokeySpawner, &dist);
+
+    if (apSpawner) {
+        if (apSpawner->oAction != 10) {
+            cur_obj_hide();
+            o->oTimer = 0;
+            return;
+        }
+    }
+    else {
+        o->oTimer = 0;
+        return;
+    }
+    cur_obj_unhide();
+
     if (o->oBehParams2ndByte == 23) {
         if (cCutsceneActive == 0) {
             obj_mark_for_deletion(o);

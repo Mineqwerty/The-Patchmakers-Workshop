@@ -870,3 +870,5 @@ extern const BehaviorScript bhvEpilogueCutsceneManager[];
 extern const BehaviorScript bhvMasterEpilogue[];
 extern const BehaviorScript bhvPostgameSewnia[];
 extern const BehaviorScript bhvMistressCured[];
+extern const BehaviorScript bhvApPushpinPokeySpawner[];
+extern const BehaviorScript bhvApXodorapWarp[];

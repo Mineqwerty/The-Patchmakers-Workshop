@@ -558,6 +558,7 @@ void mantle_of_madness_act_getting_stabbed(void) {
     if (o->oTimer == 20) {
         cur_obj_shake_screen(SHAKE_POS_MEDIUM);
         play_sound(SOUND_NEW_POKEY_IMPACT, gGlobalSoundSource);
+        gArchipelagoBuffer[AP_GAME_CLEARED] = 1;
     }
     if (o->oTimer > 10) {
         gLakituState.goalPos[0] = 100;
@@ -580,12 +581,12 @@ void mantle_of_madness_act_getting_stabbed(void) {
     }
 
     if (o->oTimer >= 180) {
-        if (gInMemoryStage) {
-            initiate_warp(LEVEL_CASTLE, 3, 10, 0, 0);
-        }
-        else {
+        // if (gInMemoryStage) {
+        //     initiate_warp(LEVEL_CASTLE, 3, 10, 0, 0);
+        // }
+        // else {
             o->oAction = MANTLE_OF_MADNESS_ACT_CLOSING_DIALOGUE;
-        }
+        //}
     }
 }
 

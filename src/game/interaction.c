@@ -26,6 +26,8 @@
 #include "config.h"
 #include "src/game/ingame_menu.h"
 
+#include "src/game/archipelago.h"
+
 u8  sDelayInvincTimer;
 s16 sInvulnerable;
 u32 interact_coin          (struct MarioState *m, u32 interactType, struct Object *obj);
@@ -1174,7 +1176,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
             openedHub2Door = 1;
             doorAction = ACT_UNLOCKING_STAR_DOOR;
         }
-        if (warpDoorId == DOOR_ID_MASTER_CHAMBERS && gCurrActNum != 6) {
+        if (warpDoorId == DOOR_ID_MASTER_CHAMBERS && !archipelago_final_act_unlocked(AP_ITEM_PATH_TO_MASTER_DOOR_UNLOCK)) {
             if (!sDisplayingDoorText) {
 
                 u32 numStarsArg = (DIALOG_CLC_MASTER_DOOR << 16);

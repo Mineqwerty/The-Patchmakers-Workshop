@@ -909,6 +909,7 @@
 #define MODEL_SKYBRIDGE_RING                  0x1B3
 #define MODEL_GLOBAL_GROUND_BOOK                  0x1B4
 #define MODEL_LOCKBOX                  0x1B5
+#define MODEL_AP_LOGO                  0x1B6
 
 #define MODEL_STAR_MARKER                      0x1C0
 #define MODEL_BLUE_STAR_MARKER                      0x1C1

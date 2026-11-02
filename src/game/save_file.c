@@ -19,6 +19,8 @@
 #include "sram.h"
 #endif
 #include "puppycam2.h"
+#include "src/game/archipelago.h"
+#include "src/game/ingame_menu.h"
 
 #ifdef UNIQUE_SAVE_DATA
 u16 MENU_DATA_MAGIC = 0x4849;
@@ -455,6 +457,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
     if (gCurrLevelNum == LEVEL_PSS) {
         starByte = COURSE_NUM_TO_INDEX(COURSE_BITS + (starIndex / 7));
         starFlag = 1 << (starIndex % 7);
+        archipelago_check_location(AP_LOC_PATCH_CHALLENGE(gPatchChallengeIndex));
     }
     //super secret stars are indexed beginning at cotmc based on their star index being greater than 8.
     else if (starIndex >= 8) {
@@ -463,8 +466,12 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
         //else {
             starByte = COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7));
             starFlag = 1 << (starIndex % 7);
+        archipelago_check_location(AP_LOC_SECRET_STAR(starIndex));
         //}
         
+    }
+    else {
+        archipelago_check_location(AP_LOC_COURSE_STAR(courseToOrderedIndex[gCurrCourseNum] - 1, starIndex));
     }
 
     gLastCompletedCourseNum = courseIndex + 1;
@@ -564,6 +571,8 @@ s32 save_file_get_course_star_count(s32 fileIndex, s32 courseIndex) {
 
 s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
     s32 count = 0;
+
+    return archipelago_star_count();
 
     // Get standard course star count.
     for (; minCourse <= maxCourse; minCourse++) {

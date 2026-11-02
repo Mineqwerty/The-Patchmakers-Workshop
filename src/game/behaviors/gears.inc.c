@@ -1,6 +1,7 @@
 #include "src/game/game_init.h"
 #include "src/game/cutscene.h"
 #include "src/game/level_update.h"
+#include "src/game/archipelago.h"
 
 void bhv_stone_gear_init(void) {
     if (o->oBehParams2ndByte >= 2) {
@@ -328,15 +329,30 @@ void bhv_stone_elevator_loop(void) {
     }
 }
 
+// The first panel waits here, hidden and without collision, until the Clock Tower Bridge is unlocked.
+#define STONE_BRIDGE_ACT_WAITING 2
+
+// Spawns the other six panels and starts the bridge cutscene. Only the first panel (bparam2 0) does this.
+static void extending_stone_bridge_extend(void) {
+    for (int i = 1; i < 7; i++) {
+        struct Object *nextPanel = spawn_object_relative(
+            i, 0, 0, 0, o, MODEL_EXTENDING_STONE_BRIDGE, bhvExtendingStoneBridge);
+        obj_scale_xyz(nextPanel, 0.99f, 1.0f - (((f32) i) * 0.05f), 1.0f - (((f32) i) * 0.05f));
+    }
+
+    begin_cutscene_event(CUTSCENE_EVENT_STC_BRIDGE);
+}
+
 void bhv_extending_stone_bridge_init(void) {
     if (o->oBehParams2ndByte == 0) {
-        for (int i = 1; i < 7; i++) {
-            struct Object *nextPanel = spawn_object_relative(
-                i, 0, 0, 0, o, MODEL_EXTENDING_STONE_BRIDGE, bhvExtendingStoneBridge);
-            obj_scale_xyz(nextPanel, 0.99f, 1.0f - (((f32) i) * 0.05f), 1.0f - (((f32) i) * 0.05f));
+        if (archipelago_final_act_unlocked(AP_ITEM_CLOCK_TOWER_BRIDGE)) {
+            extending_stone_bridge_extend();
+        } else if (archipelago_final_act_closed_this_visit()) {
+            obj_mark_for_deletion(o);
+        } else {
+            o->oAction = STONE_BRIDGE_ACT_WAITING;
+            cur_obj_hide();
         }
-
-        begin_cutscene_event(CUTSCENE_EVENT_STC_BRIDGE);
     }
 
     o->oHomeX = o->oPosX;
@@ -347,6 +363,15 @@ struct SpawnParticlesInfo sBridgeMist = {
 };
 
 void bhv_extending_stone_bridge_loop(void) {
+    if (o->oAction == STONE_BRIDGE_ACT_WAITING) {
+        if (archipelago_final_act_unlocked(AP_ITEM_CLOCK_TOWER_BRIDGE)) {
+            cur_obj_unhide();
+            extending_stone_bridge_extend();
+            o->oAction = 0;
+        }
+        return;
+    }
+
     if (o->oAction == 0) {
         if (o->oPosX < o->oHomeX + (1120 * (o->oBehParams2ndByte + 1))) {
             o->oPosX += 40;
@@ -356,4 +381,6 @@ void bhv_extending_stone_bridge_loop(void) {
             if (o->oBehParams2ndByte != 6) cur_obj_spawn_particles(&sBridgeMist);
         }
     }
+
+    load_object_collision_model();
 }

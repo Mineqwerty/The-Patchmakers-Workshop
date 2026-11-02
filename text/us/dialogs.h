@@ -1447,28 +1447,13 @@ honor! It is against the\n\
 royal rules to throw the\n\
 king out of the ring!"))
 
-DEFINE_DIALOG(DIALOG_129, 1, 5, 30, 200, _("\
-Welcome to the Vanish\n\
-Cap Switch Course! All of\n\
-the blue blocks you find\n\
-will become solid once you\n\
-step on the Cap Switch.\n\
-You'll disappear when you\n\
-put on the Vanish Cap, so\n\
-you'll be able to elude\n\
-enemies and walk through\n\
-many things. Try it out!"))
+DEFINE_DIALOG(DIALOG_129, 1, 4, 30, 200, _("\
+@FEFEFEFFSummon Pushpin Pokey? \n\
+//Yes    //No      "))
 
-DEFINE_DIALOG(DIALOG_130, 1, 5, 30, 200, _("\
-Welcome to the Metal Cap\n\
-Switch Course! Once you\n\
-step on the Cap Switch,\n\
-the green blocks will\n\
-become solid.\n\
-When you turn your body\n\
-into metal with the Metal\n\
-Cap, you can walk\n\
-underwater! Try it!"))
+DEFINE_DIALOG(DIALOG_130, 1, 4, 30, 200, _("\
+@FEFEFEFFWarp to Xodorap's Arena? \n\
+//Yes    //No      "))
 
 DEFINE_DIALOG(DIALOG_131, 1, 5, 30, 200, _("\
 Welcome to the Wing Cap\n\

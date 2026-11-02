@@ -6348,7 +6348,7 @@ const BehaviorScript bhvPokeyBossWalls[] = {
     SET_FLOAT(oCollisionDistance, 20000),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(load_object_collision_model),
+        CALL_NATIVE(bhv_pokey_boss_walls_loop),
     END_LOOP(),
 };
 
@@ -6521,8 +6521,8 @@ const BehaviorScript bhvExtendingStoneBridge[] = {
     SET_FLOAT(oDrawingDistance, 32000),
     CALL_NATIVE(bhv_extending_stone_bridge_init),
     BEGIN_LOOP(),
+        // loads its own collision once it isn't waiting for the Clock Tower Bridge
         CALL_NATIVE(bhv_extending_stone_bridge_loop),
-        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
@@ -7125,8 +7125,8 @@ const BehaviorScript bhvWingSurface[] = {
     CALL_NATIVE(bhv_wing_surface_init),
     SET_FLOAT(oDrawingDistance, 30000),
     BEGIN_LOOP(),
+        // loads its own collision once the Aurumcael Palace Path is unlocked
         CALL_NATIVE(bhv_wing_surface_loop),
-        CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
 
@@ -9397,8 +9397,8 @@ const BehaviorScript bhvLowerCityGate[] = {
     LOAD_COLLISION_DATA(lower_city_gate_collision),
     SET_FLOAT(oDrawingDistance, 30000),
     CALL_NATIVE(bhv_lower_city_gate_init),
-    CALL_NATIVE(load_object_static_model),
     BEGIN_LOOP(),
+        // dynamic collision instead of static, so the gate can open mid-visit when Buried City Gate Open arrives
         CALL_NATIVE(bhv_lower_city_gate_loop),
     END_LOOP(),
 };
@@ -9543,5 +9543,25 @@ const BehaviorScript bhvMistressCured[] = {
     CALL_NATIVE(bhv_mistress_cured_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_mistress_cured_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvApPushpinPokeySpawner[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_ap_pushpin_pokey_spawner_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ap_pushpin_pokey_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvApXodorapWarp[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 30000),
+    CALL_NATIVE(bhv_ap_xodorap_warp_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_ap_xodorap_warp_loop),
     END_LOOP(),
 };

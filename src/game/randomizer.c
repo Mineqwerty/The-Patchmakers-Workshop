@@ -120,6 +120,64 @@ const u32 reachWarpLogic[] = {
     [WARP_ENTRANCE_MANTLE_OF_MADNESS]       = LOGIC_KEY_NONE
 };
 
+const u32 warpStarCountLogic[] = {
+    [WARP_ENTRANCE_NONE]                    = 0,
+    [WARP_ENTRANCE_STAGE_TTC]               = 0,
+    [WARP_ENTRANCE_TTC_STONE_PATCH]         = 0,
+    [WARP_ENTRANCE_TTC_WELL]                = 0,
+    [WARP_ENTRANCE_STAGE_RDR]               = 2,
+    [WARP_ENTRANCE_RDR_CHILLSTEP_PATCH]     = 0,
+    [WARP_ENTRANCE_RDR_MUDSLIDE]            = 0,
+    [WARP_ENTRANCE_STAGE_STC]               = 4,
+    [WARP_ENTRANCE_STC_GRAPPLE_PATCH]       = 0,
+    [WARP_ENTRANCE_STC_CLOCK_TOWER]         = 0,
+    [WARP_ENTRANCE_STAGE_GSS]               = 8,
+    [WARP_ENTRANCE_GSS_GRAVEYARD]           = 0,
+    [WARP_ENTRANCE_GSS_HALO_PATCH]          = 0,
+    [WARP_ENTRANCE_GSS_AURUMCAEL]           = 0,
+    [WARP_ENTRANCE_STAGE_SS]                = 0,
+    [WARP_ENTRANCE_SS_MARINE_PATCH]         = 0,
+    [WARP_ENTRANCE_SS_WATERFALLS]           = 0,
+    [WARP_ENTRANCE_STAGE_CLC]               = 16,
+    [WARP_ENTRANCE_CLC_SHADOWCHOMP_PATCH]   = 0,
+    [WARP_ENTRANCE_CLC_MISTRESS_AREA]       = 0,
+    [WARP_ENTRANCE_CLC_MASTER_PATH]         = 0,
+    [WARP_ENTRANCE_CLC_MASTER_CHAMBER]      = 0,
+    [WARP_ENTRANCE_STAGE_HVH]               = 18,
+    [WARP_ENTRANCE_HVH_TRANSMUTATION_PATCH] = 0,
+    [WARP_ENTRANCE_HVH_WINDMILLS]           = 0,
+    [WARP_ENTRANCE_HVH_CASTLE]              = 0,
+    [WARP_ENTRANCE_HVH_DEMONIC_SOLIDS]      = 0,
+    [WARP_ENTRANCE_STAGE_VTW]               = 24,
+    [WARP_ENTRANCE_VTW_BREEZE_PATCH]        = 0,
+    [WARP_ENTRANCE_VTW_BOOK_SECRET]         = 0,
+    [WARP_ENTRANCE_VTW_TREETOPS]            = 0,
+    [WARP_ENTRANCE_STAGE_TFP]               = 0,
+    [WARP_ENTRANCE_TFP_PORTAL_PATCH]        = 0,
+    [WARP_ENTRANCE_TFP_SHADOWCHOMP_SECRET]  = 0,
+    [WARP_ENTRANCE_TFP_ENDLESS_PIT]         = 0,
+    [WARP_ENTRANCE_TFP_EDGE_OF_REALITY]     = 0,
+    [WARP_ENTRANCE_STAGE_EA]                = 0,
+    [WARP_ENTRANCE_EA_MIASMA_PATCH]         = 0,
+    [WARP_ENTRANCE_EA_TENTACLE_AREA]        = 0,
+    [WARP_ENTRANCE_EA_SKY_SLUG_AREA]        = 0,
+    [WARP_ENTRANCE_EA_XODORAP]              = 0,
+    [WARP_ENTRANCE_STAGE_CORR]              = 45,
+    [WARP_ENTRANCE_CORR_EXTENSION_PATCH]    = 0,
+    [WARP_ENTRANCE_CORR_ORANGE_BUILDING]    = 0,
+    [WARP_ENTRANCE_CORR_UNDERGROUND]        = 0,
+    [WARP_ENTRANCE_STAGE_TS]                = 55,
+    [WARP_ENTRANCE_TS_FINAL_STRETCH]        = 0,
+    [WARP_ENTRANCE_HUB_2]                   = 0,
+    [WARP_ENTRANCE_HUB_3]                   = 0,
+    [WARP_ENTRANCE_WORKSHOP_1]              = 10,
+    [WARP_ENTRANCE_WORKSHOP_2]              = 35,
+    [WARP_ENTRANCE_THE_BRINK]               = 0,
+    [WARP_ENTRANCE_PM_1]                    = 0,
+    [WARP_ENTRANCE_PM_2]                    = 0,
+    [WARP_ENTRANCE_MANTLE_OF_MADNESS]       = 0
+};
+
 const u32 starObtainLogic[][7] = {
     [0] = {LOGIC_KEY_NONE, LOGIC_PATCH_STONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_PATCH_STONE, (LOGIC_KEY_FINAL_ACT | LOGIC_PATCH_STONE), LOGIC_KEY_NONE}, //Thorn thicket cliffs (BOB)
     [1] = {LOGIC_KEY_NONE, (LOGIC_PATCH_CHILLSTEP | LOGIC_PATCH_MARINE | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_SHADOWCHOMP | LOGIC_PATCH_SKYBRIDGE), LOGIC_KEY_NONE, (LOGIC_PATCH_CHILLSTEP | LOGIC_PATCH_EXTENSION | LOGIC_PATCH_SKYBRIDGE), (LOGIC_PATCH_CHILLSTEP | LOGIC_PATCH_SKYBRIDGE), LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //Rainy Day Roadside (WF)
@@ -129,9 +187,10 @@ const u32 starObtainLogic[][7] = {
     [5] = {LOGIC_KEY_NONE, (LOGIC_PATCH_SHADOWCHOMP | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_EXTENSION), LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE /*for grabbing the star from area entrance*/, LOGIC_KEY_NONE /*for grabbing the star from area entrance*/, LOGIC_KEY_NONE}, //Candlelit Chamber (LLL)
     [6] = {LOGIC_KEY_NONE, LOGIC_PATCH_TRANSMUTATION, LOGIC_PATCH_TRANSMUTATION, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //Hidden Village HOld (DDD)
     [7] = {LOGIC_KEY_NONE, (LOGIC_PATCH_BREEZE | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_EXTENSION), (LOGIC_PATCH_BREEZE | LOGIC_PATCH_SHADOWCHOMP), LOGIC_PATCH_BREEZE, (LOGIC_PATCH_BREEZE | LOGIC_PATCH_SKYBRIDGE), LOGIC_KEY_NONE/*once in the area its free*/, LOGIC_KEY_NONE}, //Violet Twilit wood (SSL)
-    [8] = {LOGIC_KEY_NONE, (LOGIC_PATCH_PORTAL), LOGIC_KEY_NONE, LOGIC_KEY_NONE, (LOGIC_PATCH_PORTAL | LOGIC_PATCH_SKYBRIDGE | LOGIC_PATCH_BREEZE), LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //Thorn thicket cliffs (BOB)
-
-    [0] = {LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //Thorn thicket cliffs (BOB)
+    [8] = {LOGIC_KEY_NONE, (LOGIC_PATCH_PORTAL), LOGIC_KEY_NONE, LOGIC_KEY_NONE, (LOGIC_PATCH_PORTAL | LOGIC_PATCH_SKYBRIDGE | LOGIC_PATCH_BREEZE), LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //The far plane (BBH)
+    [9] = {LOGIC_KEY_NONE, (LOGIC_PATCH_MIASMA), LOGIC_KEY_NONE, LOGIC_KEY_NONE, (LOGIC_PATCH_MIASMA | LOGIC_PATCH_CHILLSTEP | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_HALO), LOGIC_PATCH_MIASMA, LOGIC_KEY_NONE}, //Empyrean Abyss (SL)
+    [10] = {LOGIC_KEY_NONE, LOGIC_PATCH_EXTENSION, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //city of reconstructed ruin (WDW)
+    [11] = {LOGIC_PATCH_SKYBRIDGE, LOGIC_PATCH_SKYBRIDGE, LOGIC_PATCH_SKYBRIDGE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_PATCH_SKYBRIDGE, LOGIC_KEY_NONE}, //timeless shrine (TTM)
 };
 
 const u32 difficultStarObtainLogic[][7] = {
@@ -143,9 +202,52 @@ const u32 difficultStarObtainLogic[][7] = {
     [5] = {0, 0, 0, 0, 0, 0, 0}, //Candlelit Chamber (LLL)
     [6] = {0, 0, 0, 0, 0, 0, 0}, //Hidden Village HOld (DDD)
     [7] = {0, LOGIC_KEY_NO_PATCH_HARD, LOGIC_KEY_NO_PATCH_HARD, 0, 0, 0, 0}, //Violet Twilit wood (SSL)
-    [8] = {0, LOGIC_PATCH_GRAPPLE, 0, 0, LOGIC_KEY_NO_PATCH_HARD, 0, 0}, //Violet Twilit wood (SSL)
-    
-    [0] = {LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE, LOGIC_KEY_NONE}, //Thorn thicket cliffs (BOB)
+    [8] = {0, LOGIC_PATCH_GRAPPLE, 0, 0, LOGIC_KEY_NO_PATCH_HARD, 0, 0}, //far plane (BBH)
+    [9] = {0, 0, 0, 0, 0, (LOGIC_PATCH_CHILLSTEP | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_HALO), 0}, //empyrean abyss (SL)
+    [10] = {0, 0, 0, 0, 0, 0, 0}, //city of reconstructed ruin (WDW)
+    [11] = {0, 0, 0, 0, 0, 0, 0}, //timeless shrine (TTM)
+};
+
+const u32 secretStarObtainLogic[24] = {
+    LOGIC_PATCH_TRANSMUTATION,
+    (LOGIC_PATCH_MARINE | LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_SKYBRIDGE),
+    LOGIC_PATCH_MARINE,
+    (LOGIC_PATCH_BREEZE | LOGIC_PATCH_GRAPPLE),
+    LOGIC_PATCH_EXTENSION,
+    LOGIC_PATCH_SKYBRIDGE,
+    LOGIC_PATCH_SHADOWCHOMP,
+    LOGIC_PATCH_PORTAL,
+    LOGIC_PATCH_TRANSMUTATION,
+    (LOGIC_PATCH_BREEZE | LOGIC_PATCH_SKYBRIDGE),
+    LOGIC_PATCH_HALO,
+    LOGIC_PATCH_MIASMA,
+    (LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_EXTENSION),
+    LOGIC_PATCH_MIASMA,
+    LOGIC_PATCH_STONE,
+    LOGIC_PATCH_CHILLSTEP,
+    LOGIC_PATCH_SHADOWCHOMP,
+    LOGIC_PATCH_EXTENSION,
+    LOGIC_KEY_NONE /*once in the area, no stone needed.*/,
+    LOGIC_PATCH_CHILLSTEP,
+    (LOGIC_PATCH_GRAPPLE | LOGIC_PATCH_EXTENSION | LOGIC_PATCH_SKYBRIDGE),
+    LOGIC_PATCH_SKYBRIDGE,
+    LOGIC_PATCH_HALO,
+    LOGIC_PATCH_PORTAL
+};
+
+const u32 patchChallengeStarLogic[12] = {
+    LOGIC_PATCH_STONE,
+    LOGIC_PATCH_CHILLSTEP,
+    LOGIC_PATCH_GRAPPLE,
+    LOGIC_PATCH_HALO,
+    LOGIC_PATCH_MARINE,
+    LOGIC_PATCH_SHADOWCHOMP,
+    LOGIC_PATCH_TRANSMUTATION,
+    LOGIC_PATCH_BREEZE,
+    LOGIC_PATCH_PORTAL,
+    LOGIC_PATCH_MIASMA,
+    LOGIC_PATCH_EXTENSION,
+    LOGIC_PATCH_SKYBRIDGE
 };
 
 const u8 vanillaWarpEntrances[] = {
@@ -208,6 +310,10 @@ const u8 vanillaWarpEntrances[] = {
 
 WarpGoal shuffledWarps[WARPS_END];
 
+// Whether initiate_warp should follow shuffledWarps. FALSE means every warp behaves exactly as vanilla,
+// including its original warp node.
+s32 gWarpShuffleActive = FALSE;
+
 u16 find_warp_entrance(u8 target_level, u8 target_area) {
     int total_entries = sizeof(vanillaWarpGoals) / sizeof(vanillaWarpGoals[0]);
     
@@ -248,6 +354,8 @@ static s32 warp_goal_is_shuffled(size_t index) {
     switch (index) {
         case WARP_ENTRANCE_NONE:           // not a real location
         case WARP_ENTRANCE_GSS_GRAVEYARD:  // only entered by falling from ccm/1
+        case WARP_ENTRANCE_THE_BRINK:      // only reached through the lockbox in hub 3
+        case WARP_ENTRANCE_MANTLE_OF_MADNESS: // only reached from the brink
             return FALSE;
         default:
             return TRUE;
@@ -276,4 +384,19 @@ void shuffle_warp_goals(u16 seed) {
         shuffledWarps[pool[i]] = shuffledWarps[pool[j]];
         shuffledWarps[pool[j]] = temp;
     }
+
+    gWarpShuffleActive = TRUE;
+}
+
+/**
+ * Puts every warp back to its vanilla destination.
+ */
+void reset_warp_goals(void) {
+    size_t total_entries = sizeof(vanillaWarpGoals) / sizeof(vanillaWarpGoals[0]);
+
+    for (size_t i = 0; i < total_entries; i++) {
+        shuffledWarps[i] = vanillaWarpGoals[i];
+    }
+
+    gWarpShuffleActive = FALSE;
 }

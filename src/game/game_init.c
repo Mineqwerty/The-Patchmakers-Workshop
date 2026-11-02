@@ -36,6 +36,7 @@
 #include "vc_ultra.h"
 #include "emutest.h"
 #include "src/game/randomizer.h"
+#include "archipelago.h"
 
 // Emulators that the Instant Input patch should not be applied to
 #define INSTANT_INPUT_BLACKLIST (EMU_CONSOLE | EMU_WIIVC | EMU_ARES | EMU_SIMPLE64 | EMU_CEN64)
@@ -779,6 +780,7 @@ void init_controllers(void) {
 
 u16 test_seed = 296792;
 void init_rando() {
+    archipelago_init();
     shuffle_warp_goals(test_seed);
 }
 
@@ -879,6 +881,7 @@ void thread5_game_loop(UNUSED void *arg) {
         profiler_update(PROFILER_TIME_CONTROLLERS, 0);
         profiler_collision_reset();
         addr = level_script_execute(addr);
+        archipelago_update();
         profiler_collision_completed();
 #if !defined(PUPPYPRINT_DEBUG) && defined(VISUAL_DEBUG)
         debug_box_input();

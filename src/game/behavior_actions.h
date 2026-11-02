@@ -1245,3 +1245,8 @@ void bhv_postgame_sewnia_init(void);
 void bhv_postgame_sewnia_loop(void);
 void bhv_mistress_cured_init(void);
 void bhv_mistress_cured_loop(void);
+void bhv_ap_pushpin_pokey_spawner_init(void);
+void bhv_ap_pushpin_pokey_spawner_loop(void);
+void bhv_pokey_boss_walls_loop(void);
+void bhv_ap_xodorap_warp_init(void);
+void bhv_ap_xodorap_warp_loop(void);

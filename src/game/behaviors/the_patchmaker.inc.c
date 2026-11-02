@@ -1,4 +1,5 @@
 #include "src/game/cutscene.h"
+#include "src/game/archipelago.h"
 
 enum PatchmakerActions {
     PATCHMAKER_ACT_FIRST_CUTSCENE,
@@ -1430,8 +1431,14 @@ void bhv_patchmaker_loop(void) {
     if (o->oHealth <= 0 && o->oAction != PATCHMAKER_ACT_DEFEATED) {
         o->oAction = PATCHMAKER_ACT_DEFEATED;
         o->oSubAction = 0;
-        if (gInMemoryStage) {
-            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
+        
+        switch (gCurrLevelNum) {
+            case LEVEL_BOWSER_1:
+                archipelago_check_location(AP_LOC_PATCHMAKER_1);
+            break;
+            case LEVEL_BOWSER_2:
+                archipelago_check_location(AP_LOC_PATCHMAKER_2);
+            break;
         }
         
     }

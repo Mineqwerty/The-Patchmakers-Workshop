@@ -788,16 +788,11 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     sWarpDest.portalID = portalID;
 
 #ifdef PUPPYPRINT_DEBUG
-    // The puppyprint debug level select names an explicit level/area, so leave
-    // it out of the shuffle -- otherwise the menu never goes where it says.
     if (gPuppyWarp) {
         return;
     }
 #endif
 
-    // GSS and its graveyard are one connected space: the star gates in ccm/2
-    // warp back up to a matching spot in ccm/1, so shuffling that link would
-    // strand the player. Keep travel between the two areas out of the shuffle.
     if (gCurrLevelNum == LEVEL_CCM && destLevel == LEVEL_CCM
         && (gCurrAreaIndex == 1 || gCurrAreaIndex == 2)
         && (destArea == 1 || destArea == 2)) {
@@ -814,7 +809,7 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
 
     
     if (sWarpDest.levelNum != LEVEL_CASTLE) {
-        if (levelShuffleNum > 0) {
+        if (levelShuffleNum > 0 && gWarpShuffleActive) {
             WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
             sWarpDest.levelNum = newGoal->level;
             sWarpDest.areaIdx = newGoal->area;

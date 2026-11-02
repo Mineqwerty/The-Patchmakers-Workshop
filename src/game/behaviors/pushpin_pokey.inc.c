@@ -805,11 +805,30 @@ void pushpin_pokey_death(void) {
 }
 
 void pushpin_pokey_cutscene(void) {
-    if (o->oTimer == 0) {
-        begin_cutscene_event(CUTSCENE_EVENT_POKEY_INTRO);
-        cur_obj_init_animation(1);
-        o->oPosY -= 4000;
+
+    f32 dist;
+
+    struct Object *apSpawner = cur_obj_find_nearest_object_with_behavior(bhvApPushpinPokeySpawner, &dist);
+
+    if (apSpawner) {
+        if (apSpawner->oAction == 10) {
+            if (o->oTimer <= 1) {
+                begin_cutscene_event(CUTSCENE_EVENT_POKEY_INTRO);
+                cur_obj_init_animation(1);
+                o->oPosY -= 4000;
+                o->oTimer = 2;
+            }
+        }
+        else {
+            o->oTimer = 0;
+            return;
+        }
     }
+    else {
+        o->oTimer = 0;
+        return;
+    }
+
 
     if (o->oTimer == 8) {
         o->oCamFocus = spawn_object_relative(8, 0, 900, 0, o, MODEL_NONE, bhvPushpinPokeyCameraFocus);

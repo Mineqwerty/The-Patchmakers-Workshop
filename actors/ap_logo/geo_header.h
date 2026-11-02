@@ -1,0 +1,10 @@
+extern const GeoLayout ap_logo_geo[];
+extern u8 ap_logo_ap_logo_ci4[];
+extern u8 ap_logo_ap_logo_pal_rgba16[];
+extern Vtx ap_logo_Plane_022_mesh_layer_4_vtx_cull[8];
+extern Vtx ap_logo_Plane_022_mesh_layer_4_vtx_0[4];
+extern Gfx ap_logo_Plane_022_mesh_layer_4_tri_0[];
+extern Gfx mat_ap_logo_f3dlite_material[];
+extern Gfx mat_revert_ap_logo_f3dlite_material[];
+extern Gfx ap_logo_Plane_022_mesh_layer_4[];
+extern Gfx ap_logo_final_revert_mesh_layer_4[];

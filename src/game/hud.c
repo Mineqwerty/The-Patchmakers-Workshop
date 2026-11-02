@@ -28,6 +28,7 @@
 
 #include "config.h"
 #include "src/game/cutscene.h"
+#include "archipelago.h"
 #include "levels/new_file_select/header.h"
 
 /* @file hud.c
@@ -1317,6 +1318,8 @@ void render_hud(void) {
         if (gSaveTextIndicatorTimer > 0) {
             render_hud_save_text();
         }
+
+        archipelago_render_message();
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
 

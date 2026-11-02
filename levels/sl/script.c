@@ -174,6 +174,7 @@ const LevelScript level_sl_entry[] = {
 		OBJECT(MODEL_NONE, -4048, -503, 11665, 0, 15, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -4047, 367, 11322, 0, 15, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -2631, 256, 13035, 0, 15, 0, (1 << 16), bhvCoinFormation),
+		OBJECT(MODEL_AP_LOGO, -8921, -2680, 6640, 0, 0, 0, 0, bhvApXodorapWarp),
 		OBJECT(MODEL_NONE, -3747, 2178, 12309, 0, 15, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, -3973, 2354, 11886, 0, 15, 0, (1 << 16), bhvCoinFormation),
 		OBJECT(MODEL_NONE, 7196, -3839, -8075, 0, 15, 0, (1 << 16), bhvCoinFormation),

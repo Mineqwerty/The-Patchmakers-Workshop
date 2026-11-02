@@ -439,3 +439,5 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/epilogue_warp.inc.c"
 #include "behaviors/epilogue_cutscene_manager.inc.c"
 #include "behaviors/postgame_sewnia.inc.c"
+#include "behaviors/ap_pushpin_pokey_spawner.inc.c"
+#include "behaviors/ap_xodorap_warp.inc.c"

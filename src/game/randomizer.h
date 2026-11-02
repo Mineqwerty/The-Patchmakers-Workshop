@@ -94,6 +94,8 @@ enum LogicWarpEntrances {
 extern const WarpGoal vanillaWarpGoals[];
 extern const u8 vanillaWarpEntrances[];
 extern WarpGoal shuffledWarps[WARPS_END];
+extern s32 gWarpShuffleActive;
 extern void shuffle_warp_goals(u16 seed);
+extern void reset_warp_goals(void);
 extern u16 find_warp_entrance(u8 target_level, u8 target_area);
 extern u8 get_warp_entrance_node(u8 target_level, u8 target_area);

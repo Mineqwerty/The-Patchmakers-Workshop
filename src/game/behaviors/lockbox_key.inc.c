@@ -1,6 +1,8 @@
 #include "src/game/save_file.h"
 #include "src/game/cutscene.h"
 
+#include "src/game/archipelago.h"
+
 void bhv_lockbox_key_init(void) {
 
 }
@@ -35,9 +37,11 @@ void bhv_lockbox_key_loop(void) {
         case 2:
             cur_obj_hide();
             if (o->oTimer == 89) {
-                save_file_set_flags(SAVE_FLAG_HAVE_LOCKBOX_KEY);
-                save_file_do_save(gCurrSaveFileNum-1);
-                gCutsceneGameState = CUTSCENE_GAME_STATE_COLLECTED_KEY;
+                
+                archipelago_check_location(AP_LOC_LOCKBOX_KEY);
+                // save_file_set_flags(SAVE_FLAG_HAVE_LOCKBOX_KEY);
+                // save_file_do_save(gCurrSaveFileNum-1);
+                //gCutsceneGameState = CUTSCENE_GAME_STATE_COLLECTED_KEY;
                 initiate_warp(LEVEL_CASTLE, 3, 0x0A, 0, 0);
             }
         break;

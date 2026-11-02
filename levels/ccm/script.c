@@ -168,7 +168,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_WIND_CLOUD, -12345, -215, 335, 0, 0, 0, (80 << 16), bhvWindCloud),
 		OBJECT(MODEL_WIND_CLOUD, 9553, 50, -6954, 0, 0, 0, (80 << 16), bhvWindCloud),
 		OBJECT(MODEL_WIND_CLOUD, 10003, 552, -6573, 0, 0, 0, (80 << 16), bhvWindCloud),
-		OBJECT_WITH_ACTS(MODEL_WING_SURFACE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvWingSurface, ACT_6),
+		OBJECT(MODEL_WING_SURFACE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvWingSurface),
 		TERRAIN(ccm_area_1_collision),
 		TERRAIN_MAT_LUT(ccm_area_1_collision_materials),
 		MACRO_OBJECTS(ccm_area_1_macro_objs),

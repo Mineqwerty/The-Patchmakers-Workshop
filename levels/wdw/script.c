@@ -90,7 +90,7 @@ const LevelScript level_wdw_entry[] = {
 		OBJECT(MODEL_NONE, 751, 1089, 10794, 0, 89, 0, 0x00000000, bhvCoinFormation),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvCorrWindController),
 		OBJECT(MODEL_NONE, -2057, 3295, 521, 0, -17, 0, (239 << 16), bhvSpinAirborneWarp),
-		OBJECT_WITH_ACTS(MODEL_LOWER_CITY_GATE, 9520, -1, -9780, 0, 0, 0, 0x00000000, bhvLowerCityGate, ACT_1 | ACT_2 | ACT_3 | ACT_4 | ACT_5),
+		OBJECT(MODEL_LOWER_CITY_GATE, 9520, -1, -9780, 0, 0, 0, 0x00000000, bhvLowerCityGate),
 		OBJECT(MODEL_GLOBAL_GROUND_BOOK, 7182, 1116, 8681, 0, -90, 0, (34 << 24) | (2 << 16), bhvReadableBook),
 		OBJECT(MODEL_FOG_RED_COIN, -5905, 2130, -9539, 0, 0, 0, 0x00000000, bhvRedCoin),
 		OBJECT(MODEL_FOG_RED_COIN, -8483, 2568, -12252, 0, 0, 0, 0x00000000, bhvRedCoin),

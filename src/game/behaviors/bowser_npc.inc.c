@@ -361,9 +361,9 @@ void bhv_bowser_npc_init(void) {
         o->oAction = BOWSER_NPC_ACT_FIND_SPOT;
     }
 
-    if (gCurrLevelNum == LEVEL_BOWSER_2 && gInMemoryStage) {
-        obj_mark_for_deletion(o);
-    }
+    // if (gCurrLevelNum == LEVEL_BOWSER_2 && gInMemoryStage) {
+    //     obj_mark_for_deletion(o);
+    // }
 
     if (gCurrAreaIndex == 2 && (save_file_get_flags() & SAVE_FLAG_ENTERED_THIRD_HUB)) {
         obj_mark_for_deletion(o);
