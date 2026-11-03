@@ -1278,10 +1278,26 @@ void bhv_patchmaker_init(void) {
     o->oPatchmakerAttackedVel = 0;
     o->oPatchmakerAttackedAngle = 0;
 
-    if (gInMemoryStage) {
-        patchmaker_fight_start();
-        return;
+    // if (gInMemoryStage) {
+    //     patchmaker_fight_start();
+    //     return;
+    // }
+
+    if (gCurrLevelNum == LEVEL_BOWSER_1) {
+        if (archipelago_location_checked(AP_LOC_PATCHMAKER_1)) {
+            spawn_object_relative(0, 0, 0, 0, o, MODEL_FORTUNE_TELEPORTER_PEDESTAL, bhvFortuneTeleporterPedestal);
+            obj_mark_for_deletion(o);
+            return;
+        }
     }
+    if (PATCHMAKER_SECOND_FIGHT) {
+        if (archipelago_location_checked(AP_LOC_PATCHMAKER_2)) {
+            spawn_object_relative(0, 0, 0, 0, o, MODEL_FORTUNE_TELEPORTER_PEDESTAL, bhvFortuneTeleporterPedestal);
+            obj_mark_for_deletion(o);
+            return;
+        }
+    }
+
 
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:

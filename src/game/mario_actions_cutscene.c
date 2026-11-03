@@ -442,6 +442,10 @@ s32 act_warp_ttc(struct MarioState *m) {
         case 0:;
             gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
             m->actionTimer++;
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 1;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_BOB];
+            
 
             gCamera->cutscene = 1;
             approachSpeed = 0.05f;
@@ -463,6 +467,9 @@ s32 act_warp_ttc(struct MarioState *m) {
         case 1:;
             gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
             m->actionTimer++;
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 2;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_HMC];
 
             gCamera->cutscene = 1;
             approachSpeed = 0.05f;
@@ -488,6 +495,9 @@ s32 act_warp_ttc(struct MarioState *m) {
         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
         gCamera->cutscene = 1;
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 3;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_BBH];
 
         m->actionTimer++;
 
@@ -527,6 +537,11 @@ s32 act_warp_rdr(struct MarioState *m) {
             gLakituState.goalFocus[1] = gMarioState->pos[1] + 60;
             gLakituState.goalFocus[2] = gMarioState->pos[2];
 
+            
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 1;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_WF];
+
             if (m->actionTimer == 30) {
                 play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
@@ -547,6 +562,11 @@ s32 act_warp_rdr(struct MarioState *m) {
                 spawn_object_relative(0, 0, 100, 0, gMarioObject, MODEL_SHADOW_TRANSITION_SPHERE, bhvShadowTransitionSphere);
             }
 
+            
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 2;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_LLL];
+
             if (m->actionTimer == 20) {
                 gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
             }
@@ -561,6 +581,12 @@ s32 act_warp_rdr(struct MarioState *m) {
             }
         break;
         case 2:
+
+            
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 3;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_SL];
+
             if (m->actionState == ACT_STATE_QUICKSAND_DEATH_INIT) {
                 set_mario_animation(m, MARIO_ANIM_DYING_IN_QUICKSAND);
                 set_anim_to_frame(m, 60);
@@ -599,6 +625,11 @@ s32 act_warp_stc(struct MarioState *m) {
 
         m->actionTimer++;
 
+        
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 1;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_JRB];
+
         if (m->actionTimer == 30) {
             play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
             play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255);
@@ -618,6 +649,11 @@ s32 act_warp_gss(struct MarioState *m) {
     gMarioObject->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_NONE];
 
     m->actionTimer++;
+
+    
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 1;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_CCM];
 
     gCamera->cutscene = 1;
     Vec3f windowCoords = {-1225, 1998, 591};

@@ -31,7 +31,7 @@ enum ArchipelagoBufferWords {
     AP_RETURN_MODEL_ID   = 32, // client -> game: model for the item at AP_REQUEST_MODEL_ID
     AP_GAME_CLEARED       = 33, // game -> client: 1 when the goal is complete
 
-    AP_50_COIN_PACK      = 34, // client -> game: "10 Starting Coins" filler items received (AP_ITEM_50_COINS)
+    AP_STARTING_COINS    = 34, // client -> game: "10 Starting Coins" items received (each starts courses with 10 more coins)
     AP_TS_COMPLETION     = 35, // client -> game: Timeless Shrine Completion option, see enum ArchipelagoTSCompletion
 
     AP_REQUEST_ITEM_NAME = 36, // game -> client: location ID to look up
@@ -45,6 +45,10 @@ enum ArchipelagoBufferWords {
     AP_WARP_MAP_END      = 51 + 55, // 55 = WARPS_END, checked in archipelago.c
 
     AP_SKIP_STORY        = 106, // client -> game: Skip Story Content option (1 skips story cutscenes)
+    AP_NONSTOP           = 107, // client -> game: Nonstop option (1 stays in the level after collecting a star)
+
+    AP_DEATHLINK_RECEIVED = 108, // client -> game: 1 when another DeathLink player died; game sets it back to 0
+    AP_DEATHLINK_SEND    = 109, // game -> client: 1 when Mario died; client sends the death and sets it back to 0
 
     AP_END,
 };
@@ -71,7 +75,7 @@ enum ArchipelagoTSCompletion {
 #define AP_ITEM_TRIAL_OF_LIFE(n) (14 + (n) - 1)
 #define AP_ITEM_TRIAL_COUNT  5
 #define AP_ITEM_POWER_STAR   20
-#define AP_ITEM_50_COINS     21 // "10 Starting Coins" filler
+#define AP_ITEM_STARTING_COINS 21 // "10 Starting Coins" filler
 // Final act items (only with AP_FINAL_ACT_ITEMS on). Each unlocks that course's final act content and also
 // counts toward AP_STAR_TOTAL.
 #define AP_ITEM_PUSHPIN_POKEY_SPAWNER      22 // Thorn Thicket Cliffs
@@ -100,10 +104,12 @@ void archipelago_render_message(void);
 s32 archipelago_found_client(void);
 s32 archipelago_connected(void);
 s32 archipelago_star_count(void);
+s32 archipelago_starting_coins(void);
 s32 archipelago_option(s32 word, s32 notConnected);
 s32 archipelago_has_all_trials_of_life(void);
 s32 archipelago_final_act_unlocked(s32 finalActItem);
 s32 archipelago_final_act_closed_this_visit(void);
+void archipelago_on_death(void);
 
 void archipelago_check_location(int id);
 u32 archipelago_item_unlocked(int id);

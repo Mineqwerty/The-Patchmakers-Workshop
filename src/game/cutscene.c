@@ -18,6 +18,7 @@
 #include "include/mario_animation_ids.h"
 #include "src/game/save_file.h"
 #include "src/game/puppyprint.h"
+#include "src/game/randomizer.h"
 
 #include "levels/bob/header.inc.h"
 #include "levels/jrb/header.inc.h"
@@ -33,6 +34,8 @@
 #include "levels/bowser_1/header.inc.h"
 #include "levels/bowser_2/header.inc.h"
 #include "levels/bowser_3/header.inc.h"
+
+#include "src/game/archipelago.h"
 
 s16 gCurCutscene = -1;
 f32 gCutsceneFOV = -1;
@@ -597,6 +600,7 @@ s32 event_master_story[] = {
     EVENT_CAMERA_FOCUS, 7030, 1750, -600,
     EVENT_WAIT_FOR_DIALOG_END,
     EVENT_SKIP_CUTSCENE_JUMP, -69, -79, -89,
+    EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
     EVENT_CANCEL_DIALOG,
     EVENT_SET_EXTERNAL_TRIGGER, 1,
     EVENT_WAIT, 1,
@@ -696,6 +700,7 @@ s32 event_meet_sewnia[] = {
     EVENT_SET_MARIO_POSITION, -170, 100, 1020,
     EVENT_ENABLE_MARIO_RENDER,
     EVENT_FADE_FROM_COLOR, 30, 0, 0, 0,
+    EVENT_SONG_PRIMARY, SEQ_FIRST_HUB,
     EVENT_SET_EXTERNAL_TRIGGER, EXTERNAL_TRIGGER_CUTSCENE_SKIPPED,
     EVENT_CAMERA_DISABLE_CUTSCENE,
     EVENT_CANCEL_SPLINE_DATA,
@@ -2687,6 +2692,45 @@ s32 *splineList[] = {
     lll_area_3_spline_MistressReviveFocus11,
 };
 
+/**
+ * With the hub warps shuffled, beating a Patchmaker skips the story that would play in the hubs. The flags that
+ * story sets are set here (unlocking the memory cloud and the hub door shortcut), and Mario goes wherever the
+ * Patchmaker's pedestal leads (WARP_ENTRANCE_HUB_2 / _HUB_3) instead of back to Hub 1.
+ * Returns FALSE when the story should play as usual: any other cutscene, or that hub warp isn't shuffled.
+ */
+static s32 warp_rando_skip_patchmaker_story(void) {
+    u16 entrance;
+    u32 enteredHubFlag;
+    u32 usedKeyFlag;
+
+    if (gCurCutscene == CUTSCENE_EVENT_PATCHMAKER_FIRST_FIGHT_DEFEATED) {
+        entrance = WARP_ENTRANCE_HUB_2;
+        enteredHubFlag = SAVE_FLAG_ENTERED_SECOND_HUB;
+        usedKeyFlag = SAVE_FLAG_HAVE_KEY_1;
+    } else if (gCurCutscene == CUTSCENE_EVENT_PATCHMAKER_BREAKING_POINT) {
+        entrance = WARP_ENTRANCE_HUB_3;
+        enteredHubFlag = SAVE_FLAG_ENTERED_THIRD_HUB;
+        usedKeyFlag = SAVE_FLAG_HAVE_KEY_2;
+    } else {
+        return FALSE;
+    }
+
+    if (!gWarpShuffleActive
+        || (shuffledWarps[entrance].level == vanillaWarpGoals[entrance].level
+            && shuffledWarps[entrance].area == vanillaWarpGoals[entrance].area)) {
+        return FALSE;
+    }
+
+    // What the key door and the next hub's arrival cutscene would have done
+    save_file_set_flags(enteredHubFlag);
+    save_file_clear_flags(usedKeyFlag);
+    save_file_do_save(gCurrSaveFileNum - 1);
+    gCutsceneGameState = CUTSCENE_GAME_STATE_DEFAULT;
+
+    initiate_entrance_warp(entrance);
+    return TRUE;
+}
+
 void begin_cutscene_event(s32 event) {
     gCurCutscene = event;
     cCutsceneActive = 1;
@@ -2714,7 +2758,7 @@ void event_handler(void) {
         struct Object *eventObj;
         f32 dist;
 
-        if ((gPlayer1Controller->buttonPressed & START_BUTTON)
+        if (((gPlayer1Controller->buttonPressed & START_BUTTON) || archipelago_option(AP_SKIP_STORY, FALSE))
             && cSkipCutsceneState < 2
             && gInMemoryStage == 0
             && cDisableCutsceneSkip == 0
@@ -3018,7 +3062,9 @@ void event_handler(void) {
                     cCutsceneIndex += 1;
                 break;
                 case EVENT_INITIATE_WARP:
-                    initiate_warp(param1, param2, param3, 0, 0);
+                    if (!warp_rando_skip_patchmaker_story()) {
+                        initiate_warp(param1, param2, param3, 0, 0);
+                    }
                     cCutsceneIndex += 4;
                 break;
                 case EVENT_SPAWN_OBJECT:

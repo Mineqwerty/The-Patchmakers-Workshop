@@ -54,6 +54,10 @@ extern u8 gBorderHeight;
 extern u8 gSlowdownCount;
 extern u8 gMarioWaterwalk;
 extern s16 gBossHealth;
+extern const u8 gCourseVictoryWarps[]; // indexed by COURSE_*, sized in game_init.c
+extern u16 gLastValidReturnLevel;
+extern u16 gLastValidReturnArea;
+extern u16 gLastValidReturnWarpID;
 extern s16 gBossMaxHealth;
 extern u8 gSewniaFollowing;
 extern f32 gBossDrainHealthDisplay;

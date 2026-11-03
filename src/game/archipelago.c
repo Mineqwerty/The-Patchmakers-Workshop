@@ -7,6 +7,8 @@
 #include "save_file.h"
 #include "puppyprint.h"
 #include "randomizer.h"
+#include "cutscene.h"
+#include "course_table.h"
 
 // Aligned so the header starts on a word boundary, which is what the client's search assumes.
 volatile u32 gArchipelagoBuffer[AP_END] __attribute__((aligned(16)));
@@ -15,7 +17,7 @@ u32 gArchipelagoLastLocationChecked = 0;
 // The header, with every character shifted up by one. Storing it plainly would put a second
 // copy of "TPW AP BUFFER   " in RAM (this string's own data), and the client gives up when it
 // finds more than one match.
-static const char sHeaderShifted[16] = "UQX!BQ!CVGGFS!!!";
+static const char sHeaderShifted[16] = "UQX!!BQ!CVGGFS!!";
 
 // Checks waiting for the client. AP_SEND_LOCATION only holds one at a time and the client
 // only polls it every 0.1s, so anything collected faster than that waits here.
@@ -47,6 +49,22 @@ s32 archipelago_connected(void) {
 
 s32 archipelago_star_count(void) {
     return gArchipelagoBuffer[AP_STAR_TOTAL];
+}
+
+/**
+ * Coins Mario starts a main course with: 10 for each "10 Starting Coins" received. Capped just under the 100 coin
+ * star's threshold, since that star spawns when the count crosses it.
+ */
+s32 archipelago_starting_coins(void) {
+    if (!archipelago_connected() || !COURSE_IS_MAIN_COURSE(gCurrCourseNum)) {
+        return 0;
+    }
+
+    s32 coins = gArchipelagoBuffer[AP_STARTING_COINS] * 10;
+    if (coins > X_COIN_STAR - 1) {
+        coins = X_COIN_STAR - 1;
+    }
+    return coins;
 }
 
 
@@ -162,6 +180,51 @@ static void archipelago_update_warps(void) {
     }
 }
 
+// Set while Mario is dying because of a received DeathLink, so that death isn't sent back out.
+static s32 sDyingFromDeathLink = FALSE;
+
+/**
+ * Kills Mario when another DeathLink player died. Waits while Mario isn't in normal gameplay (story cutscenes,
+ * cutscene actions like doors and star dances, patch challenges) and applies it once he is. If he's already
+ * dying, that death covers it.
+ */
+static void archipelago_apply_deathlink(void) {
+    if (!gArchipelagoBuffer[AP_DEATHLINK_RECEIVED]) {
+        return;
+    }
+
+    if (gMarioState->health < 0x100) {
+        gArchipelagoBuffer[AP_DEATHLINK_RECEIVED] = 0;
+        return;
+    }
+
+    if (cCutsceneActive || gCurrLevelNum == LEVEL_PSS
+        || (gMarioState->action & ACT_GROUP_MASK) == ACT_GROUP_CUTSCENE) {
+        return;
+    }
+
+    gArchipelagoBuffer[AP_DEATHLINK_RECEIVED] = 0;
+    sDyingFromDeathLink = TRUE;
+    // Mario's actions start the right death (standing, airborne, underwater...) once health is below 0x100
+    gMarioState->health = 0xFF;
+}
+
+/**
+ * Called by level_trigger_warp for every death warp. Tells the client to send the death to the other DeathLink
+ * players, unless a received DeathLink caused it or it happened in a patch challenge.
+ */
+void archipelago_on_death(void) {
+    if (sDyingFromDeathLink) {
+        sDyingFromDeathLink = FALSE;
+        return;
+    }
+
+    // Failing a patch challenge isn't a real death, so it doesn't count for DeathLink either way
+    if (archipelago_connected() && gCurrLevelNum != LEVEL_PSS) {
+        gArchipelagoBuffer[AP_DEATHLINK_SEND] = 1;
+    }
+}
+
 void archipelago_update(void) {
     if (!archipelago_found_client()) {
         return;
@@ -172,6 +235,10 @@ void archipelago_update(void) {
     // Only touch the save once a file is loaded and we're in gameplay, not the file select.
     if (archipelago_connected() && gMarioObject != NULL && gCurrLevelNum != LEVEL_NEW_FILE_SELECT) {
         archipelago_apply_items();
+        // The game only refreshes numStars when a star is touched or Mario loads, which is before the server
+        // sends that star back. Keep it on the AP total so the HUD and star doors see new stars right away.
+        gMarioState->numStars = archipelago_star_count();
+        archipelago_apply_deathlink();
     }
 
     archipelago_flush_location_queue();

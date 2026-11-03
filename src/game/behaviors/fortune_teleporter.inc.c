@@ -1,5 +1,7 @@
 #include "include/dialog_ids.h"
 #include "src/game/camera.h"
+#include "src/game/level_update.h"
+#include "src/game/randomizer.h"
 
 void bhv_fortune_teleporter_init(void) {
     
@@ -45,7 +47,16 @@ void bhv_fortune_teleporter_loop(void) {
             if (o->oTimer == 30) {
                 gReonucamState.overhead = 0;
                 gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_HIDE_DPAD;
-                initiate_warp(gCurrLevelNum, 1, 0xEF, WARP_FLAG_FORTUNE_TELEPORTER, 0);
+               
+                if (gCurrLevelNum == LEVEL_BOWSER_1) {
+                    initiate_entrance_warp(WARP_ENTRANCE_HUB_2);
+                }
+                else if (gCurrLevelNum == LEVEL_BOWSER_2) {
+                    initiate_entrance_warp(WARP_ENTRANCE_HUB_3);
+                }
+                else {
+                    initiate_warp(gCurrLevelNum, 1, 0xEF, WARP_FLAG_FORTUNE_TELEPORTER, 0);
+                }
             }
         break;
         case 2:
@@ -93,7 +104,10 @@ void bhv_fortune_teleporter_loop(void) {
 }
 
 void bhv_fortune_teleporter_pedestal_init(void) {
-   
+   if (gCurrLevelNum != LEVEL_BOWSER_1 && gCurrLevelNum != LEVEL_BOWSER_2 && gArchipelagoBuffer[AP_WARP_RANDOMIZATION] == AP_WARPS_FULL) {
+                    obj_mark_for_deletion(o);
+                    return;
+                }
 }
 
 void bhv_fortune_teleporter_pedestal_loop(void) {

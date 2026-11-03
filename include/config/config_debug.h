@@ -26,7 +26,7 @@
  * This allows you to quickly test the level you're working on.
  * If you want the game to boot normally, just comment out the define again.
  */
-#define TEST_LEVEL LEVEL_CASTLE
+#define TEST_LEVEL LEVEL_NEW_FILE_SELECT
 /**
  * Enables debug level select. Hold L while the game boots to turn it on.
  */
@@ -62,7 +62,7 @@
 /**
  * Opens all courses and doors. Used for debugging purposes to unlock all content.
  */
-#define UNLOCK_ALL
+//#define UNLOCK_ALL
 
 /**
  * Same as above, but also reads all save file flags as complete.

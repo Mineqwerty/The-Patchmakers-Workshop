@@ -987,6 +987,10 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
         noExit = TRUE;
     }
 
+    if (archipelago_option(AP_NONSTOP, FALSE)) {
+        noExit = TRUE;
+    }
+
     if (gCurrLevelNum == LEVEL_PSS) {
         noExit = FALSE;
     }

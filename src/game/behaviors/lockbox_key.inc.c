@@ -4,7 +4,9 @@
 #include "src/game/archipelago.h"
 
 void bhv_lockbox_key_init(void) {
-
+    if (archipelago_location_checked(AP_LOC_LOCKBOX_KEY)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void bhv_lockbox_key_loop(void) {

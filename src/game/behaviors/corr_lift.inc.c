@@ -39,6 +39,12 @@ void bhv_corr_lift_loop(void) {
     }
 
     if (o->oAction == 3) {
+
+
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 3;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_WDW];
+
         o->oPosY += 20;
         //gMarioState->pos[1] = o->oPosY + 82;
 

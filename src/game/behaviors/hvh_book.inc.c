@@ -30,6 +30,10 @@ void bhv_hvh_book_loop(void) {
             obj_set_hitbox(o, &sHvhBookHitbox);
             if (obj_check_if_collided_with_object(o, gMarioObject)) {
                 o->oAction = 2;
+                
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 2;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_DDD];
             }
         break;
     }

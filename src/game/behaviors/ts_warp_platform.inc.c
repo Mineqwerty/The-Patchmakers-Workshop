@@ -47,6 +47,11 @@ void bhv_ts_warp_platform_loop(void) {
         gLakituState.goalFocus[1] = o->oPosY + 380;
         gLakituState.goalFocus[2] = o->oPosZ;
 
+        
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 3;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_TTM];
+
         gMarioState->action = ACT_STORY_CUTSCENE;
         gMarioState->pos[0] = approach_f32_asymptotic(gMarioState->pos[0], o->oPosX, 0.09f);
         gMarioState->pos[1] = approach_f32_asymptotic(gMarioState->pos[1], o->oPosY + 340, 0.09f);

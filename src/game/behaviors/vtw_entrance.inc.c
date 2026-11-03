@@ -9,6 +9,10 @@ void bhv_vtw_entrance_init(void) {
 }
 
 void bhv_vtw_entrance_loop(void) {
-
+    if (gMarioState->action == ACT_TELEPORT_FADE_OUT) {
+            gLastValidReturnLevel = LEVEL_CASTLE;
+            gLastValidReturnArea = 2;
+            gLastValidReturnWarpID = gCourseVictoryWarps[COURSE_SSL];
+    }
 }
 

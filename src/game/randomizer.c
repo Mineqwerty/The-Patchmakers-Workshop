@@ -62,6 +62,66 @@ const WarpGoal vanillaWarpGoals[] = {
     [WARP_ENTRANCE_MANTLE_OF_MADNESS]       = WARP_PAIR(LEVEL_BOWSER_3, 2)
 };
 
+// Where each entrance's doorway is: the level and area a warp through it starts from (the AP world's WarpList
+// parent region). A warp back out of a shuffled sub-area returns here.
+const WarpGoal vanillaWarpSources[] = {
+    [WARP_ENTRANCE_NONE]                    = WARP_PAIR(LEVEL_NONE, 0),
+    [WARP_ENTRANCE_STAGE_TTC]               = WARP_PAIR(LEVEL_CASTLE, 1),   // Hub 1
+    [WARP_ENTRANCE_TTC_STONE_PATCH]         = WARP_PAIR(LEVEL_BOB, 1),      // Thorn Thicket Cliffs
+    [WARP_ENTRANCE_TTC_WELL]                = WARP_PAIR(LEVEL_BOB, 1),      // Thorn Thicket Cliffs
+    [WARP_ENTRANCE_STAGE_RDR]               = WARP_PAIR(LEVEL_CASTLE, 1),   // Hub 1
+    [WARP_ENTRANCE_RDR_CHILLSTEP_PATCH]     = WARP_PAIR(LEVEL_WF, 1),       // Rainy Day Roadside
+    [WARP_ENTRANCE_RDR_MUDSLIDE]            = WARP_PAIR(LEVEL_WF, 1),       // Rainy Day Roadside
+    [WARP_ENTRANCE_STAGE_STC]               = WARP_PAIR(LEVEL_CASTLE, 1),   // Hub 1
+    [WARP_ENTRANCE_STC_GRAPPLE_PATCH]       = WARP_PAIR(LEVEL_JRB, 1),      // Stone Terrace City
+    [WARP_ENTRANCE_STC_CLOCK_TOWER]         = WARP_PAIR(LEVEL_JRB, 1),      // Stone Terrace City
+    [WARP_ENTRANCE_STAGE_GSS]               = WARP_PAIR(LEVEL_CASTLE, 1),   // Hub 1
+    [WARP_ENTRANCE_GSS_GRAVEYARD]           = WARP_PAIR(LEVEL_CCM, 1),      // Gold Soaked Sky
+    [WARP_ENTRANCE_GSS_HALO_PATCH]          = WARP_PAIR(LEVEL_CCM, 2),      // Gold Soaked Sky - Graveyard
+    [WARP_ENTRANCE_GSS_AURUMCAEL]           = WARP_PAIR(LEVEL_CCM, 1),      // Gold Soaked Sky
+    [WARP_ENTRANCE_STAGE_SS]                = WARP_PAIR(LEVEL_CASTLE, 2),   // Hub 2
+    [WARP_ENTRANCE_SS_MARINE_PATCH]         = WARP_PAIR(LEVEL_HMC, 1),      // Subterranean Seaway
+    [WARP_ENTRANCE_SS_WATERFALLS]           = WARP_PAIR(LEVEL_HMC, 1),      // Subterranean Seaway
+    [WARP_ENTRANCE_STAGE_CLC]               = WARP_PAIR(LEVEL_CASTLE, 2),   // Hub 2
+    [WARP_ENTRANCE_CLC_SHADOWCHOMP_PATCH]   = WARP_PAIR(LEVEL_LLL, 1),      // Candlelit Chamber
+    [WARP_ENTRANCE_CLC_MISTRESS_AREA]       = WARP_PAIR(LEVEL_LLL, 1),      // Candlelit Chamber
+    [WARP_ENTRANCE_CLC_MASTER_PATH]         = WARP_PAIR(LEVEL_LLL, 1),      // Candlelit Chamber
+    [WARP_ENTRANCE_CLC_MASTER_CHAMBER]      = WARP_PAIR(LEVEL_LLL, 4),      // Candlelit Chamber - Master Path
+    [WARP_ENTRANCE_STAGE_HVH]               = WARP_PAIR(LEVEL_CASTLE, 2),   // Hub 2
+    [WARP_ENTRANCE_HVH_TRANSMUTATION_PATCH] = WARP_PAIR(LEVEL_DDD, 1),      // Hidden Village Hold
+    [WARP_ENTRANCE_HVH_WINDMILLS]           = WARP_PAIR(LEVEL_DDD, 1),      // Hidden Village Hold
+    [WARP_ENTRANCE_HVH_CASTLE]              = WARP_PAIR(LEVEL_DDD, 1),      // Hidden Village Hold
+    [WARP_ENTRANCE_HVH_DEMONIC_SOLIDS]      = WARP_PAIR(LEVEL_DDD, 4),      // Hidden Village Hold - Castle (warp floor 0x0E)
+    [WARP_ENTRANCE_STAGE_VTW]               = WARP_PAIR(LEVEL_CASTLE, 2),   // Hub 2
+    [WARP_ENTRANCE_VTW_BREEZE_PATCH]        = WARP_PAIR(LEVEL_SSL, 1),      // Violet Twilit Woods
+    [WARP_ENTRANCE_VTW_BOOK_SECRET]         = WARP_PAIR(LEVEL_SSL, 1),      // Violet Twilit Woods
+    [WARP_ENTRANCE_VTW_TREETOPS]            = WARP_PAIR(LEVEL_SSL, 1),      // Violet Twilit Woods
+    [WARP_ENTRANCE_STAGE_TFP]               = WARP_PAIR(LEVEL_CASTLE, 3),   // Hub 3
+    [WARP_ENTRANCE_TFP_PORTAL_PATCH]        = WARP_PAIR(LEVEL_BBH, 1),      // The Far Plane
+    [WARP_ENTRANCE_TFP_SHADOWCHOMP_SECRET]  = WARP_PAIR(LEVEL_BBH, 1),      // The Far Plane
+    [WARP_ENTRANCE_TFP_ENDLESS_PIT]         = WARP_PAIR(LEVEL_BBH, 1),      // The Far Plane
+    [WARP_ENTRANCE_TFP_EDGE_OF_REALITY]     = WARP_PAIR(LEVEL_BBH, 1),      // The Far Plane
+    [WARP_ENTRANCE_STAGE_EA]                = WARP_PAIR(LEVEL_CASTLE, 3),   // Hub 3
+    [WARP_ENTRANCE_EA_MIASMA_PATCH]         = WARP_PAIR(LEVEL_SL, 1),       // Empyrean Abyss
+    [WARP_ENTRANCE_EA_TENTACLE_AREA]        = WARP_PAIR(LEVEL_SL, 1),       // Empyrean Abyss
+    [WARP_ENTRANCE_EA_SKY_SLUG_AREA]        = WARP_PAIR(LEVEL_SL, 1),       // Empyrean Abyss
+    [WARP_ENTRANCE_EA_XODORAP]              = WARP_PAIR(LEVEL_SL, 1),       // Empyrean Abyss
+    [WARP_ENTRANCE_STAGE_CORR]              = WARP_PAIR(LEVEL_CASTLE, 3),   // Hub 3
+    [WARP_ENTRANCE_CORR_EXTENSION_PATCH]    = WARP_PAIR(LEVEL_WDW, 1),      // City of Reconstructed Ruin
+    [WARP_ENTRANCE_CORR_ORANGE_BUILDING]    = WARP_PAIR(LEVEL_WDW, 1),      // City of Reconstructed Ruin
+    [WARP_ENTRANCE_CORR_UNDERGROUND]        = WARP_PAIR(LEVEL_WDW, 1),      // City of Reconstructed Ruin
+    [WARP_ENTRANCE_STAGE_TS]                = WARP_PAIR(LEVEL_CASTLE, 3),   // Hub 3
+    [WARP_ENTRANCE_TS_FINAL_STRETCH]        = WARP_PAIR(LEVEL_TTM, 1),      // Timeless Shrine
+    [WARP_ENTRANCE_HUB_2]                   = WARP_PAIR(LEVEL_BOWSER_1, 1), // Patchmaker 1
+    [WARP_ENTRANCE_HUB_3]                   = WARP_PAIR(LEVEL_BOWSER_2, 1), // Patchmaker 2
+    [WARP_ENTRANCE_WORKSHOP_1]              = WARP_PAIR(LEVEL_CASTLE, 1),   // Hub 1
+    [WARP_ENTRANCE_WORKSHOP_2]              = WARP_PAIR(LEVEL_CASTLE, 2),   // Hub 2
+    [WARP_ENTRANCE_THE_BRINK]               = WARP_PAIR(LEVEL_CASTLE, 3),   // Hub 3
+    [WARP_ENTRANCE_PM_1]                    = WARP_PAIR(LEVEL_BITDW, 1),    // Workshop 1
+    [WARP_ENTRANCE_PM_2]                    = WARP_PAIR(LEVEL_BITFS, 1),    // Workshop 2
+    [WARP_ENTRANCE_MANTLE_OF_MADNESS]       = WARP_PAIR(LEVEL_BITS, 1)      // The Brink
+};
+
 const u32 reachWarpLogic[] = {
     [WARP_ENTRANCE_NONE]                    = LOGIC_KEY_NONE,
     [WARP_ENTRANCE_STAGE_TTC]               = LOGIC_KEY_NONE,
@@ -310,8 +370,6 @@ const u8 vanillaWarpEntrances[] = {
 
 WarpGoal shuffledWarps[WARPS_END];
 
-// Whether initiate_warp should follow shuffledWarps. FALSE means every warp behaves exactly as vanilla,
-// including its original warp node.
 s32 gWarpShuffleActive = FALSE;
 
 u16 find_warp_entrance(u8 target_level, u8 target_area) {

@@ -198,6 +198,7 @@ enum WarpNodes {
 
 u16 level_control_timer(s32 timerOp);
 void fade_into_special_warp(u32 arg, u32 color);
+void initiate_entrance_warp(u16 entrance);
 void load_level_init_text(u32 arg);
 s16 level_trigger_warp(struct MarioState *m, s32 warpOp);
 void level_set_transition(s16 length, void (*updateFunction)());

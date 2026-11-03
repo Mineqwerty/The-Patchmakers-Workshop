@@ -815,16 +815,19 @@ void pushpin_pokey_cutscene(void) {
             if (o->oTimer <= 1) {
                 begin_cutscene_event(CUTSCENE_EVENT_POKEY_INTRO);
                 cur_obj_init_animation(1);
+                seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, 0);
                 o->oPosY -= 4000;
                 o->oTimer = 2;
             }
         }
         else {
+            cur_obj_hide();
             o->oTimer = 0;
             return;
         }
     }
     else {
+        cur_obj_hide();
         o->oTimer = 0;
         return;
     }
@@ -1234,7 +1237,6 @@ void bhv_pushpin_pokey_init(void) {
 
     o->oAction = POKEY_ACT_CUTSCENE;
 
-    seq_player_lower_volume(SEQ_PLAYER_LEVEL, 2, 0);
             
 }
 

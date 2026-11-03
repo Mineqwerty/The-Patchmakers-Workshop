@@ -36,6 +36,7 @@
 #include "include/behavior_data.h"
 #include "src/game/hud.h"
 #include "src/game/randomizer.h"
+#include "src/game/archipelago.h"
 
 #include "config.h"
 #include "src/game/cutscene.h"
@@ -141,6 +142,12 @@ s16 sTransitionTimer;
 void (*sTransitionUpdate)(s16 *);
 struct WarpDest sWarpDest;
 s16 sSpecialWarpDest;
+
+static s32 sWarpingThroughWarpNode = FALSE;
+
+// Set when the current warp is a return (a sub-area's return, or a stage return), so lvl_set_current_level skips
+// star select. Every warp sets it again, so it can't carry over.
+static s32 sSkipStarSelect = FALSE;
 s16 sDelayedWarpOp;
 s16 sDelayedWarpTimer;
 s16 sSourceWarpNodeId;
@@ -747,10 +754,147 @@ s16 music_unchanged_through_warp(s16 arg) {
     return unchanged;
 }
 
+static void set_warp_type_for_dest(void) {
+    if (sWarpDest.levelNum != gCurrLevelNum) {
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
+    } else if (sWarpDest.areaIdx != gCurrentArea->index) {
+        sWarpDest.type = WARP_TYPE_CHANGE_AREA;
+    } else {
+        sWarpDest.type = WARP_TYPE_SAME_AREA;
+    }
+}
+
+// When a stage is entered from another stage, its return replaces a hub return. That hub return is kept here and
+// put back once the stage return is used, so returning to the first stage doesn't loop back into it.
+static s32 sHasSavedHubReturn = FALSE;
+static u16 sSavedHubReturnLevel;
+static u16 sSavedHubReturnArea;
+static u16 sSavedHubReturnWarpID;
+static s16 sStageReturnAct;
+
+/**
+ * Whether leaving this level through a stage entrance records it as the place to return to. The hubs set their
+ * own returns at each stage entrance, and the endgame levels are left out.
+ */
+static s32 level_records_stage_return(s16 levelNum) {
+    switch (levelNum) {
+        case LEVEL_CASTLE:
+        case LEVEL_BOWSER_3:
+        case LEVEL_BITS:
+            return FALSE;
+        default:
+            return TRUE;
+    }
+}
+
+/**
+ * Entering another stage through a stage entrance (not from a hub) returns to the area that had the entrance,
+ * at its 0x0A spawn. Called once the destination is decided.
+ */
+static void record_stage_return(void) {
+    if (!level_records_stage_return(gCurrLevelNum)) {
+        return;
+    }
+
+    if (gLastValidReturnLevel == LEVEL_CASTLE) {
+        sSavedHubReturnLevel = gLastValidReturnLevel;
+        sSavedHubReturnArea = gLastValidReturnArea;
+        sSavedHubReturnWarpID = gLastValidReturnWarpID;
+        sHasSavedHubReturn = TRUE;
+    }
+
+    gLastValidReturnLevel = gCurrLevelNum;
+    gLastValidReturnArea = gCurrAreaIndex;
+    gLastValidReturnWarpID = 0x0A;
+    // Coming back skips star select, so it comes back in the act it was left in
+    sStageReturnAct = gCurrActNum;
+}
+
+/**
+ * A warp into the castle from outside (a star's victory exit, a cutscene, a shuffled warp into a hub) that isn't
+ * a death or Exit Course uses the last valid return:
+ * - A stage return replaces the destination, for warp-node returns like the victory exit only, so cutscene
+ *   warps into a hub still land in that hub. The hub return it replaced comes back afterwards.
+ * - A hub return that matches the destination hub arrives at that hub's stage entrance.
+ * Warps inside the castle, like the hub doors, keep their own arrival.
+ */
+// Returns TRUE when it sent the warp to a stage return.
+static s32 use_last_valid_return_warp(s32 warpFlags) {
+    s32 isDeath = sWarpingThroughWarpNode && sSourceWarpNodeId == WARP_NODE_DEATH;
+
+    if (sWarpDest.levelNum != LEVEL_CASTLE || gCurrLevelNum == LEVEL_CASTLE
+        || isDeath || warpFlags == WARP_FLAG_EXIT_COURSE) {
+        return FALSE;
+    }
+
+    if (gLastValidReturnLevel != LEVEL_CASTLE) {
+        if (!sWarpingThroughWarpNode) {
+            return FALSE;
+        }
+
+        sWarpDest.levelNum = gLastValidReturnLevel;
+        sWarpDest.areaIdx = gLastValidReturnArea;
+        sWarpDest.nodeId = gLastValidReturnWarpID;
+        set_warp_type_for_dest();
+        gCurrActNum = sStageReturnAct;
+
+        if (sHasSavedHubReturn) {
+            gLastValidReturnLevel = sSavedHubReturnLevel;
+            gLastValidReturnArea = sSavedHubReturnArea;
+            gLastValidReturnWarpID = sSavedHubReturnWarpID;
+            sHasSavedHubReturn = FALSE;
+        }
+        return TRUE;
+    }
+
+    if (sWarpDest.levelNum == gLastValidReturnLevel && sWarpDest.areaIdx == gLastValidReturnArea) {
+        sWarpDest.nodeId = gLastValidReturnWarpID;
+    }
+    return FALSE;
+}
+
+/**
+ * Whether this warp heads back out of a sub-area instead of through an entrance: to its course's main area, or to
+ * the area holding the vanilla doorway into this sub-area (like Hidden Village Hold's Demonic Solids back to the
+ * Castle, or Candlelit Chamber's Master Chamber back to the Master Path).
+ */
+u32 is_sub_warp_returning_to_main() {
+    if (gCurrLevelNum != sWarpDest.levelNum || gCurrAreaIndex <= 1) {
+        return FALSE;
+    }
+    if (sWarpDest.areaIdx == 1) {
+        return TRUE;
+    }
+
+    u16 entranceIntoHere = find_warp_entrance(gCurrLevelNum, gCurrAreaIndex);
+    return entranceIntoHere != WARP_ENTRANCE_NONE
+        && vanillaWarpSources[entranceIntoHere].level == sWarpDest.levelNum
+        && vanillaWarpSources[entranceIntoHere].area == sWarpDest.areaIdx;
+}
+
+/**
+ * Finds the shuffled entrance that leads into the current area and gives where its doorway is. Returns FALSE if
+ * the area was entered the vanilla way (its entrance isn't shuffled), so the return can stay vanilla.
+ */
+s32 find_entrance_warp_to_subarea(WarpGoal *source) {
+    for (s32 i = 1; i < WARPS_END; i++) {
+        if (shuffledWarps[i].level == gCurrLevelNum && shuffledWarps[i].area == gCurrAreaIndex) {
+            if (shuffledWarps[i].level == vanillaWarpGoals[i].level && shuffledWarps[i].area == vanillaWarpGoals[i].area) {
+                return FALSE;
+            }
+            *source = vanillaWarpSources[i];
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 /**
  * Set the current warp type and destination level/area/node.
  */
 void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags, s16 portalID) {
+    sSkipStarSelect = FALSE;
+
     if (destWarpNode >= WARP_NODE_CREDITS_MIN) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
     } else if (warpFlags == WARP_FLAG_EXIT_COURSE) {
@@ -800,6 +944,12 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     }
 
     u16 levelShuffleNum = find_warp_entrance(destLevel, destArea);
+    s32 isSubAreaReturn = FALSE;
+
+    if ((destLevel == gCurrLevelNum && destArea == gCurrentArea->index)
+        || warpFlags == WARP_FLAG_FORTUNE_TELEPORTER) {
+        levelShuffleNum = WARP_ENTRANCE_NONE;
+    }
 
     if (warpFlags == WARP_FLAG_EXIT_COURSE) {
         sWarpDest.levelNum = LEVEL_CASTLE;
@@ -810,22 +960,61 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags,
     
     if (sWarpDest.levelNum != LEVEL_CASTLE) {
         if (levelShuffleNum > 0 && gWarpShuffleActive) {
-            WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
-            sWarpDest.levelNum = newGoal->level;
-            sWarpDest.areaIdx = newGoal->area;
-            // The incoming node id belongs to the area we were *supposed* to land
-            // in; the shuffled area almost certainly does not declare it.
-            sWarpDest.nodeId = get_warp_entrance_node(newGoal->level, newGoal->area);
+
+            if (is_sub_warp_returning_to_main()) {
+                // A sub-area's warp back to its main area returns to where the warp into this sub-area started.
+                // If the sub-area was entered the vanilla way, it stays the vanilla return with its own node.
+                WarpGoal source;
+                if (find_entrance_warp_to_subarea(&source)) {
+                    sWarpDest.levelNum = source.level;
+                    sWarpDest.areaIdx = source.area;
+                    sWarpDest.nodeId = get_warp_entrance_node(source.level, source.area);
+                    set_warp_type_for_dest();
+                }
+                isSubAreaReturn = TRUE;
+            }
+
+            else {
+                WarpGoal *newGoal = &shuffledWarps[levelShuffleNum];
+                sWarpDest.levelNum = newGoal->level;
+                sWarpDest.areaIdx = newGoal->area;
+                sWarpDest.nodeId = get_warp_entrance_node(newGoal->level, newGoal->area);
+                set_warp_type_for_dest();
+            }
 
         }
     }
     else {
-        if (sWarpDest.levelNum == LEVEL_CASTLE) {
+        if (sWarpDest.levelNum == LEVEL_CASTLE && gCurrLevelNum != LEVEL_CASTLE && sWarpingThroughWarpNode) {
             sWarpDest.areaIdx = gMarioState->lastHubArea;
 
         }
     }
 
+    s32 usedStageReturn = use_last_valid_return_warp(warpFlags);
+
+    // Returns that land in another level skip star select
+    sSkipStarSelect = isSubAreaReturn || usedStageReturn;
+
+    // Leaving this level through a stage entrance (one the warp randomizer can remap) records where to come back to
+    // (a sub-area's return isn't leaving through an entrance, so it doesn't count)
+    if (levelShuffleNum > WARP_ENTRANCE_NONE && destLevel != LEVEL_CASTLE && warpFlags != WARP_FLAG_EXIT_COURSE
+        && !isSubAreaReturn && sWarpDest.levelNum != gCurrLevelNum) {
+        record_stage_return();
+    }
+}
+
+void initiate_entrance_warp(u16 entrance) {
+    const WarpGoal *goal = gWarpShuffleActive ? &shuffledWarps[entrance] : &vanillaWarpGoals[entrance];
+    u8 node = get_warp_entrance_node(goal->level, goal->area);
+
+    initiate_warp(goal->level, goal->area, node, WARP_FLAGS_NONE, 0);
+
+    sWarpDest.levelNum = goal->level;
+    sWarpDest.areaIdx = goal->area;
+    sWarpDest.nodeId = node;
+    set_warp_type_for_dest();
+    use_last_valid_return_warp(WARP_FLAGS_NONE);
 }
 
 // From Surface 0xD3 to 0xFC
@@ -869,7 +1058,9 @@ void initiate_painting_warp(void) {
                     sWarpCheckpointActive = check_warp_checkpoint(&warpNode);
                 }
 
+                sWarpingThroughWarpNode = TRUE;
                 initiate_warp(warpNode.destLevel & 0x7F, warpNode.destArea, warpNode.destNode, WARP_FLAGS_NONE, 0);
+                sWarpingThroughWarpNode = FALSE;
                 check_if_should_set_warp_checkpoint(&warpNode);
 
                 play_transition_after_delay(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255, 45);
@@ -937,7 +1128,8 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 sDelayedWarpTimer = 48;
                 sSourceWarpNodeId = WARP_NODE_DEATH;
                 play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, sDelayedWarpTimer, 0x00, 0x00, 0x00);
-                
+                archipelago_on_death();
+
 #ifdef PREVENT_DEATH_LOOP
                 m->isDead = TRUE;
 #endif
@@ -950,6 +1142,8 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 } else {
                     sSourceWarpNodeId = WARP_NODE_WARP_FLOOR;
                     if (area_get_warp_node(sSourceWarpNodeId) == NULL) {
+                        // No warp floor node here, so this warp floor is a death pit
+                        archipelago_on_death();
 #ifdef ENABLE_LIVES
                         if (m->numLives == 0) {
                             sDelayedWarpOp = WARP_OP_GAME_OVER;
@@ -1103,8 +1297,10 @@ void initiate_delayed_warp(void) {
                         gPatchChallengeTimer = 0;
                     }
 
+                    sWarpingThroughWarpNode = TRUE;
                     initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
                                   warpNode->node.destNode, sDelayedWarpArg, 0);
+                    sWarpingThroughWarpNode = FALSE;
 
                     check_if_should_set_warp_checkpoint(&warpNode->node);
                     if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
@@ -1634,8 +1830,9 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     }
 
     if (gCurrLevelNum != LEVEL_BOWSER_1 && gCurrLevelNum != LEVEL_BOWSER_2 && gCurrLevelNum != LEVEL_BOWSER_3) {
-        gMarioState->numCoins = 0;
-        gHudDisplay.coins = 0;
+        // Each "10 Starting Coins" received starts main courses with 10 more coins
+        gMarioState->numCoins = archipelago_starting_coins();
+        gHudDisplay.coins = gMarioState->numCoins;
         gCurrCourseStarFlags =
             save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum));
     }
@@ -1665,6 +1862,12 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     }
 
     if (sWarpDest.areaIdx > 1) {
+        return FALSE;
+    }
+
+    // Returns (out of a sub-area, or back to the stage a stage was entered from) keep the act they left in
+    if (sSkipStarSelect) {
+        sSkipStarSelect = FALSE;
         return FALSE;
     }
 

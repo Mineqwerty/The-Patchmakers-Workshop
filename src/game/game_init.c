@@ -37,6 +37,7 @@
 #include "emutest.h"
 #include "src/game/randomizer.h"
 #include "archipelago.h"
+#include "course_table.h"
 
 // Emulators that the Instant Input patch should not be applied to
 #define INSTANT_INPUT_BLACKLIST (EMU_CONSOLE | EMU_WIIVC | EMU_ARES | EMU_SIMPLE64 | EMU_CEN64)
@@ -76,6 +77,29 @@ s16 gInMemoryStage = 0;
 s16 gIsAttemptingDemonicSolids = 0;
 s16 updatePatchMenuDma = 0;
 u8 gHasAskedForEpilogue = 0;
+
+u16 gLastValidReturnLevel = LEVEL_CASTLE;
+u16 gLastValidReturnArea = 1;
+u16 gLastValidReturnWarpID = 0x0A;
+
+const u8 gCourseVictoryWarps[COURSE_TTM+1] = {
+    // Hub 1
+    [COURSE_BOB] = 0x30, // Thorn Thicket Cliffs
+    [COURSE_WF]  = 0x31, // Rainy Day Roadside
+    [COURSE_JRB] = 0x32, // Stone Terrace City
+    [COURSE_CCM] = 0x33, // Gold Soaked Sky
+    // Hub 2
+    [COURSE_HMC] = 0x30, // Subterranean Seaway
+    [COURSE_LLL] = 0x31, // Candlelit Chamber
+    [COURSE_DDD] = 0x32, // Hidden Village Hold
+    [COURSE_SSL] = 0x33, // Violet Twilit Woods
+    // Hub 3
+    [COURSE_BBH] = 0x30, // The Far Plane
+    [COURSE_SL]  = 0x31, // Empyrean Abyss
+    [COURSE_WDW] = 0x32, // City of Reconstructed Ruin
+    [COURSE_TTM] = 0x33, // Timeless Shrine
+};
+
 u8 gFBE = FALSE;
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
 u8 gCustomDebugMode;
