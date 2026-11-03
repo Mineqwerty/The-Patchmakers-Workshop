@@ -668,6 +668,15 @@ void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags) {
     gSaveFileModified = TRUE;
 }
 
+u32 save_file_get_ap_other_checks(s32 fileIndex) {
+    return gSaveBuffer.files[fileIndex][0].apOtherChecks;
+}
+
+void save_file_set_ap_other_checks(s32 fileIndex, u32 checks) {
+    gSaveBuffer.files[fileIndex][0].apOtherChecks |= checks;
+    gSaveFileModified = TRUE;
+}
+
 void save_file_get_dpad_map(s32 fileIndex, s8 dpadMap[4]) {
 
     dpadMap[0] = gSaveBuffer.files[fileIndex][0].dpadPatchMap[0];

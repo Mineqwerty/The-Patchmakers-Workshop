@@ -38,7 +38,8 @@ struct SaveFile {
     u8 courseStars[COURSE_COUNT-1]; // 200 bits
 
     u32 unlockedSongs[4]; // 128 bits
-    u32 filler[4];
+    u32 apOtherChecks; // Archipelago checks that aren't stars (patch pickups, Lockbox Key, Patchmakers), see archipelago.c
+    u32 filler[3];
     u32 patchChallengeFrames[12]; // 384 bits
 
     struct SaveBlockSignature signature; // 32 bits 
@@ -212,6 +213,8 @@ u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex);
 u16 save_file_get_patch_flags(s32 fileIndex);
 void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, u32 starFlags);
 void save_file_set_patch_flags(s32 fileIndex, u16 patchFlags);
+u32 save_file_get_ap_other_checks(s32 fileIndex);
+void save_file_set_ap_other_checks(s32 fileIndex, u32 checks);
 void save_file_get_dpad_map(s32 fileIndex, s8 dpadMap[4]);
 void save_file_set_dpad_map(s32 fileIndex, s8 dpadMap[4]);
 u32 save_file_get_collected_patch_upgrades(s32 fileIndex);

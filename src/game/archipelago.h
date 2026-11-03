@@ -50,6 +50,9 @@ enum ArchipelagoBufferWords {
     AP_DEATHLINK_RECEIVED = 108, // client -> game: 1 when another DeathLink player died; game sets it back to 0
     AP_DEATHLINK_SEND    = 109, // game -> client: 1 when Mario died; client sends the death and sets it back to 0
 
+    AP_LOCATIONS_COLLECTED = 110, // game -> client: bit (id) set for every location this save file has collected,
+    AP_LOCATIONS_COLLECTED_END = 116, // rebuilt from the save; the client sends any the server doesn't have yet
+
     AP_END,
 };
 

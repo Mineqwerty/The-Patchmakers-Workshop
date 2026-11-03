@@ -9,6 +9,7 @@
 #include "randomizer.h"
 #include "cutscene.h"
 #include "course_table.h"
+#include "ingame_menu.h"
 
 // Aligned so the header starts on a word boundary, which is what the client's search assumes.
 volatile u32 gArchipelagoBuffer[AP_END] __attribute__((aligned(16)));
@@ -98,9 +99,32 @@ s32 archipelago_has_all_trials_of_life(void) {
     return TRUE;
 }
 
+/**
+ * Bit in the save's apOtherChecks for a check that leaves nothing else in the save (stars have their star flags),
+ * or -1 for one that does: patch pickups 0-11, Lockbox Key 12, Patchmaker 1/2 13/14.
+ */
+static s32 other_check_bit(int id) {
+    if (id >= AP_LOC_PATCH_PICKUP(1) && id <= AP_LOC_PATCH_PICKUP(AP_ITEM_PATCH_COUNT)) {
+        return id - AP_LOC_PATCH_PICKUP(1);
+    }
+    switch (id) {
+        case AP_LOC_LOCKBOX_KEY:  return 12;
+        case AP_LOC_PATCHMAKER_1: return 13;
+        case AP_LOC_PATCHMAKER_2: return 14;
+        default:                  return -1;
+    }
+}
+
 // Send Location
 void archipelago_check_location(int id) {
     gArchipelagoLastLocationChecked = id;
+
+    // Remember it in the save so it can be sent again later if the client misses it
+    s32 bit = other_check_bit(id);
+    if (bit >= 0 && gCurrSaveFileNum > 0) {
+        save_file_set_ap_other_checks(gCurrSaveFileNum - 1, 1 << bit);
+        save_file_do_save(gCurrSaveFileNum - 1);
+    }
 
     if (sLocationQueueCount < AP_LOCATION_QUEUE_SIZE) {
         sLocationQueue[(sLocationQueueHead + sLocationQueueCount) % AP_LOCATION_QUEUE_SIZE] = id;
@@ -180,6 +204,66 @@ static void archipelago_update_warps(void) {
     }
 }
 
+/**
+ * Publishes every location the current save file has collected in AP_LOCATIONS_COLLECTED, so the client can send
+ * any the server is missing: checks made before connecting, during a client restart, or that overflowed the send
+ * queue. Stars come from the save's star flags; everything else from its apOtherChecks.
+ */
+static void archipelago_publish_collected_locations(void) {
+    u32 collected[AP_LOCATIONS_COLLECTED_END - AP_LOCATIONS_COLLECTED] = { 0 };
+    s32 fileIndex = gCurrSaveFileNum - 1;
+
+#define MARK_COLLECTED(id) collected[(id) / 32] |= (1 << ((id) % 32))
+
+    // Course stars: course star flags, bit = star index
+    for (s32 course = COURSE_BOB; course <= COURSE_TTM; course++) {
+        u32 flags = save_file_get_star_flags(fileIndex, COURSE_NUM_TO_INDEX(course));
+        for (s32 star = 0; star < 7; star++) {
+            if (flags & (1 << star)) {
+                MARK_COLLECTED(AP_LOC_COURSE_STAR(courseToOrderedIndex[course] - 1, star));
+            }
+        }
+    }
+
+    // Secret stars: saved the way save_file_collect_star_or_key does, from COURSE_COTMC on
+    for (s32 starIndex = 9; starIndex < 9 + 24; starIndex++) {
+        if (save_file_get_star_flags(fileIndex, COURSE_NUM_TO_INDEX(COURSE_COTMC + (starIndex / 7))) & (1 << (starIndex % 7))) {
+            MARK_COLLECTED(AP_LOC_SECRET_STAR(starIndex));
+        }
+    }
+
+    // Patch challenges: challenge k is LEVEL_PSS area k with star index k - 1, saved from COURSE_BITS on
+    for (s32 challenge = 1; challenge <= AP_ITEM_PATCH_COUNT; challenge++) {
+        s32 starIndex = challenge - 1;
+        if (save_file_get_star_flags(fileIndex, COURSE_NUM_TO_INDEX(COURSE_BITS + (starIndex / 7))) & (1 << (starIndex % 7))) {
+            MARK_COLLECTED(AP_LOC_PATCH_CHALLENGE(challenge));
+        }
+    }
+
+    // Patch pickups, Lockbox Key, Patchmakers
+    u32 otherChecks = save_file_get_ap_other_checks(fileIndex);
+    for (s32 patch = 1; patch <= AP_ITEM_PATCH_COUNT; patch++) {
+        if (otherChecks & (1 << other_check_bit(AP_LOC_PATCH_PICKUP(patch)))) {
+            MARK_COLLECTED(AP_LOC_PATCH_PICKUP(patch));
+        }
+    }
+    if (otherChecks & (1 << other_check_bit(AP_LOC_LOCKBOX_KEY))) {
+        MARK_COLLECTED(AP_LOC_LOCKBOX_KEY);
+    }
+    if (otherChecks & (1 << other_check_bit(AP_LOC_PATCHMAKER_1))) {
+        MARK_COLLECTED(AP_LOC_PATCHMAKER_1);
+    }
+    if (otherChecks & (1 << other_check_bit(AP_LOC_PATCHMAKER_2))) {
+        MARK_COLLECTED(AP_LOC_PATCHMAKER_2);
+    }
+
+#undef MARK_COLLECTED
+
+    for (s32 i = 0; i < AP_LOCATIONS_COLLECTED_END - AP_LOCATIONS_COLLECTED; i++) {
+        gArchipelagoBuffer[AP_LOCATIONS_COLLECTED + i] = collected[i];
+    }
+}
+
 // Set while Mario is dying because of a received DeathLink, so that death isn't sent back out.
 static s32 sDyingFromDeathLink = FALSE;
 
@@ -239,6 +323,7 @@ void archipelago_update(void) {
         // sends that star back. Keep it on the AP total so the HUD and star doors see new stars right away.
         gMarioState->numStars = archipelago_star_count();
         archipelago_apply_deathlink();
+        archipelago_publish_collected_locations();
     }
 
     archipelago_flush_location_queue();
