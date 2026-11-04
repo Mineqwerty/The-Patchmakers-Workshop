@@ -788,8 +788,22 @@ static s32 level_records_stage_return(s16 levelNum) {
 }
 
 /**
+ * The spawn a stage return arrives at. Bowser in the Dark World and Bowser in the Fire Sea come back right before
+ * their warp floor (node 0x0C), so a return doesn't mean running the whole stage again.
+ */
+static u8 stage_return_node(s16 levelNum) {
+    switch (levelNum) {
+        case LEVEL_BITDW:
+        case LEVEL_BITFS:
+            return 0x0C;
+        default:
+            return 0x0A;
+    }
+}
+
+/**
  * Entering another stage through a stage entrance (not from a hub) returns to the area that had the entrance,
- * at its 0x0A spawn. Called once the destination is decided.
+ * at its stage_return_node spawn. Called once the destination is decided.
  */
 static void record_stage_return(void) {
     if (!level_records_stage_return(gCurrLevelNum)) {
@@ -805,7 +819,7 @@ static void record_stage_return(void) {
 
     gLastValidReturnLevel = gCurrLevelNum;
     gLastValidReturnArea = gCurrAreaIndex;
-    gLastValidReturnWarpID = 0x0A;
+    gLastValidReturnWarpID = stage_return_node(gCurrLevelNum);
     // Coming back skips star select, so it comes back in the act it was left in
     sStageReturnAct = gCurrActNum;
 }
@@ -1015,6 +1029,23 @@ void initiate_entrance_warp(u16 entrance) {
     sWarpDest.nodeId = node;
     set_warp_type_for_dest();
     use_last_valid_return_warp(WARP_FLAGS_NONE);
+}
+
+/**
+ * Schedules a warp through one of this area's warp nodes, the same as a SURFACE_WARP floor whose force is that node.
+ * Scripted area transitions use this instead of change_area so they go through initiate_warp (and the warp randomizer).
+ */
+s16 level_trigger_warp_node(struct MarioState *m, u8 node) {
+    if (sDelayedWarpOp == WARP_OP_NONE) {
+        m->invincTimer = -1;
+        sDelayedWarpArg = WARP_FLAGS_NONE;
+        sDelayedWarpOp = WARP_OP_WARP_FLOOR;
+        sSourceWarpNodeId = node;
+        sDelayedWarpTimer = 20;
+        play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+    }
+
+    return sDelayedWarpTimer;
 }
 
 // From Surface 0xD3 to 0xFC

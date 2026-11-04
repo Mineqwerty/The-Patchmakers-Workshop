@@ -70,7 +70,9 @@ const LevelScript level_bbh_entry[] = {
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x03, 0x30, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_CASTLE, 0x03, 0x40, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xEF, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
-		INSTANT_WARP(0x00, 0x02, 0, 0, -2061),
+		WARP_NODE(0x0C, LEVEL_BBH, 0x02, 0x0A, WARP_NO_CHECKPOINT), // portal window floor -> Portal Patch Area
+		WARP_NODE(0x0D, LEVEL_BBH, 0x03, 0x0A, WARP_NO_CHECKPOINT), // camera volume 5 -> Endless Pit
+		WARP_NODE(0x0E, LEVEL_BBH, 0x05, 0x0A, WARP_NO_CHECKPOINT), // shadowchomp launch -> Shadowchomp Secret
 		OBJECT(MODEL_FAR_PLANE_CUBE_HEAD, 9782, 2793, -8812, 0, 0, 0, 0x00000000, bhvFarPlaneCubeHead),
 		MARIO_POS(0x01, 0, 7, 910, -1750),
 		OBJECT(MODEL_NONE, 7, 910, -1750, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),

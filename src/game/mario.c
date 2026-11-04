@@ -2291,21 +2291,14 @@ void late_patch_update(struct MarioState *m ) {
                 if (m->patchTimer == 90) {
                     sFOVState.fovFunc = CAM_FOV_APP_170;
                 }
+                if (m->patchTimer == 120) {
+                    // Shadowchomp Secret: warp node 0x0E (bbh/5), a regular warp so the warp randomizer can remap it.
+                    // Its 20 frame fade ends at the same time the old area change happened.
+                    level_trigger_warp_node(m, 0x0E);
+                }
                 if (m->patchTimer == 140) {
-                    gMarioState->pos[0] = 0;
-                    gMarioState->pos[1] = 1000;
-                    gMarioState->pos[2] = 0;
                     sFOVState.fovFunc = CAM_FOV_SET_45;
                     m->overrideGravity = 0;
-                    s16 cameraAngle = gMarioState->area->camera->yaw;
-                        change_area(5);
-                        gMarioState->area = gCurrentArea;
-                        
-                        gMarioState->area->camera->yaw = cameraAngle;
-                        if (gMarioState->equippedPatch == PATCH_HALO || gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
-                            gMarioState->patchChildObj = NULL;
-                            gMarioState->updatePatch = 1;
-                        }
                 }
             }
         break;

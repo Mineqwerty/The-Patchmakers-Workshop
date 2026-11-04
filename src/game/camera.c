@@ -3319,7 +3319,6 @@ s16 check_mario_is_in_course_volume(void) {
 void handle_course_volumes(struct Camera *c) {
 
     s16 volumeID = check_mario_is_in_course_volume();
-    s16 cameraAngle;
 
     if (volumeID == 2 && gCurrLevelNum == LEVEL_BBH && gDialogBoxState == 3) {
         sPrevCameraVolume = 0;
@@ -3396,19 +3395,8 @@ void handle_course_volumes(struct Camera *c) {
                         gReonucamState.overhead = 0;
                     break;
                     case 5:
-                        cameraAngle = gMarioState->area->camera->yaw;
-                        change_area(3);
-                        gMarioState->area = gCurrentArea;
-                        
-                        gMarioState->area->camera->yaw = cameraAngle;
-                        if (gMarioState->equippedPatch == PATCH_HALO || gMarioState->equippedPatch == PATCH_SHADOWCHOMP || gMarioState->equippedPatch == PATCH_SKYBRIDGE) {
-                            gMarioState->patchChildObj = NULL;
-                            gMarioState->updatePatch = 1;
-                        }
-                        struct Surface *floor;
-                        f32 floorHeight = find_floor(gMarioState->pos[0], gMarioState->pos[1], gMarioState->pos[2], &floor);
-                        
-                        set_mario_floor(gMarioState, floor, floorHeight);
+                        // Endless Pit: warp node 0x0D (bbh/3), a regular warp so the warp randomizer can remap it
+                        level_trigger_warp_node(gMarioState, 0x0D);
                     break;
                     case 6:
                        gMarioState->specialWarpFlags = 1;
